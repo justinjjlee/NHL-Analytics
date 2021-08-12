@@ -102,7 +102,7 @@ idx_report_type = str_report_type[0]; # pull by season or by game level data
 str_page = str_page_skater; # adjust based on what data type (team, skater, or goalie) you are pulling
 
 nhl_pull_loop(str_season, str_season, str_page, idx_data_type, idx_report_type, idx_datetype)
-
+'''
 # Pull by skater, by game
 idx_datetype = str_datetype[1]; # Except pulling game-level player data, this should be 0 always
 # If pulling game-level player data - change the first two entries of the function to str_date_start  and str_date_end, respectively
@@ -111,7 +111,7 @@ idx_report_type = str_report_type[1]; # pull by season or by game level data
 str_page = str_page_skater; # adjust based on what data type (team, skater, or goalie) you are pulling
 
 nhl_pull_loop(str_date_start, str_date_end, str_page, idx_data_type, idx_report_type, idx_datetype)
-
+'''
 # Pull by goalie, by season
 idx_datetype = str_datetype[0]; # Except pulling game-level player data, this should be 0 always
 # If pulling game-level player data - change the first two entries of the function to str_date_start  and str_date_end, respectively
