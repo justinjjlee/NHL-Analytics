@@ -4,15 +4,12 @@ using Distributed
 addprocs(8)
 @everywhere using CSV, Glob, DataFrames
 
-@everywhere str_cd = "C:\\Users\\justi\\Documents\\GitHub\\NHL-Analytics\\dev\\pythagorian_expectations\\"
-@everywhere str_cd_dfs = "C:\\Users\\justi\\Google Drive\\Learning\\sports\\nhl\\backup_copy\\team_season\\"
+@everywhere str_cd = "...\\GitHub\\NHL-Analytics\\dev\\pythagorian_expectations\\"
+@everywhere str_cd_dfs = "...\\team_season\\"
 
-# Pull all Data
-
-
+# Function to append all data
 function data_pull_merge(str_wd)
     files = glob("*.csv", str_wd)
-
 
     dfs = DataFrame.(CSV.File.(files))
     df = dfs[1]
@@ -24,7 +21,11 @@ function data_pull_merge(str_wd)
     #df = reduce(vcat(), dfs)
     return df
 end
+
+# Append all data
 df = data_pull_merge(str_cd_dfs)
+
+# Process data
 df[:, :Season] = string.(df[:, :Season]); # Need to edit portion of dates attached
 df[(length.(df.Season) .> 7), :Season] = [value[1:7] for (iter, value) in enumerate(df[(length.(df.Season) .> 7), :Season])]
 # Pull necessary columns
@@ -55,4 +56,5 @@ df_fin[ismissing.(df_fin[:, "Stanley Cup"]), "Stanley Cup"] = "Missed playoff";
 cor(Array(df_fin[:, ["Wins", "Wins Ratio", "Pythagorean Expectation"]]))
 # Historically, quite good expectation formation.
 
+# Push out data
 df_fin |> CSV.write(str_cd * "data_pythagorean_expectation.csv")
