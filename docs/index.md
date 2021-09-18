@@ -1,6 +1,6 @@
-# Sports Analytics in Data Science
+# Applying Data Science in Sports Analytics
 
-This repository contains data science toolkits to analyze and visualize National Hockey League (NHL) statistics. This includes descriptive, diagnostic, predictive, and prescriptive component in the context of sports analytics.
+This repository contains data science toolkits I applied to analyze and visualize National Hockey League (NHL) statistics. This includes descriptive, diagnostic, predictive, and prescriptive component in the context of sports analytics.
 
 This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances statistics. All original codes (including generic and model algorithms) can be used freely with a proper citation to this repository.
 
