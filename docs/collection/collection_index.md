@@ -10,7 +10,7 @@ Below list current work examles of codes published in the repository
   - [x] Goalie - By season, by game
 - [x] Data scrape - Leveraging [http://statsapi.web.nhl.com](http://statsapi.web.nhl.com) (see [documentation](https://gitlab.com/dword4/nhlapi/-/blob/master/records-api.md))
   - [x] Live game data: Player (Goalie & Skater) by action
-  - [x] [Example game-level data pull](/collection/nhl_game_data_pull_eg.md)
+  - [x] [Example game-level data pull](/nhl_game_data_pull_eg.md)
 - [ ] Data join - merge relevant data
   - [ ] Player salary and salary cap from [hockey-reference.com](https://www.hockey-reference.com/friv/current_nhl_salaries.cgi), (annual)
   - [ ] (Private) NHL stadium foot traffic behaviors and demographics data (mobile / foot traffic data)
