@@ -4,10 +4,8 @@ layout: default
 filename: nhl_game_data_pull_eg.md
 --- 
 
-# Using NHL API for player in game level statistics
-See in [Toward Data Science article](https://towardsdatascience.com/nhl-analytics-with-python-6390c5d3206d)
-
-Description of the API pull is discussed in[NHL API pull via python](https://gitlab.com/dword4/nhlapi), using python
+# Using NHL API for player in game level statistics from NHL.com
+Description of the API pull is discussed in [NHL API pull via Python](https://gitlab.com/dword4/nhlapi)
 
 
 ```python
@@ -42,8 +40,8 @@ drive.mount('/content/drive')
 year_last = 2021
 ssn = ['02', '03']; # Regular season and playoff, respectively
 max_game_ID = 3000; # just to be conservative in case there are data not accounted
-
-yr = list(map(str, list(range(1960, year_last))))[::-1]; #reverse the list order
+#reverse the list order
+yr = list(map(str, list(range(1960, year_last))))[::-1]; 
 ```
 
 Pull all relevant seasons
@@ -74,4 +72,4 @@ for year in yr:
     Done! - year 2019 and season type: 03
     ...
 
-[back](./)
+[back](/collection_index.md)
