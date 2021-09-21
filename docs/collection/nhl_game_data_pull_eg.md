@@ -39,7 +39,8 @@ drive.mount('/content/drive')
 # Set up the API call variables
 year_last = 2021
 ssn = ['02', '03']; # Regular season and playoff, respectively
-max_game_ID = 3000; # just to be conservative in case there are data not accounted
+# just to be conservative in case there are data not accounted
+max_game_ID = 3000; 
 #reverse the list order
 yr = list(map(str, list(range(1960, year_last))))[::-1]; 
 ```
