@@ -65,7 +65,7 @@ Assists - Hyman          |  Goals - Hyman
 :-------------------------:|:-------------------------:
 ![](https://github.com/justinjoliver/NHL-Analytics/blob/main/dev/positional_success_forwards/Zach%20Hyman_assist_success.png?raw=true)  |  ![](https://github.com/justinjoliver/NHL-Analytics/blob/main/dev/positional_success_forwards/Zach%20Hyman_goal_success.png?raw=true)
 
-## Still worried about Maple Leafs’s top forward line post-Hyman
+## Still worried about Maple Leafs' top forward line post-Hyman
 
 This leaves me with my annual disappointment with the Leafs. Up until the last season, the forward line, Zach Hyman – Auston Matthews – Mitchel Marner, has been the most proficient forward line of the team. Complementary of Taveras in other lines, however, Leaf’s attempt of fast-pace team still yielded to inconsistent results.
 
