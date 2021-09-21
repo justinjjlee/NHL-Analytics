@@ -8,7 +8,7 @@
 
 ## What I aim to observe
 
-Observing play-level statistics from 2016-17 seasons to 2020-21 seasons, I plot over (colored orange) and under (colored blue) shots-on-goal percentage of each players relative to the league average based on their position in offensive zone. See approach details on Methodology section. Along with the first-layer information (shots-on-goal statistics), the second layer (where the event happens) allows me to identify strategic positional patterns for each team and each player combinations. Unless otherwise mentioned in the plots, all figures observe player's shooting percentages.
+Observing play-level statistics from 2016-17 seasons to 2020-21 seasons, I plot over (colored orange) and under (colored blue) shots-on-goal percentage of each players relative to the league average based on their position in offensive zone. See approach details on Methodology section. Along with the first-layer information (shots-on-goal statistics), the second layer (where the event happens) allows me to identify strategic positional patterns for each team and each player combinations. Unless otherwise mentioned in the plots, all figures observe player's shooting percentages (percentage of goals, of all shot attempts) - relative to the league average.
 
 ## Anecdotal successful player positions and strategies
 I observe three recent Stanley Cup-winning teams: Washington Capitals (2018), St. Louis Blues (2019), and Tampa Bay Lightning (2020 and 2021). Especially, the top forward lines for the teams have distinct approaches that helped them raise the cup. Table below notes players for the top lines.
