@@ -1,4 +1,4 @@
-# Offensive zone positional successes - understanding Edmonton Oilers and Toronto Maple Leafs
+# Offensive zone positional successes
 
 ## Highlights
 
@@ -45,6 +45,6 @@ Lightening’s all-in-one approach has a mixture of both strategies mentioned ab
   <img src="https://github.com/justinjoliver/NHL-Analytics/blob/main/dev/positional_success_forwards/gif_tbl_2021.gif" alt="Ligtenings" width="600"/>
 </p>
 
-![Alt Text](https://github.com/justinjoliver/NHL-Analytics/blob/main/dev/positional_success_forwards/gif_tbl_2021.gif)
+![Alt Text](https://github.com/justinjoliver/NHL-Analytics/blob/main/dev/positional_success_forwards/gif_tbl_2021.gif?raw=true)
 
 [back to the main page](../index.md)
