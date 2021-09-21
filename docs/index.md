@@ -9,3 +9,6 @@ This is a selection of many ways to collect, compile, clean, analyze, model, and
 3. [NHL game prediction model process - TBD]()
 
 This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. 
+
+## Analyses
+1. [Positional success by Stanley Cup Winners: A case for Oilers and Maple Leafs](/collection/0_ana_positionalForwards.md)
