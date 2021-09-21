@@ -1,9 +1,3 @@
----
-title: Pulling play-level data
-layout: default 
-filename: nhl_game_data_pull_eg.md
---- 
-
 # Using NHL API for player in game level statistics from NHL.com
 Description of the API pull is discussed in [NHL API pull via Python](https://gitlab.com/dword4/nhlapi)
 
