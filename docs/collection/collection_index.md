@@ -12,6 +12,7 @@ Below list current work examles of codes published in the repository
   - [x] Live game data: Player (Goalie & Skater) by action
   - [x] [Example game-level data pull](/nhl_game_data_pull_eg.md)
 - [ ] Data join - merge relevant data
+  - [x] Sports betting data: money line and market expectation [data](https://www.sportsbookreviewsonline.com/scoresoddsarchives/nhl/nhloddsarchives.htm)
   - [ ] Player salary and salary cap from [hockey-reference.com](https://www.hockey-reference.com/friv/current_nhl_salaries.cgi), (annual)
   - [ ] (Private) NHL stadium foot traffic behaviors and demographics data (mobile / foot traffic data)
   - [ ] University of Michigan - Men's Ice Hockey [player statistics](https://statsarchive.ath.umich.edu/VS-IceHockey-M/ihockeystart.php)
