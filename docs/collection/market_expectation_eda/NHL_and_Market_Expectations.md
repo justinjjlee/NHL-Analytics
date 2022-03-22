@@ -247,7 +247,7 @@ plt.axhline(y = 60, color = 'r', linestyle = ':');
 
 plt.xlabel('Season');
 plt.ylabel('Correct market expectation, percent');
-plt.title('The market expectation and predictiveness');
+plt.title('Historical accuracy of the market expectation');
 ```
 
     Market's prediction accuracy of the sason 58.49%
@@ -551,7 +551,7 @@ for i, v in enumerate(team_stats.rate):
 
 ax.grid(False)
 ax.set_xlabel('Teams');
-ax.set_ylabel('Market accuracy, percent');
+ax.set_ylabel('Accuracy of market expectation, percent');
 plt.title('Market expectation, favorites, and ' + \
           f'team performance (20{last_yr_edge - 1} - 20{last_yr_edge} season)');
 ```
@@ -609,8 +609,8 @@ plt.fill_between(x, lb, ub, color = 'b', alpha = .1,
 plt.axhline(y = 60, color = 'r', linestyle = ':');
 # labels and details
 ax.set_xlabel('Season game sequence');
-ax.set_ylabel('Market accuracy, percent');
-plt.title('Market expectation shows no improvement as the season progresses');
+ax.set_ylabel('Accuracy of market expectation, percent');
+plt.title('No sign of improvements on market expectations as season progresses');
 plt.xlabel('Game in season')
 plt.xticks(list(range(1,(n_games_reviewed + 1),9)));
 plt.legend(loc = 'upper left');
@@ -622,7 +622,7 @@ plt.legend(loc = 'upper left');
     
 
 
-## Implications: No fortune telling in the NHL
+## Implications: No fortune telling in NHL
 
 I document evidence that the market expectation for NHL is quite lagging, and the power of expectations mainly comes from extreme and obvious performers (exceedingly outperforming and underperforming teams). A substantial gain based on the bets would require one to 'beat the market,' bet against the market, and those expectations to be correct. The evidence shown here fails to show a confidence individual (agents) achieving such outcome consistently to build wealth.
 
