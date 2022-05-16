@@ -14,4 +14,4 @@ This repository does not claim any ownership of data and represents points of vi
 
 ## Analyses, in order of recency
 * [Better than the coin flips? Money line and market expectation in NHL](https://github.com/justinjoliver/NHL-Analytics/blob/main/docs/collection/market_expectation_eda/NHL_and_Market_Expectations.md)
-* [Positional success by Stanley Cup Winners: A case for Oilers and Maple Leafs](https://github.com/justinjoliver/NHL-Analytics/blob/main/docs/collection/0_ana_positionalForwards.md)
+* [Positional success by Stanley Cup Winners: A case for Oilers and Maple Leafs](/collection/0_ana_positionalForwards.md)
