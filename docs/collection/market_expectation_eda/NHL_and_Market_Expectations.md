@@ -1,3 +1,5 @@
+[back to the main page](../index.md)
+
 # Better than coin flips? Money line and market expectation in NHL
 
 When creating a framework or a model explaining team performances, we narrow down the scope of the evaluation criteria (e.g. amount of information) to derive more interpretable trends and phenomena. Doing so limits the available information that otherwise can be reflected and helps make better prediction (e.g. you could have been right 61% of the games, instead of 60%). 
@@ -638,3 +640,5 @@ As a next step, I introduce commonly used metrics in hockey to measure and expla
 Stefan Szymanski - research and MOOC
 
 [Why underdogs do better in hockey than basketball?](https://www.youtube.com/watch?v=HNlgISa9Giw&ab_channel=Vox)
+
+[back to the main page](../index.md)
