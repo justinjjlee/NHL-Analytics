@@ -2,7 +2,7 @@
 
 This repository contains data science toolkit codes to analyze National Hockey League (NHL) statistics. 
 
-Please find the analyses documented here: [![Documentation](https://img.shields.io/badge/doc-latest-blue.svg)](https://github.com/justinjoliver/NHL-Analytics/blob/main/docs/index.md)
+Please find the analyses documented here: [![Documentation](https://img.shields.io/badge/doc-latest-blue.svg)](https://justinjoliver.github.io/NHL-Analytics/)
 , or in [Tableau Public](https://public.tableau.com/app/profile/justin.l.1253).
 
 This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances statistics. This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. All original codes (including generic and model algorithms) can be used freely with a proper citation to this repository.
