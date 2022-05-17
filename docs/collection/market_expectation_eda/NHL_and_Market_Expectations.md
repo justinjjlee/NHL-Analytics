@@ -1,4 +1,4 @@
-[back to the main page](../index.md)
+[back to the main page](../../index.md)
 
 # Better than coin flips? Money line and market expectation in NHL
 
@@ -641,4 +641,4 @@ Stefan Szymanski - research and MOOC
 
 [Why underdogs do better in hockey than basketball?](https://www.youtube.com/watch?v=HNlgISa9Giw&ab_channel=Vox)
 
-[back to the main page](../index.md)
+[back to the main page](../../index.md)
