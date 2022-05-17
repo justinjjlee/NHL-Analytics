@@ -4,9 +4,9 @@ This repository contains data science toolkits I applied to analyze and visualiz
 
 This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances statistics. All original codes (including generic and model algorithms) can be used freely with a proper citation to this repository.
 
-0. [NHL analytics status](https://github.com/justinjoliver/NHL-Analytics/blob/main/docs/collection/collection_index.md)
-1. [NHL data scraping, collection, and cleaning](https://github.com/justinjoliver/NHL-Analytics/blob/main/docs/collection/nhl_game_data_pull_eg.md)
-2. [NHL Stats pull and consolidations](https://github.com/justinjoliver/NHL-Analytics/blob/main/docs/collection/nhl_data_summary_scrape_eg.md)
+0. [NHL analytics status](/collection_index.md)
+1. [NHL data scraping, collection, and cleaning](/collection/nhl_game_data_pull_eg.md)
+2. [NHL Stats pull and consolidations](/collection/nhl_data_summary_scrape_eg.md)
 2. [NHL data exploratory analysis (EDA) - TBD]()
 3. [NHL game prediction model process - TBD]()
 
