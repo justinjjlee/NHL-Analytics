@@ -1,3 +1,5 @@
+[back to the main page](../index.md)
+
 # Using NHL API for player in game level statistics from NHL.com
 Description of the API pull is discussed in [NHL API pull via Python](https://gitlab.com/dword4/nhlapi)
 
@@ -67,4 +69,4 @@ for year in yr:
     Done! - year 2019 and season type: 03
     ...
 
-[back](/collection_index.md)
+[back to the main page](../index.md)
