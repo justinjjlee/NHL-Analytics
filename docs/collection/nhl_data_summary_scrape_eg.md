@@ -1,3 +1,5 @@
+[back to the main page](../index.md)
+
 # Data Collection for NHL - Workbook example of scrapping summary statistics
 
 Resources:
@@ -703,3 +705,4 @@ df_examin.groupby(['Player Name', 'Teams Played For']).first().reset_index()
 </div>
 
 
+[back to the main page](../index.md)
