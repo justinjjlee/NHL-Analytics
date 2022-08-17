@@ -221,3 +221,61 @@ def df_gen_h2h_common(dffunc_origin, iter_time):
     h2h_common["gameDate_last"] = iter_time
 
     return h2h_common
+
+# Pairwise RPI calculation
+def pairwise_h2h(df_box_exnt):
+    # own success
+    df_own = df_box_exnt \
+        .groupby(['team_tri_for']) \
+        .agg(
+            {
+                "rwin":"last",
+                "rgame":"last"
+            }
+        ).reset_index()
+    df_own["wp_own"] = df_own.rwin / df_own.rgame
+    df_own.set_index("team_tri_for", inplace = True)
+
+    # Opponents' success, accumulated
+    df_ow = df_box_exnt \
+        .groupby(['team_tri_for', 'team_tri_against']) \
+        .agg(
+            {
+                "rwin_oppo":"last",
+                "rgame_oppo":"last",
+            }
+        ).reset_index().groupby(['team_tri_for']) \
+        .agg(
+            {
+                "rwin_oppo":"sum",
+                "rgame_oppo":"sum",
+            }
+        ).reset_index()
+    df_ow["wp_ow"] = df_ow.rwin_oppo / df_ow.rgame_oppo
+    df_ow.set_index("team_tri_for", inplace = True)
+
+    # Opponents common opponents success
+    idx_h2h_pivot = 'team_tri_for_ow'
+    df_oow = dff_h2h_com.groupby([idx_h2h_pivot]) \
+        .agg(
+            {
+                'game_won_h2h_ow':'sum', 
+                'game_played_h2h_ow':'sum'
+            }
+        ).reset_index()
+    df_oow["wp_oow"] = df_oow.game_won_h2h_ow / df_oow.game_played_h2h_ow
+    df_oow.set_index(idx_h2h_pivot, inplace = True)
+
+    df_own = df_own.join(df_ow)
+    df_own = df_own.join(df_oow)
+
+    df_own['rpi'] = (df_own.wp_own * 0.25) \
+                    + (df_own.wp_ow * 0.5) \
+                    + (df_own.wp_oow * 0.25) 
+    df_own.drop(columns = ['rgame', 'rwin', 
+                            'rwin_oppo', 'rgame_oppo',
+                            'game_won_h2h_ow', 'game_played_h2h_ow'
+                        ], 
+                inplace = True)
+    df_own.sort_values(by = 'rpi')
+    return df_own
