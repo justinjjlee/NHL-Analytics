@@ -223,7 +223,7 @@ def df_gen_h2h_common(dffunc_origin, iter_time):
     return h2h_common
 
 # Pairwise RPI calculation
-def pairwise_h2h(df_box_exnt):
+def pairwise_h2h(df_box_exnt, dff_h2h_com):
     # own success
     df_own = df_box_exnt \
         .groupby(['team_tri_for']) \
