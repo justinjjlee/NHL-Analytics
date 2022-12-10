@@ -1,5 +1,6 @@
-import pickle5 as pickle
+#import pickle as pickle
 # If you get error of pickle protocol 5
+import pickle as pickle
 import numpy as np 
 import pandas as pd
 import operator
