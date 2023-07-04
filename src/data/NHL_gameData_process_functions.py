@@ -161,11 +161,18 @@ def process_game(dict_live, dict_game):
     # Go through the events with the actions
     df_res = []
     for idx, iter in enumerate(val):
-        df_tst = element_sparce(iter, val.index[idx])
-        if idx == 0:
-            df_res = df_tst
-        else:
-            df_res = pd.concat([df_res, df_tst], ignore_index = True)
+        # There are cases where the type of players are missing from the data
+        # skip for now
+        #   If both players are "unknown", this process throws out error
+        #       Single "unknown" creates column "name_Unknown"
+        try:
+            df_tst = element_sparce(iter, val.index[idx])
+            if idx == 0:
+                df_res = df_tst
+            else:
+                df_res = pd.concat([df_res, df_tst], ignore_index = True)
+        except:
+            None
     df_res.set_index('index', inplace = True)
     parced_df = pd.concat([parced_df, df_res], axis = 1);
 
