@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram id="qTA7CkCIP4nR7gsChDAQ" name="Page-1">
+        <mxGraphModel dx="434" dy="421" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="NHL Players" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF33FF;gradientColor=none;fillStyle=hatch;direction=south;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="75" y="65" width="110" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="College Players" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0000FF;fillStyle=hatch;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="130" width="140" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Join Columns" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillStyle=cross-hatch;fillColor=#FF33FF;gradientColor=none;fontColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="80" y="220" width="210" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Season Year" style="text;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillStyle=hatch;fontColor=#000000;" vertex="1" parent="6">
+                    <mxGeometry y="30" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Player Full Name" style="text;strokeColor=#000000;fillColor=#e3c800;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillStyle=hatch;fontColor=#000000;" vertex="1" parent="6">
+                    <mxGeometry y="60" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Team Played on Record" style="text;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillStyle=hatch;fontColor=#000000;" vertex="1" parent="6">
+                    <mxGeometry y="90" width="210" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontColor=#000000;strokeColor=#000000;" edge="1" parent="1" source="8">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="340" y="305" as="sourcePoint"/>
+                        <mxPoint x="330" y="295" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="11" value="Exact &amp;amp; Fuzzy Match&lt;br&gt;(e.g. Phil - Phillip)" style="text;strokeColor=#000000;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fillStyle=hatch;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="280" width="130" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
