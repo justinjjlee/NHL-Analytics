@@ -2,13 +2,9 @@
 
 This repository contains data science toolkit codes to analyze National Hockey League (NHL) statistics. 
 
-Please find the analyses documented here: [![Documentation](https://img.shields.io/badge/doc-latest-blue.svg)](https://justinjoliver.github.io/NHL-Analytics/)
-, or in [Tableau Public](https://public.tableau.com/app/profile/justin.l.1253).
+All of my analyses and deep-dive insights are written and presented in my medium blog [![Documentation](https://img.shields.io/badge/doc-latest-blue.svg)](https://medium.com/@thinkingjustin). There, I also include narratives on visualizations created by codes saved in this repository.
 
 This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances statistics. This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. All original codes (including generic and model algorithms) can be used freely with a proper citation to this repository.
-
-## Example visualization 
-1. Pythagorean Expectation [in Tableau Public](https://public.tableau.com/app/profile/justin.l.1253/viz/NHL-PythagoreanExpectation/Dashboard2)
 
 ## Other interesting resources
 - Salary Cap: [Tracker](https://puckpedia.com/#salary-cap)
