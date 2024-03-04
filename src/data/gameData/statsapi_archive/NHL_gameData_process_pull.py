@@ -22,7 +22,7 @@ for year in yr:
     for season_type in ssn:
         game_data = []
         for i in range(0,max_game_ID):
-            r = requests.get(url='http://statsapi.web.nhl.com/api/v1/game/'
+            r = requests.get(url='https://api-web.nhle.com/v1/'
                 + year + season_type +str(i).zfill(4)+'/feed/live')
             data = r.json()
             game_data.append(data)

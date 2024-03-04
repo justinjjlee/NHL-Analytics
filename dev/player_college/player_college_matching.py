@@ -186,3 +186,6 @@ df_agg = df_player\
 
 # Finalized player-level stats
 dfin = dfin.join(df_agg, how='left')
+
+# Save the data in the server
+dfin.to_csv(cwd_data + "nhl/data_gamelvl/processed/2022cum_player_collegematch.csv")
