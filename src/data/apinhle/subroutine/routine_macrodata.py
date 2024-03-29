@@ -142,17 +142,18 @@ for iter_game in inx_gamesnodata: #game_list["gameid"]: # if pulling all
         team_stat_empty.append(temp_team)
 
         # Player-specific stats
-        for iter_pos in ['forwards','defense','goalies']:
-            tempdata = data['boxscore']['playerByGameStats'][iter_team][iter_pos]
-            tempdata = pd.json_normalize(tempdata)
-            tempdata['teamid'] = teamid
-            tempdata['teamtri'] = teamtri
-            tempdata['gameid'] = iter_game
-            tempdata['teamloc'] = teamloc
-            tempdata['gameDate'] = data['gameDate']
-            tempdata['gameIdx'] = team_stat.loc[0, 'abbrev'] + '_' + team_stat.loc[1, 'abbrev'] + '_' + data['gameDate']
-            tempdata['seasonIdx'] = data['gameType']
-            df_box_player.append(tempdata)
+        #   3/29/2024 - API structure is changing so frequently, and currently I don't find a use for ti
+        #       Commenting out until the next season when the data will be useful and API structure more consistent
+        #for iter_pos in ['forwards','defense','goalies']:
+            #tempdata = data['playerByGameStats'][iter_team][iter_pos]
+            #tempdata = pd.json_normalize(tempdata)
+            #tempdata['teamid'] = teamid
+            #tempdata['teamtri'] = teamtri
+            #tempdata['gameid'] = iter_game
+            #tempdata['teamloc'] = teamloc
+            #tempdata['gameDate'] = data['gameDate']
+            #tempdata['seasonIdx'] = data['gameType']
+            #df_box_player.append(tempdata)
 
     # Data concat to be dataframe
     team_stat = pd.concat(team_stat_empty).reset_index(drop=True)
@@ -175,7 +176,7 @@ for iter_game in inx_gamesnodata: #game_list["gameid"]: # if pulling all
     team_stat['gameEnd'] = data['gameOutcome']['lastPeriodType']
 
     # Attach the box score
-    team_boxstats = pd.json_normalize(data["boxscore"]['teamGameStats'])
+    team_boxstats = pd.json_normalize(data['summary']['teamGameStats'])
     team_boxstats.set_index('category', inplace=True)
     team_boxstats = team_boxstats.transpose().reset_index(drop=True)
     # Join the data
@@ -184,7 +185,7 @@ for iter_game in inx_gamesnodata: #game_list["gameid"]: # if pulling all
     # Save data
     df_box_team.append(team_stat)
 
-df_box_player = pd.concat(df_box_player)
+#df_box_player = pd.concat(df_box_player)
 df_box_team = pd.concat(df_box_team)
 
 # Reset index
@@ -203,7 +204,7 @@ df_box_team.rename(
 )
 
 df_box_team['gameDate'] = pd.to_datetime(df_box_team['gameDate'])
-
+'''
 df_box_player.drop(
     columns=[
         'name.cs','name.fi', 'name.sk', 'name.de', 'name.sv', 'name.es',
@@ -211,22 +212,22 @@ df_box_player.drop(
     ],
     inplace = True
 )
-
+'''
 # Load the previous data
-df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
-                        parse_dates = ['gameDate'], 
-                        index_col = 'gameIdx')
+#df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
+#                        parse_dates = ['gameDate'], 
+#                        index_col = 'gameIdx')
 df_team   = pd.read_csv(f"./latest/{iter_year}_box_team.csv",
                         parse_dates = ['gameDate'], 
                         index_col = 'gameIdx')
 # Attach the past data
-df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
-df_box_team   = pd.concat([df_team, df_box_team], ignore_index=True)
+#df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
+df_box_team   = pd.concat([df_team, df_box_team])
 
 # ---------------------------------------------------
 # Save data
 # Box scores for each game for each team
-df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv")
+#df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv")
 df_box_team.to_csv(f"./latest/{iter_year}_box_team.csv")
 
 # Save 'games" and "game_list"
