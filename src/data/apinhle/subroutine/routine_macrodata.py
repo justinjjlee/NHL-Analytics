@@ -38,7 +38,7 @@ games = pd.concat(df).sort_values(by='startTimeUTC')
 games = games.drop_duplicates(subset="id").reset_index(drop=True)
 #len(games)
 # Drop unnecessary columns
-games.drop(columns=[
+drop_columns = [
     'tvBroadcasts', 'gameCenterLink', 'venue.default',
     'awayTeam.placeName.default', 'awayTeam.logo', 'awayTeam.darkLogo', 
     'awayTeam.awaySplitSquad', 'homeTeam.placeName.default',
@@ -59,7 +59,12 @@ games.drop(columns=[
     'winningGoalScorer.lastName.de', 'winningGoalScorer.lastName.es',
     'winningGoalScorer.lastName.sv', 'homeTeam.promoLink',
     'homeTeam.promoDesc', 'specialEvent.fr', 'specialEventLogo'
-], inplace=True)
+]
+for iter in drop_columns:
+    try:
+        games.drop(columns=iter, inplace=True)
+    except:
+        None
 
 columns_select = [
     'id',
