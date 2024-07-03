@@ -1,0 +1,2 @@
+# Measuring Player Parity in Team Success
+The analysis insights and resulting data points are written in [my medium article](https://medium.com/@thinkingjustin/better-an-ounce-of-luck-than-a-pound-of-gold-en-hockey-sticks-e45a450a835e)

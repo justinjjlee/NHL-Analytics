@@ -1,0 +1,2 @@
+# About Webscrapping Project
+Prior to 2021, the repository relyed on scrapping webpages with HTML element calls. Due to more complex and easy access to the data through NHL-provided API, these codes are no longer needed. I have archived them and will not be maintained.

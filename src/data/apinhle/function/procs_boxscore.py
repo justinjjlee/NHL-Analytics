@@ -166,7 +166,7 @@ class nhl_dataproc_teamsuccess:
                                 'idx_HotStreak']] \
                 .groupby('team_tri_for').sum()
         df_streak['ratio'] = df_streak.idx_HotStreak / df_streak.idx_WinStreak
-        df_streak['ratio_viz'] = np.int0(df_streak['ratio']*100)
+        df_streak['ratio_viz'] = int(df_streak['ratio']*100)
         df_streak['ratio_viz'] = [str(iter) + '%' for iter in df_streak['ratio_viz']]
         # Sort value for future ease of use
 
