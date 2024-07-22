@@ -74,10 +74,7 @@ def proc_playbyplay_clean(r_iter, row_iter):
         df_plays = df_plays[col_to_collect]
     except:
         # If not, then create those columns and fill with NaN
-        # Columns to check for - common missing columns
-        required_columns = ['details.assist1PlayerId', 'details.assist2PlayerId']
-
-        for col in required_columns:
+        for col in col_to_collect:
             if col not in df_plays.columns:
                 df_plays[col] = np.nan  # Create the column with NaN values
 
@@ -102,6 +99,7 @@ def proc_playbyplay_clean(r_iter, row_iter):
     df_player_name = df_player_name[
         [
             "gameid",
+            "headshot",
             "team_tri",
             "playerId",
             "sweaterNumber",

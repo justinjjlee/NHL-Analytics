@@ -15,9 +15,17 @@ This repository contains data science toolkit codes to analyze National Hockey L
 
 This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances statistics. This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. All original codes (including generic and model algorithms) can be used freely with a proper citation to this repository.
 
-## API Source change (2024)
+## Tools & Capabilities
 NHL has changed its API and data structure `nhl-api`, and I have updated my processes for team and player box scores with relevant metrics created for the analysis.
-The game-level statistics is still in progress.
+
+Following is the tools I used for data collection, processing, and analysis to derive insights, data visualizations, and predictive models.
+
+| Capability | Tools used |
+| --- | --- |
+| General |  <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/python.svg" width="32"/> <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/julia.svg" width="32"/> |
+| Data Collection & Processing | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/duckdb.svg" width="32"/> |
+| ML Model Build | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/pytorch.svg" width="32"/> <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/scikitlearn.svg" width="32"/>|
+| Interactive Data Visualization | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/tableau.svg" width="32"/> |
 
 ```
    ,

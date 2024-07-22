@@ -1,0 +1,127 @@
+<mxfile host="65bd71144e">
+    <diagram id="CrlaABpc5tIZ0NyDJd9L" name="Page-1">
+        <mxGraphModel dx="450" dy="717" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="40" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/a/a6/Half_ice_hockey_rink.png;" vertex="1" parent="1">
+                    <mxGeometry x="150" y="490" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="Sequence:&lt;br&gt;Previous" style="text;html=1;strokeColor=#006EAF;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="170" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Sequence:&lt;br&gt;Current" style="text;html=1;strokeColor=#001DBC;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="170" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Agent:&lt;br&gt;Team&lt;b&gt; A&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="490" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6" target="14">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="6" target="13">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Offense" style="text;html=1;strokeColor=#A50040;fillColor=#d80073;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="210" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" style="edgeStyle=none;html=1;" edge="1" parent="1" source="7" target="10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7" target="9">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Defense" style="text;html=1;strokeColor=#005700;fillColor=#008a00;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="330" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Defined by zone location of the play:&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Offense&lt;/b&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;: Play as offense in the opponent's zone&lt;/span&gt;&lt;/div&gt;&lt;b&gt;&lt;div style=&quot;&quot;&gt;&lt;b style=&quot;background-color: initial;&quot;&gt;Defense&lt;/b&gt;&lt;span style=&quot;background-color: initial; font-weight: normal;&quot;&gt;: Play as defense in own zone&lt;/span&gt;&lt;/div&gt;&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="200" y="120" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="Defense" style="text;html=1;strokeColor=#005700;fillColor=#008a00;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="360" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Offense" style="text;html=1;strokeColor=#A50040;fillColor=#d80073;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="330" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Defense" style="text;html=1;strokeColor=#005700;fillColor=#008a00;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="240" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="Offense" style="text;html=1;strokeColor=#A50040;fillColor=#d80073;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="210" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="Agent:&lt;br&gt;Team&lt;b&gt;&amp;nbsp;x&lt;/b&gt;" style="text;html=1;strokeColor=#A50040;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="270" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="Success: zone control" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="210" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Failure: zone control lost" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="240" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Stoppage" style="text;html=1;strokeColor=#BD7000;fillColor=#f0a30a;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="400" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Stoppage" style="text;html=1;strokeColor=#BD7000;fillColor=#f0a30a;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="280" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Success: Goal Scored&lt;br&gt;Neutral: Stay in zone&lt;br&gt;Failure: Zone exit the next sequence" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="280" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="Success: zone control gained/taken" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="330" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="Failure: oppontent zone control continues" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="360" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Success: Zone exit in the next sequence&lt;br&gt;Neutral: Stay in zone&lt;br&gt;Failure: Goal Scored Against" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="400" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="Offense" style="text;html=1;strokeColor=#A50040;fillColor=#d80073;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="210" y="490" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Defense" style="text;html=1;strokeColor=#005700;fillColor=#008a00;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="210" y="670" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="" style="shape=flexArrow;endArrow=classic;html=1;strokeColor=#CC0000;strokeWidth=6;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="249.5" y="530" as="sourcePoint"/>
+                        <mxPoint x="249.5" y="620" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="42" value="Agent:&lt;br&gt;Team&lt;b&gt; B&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="630" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="" style="group;rotation=-180;" vertex="1" connectable="0" parent="1">
+                    <mxGeometry x="370" y="480" width="210" height="210" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://upload.wikimedia.org/wikipedia/commons/a/a6/Half_ice_hockey_rink.png;rotation=-180;" vertex="1" parent="49">
+                    <mxGeometry y="10" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="Agent:&lt;br&gt;Team&lt;b&gt; B&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;rotation=0;" vertex="1" parent="49">
+                    <mxGeometry x="130" y="180" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="Offense" style="text;html=1;strokeColor=#A50040;fillColor=#d80073;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;rotation=0;" vertex="1" parent="49">
+                    <mxGeometry x="60" y="180" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="46" value="Defense" style="text;html=1;strokeColor=#005700;fillColor=#008a00;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#ffffff;rotation=0;" vertex="1" parent="49">
+                    <mxGeometry x="60" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="" style="shape=flexArrow;endArrow=classic;html=1;strokeColor=#CC0000;strokeWidth=6;" edge="1" parent="49">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="100" y="170" as="sourcePoint"/>
+                        <mxPoint x="101" y="80" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="48" value="Agent:&lt;br&gt;Team&lt;b&gt; A&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#000000;rotation=0;" vertex="1" parent="49">
+                    <mxGeometry x="130" y="40" width="80" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

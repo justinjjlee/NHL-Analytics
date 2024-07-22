@@ -9,7 +9,7 @@ class nhl_dataproc_teamsuccess:
 
     def dataproc(self, df_box):
         # inital name directiory of data 
-        str_dirc_save = f"./latest/{self.str_year}"
+        #str_dirc_save = f"./latest/{self.str_year}"
 
         # Unpack data
         df_box_exnt = df_unpack(df_box)
@@ -165,9 +165,9 @@ class nhl_dataproc_teamsuccess:
                                 'idx_WinStreak_expected', 
                                 'idx_HotStreak']] \
                 .groupby('team_tri_for').sum()
-        df_streak['ratio'] = df_streak.idx_HotStreak / df_streak.idx_WinStreak
-        df_streak['ratio_viz'] = int(df_streak['ratio']*100)
-        df_streak['ratio_viz'] = [str(iter) + '%' for iter in df_streak['ratio_viz']]
+        #df_streak['ratio'] = df_streak.idx_HotStreak / df_streak.idx_WinStreak
+        #df_streak['ratio_viz'] = [int(iter*100) for iter in df_streak['ratio']]
+        #df_streak['ratio_viz'] = [str(iter) + '%' for iter in df_streak['ratio_viz']]
         # Sort value for future ease of use
 
         # Finally join with data
@@ -179,10 +179,12 @@ class nhl_dataproc_teamsuccess:
         # output data
         #   (a) game-level stats
         df_box_exnt['yr_season'] = self.str_year
-        df_box_exnt.to_csv(str_dirc_save + "_box_team_extension.csv")
+        #df_box_exnt.to_csv(str_dirc_save + "_box_team_game.csv")
         #   (b) team-level stats for each season
         dfteams['yr_season'] = self.str_year
-        dfteams.to_csv(str_dirc_save + "_box_team_season.csv")
+        #dfteams.to_csv(str_dirc_save + "_box_team_season.csv")
+
+        return dfteams, df_box_exnt
 
 # Data pull
 def df_unpack(df_box):
