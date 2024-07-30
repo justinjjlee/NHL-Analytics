@@ -7,7 +7,8 @@ Work related to analyzing sequence of data. I use `DuckDB` as main source of pul
     - [x] Marking sequence that falls within the penalty time assessed
     - [x] Tracking the penalty periods that cross over periods: by creating continued time stamp over the entire game
     - [x] Tracking penalties that overlaps across teams,
-    - [x] Tracking penalties that are not perfectly overlapping, such as one penalty was followed by another during the first penality being served
+    - [ ] Tracking penalties that are not perfectly overlapping, such as one penalty was followed by another during the first penality being served
+    - [ ] Tracking mark from called delayed penalty to stoppage of play (in case of players being pulled)
 
 ## Identifying specific trends
 

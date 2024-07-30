@@ -15,8 +15,13 @@ This repository contains data science toolkit codes to analyze National Hockey L
 
 This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances statistics. This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. All original codes (including generic and model algorithms) can be used freely with a proper citation to this repository.
 
-## Tools & Capabilities
-NHL has changed its API and data structure `nhl-api`, and I have updated my processes for team and player box scores with relevant metrics created for the analysis.
+## Goals & Capabilities
+This work uses publicly available data with limited built-in analytics to build up the analytics capabilities and insights generated beyond the headline statics easily measurable. 
+
+ * Capture complex strategical, behavioral, and performance trends asked by fans of the sport
+ * Integrate different data sources (e.g. college hockey roaster and building up performance trend beyond players' professional career)
+
+Doing so, I make all of my work publicly available and reproducable for replications, explorations, and advancing new measurements and insights.
 
 Following is the tools I used for data collection, processing, and analysis to derive insights, data visualizations, and predictive models.
 
