@@ -5,19 +5,33 @@ import pandas as pd
 import numpy as np
 import requests
 import time
+import datetime
 # Functions to process box scores
 from function.procs_boxscore import *
 
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 # Team codes for the list pull
-teamcode = pd.read_csv("teamlist_2023.csv")
+teamcode = pd.read_csv(f"./latest/teamlist.csv")
 
-# %% 
-iter_year = 2023 # Start with season start
-iter_years = np.arange(2011, iter_year + 1) # Pulling all past records
+# %% Settings
+
+# Get current date
+yr_now = datetime.datetime.today().year
+mo_now = datetime.datetime.today().month
+
+# Select starting year for season to pull.
+#   Until the following season starts, always pull the current/past eyar
+if mo_now < 10: # Season starts on October
+    # Then the season marks starts in the previous calendar year
+    iter_year = yr_now - 1
+else:
+    iter_year = yr_now
+
+# In case you need to pull all historical data
+#iter_years = np.arange(2011, iter_year + 1) # Pulling all past records
 # %%
-for iter_year in [2022]:#iter_years: # or [iter_year]
+for iter_year in [iter_year]:#iter_years:
 
     # ---------------------------------------------------
     # Pull team/game lists of the games for the season

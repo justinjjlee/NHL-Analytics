@@ -13,7 +13,7 @@ All of my analyses and deep-dive insights are written and presented in my medium
 
 This repository contains data science toolkit codes to analyze National Hockey League (NHL) statistics. 
 
-This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances statistics. This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. All original codes (including generic and model algorithms) can be used freely with a proper citation to this repository.
+This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances and strategies. This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. All original codes (including generic and model algorithms) can be used freely with a proper citation and credit given to this repository.
 
 ## Goals & Capabilities
 This work uses publicly available data with limited built-in analytics to build up the analytics capabilities and insights generated beyond the headline statics easily measurable. 
