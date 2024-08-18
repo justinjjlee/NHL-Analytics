@@ -16,7 +16,7 @@ Following link shows example workflow process of collecting and processing scrap
 
 * [NHL data scraping, collection, and cleaning](/collection/nhl_game_data_pull_eg.md)
 * [NHL Stats pull and consolidations](/collection/nhl_data_summary_scrape_eg.md)
-* [NHL in-game data collection via API and processing - TBD]()
+* [NHL in-game data collection via API and processing - Github Action](https://github.com/justinjjlee/NHL-Analytics/tree/main/.github/workflows)
 
 [link to the top](#data-science-and-hockey-analytics)
 
@@ -24,6 +24,8 @@ Following link shows example workflow process of collecting and processing scrap
 
 * [Better than coin flips? Money line and market expectation in NHL](/collection/market_expectation_eda/NHL_and_Market_Expectations.md)
 * [Positional success by Stanley Cup Winners: A case for Oilers and Maple Leafs](/collection/0_ana_positionalForwards.md)
+* [Decision Science - What happends after blocking shots](/collection/block_shot_sequence_decision/table - sequence blocked shot stats.html)
+    * Relates to My blog post [Human Shields on Ice: The Valor of Blocking Shots]()
 
 [link to the top](#data-science-and-hockey-analytics)
 

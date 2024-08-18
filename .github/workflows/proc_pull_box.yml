@@ -61,7 +61,12 @@ jobs:
     - name: Commit and push changes
       run: |
         git add latest/box/*.csv
-        git commit -m 'Automated data update'
-        git push
+        if git diff-index --quiet HEAD --; then
+          echo "No changes to commit"
+          exit 0
+        else
+          git commit -m 'Automated data update'
+          git push
+        fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
