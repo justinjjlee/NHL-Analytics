@@ -60,7 +60,7 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git add latest/game/*.csv
+        git add latest/box/*.csv
         git commit -m 'Automated data update'
         git push
       env:
