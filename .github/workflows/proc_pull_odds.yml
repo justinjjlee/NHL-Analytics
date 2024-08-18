@@ -25,10 +25,13 @@ jobs:
 
     - name: Create environment and install dependencies
       run: |
-        conda create --name myenv --file src/requirements.txt --yes
+        conda create --name myenv --yes
+        echo "source activate myenv" >> $GITHUB_ENV
         conda activate myenv
-        # Install pip dependencies in case they are not available via conda
-        pip install -r src/requirements.txt
+        # Install dependencies using conda if available, otherwise use pip
+        while read requirement; do
+          conda install --yes $requirement || pip install $requirement;
+        done < src/requirements.txt
 
     - name: Run Python script
       run: python src/data/apinhle/data_pull_odds.py
