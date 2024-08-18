@@ -6,6 +6,9 @@ __pycache__/
 .conda
 credentials.json
 
+# Package requirement control
+all_packages.txt
+
 # Remove raw files not used in the main process or large enough
 **_gamelist_raw.csv*
 **_player.csv*
