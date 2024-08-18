@@ -104,3 +104,5 @@ df = df\
 
 # Save the data
 df.to_csv(f"./latest/box/{iter_year}_box_odds.csv", index=False)
+
+print("Good bye.")

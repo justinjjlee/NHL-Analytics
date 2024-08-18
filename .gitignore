@@ -10,6 +10,4 @@ credentials.json
 all_packages.txt
 
 # Remove raw files not used in the main process or large enough
-**_gamelist_raw.csv*
-**_player.csv*
 **_extension.csv*

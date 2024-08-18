@@ -5,12 +5,23 @@ import pandas as pd
 import numpy as np
 import requests
 import time
+import datetime
 # Functions to process box scores
 from function.procs_boxscore import *
 
 
 # %% 
-iter_year = 2023 # Start with season start
+# Get current date
+yr_now = datetime.datetime.today().year
+mo_now = datetime.datetime.today().month
+
+# Select starting year for season to pull.
+#   Until the following season starts, always pull the current/past eyar
+if mo_now < 10: # Season starts on October
+    # Then the season marks starts in the previous calendar year
+    iter_year = yr_now - 1
+else:
+    iter_year = yr_now
 
 # Ping and pull data from NHL API
 # ---------------------------------------------------
@@ -70,3 +81,5 @@ last_cols = [col for col in playerstats.columns if col not in first_cols]
 # save sata
 playerstats = playerstats[first_cols+last_cols]
 playerstats.to_csv(f"./latest/player/{iter_year}_player.csv", index=False)
+
+print("Good bye.")

@@ -137,7 +137,8 @@ for iter_year in [iter_year]:#iter_years:
             games.loc[count, "tricode_winteam"] = row["homeTeam.abbrev"]
         else:
             games.loc[count, "tricode_winteam"] = row["awayTeam.abbrev"]
-            
+
+    print("All game records are pulled - ready to pull box scores")            
     # Pull game-level statistics
     # ---------------------------------------------------
 
@@ -150,123 +151,133 @@ for iter_year in [iter_year]:#iter_years:
     except:
         # New season, create 
         inx_gamesnodata = game_list["gameid"]
-    # Pull data
-    # For each game id, pull play-by-play
-    df_box_player = []
-    df_box_team   = []
 
-    for iter_game in inx_gamesnodata: # if pulling all
-        # Maybe wait a minute?
-        time.sleep(1)
-        # Call data
-        r = requests.get(url='https://api-web.nhle.com/v1/gamecenter/'
-                            + str(iter_game) + "/boxscore")
-        data = r.json()
+    # If there is a data to pull
+    if not inx_gamesnodata:
+        # Pull data
+        # For each game id, pull play-by-play
+        df_box_player = []
+        df_box_team   = []
 
-        team_stat_empty = []
-        # Get game stats
-        gamedate = data['gameDate']
+        for iter_game in inx_gamesnodata: # if pulling all
+            # Maybe wait a minute?
+            time.sleep(1)
+            # Call data
+            r = requests.get(url='https://api-web.nhle.com/v1/gamecenter/'
+                                + str(iter_game) + "/boxscore")
+            data = r.json()
 
-        # Process data
-        for iter_team in ['awayTeam','homeTeam']:
-            teamloc = iter_team[0:4]
-            # Get the team box
-            temp_team = pd.json_normalize(data[iter_team])
-            temp_team['gameid'] = iter_game
-            temp_team['teamloc'] = teamloc
-            # Save team information
-            teamid  = temp_team['id']
-            teamtri = temp_team['abbrev']
+            team_stat_empty = []
+            # Get game stats
+            gamedate = data['gameDate']
 
-            # Append the team stats
-            team_stat_empty.append(temp_team)
+            # Process data
+            for iter_team in ['awayTeam','homeTeam']:
+                teamloc = iter_team[0:4]
+                # Get the team box
+                temp_team = pd.json_normalize(data[iter_team])
+                temp_team['gameid'] = iter_game
+                temp_team['teamloc'] = teamloc
+                # Save team information
+                teamid  = temp_team['id']
+                teamtri = temp_team['abbrev']
 
-            # Player-specific stats
-            #   3/29/2024 - API structure is changing so frequently, and currently I don't find a use for ti
-            #       Commenting out until the next season when the data will be useful and API structure more consistent
-            #for iter_pos in ['forwards','defense','goalies']:
-                #tempdata = data['playerByGameStats'][iter_team][iter_pos]
-                #tempdata = pd.json_normalize(tempdata)
-                #tempdata['teamid'] = teamid
-                #tempdata['teamtri'] = teamtri
-                #tempdata['gameid'] = iter_game
-                #tempdata['teamloc'] = teamloc
-                #tempdata['gameDate'] = data['gameDate']
-                #tempdata['seasonIdx'] = data['gameType']
-                #df_box_player.append(tempdata)
+                # Append the team stats
+                team_stat_empty.append(temp_team)
 
-        # Data concat to be dataframe
-        team_stat = pd.concat(team_stat_empty).reset_index(drop=True)
-        team_stat = team_stat[['abbrev', 'gameid', 'teamloc', 'score']]
+                # Player-specific stats
+                #   3/29/2024 - API structure is changing so frequently, and currently I don't find a use for ti
+                #       Commenting out until the next season when the data will be useful and API structure more consistent
+                #for iter_pos in ['forwards','defense','goalies']:
+                    #tempdata = data['playerByGameStats'][iter_team][iter_pos]
+                    #tempdata = pd.json_normalize(tempdata)
+                    #tempdata['teamid'] = teamid
+                    #tempdata['teamtri'] = teamtri
+                    #tempdata['gameid'] = iter_game
+                    #tempdata['teamloc'] = teamloc
+                    #tempdata['gameDate'] = data['gameDate']
+                    #tempdata['seasonIdx'] = data['gameType']
+                    #df_box_player.append(tempdata)
 
-        # Who won the game
-        team_stat['win'] = 0
-        if team_stat.loc[0, "score"] > team_stat.loc[1, "score"]:
-            # Home team won
-            team_stat.loc[0, 'win'] = 1
-        else:
-            # Away team won
-            team_stat.loc[1, 'win'] = 1
+            # Data concat to be dataframe
+            team_stat = pd.concat(team_stat_empty).reset_index(drop=True)
+            team_stat = team_stat[['abbrev', 'gameid', 'teamloc', 'score']]
 
-        # Add game info
-        team_stat['gameIdx'] = team_stat.loc[0, 'abbrev'] + '_' + team_stat.loc[1, 'abbrev'] + '_' + data['gameDate']
+            # Who won the game
+            team_stat['win'] = 0
+            if team_stat.loc[0, "score"] > team_stat.loc[1, "score"]:
+                # Home team won
+                team_stat.loc[0, 'win'] = 1
+            else:
+                # Away team won
+                team_stat.loc[1, 'win'] = 1
 
-        team_stat['seasonIdx'] = data['gameType']
-        team_stat['gameDate'] = data['gameDate']
-        team_stat['gameEnd'] = data['gameOutcome']['lastPeriodType']
+            # Add game info
+            team_stat['gameIdx'] = team_stat.loc[0, 'abbrev'] + '_' + team_stat.loc[1, 'abbrev'] + '_' + data['gameDate']
 
-        # Attach the box score
-        team_boxstats = pd.json_normalize(data['summary']['teamGameStats'])
-        team_boxstats.set_index('category', inplace=True)
-        team_boxstats = team_boxstats.transpose().reset_index(drop=True)
-        # Join the data
-        team_stat = team_stat.join(team_boxstats)
+            team_stat['seasonIdx'] = data['gameType']
+            team_stat['gameDate'] = data['gameDate']
+            team_stat['gameEnd'] = data['gameOutcome']['lastPeriodType']
 
-        # Save data
-        df_box_team.append(team_stat)
+            # Attach the box score
+            team_boxstats = pd.json_normalize(data['summary']['teamGameStats'])
+            team_boxstats.set_index('category', inplace=True)
+            team_boxstats = team_boxstats.transpose().reset_index(drop=True)
+            # Join the data
+            team_stat = team_stat.join(team_boxstats)
 
-    #df_box_player = pd.concat(df_box_player)
-    df_box_team = pd.concat(df_box_team)
+            # Save data
+            df_box_team.append(team_stat)
 
-    # Finalize processing
-    # ---------------------------------------------------
-    # Reset index
-    df_box_team.set_index("gameIdx", inplace=True)
+        print("All new box scores are pulled, processing and saving data") 
 
-    # Rename columns
-    df_box_team.rename(
-        columns = {
-            "abbrev":"team_tri",
-            "score": "goals",
-            "sog":"shots",
-            "blockedShots":"shots_blocked",
-            "giveaways":"poss_giveaway",
-            "takeaways":"poss_takeaway"
-        }, inplace = True
-    )
+        #df_box_player = pd.concat(df_box_player)
+        df_box_team = pd.concat(df_box_team)
 
-    df_box_team['gameDate'] = pd.to_datetime(df_box_team['gameDate'])
+        # Finalize processing
+        # ---------------------------------------------------
+        # Reset index
+        df_box_team.set_index("gameIdx", inplace=True)
 
-    # Save data for team-level statistics
-    # ---------------------------------------------------
-    # Attach the past data
+        # Rename columns
+        df_box_team.rename(
+            columns = {
+                "abbrev":"team_tri",
+                "score": "goals",
+                "sog":"shots",
+                "blockedShots":"shots_blocked",
+                "giveaways":"poss_giveaway",
+                "takeaways":"poss_takeaway"
+            }, inplace = True
+        )
 
-    # Load the previous data
-    #df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
-    #                        parse_dates = ['gameDate'], 
-    #                        index_col = 'gameIdx')
-    df_team   = pd.read_csv(f"./latest/box/{iter_year}_box_team.csv",
-                            parse_dates = ['gameDate'], 
-                            index_col = 'gameIdx')
-    #df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
-    df_box_team   = pd.concat([df_team, df_box_team])
+        df_box_team['gameDate'] = pd.to_datetime(df_box_team['gameDate'])
 
-    # Box scores for each game for each team
-    #df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv")
-    df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
+        # Save data for team-level statistics
+        # ---------------------------------------------------
+        # Attach the past data
 
-    # Save 'games" and "game_list"
-    #   Game records are full list pulled by 
-    #games.to_csv(f"./latest/{iter_year}_gamelist_raw.csv", index=False)
-    game_list.to_csv(f"./latest/box/{iter_year}_box.csv", index=False)
+        # Load the previous data
+        #df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
+        #                        parse_dates = ['gameDate'], 
+        #                        index_col = 'gameIdx')
+        df_team   = pd.read_csv(f"./latest/box/{iter_year}_box_team.csv",
+                                parse_dates = ['gameDate'], 
+                                index_col = 'gameIdx')
+        #df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
+        df_box_team   = pd.concat([df_team, df_box_team])
 
+        # Box scores for each game for each team
+        #df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv")
+        df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
+
+        # Save 'games" and "game_list"
+        #   Game records are full list pulled by 
+        #games.to_csv(f"./latest/{iter_year}_gamelist_raw.csv", index=False)
+        game_list.to_csv(f"./latest/box/{iter_year}_box.csv", index=False)
+    else:
+        # No data to pull, exit
+        print("No new box scores to be pulled, exit the process.")
+        None
+
+print("Good bye.")
