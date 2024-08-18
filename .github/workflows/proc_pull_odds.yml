@@ -1,0 +1,43 @@
+name: NHL API pull for odds data
+
+on:
+  schedule:
+    - cron: '0 20 * * *'  # This runs the workflow daily at 20:00 UTC, which is 3 PM CT during Daylight Saving Time
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12.2'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r src/requirements.txt
+
+    - name: Run Python script
+      run: python src/data/apinhle/data_pull_odds.py
+
+    - name: Configure Git
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Commit and push changes
+      run: |
+        git add src/path/to/latest/data.csv
+        git commit -m 'Automated update of data.csv'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
