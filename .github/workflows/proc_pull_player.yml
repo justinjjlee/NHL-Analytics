@@ -1,0 +1,61 @@
+name: NHL API pull data for game-level stats (games and odds)
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'  # This runs the workflow at 8:00 AM UTC every Monday
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Conda - Set up Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: '3.12.2'  # Specify the Python version you need
+        channels: conda-forge,defaults  # Add conda-forge and defaults channels
+
+    - name: Conda - Initialize Conda
+      run: |
+        conda init bash
+        source ~/.bashrc
+  
+    - name: Conda - Create environment and install Conda dependencies
+      run: |
+        conda create --name myenv --yes
+        source ~/.bashrc
+        conda activate myenv
+        conda install --yes --file src/requirements/conda_requirements.txt
+
+    - name: Conda - Install Pip dependencies
+      run: |
+        source ~/.bashrc
+        conda activate myenv
+        pip install -r src/requirements/pip_requirements.txt
+  
+    - name: Run Python - NHL Player Record Data
+      run: |
+        source ~/.bashrc
+        conda activate myenv
+        python src/data/apinhle/data_pull_player.py
+
+    - name: Configure Git
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+    - name: Commit and push changes
+      run: |
+        git add latest/player/*.csv
+        git commit -m 'Automated data update'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

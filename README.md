@@ -50,3 +50,5 @@ The Github Action is being used to update the data saved in this repository fold
  * Play-by-play records
 
 Required package version used is saved in `./src/requirement` through `.sh` command.
+
+Note that the python environment function pull is based on where the script is located, where as data file reference is based on Github repository head directory.

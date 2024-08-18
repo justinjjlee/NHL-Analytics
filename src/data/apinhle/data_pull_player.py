@@ -6,7 +6,7 @@ import numpy as np
 import requests
 import time
 # Functions to process box scores
-from src.data.apinhle.function.procs_boxscore import *
+from function.procs_boxscore import *
 
 
 # %% 
@@ -66,6 +66,7 @@ playerstats.drop(columns=col_remove, inplace=True)
 # Column re-order
 first_cols = ['idx_season','team_tri','playerId','firstName.default','lastName.default','positionCode','gamesPlayed']
 last_cols = [col for col in playerstats.columns if col not in first_cols]
-# save ata
+
+# save sata
 playerstats = playerstats[first_cols+last_cols]
-playerstats.to_csv(f"./latest/{iter_year}_player.csv", index=False)
+playerstats.to_csv(f"./latest/player/{iter_year}_player.csv", index=False)
