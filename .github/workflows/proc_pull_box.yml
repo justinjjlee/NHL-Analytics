@@ -40,9 +40,6 @@ jobs:
         source ~/.bashrc
         conda activate myenv
         pip install -r src/requirements/pip_requirements.txt
-    
-    - name: Set PYTHONPATH
-      run: echo "PYTHONPATH=${{ github.workspace }}/src" >> $GITHUB_ENV
   
     - name: Run Python - NHL Game Record Data
       run: |
