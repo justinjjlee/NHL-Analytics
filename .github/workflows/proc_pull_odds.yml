@@ -42,7 +42,10 @@ jobs:
         pip install -r src/requirements/pip_requirements.txt
 
     - name: Run Python script
-      run: python src/data/apinhle/data_pull_odds.py
+      run: |
+        source ~/.bashrc
+        conda activate myenv
+        python src/data/apinhle/data_pull_odds.py
 
     - name: Configure Git
       run: |
