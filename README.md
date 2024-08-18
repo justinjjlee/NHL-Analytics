@@ -13,6 +13,15 @@ All of my analyses and deep-dive insights are written and presented in my medium
 
 This repository contains data science toolkit codes to analyze National Hockey League (NHL) statistics. 
 
+```
+   ,
+    -   \O                                     ,  .-.___
+  -     /\                                   O/  /xx\XXX\
+ -   __/\ `\                                 /\  |xx|XXX|
+    `    \, \_ =                          _/` << |xx|XXX|
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+```
+
 This is a selection of many ways to collect, compile, clean, analyze, model, and predict team and player (skaters and goalies) performances and strategies. This repository does not claim any ownership of data and represents points of views of organizations or representations mentioned. All original codes (including generic and model algorithms) can be used freely with a proper citation and credit given to this repository.
 
 ## Goals & Capabilities
@@ -32,11 +41,12 @@ Following is the tools I used for data collection, processing, and analysis to d
 | ML Model Build | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/pytorch.svg" width="32"/> <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/scikitlearn.svg" width="32"/>|
 | Interactive Data Visualization | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/tableau.svg" width="32"/> |
 
-```
-   ,
-    -   \O                                     ,  .-.___
-  -     /\                                   O/  /xx\XXX\
- -   __/\ `\                                 /\  |xx|XXX|
-    `    \, \_ =                          _/` << |xx|XXX|
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-```
+## Data Through Github Action
+The Github Action is being used to update the data saved in this repository folder `./latest/`. The data collection is run every day.
+
+ * Team-level rank
+ * Game-level stats
+ * Game-level betting odds
+ * Play-by-play records
+
+Required package version used is saved in `./src/requirements.txt` through `pip list --format=freeze > requirements.txt`
