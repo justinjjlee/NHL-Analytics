@@ -54,7 +54,7 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git add src/path/to/latest/*.csv
+        git add latest/*.csv
         git commit -m 'Automated data update'
         git push
       env:
