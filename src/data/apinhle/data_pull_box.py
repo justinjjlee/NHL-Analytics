@@ -153,7 +153,7 @@ for iter_year in [iter_year]:#iter_years:
         inx_gamesnodata = game_list["gameid"]
 
     # If there is a data to pull
-    if not inx_gamesnodata:
+    if len(inx_gamesnodata) != 0:
         # Pull data
         # For each game id, pull play-by-play
         df_box_player = []
