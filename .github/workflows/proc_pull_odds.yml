@@ -23,12 +23,23 @@ jobs:
         python-version: '3.12.2'  # Specify the Python version you need
         channels: conda-forge,defaults  # Add conda-forge and defaults channels
 
-    - name: Create environment and install dependencies
+    - name: Initialize Conda
       run: |
         conda init bash
-        conda create --name myenv --yes python=3.12.2
-        conda run -n myenv conda install --yes --file src/requirements.txt || echo "Using pip for some packages"
-        conda run -n myenv pip install -r src/requirements.txt
+        source ~/.bashrc
+  
+    - name: Create environment and install Conda dependencies
+      run: |
+        conda create --name myenv --yes
+        source ~/.bashrc
+        conda activate myenv
+        conda install --yes --file src/requirements/conda_requirements.txt
+
+    - name: Install Pip dependencies
+      run: |
+        source ~/.bashrc
+        conda activate myenv
+        pip install -r src/requirements/pip_requirements.txt
 
     - name: Run Python script
       run: python src/data/apinhle/data_pull_odds.py

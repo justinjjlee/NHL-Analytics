@@ -49,4 +49,4 @@ The Github Action is being used to update the data saved in this repository fold
  * Game-level betting odds
  * Play-by-play records
 
-Required package version used is saved in `./src/requirements.txt` through `pip list --format=freeze > requirements.txt`
+Required package version used is saved in `./src/requirement` through `.sh` command.
