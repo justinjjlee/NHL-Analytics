@@ -19,7 +19,7 @@ iter_years = np.arange(2011, iter_year + 1) # Pulling all past records
 for iter_year in [iter_year]: # or iter_years
 
     # Pull all game lists
-    gamecode = pd.read_csv(f"./latest/{iter_year}_gamelist.csv")
+    gamecode = pd.read_csv(f"./latest/team/{iter_year}_gamelist.csv")
 
     # ---------------------------------------------------
     # Pull team/game lists of the games for the season
@@ -42,8 +42,8 @@ for iter_year in [iter_year]: # or iter_years
 
     # Save, full data
     playbyplay = pd.concat(df_playbyplay)
-    playbyplay.to_csv(f"./latest/{iter_year}_playbyplay.csv", index=False)
+    playbyplay.to_csv(f"./latest/play/{iter_year}_playbyplay.csv", index=False)
 
     df_playerinfo = pd.concat(df_playerinfo)
-    df_playerinfo.to_csv(f"./latest/{iter_year}_playbyplay_player.csv", index=False)
+    df_playerinfo.to_csv(f"./latest/play/{iter_year}_playbyplay_player.csv", index=False)
     print(iter_year)

@@ -1,4 +1,4 @@
-name: NHL API pull for odds data
+name: NHL API pull data for game-level stats (games and odds)
 
 on:
   schedule:
@@ -16,36 +16,42 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up Miniconda
+    - name: Conda - Set up Miniconda
       uses: conda-incubator/setup-miniconda@v2
       with:
         auto-update-conda: true
         python-version: '3.12.2'  # Specify the Python version you need
         channels: conda-forge,defaults  # Add conda-forge and defaults channels
 
-    - name: Initialize Conda
+    - name: Conda - Initialize Conda
       run: |
         conda init bash
         source ~/.bashrc
   
-    - name: Create environment and install Conda dependencies
+    - name: Conda - Create environment and install Conda dependencies
       run: |
         conda create --name myenv --yes
         source ~/.bashrc
         conda activate myenv
         conda install --yes --file src/requirements/conda_requirements.txt
 
-    - name: Install Pip dependencies
+    - name: Conda - Install Pip dependencies
       run: |
         source ~/.bashrc
         conda activate myenv
         pip install -r src/requirements/pip_requirements.txt
-
-    - name: Run Python script
+    
+    - name: Run Python - NHL Game Record Data
       run: |
         source ~/.bashrc
         conda activate myenv
-        python src/data/apinhle/data_pull_odds.py
+        python src/data/apinhle/data_pull_box.py
+
+    - name: Run Python - NHL Odds Data
+      run: |
+        source ~/.bashrc
+        conda activate myenv
+        python src/data/apinhle/data_pull_box_odds.py
 
     - name: Configure Git
       run: |
@@ -54,7 +60,7 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git add latest/*.csv
+        git add latest/game/*.csv
         git commit -m 'Automated data update'
         git push
       env:

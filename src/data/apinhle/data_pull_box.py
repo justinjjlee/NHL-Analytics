@@ -7,12 +7,12 @@ import requests
 import time
 import datetime
 # Functions to process box scores
-from function.procs_boxscore import *
+from src.data.apinhle.function.procs_boxscore import *
 
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 # Team codes for the list pull
-teamcode = pd.read_csv(f"./latest/teamlist.csv")
+teamcode = pd.read_csv(f"./latest/team/teamlist.csv")
 
 # %% Settings
 
@@ -35,7 +35,7 @@ for iter_year in [iter_year]:#iter_years:
 
     # ---------------------------------------------------
     # Pull team/game lists of the games for the season
-
+    
     # Varibles to be in the loop
     df = []
 
@@ -55,6 +55,8 @@ for iter_year in [iter_year]:#iter_years:
 
             # Append to save
             df.append(data)
+
+            print(f"Pull game records for: {iter_team}")
         except: # Skip if the team does not exists
             None
 
@@ -138,14 +140,23 @@ for iter_year in [iter_year]:#iter_years:
     # Pull game-level statistics
     # ---------------------------------------------------
 
+    #   In order to save the API pull time, I only need to pull records
+    #   Not currently pulled and saved
+    try:
+        game_list_last = pd.read_csv(f"./latest/box/{iter_year}_box.csv")
+        # Pick up games with newest data points
+        inx_gamesnodata = game_list.loc[~game_list["gameid"].isin(game_list_last["gameid"]), "gameid"]
+    except:
+        # New season, create 
+        inx_gamesnodata = game_list["gameid"]
     # Pull data
     # For each game id, pull play-by-play
     df_box_player = []
     df_box_team   = []
 
-    for iter_game in game_list["gameid"]: # if pulling all
+    for iter_game in inx_gamesnodata: # if pulling all
         # Maybe wait a minute?
-
+        time.sleep(1)
         # Call data
         r = requests.get(url='https://api-web.nhle.com/v1/gamecenter/'
                             + str(iter_game) + "/boxscore")
@@ -237,11 +248,24 @@ for iter_year in [iter_year]:#iter_years:
 
     # Save data for team-level statistics
     # ---------------------------------------------------
+    # Attach the past data
+
+    # Load the previous data
+    #df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
+    #                        parse_dates = ['gameDate'], 
+    #                        index_col = 'gameIdx')
+    df_team   = pd.read_csv(f"./latest/box/{iter_year}_box_team.csv",
+                            parse_dates = ['gameDate'], 
+                            index_col = 'gameIdx')
+    #df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
+    df_box_team   = pd.concat([df_team, df_box_team])
+
     # Box scores for each game for each team
     #df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv")
-    df_box_team.to_csv(f"./latest/{iter_year}_box_team.csv")
+    df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
 
     # Save 'games" and "game_list"
+    #   Game records are full list pulled by 
     #games.to_csv(f"./latest/{iter_year}_gamelist_raw.csv", index=False)
-    game_list.to_csv(f"./latest/{iter_year}_gamelist.csv", index=False)
+    game_list.to_csv(f"./latest/box/{iter_year}_box.csv", index=False)
 

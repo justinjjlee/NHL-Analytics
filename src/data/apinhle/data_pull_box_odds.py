@@ -90,7 +90,7 @@ final_df["bettingPartner"] = data["bettingPartner"]["name"]
 
 try:
     # Load existing real-time tracking file
-    exist_df = pd.read_csv(f"./latest/{iter_year}_bettingOdds.csv")
+    exist_df = pd.read_csv(f"./latest/box/{iter_year}_box_odds.csv")
 except: 
     # new season starts
     exist_df = final_df
@@ -103,4 +103,4 @@ df = df\
         .drop_duplicates(subset=['gameId'], keep='first')
 
 # Save the data
-df.to_csv(f"./latest/{iter_year}_bettingOdds.csv", index=False)
+df.to_csv(f"./latest/box/{iter_year}_box_odds.csv", index=False)

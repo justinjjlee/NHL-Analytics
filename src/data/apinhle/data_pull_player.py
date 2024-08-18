@@ -6,7 +6,7 @@ import numpy as np
 import requests
 import time
 # Functions to process box scores
-from function.procs_boxscore import *
+from src.data.apinhle.function.procs_boxscore import *
 
 
 # %% 
@@ -15,7 +15,7 @@ iter_year = 2023 # Start with season start
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 # Team codes for the list pull
-teamcode = pd.read_csv("teamlist.csv")
+teamcode = pd.read_csv("./latest/team/teamlist.csv")
 
 # %%
 # Player data 
