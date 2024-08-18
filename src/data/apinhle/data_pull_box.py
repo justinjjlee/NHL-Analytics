@@ -7,7 +7,8 @@ import requests
 import time
 import datetime
 # Functions to process box scores
-from src.data.apinhle.function.procs_boxscore import *
+#from src.data.apinhle.function.procs_boxscore import *
+from function.procs_boxscore import *
 
 # Ping and pull data from NHL API
 # ---------------------------------------------------
