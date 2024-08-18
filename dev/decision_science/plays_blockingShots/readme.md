@@ -1,5 +1,7 @@
 # Sequencing of player activities - blocking shots
-Work related to analyzing sequence of data, particularly on blocking shots and how those subsequent activities impact subsequent activities
+Work related to analyzing sequence of data, particularly on blocking shots and how those subsequent activities impact subsequent activities.
+
+![Diagram](./diagram/diagram.svg)
 
 ## Data & Measurements
 These are data points and sequencial measurements that I caputre for this analysis
@@ -11,3 +13,5 @@ These are data points and sequencial measurements that I caputre for this analys
 
 ## Analysis
 The complete analysis with narration is saved in my Medium page.
+
+The Dash version of the interactive plot (Sankey chart) is not saved in the repository due to the lack of rendering capability (`.png` version is published instead). Users can replicate my work by generating the `.html` file locally through `blockingShots_sanky.py`.
