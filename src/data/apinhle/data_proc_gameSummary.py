@@ -2,21 +2,42 @@ import pandas as pd
 import numpy as np
 import requests
 import os
+import time
+import datetime
 
-# get current directory
-path = os.getcwd()
-# get directory of the latest data location
-dir_data = os.path.abspath(os.path.join(path, os.pardir)) + "/data/apinhle/"
+# Functions to process box scores
+from function.procs_boxscore import *
 
-# %%
-# Pull data
-iter_year = 2023 # Start with season start
+# Latest data setting
+yr_now = datetime.datetime.today().year
+mo_now = datetime.datetime.today().month
 
-# Pull relevant data
-df_kpi = pd.read_csv(dir_data + "/latest/2023_box_team_season.csv", index_col='team_tri_for')
+# Select starting year for season to pull.
+#   Until the following season starts, always pull the current/past eyar
+if mo_now < 10: # Season starts on October
+    # Then the season marks starts in the previous calendar year
+    iter_year = yr_now - 1
+else:
+    iter_year = yr_now
 
-# %%
-# Generate statistics for team success measurements
+# %% Team success measurements
+# -----------------------------------------------------
+# Load the current data
+df_box_team   = pd.read_csv(
+    f"./latest/box/{iter_year}_box_team.csv",
+    parse_dates = ['gameDate'], 
+    index_col = 'gameIdx'
+)
+
+team_season = nhl_dataproc_teamsuccess(iter_year)
+df_kpi, summary_game = team_season.dataproc(df_box_team)
+
+summary_game.to_csv(f"./latest/box/{iter_year}_box_gameStats.csv")
+df_kpi.to_csv(f"./latest/team/season/{iter_year}_team_season.csv")
+
+print("Team - season-level statistics compute completed")
+'''
+# %% Plot: Generate statistics for team success measurements
 
 # Vector of min
 x_min = np.min(df_kpi['rpe'])
@@ -72,6 +93,8 @@ adjust_text(iter_teams)
 #plt.xlim([0.3, 0.8])
 #plt.ylim([0.6, 1.2])
 
-
 # Save figure
-plt.savefig(f"./latest/plot_PEnSoR_{iter_year}.png",  bbox_inches='tight', dpi=400)
+plt.savefig(f"./latest/team/season/plot_PEnSoR_{iter_year}.png",  bbox_inches='tight', dpi=400)
+'''
+
+print("Good bye.")

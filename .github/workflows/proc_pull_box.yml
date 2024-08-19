@@ -54,6 +54,12 @@ jobs:
         conda activate myenv
         python src/data/apinhle/data_pull_box_odds.py
 
+    - name: Run Python - NHL Game-level Summary to Game Records and Season-team Statistics
+      run: |
+        source ~/.bashrc
+        conda activate myenv
+        python src/data/apinhle/data_proc_gameSummary.py
+
     - name: Configure Git
       run: |
         git config --global user.name 'github-actions[bot]'
@@ -62,6 +68,7 @@ jobs:
     - name: Commit and push changes
       run: |
         git add latest/box/*.csv
+        git add latest/team/season/*.csv
         if git diff-index --quiet HEAD --; then
           echo "No changes to commit"
           exit 0

@@ -1,4 +1,4 @@
-name: NHL API pull data for game-level stats (games and odds)
+name: NHL API pull data for player-level stats
 
 on:
   schedule:
