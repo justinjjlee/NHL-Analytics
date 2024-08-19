@@ -60,6 +60,12 @@ jobs:
         conda activate myenv
         python src/data/apinhle/data_proc_gameSummary.py
 
+    - name: Run Python - NHL Game-level Play-by-play record data
+      run: |
+        source ~/.bashrc
+        conda activate myenv
+        python src/data/apinhle/data_pull_plays.py
+
     - name: Configure Git
       run: |
         git config --global user.name 'github-actions[bot]'
