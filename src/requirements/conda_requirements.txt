@@ -16,7 +16,7 @@ conda-content-trust==0.2.0
 conda-libmamba-solver==24.1.0
 conda-package-handling==2.3.0
 conda-package-streaming==0.10.0
-cryptography==42.0.5
+cryptography==43.0.1
 debugpy==1.6.7
 decorator==5.1.1
 distro==1.9.0
