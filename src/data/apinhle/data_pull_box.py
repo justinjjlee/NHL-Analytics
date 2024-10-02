@@ -57,8 +57,8 @@ for iter_year in [iter_year]:#iter_years:
             # Filter out columns and rows
 
             # For now, remove all future games
-            #   It can be "OFF", or "FINAL" in 2024-2025 season
-            data = data.loc[(data.gameState == "OFF") | ((data.gameState == "FINAL")), :]
+            #   It can be "OFF" for regular season, or "FINAL" for pre season
+            data = data.loc[data.gameState == "OFF", :]
 
             # Append to save
             df.append(data)
