@@ -41,7 +41,7 @@ for iter_team in list(teamcode.tricode):
 
     # For season download: 
     iter_sesn = str(iter_year) + str(iter_year+1)
-    for iter_season_type in [2, 3]: # Regular season and playoff
+    for iter_season_type in [2, 3]: # pre season (1), regular season (2), and playoff (3) - if available
         try:
             # Pull club stats, only regular seasons for now
             r = requests.get(url=f'https://api-web.nhle.com/v1/club-stats/{iter_team}/{iter_sesn}/{iter_season_type}')
@@ -82,4 +82,4 @@ last_cols = [col for col in playerstats.columns if col not in first_cols]
 playerstats = playerstats[first_cols+last_cols]
 playerstats.to_csv(f"./latest/player/{iter_year}_player.csv", index=False)
 
-print("Good bye.")
+print("au revoir.")

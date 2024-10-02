@@ -100,4 +100,4 @@ adjust_text(iter_teams)
 plt.savefig(f"./latest/team/season/plot_PEnSoR_{iter_year}.png",  bbox_inches='tight', dpi=400)
 '''
 
-print("Good bye.")
+print("au revoir.")

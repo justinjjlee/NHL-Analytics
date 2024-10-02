@@ -52,7 +52,8 @@ for iter_year in [iter_year]:#iter_years:
             # Filter out columns and rows
 
             # For now, remove all future games
-            data = data.loc[data.gameState == "OFF"]
+            #   It can be "OFF", or "FINAL" in 2024-2025 season
+            data = data.loc[data.gameState == "FINAL"]
 
             # Append to save
             df.append(data)
@@ -280,4 +281,4 @@ for iter_year in [iter_year]:#iter_years:
         print("No new box scores to be pulled, exit the process.")
         None
 
-print("Good bye.")
+print("au revoir.")
