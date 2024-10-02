@@ -15,14 +15,20 @@ from function.procs_playbyplay import *
 # Get current date
 yr_now = datetime.datetime.today().year
 mo_now = datetime.datetime.today().month
+dy_now = datetime.datetime.today().day
 
 # Select starting year for season to pull.
 #   Until the following season starts, always pull the current/past eyar
-if mo_now < 10: # Season starts on October - start with regular season since pre season games don't have full data
+if (mo_now > 10) | ((mo_now == 10) & (dy_now > 15)): 
+    # Season starts on October - start with regular season since pre season games don't have full data
+    #   Start the regular season data pull on 10/15
     # Then the season marks starts in the previous calendar year
-    iter_year = yr_now - 1
-else:
     iter_year = yr_now
+else:
+    # iter year starts from previous 
+    iter_year = yr_now - 1
+
+print(f"Iterative season: {iter_year}")
 
 # %% 
 # Ping and pull data from NHL API
