@@ -30,11 +30,12 @@ else:
 
 for iter_year in [iter_year]: # or iter_years
 
-    # Pull all game lists
-    gamecode = pd.read_csv(f"./latest/box/{iter_year}_box.csv")
-
     # Load the previous game stats, if exist
     try:
+
+        # Pull all game lists
+        gamecode = pd.read_csv(f"./latest/box/{iter_year}_box.csv")
+
         # If previously pulled data exist
         df_playbyplay_exist = pd.read_csv(f"./latest/play/{iter_year}_playbyplay.csv")
         df_playbyplay_player_exist = pd.read_csv(f"./latest/play/{iter_year}_playbyplay_player.csv")
