@@ -23,19 +23,22 @@ else:
 # %% Team success measurements
 # -----------------------------------------------------
 # Load the current data
-df_box_team   = pd.read_csv(
-    f"./latest/box/{iter_year}_box_team.csv",
-    parse_dates = ['gameDate'], 
-    index_col = 'gameIdx'
-)
+try: # If the data exist,
+    df_box_team   = pd.read_csv(
+        f"./latest/box/{iter_year}_box_team.csv",
+        parse_dates = ['gameDate'], 
+        index_col = 'gameIdx'
+    )
 
-team_season = nhl_dataproc_teamsuccess(iter_year)
-df_kpi, summary_game = team_season.dataproc(df_box_team)
+    team_season = nhl_dataproc_teamsuccess(iter_year)
+    df_kpi, summary_game = team_season.dataproc(df_box_team)
 
-summary_game.to_csv(f"./latest/box/{iter_year}_box_gameStats.csv")
-df_kpi.to_csv(f"./latest/team/season/{iter_year}_team_season.csv")
+    summary_game.to_csv(f"./latest/box/{iter_year}_box_gameStats.csv")
+    df_kpi.to_csv(f"./latest/team/season/{iter_year}_team_season.csv")
 
-print("Team - season-level statistics compute completed")
+    print("Team - season-level statistics compute completed")
+except: # Data does not exist
+    print("The data currently does not exist. Exit the process safely.")
 '''
 # %% Plot: Generate statistics for team success measurements
 
