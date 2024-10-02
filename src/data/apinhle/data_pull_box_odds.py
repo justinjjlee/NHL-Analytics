@@ -22,7 +22,7 @@ mo_now = datetime.datetime.today().month
 
 # Select starting year for season to pull.
 #   Until the following season starts, always pull the current/past eyar
-if mo_now < 8: # Season starts on October
+if mo_now < 8: # Season starts on October, but pre-season results can be saved. for future reference
     # Then the season marks starts in the previous calendar year
     iter_year = yr_now - 1
 else:

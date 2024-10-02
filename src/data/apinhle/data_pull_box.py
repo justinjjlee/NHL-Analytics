@@ -23,7 +23,7 @@ mo_now = datetime.datetime.today().month
 
 # Select starting year for season to pull.
 #   Until the following season starts, always pull the current/past eyar
-if mo_now < 8: # Season starts on October
+if mo_now < 10: # Season starts on October - start with regular season since pre season games don't have full data
     # Then the season marks starts in the previous calendar year
     iter_year = yr_now - 1
 else:
@@ -278,7 +278,7 @@ for iter_year in [iter_year]:#iter_years:
         game_list.to_csv(f"./latest/box/{iter_year}_box.csv", index=False)
     else:
         # No data to pull, exit
-        print("No new box scores to be pulled, exit the process.")
+        print("Error occured. Maybe due to off-season or script error. Please confirm.")
         None
 
 print("au revoir.")
