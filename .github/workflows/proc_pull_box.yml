@@ -55,12 +55,14 @@ jobs:
         python src/data/apinhle/data_pull_box_odds.py
 
     - name: Run Python - NHL Game-level Summary to Game Records and Season-team Statistics
+      if: always()
       run: |
         source ~/.bashrc
         conda activate myenv
         python src/data/apinhle/data_proc_gameSummary.py
 
     - name: Run Python - NHL Game-level Play-by-play record data
+      if: always()
       run: |
         source ~/.bashrc
         conda activate myenv
