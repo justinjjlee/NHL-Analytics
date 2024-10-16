@@ -226,12 +226,14 @@ for iter_year in [iter_year]:#iter_years:
             team_stat['gameEnd'] = data['gameOutcome']['lastPeriodType']
 
             # Attach the box score
+            '''
+            # As of 2024-2025 season, the API has retired this 
             team_boxstats = pd.json_normalize(data['summary']['teamGameStats'])
             team_boxstats.set_index('category', inplace=True)
             team_boxstats = team_boxstats.transpose().reset_index(drop=True)
             # Join the data
             team_stat = team_stat.join(team_boxstats)
-
+            '''
             # Save data
             df_box_team.append(team_stat)
 
