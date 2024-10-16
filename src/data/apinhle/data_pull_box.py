@@ -264,17 +264,19 @@ for iter_year in [iter_year]:#iter_years:
         # Save data for team-level statistics
         # ---------------------------------------------------
         # Attach the past data
-
-        # Load the previous data
-        #df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
-        #                        parse_dates = ['gameDate'], 
-        #                        index_col = 'gameIdx')
-        df_team   = pd.read_csv(f"./latest/box/{iter_year}_box_team.csv",
-                                parse_dates = ['gameDate'], 
-                                index_col = 'gameIdx')
-        #df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
-        df_box_team   = pd.concat([df_team, df_box_team])
-
+        try:
+            # Load the previous data, if exist
+            #df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
+            #                        parse_dates = ['gameDate'], 
+            #                        index_col = 'gameIdx')
+            df_team   = pd.read_csv(f"./latest/box/{iter_year}_box_team.csv",
+                                    parse_dates = ['gameDate'], 
+                                    index_col = 'gameIdx')
+            #df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
+            df_box_team   = pd.concat([df_team, df_box_team])
+        except:
+            # Scip the process, create the new file
+            None
         # Box scores for each game for each team
         #df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv")
         df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
