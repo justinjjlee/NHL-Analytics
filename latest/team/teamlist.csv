@@ -1,33 +1,33 @@
-tricode,team
-ANA,Anaheim Ducks
-BOS,Boston Bruins
-BUF,Buffalo Sabres
-CAR,Carolina Hurricanes
-CBJ,Columbus Blue Jackets
-CGY,Calgary Flames
-CHI,Chicago Black Hawks
-COL,Colorado Avalanche
-DAL,Dallas Stars
-DET,Detroit Red Wings
-EDM,Edmonton Oilers
-FLA,Florida Panthers
-LAK,Los Angeles Kings
-MIN,Minnesota Wild
-MTL,Montreal Canadiens
-NJD,New Jersey Devils
-NSH,Nashville Predators
-NYI,New York Islanders
-NYR,New York Rangers
-OTT,Ottawa Senators
-PHI,Philadelphia Flyers
-PIT,Pittsburgh Penguins
-SEA,Seattle Kraken
-SJS,San Jose Sharks
-STL,St. Louis Blues
-TOR,Toronto Maple Leafs
-TBL,Tampa Bay Lightning
-UTA,Utah Hockey Club
-VAN,Vancouver Canucks
-VGK,Vegas Golden Knights
-WPG,Winnipeg Jets
-WSH,Washington Capitals
+tricode,team,arena,city,region_name,region
+ANA,Anaheim Ducks,Honda Center,Anaheim,California,CA
+BOS,Boston Bruins,TD Garden,Boston,Massachusetts,MA
+BUF,Buffalo Sabres,KeyBank Center,Buffalo,New York,NY
+CAR,Carolina Hurricanes,Lenovo Center,Raleigh,North Carolina,NC
+CBJ,Columbus Blue Jackets,Nationwide Arena,Columbus,Ohio,OH
+CGY,Calgary Flames,Scotiabank Saddledome,Calgary,Alberta,AB
+CHI,Chicago Black Hawks,United Center,Chicago,Illinois,IL
+COL,Colorado Avalanche,Ball Arena,Denver,Colorado,CO
+DAL,Dallas Stars,American Airlines Center,Dallas,Texas,TX
+DET,Detroit Red Wings,Little Caesars Arena,Detroit,Michigan,MI
+EDM,Edmonton Oilers,Rogers Place,Edmonton,Alberta,AB
+FLA,Florida Panthers,Amerant Bank Arena,Sunrise,Florida,FL
+LAK,Los Angeles Kings,Crypto.com Arena,Los Angeles,California,CA
+MIN,Minnesota Wild,Xcel Energy Center,Saint Paul,Minnesota,MN
+MTL,Montreal Canadiens,Centre Bell,Montreal,Quebec,QC
+NJD,New Jersey Devils,Prudential Center,Newark,New Jersey,NJ
+NSH,Nashville Predators,Bridgestone Arena,Nashville,Tennessee,TN
+NYI,New York Islanders,UBS Arena,Elmont,New York,NY
+NYR,New York Rangers,Madison Square Garden,New York,New York,NY
+OTT,Ottawa Senators,Canadian Tire Centre,Ottawa,Ontario,ON
+PHI,Philadelphia Flyers,Wells Fargo Center,Philadelphia,Pennsylvania,PA
+PIT,Pittsburgh Penguins,PPG Paints Arena,Pittsburgh,Pennsylvania,PA
+SEA,Seattle Kraken,Climate Pledge Arena,Seattle,Washington,WA
+SJS,San Jose Sharks,SAP Center,San Jose,California,CA
+STL,St. Louis Blues,Enterprise Center,St. Louis,Missouri,MO
+TOR,Toronto Maple Leafs,Scotiabank Arena,Toronto,Ontario,ON
+TBL,Tampa Bay Lightning,Amalie Arena,Tampa,Florida,FL
+UTA,Utah Hockey Club,Delta Center,Salt Lake City,Utah,UT
+VAN,Vancouver Canucks,Rogers Arena,Vancouver,British Columbia,BC
+VGK,Vegas Golden Knights,T-Mobile Arena,Paradise,Nevada,NV
+WPG,Winnipeg Jets,Canada Life Centre,Winnipeg,Manitoba,MB
+WSH,Washington Capitals,Capital One Arena,Washington,District of Columbia,DC

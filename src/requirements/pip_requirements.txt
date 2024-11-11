@@ -50,6 +50,6 @@ tenacity==8.5.0
 threadpoolctl==3.5.0
 toolz==0.12.1
 tzdata==2024.1
-werkzeug==3.0.3
+werkzeug==3.0.6
 xarray==2024.7.0
 xarray-einstats==0.7.0
