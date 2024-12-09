@@ -18,9 +18,9 @@ import json
 import pandas as pd
 
 # Load data from CSV file (ensure the 'temp' folder contains 'temp.csv')
-csv_path = './data/teamlist_locations_distance_meters.csv'
+csv_path = './app/data/teamlist_locations_distance_meters.csv'
 df = pd.read_csv(csv_path)
-csv_path = './data/teamlist.csv'
+csv_path = './app/data/teamlist.csv'
 df_team = pd.read_csv(csv_path)
 
 #df.sort_values(by="tricode_home", ascending=True, inplace=True)
@@ -42,7 +42,7 @@ if 'away_team' not in st.session_state:
 
 # Sidebar content
 # Add logo image
-st.sidebar.image("./assets/img_main.jpeg", use_container_width=True)
+st.sidebar.image("./app/assets/img_main.jpeg", use_container_width=True)
 
 st.sidebar.markdown(
     """
