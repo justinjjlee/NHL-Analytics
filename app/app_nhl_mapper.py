@@ -60,7 +60,7 @@ st.sidebar.markdown(
             GitHub
         </a>
         and
-        <a href="https://medium.com/@thinkingjustins" target="_blank" style="text-decoration: none; color: #ffb703;">
+        <a href="https://medium.com/@thinkingjustin" target="_blank" style="text-decoration: none; color: #ffb703;">
             Medium articles.
         </a>
     </div>
