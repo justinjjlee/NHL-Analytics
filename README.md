@@ -9,6 +9,8 @@ If you find my work to be useful, please star this repository!
 [![justinjjlee - NHL-Analytics](https://img.shields.io/static/v1?label=justinjjlee&message=NHL-Analytics&color=blue&logo=github)](https://github.com/justinjjlee/NHL-Analytics "Go to GitHub repo")
 [![stars - NHL-Analytics](https://img.shields.io/github/stars/justinjjlee/NHL-Analytics?style=social)](https://github.com/justinjjlee/NHL-Analytics)
 [![forks - NHL-Analytics](https://img.shields.io/github/forks/justinjjlee/NHL-Analytics?style=social)](https://github.com/justinjjlee/NHL-Analytics)
+[![Medium - NHL-Analytics](https://img.shields.io/badge/Medium-Read-green?logo=Medium)](https://medium.com/@thinkingjustin)
+[![Streamlit - NHL-Analytics](https://img.shields.io/badge/Streamlit-Explore-FF4B4B?style=flat&logo=streamlit&logoColor=white/)](https://share.streamlit.io/user/justinjjlee)
 
 This is a collection of methods for collecting, compiling, cleaning, analyzing, modeling, and predicting team and player (skaters and goalies) performances and strategies. This repository does not claim ownership of the data and reflects the perspectives of the organizations or entities mentioned. All original code (including generic and model algorithms) may be used freely, provided proper citation and credit are given to this repository.
 
