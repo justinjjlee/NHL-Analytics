@@ -26,7 +26,15 @@ from exe.team_stats import render_scoreboard  # Import the new module
 
 # Sidebar content
 # Add logo image
-st.sidebar.image("../app/assets/img_main.jpeg", use_container_width=True)
+# st.sidebar.image("./app/assets/img_main.jpeg", use_container_width=True)
+def get_asset_path(rel_path):
+    """Helper function to get correct asset paths regardless of run location"""
+    # Start with the current file location
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Construct the absolute path to the asset
+    return os.path.join(current_dir, "assets", rel_path)
+
+st.sidebar.image(get_asset_path("img_main.jpeg"), use_container_width=True)
 
 st.sidebar.markdown(
     """
@@ -141,4 +149,3 @@ elif page == "Les magnifiques patineuses":
     
     with draft_tabs[1]:
         st.info("à venir bientôt!")
-    
