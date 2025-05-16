@@ -21,7 +21,7 @@ import plotly.graph_objects as go
 import numpy as np
 import os
 from exe.map_utils import load_map_data, render_team_map
-#from exe.draft_analysis import render_exceptional_players_analysis
+from exe.draft_analysis import render_exceptional_players_analysis
 from exe.team_stats import render_scoreboard  # Import the new module
 
 # Sidebar content
