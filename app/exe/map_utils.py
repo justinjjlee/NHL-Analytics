@@ -1,3 +1,4 @@
+import os
 import folium
 from folium import DivIcon
 import json
@@ -6,49 +7,63 @@ import streamlit as st
 from streamlit_folium import st_folium
 
 
-# Load data from CSV file (ensure the 'temp' folder contains 'temp.csv')
-csv_path = '../app/data/teamlist_locations_distance_meters.csv'
-df = pd.read_csv(csv_path)
-csv_path = '../app/data/teamlist.csv'
-df_team = pd.read_csv(csv_path)
+def get_data_path(rel_path):
+    """Helper function to get correct data paths regardless of run location"""
+    # Start with the current file location
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Go up to the project root
+    project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
+    # Construct the absolute path
+    return os.path.join(project_root, 'app', 'data', rel_path)
 
-#df.sort_values(by="tricode_home", ascending=True, inplace=True)
+def load_map_data():
+    """Load the necessary data for the map visualization with proper path handling"""
+    try:
+        # Use absolute paths for data files
+        teamlist_locations_path = get_data_path('teamlist_locations_distance_meters.csv')
+        teamlist_path = get_data_path('teamlist.csv')
+        
+        # Check if files exist
+        if not os.path.exists(teamlist_locations_path):
+            st.error(f"File not found: {teamlist_locations_path}")
+            return None
+            
+        if not os.path.exists(teamlist_path):
+            st.error(f"File not found: {teamlist_path}")
+            return None
+        
+        # Load the data
+        df = pd.read_csv(teamlist_locations_path)
+        df_team = pd.read_csv(teamlist_path)
 
-# Join the two
-df = df.merge(
-    df_team, left_on="tricode_home", right_on="tricode"
-).rename(columns={"team": "home_team", "city": "home_team_city"}).drop("tricode", axis=1)
+        # Join the two
+        df = df.merge(
+            df_team, left_on="tricode_home", right_on="tricode"
+        ).rename(columns={"team": "home_team", "city": "home_team_city"}).drop("tricode", axis=1)
 
-df = df.merge(
-    df_team, left_on="tricode_away", right_on="tricode"
-).rename(columns={"team": "away_team", "city": "away_team_city"}).drop("tricode", axis=1)
+        df = df.merge(
+            df_team, left_on="tricode_away", right_on="tricode"
+        ).rename(columns={"team": "away_team", "city": "away_team_city"}).drop("tricode", axis=1)
+        
+        return df
+        
+    except Exception as e:
+        st.error(f"Error loading map data: {e}")
+        return None
 
 # Initialize session state for home and away team selection
 if 'home_team' not in st.session_state:
     st.session_state.home_team = ""
 if 'away_team' not in st.session_state:
     st.session_state.away_team = ""
-    
-def load_map_data():
-    """Load the necessary data for the map visualization"""
-    csv_path = '../app/data/teamlist_locations_distance_meters.csv'
-    df = pd.read_csv(csv_path)
-    csv_path = '../app/data/teamlist.csv'
-    df_team = pd.read_csv(csv_path)
-
-    # Join the two
-    df = df.merge(
-        df_team, left_on="tricode_home", right_on="tricode"
-    ).rename(columns={"team": "home_team", "city": "home_team_city"}).drop("tricode", axis=1)
-
-    df = df.merge(
-        df_team, left_on="tricode_away", right_on="tricode"
-    ).rename(columns={"team": "away_team", "city": "away_team_city"}).drop("tricode", axis=1)
-    
-    return df
 
 def render_team_map(df, home_team="", away_team="", refresh_button=False, travel_mode=False):
     """Render the team locations map with various selection options"""
+    # Check if data is available
+    if df is None:
+        st.error("Map data is not available. Please check the data files.")
+        return None
+        
     # Create a base map centered on North America
     m = folium.Map(location=[39.8283, -98.5795], zoom_start=4)
 

@@ -21,7 +21,7 @@ import plotly.graph_objects as go
 import numpy as np
 import os
 from exe.map_utils import load_map_data, render_team_map
-from exe.draft_analysis import render_exceptional_players_analysis
+#from exe.draft_analysis import render_exceptional_players_analysis
 from exe.team_stats import render_scoreboard  # Import the new module
 
 # Sidebar content
@@ -129,5 +129,16 @@ if page == "Teams":
         render_scoreboard()
 
 elif page == "Les magnifiques patineuses":
-    st.info("à venir bientôt!")
+    # Call the function from the imported module
+    st.title("The Magnificant Skaters")
+    
+    # Create tabs within this page for different draft analyses
+    draft_tabs = st.tabs(["Choix du premier tour", "College Alumni"])
+    
+    with draft_tabs[0]:
+        #render_exceptional_players_analysis()
+        st.info("à venir bientôt!")
+    
+    with draft_tabs[1]:
+        st.info("à venir bientôt!")
     

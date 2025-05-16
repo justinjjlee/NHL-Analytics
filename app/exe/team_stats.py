@@ -5,71 +5,81 @@ import glob
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 
+def get_data_path(rel_path):
+    """Helper function to get correct data paths regardless of run location"""
+    # Start with the current file location
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    # Go up to the project root (from /app/exe to /)
+    project_root = os.path.abspath(os.path.join(current_dir, '..', '..'))
+    # Construct the absolute path to the data
+    return os.path.join(project_root, rel_path)
+
 def load_box_scores_and_odds():
     """
     Load all box score data and betting odds data from the latest/box directory
     Returns dataframes with the scores, odds, and a list of available dates
     """
-    # Find all box score files
-    box_files = glob.glob("../latest/box/*box.csv")
-    
-    if not box_files:
-        st.error("No box score files found. Please check data directory.")
-        return None, None, []
-    
-    # Sort files for consistent processing
-    box_files.sort(reverse=True)
-    
-    # Create empty list to store dataframes
-    box_dfs = []
-    
-    # Load data from all files
-    for file in box_files:
-        try:
-            temp_df = pd.read_csv(file)
-            # Add to list of dataframes
-            box_dfs.append(temp_df)
-        except Exception as e:
-            st.warning(f"Error loading file {file}: {e}")
-            continue
-    
-    if not box_dfs:
-        st.error("No valid data found in any box score files.")
-        return None, None, []
-    
-    # Concatenate all box score dataframes
-    box_df = pd.concat(box_dfs, ignore_index=True)
-    
-    # Find all odds files
-    odds_files = glob.glob("../latest/box/*odds.csv")
-    odds_df = None
-    
-    if odds_files:
+    try:
+        # Use absolute paths for box score files
+        box_dir = get_data_path('latest/box')
+        box_files = glob.glob(f"{box_dir}/*box.csv")
+        
+        if not box_files:
+            st.error(f"No box score files found. Please check data directory: {box_dir}")
+            return None, None, []
+        
         # Sort files for consistent processing
-        odds_files.sort(reverse=True)
+        box_files.sort(reverse=True)
         
         # Create empty list to store dataframes
-        odds_dfs = []
+        box_dfs = []
         
         # Load data from all files
-        for file in odds_files:
+        for file in box_files:
             try:
                 temp_df = pd.read_csv(file)
-                # Filter for MONEY_LINE_2_WAY odds only
-                temp_df = temp_df[temp_df['odds_description'] == 'MONEY_LINE_2_WAY']
                 # Add to list of dataframes
-                odds_dfs.append(temp_df)
+                box_dfs.append(temp_df)
             except Exception as e:
-                st.warning(f"Error loading odds file {file}: {e}")
+                st.warning(f"Error loading file {file}: {e}")
                 continue
         
-        if odds_dfs:
-            # Concatenate all odds dataframes
-            odds_df = pd.concat(odds_dfs, ignore_index=True)
-            # Drop duplicates to ensure we have one odds entry per game
-            odds_df = odds_df.drop_duplicates(subset=['gameId'])
-    
-    try:
+        if not box_dfs:
+            st.error("No valid data found in any box score files.")
+            return None, None, []
+        
+        # Concatenate all box score dataframes
+        box_df = pd.concat(box_dfs, ignore_index=True)
+        
+        # Find all odds files
+        odds_files = glob.glob(f"{box_dir}/*odds.csv")
+        odds_df = None
+        
+        if odds_files:
+            # Sort files for consistent processing
+            odds_files.sort(reverse=True)
+            
+            # Create empty list to store dataframes
+            odds_dfs = []
+            
+            # Load data from all files
+            for file in odds_files:
+                try:
+                    temp_df = pd.read_csv(file)
+                    # Filter for MONEY_LINE_2_WAY odds only
+                    temp_df = temp_df[temp_df['odds_description'] == 'MONEY_LINE_2_WAY']
+                    # Add to list of dataframes
+                    odds_dfs.append(temp_df)
+                except Exception as e:
+                    st.warning(f"Error loading odds file {file}: {e}")
+                    continue
+            
+            if odds_dfs:
+                # Concatenate all odds dataframes
+                odds_df = pd.concat(odds_dfs, ignore_index=True)
+                # Drop duplicates to ensure we have one odds entry per game
+                odds_df = odds_df.drop_duplicates(subset=['gameId'])
+        
         # Convert date column to datetime
         box_df['date'] = pd.to_datetime(box_df['date'])
         
@@ -83,8 +93,11 @@ def load_box_scores_and_odds():
         available_dates = box_df['date'].dt.date.unique()
         
         return box_df, odds_df, available_dates
+    
     except Exception as e:
         st.error(f"Error processing data: {e}")
+        import traceback
+        st.error(traceback.format_exc())
         return None, None, []
 
 def get_team_logo_url(tricode):
@@ -112,6 +125,32 @@ def create_scoreboard_card(home_team, away_team, home_score, away_score, game_da
         # Game date and status - smaller font
         st.markdown(f"<p style='font-size:11px; margin:2px 0; text-align:center;'>{game_date_str} • {game_status}</p>", unsafe_allow_html=True)
         
+        # Away team row - more compact
+        col1, col2, col_odds, col_score = st.columns([0.8, 1, 0.8, 0.6])
+        with col1:
+            # Center-align the image with fixed height and proper vertical centering
+            st.markdown(f"""
+                <div style="display: flex; justify-content: center; align-items: center; height: 40px; margin: 0;">
+                    <img src="{away_logo}" width="35" style="vertical-align: middle; margin: auto 0;">
+                </div>
+            """, unsafe_allow_html=True)
+        with col2:
+            st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{away_team}</p>", unsafe_allow_html=True)
+        with col_odds:
+            if away_odds is not None:
+                # Money line 2 - always negative and positive - smaller font
+                if home_odds > away_odds:
+                    odds_str = f"+{away_odds}" if away_odds > 0 else f"{away_odds}"
+                    st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
+                else:
+                    odds_str = f"+{away_odds}" if away_odds > 0 else f"{away_odds}"
+                    st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
+        with col_score:
+            if away_score > home_score:
+                st.markdown(f"<p style='color:#28a745;text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{away_score}</p>", unsafe_allow_html=True)
+            else:
+                st.markdown(f"<p style='text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{away_score}</p>", unsafe_allow_html=True)
+        
         # Home team row - more compact
         col1, col2, col_odds, col_score = st.columns([0.8, 1, 0.8, 0.6])
         with col1:
@@ -138,32 +177,7 @@ def create_scoreboard_card(home_team, away_team, home_score, away_score, game_da
             else:
                 st.markdown(f"<p style='text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{home_score}</p>", unsafe_allow_html=True)
         
-        # Away team row - more compact
-        col1, col2, col_odds, col_score = st.columns([0.8, 1, 0.8, 0.6])
-        with col1:
-            # Center-align the image with fixed height and proper vertical centering
-            st.markdown(f"""
-                <div style="display: flex; justify-content: center; align-items: center; height: 40px; margin: 0;">
-                    <img src="{away_logo}" width="35" style="vertical-align: middle; margin: auto 0;">
-                </div>
-            """, unsafe_allow_html=True)
-        with col2:
-            st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{away_team}</p>", unsafe_allow_html=True)
-        with col_odds:
-            if away_odds is not None:
-                # Money line 2 - always negative and positive - smaller font
-                if home_odds > away_odds:
-                    odds_str = f"+{away_odds}" if away_odds > 0 else f"{away_odds}"
-                    st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
-                else:
-                    odds_str = f"+{away_odds}" if away_odds > 0 else f"{away_odds}"
-                    st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
-        with col_score:
-            if away_score > home_score:
-                st.markdown(f"<p style='color:#28a745;text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{away_score}</p>", unsafe_allow_html=True)
-            else:
-                st.markdown(f"<p style='text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{away_score}</p>", unsafe_allow_html=True)
-
+        
 def render_scoreboard():
     """
     Main function to render the scoreboard interface
