@@ -51,12 +51,6 @@ def load_map_data():
         st.error(f"Error loading map data: {e}")
         return None
 
-# Initialize session state for home and away team selection
-if 'home_team' not in st.session_state:
-    st.session_state.home_team = ""
-if 'away_team' not in st.session_state:
-    st.session_state.away_team = ""
-
 def render_team_map(df, home_team="", away_team="", refresh_button=False, travel_mode=False):
     """Render the team locations map with various selection options"""
     # Check if data is available

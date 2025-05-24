@@ -18,7 +18,7 @@ import time
 
 '''
 # Define list of years, from 2006 to 2023
-years = list(range(2006, 2024))
+years = list(range(2000, 2024))
 
 # Dictionary to store DataFrames for each year
 drafted_players_raw = {}
@@ -111,7 +111,7 @@ I evaluate seasons from 2006 to 2024
 
 # Create season mark for API: 2006-07 season is written as 20062007
 # Define the seasons to pull
-seasons = [f"{year}{year + 1}" for year in range(2006, 2025)]
+seasons = [f"{year}{year + 1}" for year in range(2000, 2025)]
 
 '''
 This is the API block to pull the stats for players

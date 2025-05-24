@@ -146,31 +146,24 @@ def render_exceptional_players_analysis():
     
             # Update the title and description with more emphasis on the 95th percentile calculation
             st.markdown(f"""
-                Draft Period: {career_data.year.min()} - {career_data.year.max()} \n
-                Season Performance: Regular season data last updated for {exceptional_seasons_details['season_marking'].max()}
-                
-                This analysis focuses specifically on **1st round draft picks** and their point production over their NHL careers.
+                Draft Years: {career_data.year.min()} - {career_data.year.max()} (Last updated for {exceptional_seasons_details['season_marking'].max()} season)
             """)
-
             st.subheader("Seasons of Exceptional Point Production")
             st.markdown("""
-                An **exceptional season** is defined as a season where a player's point production **exceeds the 95%** 
-                of all other active 1st round drafted skaters in the same season.
-                        
-                The scatter plot below shows players who have had multiple seasons performing above the 95th percentile in points production.
-                Each point represents a player's number of the exceptional seasons, over their career (number of seasons) in the NHL.
-                For the **most exceptional skaters**, we would look for players who had long careers with greater number of the exceptional seasons.
+                An **exceptional season** is defined as a season where a skater's point production **exceeds the 95%** 
+                of all other active 1st round drafted skaters in the same regular season. **Most exceptional skaters** 
+                had long careers with greater number of the exceptional seasons.
             """)
             
             # Display summary metrics
             cols = st.columns(3)
             with cols[0]:
-                st.metric("Total Exceptional Players", len(multi_exceptional_players))
+                st.metric("Total Exceptional Skaters", len(multi_exceptional_players))
             with cols[1]:
-                st.metric("Max Exceptional Seasons", multi_exceptional_players['exceptional_seasons'].max())
+                st.metric("Most Exceptional Seasons by a Skater", multi_exceptional_players['exceptional_seasons'].max())
             with cols[2]:
                 top_player = multi_exceptional_players.iloc[0]
-                st.metric("Top Performer", f"{top_player['firstName']} {top_player['lastName']}")
+                st.metric("Most Exceptional Skater", f"{top_player['firstName']} {top_player['lastName']}")
             
             fig = px.scatter(
                 multi_exceptional_players,
@@ -222,10 +215,10 @@ def render_exceptional_players_analysis():
 
             st.plotly_chart(fig, use_container_width=True)
             
+            st.subheader("Tracking Career Point Productions of Exceptional Skaters")
             # Create detailed view of exceptional seasons
             st.markdown("""
-                Select player(s) to view their career progression and exceptional seasons in detail.
-                The scatter plot below shows the career points progression of selected players, with their exceptional seasons highlighted.
+                Select skater(s) to view point productions over their career and exceptional seasons in detail.
             """)
             # Allow user to filter by player
             default_players = []
@@ -238,7 +231,7 @@ def render_exceptional_players_analysis():
 
             # Create the multiselect with our default players
             selected_players = st.multiselect(
-                "Select Players to View Details",
+                "Select Skaters to View Details",
                 options=player_list,
                 default=default_players
             )
@@ -275,7 +268,7 @@ def render_exceptional_players_analysis():
                             "Team: " + player_career['teamAbbrev_stats'] + "<br>"
                             "Draft: On " + \
                                 player_career['year'].astype(str) + " by " +\
-                                player_career['teamAbbrev_draft'] + " in 1st round draft of " +\
+                                player_career['teamAbbrev_draft'] + " in 1st round drafted on " +\
                                 player_career['overallPick'].astype(str) + "<br>",
                         text=[f"{row['firstName']} {row['lastName']} ({row['season_marking']})" 
                             for _, row in player_career.iterrows()],
@@ -323,10 +316,10 @@ def render_exceptional_players_analysis():
                 
                 # Update layout
                 fig.update_layout(
-                    title="Player Career Progression with Exceptional Seasons Highlighted",
-                    xaxis_title="Year in NHL Career",
+                    title="Point Productions by 1st Round Drafted Skaters",
+                    xaxis_title="n-th Year in NHL (Regular Season)",
                     yaxis_title="Points",
-                    legend_title="Players",
+                    legend_title="Skaters",
                     height=500
                 )
                 
@@ -339,18 +332,18 @@ def render_exceptional_players_analysis():
                         "points", "goals", "assists", "gamesPlayed", "pointspergame"]
                     ].sort_values(["lastName", "year_inNHL"]))
             else:
-                st.info("Please select at least one player to view details.")
+                st.info("Please select at least one skater to view details.")
                 
         else:
-            st.warning("Exceptional players data files not found. Please ensure the files exist in the results directory.")
+            st.warning("Exceptional skaters data files not found. Please ensure the files exist in the results directory.")
             
             # If files don't exist, provide info about what they would contain
             st.info("""
-            The exceptional players analysis shows players who have had multiple seasons performing above
+            The exceptional skaters analysis shows players who have had multiple seasons performing above
             the 95th percentile in points production compared to their peers. This identifies the most 
             consistently elite performers among NHL draft picks.
             """)
             
     except Exception as e:
         st.error(f"An error occurred loading exceptional players data: {e}")
-        st.info("The exceptional players analysis requires data files generated from the draftee_lifecycle analysis.")
+        st.info("The exceptional skaters analysis requires data files generated from the draftee_lifecycle analysis.")

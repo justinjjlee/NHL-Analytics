@@ -106,13 +106,13 @@ def get_team_logo_url(tricode):
     """
     return f"https://assets.nhle.com/logos/nhl/svg/{tricode}_light.svg"
 
-def create_scoreboard_card(home_team, away_team, home_score, away_score, game_date, game_status, home_odds=None, away_odds=None):
+def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_score, game_date, game_status, home_odds=None, away_odds=None):
     """
     Create a smaller styled card for a game scoreboard using Streamlit components
     Includes odds data when available
     """
-    home_logo = get_team_logo_url(home_team)
-    away_logo = get_team_logo_url(away_team)
+    home_logo = get_team_logo_url(iter_home_team)
+    away_logo = get_team_logo_url(iter_away_team)
     
     # Format date
     game_date_str = game_date.strftime("%a, %b %d")  # Shorter date format
@@ -135,7 +135,7 @@ def create_scoreboard_card(home_team, away_team, home_score, away_score, game_da
                 </div>
             """, unsafe_allow_html=True)
         with col2:
-            st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{away_team}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{iter_away_team}</p>", unsafe_allow_html=True)
         with col_odds:
             if away_odds is not None:
                 # Money line 2 - always negative and positive - smaller font
@@ -161,7 +161,7 @@ def create_scoreboard_card(home_team, away_team, home_score, away_score, game_da
                 </div>
             """, unsafe_allow_html=True)
         with col2:
-            st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{home_team}</p>", unsafe_allow_html=True)
+            st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{iter_home_team}</p>", unsafe_allow_html=True)
         with col_odds:
             if home_odds is not None:
                 # Money line 2 - always negative and positive - smaller font
@@ -182,7 +182,7 @@ def render_scoreboard():
     """
     Main function to render the scoreboard interface
     """
-    st.header("Scoreboard")
+    #st.header("Scoreboard")
     
     # Load box score and odds data
     box_data, odds_data, available_dates = load_box_scores_and_odds()
@@ -195,127 +195,27 @@ def render_scoreboard():
     if 'current_date_idx' not in st.session_state:
         st.session_state.current_date_idx = 0
     
-    # Enhanced date navigation with uniform button sizing
-    col_year_prev, col_month_prev, col_day_prev, col_date, col_day_next, col_month_next, col_year_next = st.columns([0.5, 0.5, 0.5, 3, 0.5, 0.5, 0.5])
+    # Use a simple centered layout for the date selector
+    col_date,_, _ = st.columns([2, 1, 1])
     
-    # CSS for uniform button sizing and centering plus selectbox label removal
-    button_style = """
-        <style>
-        /* Button styling */
-        div[data-testid="stButton"] > button {
-            width: 100%;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 0;
-        }
-        
-        /* Target the label container more specifically and hide it */
-        div[data-testid="stSelectbox"] label {
-            display: none !important;
-        }
-        
-        /* Alternative selector if the above doesn't work */
-        div.stSelectbox > div:first-child > div:first-child > label {
-            display: none !important;
-        }
-        
-        /* Adjust selectbox margins to align with buttons */
-        div[data-testid="stSelectbox"] {
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-        }
-        
-        /* Remove padding from selectbox container */
-        div[data-testid="stSelectbox"] > div:first-child {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-        }
-        
-        /* Force div to take minimal height */
-        div[data-testid="stSelectbox"] > div {
-            line-height: normal !important;
-        }
-        </style>
-    """
-    st.markdown(button_style, unsafe_allow_html=True)
-    
-    # Year navigation
-    with col_year_prev:
-        if st.button("◀◀", key="year_prev"):
-            # Find the date approximately one year earlier
-            current_date = available_dates[st.session_state.current_date_idx]
-            target_date = current_date.replace(year=current_date.year-1)
-            # Find the closest available date
-            closest_idx = find_closest_date_idx(available_dates, target_date)
-            if closest_idx is not None:
-                st.session_state.current_date_idx = closest_idx
-    
-    # Month navigation
-    with col_month_prev:
-        if st.button("◀", key="month_prev"):
-            # Find the date approximately one month earlier
-            current_date = available_dates[st.session_state.current_date_idx]
-            month = current_date.month - 1
-            year = current_date.year
-            if month < 1:
-                month = 12
-                year -= 1
-            target_date = current_date.replace(year=year, month=month)
-            # Find the closest available date
-            closest_idx = find_closest_date_idx(available_dates, target_date)
-            if closest_idx is not None:
-                st.session_state.current_date_idx = closest_idx
-    
-    # Day navigation
-    with col_day_prev:
-        if st.button("‹", key="day_prev"):
-            if st.session_state.current_date_idx < len(available_dates) - 1:
-                st.session_state.current_date_idx += 1
-    
-    # Date selector
+    # Date selector with calendar view
     with col_date:
-        selected_date = st.selectbox(
-            "",
-            available_dates,
-            index=st.session_state.current_date_idx,
-            format_func=lambda x: x.strftime("%A  %B %d, %Y")
+        # Get current selected date
+        current_date = available_dates[st.session_state.current_date_idx]
+        
+        # Create calendar date input
+        calendar_date = st.date_input(
+            "Select Date",
+            value=current_date,
+            min_value=min(available_dates),
+            max_value=max(available_dates),
+            key="calendar_date_picker"
         )
-        # Update index when date is selected directly
-        if selected_date != available_dates[st.session_state.current_date_idx]:
-            st.session_state.current_date_idx = available_dates.tolist().index(selected_date)
-    
-    # Day navigation
-    with col_day_next:
-        if st.button("›", key="day_next"):
-            if st.session_state.current_date_idx > 0:
-                st.session_state.current_date_idx -= 1
-    
-    # Month navigation
-    with col_month_next:
-        if st.button("▶", key="month_next"):
-            # Find the date approximately one month later
-            current_date = available_dates[st.session_state.current_date_idx]
-            month = current_date.month + 1
-            year = current_date.year
-            if month > 12:
-                month = 1
-                year += 1
-            target_date = current_date.replace(year=year, month=month) if month <= 12 else current_date.replace(year=year+1, month=1)
-            # Find the closest available date
-            closest_idx = find_closest_date_idx(available_dates, target_date)
-            if closest_idx is not None:
-                st.session_state.current_date_idx = closest_idx
-    
-    # Year navigation
-    with col_year_next:
-        if st.button("▶▶", key="year_next"):
-            # Find the date approximately one year later
-            current_date = available_dates[st.session_state.current_date_idx]
-            target_date = current_date.replace(year=current_date.year+1)
-            # Find the closest available date
-            closest_idx = find_closest_date_idx(available_dates, target_date)
+        
+        # Update index when date is selected from calendar
+        if calendar_date != current_date:
+            # Find closest available date (since calendar might select dates without games)
+            closest_idx = find_closest_date_idx(available_dates, calendar_date)
             if closest_idx is not None:
                 st.session_state.current_date_idx = closest_idx
     
@@ -330,7 +230,7 @@ def render_scoreboard():
         return
     
     # Create columns to display multiple games per row - now 3 instead of 2
-    cols_per_row = 3
+    cols_per_row = 4
     
     # Process each game and create scoreboard cards
     for i in range(0, len(daily_games), cols_per_row):
@@ -358,8 +258,8 @@ def render_scoreboard():
                 
                 with cols[j]:
                     create_scoreboard_card(
-                        home_team=game['tricode_for'],
-                        away_team=game['tricode_against'],
+                        iter_home_team=game['tricode_for'],
+                        iter_away_team=game['tricode_against'],
                         home_score=int(game['metric_score_for']),
                         away_score=int(game['metric_score_against']),
                         game_date=game['date'],

@@ -1,4 +1,1671 @@
 year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,country,height,weight,amateurLeague,amateurClubName
+2000,1,1,1,NYI,Rick,DiPietro,G,USA,73.0,190.0,NCAA,Boston University
+2000,1,2,2,ATL,Dany,Heatley,LW,DEU,76.0,220.0,NCAA,U. of Wisconsin
+2000,1,3,3,MIN,Marian,Gaborik,LW,SVK,73.0,204.0,CZECH,Trencin
+2000,1,4,4,CBJ,Rostislav,Klesla,D,CZE,75.0,221.0,OHL,Brampton
+2000,1,5,5,NYI,Raffi,Torres,LW,CAN,72.0,216.0,OHL,Brampton
+2000,1,6,6,NSH,Scott,Hartnell,RW,CAN,74.0,210.0,WHL,Prince Albert
+2000,1,7,7,BOS,Lars,Jonsson,D,SWE,73.0,198.0,,Leksand IF Jr.
+2000,1,8,8,TBL,Nikita,Alexeev,RW,RUS,78.0,227.0,OHL,Erie
+2000,1,9,9,CGY,Brent,Krahn,G,CAN,76.0,232.0,WHL,Calgary
+2000,1,10,10,CHI,Mikhail,Yakubov,C,RUS,75.0,202.0,RUSSIA-JR.,Togliatti 2
+2000,1,11,11,CHI,Pavel,Vorobiev,RW,KAZ,72.0,194.0,RUSSIA-3,Yaroslavl 2
+2000,1,12,12,ANA,Alexei,Smirnov,LW,RUS,75.0,215.0,RUS,Tver
+2000,1,13,13,MTL,Ron,Hainsey,D,USA,75.0,210.0,H-EAST,U. Mass-Lowell
+2000,1,14,14,COL,Vaclav,Nedorost,C,CZE,73.0,190.0,CZE,Budejovice
+2000,1,15,15,BUF,Artem,Kriukov,C,RUS,76.0,193.0,RUSSIA-3,Yaroslavl 2
+2000,1,16,16,MTL,Marcel,Hossa,C,SVK,75.0,220.0,WHL,Portland
+2000,1,17,17,EDM,Alexei,Mikhnov,LW,UKR,77.0,200.0,RUSSIA-3,Yaroslavl 2
+2000,1,18,18,PIT,Brooks,Orpik,D,USA,74.0,219.0,H-EAST,Boston College
+2000,1,19,19,PHX,Krys,Kolanos,C,CAN,75.0,206.0,H-EAST,Boston College
+2000,1,20,20,LAK,Alex,Frolov,LW,RUS,74.0,210.0,RUSSIA-3,Yaroslavl 2
+2000,1,21,21,OTT,Anton,Volchenkov,D,RUS,73.0,225.0,RPL,CSKA 2
+2000,1,22,22,NJD,David,Hale,D,USA,73.0,222.0,USHL,Sioux City
+2000,1,23,23,VAN,Nathan,Smith,C,CAN,74.0,206.0,WHL,Swift Current
+2000,1,24,24,TOR,Brad,Boyes,C,CAN,72.0,204.0,OHL,Erie
+2000,1,25,25,DAL,Steve,Ott,F,CAN,72.0,192.0,OHL,Windsor
+2000,1,26,26,WSH,Brian,Sutherby,C,CAN,74.0,208.0,WHL,Moose Jaw
+2000,1,27,27,BOS,Martin,Samuelsson,LW,SWE,74.0,197.0,Sweden,Modo Jr.
+2000,1,28,28,PHI,Justin,Williams,RW,CAN,73.0,188.0,OHL,Plymouth
+2000,1,29,29,DET,Niklas,Kronwall,D,SWE,72.0,192.0,SWEDEN,Djurgarden
+2000,1,30,30,STL,Jeff,Taffe,C,USA,75.0,207.0,NCAA,U. of Minnesota
+2000,2,1,31,ATL,Ilya,Nikulin,D,RUS,73.0,211.0,RUS,Tver
+2000,2,2,32,CAR,Tomas,Kurka,LW,CZE,71.0,190.0,OHL,Plymouth
+2000,2,3,33,MIN,Nick,Schultz,D,CAN,73.0,200.0,WHL,Prince Albert
+2000,2,4,34,TBL,Ruslan,Zainullin,RW,RUS,72.0,202.0,Russia U18,Ak-Bars Kazan
+2000,2,5,35,EDM,Brad,Winchester,F,USA,77.0,230.0,NCAA,U. of Wisconsin
+2000,2,6,36,NSH,Daniel,Widing,RW,SWE,72.0,185.0,,Leksand IF Jr.
+2000,2,7,37,BOS,Andy,Hilbert,F,USA,70.0,188.0,NCAA,U. of Michigan
+2000,2,8,38,DET,Tomas,Kopecky,C,SVK,75.0,203.0,CZECH,Trencin
+2000,2,9,39,NJD,Teemu,Laine,RW,FIN,72.0,194.0,FINLAND,Jokerit
+2000,2,10,40,CGY,Kurtis,Foster,D,CAN,77.0,226.0,OHL,Peterborough
+2000,2,11,41,SJS,Tero,Maatta,D,FIN,74.0,205.0,Finland,Jokerit Jr.
+2000,2,12,42,ATL,Libor,Ustrnul,D,CZE,77.0,235.0,OHL,Plymouth
+2000,2,13,43,WSH,Matt,Pettinger,LW,CAN,73.0,205.0,WHL,Calgary
+2000,2,14,44,ANA,Ilya,Bryzgalov,G,RUS,75.0,213.0,RUS,Lada Togliatti
+2000,2,15,45,OTT,Mathieu,Chouinard,G,CAN,73.0,211.0,QMJHL,Shawinigan
+2000,2,17,47,COL,Jared,Aulin,C,CAN,72.0,192.0,WHL,Kamloops
+2000,2,19,49,CHI,Jonas,Nordqvist,C,SWE,75.0,202.0,,Leksand IF Jr.
+2000,2,20,50,COL,Sergei,Soin,F,RUS,72.0,185.0,Russia,Krylja Sovetov
+2000,2,21,51,TOR,Kris,Vernarsky,C,USA,75.0,207.0,OHL,Plymouth
+2000,2,22,52,PIT,Shane,Endicott,C,CAN,75.0,209.0,WHL,Seattle
+2000,2,23,53,PHX,Alexander,Tatarinov,RW,RUS,71.0,176.0,RUSSIA-3,Yaroslavl 2
+2000,2,24,54,LAK,Andreas,Lilja,D,SWE,75.0,220.0,SEL,Malmo IF
+2000,2,25,55,OTT,Antoine,Vermette,C,CAN,73.0,199.0,QMJHL,Victoriaville
+2000,2,26,56,NJD,Aleksander,Suglobov,F,RUS,72.0,200.0,RUSSIA-3,Yaroslavl 2
+2000,2,27,57,NJD,Matt,Demarchi,D,USA,74.0,180.0,NCAA,U. of Minnesota
+2000,2,28,58,FLA,Vladimir,Sapozhnikov,D,RUS,75.0,205.0,KHL,Novokuznetsk
+2000,2,29,59,BOS,Ivan,Huml,LW,CZE,74.0,200.0,BCJHL,Langley
+2000,2,30,60,DAL,Dan,Ellis,G,CAN,73.0,191.0,USHL,Omaha
+2000,2,31,61,WSH,Jakub,Cutta,D,CZE,75.0,214.0,WHL,Swift Current
+2000,2,32,62,NJD,Paul,Martin,D,USA,73.0,200.0,HIGH-MN,Elk River
+2000,2,33,63,COL,Agris,Saviels,D,LVA,74.0,192.0,OHL,Owen Sound
+2000,2,34,64,NYR,Filip,Novak,D,CZE,72.0,203.0,WHL,Regina
+2000,2,35,65,STL,David,Morisset,RW,CAN,73.0,191.0,WHL,Seattle
+2000,3,1,66,BOS,Tuukka,Makela,D,FIN,74.0,202.0,FINLAND,IFK Jr.
+2000,3,2,67,NJD,Maxim,Birbraer,LW,KAZ,74.0,185.0,EXHIB,Newmarket
+2000,3,3,68,DAL,Joel,Lundqvist,C,SWE,73.0,194.0,SWEDEN,Frolunda Jr.
+2000,3,4,69,CBJ,Ben,Knopp,RW,CAN,73.0,185.0,WHL,Moose Jaw
+2000,3,5,70,TOR,Mikael,Tellqvist,G,SWE,72.0,189.0,SWEDEN,Djurgarden
+2000,3,6,71,VAN,Thatcher,Bell,C,CAN,72.0,172.0,QMJHL,Rimouski
+2000,3,7,72,NSH,Mattias,Nilsson,D,SWE,75.0,189.0,Sweden,Modo Jr.
+2000,3,8,73,BOS,Sergei,Zinovjev,RW,RUS,70.0,185.0,KHL,Novokuznetsk
+2000,3,9,74,CHI,Igor,Radulov,LW,RUS,73.0,186.0,RUS,Yaroslavl
+2000,3,10,75,STL,Justin,Papineau,C,CAN,71.0,180.0,CJA,Belleville
+2000,3,11,76,NJD,Mike,Rupp,LW,USA,77.0,230.0,OHL,Erie
+2000,3,12,77,FLA,Robert,Fried,RW,USA,76.0,210.0,HIGH-MA,Deerfield Academy
+2000,3,13,78,MTL,Jozef,Balej,RW,SVK,72.0,195.0,WHL,Portland
+2000,3,14,79,MTL,Tyler,Hanchuck,D,CAN,75.0,210.0,OHL,Brampton
+2000,3,15,80,CAR,Ryan,Bayda,LW,CAN,71.0,185.0,NCAA,U. of North Dakota
+2000,3,16,81,TBL,Alexandre,Kharitonov,RW,RUS,68.0,170.0,KHL,Dynamo Moscow
+2000,3,17,82,FLA,Sean,O'Connor,RW,CAN,75.0,203.0,WHL,Moose Jaw
+2000,3,18,83,EDM,Alexander,Ljubimov,D,RUS,75.0,196.0,RUS,Samara
+2000,3,20,85,PHX,Ramzi,Abid,LW,CAN,74.0,210.0,MARJRA,Halifax
+2000,3,21,86,LAK,Yanick,Lehoux,C,CAN,73.0,200.0,QMJHL,Baie Comeau
+2000,3,22,87,OTT,Jan,Bohac,C,CZE,74.0,189.0,CZECH,Slavia Praha
+2000,3,23,88,COL,Kurt,Sauer,D,USA,76.0,222.0,WHL,Spokane
+2000,3,24,89,NSH,Libor,Pivko,LW,CZE,74.0,192.0,CZE,Havirov
+2000,3,25,90,TOR,Jean-Francois,Racine,G,CAN,75.0,194.0,QMJHL,Drummondville
+2000,3,26,91,DAL,Alexei,Tereschenko,C,RUS,71.0,176.0,KHL,Dynamo Moscow
+2000,3,27,92,COL,Sergey,Klyazmin,LW,RUS,75.0,194.0,RUS,Tver
+2000,3,28,93,VAN,Tim,Branham,D,USA,74.0,185.0,OHL,Barrie
+2000,3,29,94,PHI,Alexander,Drozdetsky,F,RUS,73.0,174.0,,SKA St. Petersburg
+2000,3,30,95,NYR,Dominic,Moore,C,CAN,72.0,192.0,NCAA,Harvard U.
+2000,3,31,96,STL,Antoine,Bergeron,D,CAN,74.0,202.0,QMJHL,Val d'Or
+2000,4,1,97,CAR,Niclas,Wallin,D,SWE,75.0,220.0,,Brynas IF
+2000,4,2,98,ANA,Jonas,Ronnqvist,F,SWE,74.0,200.0,SEL,Lulea HF
+2000,4,3,99,MIN,Marc,Cavosie,F,USA,72.0,173.0,ECAC,Rensselaer
+2000,4,4,100,TOR,Miguel,Delisle,RW,CAN,73.0,214.0,OHL,Ottawa
+2000,4,5,101,NYI,Arto,Tukio,D,FIN,72.0,189.0,FINLAND,Ilves
+2000,4,6,102,DET,Stefan,Liv,G,POL,73.0,177.0,SJL,HV 71 Jr.
+2000,4,7,103,BOS,James Brett,Nowak,F,USA,75.0,192.0,NCAA,Harvard U.
+2000,4,8,104,SJS,Jon,Disalvatore,RW,USA,73.0,200.0,NCAA,Providence College
+2000,4,9,105,NYI,Vladimir,Gorbunov,F,RUS,72.0,176.0,RUS,HC Moscow
+2000,4,10,106,CHI,Scott,Balan,D,CAN,74.0,194.0,WHL,Regina
+2000,4,11,107,ATL,Carl,Mallette,C,CAN,73.0,188.0,QMJHL,Victoriaville
+2000,4,12,108,ATL,Blake,Robson,C,CAN,72.0,190.0,WHL,Portland
+2000,4,13,109,MTL,Johan,Eneqvist,LW,SWE,72.0,183.0,,Leksand IF Jr.
+2000,4,14,110,CAR,Jared,Newman,D,USA,74.0,201.0,OHL,Plymouth
+2000,4,15,111,BUF,Ghyslain,Rousseau,G,CAN,73.0,162.0,QMJHL,Baie Comeau
+2000,4,16,112,NYR,Premsyl,Duben,D,CZE,74.0,200.0,CZREP,Jihlava
+2000,4,17,113,EDM,Lou,Dickenson,F,CAN,74.0,192.0,OHABC,Mississauga
+2000,4,18,114,MTL,Christian,Larrivee,C,CAN,74.0,185.0,QMJHL,Chicoutimi
+2000,4,19,115,FLA,Chris,Eade,D,CAN,74.0,191.0,OHL,North Bay
+2000,4,20,116,CGY,Levente,Szuper,G,HUN,70.0,178.0,OHL,Ottawa
+2000,4,21,117,CHI,Olli,Malmivaara,D,FIN,79.0,230.0,Finland,Jokerit Jr.
+2000,4,22,118,LAK,Lubomir,Visnovsky,D,SVK,70.0,188.0,SVK,Bratislava
+2000,4,23,119,COL,Brian,Fahey,D,USA,73.0,216.0,NCAA,U. of Wisconsin
+2000,4,24,120,FLA,Davis,Parley,G,CAN,71.0,164.0,WHL,Kamloops
+2000,4,25,121,WSH,Ryan,Vanbuskirk,D,CAN,73.0,190.0,OHL,Sarnia
+2000,4,26,122,OTT,Derrick,Byfuglien,D,USA,73.0,202.0,,Fargo-Moorhead
+2000,4,27,123,DAL,Vadim,Khomitski,D,RUS,74.0,203.0,RUS,HC Moscow
+2000,4,28,124,PIT,Michel,Ouellet,RW,CAN,73.0,193.0,QMJHL,Rimouski
+2000,4,29,125,NJD,Phil,Cole,D,CAN,75.0,190.0,WHL,Lethbridge
+2000,4,30,126,TBL,Johan,Hagglund,C,SWE,74.0,194.0,Sweden,Modo Jr.
+2000,4,31,127,DET,Dmitri,Semyenov,F,RUS,70.0,178.0,KHL,Dynamo Moscow
+2000,4,32,128,DET,Alexander,Seluyanov,D,RUS,72.0,172.0,RUS,Ufa
+2000,4,33,129,STL,Troy,Riddle,F,USA,70.0,172.0,USHL,Des Moines
+2000,4,34,130,DET,Aaron,Van Leusen,F,CAN,72.0,196.0,OHL,Brampton
+2000,5,1,131,NSH,Matt,Hendricks,C,USA,72.0,215.0,HIGH-MN,Blaine
+2000,5,2,132,MIN,Maxim,Sushinsky,F,RUS,69.0,180.0,Russia,Avangard Omsk
+2000,5,3,133,CBJ,Petteri,Nummelin,D,FIN,70.0,188.0,SwissA,Davos
+2000,5,4,134,ANA,Peter,Podhradsky,D,SVK,74.0,185.0,SVK,Bratislava
+2000,5,5,135,NJD,Michael,Danton,C,CAN,69.0,191.0,OHL,Barrie
+2000,5,6,136,NYI,Dimitri,Upper,C,KAZ,73.0,176.0,,Nizhny Novgorod
+2000,5,7,137,NSH,Mike,Stuart,D,USA,72.0,195.0,WCHA,Colorado College
+2000,5,8,138,CBJ,Scott,Heffernan,D,CAN,77.0,187.0,OHL,Sarnia
+2000,5,9,139,DAL,Ruslan,Bernikov,RW,RUS,75.0,198.0,Russia,Amur Khabarovsk
+2000,5,10,140,NYR,Nathan,Martz,C,CAN,72.0,169.0,BCJHL,Chilliwack
+2000,5,11,141,CGY,Wade,Davis,D,CAN,76.0,185.0,WHL,Calgary
+2000,5,12,142,SJS,Michael,Pinc,F,CZE,71.0,180.0,QMJHL,Rouyn-Noranda
+2000,5,13,143,NYR,Brandon,Snee,G,USA,73.0,195.0,ECAC,Union College
+2000,5,14,144,VAN,Pavel,Duma,C,RUS,74.0,183.0,RUS,Neftechimik
+2000,5,15,145,MTL,Ryan,Glenn,D,CAN,73.0,210.0,USHSE,Walpole
+2000,5,16,146,PIT,David,Koci,D,CZE,78.0,238.0,,Sparta Praha Jr.
+2000,5,17,147,ATL,Matt,McRae,C,CAN,72.0,180.0,NCAA,Cornell U.
+2000,5,18,148,NYI,Kristofer,Ottosson,F,SWE,72.0,187.0,SWEDEN,Djurgarden
+2000,5,19,149,BUF,Denis,Denisov,LW,RUS,72.0,183.0,RUS,HC Moscow
+2000,5,20,150,CBJ,Tyler,Kolarik,C,USA,70.0,190.0,HIGH-MA,Deerfield Academy
+2000,5,21,151,CHI,Alexander,Barkunov,D,RUS,72.0,180.0,RUSSIA-3,Yaroslavl 2
+2000,5,23,153,ANA,Bill,Cass,D,USA,71.0,217.0,H-EAST,Boston College
+2000,5,24,154,NSH,Matt,Koalska,C,USA,72.0,205.0,,Twin Cities
+2000,5,25,155,CGY,Travis,Moen,LW,CAN,74.0,215.0,WHL,Kelowna
+2000,5,26,156,OTT,Greg,Zanon,D,CAN,71.0,201.0,CCHA,U. of Nebraska-Omaha
+2000,5,27,157,OTT,Grant,Potulny,F,USA,74.0,194.0,USHSE,Lincoln
+2000,5,28,158,OTT,Sean,Connolly,D,USA,73.0,187.0,CCHA,Northern Michigan U.
+2000,5,29,159,COL,John-Michael,Liles,D,USA,70.0,185.0,NCAA,Michigan State U.
+2000,5,30,160,PHX,Nate,Kiser,D,USA,73.0,190.0,OHL,Plymouth
+2000,5,31,161,TBL,Pavel,Sedov,RW,RUS,75.0,200.0,,Voskresensk
+2000,5,32,162,DAL,Artem,Chernov,C,RUS,71.0,176.0,KHL,Novokuznetsk
+2000,5,33,163,WSH,Ivan,Nepriayev,C,RUS,74.0,195.0,RUSSIA-3,Yaroslavl 2
+2000,5,34,164,NJD,Matus,Kostur,G,SVK,72.0,183.0,Slovakia,Banska Bystrica
+2000,5,35,165,LAK,Nathan,Marsters,G,CAN,76.0,190.0,BCJHL,Chilliwack
+2000,5,36,166,SJS,Nolan,Schaefer,G,CAN,74.0,200.0,NCAA,Providence College
+2000,5,37,167,STL,Craig,Weller,D,CAN,76.0,220.0,AJHL,Calgary Canucks
+2000,6,1,168,ATL,Zdenek,Smid,G,CZE,70.0,172.0,CZE,Karlovy Vary
+2000,6,2,169,CBJ,Shane,Bendera,G,CAN,71.0,170.0,WHL,Red Deer
+2000,6,3,170,MIN,Erik,Reitz,D,USA,73.0,222.0,OHL,Barrie
+2000,6,4,171,PHI,Roman,Cechmanek,G,CZE,75.0,211.0,CZE,Vsetin
+2000,6,5,172,MTL,Scott,Selig,F,USA,73.0,178.0,USHSE,Thayer Academy
+2000,6,6,173,NSH,Tomas,Harant,D,SVK,73.0,180.0,,Zilina
+2000,6,7,174,BOS,Jarno,Kultanen,D,FIN,74.0,198.0,,IFK Helsinki
+2000,6,8,175,NYR,Sven,Helfenstein,F,CHE,70.0,176.0,SUI,Kloten
+2000,6,9,176,CGY,Jukka,Hentunen,F,FIN,70.0,190.0,FINLAND,HPK Hameenlinna
+2000,6,10,177,CHI,Michael,Ayers,G,USA,71.0,186.0,USHL,Dubuque
+2000,6,11,178,ATL,Jeff,Dwyer,D,USA,74.0,205.0,Conn.,Choate Academy
+2000,6,12,179,TOR,Vadim,Sozinov,C,KAZ,73.0,187.0,RUSSIA-JR.,Novokuznetsk 2
+2000,6,13,180,ATL,Darcy,Hordichuk,LW,CAN,73.0,211.0,NSJHL,Saskatoon
+2000,6,14,181,CAR,J.D.,Forrest,D,USA,69.0,185.0,USA,USA U-18
+2000,6,15,182,MTL,Petr,Chvojka,D,CZE,72.0,189.0,,Plzen Jr.
+2000,6,16,183,SJS,Michal,Macho,C,SVK,72.0,169.0,SVK,Martin
+2000,6,17,184,EDM,Shaun,Norrie,RW,CAN,74.0,180.0,WHL,Calgary
+2000,6,18,185,PIT,Patrick,Foley,LW,USA,73.0,216.0,NCAA,U. of New Hampshire
+2000,6,19,186,PHX,Brent,Gauvreau,C,CAN,75.0,191.0,OHL,Oshawa
+2000,6,20,187,DET,Per,Backer,F,SWE,73.0,180.0,SWEDEN,Grums
+2000,6,21,188,OTT,Jason,Maleyko,D,CAN,73.0,211.0,OHL,Brampton
+2000,6,22,189,COL,Chris,Bahen,D,CAN,73.0,180.0,NCAA,Clarkson U.
+2000,6,23,190,FLA,Josh,Olson,LW,USA,75.0,236.0,USHL,Omaha
+2000,6,24,191,TBL,Aaron,Gionet,D,CAN,74.0,191.0,WHL,Kamloops
+2000,6,25,192,DAL,Ladislav,Vlcek,F,CZE,72.0,172.0,CZE JR.,Kladno Jr.
+2000,6,26,193,CHI,Joey,Martin,D,USA,74.0,198.0,USHL,Omaha
+2000,6,27,194,NJD,Deryk,Engelland,D,CAN,74.0,202.0,WHL,Moose Jaw
+2000,6,28,195,PHI,Colin,Shields,RW,GBR,72.0,190.0,NAHL,Cleveland
+2000,6,29,196,DET,Paul,Ballantyne,D,CAN,75.0,200.0,OHL,Sault Ste. Marie
+2000,6,30,197,NSH,Zbynek,Irgl,F,CZE,70.0,178.0,,HC Vitkovice
+2000,7,1,198,NJD,Ken,Magowan,LW,CAN,74.0,207.0,BCHL,Vernon
+2000,7,2,199,MIN,Brian,Passmore,C,CAN,71.0,180.0,OHL,Oshawa
+2000,7,3,200,CBJ,Janne,Jokila,LW,FIN,69.0,169.0,FINLAND,TPS Jr.
+2000,7,4,201,LAK,Evgeny,Federov,C,RUS,69.0,172.0,Russia,Molot Perm
+2000,7,5,202,NYI,Ryan,Caldwell,D,CAN,74.0,174.0,UHL,Thunder Bay
+2000,7,6,203,NSH,Jure,Penko,G,SVN,73.0,185.0,USHL,Green Bay
+2000,7,7,204,BOS,Chris,Berti,F,CAN,76.0,206.0,OHL,Sarnia
+2000,7,8,205,NYR,Henrik,Lundqvist,G,SWE,73.0,195.0,Sweden,Frolunda
+2000,7,9,206,LAK,Tim,Eriksson,C,SWE,69.0,161.0,Sweden,Frolunda
+2000,7,10,207,CHI,Cliff,Loya,D,USA,74.0,200.0,NCAA,U. of Maine
+2000,7,11,208,VAN,Brandon,Reid,C,CAN,69.0,180.0,MARJRA,Halifax
+2000,7,12,209,TOR,Markus,Seikola,D,FIN,73.0,194.0,FINLAND,TPS Jr.
+2000,7,13,210,PHI,John,Eichelberger,C,USA,73.0,182.0,USHL,Green Bay
+2000,7,14,211,EDM,Joe,Cullen,F,USA,73.0,190.0,WCHA,Colorado College
+2000,7,15,212,CAR,Magnus,Kahnberg,F,SWE,74.0,174.0,Sweden,Frolunda
+2000,7,16,213,BUF,Vasily,Bizyayev,LW,RUS,73.0,185.0,Russia,CSKA Jr.
+2000,7,17,214,MIN,Peter,Bartos,F,SVK,72.0,185.0,CZE,Budejovice
+2000,7,19,216,PIT,Jim,Abbott,LW,USA,73.0,185.0,NCAA,U. of New Hampshire
+2000,7,20,217,PHX,Igor,Samoilov,D,RUS,71.0,195.0,RUS,Yaroslavl
+2000,7,21,218,LAK,Craig,Olynick,D,CAN,73.0,185.0,WHL,Seattle
+2000,7,22,219,DAL,Marco,Tuokko,C,FIN,73.0,172.0,FINLAND,TPS
+2000,7,23,220,BUF,Paul,Gaustad,F,USA,77.0,212.0,WHL,Portland
+2000,7,24,221,COL,Aaron,Molnar,G,CAN,72.0,165.0,EHLGB,London
+2000,7,25,222,TBL,Marek,Priechodsky,D,SVK,74.0,194.0,SVK,Bratislava
+2000,7,26,223,TOR,Lubos,Velebny,D,SVK,74.0,189.0,Slovakia,Zvolen Jr.
+2000,7,27,224,DAL,Antti,Miettinen,C,FIN,72.0,190.0,Finland,Hameenlinna
+2000,7,28,225,CHI,Vladislav,Luchkin,C,RUS,73.0,185.0,RUSSIA-3,Cherepovets 2
+2000,7,29,226,TBL,Brian,Eklund,G,USA,76.0,211.0,ECAC,Brown U.
+2000,7,30,227,PHI,Guillaume,Lefebvre,C,CAN,73.0,200.0,QMJHL,Rouyn-Noranda
+2000,7,31,228,DET,Jimmie,Svensson,F,SWE,72.0,190.0,,Vasteras IK Jr.
+2000,7,32,229,STL,Brett,Lutes,LW,CAN,73.0,182.0,EXHIB,Montreal
+2000,8,1,230,ATL,Samu,Isosalo,RW,FIN,75.0,205.0,OHL,North Bay
+2000,8,2,231,CBJ,Peter,Zingoni,C,USA,72.0,180.0,EJHL,New England
+2000,8,3,232,MIN,Lubomir,Sekeras,D,SVK,72.0,183.0,CZE,Trinec
+2000,8,4,233,TBL,Alexander,Polukeyev,G,RUS,75.0,185.0,RUS,St. Petersburg Ska St. Petersburg
+2000,8,5,234,FLA,Janis,Sprukts,C,LVA,75.0,235.0,,Lukko Rauma Jr.
+2000,8,6,235,CAR,Craig,Kowalski,G,USA,71.0,200.0,NAHL,Compuware
+2000,8,7,236,NSH,Mats,Christeen,D,SWE,73.0,183.0,SWEDEN-JR.,Sodertalje Jr.
+2000,8,8,237,BOS,Zdenek,Kutlak,D,CZE,75.0,210.0,CZE,Budejovice
+2000,8,9,238,NYR,Dan,Eberly,D,USA,72.0,180.0,ECAC,Rensselaer
+2000,8,10,239,CGY,David,Hajek,D,CZE,75.0,194.0,CZECH,Chomutov
+2000,8,11,240,CHI,Adam,Berkhoel,G,USA,71.0,185.0,,Twin Cities
+2000,8,12,241,VAN,Nathan,Barrett,C,CAN,72.0,189.0,WHL,Lethbridge
+2000,8,13,242,ATL,Evan,Nielsen,D,USA,73.0,195.0,CCHA,U. of Notre Dame
+2000,8,14,243,MTL,Joni,Puurula,G,FIN,71.0,180.0,,Hermes Div. 1
+2000,8,15,244,ATL,Eric,Bowen,RW,USA,75.0,225.0,WHL,Portland
+2000,8,16,245,LAK,Dan,Welch,RW,USA,69.0,199.0,NCAA,U. of Minnesota
+2000,8,17,246,SJS,Chad,Wiseman,LW,CAN,73.0,205.0,OHABC,Mississauga
+2000,8,18,247,EDM,Jason,Platt,D,USA,73.0,210.0,USHL,Omaha
+2000,8,19,248,PIT,Steven,Crampton,RW,CAN,75.0,197.0,WHL,Moose Jaw
+2000,8,20,249,PHX,Sami,Venalainen,RW,FIN,71.0,183.0,FINLAND,Tappara Jr.
+2000,8,21,250,LAK,Flavien,Conne,C,CHE,70.0,176.0,SUI,Freibourg
+2000,8,22,251,DET,Todd,Jackson,RW,USA,71.0,170.0,USA,USA U-18
+2000,8,23,252,COL,Darryl,Bootland,RW,CAN,73.0,197.0,OHL,Toronto St. Michael's
+2000,8,24,253,FLA,Mathew,Sommerfeld,LW,CAN,74.0,192.0,WHL,Swift Current
+2000,8,25,254,TOR,Alexander,Shinkar,RW,RUS,72.0,176.0,RUS,Cherepovets
+2000,8,27,256,SJS,Pasi,Saarinen,D,FIN,71.0,189.0,FINLAND,Ilves
+2000,8,28,257,NJD,Warren,McCutcheon,C,CAN,75.0,188.0,WHL,Lethbridge
+2000,8,29,258,BUF,Sean,McMorrow,D,CAN,76.0,224.0,OHL,Kitchener
+2000,8,30,259,PHI,Regan,Kelly,D,CAN,74.0,200.0,,Nipawin
+2000,8,31,260,DET,Evgeni,Bumagin,RW,RUS,71.0,176.0,,HK Moscow
+2000,8,32,261,STL,Reinhard,Divis,G,AUT,71.0,197.0,SWEDEN,Leksand
+2000,9,1,262,CHI,Peter,Flache,C,CAN,76.0,190.0,OHL,Guelph
+2000,9,2,263,TBL,Thomas,Ziegler,F,CHE,71.0,176.0,,HC Ambri Piotta
+2000,9,3,264,NYI,Dimitri,Altarev,F,RUS,72.0,191.0,,Penza
+2000,9,4,265,TOR,Jean-Philippe,Cote,D,CAN,74.0,216.0,QMJHL,Cape Breton
+2000,9,5,266,COL,Sean,Kotary,C,USA,72.0,181.0,USHSE,Northwood Prep
+2000,9,6,267,NYI,Tomi,Pettinen,D,FIN,75.0,220.0,FINLAND,Ilves Tampere
+2000,9,7,268,BOS,Pavel,Kolarik,D,CZE,73.0,207.0,CZECH,Slavia Praha
+2000,9,8,269,NYR,Martin,Richter,D,CZE,72.0,189.0,FINLAND,Saipa
+2000,9,9,270,CGY,Micki,Dupont,D,CAN,70.0,186.0,WHL,Kamloops
+2000,9,10,271,CHI,Reto,Von Arx,F,CHE,70.0,179.0,SwissA,Davos
+2000,9,11,272,VAN,Tim,Smith,C,CAN,69.0,160.0,WHL,Spokane
+2000,9,12,273,PIT,Roman,Simicek,C,CZE,74.0,210.0,FINLAND,HPK Hameenlinna
+2000,9,13,274,EDM,Evgeny,Muratov,LW,RUS,69.0,178.0,RUS,Neftechimik
+2000,9,14,275,MTL,Jonathan,Gauthier,D,CAN,74.0,187.0,QMJHL,Rouyn-Noranda
+2000,9,15,276,CAR,Troy,Ferguson,F,CAN,69.0,165.0,NCAA,Michigan State U.
+2000,9,16,277,BUF,Ryan,Courtney,LW,CAN,75.0,195.0,OHL,Windsor
+2000,9,17,278,CBJ,Martin,Paroulek,RW,CZE,74.0,183.0,CZECH,Vsetin HC Vsetin
+2000,9,18,279,BOS,Andreas,Lindstrom,LW,SWE,75.0,215.0,SWEDEN-JR.,Lulea Jr.
+2000,9,19,280,PIT,Nick,Boucher,G,CAN,71.0,175.0,ECAC,Dartmouth College
+2000,9,20,281,PHX,Peter,Fabus,F,SVK,73.0,191.0,CZECH,Trencin
+2000,9,21,282,LAK,Carl,Grahn,G,FIN,72.0,169.0,Finland Jr.,Kalpa Jr.
+2000,9,22,283,OTT,James,Demone,D,CAN,77.0,220.0,WHL,Portland
+2000,9,23,284,NSH,Martin,Hohener,D,CHE,73.0,172.0,SUI,Kloten
+2000,9,24,285,COL,Blake,Ward,G,CAN,73.0,190.0,WHL,Tri-City
+2000,9,25,286,CBJ,Andrej,Nedorost,C,SVK,73.0,199.0,CZECH,Trencin Jr.
+2000,9,26,287,PHI,Milan,Kopecky,LW,CZE,72.0,176.0,Czech,Slavia Praha Jr.
+2000,9,27,288,ATL,Mark,McRae,D,CAN,72.0,175.0,NCAA,Cornell U.
+2000,9,28,289,WSH,Bjorn,Nord,D,SWE,72.0,198.0,SWEDEN,Djurgarden
+2000,9,29,290,ATL,Simon,Gamache,C,CAN,70.0,186.0,QMJHL,Val d'Or
+2000,9,30,291,CHI,Arne,Ramholt,D,CHE,75.0,215.0,SUI,Kloten
+2000,9,31,292,CBJ,Louis,Mandeville,D,CAN,74.0,193.0,QMJHL,Rouyn-Noranda
+2000,9,32,293,STL,Lauri,Kinos,D,FIN,74.0,195.0,EXHIB,Montreal
+2001,1,1,1,ATL,Ilya,Kovalchuk,F,RUS,75.0,230.0,RUSSIA-1,Spartak
+2001,1,2,2,OTT,Jason,Spezza,C,CAN,75.0,216.0,OHL,Windsor
+2001,1,3,3,TBL,Alexander,Svitov,C,RUS,75.0,228.0,RUS,Omsk
+2001,1,4,4,FLA,Stephen,Weiss,C,CAN,71.0,185.0,OHL,Plymouth
+2001,1,5,5,ANA,Stanislav,Chistov,F,RUS,70.0,193.0,RUS,Omsk
+2001,1,6,6,MIN,Mikko,Koivu,C,FIN,74.0,200.0,FINLAND,TPS
+2001,1,7,7,MTL,Mike,Komisarek,D,USA,76.0,243.0,CCHA,U. of Michigan
+2001,1,8,8,CBJ,Pascal,Leclaire,G,CAN,74.0,202.0,QMJHL,Halifax
+2001,1,9,9,CHI,Tuomo,Ruutu,F,FIN,72.0,205.0,FINLAND,Jokerit
+2001,1,10,10,NYR,Dan,Blackburn,G,CAN,73.0,180.0,WHL,Kootenay
+2001,1,11,11,PHX,Fredrik,Sjostrom,RW,SWE,73.0,218.0,SWEDEN,Frolunda
+2001,1,12,12,NSH,Dan,Hamhuis,D,CAN,73.0,209.0,WHL,Prince George
+2001,1,13,13,EDM,Ales,Hemsky,RW,CZE,72.0,184.0,QMJHL,Hull
+2001,1,14,14,CGY,Chuck,Kobasew,RW,CAN,72.0,192.0,H-EAST,Boston College
+2001,1,15,15,CAR,Igor,Knyazev,D,RUS,72.0,208.0,RUSSIA-1,Spartak
+2001,1,16,16,VAN,R.J.,Umberger,C,USA,74.0,220.0,CCHA,Ohio State U.
+2001,1,17,17,TOR,Carlo,Colaiacovo,D,CAN,73.0,205.0,OHL,Erie
+2001,1,18,18,LAK,Jens,Karlsson,F,SWE,75.0,200.0,SWEDEN,Frolunda
+2001,1,19,19,BOS,Shaone,Morrisonn,D,CAN,76.0,210.0,WHL,Kamloops
+2001,1,20,20,SJS,Marcel,Goc,C,DEU,73.0,202.0,GERMANY,Schwenningen
+2001,1,21,21,PIT,Colby,Armstrong,RW,CAN,74.0,195.0,WHL,Red Deer
+2001,1,22,22,BUF,Jiri,Novotny,C,CZE,75.0,204.0,CZE,Budejovice
+2001,1,23,23,OTT,Tim,Gleason,D,USA,72.0,217.0,OHL,Windsor
+2001,1,24,24,FLA,Lukas,Krajicek,D,CZE,75.0,205.0,OHL,Peterborough
+2001,1,25,25,MTL,Alexander,Perezhogin,C,KAZ,72.0,211.0,RUS,Omsk
+2001,1,26,26,DAL,Jason,Bacashihua,G,USA,71.0,177.0,NAHL,Chicago
+2001,1,27,27,PHI,Jeff,Woywitka,D,CAN,75.0,227.0,WHL,Red Deer
+2001,1,28,28,NJD,Adrian,Foster,LW,CAN,73.0,200.0,WHL,Saskatoon
+2001,1,29,29,CHI,Adam,Munro,G,CAN,73.0,187.0,OHL,Erie
+2001,1,30,30,LAK,David,Steckel,F,USA,77.0,217.0,CCHA,Ohio State U.
+2001,2,1,31,PHX,Matthew,Spiller,D,CAN,77.0,233.0,WHL,Seattle
+2001,2,2,32,BUF,Derek,Roy,C,CAN,69.0,184.0,OHL,Kitchener
+2001,2,3,33,NSH,Timofei,Shishkanov,F,RUS,73.0,213.0,RUSSIA-JR.,Spartak
+2001,2,4,34,FLA,Greg,Watson,F,CAN,73.0,208.0,WHL,Prince Albert
+2001,2,5,35,ANA,Mark,Popovic,D,CAN,73.0,205.0,OHL,Toronto St. Michael's
+2001,2,6,36,MIN,Kyle,Wanvig,RW,CAN,74.0,210.0,WHL,Red Deer
+2001,2,7,37,MTL,Duncan,Milroy,RW,CAN,73.0,196.0,WHL,Swift Current
+2001,2,8,38,CBJ,Tim,Jackman,RW,USA,76.0,220.0,WCHA,Minnesota State-Mankato
+2001,2,9,39,TOR,Karel,Pilar,D,CZE,75.0,207.0,CZE,Litvinov
+2001,2,10,40,NYR,Fedor,Tyutin,D,RUS,74.0,214.0,RUS,St. Petersburg
+2001,2,11,41,CGY,Andrei,Taratukhin,F,RUS,72.0,198.0,RUS,Omsk
+2001,2,12,42,NSH,Tomas,Slovak,D,SVK,73.0,191.0,SVK,Kosice
+2001,2,13,43,EDM,Doug,Lynch,D,CAN,75.0,214.0,WHL,Red Deer
+2001,2,14,44,NJD,Igor,Pohanka,C,SVK,75.0,185.0,WHL,Prince Albert
+2001,2,15,45,PHX,Martin,Podlesak,C,CZE,78.0,219.0,WHL,Lethbridge
+2001,2,16,46,CAR,Mike,Zigomanis,C,CAN,72.0,200.0,OHL,Kingston
+2001,2,17,47,TBL,Alexander,Polushin,F,RUS,75.0,216.0,RUSSIA-1,Tver
+2001,2,18,48,NJD,Tuomas,Pihlman,F,FIN,74.0,215.0,FINLAND,Jyvaskyla
+2001,2,19,49,LAK,Michael,Cammalleri,C,CAN,69.0,182.0,CCHA,U. of Michigan
+2001,2,20,50,BUF,Chris,Thorburn,C,CAN,75.0,230.0,OHL,North Bay
+2001,2,21,51,LAK,Jaroslav,Bednar,C,CZE,72.0,198.0,FINLAND,IFK
+2001,2,22,52,EDM,Edward,Caron,LW,USA,74.0,214.0,USHSE,Phillips-Exeter
+2001,2,23,53,CBJ,Kiel,McLeod,C,CAN,78.0,240.0,WHL,Kelowna
+2001,2,24,54,PIT,Noah,Welch,D,USA,76.0,215.0,USHSE,St. Sebastian's School
+2001,2,25,55,BUF,Jason,Pominville,RW,CAN,72.0,185.0,QMJHL,Shawinigan
+2001,2,26,56,CGY,Andrei,Medvedev,G,RUS,72.0,202.0,RUSSIA-1,Spartak
+2001,2,27,57,STL,Jay,McClement,C,CAN,73.0,205.0,OHL,Brampton
+2001,2,29,59,CHI,Matt,Keith,RW,CAN,74.0,200.0,WHL,Spokane
+2001,2,30,60,NJD,Victor,Uchevatov,D,RUS,76.0,205.0,RUS,Yaroslavl
+2001,2,31,61,TBL,Andreas,Holmqvist,D,SWE,75.0,187.0,SWEDEN-JR.,Hammarby
+2001,2,32,62,DET,Igor,Grigorenko,RW,RUS,71.0,205.0,RUS,Togliatti
+2001,2,33,63,COL,Peter,Budaj,G,SVK,73.0,200.0,OHL,Toronto St. Michael's
+2001,3,1,64,FLA,Tomas,Malec,D,SVK,74.0,215.0,QMJHL,Rimouski
+2001,3,2,65,TOR,Brendan,Bell,D,CAN,74.0,211.0,OHL,Ottawa
+2001,3,3,66,VAN,Fedor,Fedorov,LW,RUS,76.0,240.0,OHL,Sudbury
+2001,3,4,67,NJD,Robin,Leblanc,RW,CHE,73.0,177.0,QMJHL,Baie Comeau
+2001,3,5,68,FLA,Grant,McNeill,D,CAN,74.0,214.0,WHL,Prince Albert
+2001,3,6,69,ANA,Joel,Stepp,F,CAN,72.0,185.0,WHL,Red Deer
+2001,3,7,70,DAL,Yared,Hagos,C,SWE,73.0,202.0,SWEDEN,AIK
+2001,3,8,71,MTL,Tomas,Plekanec,LW,CZE,71.0,198.0,CZE,Kladno
+2001,3,10,73,CHI,Craig,Anderson,G,USA,74.0,180.0,OHL,Guelph
+2001,3,11,74,MIN,Chris,Heid,D,CAN,73.0,205.0,WHL,Spokane
+2001,3,12,75,NSH,Denis,Platonov,RW,RUS,75.0,205.0,RUSSIA-JR.,Saratov - Rus Jr.
+2001,3,13,76,NSH,Oliver,Setzinger,C,AUT,72.0,180.0,FINLAND,Ilves
+2001,3,14,77,BOS,Darren,McLachlan,LW,CAN,73.0,230.0,WHL,Seattle
+2001,3,15,78,PHX,Beat,Forster,D,CHE,73.0,209.0,SUI,Davos
+2001,3,16,79,NYR,Garth,Murray,F,CAN,74.0,210.0,WHL,Regina
+2001,3,17,80,ATL,Michael,Garnett,G,CAN,73.0,210.0,WHL,Saskatoon
+2001,3,18,81,OTT,Neil,Komadoski,D,USA,73.0,212.0,CCHA,U. of Notre Dame
+2001,3,19,82,TOR,Jay,Harrison,D,CAN,76.0,211.0,OHL,Brampton
+2001,3,20,83,LAK,Henrik,Juntunen,RW,SWE,74.0,185.0,FINLAND,Karpat
+2001,3,21,84,EDM,Kenny,Smith,D,USA,74.0,209.0,ECAC,Harvard U.
+2001,3,22,85,CBJ,Aaron,Johnson,D,CAN,73.0,208.0,QMJHL,Rimouski
+2001,3,23,86,PIT,Drew,Fata,D,CAN,73.0,209.0,OHL,Toronto St. Michael's
+2001,3,24,87,CBJ,Per,Mars,LW,SWE,75.0,205.0,SWEDEN,Brynas
+2001,3,25,88,TOR,Nicolas,Corbeil,C,CAN,70.0,177.0,QMJHL,Sherbrooke
+2001,3,26,89,STL,Tuomas,Nissinen,G,FIN,72.0,176.0,Finland Jr.,Kalpa
+2001,3,27,90,WSH,Owen,Fussey,RW,CAN,72.0,195.0,WHL,Calgary
+2001,3,28,91,CAR,Kevin,Estrada,LW,CAN,70.0,180.0,BCJHL,Chilliwack
+2001,3,29,92,DAL,Anthony,Aquino,RW,CAN,70.0,190.0,H-EAST,Merrimack
+2001,3,30,93,MIN,Stephane,Veilleux,C,CAN,73.0,190.0,QMJHL,Val d'Or
+2001,3,31,94,TBL,Evgeny,Artyukhin,RW,RUS,76.0,255.0,RUS,Podolsk
+2001,3,32,95,PHI,Patrick,Sharp,C,CAN,73.0,199.0,ECAC,U. of Vermont
+2001,3,33,96,PIT,Alexandre,Rouleau,D,CAN,73.0,180.0,QMJHL,Val d'Or
+2001,3,34,97,COL,Danny,Bois,RW,CAN,72.0,196.0,OHL,London
+2001,4,1,98,NSH,Jordin,Tootoo,RW,CAN,69.0,197.0,WHL,Brandon
+2001,4,2,99,OTT,Ray,Emery,G,CAN,74.0,196.0,OHL,Sault Ste. Marie
+2001,4,3,100,ATL,Brian,Sipotz,D,USA,79.0,250.0,CCHA,Miami University
+2001,4,4,101,NYI,Cory,Stillman,C,CAN,75.0,215.0,OHL,Kingston
+2001,4,5,102,ANA,Timo,Parssinen,F,FIN,70.0,196.0,FINLAND,HPK
+2001,4,6,103,MIN,Tony,Virta,RW,FIN,70.0,187.0,FINLAND,TPS
+2001,4,7,104,CHI,Brent,MacLellan,D,CAN,75.0,211.0,QMJHL,Rimouski
+2001,4,8,105,ANA,Vladimir,Korsunov,D,RUS,74.0,202.0,RUSSIA-JR.,Spartak
+2001,4,9,106,SJS,Christian,Ehrhoff,D,DEU,74.0,203.0,GERMANY,Krefeld
+2001,4,10,107,SJS,Dimitri,Patzold,G,KAZ,72.0,195.0,GER JR,Erding
+2001,4,11,108,CGY,Tomi,Maki,RW,FIN,71.0,193.0,FINLAND,Jokerit Jr.
+2001,4,12,109,MTL,Martti,Jarventie,D,FIN,71.0,196.0,FINLAND,TPS
+2001,4,13,110,CAR,Rob,Zepp,G,CAN,72.0,181.0,OHL,Plymouth
+2001,4,14,111,BOS,Matti,Kaltiainen,G,FIN,74.0,218.0,FINLAND,Blues Jr.
+2001,4,15,112,ATL,Milan,Gajic,C,CAN,71.0,182.0,BCJHL,Burnaby
+2001,4,16,113,NYR,Bryce,Lampman,D,USA,73.0,205.0,USHL,Omaha
+2001,4,17,114,VAN,Evgeny,Gladskikh,LW,RUS,72.0,176.0,RUS,Magnitogorsk
+2001,4,18,115,CHI,Vladimir,Gusev,D,RUS,73.0,189.0,RUS,Khabarovsk
+2001,4,19,116,LAK,Richard,Petiot,D,CAN,75.0,215.0,AJHL,Camrose
+2001,4,20,117,FLA,Michael,Woodford,RW,USA,71.0,185.0,USHSE,Cushing Academy
+2001,4,21,118,ANA,Brandon,Rogers,D,USA,73.0,190.0,USHSE,Hotchkiss School
+2001,4,22,119,CHI,Aleksey,Zotkin,LW,RUS,72.0,200.0,RUS,Magnitogorsk
+2001,4,23,120,PIT,Tomas,Surovy,F,SVK,72.0,191.0,SVK,Poprad
+2001,4,24,121,DET,Drew,MacIntyre,G,CAN,73.0,190.0,QMJHL,Sherbrooke
+2001,4,25,122,STL,Igor,Valeev,RW,RUS,71.0,203.0,OHL,North Bay
+2001,4,26,123,TBL,Aaron,Lobb,RW,CAN,76.0,208.0,OHL,London
+2001,4,27,124,CGY,Egor,Shastin,F,UKR,69.0,172.0,RUS,Omsk
+2001,4,28,125,WSH,Jeff,Lucky,RW,CAN,73.0,193.0,WHL,Spokane
+2001,4,29,126,DAL,Daniel,Volrab,C,CZE,72.0,180.0,CZE,Sparta
+2001,4,30,127,OTT,Christoph,Schubert,D,DEU,75.0,230.0,GERMANY,Munchen
+2001,4,31,128,NJD,Andrei,Posnov,RW,RUS,73.0,185.0,RUSSIA-JR.,Krylja
+2001,4,32,129,DET,Miroslav,Blatak,D,CZE,71.0,172.0,CZE,Zlin
+2001,4,33,130,COL,Colt,King,LW,CAN,74.0,221.0,OHL,Guelph
+2001,4,34,131,PIT,Ben,Eaves,C,USA,68.0,180.0,H-EAST,Boston College
+2001,5,1,132,NYI,Dusan,Salficky,G,CZE,73.0,185.0,CZE,Plzen
+2001,5,2,133,EDM,Jussi,Markkanen,G,FIN,72.0,182.0,FINLAND,Tappara
+2001,5,3,134,TOR,Kyle,Wellwood,C,CAN,70.0,181.0,OHL,Belleville
+2001,5,4,135,ATL,Colin,Stuart,C,USA,74.0,205.0,WCHA,Colorado College
+2001,5,5,136,FLA,Billy,Thompson,G,CAN,74.0,200.0,WHL,Prince George
+2001,5,6,137,ANA,Joel,Perrault,C,CAN,74.0,212.0,QMJHL,Baie Comeau
+2001,5,7,138,TBL,Paul,Lynch,D,USA,75.0,195.0,EJHL,Valley Jr. Warriors
+2001,5,8,139,NYR,Shawn,Collymore,RW,CAN,71.0,180.0,QMJHL,Quebec
+2001,5,9,140,SJS,Tomas,Plihal,F,CZE,73.0,210.0,CZE,Liberec Jr.
+2001,5,10,141,CBJ,Cole,Jarrett,D,CAN,70.0,200.0,OHL,Plymouth
+2001,5,11,142,CHI,Tommi,Jaminki,LW,FIN,72.0,183.0,FINLAND,Blues Jr.
+2001,5,12,143,COL,Frantisek,Skladany,LW,SVK,72.0,185.0,H-EAST,Boston University
+2001,5,13,144,COL,Cody,McCormick,F,CAN,75.0,221.0,OHL,Belleville
+2001,5,14,145,CGY,James,Hakewill,D,USA,75.0,205.0,USHSE,Westminster
+2001,5,15,146,PHI,Jussi,Timonen,D,FIN,72.0,200.0,Finland Jr.,Kalpa
+2001,5,16,147,BOS,Jiri,Jakes,RW,CZE,76.0,225.0,WHL,Brandon
+2001,5,17,148,PHX,David,Klema,C,USA,72.0,178.0,USHL,Des Moines
+2001,5,18,149,COL,Mikko,Viitanen,D,FIN,75.0,218.0,Fin D1,Ahmat
+2001,5,19,150,PHI,Bernd,Bruckler,G,AUT,73.0,180.0,USHL,Tri-Cities
+2001,5,20,151,VAN,Kevin,Bieksa,D,CAN,73.0,198.0,CCHA,Bowling Green
+2001,5,21,152,LAK,Terry,Denike,G,CAN,74.0,190.0,SJHL,Weyburn
+2001,5,22,153,LAK,Tuukka,Mantyla,D,FIN,69.0,176.0,FINLAND,Tappara
+2001,5,23,154,EDM,Jake,Brenk,C,USA,74.0,187.0,USHSW,Breck School
+2001,5,24,155,BUF,Michal,Vondrka,LW,CZE,72.0,180.0,CZE,Budejovice
+2001,5,25,156,PIT,Andy,Schneider,D,USA,72.0,220.0,USHL,Lincoln
+2001,5,26,157,DET,Andreas,Jamtin,RW,SWE,72.0,191.0,SWEDEN,Farjestad
+2001,5,27,158,PHI,Roman,Malek,G,CZE,71.0,161.0,CZE,Slavia
+2001,5,28,159,STL,Dimitri,Semin,F,RUS,70.0,185.0,RUSSIA-JR.,Spartak
+2001,5,29,160,WSH,Artem,Ternavsky,D,RUS,74.0,208.0,QMJHL,Sherbrooke
+2001,5,30,161,DAL,Mike,Smith,G,CAN,76.0,215.0,OHL,Sudbury
+2001,5,31,162,OTT,Stefan,Schauer,D,DEU,73.0,193.0,GER D1,Riebersee
+2001,5,32,163,NJD,Andreas,Salomonsson,C,SWE,73.0,200.0,SWEDEN,Djurgarden
+2001,5,33,164,CGY,Yuri,Trubachev,C,RUS,69.0,187.0,RUS,St. Petersburg
+2001,5,34,165,COL,Pierre-Luc,Emond,C,CAN,72.0,193.0,QMJHL,Drummondville
+2001,6,2,167,DAL,Michal,Blazek,D,CZE,74.0,187.0,CZE,Vsetin Jr.
+2001,6,3,168,TOR,Maxim,Kondratiev,D,RUS,73.0,197.0,RUS,Togliatti Jr.
+2001,6,4,169,FLA,Dustin,Johner,C,CAN,70.0,181.0,WHL,Seattle
+2001,6,5,170,ANA,Jan,Tabacek,D,SVK,71.0,169.0,SVK,Martin
+2001,6,6,171,MTL,Eric,Himelfarb,C,CAN,69.0,161.0,OHL,Sarnia
+2001,6,7,172,PHI,Dennis,Seidenberg,D,DEU,73.0,210.0,GERMANY,Mannheim
+2001,6,8,173,CBJ,Justin,Aikins,C,CAN,72.0,177.0,BCJHL,Langley
+2001,6,9,174,CHI,Alexander,Golvin,LW,RUS,71.0,192.0,RUS,Omsk Jr.
+2001,6,10,175,SJS,Ryane,Clowe,RW,CAN,74.0,225.0,QMJHL,Rimouski
+2001,6,11,176,NYR,Marek,Zidlicky,D,CZE,71.0,190.0,FINLAND,IFK
+2001,6,12,177,PHI,Andrei,Razin,C,RUS,71.0,177.0,RUS,Magnitogorsk
+2001,6,13,178,NSH,Anton,Lavrentiev,D,RUS,76.0,196.0,RUS,Kazan Jr.
+2001,6,14,179,BOS,Andrew,Alberts,D,USA,77.0,218.0,USHL,Waterloo
+2001,6,15,180,PHX,Scott,Polaski,RW,USA,74.0,182.0,USHL,Sioux City
+2001,6,16,181,CAR,Daniel,Boisclair,G,CAN,74.0,185.0,QMJHL,Cape Breton
+2001,6,17,182,SJS,Tom,Cavanagh,RW,USA,72.0,200.0,USHSE,Phillips-Exeter
+2001,6,18,183,TOR,Jaroslav,Sklenar,F,CZE,72.0,167.0,CZE JR.,Brno
+2001,6,19,184,COL,Scott,Horvath,RW,USA,75.0,228.0,H-EAST,U. Mass-Amherst
+2001,6,20,185,EDM,Mikael,Svensk,D,SWE,74.0,191.0,SWEDEN,Frolunda Jr.
+2001,6,21,186,CHI,Petr,Puncochar,D,CZE,73.0,202.0,CZE,Karlovy Vary
+2001,6,22,187,CBJ,Artem,Vostrikov,C,RUS,73.0,172.0,RUS,Togliatti Jr.
+2001,6,23,188,TBL,Art,Femenella,D,USA,79.0,234.0,USHL,Sioux City
+2001,6,24,189,ATL,Pasi,Nurminen,G,FIN,70.0,215.0,FINLAND,Jokerit
+2001,6,25,190,STL,Brett,Scheffelmaier,D,CAN,76.0,200.0,WHL,Medicine Hat
+2001,6,26,191,WSH,Zbynek,Novak,F,CZE,74.0,192.0,CZE,Slavia Jr.
+2001,6,27,192,DAL,Jussi,Jokinen,F,FIN,71.0,198.0,FINLAND,Karpat Jr.
+2001,6,28,193,OTT,Brooks,Laich,C,CAN,74.0,200.0,WHL,Moose Jaw
+2001,6,29,194,NJD,James,Massen,RW,USA,73.0,218.0,USHL,Sioux Falls
+2001,6,30,195,DET,Nick,Pannoni,G,CAN,71.0,155.0,WHL,Seattle
+2001,6,31,196,COL,Charlie,Stephens,F,CAN,76.0,225.0,OHL,Guelph
+2001,7,1,197,NYI,Jan,Holub,D,CZE,75.0,185.0,CZE,Liberec Jr.
+2001,7,2,198,TOR,Ivan,Kolozvary,F,SVK,72.0,169.0,SVK,Trencin Jr.
+2001,7,3,199,ATL,Matt,Suderman,D,CAN,74.0,224.0,WHL,Saskatoon
+2001,7,4,200,FLA,Toni,Koivisto,F,FIN,72.0,189.0,FINLAND,Lukko
+2001,7,5,201,ATL,Colin,Fitzrandolph,C,USA,75.0,195.0,USHSE,Phillips-Exeter
+2001,7,6,202,MIN,Derek,Boogaard,F,CAN,79.0,265.0,WHL,Prince George
+2001,7,7,203,MTL,Andrew,Archer,D,CAN,76.0,194.0,OHL,Guelph
+2001,7,8,204,CBJ,Raffaele,Sannitz,F,CHE,73.0,212.0,SUI,Lugano
+2001,7,9,205,CHI,Teemu,Jaaskelainen,D,FIN,72.0,198.0,FINLAND,Ilves Jr.
+2001,7,10,206,NYR,Petr,Preucil,C,CZE,73.0,168.0,QMJHL,Quebec
+2001,7,11,207,CGY,Garett,Bembridge,RW,CAN,72.0,164.0,WHL,Saskatoon
+2001,7,12,208,PHI,Thierry,Douville,D,CAN,76.0,212.0,QMJHL,Baie Comeau
+2001,7,13,209,BOS,Jordan,Sigalet,G,CAN,73.0,180.0,BCJHL,Victoria
+2001,7,14,210,PHX,Steve,Belanger,G,USA,73.0,198.0,WHL,Kamloops
+2001,7,15,211,CAR,Sean,Curry,D,USA,76.0,230.0,WHL,Tri-City
+2001,7,16,212,VAN,Jason,King,RW,CAN,72.0,193.0,QMJHL,Halifax
+2001,7,17,213,TOR,Jan,Chovan,G,SVK,71.0,178.0,OHL,Belleville
+2001,7,18,214,LAK,Cristobal,Huet,G,FRA,73.0,205.0,SUI,Lugano
+2001,7,19,215,EDM,Dan,Baum,F,CAN,72.0,169.0,WHL,Prince George
+2001,7,20,216,CHI,Oleg,Minakov,RW,RUS,74.0,183.0,RUSSIA-JR.,Elektrostal
+2001,7,21,217,PIT,Tomas,Duba,G,CZE,72.0,176.0,CZE,Sparta Jr.
+2001,7,22,218,OTT,Jan,Platil,D,CZE,74.0,213.0,OHL,Barrie
+2001,7,23,219,TBL,Dennis,Packard,LW,CAN,77.0,214.0,ECAC,Harvard U.
+2001,7,24,220,CGY,David,Moss,LW,USA,75.0,200.0,USHL,Cedar Rapids
+2001,7,25,221,WSH,Johnny,Oduya,D,SWE,72.0,190.0,QMJHL,Victoriaville
+2001,7,26,222,TBL,Jeremy,Van Hoof,D,CAN,74.0,200.0,OHL,Ottawa
+2001,7,27,223,OTT,Brandon,Bochenski,RW,USA,73.0,195.0,USHL,Lincoln
+2001,7,28,224,ANA,Tony,Martensson,C,SWE,72.0,192.0,SWEDEN,Brynas
+2001,7,29,225,PHI,David,Printz,D,SWE,77.0,220.0,AWHL,Great Falls
+2001,7,30,226,NYR,Pontus,Petterstrom,F,SWE,72.0,180.0,SWEDEN-JR.,Tingsryd
+2001,7,31,227,COL,Marek,Svatos,RW,SVK,70.0,185.0,WHL,Kootenay
+2001,8,1,228,NYI,Mike,Bray,RW,CAN,75.0,208.0,QMJHL,Quebec
+2001,8,2,229,NJD,Aaron,Voros,C,CAN,76.0,215.0,BCJHL,Victoria
+2001,8,3,230,NYR,Leonid,Zhvachin,D,RUS,72.0,185.0,RUS,Podolsk Jr.
+2001,8,4,231,FLA,Kyle,Bruce,RW,CAN,72.0,181.0,WHL,Prince Albert
+2001,8,5,232,ANA,Martin,Gerber,G,CHE,72.0,205.0,SUI,Langnau
+2001,8,6,233,CGY,Joe,Campbell,D,USA,76.0,172.0,USHL,Des Moines
+2001,8,7,234,BUF,Calle,Aslund,D,SWE,75.0,204.0,SWE D1,Huddinge
+2001,8,8,235,OTT,Neil,Petruic,D,CAN,73.0,183.0,SJHL,Kindersley
+2001,8,9,236,CBJ,Ryan,Bowness,RW,CAN,74.0,198.0,OHL,Brampton
+2001,8,10,237,LAK,Mike,Gabinet,D,CAN,75.0,180.0,CCHA,Nebraska-Omaha
+2001,8,11,238,NYR,Ryan,Hollweg,C,USA,70.0,212.0,WHL,Medicine Hat
+2001,8,12,239,MIN,Jake,Riddle,LW,USA,73.0,210.0,WHL,Seattle
+2001,8,13,240,NSH,Gustav,Grasberg,C,SWE,71.0,183.0,SWEDEN-JR.,Mora
+2001,8,14,241,BOS,Milan,Jurcina,D,SVK,76.0,240.0,QMJHL,Halifax
+2001,8,15,242,CBJ,Andrew,Murray,C,CAN,74.0,209.0,MJHL,Selkirk
+2001,8,16,243,PHX,Frantisek,Lukes,LW,CZE,69.0,173.0,OHL,Toronto St. Michael's
+2001,8,17,244,CAR,Carter,Trevisani,D,CAN,73.0,185.0,OHL,Ottawa
+2001,8,18,245,VAN,Konstantin,Mihailov,C,RUS,72.0,176.0,RUS,Nizhnekamsk Jr.
+2001,8,19,246,TOR,Tomas,Mojzis,D,CZE,73.0,195.0,WHL,Moose Jaw
+2001,8,20,247,BUF,Marek,Dubec,D,SVK,72.0,179.0,CZE,Vsetin
+2001,8,21,248,EDM,Kari,Haakana,D,FIN,73.0,220.0,FINLAND,Jokerit
+2001,8,22,249,WSH,Matt,Maglione,D,USA,73.0,185.0,ECAC,Princeton
+2001,8,23,250,PIT,Brandon,Crawford-West,G,USA,71.0,185.0,NAHL,Texas Tornado
+2001,8,24,251,CGY,Ville,Hamalainen,F,FIN,71.0,187.0,FINLAND,Saipa
+2001,8,25,252,TBL,Jean-Francois,Soucy,C,CAN,75.0,190.0,QMJHL,Montreal
+2001,8,26,253,STL,Petr,Cajanek,LW,CZE,71.0,186.0,CZE,Zlin
+2001,8,27,254,WSH,Peter,Polcik,LW,SVK,76.0,187.0,SVK JR.,Nitra
+2001,8,28,255,DAL,Marco,Rosa,C,CAN,72.0,170.0,H-EAST,Merrimack
+2001,8,29,256,OTT,Gregg,Johnson,C,USA,70.0,183.0,H-EAST,Boston University
+2001,8,30,257,NJD,Evgeny,Gamalej,D,RUS,75.0,196.0,RUS,Dynamo Moscow 2
+2001,8,31,258,DET,Dmitri,Bykov,D,RUS,73.0,190.0,RUS,Kazan
+2001,8,32,259,TBL,Dimitri,Bezrukov,LW,RUS,75.0,187.0,RUS,Nizhnekamsk
+2001,9,1,260,NYI,Bryan,Perez,F,USA,73.0,198.0,USHL,Des Moines
+2001,9,2,261,TBL,Vitali,Smolyninov,F,KAZ,75.0,205.0,RUS,Neftechimik Jr.
+2001,9,3,262,ATL,Mario,Cartelli,D,CZE,73.0,196.0,CZE,Trinec
+2001,9,4,263,FLA,Jan,Blanar,D,SVK,75.0,183.0,SVK,Trencin Jr.
+2001,9,5,264,ANA,PA,Parenteau,C,CAN,72.0,198.0,QMJHL,Chicoutimi
+2001,9,6,265,DAL,Dale,Sullivan,RW,CAN,71.0,170.0,QMJHL,Hull
+2001,9,7,266,MTL,Viktor,Ujcik,F,CZE,70.0,194.0,CZE,Slavia Praha
+2001,9,8,267,FLA,Ivan,Majesky,D,SVK,76.0,231.0,FINLAND,Ilves
+2001,9,9,268,CHI,Jeff,Miles,C,CAN,71.0,188.0,ECAC,U. of Vermont
+2001,9,10,269,NYR,Juris,Stals,C,LVA,72.0,185.0,FINLAND,Lukko
+2001,9,11,270,STL,Grant,Jacobsen,C,CAN,74.0,201.0,WHL,Regina
+2001,9,12,271,NSH,Mikko,Lehtonen,D,FIN,73.0,194.0,FINLAND,Karpat - Fin
+2001,9,13,272,EDM,Ales,Pisa,D,CZE,72.0,200.0,CZE,Pardubice
+2001,9,14,273,PHX,Severin,Blindenbacher,D,CHE,71.0,189.0,SUI,Kloten
+2001,9,15,274,CAR,Peter,Reynolds,D,CAN,75.0,195.0,OHL,North Bay
+2001,9,16,275,WSH,Robert,Muller,G,DEU,67.0,163.0,GERMANY,Mannheim
+2001,9,17,276,TOR,Mike,Knoepfli,LW,CAN,73.0,185.0,OPJA,Georgetown
+2001,9,18,277,LAK,Sebastien,Laplante,G,CAN,71.0,170.0,NOJHL,Rayside-Balfour
+2001,9,20,279,BUF,Ryan,Jorde,D,CAN,75.0,207.0,WHL,Tri-City
+2001,9,21,280,NYI,Roman,Kuhtinov,D,RUS,73.0,207.0,RUS,Novokuznetsk
+2001,9,22,281,TBL,Ilya,Solarev,LW,RUS,75.0,176.0,RUS,Perm
+2001,9,23,282,BOS,Marcel,Rodman,RW,SVN,72.0,183.0,OHL,Peterborough
+2001,9,24,283,STL,Simon,Skoog,D,SWE,74.0,218.0,SWEDEN-JR.,Morrum
+2001,9,25,284,WSH,Viktor,Hubl,F,CZE,72.0,176.0,CZE,Slavia
+2001,9,26,285,DAL,Marek,Tomica,F,CZE,72.0,172.0,CZE,Slavia
+2001,9,27,286,OTT,Toni,Dahlman,RW,FIN,72.0,198.0,FINLAND,Ilves
+2001,9,28,287,NYI,Juha-Pekka,Ketola,C,FIN,73.0,178.0,FINLAND,Lukko Jr.
+2001,9,29,288,DET,Francois,Senez,D,CAN,75.0,215.0,ECAC,Rensselaer
+2001,9,30,289,TBL,Henrik,Bergfors,D,SWE,76.0,225.0,SWEDEN-JR.,Sodertalje Jr.
+2002,1,1,1,CBJ,Rick,Nash,LW,CAN,76.0,216.0,OHL,London
+2002,1,2,2,ATL,Kari,Lehtonen,G,FIN,76.0,215.0,FINLAND,Jokerit
+2002,1,3,3,FLA,Jay,Bouwmeester,D,CAN,76.0,215.0,WHL,Medicine Hat
+2002,1,4,4,PHI,Joni,Pitkanen,D,FIN,75.0,210.0,FINLAND,Karpat
+2002,1,5,5,PIT,Ryan,Whitney,D,USA,75.0,210.0,H-EAST,Boston University
+2002,1,6,6,NSH,Scottie,Upshall,RW,CAN,72.0,200.0,WHL,Kamloops
+2002,1,7,7,ANA,Joffrey,Lupul,F,CAN,73.0,206.0,WHL,Medicine Hat
+2002,1,8,8,MIN,Pierre-Marc,Bouchard,C,CAN,70.0,173.0,QMJHL,Chicoutimi
+2002,1,9,9,FLA,Petr,Taticek,C,CZE,72.0,188.0,OHL,Sault Ste. Marie
+2002,1,10,10,CGY,Eric,Nystrom,LW,USA,73.0,193.0,CCHA,U. of Michigan
+2002,1,11,11,BUF,Keith,Ballard,D,USA,71.0,208.0,WCHA,U. of Minnesota
+2002,1,12,12,WSH,Steve,Eminger,D,CAN,74.0,203.0,OHL,Kitchener
+2002,1,13,13,WSH,Alexander,Semin,LW,RUS,74.0,208.0,RUSSIA-1,Chelyabinsk
+2002,1,14,14,MTL,Chris,Higgins,C,USA,72.0,205.0,ECAC,Yale University
+2002,1,15,15,EDM,Jesse,Niinimaki,C,FIN,74.0,183.0,FINLAND,Ilves
+2002,1,16,16,OTT,Jakub,Klepis,C,CZE,73.0,198.0,WHL,Portland
+2002,1,17,17,WSH,Boyd,Gordon,RW,CAN,73.0,200.0,WHL,Red Deer
+2002,1,18,18,LAK,Denis,Grebeshkov,D,RUS,72.0,209.0,RUS,Yaroslavl
+2002,1,19,19,PHX,Jakub,Koreis,C,CZE,74.0,206.0,CZE,Plzen
+2002,1,20,20,BUF,Daniel,Paille,LW,CAN,72.0,200.0,OHL,Guelph
+2002,1,21,21,CHI,Anton,Babchuk,D,UKR,77.0,212.0,RUS,Elektrostal
+2002,1,22,22,NYI,Sean,Bergenheim,F,FIN,71.0,200.0,FINLAND,Jokerit
+2002,1,23,23,PHX,Ben,Eager,LW,CAN,74.0,235.0,OHL,Oshawa
+2002,1,24,24,TOR,Alexander,Steen,C,CAN,73.0,200.0,SWEDEN,Frolunda
+2002,1,25,25,CAR,Cam,Ward,G,CAN,73.0,185.0,WHL,Red Deer
+2002,1,27,27,SJS,Mike,Morris,RW,USA,73.0,185.0,USHSE,St. Sebastian's School
+2002,1,28,28,COL,Jonas,Johansson,F,SWE,74.0,190.0,SWEDEN,HV 71
+2002,1,29,29,BOS,Hannu,Toivonen,G,FIN,74.0,200.0,FINLAND,HPK
+2002,1,30,30,ATL,Jim,Slater,C,USA,72.0,200.0,CCHA,Michigan State U.
+2002,2,1,31,EDM,Jeff,Deslauriers,G,CAN,76.0,201.0,QMJHL,Chicoutimi
+2002,2,2,32,DAL,Janos,Vas,F,HUN,73.0,183.0,SJL,Malmo Jr.
+2002,2,3,33,NYR,Lee,Falardeau,C,USA,76.0,196.0,CCHA,Michigan State U.
+2002,2,4,34,DAL,Tobias,Stephan,G,CHE,74.0,180.0,SUI,Chur
+2002,2,5,35,PIT,Ondrej,Nemec,D,CZE,72.0,196.0,CZE,Vsetin
+2002,2,6,36,EDM,Jarret,Stoll,C,CAN,73.0,210.0,WHL,Kootenay
+2002,2,8,38,MIN,Josh,Harding,G,CAN,73.0,197.0,WHL,Regina
+2002,2,9,39,CGY,Brian,McConnell,C,USA,74.0,190.0,H-EAST,Boston University
+2002,2,10,40,FLA,Rob,Globke,F,USA,74.0,208.0,CCHA,U. of Notre Dame
+2002,2,11,41,CBJ,Joakim,Lindstrom,F,SWE,72.0,187.0,SWEDEN,Modo
+2002,2,12,42,DAL,Marius,Holtet,F,NOR,72.0,183.0,SJL,Farjestad Jr.
+2002,2,13,43,DAL,Trevor,Daley,D,CAN,71.0,205.0,OHL,Sault Ste. Marie
+2002,2,14,44,EDM,Matt,Greene,D,USA,75.0,231.0,USHL,Green Bay
+2002,2,15,45,MTL,Tomas,Linhart,D,CZE,74.0,209.0,CZE JR.,Pardubice Jr.
+2002,2,16,46,PHX,David,Leneveu,G,CAN,73.0,190.0,ECAC,Cornell U.
+2002,2,17,47,OTT,Alexei,Kaigorodov,C,RUS,72.0,194.0,RUS,Magnitogorsk
+2002,2,18,48,STL,Alexei,Shkotov,RW,RUS,70.0,161.0,RUSSIA-JR.,Elektrostal Jr.
+2002,2,19,49,VAN,Kiril,Koltsov,D,RUS,71.0,183.0,RUS,Omsk
+2002,2,20,50,LAK,Sergei,Anshakov,LW,RUS,75.0,179.0,RUS,HC CSKA
+2002,2,21,51,NJD,Anton,Kadeykin,D,RUS,74.0,180.0,RUS,Elektrostal
+2002,2,22,52,SJS,Dan,Spang,D,USA,72.0,205.0,USHSE,Winchester H.S.
+2002,2,23,53,NJD,Barry,Tallackson,RW,USA,77.0,215.0,WCHA,U. of Minnesota
+2002,2,24,54,CHI,Duncan,Keith,D,CAN,73.0,196.0,CCHA,Michigan State U.
+2002,2,25,55,VAN,Denis,Grot,D,BLR,72.0,185.0,RUS,Elektrostal
+2002,2,26,56,BOS,Vladislav,Evseev,LW,RUS,74.0,196.0,RUS,HC CSKA
+2002,2,27,57,TOR,Matt,Stajan,C,CAN,73.0,200.0,OHL,Belleville
+2002,2,28,58,DET,Jiri,Hudler,C,CZE,70.0,182.0,CZE,Liberec
+2002,2,29,59,WSH,Maxime,Daigneault,G,CAN,75.0,205.0,QMJHL,Val d'Or
+2002,2,30,60,TBL,Adam,Henrich,LW,CAN,76.0,216.0,OHL,Brampton
+2002,2,31,61,COL,Johnny,Boychuk,D,CAN,74.0,225.0,WHL,Calgary
+2002,2,32,62,STL,Andrei,Mikhnov,F,UKR,78.0,192.0,OHL,Sudbury
+2002,2,33,63,DET,Tomas,Fleischmann,F,CZE,73.0,192.0,CZE JR.,Vitkovice Jr.
+2002,3,1,64,NJD,Jason,Ryznar,LW,USA,75.0,200.0,CCHA,U. of Michigan
+2002,3,2,65,CBJ,Ole-Kristian,Tollefsen,D,NOR,74.0,211.0,NOR,Lillehammer
+2002,3,3,66,LAK,Petr,Kanko,RW,CZE,70.0,195.0,OHL,Kitchener
+2002,3,4,67,FLA,Gregory,Campbell,F,CAN,72.0,197.0,OHL,Plymouth
+2002,3,5,68,VAN,Brett,Skinner,D,CAN,73.0,183.0,USHL,Des Moines
+2002,3,6,69,PIT,Erik,Christensen,C,CAN,73.0,200.0,WHL,Kamloops
+2002,3,7,70,PHX,Joe,Callahan,D,USA,75.0,210.0,ECAC,Yale University
+2002,3,8,71,ANA,Brian,Lee,D,USA,74.0,187.0,OHL,Erie
+2002,3,9,72,MIN,Michael,Erickson,RW,USA,74.0,186.0,WCHA,U. of Minnesota
+2002,3,10,73,MIN,Barry,Brust,G,CAN,74.0,225.0,WHL,Spokane
+2002,3,11,74,TOR,Todd,Ford,G,CAN,76.0,176.0,WHL,Swift Current
+2002,3,12,75,OTT,Arttu,Luttinen,F,FIN,71.0,198.0,Finland Jr.,IFK Jr.
+2002,3,13,76,BUF,Michael,Tessier,LW,CAN,74.0,191.0,QMJHL,Acadie-Bathurst
+2002,3,14,77,WSH,Patrick,Wellar,D,CAN,75.0,210.0,WHL,Portland
+2002,3,15,78,DAL,Geoff,Waugh,D,CAN,75.0,210.0,SJHL,Kindersley
+2002,3,16,79,EDM,Brock,Radunske,LW,CAN,76.0,187.0,CCHA,Michigan State U.
+2002,3,17,80,PHX,Matt,Jones,D,USA,72.0,224.0,WCHA,U. of North Dakota
+2002,3,18,81,NYR,Marcus,Jonasen,F,SWE,76.0,220.0,SWEDEN,Vasteras Jr.
+2002,3,19,82,BUF,John,Adams,D,USA,74.0,188.0,H-EAST,Boston College
+2002,3,20,83,VAN,Lukas,Mensator,G,CZE,68.0,167.0,CZE,Karlovy Vary
+2002,3,21,84,NJD,Marek,Chvatal,D,CZE,73.0,183.0,CZE,Trinec
+2002,3,22,85,NJD,Ahren,Nittel,LW,CAN,74.0,214.0,OHL,Windsor
+2002,3,24,87,NYI,Frans,Nielsen,C,DNK,72.0,187.0,SWEDEN,Malmo
+2002,3,25,88,TOR,Dominic,D'Amour,D,CAN,75.0,202.0,QMJHL,Hull
+2002,3,26,89,STL,Tomas,Troliga,F,SVK,76.0,200.0,SVK SR.,Spisska Nova Ves
+2002,3,27,90,CGY,Matthew,Lombardi,C,CAN,71.0,195.0,QMJHL,Victoriaville
+2002,3,28,91,CAR,Jesse,Lane,D,USA,73.0,210.0,QMJHL,Hull
+2002,3,29,92,WSH,Derek,Krestanovich,C,CAN,73.0,175.0,WHL,Moose Jaw
+2002,3,30,93,CHI,Alexander,Kojevnikov,LW,RUS,72.0,185.0,RUSSIA-JR.,Krylja
+2002,3,31,94,COL,Eric,Lundberg,D,USA,75.0,200.0,H-EAST,Providence College
+2002,3,32,95,DET,Valtteri,Filppula,C,FIN,72.0,193.0,Finland Jr.,Jokerit Jr.
+2002,3,33,96,CBJ,Jeff,Genovy,C,USA,75.0,197.0,USHL,Des Moines
+2002,4,1,97,PHX,Lance,Monych,RW,CAN,74.0,199.0,WHL,Brandon
+2002,4,2,98,CBJ,Ivan,Tkachenko,F,RUS,70.0,183.0,RUS,Yaroslavl
+2002,4,3,99,MTL,Michael,Lambert,F,CAN,74.0,180.0,QMJHL,Montreal
+2002,4,4,100,TBL,Dimitri,Kazionov,C,RUS,75.0,185.0,RUS,HC CSKA
+2002,4,5,101,PIT,Daniel,Fernholm,D,SWE,76.0,218.0,SWEDEN,Djurgarden
+2002,4,6,102,NSH,Brandon,Segal,RW,CAN,74.0,212.0,WHL,Calgary
+2002,4,7,103,ANA,Joonas,Vihko,F,FIN,69.0,172.0,FINLAND,IFK
+2002,4,8,104,LAK,Aaron,Rome,D,CAN,73.0,218.0,WHL,Swift Current
+2002,4,9,105,PHI,Rosario,Ruggeri,D,CAN,73.0,202.0,QMJHL,Chicoutimi
+2002,4,10,106,EDM,Ivan,Koltsov,D,RUS,74.0,181.0,RUS,Cherepovets
+2002,4,11,107,COL,Mikko,Kalteva,D,FIN,75.0,187.0,Finland Jr.,Jokerit Jr.
+2002,4,12,108,BUF,Jakub,Hulva,F,CZE,72.0,172.0,CZE,Vitkovice
+2002,4,13,109,WSH,Jevon,Desautels,LW,CAN,75.0,215.0,WHL,Spokane
+2002,4,14,110,DAL,Jarkko A.,Immonen,C,FIN,71.0,180.0,Finland Jr.,Blues Jr.
+2002,4,15,111,EDM,Jonas,Almtorp,C,SWE,73.0,189.0,SJL,Modo Jr.
+2002,4,16,112,CGY,Yuri,Artemenkov,F,RUS,73.0,174.0,RUS,Krylja
+2002,4,17,113,OTT,Scott,Dobben,F,CAN,73.0,193.0,OHL,Erie
+2002,4,18,114,VAN,John,Laliberte,RW,USA,73.0,185.0,EJHL,Jr. Monarchs
+2002,4,19,115,LAK,Mark,Rooneem,LW,CAN,73.0,185.0,WHL,Kamloops
+2002,4,20,116,ATL,Patrick,Dwyer,RW,USA,71.0,175.0,CCHA,Western Michigan
+2002,4,21,117,NJD,Cam,Janssen,RW,USA,72.0,215.0,OHL,Windsor
+2002,4,22,118,WSH,Petr,Dvorak,C,CZE,72.0,194.0,CZE JR.,Havirov Jr.
+2002,4,23,119,CBJ,Jekabs,Redlihs,D,LVA,74.0,185.0,EJHL,Apple Core
+2002,4,24,120,STL,Robin,Jonsson,D,SWE,74.0,194.0,SWEDEN,Bofors
+2002,4,25,121,BUF,Marty,Magers,G,USA,73.0,180.0,USHL,Omaha
+2002,4,26,122,TOR,David,Turon,D,CZE,75.0,202.0,CZE,Havirov
+2002,4,27,123,EDM,,,,,,,,
+2002,4,28,124,ATL,Lane,Manson,D,CAN,81.0,245.0,WHL,Moose Jaw
+2002,4,29,125,OTT,Johan,Bjork,D,SWE,73.0,176.0,SJL,Malmo Jr.
+2002,4,30,126,PHI,Konstantin,Baranov,F,RUS,74.0,185.0,RUS,Chelyabinsk
+2002,4,31,127,NYR,Nate,Guenin,D,USA,74.0,210.0,USHL,Green Bay
+2002,4,32,128,CHI,Matt,Ellison,RW,CAN,72.0,192.0,BCHL,Cowichan
+2002,4,33,129,COL,Tom,Gilbert,D,USA,75.0,206.0,USHL,Chicago
+2002,4,34,130,BOS,Jan,Kubista,RW,CZE,72.0,189.0,CZE JR.,Pardubice Jr.
+2002,4,35,131,DET,Johan,Berggren,D,SWE,75.0,176.0,SWEDEN,Sunne
+2002,5,1,132,PHX,John,Zeiler,RW,USA,71.0,204.0,USHL,Sioux City
+2002,5,2,133,CBJ,Lasse,Pirjeta,C,FIN,75.0,228.0,FINLAND,Karpat
+2002,5,3,134,FLA,Topi,Jaakola,D,FIN,73.0,184.0,FINLAND,Karpat
+2002,5,4,135,TBL,Joseph,Pearce,G,USA,77.0,215.0,EJHL,Jr. Monarchs
+2002,5,5,136,PIT,Andrew,Sertich,LW,USA,71.0,161.0,USHSW,Greenway H.S.
+2002,5,6,137,PIT,Cam,Paddock,C,CAN,72.0,178.0,WHL,Kelowna
+2002,5,7,138,NSH,Patrick,Jarrett,C,CAN,70.0,181.0,OHL,Owen Sound
+2002,5,8,139,SJS,Kris,Newbury,F,CAN,71.0,213.0,OHL,Sarnia
+2002,5,9,140,ANA,George,Davis,RW,CAN,74.0,225.0,QMJHL,Cape Breton
+2002,5,10,141,CGY,Jiri,Cetkovsky,C,CZE,76.0,209.0,CZE JR.,Zlin Jr.
+2002,5,11,142,CGY,Emanuel,Peter,C,CHE,73.0,207.0,SUI,Kloten
+2002,5,12,143,NYR,Mike,Walsh,LW,USA,74.0,194.0,NAHL,Compuware
+2002,5,13,144,ATL,Paul,Flache,D,CAN,77.0,220.0,OHL,Brampton
+2002,5,14,145,WSH,Robert,Gherson,G,CAN,72.0,155.0,OHL,Sarnia
+2002,5,15,146,CGY,Victor,Bobrov,F,RUS,73.0,176.0,RUS,HC CSKA
+2002,5,16,147,DAL,David,Bararuk,F,CAN,72.0,175.0,WHL,Moose Jaw
+2002,5,17,148,EDM,Glenn,Fisher,G,CAN,73.0,160.0,AJHL,Fort Saskatchewan
+2002,5,18,149,NYI,Marcus,Paulsson,F,SWE,72.0,185.0,SWEDEN,Morrum
+2002,5,19,150,OTT,Brock,Hooton,C,CAN,73.0,185.0,BCHL,Quesnel
+2002,5,20,151,VAN,Robert,McVicar,G,CAN,76.0,202.0,WHL,Brandon
+2002,5,21,152,LAK,Greg,Hogeboom,RW,CAN,72.0,190.0,CCHA,Miami University
+2002,5,22,153,BOS,Peter,Hamerlik,G,SVK,74.0,187.0,OHL,Kingston
+2002,5,23,154,NJD,Krisjanis,Redlihs,D,LVA,75.0,190.0,LAT,Liepasa
+2002,5,24,155,MIN,Armands,Berzins,C,LVA,76.0,227.0,QMJHL,Shawinigan
+2002,5,25,156,CHI,James,Wisniewski,D,USA,71.0,208.0,OHL,Plymouth
+2002,5,26,157,LAK,Joel,Andresen,D,CAN,75.0,200.0,AJHL,St. Albert
+2002,5,27,158,FLA,Vince,Bellissimo,C,CAN,72.0,199.0,USHL,Topeka
+2002,5,28,159,CGY,Kristofer,Persson,RW,SWE,75.0,194.0,SWEDEN-JR.,Modo Jr.
+2002,5,29,160,CAR,Daniel,Manzato,G,CHE,72.0,178.0,QMJHL,Victoriaville
+2002,5,30,161,PHI,Dov,Grumet-Morris,G,USA,74.0,190.0,ECAC,Harvard U.
+2002,5,31,162,TBL,Gerard,Dicaire,D,MKD,74.0,195.0,WHL,Kootenay
+2002,5,32,163,SJS,Tom,Walsh,D,USA,72.0,190.0,USHSE,Deerfield Academy
+2002,5,33,164,COL,Tyler,Weiman,G,CAN,71.0,180.0,WHL,Tri-City
+2002,5,34,165,STL,Justin,Maiser,F,USA,73.0,191.0,H-EAST,Boston University
+2002,5,35,166,DET,Logan,Koopmans,G,CAN,74.0,182.0,WHL,Lethbridge
+2002,6,1,167,ATL,Brad,Schell,C,CAN,73.0,190.0,WHL,Spokane
+2002,6,2,168,CBJ,Tim,Konsorada,RW,CAN,73.0,208.0,WHL,Brandon
+2002,6,3,169,FLA,Jeremy,Swanson,D,CAN,72.0,199.0,OHL,Barrie
+2002,6,4,170,TBL,P.J.,Atherton,D,USA,74.0,190.0,USHL,Cedar Rapids
+2002,6,5,171,PIT,Robert,Goepfert,G,USA,70.0,162.0,USHL,Cedar Rapids
+2002,6,6,172,NSH,Mike,McKenna,G,USA,75.0,195.0,ECAC,St. Lawrence
+2002,6,7,173,ANA,Luke,Fritshaw,D,CAN,75.0,200.0,WHL,Prince Albert
+2002,6,8,174,TBL,Karri,Akkanen,F,FIN,78.0,202.0,Finland Jr.,Ilves Jr.
+2002,6,9,175,MIN,Matt,Foy,RW,CAN,74.0,228.0,H-EAST,Merrimack
+2002,6,10,176,CGY,Curtis,McElhinney,G,CAN,74.0,193.0,WCHA,Colorado College
+2002,6,11,177,NYR,Jake,Taylor,D,USA,76.0,203.0,USHL,Green Bay
+2002,6,12,178,BUF,Maxim,Sheviev,C,RUS,73.0,176.0,RUS,Elektrostal
+2002,6,13,179,WSH,Marian,Havel,F,CZE,72.0,176.0,WHL,Vancouver
+2002,6,14,180,DAL,Kirill,Sidorenko,C,RUS,75.0,187.0,RUS,Kurgan
+2002,6,15,181,EDM,Mikko,Luoma,D,FIN,75.0,207.0,FINLAND,Tappara
+2002,6,16,182,MTL,Andre,Deveaux,C,BHS,75.0,220.0,OHL,Belleville
+2002,6,17,183,TBL,Paul,Ranger,D,CAN,75.0,210.0,OHL,Oshawa
+2002,6,18,184,CBJ,Jaroslav,Balastik,F,CZE,74.0,205.0,CZE,Zlin
+2002,6,19,185,LAK,Ryan,Murphy,RW,USA,71.0,185.0,H-EAST,Boston College
+2002,6,20,186,PHX,Jeff,Pietrasiak,G,USA,73.0,180.0,USHSE,Berkshire
+2002,6,21,187,NJD,Eric,Johansson,C,CAN,72.0,190.0,WHL,Tri-City
+2002,6,22,188,CHI,Kevin,Kantee,D,USA,73.0,185.0,Finland Jr.,Jokerit Jr.
+2002,6,23,189,NYI,Alexei,Stonkus,D,RUS,72.0,174.0,RUS,Yaroslavl
+2002,6,24,190,STL,DJ,King,F,CAN,75.0,230.0,WHL,Lethbridge
+2002,6,25,191,TOR,Ian,White,D,CAN,70.0,200.0,WHL,Swift Current
+2002,6,26,192,PHI,Nikita,Korovkin,D,RUS,74.0,198.0,WHL,Kamloops
+2002,6,27,193,PHI,Joey,Mormina,D,CAN,78.0,220.0,ECAC,Colgate U.
+2002,6,28,194,NYR,Kim,Hirschovits,C,FIN,73.0,183.0,FINLAND,IFK
+2002,6,29,195,COL,Taylor,Christie,D,CAN,75.0,210.0,CCHA,Bowling Green
+2002,6,30,196,FLA,Mikael,Vuorio,G,FIN,72.0,165.0,FINLAND,Lukko
+2002,6,31,197,DET,James,Cuddihy,C,CAN,75.0,194.0,QMJHL,Shawinigan
+2002,7,1,198,ATL,Nathan,Oystrick,D,CAN,72.0,210.0,BCHL,South Surrey
+2002,7,2,199,CBJ,Greg,Mauldin,C,USA,71.0,195.0,H-EAST,U. Mass-Amherst
+2002,7,3,200,FLA,Denis,Yachmenev,LW,RUS,73.0,185.0,OHL,North Bay
+2002,7,4,201,PHI,Mathieu,Brunelle,LW,CAN,70.0,180.0,QMJHL,Victoriaville
+2002,7,5,202,PIT,Patrik,Bartschi,F,CHE,70.0,199.0,SUI,Kloten
+2002,7,6,203,NSH,Josh,Morrow,D,CAN,72.0,210.0,WHL,Tri-City
+2002,7,7,204,MIN,Niklas,Eckerblom,C,SWE,73.0,196.0,SWEDEN,Djurgarden
+2002,7,8,205,EDM,Jean-Francois,Dufort,LW,CAN,74.0,200.0,QMJHL,Cape Breton
+2002,7,9,206,CGY,David,Van Der Gulik,RW,CAN,70.0,173.0,BCHL,Chilliwack
+2002,7,10,207,CGY,Pierre,Johnsson,D,SWE,73.0,183.0,SJL,Farjestad Jr.
+2002,7,11,208,BUF,Radoslav,Hecl,D,SVK,73.0,196.0,SVK,Bratislava
+2002,7,12,209,WSH,Joni,Lindlof,F,FIN,73.0,176.0,Finland Jr.,Tappara Jr.
+2002,7,13,210,DAL,Bryan,Hamm,D,CAN,76.0,213.0,OHL,Peterborough
+2002,7,14,211,EDM,Patrick,Murphy,LW,USA,73.0,195.0,OPJHL,Newmarket
+2002,7,15,212,MTL,Jonathan,Ferland,RW,CAN,74.0,209.0,QMJHL,Acadie-Bathurst
+2002,7,16,213,TBL,Fredrik,Norrena,G,FIN,72.0,190.0,FINLAND,TPS
+2002,7,17,214,VAN,Marc-Andre,Roy,LW,CAN,74.0,205.0,QMJHL,Baie Comeau
+2002,7,18,215,LAK,Mikhail,Lyubushin,D,RUS,73.0,216.0,RUS,Krylja
+2002,7,19,216,PHX,Ladislav,Kouba,LW,CZE,74.0,210.0,WHL,Red Deer
+2002,7,20,217,SJS,Tim,Conboy,D,USA,74.0,210.0,USHL,Topeka
+2002,7,21,218,NJD,Ilkka,Pikkarainen,RW,FIN,74.0,215.0,FINLAND,IFK
+2002,7,22,219,CHI,Tyson,Kellerman,G,CAN,74.0,183.0,OHL,North Bay
+2002,7,23,220,NYI,Brad,Topping,G,CAN,73.0,186.0,OHL,Brampton
+2002,7,24,221,STL,Jonas,Johnson,C,SWE,74.0,185.0,SWEDEN,Frolunda
+2002,7,25,222,TOR,Scott,May,F,CAN,69.0,185.0,CCHA,Ohio State U.
+2002,7,26,223,VAN,Ilia,Krikunov,F,RUS,71.0,169.0,RUS,Elektrostal
+2002,7,27,224,CAR,Adam,Taylor,C,CAN,72.0,190.0,WHL,Kootenay
+2002,7,28,225,CBJ,Steven,Goertzen,RW,CAN,74.0,216.0,WHL,Seattle
+2002,7,29,226,NYR,Joey,Crabb,RW,USA,73.0,190.0,USHL,Green Bay
+2002,7,30,227,COL,Ryan,Steeves,F,CAN,72.0,195.0,ECAC,Yale University
+2002,7,31,228,BOS,Dmitri,Utkin,LW,RUS,72.0,169.0,RUSSIA-JR.,Yaroslavl Jr.
+2002,7,32,229,DET,Derek,Meech,D,CAN,71.0,200.0,WHL,Red Deer
+2002,8,1,230,ATL,Colton,Fretter,F,CAN,70.0,187.0,WJBHL,Chatham
+2002,8,2,231,CBJ,Jaroslav,Kracik,F,CZE,72.0,178.0,CZE,Plzen
+2002,8,3,232,FLA,Peter,Hafner,D,USA,77.0,195.0,USHSE,Taft School
+2002,8,4,233,TBL,Vasily,Koshechkin,G,RUS,77.0,225.0,RUS,Lada Togliatti
+2002,8,5,234,PIT,Max,Talbot,C,CAN,71.0,190.0,QMJHL,Hull
+2002,8,6,235,NSH,Kaleb,Betts,C,CAN,70.0,185.0,BCHL,Chilliwack
+2002,8,7,236,ATL,Tyler,Boldt,D,CAN,73.0,185.0,WHL,Kamloops
+2002,8,8,237,MIN,Christoph,Brandner,F,AUT,76.0,224.0,GERMANY,Krefeld
+2002,8,9,238,CGY,Jyri,Marttinen,D,FIN,71.0,180.0,FINLAND,Jyvaskyla
+2002,8,10,239,PIT,Ryan,Lannon,D,USA,73.0,200.0,ECAC,Harvard U.
+2002,8,11,240,NYR,Petr,Prucha,F,CZE,72.0,175.0,CZE JR.,Pardubice Jr.
+2002,8,12,241,BUF,Dennis,Wideman,D,CAN,72.0,196.0,OHL,London
+2002,8,13,242,WSH,Igor,Ignatushkin,F,RUS,71.0,161.0,RUS,Elektrostal
+2002,8,14,243,DAL,Tuomas,Mikkonen,F,FIN,73.0,183.0,FINLAND,Jyvaskyla
+2002,8,15,244,EDM,Dwight,Helminen,C,USA,70.0,191.0,CCHA,U. of Michigan
+2002,8,16,245,EDM,Tomas,Micka,F,CZE,74.0,176.0,CZE JR.,Slavia Jr.
+2002,8,17,246,OTT,Josef,Vavra,LW,CZE,72.0,174.0,CZE JR.,Vsetin Jr.
+2002,8,18,247,VAN,Matt,Violin,G,CAN,73.0,180.0,CCHA,Lake Superior
+2002,8,19,248,LAK,Tuukka,Pulliainen,F,FIN,71.0,176.0,FINLAND,Tuto
+2002,8,20,249,PHX,Marcus,Smith,D,USA,72.0,192.0,OHL,Kitchener
+2002,8,21,250,NJD,Dan,Glover,D,CAN,74.0,175.0,AJHL,Camrose
+2002,8,22,251,CHI,Jason,Kostadine,RW,USA,72.0,202.0,QMJHL,Hull
+2002,8,23,252,NYI,Martin,Chabada,F,CZE,73.0,202.0,CZE,Sparta
+2002,8,24,253,STL,Tom,Koivisto,D,FIN,70.0,186.0,FINLAND,Jokerit
+2002,8,25,254,TOR,Jarkko,Immonen,C,FIN,72.0,200.0,FINLAND,Assat
+2002,8,26,255,TBL,Ryan,Craig,C,CAN,73.0,215.0,WHL,Brandon
+2002,8,27,256,TBL,Darren,Reid,RW,CAN,74.0,205.0,WHL,Medicine Hat
+2002,8,28,257,ATL,Pauli,Levokari,D,FIN,79.0,260.0,FINLAND,IFK
+2002,8,29,258,COL,Sergei,Shemetov,F,RUS,73.0,174.0,RUS,Yaroslavl
+2002,8,30,259,BOS,Yan,Stastny,F,CAN,70.0,191.0,CCHA,U. of Notre Dame
+2002,8,31,260,DET,Pierre-Olivier,Beaulieu,D,CAN,76.0,184.0,QMJHL,Quebec
+2002,9,1,261,ANA,Francois,Caron,D,CAN,75.0,182.0,QMJHL,Moncton
+2002,9,2,262,DET,Christian,Soderstrom,F,SWE,73.0,176.0,SWEDEN,Timra
+2002,9,3,263,CBJ,Sergei,Mozyakin,F,RUS,70.0,165.0,RUS,HC CSKA
+2002,9,4,264,NSH,Matt,Davis,G,CAN,72.0,198.0,QMJHL,Moncton
+2002,9,5,265,PIT,Dwight,Labrosse,G,USA,73.0,167.0,OHL,Guelph
+2002,9,6,266,NSH,Steven,Spencer,D,CAN,74.0,221.0,WHL,Swift Current
+2002,9,7,267,ANA,Chris,Petrow,D,CAN,74.0,188.0,OHL,Oshawa
+2002,9,8,268,MIN,Mikhail,Tyulyapkin,D,RUS,73.0,187.0,RUSSIA-JR.,N. Novgorod Jr.
+2002,9,9,269,MIN,Mika,Hannula,F,SWE,71.0,180.0,SWEDEN,Malmo
+2002,9,10,270,NYR,Rob,Flynn,RW,USA,74.0,210.0,ECAC,Harvard U.
+2002,9,11,271,BUF,Martin,Cizek,D,CZE,73.0,188.0,CZE JR.,Slavia Jr.
+2002,9,12,272,WSH,Patric,Blomdahl,F,SWE,73.0,205.0,SWEDEN-JR.,AIK Jr.
+2002,9,13,273,DAL,Ned,Havern,LW,USA,73.0,199.0,H-EAST,Boston College
+2002,9,14,274,EDM,Fredrik,Johansson,C,SWE,71.0,178.0,SWEDEN-JR.,Frolunda Jr.
+2002,9,15,275,MTL,Konstantin,Korneev,D,RUS,71.0,176.0,RUS,Krylja
+2002,9,16,276,OTT,Vitali,Atyushov,D,RUS,73.0,205.0,RUS,Perm
+2002,9,17,277,VAN,Thomas,Nussli,F,CHE,74.0,205.0,SUI,Zug
+2002,9,18,278,VAN,Matt,Gens,D,USA,72.0,180.0,WCHA,St. Cloud State
+2002,9,19,279,LAK,Connor,James,RW,CAN,70.0,180.0,WCHA,U. of Denver
+2002,9,20,280,PHX,Russell,Spence,C,CAN,75.0,200.0,MJHL,Opaskwayak (OCN)
+2002,9,21,281,NJD,Bill,Kinkel,LW,USA,76.0,229.0,OHL,Kitchener
+2002,9,22,282,CHI,Adam,Burish,RW,USA,72.0,190.0,USHL,Green Bay
+2002,9,23,283,NYI,Per,Braxenholm,D,SWE,75.0,215.0,SWEDEN,Morrum
+2002,9,24,284,STL,Ryan,MacMurchy,RW,CAN,72.0,208.0,SJHL,Notre Dame
+2002,9,25,285,TOR,Staffan,Kronwall,D,SWE,75.0,209.0,SWEDEN,Huddinge
+2002,9,26,286,TBL,Alexei,Glukhov,F,RUS,75.0,213.0,RUS,Chimik
+2002,9,27,287,TBL,John,Toffey,C,USA,75.0,200.0,CCHA,Ohio State U.
+2002,9,28,288,SJS,Michael,Hutchins,D,USA,72.0,185.0,USHL,Des Moines
+2002,9,29,289,COL,Sean,Collins,LW,USA,69.0,177.0,H-EAST,U. of New Hampshire
+2002,9,30,290,BOS,Pavel,Frolov,F,RUS,73.0,154.0,RUSSIA-JR.,N. Novgorod Jr.
+2002,9,31,291,DET,Jonathan,Ericsson,D,SWE,76.0,220.0,SWEDEN,Vita Hasten
+2003,1,1,1,PIT,Marc-Andre,Fleury,G,CAN,74.0,180.0,QMJHL,Cape Breton
+2003,1,2,2,CAR,Eric,Staal,C,CAN,76.0,205.0,OHL,Peterborough
+2003,1,3,3,FLA,Nathan,Horton,C,CAN,74.0,229.0,OHL,Oshawa
+2003,1,4,4,CBJ,Nikolay,Zherdev,F,UKR,74.0,203.0,RUS,HC CSKA
+2003,1,5,5,BUF,Thomas,Vanek,LW,AUT,74.0,205.0,WCHA,U. of Minnesota
+2003,1,6,6,SJS,Milan,Michalek,RW,CZE,74.0,217.0,CZE,Budejovice
+2003,1,7,7,NSH,Ryan,Suter,D,USA,73.0,198.0,USA,USA U-18
+2003,1,8,8,ATL,Braydon,Coburn,D,CAN,77.0,220.0,WHL,Portland
+2003,1,9,9,CGY,Dion,Phaneuf,D,CAN,75.0,214.0,WHL,Red Deer
+2003,1,10,10,MTL,Andrei,Kostitsyn,F,BLR,72.0,214.0,RUS,HC CSKA
+2003,1,11,11,PHI,Jeff,Carter,C,CAN,75.0,200.0,OHL,Sault Ste. Marie
+2003,1,12,12,NYR,Hugh,Jessiman,RW,USA,78.0,221.0,ECAC,Dartmouth College
+2003,1,13,13,LAK,Dustin,Brown,RW,USA,72.0,209.0,OHL,Guelph
+2003,1,14,14,CHI,Brent,Seabrook,D,CAN,75.0,218.0,WHL,Lethbridge
+2003,1,15,15,NYI,Robert,Nilsson,F,CAN,71.0,185.0,SWEDEN,Leksand
+2003,1,16,16,SJS,Steve,Bernier,RW,CAN,74.0,216.0,QMJHL,Moncton
+2003,1,17,17,NJD,Zach,Parise,C,USA,71.0,195.0,WCHA,U. of North Dakota
+2003,1,18,18,WSH,Eric,Fehr,RW,CAN,76.0,212.0,WHL,Brandon
+2003,1,19,19,ANA,Ryan,Getzlaf,C,CAN,76.0,220.0,WHL,Calgary
+2003,1,20,20,MIN,Brent,Burns,RW,CAN,77.0,219.0,OHL,Brampton
+2003,1,21,21,BOS,Mark,Stuart,D,USA,74.0,213.0,WCHA,Colorado College
+2003,1,22,22,EDM,Marc-Antoine,Pouliot,C,CAN,74.0,193.0,QMJHL,Rimouski
+2003,1,23,23,VAN,Ryan,Kesler,C,USA,74.0,202.0,CCHA,Ohio State U.
+2003,1,24,24,PHI,Mike,Richards,C,CAN,71.0,195.0,OHL,Kitchener
+2003,1,25,25,FLA,Anthony,Stewart,F,CAN,75.0,230.0,OHL,Kingston
+2003,1,26,26,LAK,Brian,Boyle,C,USA,79.0,244.0,USHSE,St. Sebastian's School
+2003,1,27,27,LAK,Jeff,Tambellini,LW,CAN,71.0,186.0,CCHA,U. of Michigan
+2003,1,28,28,ANA,Corey,Perry,RW,CAN,75.0,206.0,OHL,London
+2003,1,29,29,OTT,Patrick,Eaves,RW,CAN,72.0,191.0,H-EAST,Boston College
+2003,1,30,30,STL,Shawn,Belle,D,CAN,73.0,235.0,WHL,Tri-City
+2003,2,1,31,CAR,Danny,Richmond,D,USA,72.0,192.0,CCHA,U. of Michigan
+2003,2,2,32,PIT,Ryan,Stone,C,CAN,74.0,207.0,WHL,Brandon
+2003,2,3,33,DAL,Loui,Eriksson,LW,SWE,75.0,193.0,SJL,Frolunda Jr.
+2003,2,4,34,TBL,Mike,Egener,D,DEU,76.0,195.0,WHL,Calgary
+2003,2,5,35,NSH,Konstantin,Glazachev,LW,RUS,72.0,186.0,RUS,Yaroslavl
+2003,2,6,36,DAL,Vojtech,Polak,F,CZE,70.0,180.0,CZE,Karlovy Vary
+2003,2,7,37,NSH,Kevin,Klein,D,CAN,73.0,201.0,OHL,Toronto St. Michael's
+2003,2,8,38,FLA,Kamil,Kreps,C,CZE,74.0,194.0,OHL,Brampton
+2003,2,9,39,CGY,Tim,Ramholt,D,CAN,74.0,170.0,SUI,Zurich
+2003,2,10,40,MTL,Cory,Urquhart,C,CAN,74.0,195.0,QMJHL,Montreal
+2003,2,11,41,TBL,Matt,Smaby,D,USA,78.0,239.0,USHSW,Shattuck-St. Mary's
+2003,2,12,42,NJD,Petr,Vrana,LW,CZE,70.0,174.0,QMJHL,Halifax
+2003,2,13,43,SJS,Josh,Hennessy,C,USA,72.0,200.0,QMJHL,Quebec
+2003,2,14,44,LAK,Konstantin,Pushkarev,F,KAZ,72.0,180.0,RUS,Ust-Kamenogorsk
+2003,2,15,45,BOS,Patrice,Bergeron,C,CAN,74.0,194.0,QMJHL,Acadie-Bathurst
+2003,2,16,46,CBJ,Dan,Fritsche,C,USA,73.0,204.0,OHL,Sarnia
+2003,2,17,47,SJS,Matt,Carle,D,USA,72.0,205.0,USHL,River City
+2003,2,18,48,NYI,Dimitri,Chernykh,RW,RUS,72.0,180.0,RUS,Chimik
+2003,2,19,49,NSH,Shea,Weber,D,CAN,76.0,234.0,WHL,Kelowna
+2003,2,20,50,NYR,Ivan,Baranka,D,SVK,75.0,205.0,SVK JR.,Dubnica Jr.
+2003,2,21,51,EDM,Colin,McDonald,RW,USA,74.0,190.0,EJHL,New England
+2003,2,22,52,CHI,Corey,Crawford,G,CAN,74.0,200.0,QMJHL,Moncton
+2003,2,23,53,NYI,Evgeni,Tunik,F,RUS,74.0,198.0,RUS,Elektrostal
+2003,2,24,54,DAL,B.J.,Crombeen,RW,USA,74.0,214.0,OHL,Barrie
+2003,2,25,55,FLA,Stefan,Meyer,LW,CAN,74.0,200.0,WHL,Medicine Hat
+2003,2,26,56,MIN,Patrick,O'Sullivan,C,CAN,71.0,190.0,OHL,Mississauga
+2003,2,27,57,TOR,John,Doherty,D,USA,76.0,213.0,USHSE,Phillips-Andover
+2003,2,28,58,NYI,Jeremy,Colliton,C,CAN,74.0,195.0,WHL,Prince Albert
+2003,2,29,59,CHI,Michal,Barinka,D,CZE,75.0,225.0,CZE,Budejovice
+2003,2,30,60,VAN,Marc-Andre,Bernier,RW,CAN,76.0,198.0,QMJHL,Halifax
+2003,2,31,61,MTL,Maxim,Lapierre,C,CAN,74.0,207.0,QMJHL,Montreal
+2003,2,32,62,STL,David,Backes,F,USA,75.0,225.0,USHL,Lincoln
+2003,2,33,63,COL,David,Liffiton,D,CAN,74.0,210.0,OHL,Plymouth
+2003,2,34,64,DET,Jimmy,Howard,G,USA,72.0,210.0,H-EAST,U. of Maine
+2003,2,35,65,BUF,Branislav,Fabry,RW,SVK,72.0,185.0,SVK JR.,Bratislava Jr.
+2003,2,37,67,OTT,Igor,Mirnov,F,RUS,72.0,187.0,RUS,Dynamo
+2003,2,38,68,EDM,Jean-Francois,Jacques,LW,CAN,75.0,231.0,QMJHL,Baie Comeau
+2003,3,1,69,PHI,Colin,Fraser,C,CAN,73.0,193.0,WHL,Red Deer
+2003,3,2,70,PIT,Jonathan,Filewich,RW,CAN,74.0,208.0,WHL,Prince George
+2003,3,3,71,CBJ,Dmitri,Kosmachev,D,RUS,75.0,205.0,RUS,HC CSKA
+2003,3,4,72,EDM,Mishail,Joukov,F,RUS,75.0,200.0,SWEDEN,Arboga
+2003,3,5,73,PIT,Daniel,Carcillo,LW,CAN,72.0,205.0,OHL,Sarnia
+2003,3,6,74,BUF,Clarke,MacArthur,LW,CAN,72.0,191.0,WHL,Medicine Hat
+2003,3,7,75,NYR,Ken,Roche,C,USA,71.0,185.0,USHSE,St. Sebastian's School
+2003,3,8,76,NSH,Richard,Stehlik,D,SVK,76.0,245.0,QMJHL,Sherbrooke
+2003,3,9,77,PHX,Tyler,Redenbach,F,CAN,71.0,184.0,WHL,Swift Current
+2003,3,10,78,MIN,Danny,Irmen,C,USA,72.0,182.0,USHL,Lincoln
+2003,3,11,79,MTL,Ryan,O'Byrne,D,CAN,77.0,234.0,BCHL,Nanaimo
+2003,3,12,80,PHX,Dimitri,Pestunov,C,KAZ,69.0,196.0,RUS,Magnitogorsk
+2003,3,13,81,PHI,Stefan,Ruzicka,RW,SVK,72.0,200.0,SVK,Nitra
+2003,3,14,82,LAK,Ryan,Munce,G,CAN,74.0,180.0,OHL,Sarnia
+2003,3,15,83,WSH,Stephen,Werner,RW,USA,72.0,197.0,H-EAST,U. Mass-Amherst
+2003,3,16,84,STL,Konstantin,Barulin,G,RUS,74.0,200.0,RUS,Tyumen
+2003,3,17,85,PHI,Alexandre,Picard,D,CAN,75.0,215.0,QMJHL,Halifax
+2003,3,18,86,ANA,Shane,Hynes,RW,CAN,75.0,210.0,ECAC,Cornell U.
+2003,3,19,87,PHI,Ryan,Potulny,C,USA,72.0,190.0,USHL,Lincoln
+2003,3,20,88,STL,Zack,Fitzgerald,D,USA,74.0,205.0,WHL,Seattle
+2003,3,21,89,NSH,Paul,Brown,RW,CAN,74.0,184.0,WHL,Kamloops
+2003,3,22,90,ANA,Juha,Alen,D,FIN,75.0,218.0,CCHA,Northern Michigan U.
+2003,3,23,91,TOR,Martin,Sagat,LW,SVK,75.0,191.0,SVK,Trencin
+2003,3,24,92,NSH,Alexander,Sulzer,D,DEU,73.0,204.0,GERMANY,Hamburg
+2003,3,25,93,NJD,Ivan,Khomutov,F,RUS,74.0,198.0,RUS,Elektrostal
+2003,3,26,94,EDM,Zack,Stortini,RW,CAN,76.0,215.0,OHL,Sudbury
+2003,3,27,95,PHI,Rick,Kozak,RW,CAN,74.0,187.0,WHL,Brandon
+2003,3,28,96,TBL,Jonathan,Boutin,G,CAN,73.0,200.0,QMJHL,Halifax
+2003,3,29,97,CGY,Ryan,Donally,LW,CAN,76.0,210.0,OHL,Windsor
+2003,3,30,98,NSH,Grigory,Shafigulin,C,RUS,74.0,185.0,RUS,Yaroslavl
+2003,3,31,99,DAL,Matt,Nickerson,D,USA,76.0,230.0,NAHL,Texas
+2003,3,32,100,OTT,Philippe,Seydoux,D,CHE,73.0,185.0,SUI,Kloten
+2003,3,33,101,STL,Konstantin,Zakharov,F,BLR,73.0,185.0,BLR,Junost Minsk
+2003,4,1,102,CAR,Aaron,Dawson,D,USA,76.0,220.0,OHL,Peterborough
+2003,4,2,103,CBJ,Kevin,Jarman,LW,CAN,72.0,184.0,OPJRA,Stouffville
+2003,4,3,104,CBJ,Philippe,Dupuis,C,CAN,72.0,196.0,QMJHL,Hull
+2003,4,4,105,FLA,Martin,Lojek,D,CZE,76.0,220.0,OHL,Brampton
+2003,4,5,106,BUF,Jan,Hejda,D,CZE,76.0,237.0,CZE,Slavia
+2003,4,6,107,BOS,Byron,Bitz,RW,CAN,77.0,215.0,BCHL,Nanaimo
+2003,4,7,108,PHI,Kevin,Romy,F,CHE,71.0,183.0,SUI,Geneve
+2003,4,8,109,WSH,Andreas,Valdix,LW,SWE,71.0,167.0,SWEDEN,Malmo
+2003,4,9,110,ATL,James,Sharrow,D,USA,74.0,195.0,QMJHL,Halifax
+2003,4,10,111,VAN,Brandon,Nolan,F,CAN,73.0,192.0,OHL,Oshawa
+2003,4,11,112,CGY,Jamie,Tardif,RW,CAN,72.0,207.0,OHL,Peterborough
+2003,4,12,113,MTL,Corey,Locke,C,CAN,69.0,175.0,OHL,Ottawa
+2003,4,13,114,BUF,Denis,Ezhov,D,RUS,71.0,200.0,RUS,Togliatti
+2003,4,14,115,PHX,Liam,Lindstrom,C,CAN,72.0,189.0,SWEDEN,Mora
+2003,4,15,116,ATL,Guillaume,Desbiens,RW,CAN,74.0,210.0,QMJHL,Rouyn-Noranda
+2003,4,16,117,NSH,Teemu,Lassila,G,FIN,72.0,202.0,FINLAND,TPS
+2003,4,17,118,BOS,Frank,Rediker,D,USA,73.0,200.0,OHL,Windsor
+2003,4,18,119,ANA,Nathan,Saunders,D,CAN,76.0,210.0,QMJHL,Moncton
+2003,4,19,120,NYI,Stefan,Blaho,RW,SVK,73.0,198.0,SVK JR.,Trencin Jr.
+2003,4,20,121,PIT,Paul,Bissonnette,D,CAN,75.0,220.0,OHL,Saginaw
+2003,4,21,122,NYR,Corey,Potter,D,USA,75.0,206.0,CCHA,Michigan State U.
+2003,4,22,123,MTL,Danny,Stewart,LW,CAN,72.0,173.0,QMJHL,Rimouski
+2003,4,23,124,FLA,James,Pemberton,D,USA,76.0,215.0,H-EAST,Providence College
+2003,4,24,125,TOR,Konstantin,Volkov,RW,RUS,72.0,174.0,RUSSIA-JR.,Dynamo Jr.
+2003,4,25,126,CAR,Kevin,Nastiuk,G,CAN,73.0,180.0,WHL,Medicine Hat
+2003,4,26,127,STL,Alexandre,Bolduc,C,CAN,73.0,197.0,QMJHL,Rouyn-Noranda
+2003,4,27,128,VAN,Ty,Morris,LW,CAN,73.0,200.0,AJHL,St. Albert
+2003,4,28,129,BOS,Patrik,Valcak,F,CZE,73.0,187.0,CZE JR.,Ostrava Jr.
+2003,4,29,130,CAR,Matej,Trojovsky,D,CZE,76.0,220.0,WHL,Regina
+2003,4,30,131,COL,David,Svagrovsky,RW,CZE,75.0,205.0,WHL,Seattle
+2003,4,31,132,DET,Kyle,Quincey,D,CAN,74.0,207.0,OHL,London
+2003,4,32,133,NSH,Rustam,Sidikov,G,RUS,73.0,158.0,RUS,HC CSKA
+2003,4,33,134,DAL,Alexander,Naurov,F,RUS,71.0,191.0,RUSSIA-JR.,Yaroslavl Jr.
+2003,4,34,135,OTT,Mattias,Karlsson,D,SWE,74.0,192.0,SWEDEN,Brynas
+2003,4,35,136,ATL,Michael,Vannelli,D,USA,74.0,190.0,USHL,Sioux Falls
+2003,5,1,137,CAR,Tyson,Strachan,D,CAN,74.0,215.0,BCHL,Vernon
+2003,5,2,138,CBJ,Arsi,Piispanen,RW,FIN,75.0,163.0,Finland Jr.,Jokerit Jr.
+2003,5,3,139,SJS,Patrick,Ehelechner,G,DEU,74.0,176.0,GERMANY,Hannover
+2003,5,4,140,PHI,David,Tremblay,G,CAN,74.0,180.0,QMJHL,Hull
+2003,5,5,141,FLA,Dan,Travis,RW,USA,75.0,220.0,USHSE,Deerfield Academy
+2003,5,6,142,OTT,Tim,Cook,D,USA,76.0,200.0,USHL,River City
+2003,5,7,143,CGY,Greg,Moore,RW,USA,73.0,225.0,H-EAST,U. of Maine
+2003,5,8,144,DAL,Eero,Kilpelainen,G,FIN,71.0,152.0,Finland Jr.,Kalpa Jr.
+2003,5,9,145,ATL,Brett,Sterling,LW,USA,67.0,175.0,WCHA,Colorado College
+2003,5,10,146,COL,Mark,McCutcheon,C,USA,72.0,190.0,EJHL,New England
+2003,5,11,147,EDM,Kalle,Olsson,F,SWE,72.0,183.0,SJL,Frolunda Jr.
+2003,5,12,148,STL,Lee,Stempniak,RW,USA,72.0,201.0,ECAC,Dartmouth College
+2003,5,13,149,NYR,Nigel,Dawes,LW,CAN,69.0,200.0,WHL,Kootenay
+2003,5,14,150,BUF,Thomas,Morrow,D,USA,78.0,198.0,USHL,Des Moines
+2003,5,15,151,CHI,Lasse,Kukkonen,D,FIN,72.0,190.0,FINLAND,Karpat
+2003,5,16,152,LAK,Brady,Murray,C,CAN,70.0,185.0,BCHL,Salmon Arm
+2003,5,17,153,BOS,Mike,Brown,G,USA,72.0,177.0,OHL,Saginaw
+2003,5,18,154,EDM,David,Rohlfs,RW,USA,75.0,219.0,NAHL,Compuware
+2003,5,19,155,WSH,Josh,Robertson,C,USA,71.0,186.0,USHSE,Proctor
+2003,5,20,156,CHI,Alexei,Ivanov,C,RUS,69.0,174.0,RUSSIA-JR.,Yaroslavl Jr.
+2003,5,21,157,MIN,Marcin,Kolusz,F,POL,73.0,180.0,POLAND,Novy Targ
+2003,5,22,158,TOR,John,Mitchell,C,CAN,73.0,204.0,OHL,Plymouth
+2003,5,23,159,STL,Chris,Beckford-Tseu,G,CAN,75.0,201.0,OHL,Oshawa
+2003,5,24,160,VAN,Nicklas,Danielsson,RW,SWE,72.0,169.0,SWEDEN,Brynas
+2003,5,25,161,PIT,Evgeni,Isakov,LW,RUS,73.0,196.0,RUS,Cherepovets
+2003,5,26,162,FLA,Martin,Tuma,D,CZE,76.0,209.0,CZE JR.,Litvinov Jr.
+2003,5,27,163,COL,Brad,Richardson,C,CAN,71.0,192.0,OHL,Owen Sound
+2003,5,28,164,DET,Ryan,Oulahen,C,CAN,72.0,180.0,OHL,Brampton
+2003,5,29,165,DAL,Gino,Guyer,C,USA,70.0,184.0,WCHA,U. of Minnesota
+2003,5,30,166,OTT,Sergei,Gimayev,D,RUS,73.0,183.0,RUS,Cherepovets
+2003,5,31,167,NJD,Zach,Tarkir,D,USA,72.0,180.0,BCHL,Chilliwack
+2003,6,1,168,CBJ,Marc,Methot,D,CAN,75.0,222.0,OHL,London
+2003,6,2,169,PIT,Lukas,Bolf,D,CZE,73.0,189.0,CZE JR.,Sparta Jr.
+2003,6,3,170,DET,Andreas,Sundin,LW,SWE,72.0,185.0,SWEDEN,Linkoping
+2003,6,4,171,FLA,Denis,Stasyuk,C,RUS,73.0,165.0,RUS,Novokuznetsk
+2003,6,5,172,BUF,Pavel,Voroshnin,D,RUS,74.0,183.0,OHL,Mississauga
+2003,6,6,173,CGY,Tyler,Johnson,C,CAN,74.0,173.0,WHL,Moose Jaw
+2003,6,7,174,LAK,Esa,Pirnes,C,FIN,72.0,189.0,FINLAND,Tappara
+2003,6,8,175,ATL,Mike,Hamilton,F,CAN,73.0,198.0,BCHL,Merritt
+2003,6,9,176,NYR,Ivan,Dornic,C,SVK,72.0,183.0,SVK JR.,Bratislava Jr.
+2003,6,10,177,MTL,Christopher,Heino-Lindberg,G,SWE,71.0,163.0,SWEDEN,Hammarby
+2003,6,11,178,PHX,Ryan,Gibbons,RW,CAN,76.0,210.0,WHL,Seattle
+2003,6,12,179,NYR,Philippe,Furrer,D,CHE,73.0,187.0,SUI,Bern
+2003,6,13,180,NYR,Chris,Holt,G,CAN,75.0,229.0,USA,USA U-18
+2003,6,14,181,CHI,Johan,Andersson,C,SWE,72.0,200.0,SWEDEN,Troja
+2003,6,15,182,NYI,Bruno,Gervais,D,CAN,73.0,200.0,QMJHL,Acadie-Bathurst
+2003,6,16,183,BOS,Nate,Thompson,C,USA,72.0,210.0,WHL,Seattle
+2003,6,17,184,EDM,Dragan,Umicevic,LW,SWE,72.0,191.0,SWEDEN,Sodertalje
+2003,6,18,185,DAL,Francis,Wathier,LW,CAN,76.0,208.0,QMJHL,Hull
+2003,6,19,186,ANA,Drew,Miller,LW,USA,74.0,178.0,USHL,River City
+2003,6,20,187,MIN,Miroslav,Kopriva,G,CZE,76.0,215.0,CZE,Kladno
+2003,6,21,188,MTL,Mark,Flood,D,CAN,73.0,190.0,OHL,Peterborough
+2003,6,22,189,STL,Jonathan,Lehun,C,CAN,72.0,170.0,WCHA,St. Cloud State
+2003,6,23,190,VAN,Chad,Brownlee,D,CAN,74.0,184.0,BCHL,Vernon
+2003,6,24,191,PHI,Rejean,Beauchemin,G,CAN,73.0,193.0,WHL,Prince Albert
+2003,6,25,192,TBL,Doug,O'Brien,D,CAN,72.0,200.0,QMJHL,Hull
+2003,6,26,193,PHI,Ville,Hostikka,G,FIN,75.0,209.0,FINLAND,Saipa
+2003,6,27,194,DET,Stefan,Blom,D,SWE,74.0,189.0,SJL,Hammarby Jr.
+2003,6,28,195,DAL,Drew,Bagnall,D,CAN,75.0,220.0,SJHL,Battlefords
+2003,6,29,196,DAL,Elias,Granath,D,SWE,73.0,174.0,SJL,Leksand Jr.
+2003,6,30,197,NJD,Jason,Smith,G,CAN,73.0,170.0,LHJAAAQ,Lennoxville
+2003,7,1,198,CAR,Shay,Stephenson,LW,CAN,74.0,180.0,WHL,Red Deer
+2003,7,2,199,PIT,Andy,Chiodo,G,CAN,71.0,192.0,OHL,Toronto St. Michael's
+2003,7,3,200,CBJ,Alexander,Guskov,D,RUS,74.0,202.0,RUS,Yaroslavl
+2003,7,4,201,SJS,Jonathan,Tremblay,RW,CAN,75.0,240.0,QMJHL,Acadie-Bathurst
+2003,7,5,202,BUF,Nathan,Paetsch,D,CAN,73.0,198.0,WHL,Moose Jaw
+2003,7,6,203,ATL,Denis,Loginov,C,RUS,73.0,211.0,RUS,Kazan
+2003,7,7,204,COL,Linus,Videll,LW,SWE,75.0,214.0,SJL,Sodertalje Jr.
+2003,7,8,205,SJS,Joe,Pavelski,C,USA,71.0,195.0,USHL,Waterloo
+2003,7,9,206,CGY,Thomas,Bellemare,D,CAN,74.0,236.0,QMJHL,Drummondville
+2003,7,10,207,MIN,Grigory,Misharin,D,RUS,72.0,198.0,RUS,Yekaterinburg
+2003,7,11,208,PHX,Randall,Gelech,F,CAN,74.0,206.0,WHL,Kelowna
+2003,7,12,209,NYR,Dylan,Reese,D,USA,73.0,201.0,NAHL,Pittsburgh
+2003,7,13,210,NSH,Andrei,Mukhachev,D,RUS,75.0,196.0,RUS,HC CSKA
+2003,7,14,211,CHI,Mike,Brodeur,G,CAN,74.0,185.0,AJHL,Camrose
+2003,7,15,212,NYI,Denis,Rehak,D,SVK,74.0,196.0,SVK JR.,Trencin Jr.
+2003,7,16,213,NSH,Miroslav,Hanuljak,G,CZE,71.0,165.0,CZE JR.,Litvinov Jr.
+2003,7,17,214,EDM,Kyle,Brodziak,C,CAN,74.0,209.0,WHL,Moose Jaw
+2003,7,18,215,EDM,Mathieu,Roy,D,CAN,74.0,208.0,QMJHL,Val d'Or
+2003,7,19,216,SJS,Kai,Hospelt,F,DEU,73.0,187.0,GERMANY,Koln
+2003,7,20,217,MTL,Oskari,Korpikari,D,FIN,73.0,198.0,FINLAND,Karpat
+2003,7,21,218,ANA,Dirk,Southern,C,CAN,72.0,177.0,CCHA,Northern Michigan U.
+2003,7,22,219,MIN,Adam,Courchaine,C,CAN,70.0,171.0,WHL,Vancouver
+2003,7,23,220,TOR,Jeremy,Williams,C,CAN,72.0,191.0,WHL,Swift Current
+2003,7,24,221,STL,Evgeny,Skachkov,LW,RUS,72.0,194.0,RUS,Kapitan Jr.
+2003,7,25,222,VAN,Francois-Pierre,Guenette,F,CAN,72.0,180.0,QMJHL,Halifax
+2003,7,27,224,TBL,Gerald,Coleman,G,USA,76.0,213.0,OHL,London
+2003,7,28,225,COL,Brett,Hemingway,F,CAN,73.0,185.0,BCHL,Coquitlam
+2003,7,29,226,DET,Tomas,Kollar,LW,SWE,74.0,211.0,SWEDEN,Hammarby
+2003,7,30,227,TBL,Jay,Rosehill,D,CAN,75.0,215.0,AJHL,Olds
+2003,7,32,229,PIT,Stephen,Dixon,C,CAN,72.0,185.0,QMJHL,Cape Breton
+2003,8,1,230,CAR,Jamie,Hoffmann,C,USA,74.0,195.0,USHL,Des Moines
+2003,8,2,231,LAK,Matt,Zaba,G,CAN,73.0,190.0,BCHL,Vernon
+2003,8,3,232,PIT,Joe,Jensen,C,USA,71.0,180.0,WCHA,St. Cloud State
+2003,8,4,233,CBJ,Mathieu,Gravel,LW,CAN,76.0,195.0,QMJHL,Shawinigan
+2003,8,5,234,FLA,Petr,Kadlec,D,CZE,71.0,180.0,CZE,Slavia
+2003,8,6,235,BUF,Jeff,Weber,G,CAN,74.0,193.0,OHL,Plymouth
+2003,8,7,236,SJS,Alexander,Hult,C,SWE,73.0,200.0,SWEDEN,Tranas
+2003,8,8,237,TOR,Shaun,Landolt,RW,CAN,73.0,202.0,WHL,Calgary
+2003,8,9,238,NYI,Cody,Blanshan,D,USA,73.0,200.0,CCHA,U. of Nebraska-Omaha
+2003,8,10,239,ATL,Toby,Enstrom,D,SWE,70.0,180.0,SWEDEN,Modo
+2003,8,11,240,CGY,Cam,Cunning,LW,CAN,72.0,197.0,WHL,Kamloops
+2003,8,12,241,MTL,Jimmy,Bonneau,LW,CAN,74.0,216.0,QMJHL,Montreal
+2003,8,13,242,PHX,Eduard,Lewandowski,F,RUS,73.0,205.0,GERMANY,Koln
+2003,8,14,243,NYR,Jan,Marek,F,CZE,70.0,185.0,CZE,Trinec
+2003,8,15,244,LAK,Mike,Sullivan,C,CAN,76.0,190.0,OPJRA,Stouffville
+2003,8,16,245,CHI,Dustin,Byfuglien,D,USA,77.0,265.0,WHL,Prince George
+2003,8,17,246,NYI,Igor,Volkov,RW,RUS,72.0,189.0,RUS,Ufa
+2003,8,18,247,BOS,Benoit,Mondou,C,CAN,70.0,165.0,QMJHL,Shawinigan
+2003,8,19,248,EDM,Josef,Hrabal,D,CZE,73.0,176.0,CZE JR.,Vsetin Jr.
+2003,8,20,249,WSH,Andrew,Joudrey,C,CAN,71.0,191.0,SJHL,Notre Dame
+2003,8,21,250,ANA,Shane,O'Brien,D,CAN,75.0,230.0,OHL,Toronto St. Michael's
+2003,8,22,251,MIN,Mathieu,Melanson,LW,USA,72.0,185.0,QMJHL,Chicoutimi
+2003,8,23,252,VAN,Sergei,Topol,F,RUS,73.0,183.0,RUS,Omsk
+2003,8,24,253,STL,Andrei,Pervyshin,D,RUS,68.0,165.0,RUSSIA-JR.,Yaroslavl Jr.
+2003,8,25,254,VAN,Nathan,McIver,D,CAN,75.0,205.0,OHL,Toronto St. Michael's
+2003,8,26,255,TBL,Raimonds,Danilics,F,LVA,75.0,180.0,LAT JR,Stalkers
+2003,8,27,256,TBL,Brady,Greco,D,USA,74.0,198.0,USHL,Chicago
+2003,8,28,257,COL,Darryl,Yacboski,D,CAN,75.0,216.0,WHL,Regina
+2003,8,29,258,DET,Vladimir,Kutny,LW,SVK,76.0,195.0,QMJHL,Quebec
+2003,8,30,259,DAL,Niko,Vainio,D,FIN,73.0,180.0,Finland Jr.,Jokerit Jr.
+2003,8,31,260,OTT,Ossi,Louhivaara,F,FIN,73.0,178.0,FINLAND,Kookoo
+2003,8,32,261,NJD,Joey,Tenute,C,CAN,70.0,176.0,OHL,Sarnia
+2003,9,1,262,CAR,Ryan,Rorabeck,C,CAN,73.0,173.0,OHL,Toronto St. Michael's
+2003,9,2,263,PIT,Matt,Moulson,LW,CAN,73.0,210.0,ECAC,Cornell U.
+2003,9,3,264,FLA,John,Hecimovic,RW,CAN,73.0,215.0,OHL,Sarnia
+2003,9,4,265,FLA,Tanner,Glass,F,CAN,73.0,210.0,BCHL,Nanaimo
+2003,9,5,266,BUF,Louis Philippe,Martin,RW,CAN,72.0,172.0,QMJHL,Baie Comeau
+2003,9,6,267,SJS,Brian,O'Hanley,D,USA,72.0,180.0,USHSE,Boston College H.S.
+2003,9,7,268,NSH,Lauris,Darzins,F,LVA,74.0,176.0,Finland Jr.,Lukko Jr.
+2003,9,8,269,ATL,Rylan,Kaip,C,CAN,72.0,175.0,SJHL,Notre Dame
+2003,9,9,270,CGY,Kevin,Harvey,LW,CAN,74.0,175.0,OPJRA,Georgetown
+2003,9,10,271,MTL,Jaroslav,Halak,G,SVK,71.0,185.0,SVK JR.,Bratislava Jr.
+2003,9,11,272,PHX,Sean,Sullivan,D,USA,72.0,190.0,USHSE,St. Sebastian's School
+2003,9,12,273,TBL,Albert,Vishnyakov,F,RUS,73.0,178.0,RUS,Kazan
+2003,9,13,274,LAK,Martin,Guerin,RW,USA,73.0,190.0,USHL,Des Moines
+2003,9,14,275,CHI,Michael,Grenzy,D,USA,76.0,190.0,USHL,Chicago
+2003,9,15,276,SJS,Carter,Lee,F,USA,73.0,190.0,USHSE,Canterbury
+2003,9,16,277,BOS,Kevin,Regan,G,USA,72.0,195.0,USHSE,St. Sebastian's School
+2003,9,17,278,EDM,Troy,Bodie,RW,CAN,76.0,196.0,WHL,Kelowna
+2003,9,18,279,WSH,Mark,Olafson,RW,CAN,72.0,209.0,WHL,Kelowna
+2003,9,19,280,ANA,Ville,Mantymaa,D,FIN,75.0,183.0,FINLAND,Tappara
+2003,9,20,281,MIN,Jean-Michel,Bolduc,D,USA,76.0,190.0,QMJHL,Quebec
+2003,9,21,282,CHI,Chris,Porter,C,CAN,73.0,200.0,USHL,Lincoln
+2003,9,23,284,STL,Juha-Matti Tapio,Aaltonen,F,FIN,71.0,163.0,Finland Jr.,Karpat Jr.
+2003,9,24,285,VAN,Matthew,Hansen,D,CAN,76.0,198.0,WHL,Seattle
+2003,9,25,286,TBL,Zbynek,Hrdel,C,CZE,74.0,194.0,QMJHL,Rimouski
+2003,9,26,287,TBL,Nick,Tarnasky,C,CAN,74.0,224.0,WHL,Lethbridge
+2003,9,27,288,COL,David,Jones,RW,CAN,74.0,210.0,BCHL,Coquitlam
+2003,9,28,289,DET,Mikael,Johansson,F,SWE,70.0,188.0,SWEDEN,Arvika
+2003,9,29,290,PHX,Loic,Burkhalter,F,CHE,72.0,192.0,SUI,Ambri
+2003,9,30,291,OTT,Brian,Elliott,G,CAN,75.0,201.0,OPJRA,Ajax
+2003,9,31,292,NJD,Arseny,Bondarev,LW,RUS,72.0,165.0,RUS,Yaroslavl
+2004,1,1,1,WSH,Alex,Ovechkin,LW,RUS,74.0,233.0,RUS,Dynamo
+2004,1,2,2,PIT,Evgeni,Malkin,F,RUS,75.0,195.0,RUS,Magnitogorsk
+2004,1,3,3,CHI,Cam,Barker,D,CAN,75.0,215.0,WHL,Medicine Hat
+2004,1,4,4,CAR,Andrew,Ladd,LW,CAN,75.0,205.0,WHL,Calgary
+2004,1,5,5,PHX,Blake,Wheeler,RW,USA,77.0,205.0,USHSW,Breck School
+2004,1,6,6,NYR,Al,Montoya,G,USA,74.0,195.0,CCHA,U. of Michigan
+2004,1,7,7,FLA,Rostislav,Olesz,C,CZE,73.0,214.0,CZE,Vitkovice
+2004,1,8,8,CBJ,Alexandre,Picard,LW,CAN,74.0,206.0,QMJHL,Lewiston
+2004,1,9,9,ANA,Ladislav,Smid,D,CZE,75.0,226.0,CZE,Liberec
+2004,1,10,10,ATL,Boris,Valabik,D,SVK,79.0,255.0,OHL,Kitchener
+2004,1,11,11,LAK,Lauri,Tukonen,RW,FIN,74.0,187.0,FINLAND,Blues
+2004,1,12,12,MIN,A.J.,Thelen,D,USA,75.0,205.0,CCHA,Michigan State U.
+2004,1,13,13,BUF,Drew,Stafford,RW,USA,74.0,214.0,WCHA,U. of North Dakota
+2004,1,14,14,EDM,Devan,Dubnyk,G,CAN,78.0,202.0,WHL,Kamloops
+2004,1,15,15,NSH,Alexander,Radulov,RW,RUS,73.0,188.0,RUS,Tver
+2004,1,16,16,NYI,Petteri,Nokelainen,F,FIN,73.0,194.0,FINLAND,Saipa
+2004,1,17,17,STL,Marek,Schwarz,G,CZE,72.0,180.0,CZE,Sparta
+2004,1,18,18,MTL,Kyle,Chipchura,C,CAN,74.0,206.0,WHL,Prince Albert
+2004,1,19,19,NYR,Lauri,Korpikoski,F,FIN,73.0,200.0,Finland Jr.,TPS Jr.
+2004,1,20,20,NJD,Travis,Zajac,C,CAN,75.0,200.0,BCHL,Salmon Arm
+2004,1,21,21,COL,Wojtek,Wolski,LW,POL,75.0,215.0,OHL,Brampton
+2004,1,22,22,SJS,Lukas,Kaspar,RW,CZE,74.0,225.0,CZE,Litvinov
+2004,1,23,23,OTT,Andrej,Meszaros,D,SVK,74.0,223.0,SVK,Trencin
+2004,1,24,24,CGY,Kris,Chucko,LW,CAN,74.0,190.0,BCHL,Salmon Arm
+2004,1,25,25,EDM,Rob,Schremp,C,USA,70.0,184.0,OHL,London
+2004,1,26,26,VAN,Cory,Schneider,G,USA,74.0,195.0,USHSE,Phillips-Andover
+2004,1,27,27,WSH,Jeff,Schultz,D,CAN,78.0,230.0,WHL,Calgary
+2004,1,28,28,DAL,Mark,Fistric,D,CAN,75.0,231.0,WHL,Vancouver
+2004,1,29,29,WSH,Mike,Green,D,CAN,73.0,204.0,WHL,Saskatoon
+2004,1,30,30,TBL,Andy,Rogers,D,CAN,77.0,206.0,WHL,Calgary
+2004,2,1,31,PIT,Johannes,Salmonsson,F,SWE,74.0,183.0,SWEDEN,Djurgarden
+2004,2,2,32,CHI,Dave,Bolland,F,CAN,72.0,181.0,OHL,London
+2004,2,3,33,WSH,Chris,Bourque,C,USA,68.0,178.0,USHSE,Cushing Academy
+2004,2,4,34,DAL,Johan,Fransson,D,SWE,73.0,192.0,SWEDEN,Lulea
+2004,2,5,35,PHX,Logan,Stephenson,D,CAN,75.0,185.0,WHL,Tri-City
+2004,2,6,36,NYR,Darin,Olver,C,CAN,72.0,165.0,CCHA,Northern Michigan U.
+2004,2,7,37,FLA,David,Shantz,G,CAN,73.0,204.0,OHL,Mississauga
+2004,2,8,38,CAR,Justin,Peters,G,CAN,73.0,205.0,OHL,Toronto St. Michael's
+2004,2,9,39,ANA,Jordan,Smith,D,CAN,73.0,207.0,OHL,Sault Ste. Marie
+2004,2,10,40,ATL,Grant,Lewis,D,USA,75.0,190.0,ECAC,Dartmouth College
+2004,2,11,41,CHI,Bryan,Bickell,LW,CAN,76.0,223.0,OHL,Ottawa
+2004,2,12,42,MIN,Roman,Voloshenko,LW,BLR,73.0,189.0,RUS,Krylja
+2004,2,13,43,BUF,Michael,Funk,D,CAN,76.0,199.0,WHL,Portland
+2004,2,14,44,EDM,Roman,Teslyuk,D,RUS,73.0,195.0,WHL,Kamloops
+2004,2,15,45,CHI,Ryan,Garlock,C,CAN,73.0,202.0,OHL,Windsor
+2004,2,16,46,CBJ,Adam,Pineault,RW,USA,73.0,201.0,H-EAST,Boston College
+2004,2,17,47,NYI,Blake,Comeau,RW,CAN,72.0,198.0,WHL,Kelowna
+2004,2,18,48,NYR,Dane,Byers,LW,CAN,75.0,204.0,WHL,Prince Albert
+2004,2,19,49,STL,Carl,Soderberg,F,SWE,75.0,198.0,SWEDEN,Malmo
+2004,2,20,50,PHX,Enver,Lisin,RW,RUS,74.0,200.0,RUS,Saratov
+2004,2,21,51,NYR,Bruce,Graham,C,CAN,78.0,220.0,QMJHL,Moncton
+2004,2,22,52,DAL,Raymond,Sawada,RW,CAN,74.0,207.0,BCHL,Nanaimo
+2004,2,23,53,FLA,David,Booth,LW,USA,72.0,212.0,CCHA,Michigan State U.
+2004,2,24,54,CHI,Jakub,Sindel,C,CZE,72.0,172.0,CZE,Sparta
+2004,2,25,55,COL,Victor,Oreskovich,RW,CAN,75.0,215.0,USHL,Green Bay
+2004,2,26,56,DAL,Nicklas,Grossmann,D,SWE,75.0,227.0,SJL,Sodertalje Jr.
+2004,2,27,57,EDM,Geoff,Paukovich,LW,USA,76.0,208.0,USA,USA U-18
+2004,2,28,58,OTT,Kirill,Lyamin,D,RUS,75.0,198.0,RUS,HC CSKA
+2004,2,29,59,CBJ,Kyle,Wharton,D,CAN,75.0,185.0,OHL,Ottawa
+2004,2,30,60,NYR,Brandon,Dubinsky,C,USA,73.0,210.0,WHL,Portland
+2004,2,31,61,PIT,Alex,Goligoski,D,USA,71.0,180.0,USHL,Sioux Falls
+2004,2,32,62,WSH,Michail,Yunkov,F,RUS,72.0,180.0,RUS,Krylja
+2004,2,33,63,BOS,David,Krejci,C,CZE,72.0,177.0,CZE JR.,Kladno Jr.
+2004,2,34,64,BOS,Martins,Karsums,RW,LVA,70.0,198.0,QMJHL,Moncton
+2004,2,35,65,TBL,Mark,Tobin,LW,CAN,75.0,204.0,QMJHL,Rimouski
+2004,3,1,66,WSH,Sami,Lepisto,D,FIN,72.0,195.0,FINLAND,Jokerit
+2004,3,2,67,PIT,Nick,Johnson,RW,CAN,73.0,183.0,AJHL,St. Albert
+2004,3,3,68,CHI,Adam,Berti,LW,CAN,75.0,205.0,OHL,Oshawa
+2004,3,4,69,CAR,Casey,Borer,D,USA,74.0,205.0,WCHA,St. Cloud State
+2004,3,5,70,CGY,Brandon,Prust,F,CAN,74.0,192.0,OHL,London
+2004,3,6,71,BUF,Andrej,Sekera,D,SVK,72.0,201.0,SVK JR.,Trencin Jr.
+2004,3,7,72,COL,Denis,Parshin,LW,RUS,70.0,165.0,RPL,CSKA 2
+2004,3,8,73,NYR,Zdenek,Bahensky,RW,CZE,74.0,190.0,CZE,Litvinov
+2004,3,9,74,ANA,Kyle,Klubertanz,D,USA,73.0,178.0,USHL,Green Bay
+2004,3,10,75,ANA,Tim,Brent,C,CAN,72.0,188.0,OHL,Toronto St. Michael's
+2004,3,11,76,ATL,Scott,Lehman,D,CAN,73.0,194.0,OHL,Toronto St. Michael's
+2004,3,12,77,OTT,Shawn,Weller,LW,USA,74.0,205.0,EJHL,Capital District
+2004,3,13,78,MIN,Peter,Olvecky,F,SVK,74.0,220.0,SVK JR.,Trencin Jr.
+2004,3,14,79,MIN,Clayton,Stoner,D,CAN,75.0,225.0,WHL,Tri-City
+2004,3,15,80,NYR,Billy,Ryan,C,USA,73.0,175.0,USHSE,Cushing Academy
+2004,3,16,81,NSH,Vaclav,Meidl,C,CZE,77.0,198.0,OHL,Plymouth
+2004,3,17,82,NYI,Sergei,Ogorodnikov,C,RUS,73.0,185.0,RUS,Tver
+2004,3,18,83,STL,Victor,Alexandrov,RW,KAZ,71.0,183.0,RUS,Novokuznetsk
+2004,3,19,84,MTL,Alexei,Emelin,D,RUS,72.0,187.0,RUS,Samara
+2004,3,20,85,PIT,Brian,Gifford,C,USA,73.0,173.0,USHSW,Moorhead
+2004,3,21,86,DAL,John,Lammers,LW,CAN,71.0,184.0,WHL,Lethbridge
+2004,3,22,87,OTT,Peter,Regin,F,DNK,74.0,205.0,DEN JR.,Herning
+2004,3,23,88,WSH,Clayton,Barthel,D,DEU,75.0,205.0,WHL,Seattle
+2004,3,24,89,OTT,Jeff,Glass,G,CAN,75.0,206.0,WHL,Kootenay
+2004,3,25,90,TOR,Justin,Pogge,G,CAN,75.0,204.0,WHL,Prince George
+2004,3,26,91,VAN,Alexander,Edler,D,SWE,75.0,215.0,SWEDEN-2,Jamtland
+2004,3,27,92,PHI,Rob,Bellamy,RW,USA,73.0,190.0,EJHL,New England
+2004,3,28,93,CBJ,Daniel,Lacosta,G,CAN,73.0,186.0,OHL,Owen Sound
+2004,3,29,94,SJS,Thomas,Greiss,G,DEU,73.0,210.0,GERMANY,Koln
+2004,3,30,95,LAK,Paul,Baier,D,USA,75.0,212.0,USHSE,Deerfield Academy
+2004,3,31,96,CBJ,Andrey,Plekhanov,D,RUS,74.0,206.0,RPL,Nizhnekamsk 2
+2004,3,32,97,DET,Johan,Franzen,C,SWE,75.0,222.0,SWEDEN,Linkoping
+2004,3,33,98,CGY,Dustin,Boyd,C,CAN,72.0,187.0,WHL,Moose Jaw
+2004,4,1,99,PIT,Tyler,Kennedy,C,CAN,71.0,183.0,OHL,Sault Ste. Marie
+2004,4,2,100,MTL,JT,Wyman,RW,USA,74.0,199.0,USHSW,Blake
+2004,4,3,101,PHI,R.J.,Anderson,D,USA,72.0,180.0,USHSW,Centennial
+2004,4,4,102,TBL,Mike,Lundin,D,USA,74.0,191.0,H-EAST,U. of Maine
+2004,4,5,103,PHX,Roman,Tomanek,RW,SVK,73.0,176.0,SVK SR.,Povazka Bystrica
+2004,4,6,104,DAL,Fredrik,Naslund,RW,SWE,76.0,207.0,SWEDEN,Vasteras
+2004,4,7,105,FLA,Evan,Schafer,D,CAN,74.0,221.0,WHL,Prince Albert
+2004,4,8,106,ATL,Chad,Painchaud,LW,CAN,71.0,190.0,OHL,Mississauga
+2004,4,9,107,NSH,Nick,Fugere,LW,CAN,74.0,230.0,QMJHL,Gatineau
+2004,4,11,109,CAR,Brett,Carson,D,CAN,76.0,210.0,WHL,Calgary
+2004,4,12,110,LAK,Ned,Lukacevic,LW,MNE,72.0,185.0,WHL,Spokane
+2004,4,13,111,MIN,Ryan,Jones,F,CAN,72.0,205.0,WJRB,Chatham
+2004,4,14,112,EDM,Liam,Reddox,LW,CAN,71.0,178.0,OHL,Peterborough
+2004,4,15,113,TOR,Roman,Kukumberg,F,SVK,73.0,198.0,SVK,Trencin
+2004,4,16,114,MIN,Patrick,Bordeleau,LW,CAN,77.0,195.0,QMJHL,Val d'Or
+2004,4,17,115,NYI,Wes,O'Neill,D,CAN,76.0,215.0,CCHA,U. of Notre Dame
+2004,4,18,116,STL,Michal,Birner,LW,CZE,72.0,183.0,CZE JR.,Slavia Jr.
+2004,4,19,117,MIN,Julien,Sprunger,RW,CHE,76.0,194.0,SUI,Freibourg
+2004,4,20,118,CGY,Aki,Seitsonen,C,FIN,75.0,206.0,WHL,Prince Albert
+2004,4,21,119,PHX,Kevin,Porter,F,USA,72.0,190.0,USA,USA U-18
+2004,4,22,120,CHI,Mitch,Maunu,D,CAN,74.0,205.0,OHL,Windsor
+2004,4,23,121,CGY,Kristopher,Hogg,LW,CAN,71.0,174.0,WHL,Kamloops
+2004,4,24,122,OTT,Alexander,Nikulin,C,RUS,73.0,198.0,RPL,CSKA 2
+2004,4,25,123,CHI,Karel,Hromas,LW,CZE,74.0,189.0,CZE JR.,Sparta Jr.
+2004,4,26,124,PHI,David,Laliberte,RW,CAN,73.0,194.0,QMJHL,Prince Edward Island
+2004,4,27,125,VAN,Andrew,Sarauer,LW,CAN,76.0,190.0,BCHL,Langley
+2004,4,28,126,SJS,Torrey,Mitchell,C,CAN,71.0,190.0,USHSE,Hotchkiss School
+2004,4,29,127,NYR,Ryan,Callahan,RW,USA,70.0,190.0,OHL,Guelph
+2004,4,30,128,DET,Evan,McGrath,C,CAN,72.0,190.0,OHL,Kitchener
+2004,4,31,129,SJS,Jason,Churchill,G,CAN,76.0,184.0,QMJHL,Halifax
+2004,5,1,130,PIT,Michal,Sersen,D,SVK,72.0,176.0,QMJHL,Rimouski
+2004,5,2,131,CHI,Trevor,Kell,RW,CAN,71.0,170.0,OHL,London
+2004,5,3,132,WSH,Oscar,Hedman,D,SWE,72.0,207.0,SWEDEN,Modo
+2004,5,4,133,CBJ,Petr,Pohl,RW,CZE,71.0,185.0,QMJHL,Gatineau
+2004,5,5,134,BOS,Kris,Versteeg,RW,CAN,70.0,182.0,WHL,Lethbridge
+2004,5,6,135,NYR,Roman,Psurny,LW,CZE,73.0,176.0,CZE JR.,Zlin Jr.
+2004,5,7,136,STL,Nikita,Nikitin,D,RUS,75.0,217.0,RPL,Omsk 2
+2004,5,8,137,CAR,Magnus,Akerlund,G,SWE,73.0,183.0,SJL,HV 71 Jr.
+2004,5,9,138,WSH,Pasi,Salonen,F,FIN,71.0,187.0,Finland Jr.,IFK Jr.
+2004,5,10,139,NSH,Kyle,Moir,G,CAN,74.0,190.0,WHL,Swift Current
+2004,5,11,140,CHI,Jake,Dowell,C,USA,72.0,199.0,WCHA,U. of Wisconsin
+2004,5,12,141,OTT,Jim,McKenzie,RW,USA,74.0,204.0,USHL,Sioux Falls
+2004,5,13,142,ATL,Juraj,Gracik,RW,SVK,75.0,187.0,SVK SR.,Topolcany
+2004,5,14,143,LAK,Eric,Neilson,RW,CAN,74.0,205.0,QMJHL,Rimouski
+2004,5,15,144,PHI,Chris,Zarb,D,USA,76.0,176.0,USHL,Tri-City
+2004,5,16,145,BUF,Michal,Valent,G,SVK,74.0,176.0,SVK JR.,Martin Jr.
+2004,5,17,146,EDM,Bryan,Young,D,CAN,73.0,191.0,OHL,Peterborough
+2004,5,18,147,NSH,Janne,Niskala,D,SWE,72.0,187.0,FINLAND,Lukko
+2004,5,19,148,NYI,Steve,Regier,LW,CAN,76.0,194.0,WHL,Medicine Hat
+2004,5,20,149,PHI,Gino,Pisellini,RW,USA,72.0,210.0,OHL,Plymouth
+2004,5,21,150,MTL,Mikhail,Grabovski,F,DEU,71.0,183.0,RUS,Nizhnekamsk
+2004,5,22,151,DET,Sergei,Kolosov,D,BLR,76.0,187.0,BLR,Minsk
+2004,5,23,152,FLA,Bret,Nasby,D,CAN,75.0,188.0,OHL,Oshawa
+2004,5,24,153,SJS,Steven,Zalewski,C,USA,72.0,195.0,USHSE,Northwood Prep
+2004,5,25,154,COL,Richard,Demen-Willaume,D,SWE,75.0,210.0,SJL,Frolunda Jr.
+2004,5,26,155,NJD,Alexander,Mikhailishin,D,RUS,76.0,207.0,RPL,Spartak 2
+2004,5,27,156,OTT,Roman,Wick,RW,CHE,74.0,208.0,SUI,Kloten
+2004,5,28,157,TOR,Dmitri,Vorobiev,D,RUS,73.0,211.0,RUS,Togliatti
+2004,5,29,158,TBL,Brandon,Elliott,D,CAN,76.0,225.0,OHL,Mississauga
+2004,5,30,159,VAN,Mike,Brown,RW,USA,71.0,205.0,CCHA,U. of Michigan
+2004,5,31,160,BOS,Ben,Walter,C,CAN,73.0,195.0,FINLAND,Jokerit
+2004,5,32,161,MIN,Jean-Claude,Sawyer,D,CAN,75.0,204.0,QMJHL,Cape Breton
+2004,5,33,162,DET,Tyler,Haskins,C,USA,73.0,177.0,OHL,Toronto St. Michael's
+2004,5,34,163,TBL,Dustin,Collins,F,USA,75.0,196.0,CCHA,Northern Michigan U.
+2004,6,1,164,PIT,Moises,Gutierrez,RW,USA,76.0,225.0,WHL,Kamloops
+2004,6,2,165,CHI,Scott,McCulloch,LW,CAN,73.0,198.0,AJHL,Grande Prairie
+2004,6,3,166,WSH,Peter,Guggisberg,F,CHE,71.0,183.0,SUI,Davos
+2004,6,4,167,CBJ,Rob,Page,D,USA,74.0,188.0,USHSW,Blake
+2004,6,5,168,PHX,Kevin,Cormier,F,CAN,75.0,236.0,MJAHL,Moncton Jr. A
+2004,6,6,169,NYR,Jordan,Foote,LW,CAN,76.0,195.0,BCHL,Nanaimo
+2004,6,7,170,PHI,Ladislav,Scurko,C,SVK,72.0,187.0,SVK JR.,Spisska Nova Ves Jr.
+2004,6,8,171,PHI,Federik,Cabana,F,CAN,73.0,182.0,QMJHL,Halifax
+2004,6,9,172,ANA,Matt,Auffrey,RW,USA,74.0,203.0,USA,USA U-18
+2004,6,10,173,CGY,Adam,Pardy,D,CAN,74.0,220.0,QMJHL,Cape Breton
+2004,6,11,174,LAK,Scott,Parse,F,USA,71.0,188.0,CCHA,U. of Nebraska-Omaha
+2004,6,12,175,MIN,Aaron,Boogaard,RW,CAN,75.0,220.0,WHL,Tri-City
+2004,6,13,176,BUF,Patrick,Kaleta,RW,USA,73.0,206.0,OHL,Peterborough
+2004,6,14,177,EDM,Max,Gordichuk,D,CAN,77.0,228.0,WHL,Kamloops
+2004,6,15,178,NSH,Mike,Santorelli,C,CAN,72.0,189.0,BCHL,Vernon
+2004,6,16,179,NYI,Jaroslav,Mrazek,D,CZE,75.0,198.0,CZE JR.,Sparta Jr.
+2004,6,17,180,STL,Roman,Polak,D,CZE,73.0,227.0,CZE JR.,Vitkovice Jr.
+2004,6,18,181,MTL,Loic,Lacasse,G,CAN,74.0,175.0,QMJHL,Baie Comeau
+2004,6,19,182,CGY,Fred,Wikner,F,SWE,73.0,187.0,SJL,Frolunda Jr.
+2004,6,20,183,DAL,Trevor,Ludwig,D,USA,72.0,205.0,NAHL,Texas
+2004,6,21,184,COL,Derek,Peltier,D,USA,71.0,190.0,USHL,Cedar Rapids
+2004,6,22,185,NJD,Josh,Disher,G,CAN,73.0,164.0,OHL,Erie
+2004,6,23,186,ATL,Dan,Turple,G,CAN,77.0,215.0,OHL,Oshawa
+2004,6,24,187,TOR,Robbie,Earl,LW,USA,73.0,195.0,WCHA,U. of Wisconsin
+2004,6,25,188,TBL,Jan,Zapletal,D,CZE,75.0,190.0,CZE JR.,Vsetin Jr.
+2004,6,26,189,VAN,Julien,Ellis-Plante,G,CAN,73.0,188.0,QMJHL,Shawinigan
+2004,6,27,190,CBJ,Lennart,Petrell,F,FIN,75.0,198.0,Finland Jr.,IFK Jr.
+2004,6,28,191,TBL,Karri,Ramo,G,FIN,72.0,215.0,Finland Jr.,Pelicans Jr.
+2004,6,29,192,DET,Anton,Axelsson,LW,SWE,72.0,183.0,SJL,Frolunda Jr.
+2004,6,30,193,NSH,Kevin,Schaeffer,D,USA,73.0,195.0,H-EAST,Boston University
+2004,7,1,194,PIT,Chris,Peluso,D,USA,71.0,180.0,USHSW,Brainerd H.S.
+2004,7,2,195,MIN,Jean-Michel,Rizk,RW,CAN,73.0,195.0,OHL,Saginaw
+2004,7,3,196,CHI,Petri,Kontiola,F,FIN,72.0,204.0,FINLAND,Tappara
+2004,7,4,197,WSH,Andrew,Gordon,RW,CAN,72.0,194.0,SJHL,Notre Dame
+2004,7,5,198,CBJ,Justin,Vienneau,D,CAN,76.0,205.0,QMJHL,Shawinigan
+2004,7,6,199,PHX,Chad,Kolarik,C,USA,71.0,185.0,USA,USA U-18
+2004,7,7,200,CGY,Matt,Schneider,C,CAN,79.0,185.0,WHL,Tri-City
+2004,7,8,201,SJS,Mike,Vernace,D,CAN,72.0,216.0,OHL,Brampton
+2004,7,9,202,CAR,Ryan,Pottruff,D,CAN,74.0,198.0,OHL,London
+2004,7,10,203,ANA,Gabriel,Bouthillette,G,CAN,75.0,205.0,QMJHL,Gatineau
+2004,7,11,204,ATL,Miikka,Tuomainen,LW,FIN,75.0,207.0,FINLAND,Tuto
+2004,7,12,205,LAK,Mike,Curry,RW,USA,76.0,190.0,USHL,Sioux City
+2004,7,13,206,MIN,Anton,Khudobin,G,KAZ,71.0,203.0,RPL,Magnitogorsk 2
+2004,7,14,207,BUF,Mark,Mancari,RW,CAN,75.0,225.0,OHL,Ottawa
+2004,7,15,208,EDM,Stephane,Goulet,RW,CAN,75.0,185.0,QMJHL,Quebec
+2004,7,16,209,NSH,Stanislav,Balan,C,CZE,74.0,161.0,CZE JR.,Zlin Jr.
+2004,7,17,210,NYI,Emil,Axelsson,D,SWE,75.0,198.0,SWEDEN,Orebro
+2004,7,18,211,STL,David,Fredriksson,F,SWE,74.0,214.0,SJL,HV 71 Jr.
+2004,7,19,212,MTL,Jon,Gleed,D,CAN,74.0,200.0,ECAC,Cornell U.
+2004,7,20,213,CGY,James,Spratt,G,USA,72.0,180.0,USHL,Sioux City
+2004,7,21,214,CHI,Troy,Brouwer,RW,CAN,74.0,214.0,WHL,Moose Jaw
+2004,7,22,215,COL,Ian,Keserich,G,USA,74.0,190.0,NAHL,Cleveland
+2004,7,23,216,NJD,Pierre-Luc,Letourneau-Leblond,LW,CAN,74.0,215.0,QMJHL,Baie Comeau
+2004,7,24,217,NJD,Tyler,Eckford,D,CAN,73.0,205.0,BCHL,South Surrey
+2004,7,25,218,DAL,Sergei,Kukushin,F,BLR,74.0,187.0,BLR,Junost Minsk
+2004,7,26,219,OTT,Joe,Cooper,RW,CAN,72.0,200.0,CCHA,Miami University
+2004,7,27,220,TOR,Maxim,Semenov,D,KAZ,72.0,183.0,RUS,Togliatti
+2004,7,28,221,LAK,Daniel,Taylor,G,GBR,72.0,198.0,OHL,Guelph
+2004,7,29,222,PIT,Jordan,Morrison,C,CAN,71.0,180.0,OHL,Peterborough
+2004,7,30,223,CHI,Jared,Walker,C,CAN,75.0,183.0,WHL,Red Deer
+2004,7,31,224,BOS,Matt,Hunwick,D,USA,71.0,190.0,CCHA,U. of Michigan
+2004,7,32,225,SJS,David,MacDonald,D,CAN,75.0,200.0,EJHL,New England
+2004,7,33,226,DET,Steven,Covington,RW,CAN,71.0,167.0,WHL,Calgary
+2004,7,34,227,NYI,Chris,Campoli,D,CAN,72.0,200.0,OHL,Erie
+2004,8,1,228,PIT,David,Brown,G,CAN,72.0,185.0,CCHA,U. of Notre Dame
+2004,8,3,230,WSH,Justin,Mrazek,G,CAN,75.0,185.0,SJHL,Estevan
+2004,8,4,231,CBJ,Brian,McGuirk,LW,USA,72.0,191.0,USHSE,Governor's Academy
+2004,8,5,232,PHI,Martin,Houle,G,CAN,71.0,180.0,QMJHL,Cape Breton
+2004,8,6,233,CBJ,Matt,Greer,F,USA,73.0,183.0,USHSW,White Bear Lake H.S.
+2004,8,7,234,SJS,Derek,MacIntyre,G,USA,74.0,220.0,NAHL,Soo
+2004,8,8,235,CAR,Jonas,Fiedler,RW,CZE,74.0,177.0,OHL,Plymouth
+2004,8,9,236,ANA,Matt,Christie,C,CAN,70.0,185.0,CCHA,Miami University
+2004,8,10,237,ATL,Mitch,Carefoot,C,CAN,73.0,209.0,ECAC,Cornell U.
+2004,8,11,238,LAK,Yutaka,Fukufuji,G,JPN,73.0,160.0,JHL,Japan National Team
+2004,8,12,239,COL,Brandon,Yip,RW,CAN,73.0,195.0,BCHL,Coquitlam
+2004,8,13,240,PHX,Aaron,Gagnon,C,CAN,71.0,186.0,WHL,Seattle
+2004,8,14,241,BUF,Mike,Card,D,CAN,73.0,201.0,WHL,Kelowna
+2004,8,15,242,EDM,Tyler,Spurgeon,C,CAN,70.0,188.0,WHL,Kelowna
+2004,8,16,243,NSH,Denis,Kulyash,D,RUS,75.0,199.0,RUS,HC CSKA
+2004,8,17,244,NYI,Jason,Pitton,LW,CAN,75.0,216.0,OHL,Sault Ste. Marie
+2004,8,18,245,TBL,Justin,Keller,LW,CAN,71.0,183.0,WHL,Kelowna
+2004,8,19,246,MTL,Gregory,Stewart,LW,CAN,74.0,202.0,OHL,Peterborough
+2004,8,20,247,NYR,Jonathan,Paiement,D,CAN,73.0,201.0,QMJHL,Lewiston
+2004,8,21,248,DAL,Lukas,Vomela,D,CZE,75.0,189.0,CZE,Budejovice
+2004,8,22,249,COL,J.D.,Corbin,LW,USA,70.0,185.0,WCHA,U. of Denver
+2004,8,23,250,NJD,Nathan,Perkovich,RW,USA,77.0,215.0,USHL,Cedar Rapids
+2004,8,24,251,OTT,Matthew,McIlvane,C,USA,72.0,202.0,USHL,Chicago
+2004,8,25,252,TOR,Jan,Steber,F,CZE,75.0,202.0,QMJHL,Halifax
+2004,8,26,253,PHI,Travis,Gawryletz,D,CAN,74.0,190.0,BCHL,Trail
+2004,8,27,254,VAN,David,Schulz,D,CAN,76.0,201.0,WHL,Swift Current
+2004,8,28,255,BOS,Anton,Hedman,F,SWE,72.0,180.0,SWEDEN-2,Stocksund
+2004,8,29,256,CHI,Matthew,Ford,RW,USA,72.0,200.0,USHL,Sioux Falls
+2004,8,30,257,DET,Gennady,Stolyarov,RW,RUS,76.0,187.0,RUS,Tver
+2004,8,31,258,NSH,Pekka,Rinne,G,FIN,77.0,207.0,FINLAND,Karpat
+2004,9,1,259,PIT,Brian,Ihnacak,C,CAN,72.0,178.0,ECAC,Brown U.
+2004,9,2,260,CHI,Marko,Anttila,RW,FIN,79.0,200.0,FINLAND,Lempaala
+2004,9,3,261,PHX,William,Engasser,LW,USA,74.0,228.0,USHSW,Blake
+2004,9,4,262,MTL,Mark,Streit,D,CHE,71.0,202.0,SUI,Zurich
+2004,9,5,263,WSH,Travis,Morin,C,USA,74.0,195.0,WCHA,Minnesota State
+2004,9,6,264,LAK,Valtteri,Tenkanen,F,FIN,71.0,182.0,FINLAND,Jyvaskyla
+2004,9,7,265,PHX,Daniel,Winnik,F,CAN,74.0,210.0,H-EAST,U. of New Hampshire
+2004,9,8,266,NYR,Jakub,Petruzalek,RW,CZE,70.0,176.0,CZE,Litvinov
+2004,9,9,267,FLA,Spencer,Dillon,D,USA,76.0,190.0,BCHL,Salmon Arm
+2004,9,10,268,CAR,Martin,Vagner,D,CZE,73.0,214.0,QMJHL,Gatineau
+2004,9,11,269,ANA,Janne,Pesonen,F,FIN,71.0,180.0,FINLAND,Karpat
+2004,9,12,270,ATL,Matthew,Siddall,RW,CAN,73.0,205.0,BCHL,Powell River
+2004,9,13,271,CBJ,Grant,Clitsome,D,CAN,71.0,208.0,CJHL,Nepean
+2004,9,14,272,MIN,Kyle,Wilson,C,CAN,74.0,205.0,ECAC,Colgate U.
+2004,9,15,273,BUF,Dylan,Hunter,LW,CAN,71.0,198.0,OHL,London
+2004,9,16,274,EDM,Bjorn,Bjurling,G,SWE,72.0,205.0,SWEDEN,Djurgarden
+2004,9,17,275,NSH,Craig,Switzer,D,CAN,74.0,195.0,BCHL,Salmon Arm
+2004,9,18,276,NYI,Sylvain,Michaud,G,CAN,71.0,180.0,QMJHL,Drummondville
+2004,9,19,277,STL,Jonathan Michel,Boutin,RW,CAN,75.0,187.0,QMJHL,Shawinigan
+2004,9,20,278,MTL,Alex,Dulac-Lemelin,D,CAN,76.0,190.0,QMJHL,Baie Comeau
+2004,9,21,279,CGY,Adam,Cracknell,RW,CAN,73.0,216.0,WHL,Kootenay
+2004,9,22,280,DAL,Matt,McKnight,F,CAN,74.0,190.0,AJHL,Camrose
+2004,9,23,281,COL,Stephen,McClellan,D,USA,73.0,180.0,USHSE,Catholic Memorial H.S.
+2004,9,24,282,NJD,Valeri,Klimov,D,RUS,75.0,202.0,RPL,Spartak 2
+2004,9,25,283,FLA,Luke,Beaverson,D,USA,76.0,208.0,USHL,Green Bay
+2004,9,26,284,OTT,John,Wikner,LW,SWE,73.0,184.0,SJL,Frolunda Jr.
+2004,9,27,285,TOR,Pierce,Norton,RW,USA,74.0,195.0,USHSE,Thayer Academy
+2004,9,28,286,PHI,Triston,Grant,LW,CAN,73.0,211.0,WHL,Vancouver
+2004,9,29,287,VAN,Jannik,Hansen,F,DNK,73.0,195.0,SJL,Malmo Jr.
+2004,9,30,288,SJS,Brian,Mahoney-Wilson,G,USA,70.0,150.0,USHSE,Catholic Memorial H.S.
+2004,9,31,289,SJS,Christian,Jensen,D,USA,75.0,190.0,INDEP. JR,New Jersey Jr. Titans
+2004,9,32,290,DET,Nils,Backstrom,D,SWE,72.0,183.0,SWEDEN-2,Stocksund
+2004,9,33,291,PHI,John,Carter,C,USA,76.0,193.0,INDEP. JR,Brewster Bulldogs
+2005,1,1,1,PIT,Sidney,Crosby,C,CAN,71.0,200.0,QMJHL,Rimouski
+2005,1,2,2,ANA,Bobby,Ryan,RW,USA,74.0,208.0,OHL,Owen Sound
+2005,1,3,3,CAR,Jack,Johnson,D,USA,73.0,219.0,USA,USA U-18
+2005,1,4,4,MIN,Benoit,Pouliot,LW,CAN,75.0,199.0,OHL,Sudbury
+2005,1,5,5,MTL,Carey,Price,G,CAN,75.0,219.0,WHL,Tri-City
+2005,1,6,6,CBJ,Gilbert,Brule,C,CAN,71.0,186.0,WHL,Vancouver
+2005,1,7,7,CHI,Jack,Skille,RW,USA,73.0,215.0,USA,USA U-18
+2005,1,8,8,SJS,Devin,Setoguchi,RW,CAN,72.0,200.0,WHL,Saskatoon
+2005,1,9,9,OTT,Brian,Lee,D,USA,75.0,208.0,USHSW,Moorhead
+2005,1,10,10,VAN,Luc,Bourdon,D,CAN,75.0,211.0,QMJHL,Val d'Or
+2005,1,11,11,LAK,Anze,Kopitar,C,SVN,75.0,227.0,SWEDEN-JR.,Sodertalje Jr.
+2005,1,12,12,NYR,Marc,Staal,D,CAN,76.0,208.0,OHL,Sudbury
+2005,1,13,13,BUF,Marek,Zagrapan,C,SVK,73.0,195.0,QMJHL,Chicoutimi
+2005,1,14,14,WSH,Sasha,Pokulok,D,CAN,77.0,220.0,ECAC,Cornell U.
+2005,1,15,15,NYI,Ryan,O'Marra,C,JPN,74.0,220.0,OHL,Erie
+2005,1,16,16,ATL,Alex,Bourret,RW,CAN,70.0,205.0,QMJHL,Lewiston
+2005,1,17,17,PHX,Martin,Hanzal,C,CZE,78.0,230.0,CZE JR.,Budejovice Jr.
+2005,1,18,18,NSH,Ryan,Parent,D,CAN,75.0,198.0,OHL,Guelph
+2005,1,19,19,DET,Jakub,Kindl,D,CZE,75.0,199.0,OHL,Kitchener
+2005,1,20,20,FLA,Kenndal,McArdle,LW,CAN,71.0,190.0,WHL,Moose Jaw
+2005,1,21,21,TOR,Tuukka,Rask,G,FIN,75.0,169.0,Finland Jr.,Ilves Jr.
+2005,1,22,22,BOS,Matt,Lashoff,D,USA,74.0,204.0,OHL,Kitchener
+2005,1,23,23,NJD,Niclas,Bergfors,F,SWE,72.0,200.0,SWEDEN-JR.,Sodertalje Jr.
+2005,1,24,24,STL,T.J.,Oshie,C,USA,71.0,195.0,USHSW,Warroad
+2005,1,25,25,EDM,Andrew,Cogliano,C,CAN,70.0,188.0,OPJRA,St. Michael's Jr. A
+2005,1,26,26,CGY,Matt,Pelech,D,CAN,76.0,220.0,OHL,Sarnia
+2005,1,27,27,WSH,Joe,Finley,D,USA,80.0,247.0,USHL,Sioux Falls
+2005,1,28,28,DAL,Matt,Niskanen,D,USA,72.0,200.0,USHSW,Virginia
+2005,1,29,29,PHI,Steve,Downie,RW,CAN,71.0,191.0,OHL,Windsor
+2005,1,30,30,TBL,Vladimir,Mihalik,D,SVK,80.0,246.0,SVK-2,Presov
+2005,2,1,31,ANA,Brendan,Mikkelson,D,CAN,75.0,205.0,WHL,Portland
+2005,2,2,32,FLA,Tyler,Plante,G,USA,75.0,191.0,WHL,Brandon
+2005,2,3,33,DAL,James,Neal,LW,CAN,74.0,208.0,OHL,Plymouth
+2005,2,4,34,COL,Ryan,Stoa,C,USA,75.0,200.0,USA,USA U-18
+2005,2,5,35,SJS,Marc-Edouard,Vlasic,D,CAN,73.0,200.0,QMJHL,Quebec
+2005,2,6,36,EDM,Taylor,Chorney,D,CAN,72.0,193.0,USHSW,Shattuck-St. Mary's
+2005,2,7,37,STL,Scott,Jackson,D,CAN,75.0,219.0,WHL,Seattle
+2005,2,8,38,NJD,Jeff,Frazee,G,USA,72.0,195.0,USA,USA U-18
+2005,2,9,39,BOS,Petr,Kalus,C,CZE,73.0,201.0,CZE JR.,Vitkovice Jr.
+2005,2,10,40,NYR,Michael,Sauer,D,USA,75.0,213.0,WHL,Portland
+2005,2,11,41,ATL,Ondrej,Pavelec,G,CZE,75.0,220.0,CZE JR.,Kladno Jr.
+2005,2,12,42,DET,Justin,Abdelkader,LW,USA,73.0,212.0,USHL,Cedar Rapids
+2005,2,13,43,CHI,Mike,Blunden,RW,CAN,76.0,211.0,OHL,Erie
+2005,2,14,44,COL,Paul,Stastny,C,CAN,72.0,205.0,WCHA,U. of Denver
+2005,2,15,45,MTL,Guillaume,Latendresse,RW,CAN,74.0,230.0,QMJHL,Drummondville
+2005,2,16,46,NYI,Dustin,Kohn,D,CAN,73.0,200.0,WHL,Calgary
+2005,2,17,47,COL,Tom,Fritsche,LW,USA,71.0,183.0,CCHA,Ohio State U.
+2005,2,18,48,BUF,Philip,Gogulla,F,DEU,74.0,182.0,GERMANY,Koln
+2005,2,19,49,ATL,Chad,Denny,D,CAN,75.0,210.0,QMJHL,Lewiston
+2005,2,20,50,LAK,Dany,Roussin,LW,CAN,74.0,190.0,QMJHL,Rimouski
+2005,2,21,51,VAN,Mason,Raymond,LW,CAN,72.0,185.0,AJHL,Camrose
+2005,2,22,52,COL,Chris,Durand,C,CAN,73.0,186.0,WHL,Seattle
+2005,2,23,53,ATL,Andrew,Kozek,F,CAN,71.0,205.0,BCHL,South Surrey
+2005,2,24,54,CHI,Dan,Bertram,RW,CAN,70.0,184.0,H-EAST,Boston College
+2005,2,25,55,CBJ,Adam,McQuaid,D,CAN,76.0,197.0,OHL,Sudbury
+2005,2,26,56,NYR,Marc-Andre,Cliche,RW,CAN,72.0,200.0,QMJHL,Lewiston
+2005,2,27,57,MIN,Matt,Kassian,LW,CAN,76.0,232.0,WHL,Kamloops
+2005,2,28,58,CAR,Nathan,Hagemo,D,USA,71.0,192.0,WCHA,U. of Minnesota
+2005,2,29,59,PHX,Pier-Olivier,Pelletier,G,CAN,73.0,175.0,QMJHL,Drummondville
+2005,2,30,60,LAK,T.J.,Fast,D,CAN,73.0,190.0,AJHL,Camrose
+2005,2,31,61,PIT,Michael,Gergen,F,USA,71.0,185.0,USHSW,Shattuck-St. Mary's
+2005,3,1,62,PIT,Kris,Letang,D,CAN,72.0,201.0,QMJHL,Val d'Or
+2005,3,2,63,ANA,Jason,Bailey,RW,CAN,73.0,209.0,USA,USA U-18
+2005,3,3,64,CAR,Joe,Barnes,C,CAN,75.0,212.0,WHL,Saskatoon
+2005,3,4,65,MIN,Kristofer,Westblom,G,CAN,73.0,155.0,WHL,Kelowna
+2005,3,5,66,NYR,Brodie,Dupont,C,CAN,74.0,212.0,WHL,Calgary
+2005,3,6,67,CBJ,Kris,Russell,D,CAN,70.0,174.0,WHL,Medicine Hat
+2005,3,7,68,CHI,Evan,Brophey,F,CAN,74.0,199.0,OHL,Belleville
+2005,3,8,69,CGY,Gord,Baldwin,D,CAN,77.0,199.0,WHL,Medicine Hat
+2005,3,9,70,OTT,Vitaly,Anikeyenko,D,RUS,75.0,198.0,RUSSIA-3,Yaroslavl 2
+2005,3,10,71,DAL,Rich,Clune,LW,CAN,70.0,199.0,OHL,Sarnia
+2005,3,11,72,LAK,Jonathan,Quick,G,USA,73.0,212.0,USHSE,Avon Old Farms H.S.
+2005,3,12,73,TBL,Radek,Smolenak,LW,CZE,74.0,207.0,OHL,Kingston
+2005,3,13,74,CGY,Dan,Ryder,C,CAN,71.0,193.0,OHL,Peterborough
+2005,3,14,75,DAL,Perttu,Lindgren,C,FIN,72.0,188.0,Finland Jr.,Ilves Jr.
+2005,3,15,76,NYI,Shea,Guthrie,F,CAN,72.0,187.0,USHSE,St. George's
+2005,3,16,77,NYR,Dalyn,Flatt,D,CAN,75.0,215.0,WHL,Saskatoon
+2005,3,17,78,NSH,Teemu,Laakso,D,FIN,73.0,209.0,Finland Jr.,IFK Jr.
+2005,3,18,79,NSH,Cody,Franson,D,CAN,77.0,213.0,WHL,Vancouver
+2005,3,19,80,DET,Christofer,Lofberg,C,SWE,75.0,189.0,SWEDEN-JR.,Djurgarden Jr.
+2005,3,20,81,EDM,Danny,Syvret,D,CAN,71.0,203.0,OHL,London
+2005,3,21,82,TOR,Phil,Oreskovic,D,CAN,76.0,217.0,OHL,Brampton
+2005,3,22,83,BOS,Mikko,Lehtonen,RW,FIN,75.0,196.0,Finland Jr.,Blues Jr.
+2005,3,23,84,NJD,Mark,Fraser,D,CAN,75.0,220.0,OHL,Kitchener
+2005,3,24,85,STL,Ben,Bishop,G,USA,79.0,215.0,NAHL,Texas
+2005,3,25,86,EDM,Robby,Dee,F,USA,74.0,185.0,USHSW,Breck School
+2005,3,26,87,BUF,Marc-Andre,Gragnani,D,CAN,74.0,201.0,QMJHL,P.E.I.
+2005,3,27,88,COL,T.J.,Hensick,C,USA,70.0,190.0,CCHA,U. of Michigan
+2005,3,28,89,TBL,Chris,Lawrence,C,CAN,76.0,211.0,OHL,Sault Ste. Marie
+2005,3,29,90,FLA,Dan,Collins,RW,USA,73.0,185.0,OHL,Plymouth
+2005,3,30,91,PHI,Oskars,Bartulis,D,LVA,74.0,184.0,QMJHL,Moncton
+2005,4,1,92,TBL,Marek,Bartanus,RW,SVK,75.0,194.0,SVK JR.,Kosice Jr.
+2005,4,2,93,FLA,Olivier,Legault,LW,CAN,77.0,238.0,QMJHL,Lewiston
+2005,4,3,94,CAR,Jakub,Vojta,D,CZE,72.0,194.0,CZE JR.,Sparta Jr.
+2005,4,4,95,OTT,Cody,Bass,C,CAN,73.0,204.0,OHL,Mississauga
+2005,4,5,96,BUF,Chris,Butler,D,USA,73.0,200.0,USHL,Sioux City
+2005,4,6,97,EDM,Chris,VandeVelde,C,USA,74.0,190.0,USHSW,Moorhead
+2005,4,7,98,OTT,Ilya,Zubov,C,RUS,72.0,211.0,RUSSIA-2,Chelyabinsk
+2005,4,8,99,NJD,Patrick,Davis,LW,USA,74.0,195.0,OHL,Kitchener
+2005,4,9,100,BOS,Jonathan,Sigalet,D,CAN,73.0,185.0,CCHA,Bowling Green
+2005,4,10,101,CBJ,Jared,Boll,RW,USA,74.0,214.0,USHL,Lincoln
+2005,4,11,102,TBL,Blair,Jones,C,CAN,74.0,216.0,WHL,Moose Jaw
+2005,4,12,103,DET,Mattias,Ritola,F,SWE,72.0,192.0,SWEDEN-JR.,Leksand Jr.
+2005,4,13,104,FLA,Matt,Duffy,D,USA,74.0,180.0,EJHL,N.H. Jr. Monarchs
+2005,4,14,105,PHX,Keith,Yandle,D,USA,73.0,195.0,USHSE,Cushing Academy
+2005,4,15,106,BOS,Vladimir,Sobotka,F,CZE,70.0,183.0,CZE JR.,Slavia Jr.
+2005,4,16,107,NYR,Tom,Pyatt,C,CAN,71.0,187.0,OHL,Saginaw
+2005,4,17,108,CHI,Niklas,Hjalmarsson,D,SWE,75.0,205.0,SWEDEN-JR.,HV 71 Jr.
+2005,4,18,109,WSH,Andrew,Thomas,D,USA,74.0,196.0,WCHA,U. of Denver
+2005,4,19,110,MIN,Kyle,Bailey,C,CAN,74.0,182.0,WHL,Portland
+2005,4,20,111,CGY,J.D.,Watt,RW,CAN,73.0,198.0,WHL,Regina
+2005,4,21,112,SJS,Alex,Stalock,G,USA,72.0,185.0,USHL,Cedar Rapids
+2005,4,22,113,CHI,Nathan,Davis,F,USA,73.0,205.0,CCHA,Miami University
+2005,4,23,114,VAN,Alexandre,Vincent,G,CAN,76.0,193.0,QMJHL,Chicoutimi
+2005,4,24,115,OTT,Janne,Kolehmainen,LW,FIN,75.0,209.0,FINLAND,Saipa
+2005,4,25,116,ATL,Jordan,Lavallee-Smotherman,LW,USA,75.0,225.0,QMJHL,Quebec
+2005,4,26,117,CHI,Denis,Istomin,RW,RUS,72.0,196.0,RUSSIA-2,Chelyabinsk
+2005,4,27,118,WSH,Patrick,McNeill,D,CAN,72.0,198.0,OHL,Saginaw
+2005,4,28,119,PHI,Jeremy,Duchesne,G,USA,72.0,201.0,QMJHL,Halifax
+2005,4,29,120,EDM,Viacheslav,Trukhno,C,RUS,73.0,197.0,QMJHL,P.E.I.
+2005,4,30,121,MTL,Juraj,Mikus,F,SVK,73.0,205.0,SVK JR.,Skalica Jr.
+2005,4,31,122,MIN,Morten,Madsen,F,DNK,74.0,185.0,SWEDEN-JR.,Frolunda Jr.
+2005,4,32,123,CAR,Ondrej,Otcenas,F,SVK,74.0,187.0,SVK JR.,Trencin Jr.
+2005,4,33,124,COL,Ray,Macias,D,USA,74.0,195.0,WHL,Kamloops
+2005,4,34,125,PIT,Tommi,Leinonen,D,FIN,74.0,185.0,Finland Jr.,Karpat Jr.
+2005,5,1,126,PIT,Tim,Crowder,RW,CAN,74.0,180.0,BCHL,South Surrey
+2005,5,2,127,ANA,Bobby,Bolt,LW,CAN,76.0,219.0,OHL,Kingston
+2005,5,3,128,CGY,Kevin,Lalande,G,CAN,72.0,175.0,OHL,Belleville
+2005,5,4,129,MIN,Anthony,Aiello,D,USA,73.0,187.0,USHSE,Thayer Academy
+2005,5,5,130,MTL,Mathieu,Aubin,C,CAN,75.0,190.0,QMJHL,Lewiston
+2005,5,6,131,CBJ,Tomas,Popperle,G,CZE,73.0,187.0,CZE,Sparta
+2005,5,7,132,DET,Darren,Helm,F,CAN,71.0,195.0,WHL,Medicine Hat
+2005,5,8,133,TBL,Stanislav,Lascek,RW,SVK,72.0,195.0,QMJHL,Chicoutimi
+2005,5,9,134,CHI,Brennan,Turner,D,CAN,75.0,222.0,SJHL,Notre Dame
+2005,5,10,135,ATL,Tomas,Pospisil,RW,CZE,72.0,185.0,CZE JR.,Trinec Jr.
+2005,5,11,136,OTT,Tomas,Kudelka,D,CZE,75.0,195.0,CZE JR.,Zlin Jr.
+2005,5,12,137,DET,Johan,Ryno,F,SWE,76.0,198.0,SWEDEN-JR.,Kumla Jr.
+2005,5,13,138,VAN,Matt,Butcher,C,USA,73.0,185.0,BCHL,Chilliwack
+2005,5,14,139,LAK,Patrik,Hersley,D,SWE,75.0,205.0,SWEDEN-JR.,Malmo Jr.
+2005,5,15,140,SJS,Taylor,Dakers,G,CAN,73.0,175.0,WHL,Kootenay
+2005,5,16,141,ANA,Brian,Salcido,D,USA,74.0,188.0,WCHA,Colorado College
+2005,5,17,142,BUF,Nathan,Gerbe,C,USA,65.0,178.0,USA,USA U-18
+2005,5,18,143,WSH,Daren,Machesney,G,CAN,72.0,182.0,OHL,Brampton
+2005,5,19,144,NYI,Masi,Marjamaki,RW,FIN,74.0,184.0,WHL,Moose Jaw
+2005,5,20,145,CAR,Timothy,Kunes,D,USA,73.0,170.0,EJHL,N.E. Jr. Falcons
+2005,5,21,146,DAL,Tom,Wandell,F,SWE,73.0,197.0,SWEDEN-JR.,Sodertalje Jr.
+2005,5,22,147,NYR,Trevor,Koverko,D,CAN,75.0,205.0,OHL,Owen Sound
+2005,5,23,148,PHX,Anton,Krysanov,C,RUS,75.0,198.0,RUS,Togliatti
+2005,5,24,149,SJS,Derek,Joslin,D,CAN,73.0,210.0,OHL,Ottawa
+2005,5,25,150,NSH,Cal,O'Reilly,C,CAN,72.0,187.0,OHL,Windsor
+2005,5,26,151,DET,Jeff,May,D,CAN,74.0,201.0,WHL,Prince Albert
+2005,5,27,152,PHI,Josh,Beaulieu,C,CAN,73.0,180.0,OHL,London
+2005,5,28,153,TOR,Alex,Berry,RW,USA,74.0,218.0,EJHL,Junior Bruins
+2005,5,29,154,BOS,Wacey,Rabbit,C,CAN,70.0,169.0,WHL,Saskatoon
+2005,5,30,155,NJD,Mark,Fayne,D,USA,75.0,215.0,USHSE,Noble & Greenough
+2005,5,31,156,STL,Ryan,Reaves,RW,CAN,73.0,225.0,WHL,Brandon
+2005,5,32,157,EDM,Fredrik,Pettersson,LW,SWE,70.0,185.0,SWEDEN-JR.,Frolunda Jr.
+2005,5,33,158,CGY,Matt,Keetley,G,CAN,73.0,187.0,WHL,Medicine Hat
+2005,5,34,159,CAR,Risto,Korhonen,D,FIN,75.0,202.0,Finland Jr.,Karpat Jr.
+2005,5,35,160,DAL,Matt,Watkins,RW,CAN,70.0,180.0,BCHL,Vernon
+2005,5,36,161,FLA,Brian,Foster,G,USA,73.0,155.0,EJHL,N.H. Jr. Monarchs
+2005,5,37,162,SJS,Paul,Fenton,F,USA,71.0,185.0,H-EAST,U. Mass-Amherst
+2005,6,1,163,TBL,Marek,Kvapil,RW,CZE,71.0,172.0,OHL,Saginaw
+2005,6,2,164,FLA,Roman,Derlyuk,D,RUS,75.0,198.0,RUSSIA-2,Spartak St. Pet.
+2005,6,3,165,TBL,Kevin,Beech,G,CAN,76.0,168.0,OHL,Sudbury
+2005,6,4,166,COL,Jason,Lynch,D,CAN,75.0,205.0,WHL,Spokane
+2005,6,5,167,CHI,Joe,Fallon,G,USA,76.0,200.0,ECAC,U. of Vermont
+2005,6,6,168,COL,Justin,Mercier,F,USA,71.0,190.0,USA,USA U-18
+2005,6,7,169,STL,Mike,Gauthier,D,CAN,75.0,185.0,WHL,Prince Albert
+2005,6,8,170,NJD,Sean,Zimmerman,D,USA,74.0,220.0,WHL,Spokane
+2005,6,9,171,STL,Nick,Drazenovic,C,CAN,72.0,200.0,WHL,Prince George
+2005,6,10,172,BOS,Lukas,Vantuch,F,CZE,75.0,200.0,CZE JR.,Liberec Jr.
+2005,6,11,173,TOR,Johan,Dahlberg,F,SWE,74.0,194.0,SWEDEN-JR.,Modo Jr.
+2005,6,12,174,PHI,John,Flatters,D,CAN,73.0,203.0,WHL,Red Deer
+2005,6,13,175,DET,Juho,Mielonen,D,FIN,74.0,183.0,Finland Jr.,Ilves Jr.
+2005,6,14,176,NSH,Ryan,Maki,RW,USA,74.0,206.0,ECAC,Harvard U.
+2005,6,15,177,CBJ,Derek,Reinhart,D,CAN,75.0,205.0,WHL,Regina
+2005,6,16,178,NYR,Greg,Beller,F,CAN,75.0,220.0,USHSW,Lake of the Woods
+2005,6,17,179,CGY,Brett,Sutter,F,CAN,72.0,200.0,WHL,Kootenay
+2005,6,18,180,NYI,Tyrell,Mason,D,CAN,73.0,167.0,BCHL,Salmon Arm
+2005,6,19,181,WSH,Tim,Kennedy,LW,USA,70.0,173.0,USHL,Sioux City
+2005,6,20,182,BUF,Adam,Dennis,G,CAN,71.0,183.0,OHL,London
+2005,6,21,183,SJS,William,Colbert,D,CAN,74.0,210.0,OHL,Ottawa
+2005,6,22,184,LAK,Ryan,McGinnis,D,USA,74.0,197.0,OHL,Plymouth
+2005,6,23,185,VAN,Kris,Fredheim,D,CAN,74.0,170.0,SJHL,Notre Dame
+2005,6,24,186,OTT,Dimitri,Megalinsky,D,RUS,74.0,212.0,RUS,Yaroslavl
+2005,6,25,187,ATL,Andrey,Zubarev,D,RUS,73.0,210.0,RUSSIA-3,Ufa 2
+2005,6,26,188,CHI,Joe,Charlebois,D,USA,74.0,217.0,USHL,Sioux City
+2005,6,27,189,CBJ,Kirill,Starkov,C,RUS,72.0,194.0,SWEDEN-JR.,Frolunda Jr.
+2005,6,28,190,MTL,Matt,D'Agostini,RW,CAN,72.0,200.0,OHL,Guelph
+2005,6,29,191,BUF,Vjateslav,Buravchikov,D,RUS,73.0,189.0,RUSSIA-2,Krylja
+2005,6,30,192,CAR,Nicolas,Blanchard,C,CAN,75.0,200.0,QMJHL,Chicoutimi
+2005,6,31,193,SJS,Tony,Lucia,LW,USA,72.0,190.0,USHSW,Wayzata
+2005,6,32,194,PIT,Jean-Philippe,Paquet,D,CAN,75.0,202.0,QMJHL,Shawinigan
+2005,7,1,195,PIT,Joe,Vitale,C,USA,71.0,205.0,USHL,Sioux Falls
+2005,7,2,196,NYI,Nicholas,Tuzzolino,D,USA,78.0,225.0,OHL,Sarnia
+2005,7,3,197,ANA,Jean-Philippe,Levasseur,G,CAN,73.0,205.0,QMJHL,Rouyn-Noranda
+2005,7,4,198,CAR,Kyle,Lawson,D,USA,71.0,192.0,USA,USA U-18
+2005,7,5,199,MIN,Riley,Emmerson,D,CAN,80.0,230.0,WHL,Tri-City
+2005,7,6,200,MTL,Sergei,Kostitsyn,F,BLR,72.0,210.0,BLR,Gomel
+2005,7,7,201,CBJ,Trevor,Hendrikx,D,CAN,74.0,200.0,OHL,Peterborough
+2005,7,8,202,CHI,David,Kuchejda,RW,CZE,71.0,189.0,CZE JR.,Budejovice Jr.
+2005,7,9,203,CHI,Adam,Hobson,C,SWE,73.0,219.0,WHL,Spokane
+2005,7,10,204,OTT,Colin,Greening,F,CAN,75.0,211.0,CCL,Upper Canada Coll.
+2005,7,11,205,VAN,Mario,Bliznak,C,SVK,72.0,185.0,SVK JR.,Dubnica Jr.
+2005,7,12,206,LAK,Josh,Meyers,D,USA,74.0,180.0,USHL,Sioux City
+2005,7,13,207,ATL,Myles,Stoesz,D,CAN,74.0,210.0,WHL,Spokane
+2005,7,14,208,BUF,Matt,Generous,D,USA,75.0,208.0,EJHL,N.E. Jr. Falcons
+2005,7,15,209,WSH,Viktor,Dovgan,D,RUS,74.0,205.0,RUS,CSKA Moscow 2
+2005,7,16,210,NYI,Luciano,Aquino,F,CAN,69.0,198.0,OHL,Brampton
+2005,7,17,211,NYR,Ryan,Russell,C,CAN,70.0,174.0,WHL,Kootenay
+2005,7,18,212,PHX,Pat,Brosnihan,RW,USA,76.0,208.0,USHSE,Worcester Academy
+2005,7,19,213,NSH,Scott,Todd,D,CAN,76.0,221.0,OHL,Windsor
+2005,7,20,214,DET,Bretton,Stamler,D,CAN,73.0,201.0,WHL,Seattle
+2005,7,21,215,PHI,Matt,Clackson,LW,CAN,72.0,196.0,USHL,Chicago
+2005,7,22,216,TOR,Anton,Stralman,D,SWE,71.0,193.0,SWE-2,Skovde
+2005,7,23,217,BOS,Brock,Bradford,C,CAN,69.0,168.0,USHL,Omaha
+2005,7,24,218,NJD,Alexander,Sundstrom,F,CAN,71.0,191.0,SWE-2,Bjorkloven
+2005,7,25,219,STL,Nikolai,Lemtyugov,F,RUS,72.0,176.0,RUS,CSKA
+2005,7,26,220,EDM,Matthew,Glasser,LW,CAN,70.0,175.0,AJHL,Fort McMurray
+2005,7,27,221,CGY,Myles,Rumsey,D,CAN,74.0,195.0,WHL,Swift Current
+2005,7,28,222,COL,Kyle,Cumiskey,D,CAN,70.0,185.0,WHL,Kelowna
+2005,7,29,223,DAL,Pat,McGann,G,USA,71.0,160.0,USMHL,Illinois Midgets
+2005,7,30,224,FLA,Zach,Bearson,RW,USA,73.0,180.0,USHL,Waterloo
+2005,7,31,225,TBL,John,Wessbecker,D,USA,73.0,180.0,USHSW,Blake
+2005,7,32,226,LAK,John,Seymour,LW,CAN,75.0,176.0,OHL,Brampton
+2005,7,33,227,BUF,Andrew,Orpik,D,USA,75.0,200.0,USHSE,Thayer Academy
+2005,7,34,228,TOR,Chad,Rau,C,USA,71.0,175.0,USHL,Des Moines
+2005,7,35,229,MTL,Phillipe,Paquet,D,CAN,75.0,200.0,USHSE,Salisbury
+2005,7,36,230,NSH,Patric,Hornqvist,F,SWE,71.0,188.0,SWE-3,Vasby
 2006,1,1,1,STL,Erik,Johnson,D,USA,76.0,232.0,USA,USA U-18
 2006,1,2,2,PIT,Jordan,Staal,C,CAN,76.0,220.0,OHL,Peterborough
 2006,1,3,3,CHI,Jonathan,Toews,F,CAN,74.0,210.0,WCHA,U. of North Dakota
