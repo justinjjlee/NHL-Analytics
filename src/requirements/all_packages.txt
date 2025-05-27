@@ -13,7 +13,7 @@ bzip2=1.0.8=h80987f9_6
 c-ares=1.19.1=h80987f9_0
 ca-certificates=2024.6.2=hf0a4a13_0
 cachetools=5.4.0=pypi_0
-certifi=2024.6.2=pyhd8ed1ab_0
+certifi>2024.6.2=pyhd8ed1ab_0
 cffi=1.16.0=py312h80987f9_1
 charset-normalizer=2.0.4=pyhd3eb1b0_0
 click=8.1.7=pypi_0
@@ -105,7 +105,7 @@ pickleshare=0.7.5=py_1003
 pillow=10.4.0=pypi_0
 pip=24.0=py312hca03da5_0
 platformdirs=3.10.0=py312hca03da5_0
-plotly=5.23.0=pypi_0
+plotly>5.23.0=pypi_0
 pluggy=1.0.0=py312hca03da5_1
 prompt-toolkit=3.0.47=pyha770c72_0
 psutil=6.0.0=py312h7e5086c_0

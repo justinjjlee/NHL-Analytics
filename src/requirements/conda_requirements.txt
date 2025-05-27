@@ -59,7 +59,7 @@ matplotlib-inline==0.1.7
 menuinst==2.1.1
 ncurses==6.4
 nest-asyncio==1.6.0
-openssl==3.3.1
+openssl
 packaging==23.2
 parso==0.8.4
 pcre2==10.42
@@ -85,12 +85,12 @@ reproc==14.2.4
 reproc-cpp==14.2.4
 requests==2.32.2
 ruamel.yaml==0.17.21
-setuptools==70.0.0
+setuptools
 six==1.16.0
 sqlite==3.45.3
 stack_data==0.6.2
 tk==8.6.14
-tornado==6.4.2
+tornado
 tqdm==4.66.4
 traitlets==5.14.3
 truststore==0.8.0

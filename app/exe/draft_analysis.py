@@ -263,7 +263,7 @@ def render_exceptional_players_analysis():
                         , hovertemplate=
                             "<b>%{text}</b><br>" +
                             "Points: %{y}<br>" +
-                            "Games Played: " + player_career['gamesPlayed'].astype(str) + "<br>" +
+                            "Games Played: " + player_career['gamesPlayed'].astype(int).astype(str) + "<br>" +
                             "Year: %{x}<br>" +
                             "Team: " + player_career['teamAbbrev_stats'] + "<br>"
                             "Draft: On " + \
@@ -303,7 +303,7 @@ def render_exceptional_players_analysis():
                         hovertemplate=
                             "<b>%{text}</b><br>" +
                             "Points: %{y}<br>" +
-                            "Games Played: " + player_exceptional['gamesPlayed'].astype(str) + "<br>" +
+                            "Games Played: " + player_exceptional['gamesPlayed'].astype(int).astype(str) + "<br>" +
                             "Year: %{x}<br>" +
                             "Team: " + player_exceptional['teamAbbrev_stats'] + "<br>"
                             "Draft: On " + \

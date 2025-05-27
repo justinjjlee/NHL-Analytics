@@ -20,7 +20,7 @@ fsspec==2024.6.1
 h5netcdf==1.3.0
 h5py==3.11.0
 itsdangerous==2.2.0
-jinja2==3.1.5
+jinja2
 joblib==1.4.2
 kiwisolver==1.4.5
 logical-unification==0.4.6
@@ -33,7 +33,7 @@ multipledispatch==1.0.0
 numpy==1.26.4
 pandas==2.2.2
 pillow==10.4.0
-plotly==5.23.0
+plotly>=5.23.0
 pymc==5.16.2
 pyparsing==3.1.2
 pyspnego==0.11.0

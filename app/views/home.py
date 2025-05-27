@@ -17,9 +17,9 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Featured Visualizations")
     st.markdown("""
-    * **Team Map** - Explore NHL team locations and distances
-    * **Live Scoreboard** - Check current game scores and odds
-    * **Les magnifiques patineuses** - Player analysis and performance insights
+    * **Team Map** - Explore NHL team locations and interactive visulizations
+    * **Live Scoreboard** - Past game odds and scores
+    * **In-depth Analysis** - Answering questions by creating noble data and visualizations
     """)
 
 with col2:

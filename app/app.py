@@ -17,6 +17,31 @@ st.set_page_config(
     layout="centered"
 )
 
+# Add custom CSS for navigation color
+st.markdown("""
+<style>
+    /* Main navigation bar background */
+    .st-emotion-cache-z5fcl4 {
+        background-color: #CE0E2D !important;
+    }
+    
+    /* Active nav item background */
+    .st-emotion-cache-1cypcdb {
+        background-color: rgba(255, 255, 255, 0.15) !important; 
+    }
+    
+    /* Nav text color */
+    .st-emotion-cache-1cypcdb, .st-emotion-cache-1avcm0n, .st-emotion-cache-j7qwjs {
+        color: white !important;
+    }
+    
+    /* Dropdown background */
+    .st-emotion-cache-18ni7ap {
+        background-color: #CE0E2D !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Helper function for asset paths
 def get_asset_path(rel_path):
     """Helper function to get correct asset paths regardless of run location"""
@@ -28,6 +53,7 @@ HOME = st.Page(page="views/home.py", title="Home", default=True)
 TEAM_MAP = st.Page(page="views/teams_map.py", title="Team Locations & Travel Distance")
 SCOREBOARD = st.Page(page="views/scoreboard.py", title="Scoreboard")
 SKATERS = st.Page(page="views/magnifiques_patineuses.py", title="Les magnifiques patineuses")
+BLOCKING_SHOTS = st.Page(page="views/blocking_shots.py", title="The Valor of Blocking Shots")
 ABOUT = st.Page(page="views/about.py", title="About")
 
 # Add logo at the top
@@ -35,15 +61,12 @@ ABOUT = st.Page(page="views/about.py", title="About")
 
 # Create navigation
 pages = {
-    "Bienvenue": [HOME,ABOUT],
+    "Bienvenue": [HOME, ABOUT],
     "Team": [SCOREBOARD, TEAM_MAP],
-    "Skaters": [SKATERS],
+    "Skaters": [SKATERS, BLOCKING_SHOTS],
 }
 pg = st.navigation(pages)
 pg.run()
-
-# Footer with version
-#st.caption("NHL Analytics • Version 1.0.0")
 
 # Footer styling 
 st.markdown("""
