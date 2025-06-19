@@ -275,9 +275,10 @@ print(f"\nPlayers with multiple seasons exceeding the 95th percentile (n={len(mu
 print(multi_exceptional_players)
 
 # Get more details about these exceptional performances
+# Un-comment if i only want to include players with multiple exceptional seasons
 exceptional_details = dfplayer_first[
-    (dfplayer_first['exceeded_95th']) & 
-    (dfplayer_first['id'].isin(multi_exceptional_players['id']))
+    (dfplayer_first['exceeded_95th']) 
+    #& (dfplayer_first['id'].isin(multi_exceptional_players['id']))
 ].sort_values(['lastName', 'firstName', 'year_inNHL'])
 
 # Select relevant columns for the detailed view

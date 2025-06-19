@@ -34,85 +34,90 @@ data = r.json()
 # %% Process data
 main_df = pd.json_normalize(data['games'])
 
-# Normalize the nested 'odds' for homeTeam
-home_odds_df = pd.json_normalize(
-    data['games'], record_path=['homeTeam', 'odds'], 
-    meta=[
-        'gameId', 'gameType', 'startTimeUTC', 
-        ['homeTeam', 'id'], ['homeTeam', 'name', 'default'], 
-        ['homeTeam', 'abbrev'], ['homeTeam', 'logo']
-    ],
-    meta_prefix='homeTeam_', record_prefix='home_odds_'
-)
-# Keep specific columns
-home_odds_df = home_odds_df[["homeTeam_gameId", "home_odds_description", "home_odds_value"]]
-home_odds_df.rename(columns=
-    {
-        "home_odds_description":"odds_description"
-    }, inplace=True
-)
-
-# Normalize the nested 'odds' for awayTeam
-away_odds_df = pd.json_normalize(
-    data['games'], record_path=['awayTeam', 'odds'], 
-    meta=[
-        'gameId', 'gameType', 'startTimeUTC', 
-        ['awayTeam', 'id'], ['awayTeam', 'name', 'default'], 
-        ['awayTeam', 'abbrev'], ['awayTeam', 'logo']
-    ],
-    meta_prefix='awayTeam_', record_prefix='away_odds_'
-)
-away_odds_df = away_odds_df[["awayTeam_gameId", "away_odds_description", "away_odds_value"]]
-away_odds_df.rename(columns=
-    {
-        "awayTeam_gameId":"gameId",
-        "away_odds_description":"odds_description"
-    }, inplace=True
-)
-
-# Merge the home and away odds into the main dataframe
-final_df = pd.merge(
-    main_df, home_odds_df, 
-    left_on='gameId', right_on='homeTeam_gameId', 
-    suffixes=('', '_home')
-    ).merge(
-        away_odds_df, 
-        on = ['gameId', 'odds_description'], 
-        suffixes=('', '_away')
+# Run if the data is not empty (main_df is not empty)
+if not main_df.empty:
+    # Normalize the nested 'odds' for homeTeam
+    home_odds_df = pd.json_normalize(
+        data['games'], record_path=['homeTeam', 'odds'], 
+        meta=[
+            'gameId', 'gameType', 'startTimeUTC', 
+            ['homeTeam', 'id'], ['homeTeam', 'name', 'default'], 
+            ['homeTeam', 'abbrev'], ['homeTeam', 'logo']
+        ],
+        meta_prefix='homeTeam_', record_prefix='home_odds_'
+    )
+    # Keep specific columns
+    home_odds_df = home_odds_df[["homeTeam_gameId", "home_odds_description", "home_odds_value"]]
+    home_odds_df.rename(columns=
+        {
+            "home_odds_description":"odds_description"
+        }, inplace=True
     )
 
-# Drop duplicate columns
-final_df = final_df.loc[:,~final_df.columns.duplicated()]
-final_df.drop(
-    columns=[
-        "homeTeam.odds", "awayTeam.odds",
-        "homeTeam_gameId"
-    ], inplace=True
-)
+    # Normalize the nested 'odds' for awayTeam
+    away_odds_df = pd.json_normalize(
+        data['games'], record_path=['awayTeam', 'odds'], 
+        meta=[
+            'gameId', 'gameType', 'startTimeUTC', 
+            ['awayTeam', 'id'], ['awayTeam', 'name', 'default'], 
+            ['awayTeam', 'abbrev'], ['awayTeam', 'logo']
+        ],
+        meta_prefix='awayTeam_', record_prefix='away_odds_'
+    )
+    away_odds_df = away_odds_df[["awayTeam_gameId", "away_odds_description", "away_odds_value"]]
+    away_odds_df.rename(columns=
+        {
+            "awayTeam_gameId":"gameId",
+            "away_odds_description":"odds_description"
+        }, inplace=True
+    )
 
-# Append additional information
-final_df["currentOddsDate"] = data["currentOddsDate"]
-final_df["currentOddsDate"] = data["currentOddsDate"]
-final_df["lastUpdatedUTC"] = data["lastUpdatedUTC"]
-final_df["bettingPartner"] = data["bettingPartner"]["name"]
+    # Merge the home and away odds into the main dataframe
+    final_df = pd.merge(
+        main_df, home_odds_df, 
+        left_on='gameId', right_on='homeTeam_gameId', 
+        suffixes=('', '_home')
+        ).merge(
+            away_odds_df, 
+            on = ['gameId', 'odds_description'], 
+            suffixes=('', '_away')
+        )
 
-# %% Save data
+    # Drop duplicate columns
+    final_df = final_df.loc[:,~final_df.columns.duplicated()]
+    final_df.drop(
+        columns=[
+            "homeTeam.odds", "awayTeam.odds",
+            "homeTeam_gameId"
+        ], inplace=True
+    )
 
-try:
-    # Load existing real-time tracking file
-    exist_df = pd.read_csv(f"./latest/box/{iter_year}_odds.csv")
-except: 
-    # new season starts
-    exist_df = final_df
-# Append
-df = pd.concat([exist_df, final_df], axis= 0).reset_index(drop=True)
-# Append the latest available data and replace the existing record
-# Sort by gameId and startTimeUTC in descending order and drop duplicates based on gameId, keeping the last (latest) record
-df = df\
-    .sort_values(by=['gameId', 'lastUpdatedUTC', 'odds_description'], ascending=[True, False, False])\
-        .drop_duplicates(subset=['gameId', 'odds_description', 'bettingPartner'], keep='first')
+    # Append additional information
+    final_df["currentOddsDate"] = data["currentOddsDate"]
+    final_df["currentOddsDate"] = data["currentOddsDate"]
+    final_df["lastUpdatedUTC"] = data["lastUpdatedUTC"]
+    final_df["bettingPartner"] = data["bettingPartner"]["name"]
 
-# Save the data
-df.to_csv(f"./latest/box/{iter_year}_odds.csv", index=False)
+    # Save data
 
+    try:
+        # Load existing real-time tracking file
+        exist_df = pd.read_csv(f"./latest/box/{iter_year}_odds.csv")
+    except: 
+        # new season starts
+        exist_df = final_df
+    # Append
+    df = pd.concat([exist_df, final_df], axis= 0).reset_index(drop=True)
+    # Append the latest available data and replace the existing record
+    # Sort by gameId and startTimeUTC in descending order and drop duplicates based on gameId, keeping the last (latest) record
+    df = df\
+        .sort_values(by=['gameId', 'lastUpdatedUTC', 'odds_description'], ascending=[True, False, False])\
+            .drop_duplicates(subset=['gameId', 'odds_description', 'bettingPartner'], keep='first')
+
+    # Save the data
+    df.to_csv(f"./latest/box/{iter_year}_odds.csv", index=False)
+
+    print(f"Odds data for {datetime.datetime.today()} saved successfully.")
+else:
+    print("No data available at this time.")
 print("au revoir.")

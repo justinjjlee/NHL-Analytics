@@ -2,7 +2,16 @@ name: NHL API pull data for game-level stats (games and odds)
 
 on:
   schedule:
-    - cron: '0 20 * * *'  # This runs the workflow daily at 20:00 UTC, which is 3 PM CT during Daylight Saving Time
+    # This runs the workflow daily at 20:00 UTC, which is 3 PM CT during Daylight Saving Time
+    #   but only in months 1-6 and 10-12
+    # (January to June and October to December, skipping July, August, September)
+    #
+    # 0 - At minute 0
+    # 8 - At hour 8 (8:00 AM UTC)
+    # * - Any day of the month
+    # 1-6,10-12 - Only in months 1-6 (Jan-Jun) and 10-12 (Oct-Dec), skipping 7-9 (Jul-Sep)
+    # * - Every day of the week
+    - cron: '0 20 * 1-6,10-12 *'
   push:
     branches:
       - main

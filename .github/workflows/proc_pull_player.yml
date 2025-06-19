@@ -2,7 +2,15 @@ name: NHL API pull data for player-level stats
 
 on:
   schedule:
-    - cron: '0 8 * * 1'  # This runs the workflow at 8:00 AM UTC every Monday
+    # This runs at 8:00 AM UTC every Monday, but only in months 1-6 and 10-12
+    # (January to June and October to December, skipping July, August, September)
+    #
+    # 0 - At minute 0
+    # 8 - At hour 8 (8:00 AM UTC)
+    # * - Any day of the month
+    # 1-6,10-12 - Only in months 1-6 (Jan-Jun) and 10-12 (Oct-Dec), skipping 7-9 (Jul-Sep)
+    # 1 - Only on Mondays
+    - cron: '0 8 * 1-6,10-12 1'
   push:
     branches:
       - main

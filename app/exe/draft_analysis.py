@@ -134,8 +134,8 @@ def render_exceptional_players_analysis():
                     lambda x: f"{x[:4]}-{x[4:]}" if len(x) >= 8 else x
                 )
             # Simple filter for first round picks
-            if 'roundNumber' in career_data.columns:
-                career_data = career_data[career_data['roundNumber'] == 1]
+            if 'round' in career_data.columns:
+                career_data = career_data[career_data['round'] == 1]
         
             # Calculate year_inNHL if not present
             if 'year_inNHL' not in career_data.columns:
@@ -156,7 +156,7 @@ def render_exceptional_players_analysis():
             """)
             
             # Display summary metrics
-            cols = st.columns(3)
+            cols = st.columns([1,2,3])
             with cols[0]:
                 st.metric("Total Exceptional Skaters", len(multi_exceptional_players))
             with cols[1]:
@@ -225,7 +225,7 @@ def render_exceptional_players_analysis():
             player_list = sorted(career_data["fullName"].unique())
 
             # Check if our desired default players are in the dataset
-            for player in ["Patrick Kane", "Jonathan Toews", "Connor Bedard"]:
+            for player in ["Patrick Kane", "Duncan Keith", "Jonathan Toews", "Connor Bedard"]:
                 if player in player_list:
                     default_players.append(player)
 
