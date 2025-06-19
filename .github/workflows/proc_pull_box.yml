@@ -3,14 +3,7 @@ name: NHL API pull data for game-level stats (games and odds)
 on:
   schedule:
     # This runs the workflow daily at 20:00 UTC, which is 3 PM CT during Daylight Saving Time
-    #   but only in months 1-6 and 10-12
-    # (January to June and October to December, skipping July, August, September)
-    #
-    # 0 - At minute 0
-    # 8 - At hour 8 (8:00 AM UTC)
-    # * - Any day of the month
-    # 1-6,10-12 - Only in months 1-6 (Jan-Jun) and 10-12 (Oct-Dec), skipping 7-9 (Jul-Sep)
-    # * - Every day of the week
+    # Only in hockey season months (January to June and October to December)
     - cron: '0 20 * 1-6,10-12 *'
   push:
     branches:
@@ -26,56 +19,30 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Conda - Set up Miniconda
-      uses: conda-incubator/setup-miniconda@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-        auto-update-conda: true
-        python-version: '3.12.2'  # Specify the Python version you need
-        channels: conda-forge,defaults  # Add conda-forge and defaults channels
+        python-version: '3.12'
+        cache: 'pip'
 
-    - name: Conda - Initialize Conda
+    - name: Install dependencies
       run: |
-        conda init bash
-        source ~/.bashrc
-  
-    - name: Conda - Create environment and install Conda dependencies
-      run: |
-        conda create --name myenv --yes
-        source ~/.bashrc
-        conda activate myenv
-        conda install --yes --file src/requirements/conda_requirements.txt
+        python -m pip install --upgrade pip
+        pip install -r src/requirements/requirements.txt
 
-    - name: Conda - Install Pip dependencies
-      run: |
-        source ~/.bashrc
-        conda activate myenv
-        pip install -r src/requirements/pip_requirements.txt
-  
-    - name: Run Python - NHL Game Record Data
-      run: |
-        source ~/.bashrc
-        conda activate myenv
-        python src/data/apinhle/data_pull_box.py
+    - name: Run NHL Game Record Data
+      run: python src/data/apinhle/data_pull_box.py
 
-    - name: Run Python - NHL Odds Data
-      run: |
-        source ~/.bashrc
-        conda activate myenv
-        python src/data/apinhle/data_pull_box_odds.py
+    - name: Run NHL Odds Data
+      run: python src/data/apinhle/data_pull_box_odds.py
 
-    - name: Run Python - NHL Game-level Summary to Game Records and Season-team Statistics
+    - name: Run NHL Game-level Summary to Game Records and Season-team Statistics
       if: always()
-      run: |
-        source ~/.bashrc
-        conda activate myenv
-        python src/data/apinhle/data_proc_gameSummary.py
+      run: python src/data/apinhle/data_proc_gameSummary.py
 
-    - name: Run Python - NHL Game-level Play-by-play record data
+    - name: Run NHL Game-level Play-by-play record data
       if: always()
-      run: |
-        source ~/.bashrc
-        conda activate myenv
-        python src/data/apinhle/data_pull_plays.py
+      run: python src/data/apinhle/data_pull_plays.py
 
     - name: Configure Git
       run: |

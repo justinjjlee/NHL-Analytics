@@ -1,0 +1,31 @@
+# Core dependencies
+numpy>=1.26.0
+pandas>=2.2.0
+matplotlib>=3.9.0
+plotly>=5.23.0
+streamlit>=1.32.0
+streamlit-folium>=0.15.0
+
+# Data processing
+scipy>=1.13.0
+scikit-learn>=1.5.0
+duckdb>=1.0.0
+xarray>=2024.7.0
+h5py>=3.11.0
+
+# Visualization
+seaborn>=0.13.0
+dash>=2.17.0
+folium>=0.14.0
+
+# API and web
+requests>=2.32.0
+flask>=3.0.0
+
+# Utilities
+tqdm>=4.66.0
+python-dateutil>=2.9.0
+pytz>=2024.1
+
+# NHL-specific packages (if any)
+# hockey-rink>=0.1.0  # Uncomment if using
