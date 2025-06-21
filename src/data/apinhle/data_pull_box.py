@@ -133,16 +133,16 @@ for iter_year in [iter_year]:#iter_years:
     for count, row in game_list.iterrows():
         cond_iter = row["metric_score_for"] > row["metric_score_against"]
         if cond_iter:
-            game_list.loc[count, "tricode_winteam"] = row["tricode_for"].copy()
+            game_list.loc[count, "tricode_winteam"] = row["tricode_for"]
         else:
-            game_list.loc[count, "tricode_winteam"] = row["tricode_against"].copy()
+            game_list.loc[count, "tricode_winteam"] = row["tricode_against"]
 
     for count, row in games.iterrows():
         cond_iter = row["homeTeam.score"] > row["awayTeam.score"]
         if cond_iter:
-            games.loc[count, "tricode_winteam"] = row["homeTeam.abbrev"].copy()
+            games.loc[count, "tricode_winteam"] = row["homeTeam.abbrev"]
         else:
-            games.loc[count, "tricode_winteam"] = row["awayTeam.abbrev"].copy()
+            games.loc[count, "tricode_winteam"] = row["awayTeam.abbrev"]
 
     print("All game records are pulled - ready to pull box scores")            
     # Pull game-level statistics
