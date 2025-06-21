@@ -18,7 +18,7 @@ mo_now = datetime.datetime.today().month
 dy_now = datetime.datetime.today().day
 
 # Select starting year for season to pull.
-#   Until the following season starts, always pull the current/past eyar
+#   Until the following season starts, always pull the current/past year
 if (mo_now > 10) | ((mo_now == 10) & (dy_now > 15)): 
     # Season starts on October - start with regular season since pre season games don't have full data
     #   Start the regular season data pull on 10/15
@@ -44,17 +44,22 @@ for iter_year in [iter_year]: # or iter_years
         # If previously pulled data exist
         df_playbyplay_exist = pd.read_csv(f"./latest/play/{iter_year}_playbyplay.csv")
         df_playbyplay_player_exist = pd.read_csv(f"./latest/play/{iter_year}_playbyplay_player.csv")
-        # Unique of all existing game records
-        gameids_exist = df_playbyplay_exist["gameid"].unique()
-        # Remove the existing game records
-        # Pick up games with newest data points
-        gamecode = gamecode.loc[~gamecode["gameid"].isin(gameids_exist), :]
         # NOTE: This process does not account for any record revisions
         idx_exist = True
     except:
         # New data needed, no need to append the old one
         idx_exist = False
+        print("No existing game records found, will pull all game records")
 
+    if idx_exist: # If the current season data exist
+        # Don't need to pull all game records
+        print("Found existing game records, will only pull new game records")
+        # Unique of all existing game records
+        gameids_exist = df_playbyplay_exist["gameid"].unique()
+        # Remove the existing game records
+        # Pick up games with newest data points
+        gamecode = gamecode.loc[~gamecode["gameid"].isin(gameids_exist), :]
+        print(f"Found {len(gamecode)} new game records, will append to the new data")
     # ---------------------------------------------------
     # Pull team/game lists of the games for the season
     '''
@@ -73,23 +78,25 @@ for iter_year in [iter_year]: # or iter_years
             # Append to save
             df_playbyplay.append(iter_playbyplay)
             df_playerinfo.append(iter_player)
+            print(f"Pulled game {row.gameid} play-by-play data")
             # Pause to play safe with the API
             time.sleep(1)
 
         # Save, full data
-        playbyplay = pd.concat(df_playbyplay)
+        df_playbyplay = pd.concat(df_playbyplay)
         df_playerinfo = pd.concat(df_playerinfo)
 
         if idx_exist:
             # If the old record exists, append the old record
-            playbyplay = pd.concat([df_playbyplay_exist, df_playbyplay], axis=0)
+            df_playbyplay = pd.concat([df_playbyplay_exist, df_playbyplay], axis=0)
             df_playerinfo = pd.concat([df_playbyplay_player_exist, df_playerinfo], axis=0)
         
         # Save data
-        playbyplay.to_csv(f"./latest/play/{iter_year}_playbyplay.csv", index=False)
+        df_playbyplay.to_csv(f"./latest/play/{iter_year}_playbyplay.csv", index=False)
         df_playerinfo.to_csv(f"./latest/play/{iter_year}_playbyplay_player.csv", index=False)
     else:
         # No records need to be pulled
         print("All records currently existing, no need to pull records")
         
 print("au revoir.")
+# %%

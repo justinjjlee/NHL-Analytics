@@ -133,16 +133,16 @@ for iter_year in [iter_year]:#iter_years:
     for count, row in game_list.iterrows():
         cond_iter = row["metric_score_for"] > row["metric_score_against"]
         if cond_iter:
-            game_list.loc[count, "tricode_winteam"] = row["tricode_for"]
+            game_list.loc[count, "tricode_winteam"] = row["tricode_for"].copy()
         else:
-            game_list.loc[count, "tricode_winteam"] = row["tricode_against"]
+            game_list.loc[count, "tricode_winteam"] = row["tricode_against"].copy()
 
     for count, row in games.iterrows():
         cond_iter = row["homeTeam.score"] > row["awayTeam.score"]
         if cond_iter:
-            games.loc[count, "tricode_winteam"] = row["homeTeam.abbrev"]
+            games.loc[count, "tricode_winteam"] = row["homeTeam.abbrev"].copy()
         else:
-            games.loc[count, "tricode_winteam"] = row["awayTeam.abbrev"]
+            games.loc[count, "tricode_winteam"] = row["awayTeam.abbrev"].copy()
 
     print("All game records are pulled - ready to pull box scores")            
     # Pull game-level statistics
@@ -166,6 +166,7 @@ for iter_year in [iter_year]:#iter_years:
         df_box_team   = []
 
         for iter_game in inx_gamesnodata: # if pulling all
+            print(f"Pulling {iter_game}")
             # Maybe wait a minute?
             time.sleep(1)
             # Call data
@@ -174,6 +175,7 @@ for iter_year in [iter_year]:#iter_years:
             data = r.json()
 
             team_stat_empty = []
+            player_stat_empty = []
             # Get game stats
             gamedate = data['gameDate']
 
@@ -192,22 +194,29 @@ for iter_year in [iter_year]:#iter_years:
                 team_stat_empty.append(temp_team)
 
                 # Player-specific stats
-                #   3/29/2024 - API structure is changing so frequently, and currently I don't find a use for ti
-                #       Commenting out until the next season when the data will be useful and API structure more consistent
-                #for iter_pos in ['forwards','defense','goalies']:
-                    #tempdata = data['playerByGameStats'][iter_team][iter_pos]
-                    #tempdata = pd.json_normalize(tempdata)
-                    #tempdata['teamid'] = teamid
-                    #tempdata['teamtri'] = teamtri
-                    #tempdata['gameid'] = iter_game
-                    #tempdata['teamloc'] = teamloc
-                    #tempdata['gameDate'] = data['gameDate']
-                    #tempdata['seasonIdx'] = data['gameType']
-                    #df_box_player.append(tempdata)
-
+                for iter_pos in ['forwards','defense','goalies']:
+                    tempdata = data['playerByGameStats'][iter_team][iter_pos]
+                    tempdata = pd.json_normalize(tempdata)
+                    tempdata['teamid'] = teamid
+                    tempdata['abbrev'] = teamtri
+                    tempdata['gameid'] = iter_game
+                    tempdata['teamloc'] = teamloc
+                    tempdata['gameDate'] = data['gameDate']
+                    tempdata['seasonIdx'] = data['gameType']
+                    player_stat_empty.append(tempdata)
+            # Groupby following stats from players to team data and append
+            cols_playertoteam = ["hits", "powerPlayGoals", "sog", "blockedShots", "giveaways", "takeaways"]
+            game_box_player = pd.concat(player_stat_empty)
+            player_to_team = game_box_player.groupby(['abbrev']).agg(
+                {
+                    **{col: 'sum' for col in cols_playertoteam}
+                }
+            ).reset_index()
             # Data concat to be dataframe
             team_stat = pd.concat(team_stat_empty).reset_index(drop=True)
             team_stat = team_stat[['abbrev', 'gameid', 'teamloc', 'score']]
+            # merge based on abbrev and teamtri
+            team_stat = team_stat.merge(player_to_team, how='left', on='abbrev')
 
             # Who won the game
             team_stat['win'] = 0
@@ -236,10 +245,10 @@ for iter_year in [iter_year]:#iter_years:
             '''
             # Save data
             df_box_team.append(team_stat)
-
+            df_box_player.append(game_box_player)
         print("All new box scores are pulled, processing and saving data") 
 
-        #df_box_player = pd.concat(df_box_player)
+        df_box_player = pd.concat(df_box_player)
         df_box_team = pd.concat(df_box_team)
 
         # Finalize processing
@@ -252,6 +261,7 @@ for iter_year in [iter_year]:#iter_years:
             columns = {
                 "abbrev":"team_tri",
                 "score": "goals",
+                "powerPlayGoals":"goals_pp",
                 "sog":"shots",
                 "blockedShots":"shots_blocked",
                 "giveaways":"poss_giveaway",
@@ -266,24 +276,22 @@ for iter_year in [iter_year]:#iter_years:
         # Attach the past data
         try:
             # Load the previous data, if exist
-            #df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
-            #                        parse_dates = ['gameDate'], 
-            #                        index_col = 'gameIdx')
+            df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
+                                    parse_dates = ['gameDate'], 
+                                    index_col = 'gameIdx')
             df_team   = pd.read_csv(f"./latest/box/{iter_year}_box_team.csv",
                                     parse_dates = ['gameDate'], 
                                     index_col = 'gameIdx')
-            #df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
+            df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
             df_box_team   = pd.concat([df_team, df_box_team])
-        except:
-            # Scip the process, create the new file
-            None
-        # Box scores for each game for each team
-        #df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv")
-        df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
+        except: # Scip the process, create the new file
+            # Player stats & Box scores for each game for each team
+            df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv", index=False)
+            df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
 
         # Save 'games" and "game_list"
         #   Game records are full list pulled by 
-        #games.to_csv(f"./latest/{iter_year}_gamelist_raw.csv", index=False)
+        games.to_csv(f"./latest/{iter_year}_gamelist_raw.csv", index=False)
         game_list.to_csv(f"./latest/box/{iter_year}_box.csv", index=False)
     else:
         # No data to pull, exit

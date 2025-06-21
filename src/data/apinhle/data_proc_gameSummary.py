@@ -1,3 +1,4 @@
+# %%
 import pandas as pd
 import numpy as np
 import requests
@@ -39,9 +40,9 @@ try: # If the data exist,
     print("Team - season-level statistics compute completed")
 except: # Data does not exist
     print("The data currently does not exist. Exit the process safely.")
-'''
-# %% Plot: Generate statistics for team success measurements
 
+# %% Plot: Generate statistics for team success measurements
+'''
 # Vector of min
 x_min = np.min(df_kpi['rpe'])
 x_max = np.median(df_kpi['rpe'])

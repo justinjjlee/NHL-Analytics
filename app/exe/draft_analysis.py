@@ -158,7 +158,7 @@ def render_exceptional_players_analysis():
             # Display summary metrics
             cols = st.columns([1,2,3])
             with cols[0]:
-                st.metric("Total Exceptional Skaters", len(multi_exceptional_players))
+                st.metric("Skaters", len(multi_exceptional_players))
             with cols[1]:
                 st.metric("Most Exceptional Seasons by a Skater", multi_exceptional_players['exceptional_seasons'].max())
             with cols[2]:

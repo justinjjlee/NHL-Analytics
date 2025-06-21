@@ -53,6 +53,7 @@ jobs:
       run: |
         git add latest/box/*.csv
         git add latest/team/season/*.csv
+        git add latest/play/*.csv 
         if git diff-index --quiet HEAD --; then
           echo "No changes to commit"
           exit 0
