@@ -286,12 +286,12 @@ for iter_year in [iter_year]:#iter_years:
             df_box_team   = pd.concat([df_team, df_box_team])
         except: # Scip the process, create the new file
             # Player stats & Box scores for each game for each team
-            df_box_player.to_csv(f"./latest/{iter_year}_box_player.csv", index=False)
+            df_box_player.to_csv(f"./latest/box/{iter_year}_box_player.csv", index=False)
             df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
 
         # Save 'games" and "game_list"
         #   Game records are full list pulled by 
-        games.to_csv(f"./latest/{iter_year}_gamelist_raw.csv", index=False)
+        games.to_csv(f"./latest/box/{iter_year}_gamelist_raw.csv", index=False)
         game_list.to_csv(f"./latest/box/{iter_year}_box.csv", index=False)
     else:
         # No data to pull, exit
