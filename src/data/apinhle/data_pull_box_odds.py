@@ -114,6 +114,9 @@ if not main_df.empty:
         .sort_values(by=['gameId', 'lastUpdatedUTC', 'odds_description'], ascending=[True, False, False])\
             .drop_duplicates(subset=['gameId', 'odds_description', 'bettingPartner'], keep='first')
 
+    # lower-case column name gameId to gameid
+    df.rename(columns={'gameId':'gameid'}, inplace=True)
+
     # Save the data
     df.to_csv(f"./latest/box/{iter_year}_odds.csv", index=False)
 
