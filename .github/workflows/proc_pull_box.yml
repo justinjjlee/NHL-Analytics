@@ -40,13 +40,14 @@ jobs:
       if: always()
       run: python src/data/apinhle/data_proc_gameSummary.py
 
-    - name: Run NHL Game-level Play-by-play record data
-      if: always()
-      run: python src/data/apinhle/data_pull_plays.py
+    # For local prod environment only
+    #- name: Run NHL Game-level Play-by-play record data
+    #  if: always()
+    #  run: python src/data/apinhle/data_pull_plays.py
 
-    - name: Run NHL Shift-level data pull
-      if: always()
-      run: python src/data/apinhle/data_pull_lines.py
+    #- name: Run NHL Shift-level data pull
+    #  if: always()
+    #  run: python src/data/apinhle/data_pull_lines.py
 
     - name: Configure Git
       run: |
