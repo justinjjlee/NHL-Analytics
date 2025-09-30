@@ -52,6 +52,7 @@ jobs:
           exit 0
         else
           git commit -m 'Automated data update'
+          git pull --rebase origin main
           git push
         fi
       env:
