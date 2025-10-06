@@ -57,6 +57,7 @@ jobs:
     - name: Commit and push changes
       run: |
         git add latest/box/*.csv
+        git add latest/box/*.json
         git add latest/team/season/*.csv
         git add latest/play/*.csv 
         if git diff-index --quiet HEAD --; then
