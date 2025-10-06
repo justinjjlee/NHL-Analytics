@@ -101,10 +101,11 @@ for iter_country in ['US', 'CA']:
         # Finalize data selection
         final_df = final_df[[
             'gameType', 'gameId', 
-            'homeTeam_id', 'homeTeam.abbrev', 
-            'awayTeam_id', 'awayTeam.abbrev',
+            'homeTeam.id', 'homeTeam.abbrev', 
+            'awayTeam.id', 'awayTeam.abbrev',
             'odds_description',	
             'home_odds_value', 'away_odds_value',
+            'bettingPartner',
             'startTimeUTC', 'lastUpdatedUTC'
         ]]
 
