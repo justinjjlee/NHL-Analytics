@@ -132,7 +132,8 @@ for iter_country in ['US', 'CA']:
                 .drop_duplicates(subset=['gameid', 'odds_description', 'bettingPartner'], keep='first')
 
         # Append - json
-        exist_json.append(data['games'])
+        for iter_game in data['games']:
+            exist_json.append(iter_game)
 
         # Save the data
         df.to_csv(f"./latest/box/{iter_year}_odds_{iter_country}.csv", index=False)
