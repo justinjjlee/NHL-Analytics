@@ -54,7 +54,7 @@ def load_box_scores_and_odds():
         # Find all odds files
         odds_files = glob.glob(f"{box_dir}/*odds.csv")
         # 2025, added US and Canada, use US odds for 
-        odds_files_us = glob.glob(f"{box_dir}/*odds_us.csv")
+        odds_files_us = glob.glob(f"{box_dir}/*odds_US.csv")
         # Combine the two
         odds_files = odds_files + odds_files_us
         odds_df = None
@@ -147,10 +147,10 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
             if away_odds is not None:
                 # Money line 2 - always negative and positive - smaller font
                 if home_odds > away_odds:
-                    odds_str = f"+{away_odds}" if away_odds > 0 else f"{away_odds}"
+                    odds_str = f"+{int(away_odds)}" if away_odds > 0 else f"{int(away_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
-                    odds_str = f"+{away_odds}" if away_odds > 0 else f"{away_odds}"
+                    odds_str = f"+{int(away_odds)}" if away_odds > 0 else f"{int(away_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
             if away_score > home_score:
@@ -173,10 +173,10 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
             if home_odds is not None:
                 # Money line 2 - always negative and positive - smaller font
                 if home_odds < away_odds:
-                    odds_str = f"{home_odds}" if home_odds < 0 else f"+{home_odds}"
+                    odds_str = f"{int(home_odds)}" if home_odds < 0 else f"+{int(home_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
-                    odds_str = f"{home_odds}" if home_odds < 0 else f"+{home_odds}"
+                    odds_str = f"{int(home_odds)}" if home_odds < 0 else f"+{int(home_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
             if home_score > away_score:
