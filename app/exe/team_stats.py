@@ -70,6 +70,9 @@ def load_box_scores_and_odds():
             for file in odds_files:
                 try:
                     temp_df = pd.read_csv(file)
+                    # If gameId column exist, change the name to gameid
+                    if 'gameId' in temp_df.columns:
+                        temp_df = temp_df.rename(columns={'gameId': 'gameid'})
                     # Filter for MONEY_LINE_2_WAY odds only
                     temp_df = temp_df[temp_df['odds_description'] == 'MONEY_LINE_2_WAY']
                     # Add to list of dataframes
@@ -82,7 +85,7 @@ def load_box_scores_and_odds():
                 # Concatenate all odds dataframes
                 odds_df = pd.concat(odds_dfs, ignore_index=True)
                 # Drop duplicates to ensure we have one odds entry per game
-                odds_df = odds_df.drop_duplicates(subset=['gameId'])
+                odds_df = odds_df.drop_duplicates(subset=['gameid'])
         
         # Convert date column to datetime
         box_df['date'] = pd.to_datetime(box_df['date'])
@@ -251,7 +254,7 @@ def render_scoreboard():
                 
                 if odds_data is not None and game_id is not None:
                     # Find the matching odds row
-                    odds_row = odds_data[odds_data['gameId'] == game_id]
+                    odds_row = odds_data[odds_data['gameid'] == game_id]
                     
                     if not odds_row.empty:
                         # Get home and away odds if columns exist
