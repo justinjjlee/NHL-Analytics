@@ -19,10 +19,10 @@ def load_draft_data():
     try:
         # Define relative paths to data files
         relative_paths = {
-            'exceptional_players': 'dev/player_draft/draftee_lifecycle/results/multi_exceptional_players.csv',
-            'exceptional_seasons': 'dev/player_draft/draftee_lifecycle/results/exceptional_seasons_details.csv',
-            'merged_stats': 'dev/player_draft/data/merged_draft_player_stats.csv',
-            'player_stats': 'dev/player_draft/data/all_drafted_players_chronicle.csv'
+            'exceptional_players': 'dev/player/player_draft/draftee_lifecycle/results/multi_exceptional_players.csv',
+            'exceptional_seasons': 'dev/player/player_draft/draftee_lifecycle/results/exceptional_seasons_details.csv',
+            'merged_stats': 'dev/player/player_draft/data/merged_draft_player_stats.csv',
+            'player_stats': 'dev/player/player_draft/data/all_drafted_players_chronicle.csv'
         }
         
         # Convert to absolute paths

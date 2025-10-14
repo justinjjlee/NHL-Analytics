@@ -53,6 +53,10 @@ def load_box_scores_and_odds():
         
         # Find all odds files
         odds_files = glob.glob(f"{box_dir}/*odds.csv")
+        # 2025, added US and Canada, use US odds for 
+        odds_files_us = glob.glob(f"{box_dir}/*odds_us.csv")
+        # Combine the two
+        odds_files = odds_files + odds_files_us
         odds_df = None
         
         if odds_files:
