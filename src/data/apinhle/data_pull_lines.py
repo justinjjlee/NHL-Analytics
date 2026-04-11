@@ -39,16 +39,22 @@ print(f"Iterative season: {iter_year}")
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 
-is_backfill_needed = not os.path.exists(f"{PLAY_DIR}/{iter_year}_playbyplay_shift.csv")
-if is_backfill_needed:
-    iter_years = list(range(2011, iter_year + 1))
-else:
-    iter_years = [iter_year]
+iter_years = []
+for y in range(2023, iter_year + 1):
+    if not os.path.exists(f"{PLAY_DIR}/{y}_playbyplay_shift.csv"):
+        iter_years.append(y)
+
+if iter_year not in iter_years:
+    iter_years.append(iter_year)
 
 for iter_year in iter_years:
 
     # Pull all game lists
-    gamecode = pd.read_csv(f"{BOX_DIR}/{iter_year}_box.csv")
+    try:
+        gamecode = pd.read_csv(f"{BOX_DIR}/{iter_year}_box.csv")
+    except FileNotFoundError:
+        print(f"Skipping {iter_year} because {BOX_DIR}/{iter_year}_box.csv is missing!")
+        continue
 
     # Load the previous game stats, if exist
     try:
@@ -88,7 +94,7 @@ for iter_year in iter_years:
             df_playbyplay.append(iter_shift)
             print(f"Pulled game {row.gameid} shift data")
             # Pause to play safe with the API
-            time.sleep(1)
+            time.sleep(0.5)
 
         # Save, full data
         df_playbyplay = pd.concat(df_playbyplay)

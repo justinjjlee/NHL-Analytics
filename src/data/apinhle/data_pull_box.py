@@ -40,11 +40,13 @@ else:
 
 print(f"Iterative season: {iter_year}")
 # In case you need to pull all historical data
-is_backfill_needed = not os.path.exists(f"{BOX_DIR}/{iter_year}_box.csv")
-if is_backfill_needed:
-    iter_years = list(range(2011, iter_year + 1))
-else:
-    iter_years = [iter_year]
+iter_years = []
+for y in range(2023, iter_year + 1):
+    if not os.path.exists(f"{BOX_DIR}/{y}_box.csv"):
+        iter_years.append(y)
+
+if iter_year not in iter_years:
+    iter_years.append(iter_year)
 # %%
 for iter_year in iter_years:
 
@@ -177,7 +179,7 @@ for iter_year in iter_years:
         for iter_game in inx_gamesnodata: # if pulling all
             print(f"Pulling {iter_game}")
             # Maybe wait a minute?
-            time.sleep(1)
+            time.sleep(0.5)
             # Call data
             r = requests.get(url='https://api-web.nhle.com/v1/gamecenter/'
                                 + str(iter_game) + "/boxscore")
