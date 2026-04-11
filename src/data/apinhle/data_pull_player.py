@@ -8,6 +8,10 @@ import time
 import datetime
 # Functions to process box scores
 from function.procs_boxscore import *
+import os
+from config import get_team_dir
+
+TEAM_DIR = get_team_dir()
 
 
 # %% 
@@ -31,7 +35,7 @@ print(f"Iterative season: {iter_year}")
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 # Team codes for the list pull
-teamcode = pd.read_csv("./latest/team/teamlist.csv")
+teamcode = pd.read_csv(f"{TEAM_DIR}/teamlist.csv")
 
 # %%
 # Player data 
@@ -85,6 +89,6 @@ last_cols = [col for col in playerstats.columns if col not in first_cols]
 
 # save sata
 playerstats = playerstats[first_cols+last_cols]
-playerstats.to_csv(f"./latest/player/{iter_year}_player.csv", index=False)
+playerstats.to_csv(f"{TEAM_DIR}/{iter_year}_player.csv", index=False)
 
 print("au revoir.")

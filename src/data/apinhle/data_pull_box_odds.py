@@ -16,6 +16,9 @@ import requests
 import time
 import datetime
 import json 
+from config import get_betting_dir
+
+BETTING_DIR = get_betting_dir()
 
 # Get current date
 yr_now = datetime.datetime.today().year
@@ -115,9 +118,9 @@ for iter_country in ['US', 'CA']:
 
         try:
             # Load existing real-time tracking file
-            exist_df = pd.read_csv(f"./latest/box/{iter_year}_odds_{iter_country}.csv")
+            exist_df = pd.read_csv(f"{BETTING_DIR}/{iter_year}_odds_{iter_country}.csv")
             # Load json file 
-            with open(f"./latest/box/{iter_year}_odds_{iter_country}.json", "r") as f:
+            with open(f"{BETTING_DIR}/{iter_year}_odds_{iter_country}.json", "r") as f:
                 exist_json = json.load(f)
         except: 
             # new season starts
@@ -137,9 +140,9 @@ for iter_country in ['US', 'CA']:
             exist_json.append(iter_game)
 
         # Save the data
-        df.to_csv(f"./latest/box/{iter_year}_odds_{iter_country}.csv", index=False)
+        df.to_csv(f"{BETTING_DIR}/{iter_year}_odds_{iter_country}.csv", index=False)
         # Save the json data as is
-        with open(f"./latest/box/{iter_year}_odds_{iter_country}.json", "w") as f:
+        with open(f"{BETTING_DIR}/{iter_year}_odds_{iter_country}.json", "w") as f:
             json.dump(exist_json, f)
 
         print(f"Odds data for {iter_country} on {datetime.datetime.today()} saved successfully.")

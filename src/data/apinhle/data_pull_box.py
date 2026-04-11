@@ -9,11 +9,16 @@ import datetime
 # Functions to process box scores
 #from src.data.apinhle.function.procs_boxscore import *
 from function.procs_boxscore import *
+from config import get_box_dir, get_team_dir
+import os
+
+BOX_DIR = get_box_dir()
+TEAM_DIR = get_team_dir()
 
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 # Team codes for the list pull
-teamcode = pd.read_csv(f"./latest/team/teamlist.csv")
+teamcode = pd.read_csv(f"{TEAM_DIR}/teamlist.csv")
 
 # %% Settings
 
@@ -35,9 +40,13 @@ else:
 
 print(f"Iterative season: {iter_year}")
 # In case you need to pull all historical data
-#iter_years = np.arange(2011, iter_year + 1) # Pulling all past records
+is_backfill_needed = not os.path.exists(f"{BOX_DIR}/{iter_year}_box.csv")
+if is_backfill_needed:
+    iter_years = list(range(2011, iter_year + 1))
+else:
+    iter_years = [iter_year]
 # %%
-for iter_year in [iter_year]:#iter_years:
+for iter_year in iter_years:
 
     # ---------------------------------------------------
     # Pull team/game lists of the games for the season
@@ -151,7 +160,7 @@ for iter_year in [iter_year]:#iter_years:
     #   In order to save the API pull time, I only need to pull records
     #   Not currently pulled and saved
     try:
-        game_list_last = pd.read_csv(f"./latest/box/{iter_year}_box.csv")
+        game_list_last = pd.read_csv(f"{BOX_DIR}/{iter_year}_box.csv")
         # Pick up games with newest data points
         inx_gamesnodata = game_list.loc[~game_list["gameid"].isin(game_list_last["gameid"]), "gameid"]
     except:
@@ -276,23 +285,23 @@ for iter_year in [iter_year]:#iter_years:
         # Attach the past data
         try:
             # Load the previous data, if exist
-            df_player = pd.read_csv(f"./latest/{iter_year}_box_player.csv",
+            df_player = pd.read_csv(f"{BOX_DIR}/{iter_year}_box_player.csv",
                                     parse_dates = ['gameDate'], 
                                     index_col = 'gameIdx')
-            df_team   = pd.read_csv(f"./latest/box/{iter_year}_box_team.csv",
+            df_team   = pd.read_csv(f"{BOX_DIR}/{iter_year}_box_team.csv",
                                     parse_dates = ['gameDate'], 
                                     index_col = 'gameIdx')
             df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
             df_box_team   = pd.concat([df_team, df_box_team])
         except: # Scip the process, create the new file
             # Player stats & Box scores for each game for each team
-            df_box_player.to_csv(f"./latest/box/{iter_year}_box_player.csv", index=False)
-            df_box_team.to_csv(f"./latest/box/{iter_year}_box_team.csv")
+            df_box_player.to_csv(f"{BOX_DIR}/{iter_year}_box_player.csv", index=False)
+            df_box_team.to_csv(f"{BOX_DIR}/{iter_year}_box_team.csv")
 
         # Save 'games" and "game_list"
         #   Game records are full list pulled by 
-        games.to_csv(f"./latest/box/{iter_year}_gamelist_raw.csv", index=False)
-        game_list.to_csv(f"./latest/box/{iter_year}_box.csv", index=False)
+        games.to_csv(f"{BOX_DIR}/{iter_year}_gamelist_raw.csv", index=False)
+        game_list.to_csv(f"{BOX_DIR}/{iter_year}_box.csv", index=False)
     else:
         # No data to pull, exit
         print("Error occured. Maybe due to off-season or script error. Please confirm.")

@@ -9,6 +9,11 @@ import datetime
 # Functions to process box scores
 from function.procs_boxscore import *
 from function.procs_playbyplay import *
+import os
+from config import get_box_dir, get_play_dir
+
+BOX_DIR = get_box_dir()
+PLAY_DIR = get_play_dir()
 
 # %% Settings
 
@@ -34,16 +39,22 @@ print(f"Iterative season: {iter_year}")
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 
-for iter_year in [iter_year]: # or iter_years
+is_backfill_needed = not os.path.exists(f"{PLAY_DIR}/{iter_year}_playbyplay.csv")
+if is_backfill_needed:
+    iter_years = list(range(2011, iter_year + 1))
+else:
+    iter_years = [iter_year]
+
+for iter_year in iter_years:
 
     # Pull all game lists
-    gamecode = pd.read_csv(f"./latest/box/{iter_year}_box.csv")
+    gamecode = pd.read_csv(f"{BOX_DIR}/{iter_year}_box.csv")
 
     # Load the previous game stats, if exist
     try:
         # If previously pulled data exist
-        df_playbyplay_exist = pd.read_csv(f"./latest/play/{iter_year}_playbyplay.csv")
-        df_playbyplay_player_exist = pd.read_csv(f"./latest/play/{iter_year}_playbyplay_player.csv")
+        df_playbyplay_exist = pd.read_csv(f"{PLAY_DIR}/{iter_year}_playbyplay.csv")
+        df_playbyplay_player_exist = pd.read_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_player.csv")
         # NOTE: This process does not account for any record revisions
         idx_exist = True
     except:
@@ -92,8 +103,8 @@ for iter_year in [iter_year]: # or iter_years
             df_playerinfo = pd.concat([df_playbyplay_player_exist, df_playerinfo], axis=0)
         
         # Save data
-        df_playbyplay.to_csv(f"./latest/play/{iter_year}_playbyplay.csv", index=False)
-        df_playerinfo.to_csv(f"./latest/play/{iter_year}_playbyplay_player.csv", index=False)
+        df_playbyplay.to_csv(f"{PLAY_DIR}/{iter_year}_playbyplay.csv", index=False)
+        df_playerinfo.to_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_player.csv", index=False)
     else:
         # No records need to be pulled
         print("All records currently existing, no need to pull records")
