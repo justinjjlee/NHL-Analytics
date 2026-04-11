@@ -1,3 +1,5 @@
 gameIdx,team_tri,gameid,teamloc,goals,hits,goals_pp,shots,shots_blocked,poss_giveaway,poss_takeaway,win,seasonIdx,gameDate,gameEnd
-TBL_BOS_2026-04-11,TBL,2025021261,away,2,1.0,0.0,5.0,0.0,1.0,1.0,1,2,2026-04-11,REG
-TBL_BOS_2026-04-11,BOS,2025021261,home,1,0.0,0.0,2.0,2.0,6.0,1.0,0,2,2026-04-11,REG
+OTT_NYI_2026-04-11,OTT,2025021262,away,3,8.0,0.0,1.0,3.0,3.0,0.0,1,2,2026-04-11,REG
+OTT_NYI_2026-04-11,NYI,2025021262,home,0,5.0,0.0,2.0,1.0,1.0,0.0,0,2,2026-04-11,REG
+WSH_PIT_2026-04-11,WSH,2025021263,away,6,1.0,0.0,8.0,4.0,4.0,0.0,1,2,2026-04-11,REG
+WSH_PIT_2026-04-11,PIT,2025021263,home,3,5.0,0.0,0.0,1.0,3.0,1.0,0,2,2026-04-11,REG
