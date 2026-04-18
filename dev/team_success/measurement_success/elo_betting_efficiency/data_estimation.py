@@ -4,10 +4,12 @@
 # MAGIC This notebook executes the analytical framework outlined in our documentation. It evaluates whether the NHL betting market incorporates publicly available information efficiently, comparing market-implied probabilities against Elo ratings and process-based forecasting.
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 1. Environment Setup and Data Ingestion
 
 # COMMAND ----------
+
 import pandas as pd
 import numpy as np
 import statsmodels.api as sm
@@ -26,6 +28,7 @@ df_analytical['target'] = df_analytical['home_win'].astype(int)
 model_data = df_analytical.dropna(subset=['prob_home_shin', 'delta_CF_pct', 'delta_pythagorean']).copy()
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 2. Theoretical Framework: ELO Specifications
 # MAGIC We maintain two concurrent Elo variations:
@@ -33,6 +36,7 @@ model_data = df_analytical.dropna(subset=['prob_home_shin', 'delta_CF_pct', 'del
 # MAGIC 2. **BORS Elo**: Latent skill tracking initialized substituting the Shin-corrected market probability for the expectation calculation.
 
 # COMMAND ----------
+
 class EloTracker:
     def __init__(self, k_factor=10, home_ice_adv=25, is_bors=False):
         self.k_factor = k_factor
@@ -82,11 +86,13 @@ bors_engine = EloTracker(k_factor=10, home_ice_adv=25, is_bors=True)
 model_data['prob_home_bors'] = bors_engine.track_and_update(model_data)
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 3. Process-Based Forecasting Metrics
 # MAGIC The third framework runs sequential Rolling Logistic Regressions targeting the predictive power of public Corsi/Fenwick metrics. 
 
 # COMMAND ----------
+
 # Calculate expanding rolling logit to evaluate informational content accumulation
 process_forecasts = []
 process_features = ['delta_CF_pct', 'delta_FF_pct', 'delta_pythagorean']
@@ -118,11 +124,13 @@ model_data['prob_home_process'] = process_forecasts
 eval_data = model_data.dropna(subset=['prob_home_process']).copy()
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 4. Estimations & Calibration
 # MAGIC Evaluate Brier Scores and Log Loss algorithms across the model variations.
 
 # COMMAND ----------
+
 def calc_scoring_rules(y_true, y_pred):
     return {
         'Brier Score': brier_score_loss(y_true, y_pred),
@@ -137,15 +145,18 @@ scores = {
 }
 
 df_scores = pd.DataFrame(scores).T
+df_scores = df_scores.reset_index().rename(columns={'index': 'Model'})
 display(df_scores)
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 5. Statistical Testings
 # MAGIC ### Mincer-Zarnowitz Forecast Rationality Test
 # MAGIC Null Hypothesis: Intercept is 0 and slope is 1 (forecast is perfectly rational). High Wald stat p-value means we cannot reject efficiency map.
 
 # COMMAND ----------
+
 def run_mincer_zarnowitz(model_prob_col, name="Model"):
     X = sm.add_constant(eval_data[model_prob_col])
     y = eval_data['target']
@@ -168,12 +179,14 @@ run_mincer_zarnowitz('prob_home_shin', "Shin Corrected Market")
 run_mincer_zarnowitz('prob_home_process', "Process Based Forecast")
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### Overidentified GMM & J-Statistic
 # MAGIC Tests if additional instruments (Elo, game count, quadratic probabilities) predict residuals not captured by the Shin model. (Section 4.3)
 
 # COMMAND ----------
-from statsmodels.sandbox.regression.gmm import LinearIVGMM
+
+from scipy import stats
 
 eval_data['prob_shin_sq'] = eval_data['prob_home_shin'] ** 2
 eval_data['const'] = 1.0
@@ -181,36 +194,62 @@ eval_data['const'] = 1.0
 # Ensure no NaNs drift into the instrumental matrix
 gmm_df = eval_data.dropna(subset=['prob_home_shin', 'prob_shin_sq', 'prob_home_elo', 'n_g_home']).copy()
 
-# Endogenous outcome
-endog = gmm_df['target']
-# Exogenous variables (including the constant)
-exog = gmm_df[['const', 'prob_home_shin']]
-# Instruments vector: exactly as formulated in Section 4.3 Moment Conditions
-instruments = gmm_df[['const', 'prob_home_shin', 'prob_shin_sq', 'prob_home_elo', 'n_g_home']]
-
 try:
-    gmm_model = LinearIVGMM(endog, exog, instrument=instruments)
-    gmm_res = gmm_model.fit(maxiter=2, inv_weights=True)
+    # We build the 2-step optimal GMM analytically to bypass broken sandbox packages
+    y_mat = gmm_df['target'].values
+    X_mat = gmm_df[['const', 'prob_home_shin']].values
+    Z_mat = gmm_df[['const', 'prob_home_shin', 'prob_shin_sq', 'prob_home_elo', 'n_g_home']].values
+
+    # Step 1: Unweighted / identity instrument projection
+    W_step1 = np.linalg.inv(Z_mat.T @ Z_mat)
+    ZX = Z_mat.T @ X_mat
+    Zy = Z_mat.T @ y_mat
+    theta_1 = np.linalg.inv(ZX.T @ W_step1 @ ZX) @ (ZX.T @ W_step1 @ Zy)
+
+    # Calculate first stage residuals
+    resid_1 = y_mat - X_mat @ theta_1
+
+    # Step 2: Establish the Heteroskedasticity-Robust Moment Covariance Matrix (S)
+    # S = Z' * diag(e^2) * Z
+    S = Z_mat.T @ np.diag(resid_1**2) @ Z_mat
+    W_step2 = np.linalg.inv(S)
+
+    # Compute optimal two-step GMM estimate
+    theta_gmm = np.linalg.inv(ZX.T @ W_step2 @ ZX) @ (ZX.T @ W_step2 @ Zy)
     
-    print("--- GMM Efficiency Estimations ---")
-    print(gmm_res.summary())
+    # Calculate generalized final residuals
+    resid_gmm = y_mat - X_mat @ theta_gmm
+
+    # J-statistic calculation: J = (e'Z) W_optimal (Z'e)
+    # Represents the minimized objective function assessing orthogonality
+    J_stat = (resid_gmm.T @ Z_mat) @ W_step2 @ (Z_mat.T @ resid_gmm)
     
-    # Extract the J-statistic (Sargan-Hansen test)
-    j_stat, j_pval = gmm_res.jtest()
-    print(f"\\nJ-statistic: {j_stat:.4f} (p-value: {j_pval:.4e})")
+    # Degrees of freedom: total instruments - active parameters (5 - 2 = 3)
+    df = Z_mat.shape[1] - X_mat.shape[1]
+    j_pval = 1.0 - stats.chi2.cdf(J_stat, df=df)
+
+    print("--- GMM Efficiency Estimations (Analytical 2-Step) ---")
+    print(f"Alpha (bias mapping): {theta_gmm[0]:.4f}")
+    print(f"Beta (efficiency projection): {theta_gmm[1]:.4f}")
+    
+    print(f"\\nJ-statistic: {J_stat:.4f} (p-value: {j_pval:.4e}, df: {df})")
     if j_pval < 0.05:
         print("Conclusion: Reject the null. Instruments contain information not priced by the market.")
     else:
         print("Conclusion: Fail to reject. No evidence that instruments contain unpriced information.")
+        
 except Exception as e:
-    print(f"GMM estimation failed: {e}")
+    print(f"GMM analytical estimation failed: {e}")
+
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### Diebold-Mariano Test (Pairwise Predictability)
 # MAGIC Evaluates whether point-differences in Brier score residuals between models are statistically significant. (Section 7)
 
 # COMMAND ----------
+
 import scipy.stats as stats
 
 def dm_test(model1_col, model2_col):
@@ -236,11 +275,13 @@ dm_test('prob_home_shin', 'prob_home_bors')
 dm_test('prob_home_elo', 'prob_home_bors')
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### Forecast Encompassing Regression
 # MAGIC Test to find whether the process estimates (Corsi/Fenwick) hold statistically **incremental** predictive weighting outside of what the Market has already formulated.
 
 # COMMAND ----------
+
 # Encompassing Regression: W_g = d0 + d1(Shin) + d2(Process) + d3(Elo) + e
 X_enc = eval_data[['prob_home_shin', 'prob_home_process', 'prob_home_elo']]
 X_enc = sm.add_constant(X_enc)
@@ -251,11 +292,13 @@ print("--- Forecast Encompassing Regression ---")
 print(enc_model.summary())
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### GMM Efficiency Estimations (RQ2 - Dynamic Efficiency)
 # MAGIC Execute rolling linear evaluations mimicking sample moment condition parameters to evaluate structural efficiencies dynamically.
 
 # COMMAND ----------
+
 import matplotlib.pyplot as plt
 
 window_size = 50
@@ -294,11 +337,13 @@ plt.tight_layout()
 display(fig) # Display inline to Databricks
 
 # COMMAND ----------
+
 # MAGIC %md
 # MAGIC ### Model Calibration/Reliability Diagrams
 # MAGIC To visually inspect whether the calculated probabilities correspond to empirical win frequencies across discrete buckets.
 
 # COMMAND ----------
+
 from sklearn.calibration import calibration_curve
 
 fig, ax = plt.subplots(figsize=(10, 8))

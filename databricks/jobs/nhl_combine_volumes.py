@@ -30,25 +30,24 @@ spark.sql(f"CREATE DATABASE IF NOT EXISTS {CATALOG}.{DB}")
 
 # Game List Raw
 df_gamelist_raw = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_gamelist_raw.csv")
-df_gamelist_raw.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.gamelist_raw")
+df_gamelist_raw.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.gamelist_raw")
 
 # Box Team
 df_box_team = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box_team.csv")
-df_box_team.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.box_team")
+df_box_team.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box_team")
 
 # Box Player
 df_box_player = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box_player.csv")
-df_box_player.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.box_player")
+df_box_player.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box_player")
 
 # Box Game Stats
 df_box_gameStats = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box_gameStats.csv")
-df_box_gameStats.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.box_gameStats")
+df_box_gameStats.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box_gameStats")
 
-# Base Box (Careful with glob matching so it doesn't grab everything)
-# _box.csv is matched via Regex or strict glob formatting. We just read all, then filter by filename.
+# Base Box
 df_box_base = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box.csv")
 df_box_base = df_box_base.filter(col("_metadata.file_path").rlike(r"\d{4}_box\.csv$"))
-df_box_base.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.box")
+df_box_base.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box")
 
 # COMMAND ----------
 

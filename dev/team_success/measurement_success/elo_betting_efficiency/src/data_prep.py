@@ -8,28 +8,28 @@ def load_odds(spark, catalog="`nhl-databricks`.data"):
     """
     df = spark.sql(f"""
         SELECT 
-            CAST(gameid AS INT) as gameid,
-            homeTeam.abbrev AS home_team,
-            awayTeam.abbrev AS away_team,
-            home_odds_value,
-            away_odds_value,
-            odds_description,
-            country,
-            startTimeUTC,
+            CAST(odds.gameid AS INT) as gameid,
+            odds.`hometeam.abbrev` AS home_team,
+            odds.`awayteam.abbrev` AS away_team,
+            odds.home_odds_value,
+            odds.away_odds_value,
+            odds.odds_description,
+            odds.country,
+            odds.starttimeutc,
             -- Convert American Odds to Decimal
-            CASE WHEN CAST(home_odds_value AS DOUBLE) > 0 THEN (CAST(home_odds_value AS DOUBLE)/100) + 1
-                 WHEN CAST(home_odds_value AS DOUBLE) < 0 THEN (100/ABS(CAST(home_odds_value AS DOUBLE))) + 1
+            CASE WHEN CAST(odds.home_odds_value AS DOUBLE) > 0 THEN (CAST(odds.home_odds_value AS DOUBLE)/100) + 1
+                 WHEN CAST(odds.home_odds_value AS DOUBLE) < 0 THEN (100/ABS(CAST(odds.home_odds_value AS DOUBLE))) + 1
                  ELSE NULL END as odds_decimal_home,
-            CASE WHEN CAST(away_odds_value AS DOUBLE) > 0 THEN (CAST(away_odds_value AS DOUBLE)/100) + 1
-                 WHEN CAST(away_odds_value AS DOUBLE) < 0 THEN (100/ABS(CAST(away_odds_value AS DOUBLE))) + 1
+            CASE WHEN CAST(odds.away_odds_value AS DOUBLE) > 0 THEN (CAST(odds.away_odds_value AS DOUBLE)/100) + 1
+                 WHEN CAST(odds.away_odds_value AS DOUBLE) < 0 THEN (100/ABS(CAST(odds.away_odds_value AS DOUBLE))) + 1
                  ELSE NULL END as odds_decimal_away,
             -- Identify season (Approximation based on start time UTC)
-            CASE WHEN startTimeUTC >= '2023-08-01' AND startTimeUTC < '2024-08-01' THEN 2024
-                 WHEN startTimeUTC >= '2024-08-01' AND startTimeUTC < '2025-08-01' THEN 2025
+            CASE WHEN odds.starttimeutc >= '2023-08-01' AND odds.starttimeutc < '2024-08-01' THEN 2024
+                 WHEN odds.starttimeutc >= '2024-08-01' AND odds.starttimeutc < '2025-08-01' THEN 2025
                  ELSE NULL END as season 
         FROM {catalog}.odds
-        WHERE country != 'CA' 
-          AND (startTimeUTC >= '2023-08-01')
+        WHERE odds.country != 'CA' 
+          AND (odds.starttimeutc >= '2023-08-01')
     """)
     return df
 
@@ -59,25 +59,25 @@ def load_game_outcomes(spark, catalog="`nhl-databricks`.data"):
 
 def build_team_panel(spark, catalog="`nhl-databricks`.data"):
     """
-    Load box metrics (Corsi, Fenwick, Goals), 
+    Load box metrics (Corsi, Fenwick, Goals) from box_gamestats table,
     and produce rolling accumulators up to game n-1.
     """
     df_bt = spark.sql(f"""
         SELECT 
-            CAST(gameid AS INT) as gameid,
+            CAST(gameid_for AS INT) as gameid,
             team_tri_for AS team,
             team_tri_against AS opponent,
-            CAST(corsi_for AS DOUBLE),
-            CAST(corsi_against AS DOUBLE),
-            CAST(fenwick_for AS DOUBLE),
-            CAST(fenwick_against AS DOUBLE),
-            CAST(goals_for AS DOUBLE),
-            CAST(goals_against AS DOUBLE),
+            CAST(corsi_for AS DOUBLE) as corsi_for,
+            CAST(corsi_against AS DOUBLE) as corsi_against,
+            CAST(fenwick_for AS DOUBLE) as fenwick_for,
+            CAST(fenwick_against AS DOUBLE) as fenwick_against,
+            CAST(goals_for AS DOUBLE) as goals_for,
+            CAST(goals_against AS DOUBLE) as goals_against,
             -- Same logic for season extraction
-            CAST(SUBSTRING(CAST(gameid AS STRING), 1, 4) AS INT) + 1 AS season
-        FROM {catalog}.box_team
-        WHERE CAST(SUBSTRING(CAST(gameid AS STRING), 5, 2) AS INT) = 2
-          AND CAST(SUBSTRING(CAST(gameid AS STRING), 1, 4) AS INT) IN (2023, 2024)
+            CAST(SUBSTRING(CAST(gameid_for AS STRING), 1, 4) AS INT) + 1 AS season
+        FROM {catalog}.box_gamestats
+        WHERE CAST(SUBSTRING(CAST(gameid_for AS STRING), 5, 2) AS INT) = 2
+          AND CAST(SUBSTRING(CAST(gameid_for AS STRING), 1, 4) AS INT) IN (2023, 2024)
     """)
 
     # Window partitions: per team, per season, order by gameid (ascending assumes chronological order of gameid)

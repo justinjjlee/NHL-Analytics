@@ -60,6 +60,7 @@ for iter_year in iter_years:
     try:
         # If previously pulled data exist
         df_playbyplay_exist = pd.read_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_shift.csv")
+        df_playbyplay_exist.columns = df_playbyplay_exist.columns.str.lower()
         # NOTE: This process does not account for any record revisions
         idx_exist = True
     except:
@@ -90,6 +91,7 @@ for iter_year in iter_years:
             r = requests.get(url=f'https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId={row.gameid}')
             # Pretty simple data form
             iter_shift = pd.DataFrame(r.json()['data'])
+            iter_shift.columns = iter_shift.columns.str.lower()
             # Append to save
             df_playbyplay.append(iter_shift)
             print(f"Pulled game {row.gameid} shift data")
