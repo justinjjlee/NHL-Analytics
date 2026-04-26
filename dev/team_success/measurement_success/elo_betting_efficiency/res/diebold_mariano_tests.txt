@@ -1,0 +1,19 @@
+============================================================
+DIEBOLD-MARIANO PAIRWISE PREDICTABILITY TESTS
+============================================================
+
+Evaluates whether point-differences in Brier score residuals
+between models are statistically significant.
+
+DM Test: prob_home_shin vs prob_home_process
+Mean Loss Diff: -0.001403 | T-stat: -1.4139 | P-val: 1.5741e-01
+Result: No statistically significant difference.
+
+DM Test: prob_home_shin vs prob_home_bors
+Mean Loss Diff: -0.055194 | T-stat: -20.3473 | P-val: 5.5500e-91
+Result: prob_home_shin is systematically superior.
+
+DM Test: prob_home_elo vs prob_home_bors
+Mean Loss Diff: -0.099136 | T-stat: -45.8772 | P-val: 0.0000e+00
+Result: prob_home_elo is systematically superior.
+

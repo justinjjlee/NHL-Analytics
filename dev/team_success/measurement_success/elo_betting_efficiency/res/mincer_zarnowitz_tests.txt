@@ -1,0 +1,17 @@
+============================================================
+MINCER-ZARNOWITZ FORECAST RATIONALITY TESTS
+============================================================
+
+Null Hypothesis: Intercept is 0 and slope is 1 (forecast is perfectly rational).
+High Wald stat p-value means we cannot reject efficiency map.
+
+--- Mincer-Zarnowitz: Shin Corrected Market ---
+Alpha (bias): 0.2634 (p-val: 0.0000)
+Beta (calibration): 0.5689
+Joint Wald Test P-Value: 7.7131e-83
+
+--- Mincer-Zarnowitz: Process Based Forecast ---
+Alpha (bias): 0.2602 (p-val: 0.0026)
+Beta (calibration): 0.5546
+Joint Wald Test P-Value: 8.7168e-08
+

@@ -1,0 +1,25 @@
+============================================================
+CALIBRATION DIAGNOSTICS REPORT
+============================================================
+
+ISSUE IDENTIFIED:
+The process-based model predictions are highly concentrated around 0.5.
+99% of predictions fall in the range [0.4, 0.6].
+
+IMPACT:
+When using 'uniform' binning strategy, most bins have 0-2 samples,
+causing unreliable empirical probability estimates (e.g., 0.0 or 1.0).
+
+SOLUTION:
+Changed to 'quantile' binning strategy which creates bins based on
+the actual distribution, ensuring adequate samples per bin.
+
+============================================================
+Total samples: 17478
+
+Distribution by range:
+  < 0.3: 2 samples
+  0.3-0.4: 155 samples
+  0.4-0.6: 17318 samples (99%)
+  0.6-0.7: 2 samples
+  > 0.7: 1 samples

@@ -29,6 +29,19 @@ model_data = df_analytical.dropna(subset=['prob_home_shin', 'delta_CF_pct', 'del
 
 # COMMAND ----------
 
+# DBTITLE 1,Create Results Directory
+import os
+
+# Create results directory
+res_dir = 'res'
+if not os.path.exists(res_dir):
+    os.makedirs(res_dir)
+    print(f"Created directory: {res_dir}")
+else:
+    print(f"Directory already exists: {res_dir}")
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC ## 2. Theoretical Framework: ELO Specifications
 # MAGIC We maintain two concurrent Elo variations:
@@ -131,6 +144,7 @@ eval_data = model_data.dropna(subset=['prob_home_process']).copy()
 
 # COMMAND ----------
 
+# DBTITLE 1,Calculate Scoring Rules and Save Results
 def calc_scoring_rules(y_true, y_pred):
     return {
         'Brier Score': brier_score_loss(y_true, y_pred),
@@ -148,6 +162,15 @@ df_scores = pd.DataFrame(scores).T
 df_scores = df_scores.reset_index().rename(columns={'index': 'Model'})
 display(df_scores)
 
+# Save to file
+with open('res/scoring_metrics.txt', 'w') as f:
+    f.write("=" * 60 + "\n")
+    f.write("MODEL SCORING METRICS\n")
+    f.write("=" * 60 + "\n\n")
+    f.write(df_scores.to_string(index=False))
+    f.write("\n\n")
+print("\nResults saved to res/scoring_metrics.txt")
+
 # COMMAND ----------
 
 # MAGIC %md
@@ -157,6 +180,7 @@ display(df_scores)
 
 # COMMAND ----------
 
+# DBTITLE 1,Mincer-Zarnowitz Test and Save Results
 def run_mincer_zarnowitz(model_prob_col, name="Model"):
     X = sm.add_constant(eval_data[model_prob_col])
     y = eval_data['target']
@@ -167,16 +191,32 @@ def run_mincer_zarnowitz(model_prob_col, name="Model"):
     # Wald Test for Joint Null: interecept = 0, slope = 1
     wald_test = ols.wald_test("const = 0, {} = 1".format(model_prob_col))
     
-    print(f"--- Mincer-Zarnowitz: {name} ---")
-    print(f"Alpha (bias): {ols.params.iloc[0]:.4f} (p-val: {ols.pvalues.iloc[0]:.4f})")
-    print(f"Beta (calibration): {ols.params.iloc[1]:.4f}")
+    result_text = f"--- Mincer-Zarnowitz: {name} ---\n"
+    result_text += f"Alpha (bias): {ols.params.iloc[0]:.4f} (p-val: {ols.pvalues.iloc[0]:.4f})\n"
+    result_text += f"Beta (calibration): {ols.params.iloc[1]:.4f}\n"
     if np.isnan(wald_test.pvalue):
-         print("Joint Wald Test Failed due to singular matrices.")
+         result_text += "Joint Wald Test Failed due to singular matrices.\n"
     else:
-         print(f"Joint Wald Test P-Value: {wald_test.pvalue:.4e}\n")
+         result_text += f"Joint Wald Test P-Value: {wald_test.pvalue:.4e}\n\n"
+    
+    print(result_text)
+    return result_text
 
-run_mincer_zarnowitz('prob_home_shin', "Shin Corrected Market")
-run_mincer_zarnowitz('prob_home_process', "Process Based Forecast")
+# Run tests and collect results
+results = []
+results.append(run_mincer_zarnowitz('prob_home_shin', "Shin Corrected Market"))
+results.append(run_mincer_zarnowitz('prob_home_process', "Process Based Forecast"))
+
+# Save to file
+with open('res/mincer_zarnowitz_tests.txt', 'w') as f:
+    f.write("=" * 60 + "\n")
+    f.write("MINCER-ZARNOWITZ FORECAST RATIONALITY TESTS\n")
+    f.write("=" * 60 + "\n\n")
+    f.write("Null Hypothesis: Intercept is 0 and slope is 1 (forecast is perfectly rational).\n")
+    f.write("High Wald stat p-value means we cannot reject efficiency map.\n\n")
+    for result in results:
+        f.write(result)
+print("Results saved to res/mincer_zarnowitz_tests.txt")
 
 # COMMAND ----------
 
@@ -186,6 +226,7 @@ run_mincer_zarnowitz('prob_home_process', "Process Based Forecast")
 
 # COMMAND ----------
 
+# DBTITLE 1,GMM J-Test and Save Results
 from scipy import stats
 
 eval_data['prob_shin_sq'] = eval_data['prob_home_shin'] ** 2
@@ -194,6 +235,7 @@ eval_data['const'] = 1.0
 # Ensure no NaNs drift into the instrumental matrix
 gmm_df = eval_data.dropna(subset=['prob_home_shin', 'prob_shin_sq', 'prob_home_elo', 'n_g_home']).copy()
 
+result_text = ""
 try:
     # We build the 2-step optimal GMM analytically to bypass broken sandbox packages
     y_mat = gmm_df['target'].values
@@ -228,19 +270,31 @@ try:
     df = Z_mat.shape[1] - X_mat.shape[1]
     j_pval = 1.0 - stats.chi2.cdf(J_stat, df=df)
 
-    print("--- GMM Efficiency Estimations (Analytical 2-Step) ---")
-    print(f"Alpha (bias mapping): {theta_gmm[0]:.4f}")
-    print(f"Beta (efficiency projection): {theta_gmm[1]:.4f}")
+    result_text = "--- GMM Efficiency Estimations (Analytical 2-Step) ---\n"
+    result_text += f"Alpha (bias mapping): {theta_gmm[0]:.4f}\n"
+    result_text += f"Beta (efficiency projection): {theta_gmm[1]:.4f}\n\n"
     
-    print(f"\\nJ-statistic: {J_stat:.4f} (p-value: {j_pval:.4e}, df: {df})")
+    result_text += f"J-statistic: {J_stat:.4f} (p-value: {j_pval:.4e}, df: {df})\n"
     if j_pval < 0.05:
-        print("Conclusion: Reject the null. Instruments contain information not priced by the market.")
+        result_text += "Conclusion: Reject the null. Instruments contain information not priced by the market.\n"
     else:
-        print("Conclusion: Fail to reject. No evidence that instruments contain unpriced information.")
+        result_text += "Conclusion: Fail to reject. No evidence that instruments contain unpriced information.\n"
+    
+    print(result_text)
         
 except Exception as e:
-    print(f"GMM analytical estimation failed: {e}")
+    result_text = f"GMM analytical estimation failed: {e}\n"
+    print(result_text)
 
+# Save to file
+with open('res/gmm_j_test.txt', 'w') as f:
+    f.write("=" * 60 + "\n")
+    f.write("GMM OVERIDENTIFIED J-STATISTIC TEST\n")
+    f.write("=" * 60 + "\n\n")
+    f.write("Tests if additional instruments (Elo, game count, quadratic probabilities)\n")
+    f.write("predict residuals not captured by the Shin model.\n\n")
+    f.write(result_text)
+print("\nResults saved to res/gmm_j_test.txt")
 
 # COMMAND ----------
 
@@ -250,6 +304,7 @@ except Exception as e:
 
 # COMMAND ----------
 
+# DBTITLE 1,Diebold-Mariano Test and Save Results
 import scipy.stats as stats
 
 def dm_test(model1_col, model2_col):
@@ -262,17 +317,34 @@ def dm_test(model1_col, model2_col):
     
     # 1-sample t-test (null hypothesis is that mean difference = 0)
     stat, pval = stats.ttest_1samp(d, 0)
-    print(f"DM Test: {model1_col} vs {model2_col}")
-    print(f"Mean Loss Diff: {d.mean():.6f} | T-stat: {stat:.4f} | P-val: {pval:.4e}")
+    
+    result_text = f"DM Test: {model1_col} vs {model2_col}\n"
+    result_text += f"Mean Loss Diff: {d.mean():.6f} | T-stat: {stat:.4f} | P-val: {pval:.4e}\n"
     if pval < 0.05:
         better_model = model1_col if d.mean() < 0 else model2_col
-        print(f"Result: {better_model} is systematically superior.\\n")
+        result_text += f"Result: {better_model} is systematically superior.\n\n"
     else:
-        print("Result: No statistically significant difference.\\n")
+        result_text += "Result: No statistically significant difference.\n\n"
+    
+    print(result_text)
+    return result_text
 
-dm_test('prob_home_shin', 'prob_home_process')
-dm_test('prob_home_shin', 'prob_home_bors')
-dm_test('prob_home_elo', 'prob_home_bors')
+# Run tests and collect results
+results = []
+results.append(dm_test('prob_home_shin', 'prob_home_process'))
+results.append(dm_test('prob_home_shin', 'prob_home_bors'))
+results.append(dm_test('prob_home_elo', 'prob_home_bors'))
+
+# Save to file
+with open('res/diebold_mariano_tests.txt', 'w') as f:
+    f.write("=" * 60 + "\n")
+    f.write("DIEBOLD-MARIANO PAIRWISE PREDICTABILITY TESTS\n")
+    f.write("=" * 60 + "\n\n")
+    f.write("Evaluates whether point-differences in Brier score residuals\n")
+    f.write("between models are statistically significant.\n\n")
+    for result in results:
+        f.write(result)
+print("Results saved to res/diebold_mariano_tests.txt")
 
 # COMMAND ----------
 
@@ -282,6 +354,7 @@ dm_test('prob_home_elo', 'prob_home_bors')
 
 # COMMAND ----------
 
+# DBTITLE 1,Forecast Encompassing Regression and Save Results
 # Encompassing Regression: W_g = d0 + d1(Shin) + d2(Process) + d3(Elo) + e
 X_enc = eval_data[['prob_home_shin', 'prob_home_process', 'prob_home_elo']]
 X_enc = sm.add_constant(X_enc)
@@ -291,6 +364,17 @@ enc_model = sm.OLS(y_enc, X_enc).fit(cov_type='HC1')
 print("--- Forecast Encompassing Regression ---")
 print(enc_model.summary())
 
+# Save to file
+with open('res/encompassing_regression.txt', 'w') as f:
+    f.write("=" * 60 + "\n")
+    f.write("FORECAST ENCOMPASSING REGRESSION\n")
+    f.write("=" * 60 + "\n\n")
+    f.write("Tests whether the process estimates (Corsi/Fenwick) hold statistically\n")
+    f.write("incremental predictive weighting outside of what the Market has already formulated.\n\n")
+    f.write(str(enc_model.summary()))
+    f.write("\n")
+print("\nResults saved to res/encompassing_regression.txt")
+
 # COMMAND ----------
 
 # MAGIC %md
@@ -299,6 +383,7 @@ print(enc_model.summary())
 
 # COMMAND ----------
 
+# DBTITLE 1,Dynamic Market Efficiency Plot and Save
 import matplotlib.pyplot as plt
 
 window_size = 50
@@ -334,6 +419,11 @@ ax.legend()
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
 plt.xticks(rotation=45)
 plt.tight_layout()
+
+# Save figure
+plt.savefig('res/dynamic_efficiency_plot.png', dpi=300, bbox_inches='tight')
+print("Plot saved to res/dynamic_efficiency_plot.png")
+
 display(fig) # Display inline to Databricks
 
 # COMMAND ----------
@@ -344,6 +434,7 @@ display(fig) # Display inline to Databricks
 
 # COMMAND ----------
 
+# DBTITLE 1,Model Calibration Diagrams and Save
 from sklearn.calibration import calibration_curve
 
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -359,8 +450,9 @@ calibration_models = {
 colors = ['navy', 'forestgreen', 'darkorange', 'purple']
 
 for (name, col), color in zip(calibration_models.items(), colors):
-    # Calculate calibration curve
-    prob_true, prob_pred = calibration_curve(eval_data['target'], eval_data[col], n_bins=10, strategy='uniform')
+    # Use quantile strategy to ensure each bin has sufficient samples
+    # This is especially important for process model which has concentrated predictions
+    prob_true, prob_pred = calibration_curve(eval_data['target'], eval_data[col], n_bins=10, strategy='quantile')
     
     # Plot curve
     ax.plot(prob_pred, prob_true, marker='o', linewidth=2, label=name, color=color)
@@ -377,5 +469,121 @@ ax.set_ylim([0, 1])
 ax.legend(loc='lower right', fontsize=11)
 
 plt.tight_layout()
-display(fig) # Display inline to Databricks
 
+# Save figure
+plt.savefig('res/calibration_diagrams.png', dpi=300, bbox_inches='tight')
+print("Plot saved to res/calibration_diagrams.png")
+print("Note: Using 'quantile' binning strategy to ensure adequate samples per bin")
+
+#display(fig) # Display inline to Databricks
+
+# COMMAND ----------
+
+# DBTITLE 1,Calibration Issue Investigation
+# MAGIC %md
+# MAGIC ### Calibration Diagnostic Analysis
+# MAGIC
+# MAGIC **Issue Identified:** The process-based model (`prob_home_process`) produces predictions that are highly concentrated around 0.5, with 99% of predictions falling in the narrow range [0.4, 0.6].
+# MAGIC
+# MAGIC **Root Cause:** The rolling logistic regression trained on process metrics (delta_CF_pct, delta_FF_pct, delta_pythagorean) produces weakly-dispersed predictions. This is typical when predictive features have limited discriminative power, causing the model to regress toward the base rate (~0.5 for balanced outcomes).
+# MAGIC
+# MAGIC **Impact:** When using 'uniform' binning strategy for calibration curves:
+# MAGIC * Bins are evenly spaced across [0, 1]
+# MAGIC * Most bins contain 0-2 samples (insufficient for reliable estimates)
+# MAGIC * Bins with few samples produce extreme empirical probabilities (0.0 or 1.0)
+# MAGIC * Creates misleading "staircase" pattern in calibration plot
+# MAGIC
+# MAGIC **Solution:** Changed calibration curve binning from `'uniform'` to `'quantile'` strategy:
+# MAGIC * Creates bins based on actual prediction distribution
+# MAGIC * Ensures each bin has adequate sample size (~1,748 samples per bin)
+# MAGIC * Produces reliable empirical probability estimates
+# MAGIC * Allows fair comparison across all models
+
+# COMMAND ----------
+
+# DBTITLE 1,Diagnose Process Model Calibration Issues
+# Investigate the prob_home_process calibration issue
+print("Process Model Diagnostics:")
+print("="*60)
+print(f"\nTotal samples: {len(eval_data)}")
+print(f"\nProb_home_process distribution:")
+print(eval_data['prob_home_process'].describe())
+print(f"\nNumber of predictions by probability range:")
+print(f"  < 0.3: {(eval_data['prob_home_process'] < 0.3).sum()}")
+print(f"  0.3-0.4: {((eval_data['prob_home_process'] >= 0.3) & (eval_data['prob_home_process'] < 0.4)).sum()}")
+print(f"  0.4-0.6: {((eval_data['prob_home_process'] >= 0.4) & (eval_data['prob_home_process'] < 0.6)).sum()}")
+print(f"  0.6-0.7: {((eval_data['prob_home_process'] >= 0.6) & (eval_data['prob_home_process'] < 0.7)).sum()}")
+print(f"  > 0.7: {(eval_data['prob_home_process'] >= 0.7).sum()}")
+
+# Check calibration with different bin strategies
+from sklearn.calibration import calibration_curve
+
+print("\n" + "="*60)
+print("Calibration Analysis by Bins:")
+print("="*60)
+
+# Use more bins to see finer detail
+prob_true, prob_pred = calibration_curve(
+    eval_data['target'], 
+    eval_data['prob_home_process'], 
+    n_bins=10, 
+    strategy='uniform'
+)
+
+print("\nBin-by-bin breakdown (uniform strategy, 10 bins):")
+for i, (pred, true) in enumerate(zip(prob_pred, prob_true)):
+    # Count samples in this bin
+    bin_width = 1.0 / 10
+    bin_start = i * bin_width
+    bin_end = (i + 1) * bin_width
+    n_in_bin = ((eval_data['prob_home_process'] >= bin_start) & 
+                (eval_data['prob_home_process'] < bin_end)).sum()
+    print(f"Bin {i+1}: Pred={pred:.3f}, Empirical={true:.3f}, N={n_in_bin}")
+
+# Try quantile strategy
+print("\n" + "="*60)
+prob_true_q, prob_pred_q = calibration_curve(
+    eval_data['target'], 
+    eval_data['prob_home_process'], 
+    n_bins=10, 
+    strategy='quantile'
+)
+
+print("\nBin-by-bin breakdown (quantile strategy, 10 bins):")
+for i, (pred, true) in enumerate(zip(prob_pred_q, prob_true_q)):
+    print(f"Bin {i+1}: Pred={pred:.3f}, Empirical={true:.3f}")
+
+# Check for NaN or extreme values
+print("\n" + "="*60)
+print("Data Quality Checks:")
+print("="*60)
+print(f"NaN values in prob_home_process: {eval_data['prob_home_process'].isna().sum()}")
+print(f"Values < 0: {(eval_data['prob_home_process'] < 0).sum()}")
+print(f"Values > 1: {(eval_data['prob_home_process'] > 1).sum()}")
+print(f"\nMin value: {eval_data['prob_home_process'].min():.6f}")
+print(f"Max value: {eval_data['prob_home_process'].max():.6f}")
+
+# Save diagnostic report
+with open('res/calibration_diagnostics.txt', 'w') as f:
+    f.write("="*60 + "\n")
+    f.write("CALIBRATION DIAGNOSTICS REPORT\n")
+    f.write("="*60 + "\n\n")
+    f.write("ISSUE IDENTIFIED:\n")
+    f.write("The process-based model predictions are highly concentrated around 0.5.\n")
+    f.write(f"99% of predictions fall in the range [0.4, 0.6].\n\n")
+    f.write("IMPACT:\n")
+    f.write("When using 'uniform' binning strategy, most bins have 0-2 samples,\n")
+    f.write("causing unreliable empirical probability estimates (e.g., 0.0 or 1.0).\n\n")
+    f.write("SOLUTION:\n")
+    f.write("Changed to 'quantile' binning strategy which creates bins based on\n")
+    f.write("the actual distribution, ensuring adequate samples per bin.\n\n")
+    f.write("="*60 + "\n")
+    f.write(f"Total samples: {len(eval_data)}\n\n")
+    f.write("Distribution by range:\n")
+    f.write(f"  < 0.3: {(eval_data['prob_home_process'] < 0.3).sum()} samples\n")
+    f.write(f"  0.3-0.4: {((eval_data['prob_home_process'] >= 0.3) & (eval_data['prob_home_process'] < 0.4)).sum()} samples\n")
+    f.write(f"  0.4-0.6: {((eval_data['prob_home_process'] >= 0.4) & (eval_data['prob_home_process'] < 0.6)).sum()} samples (99%)\n")
+    f.write(f"  0.6-0.7: {((eval_data['prob_home_process'] >= 0.6) & (eval_data['prob_home_process'] < 0.7)).sum()} samples\n")
+    f.write(f"  > 0.7: {(eval_data['prob_home_process'] >= 0.7).sum()} samples\n")
+
+print("\nDiagnostic report saved to res/calibration_diagnostics.txt")
