@@ -28,24 +28,25 @@ spark.sql(f"CREATE DATABASE IF NOT EXISTS {CATALOG}.{DB}")
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 4
 # Game List Raw
-df_gamelist_raw = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_gamelist_raw.csv")
+df_gamelist_raw = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/box/*_gamelist_raw.csv")
 df_gamelist_raw.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.gamelist_raw")
 
 # Box Team
-df_box_team = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box_team.csv")
+df_box_team = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/box/*_box_team.csv")
 df_box_team.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box_team")
 
 # Box Player
-df_box_player = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box_player.csv")
+df_box_player = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/box/*_box_player.csv")
 df_box_player.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box_player")
 
 # Box Game Stats
-df_box_gameStats = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box_gameStats.csv")
+df_box_gameStats = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/box/*_box_gameStats.csv")
 df_box_gameStats.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box_gameStats")
 
 # Base Box
-df_box_base = spark.read.option("header", "true").csv(f"{BASE_VOL}/box/*_box.csv")
+df_box_base = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/box/*_box.csv")
 df_box_base = df_box_base.filter(col("_metadata.file_path").rlike(r"\d{4}_box\.csv$"))
 df_box_base.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.box")
 
@@ -56,12 +57,13 @@ df_box_base.write.mode("overwrite").option("overwriteSchema", "true").saveAsTabl
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 6
 # Team Season
-df_team_season = spark.read.option("header", "true").csv(f"{BASE_VOL}/team/*_team_season.csv")
+df_team_season = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/team/*_team_season.csv")
 df_team_season.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.team_season")
 
 # Player Season
-df_player = spark.read.option("header", "true").csv(f"{BASE_VOL}/team/*_player.csv")
+df_player = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/team/*_player.csv")
 # Filter out anything else like playbyplay_player if it accidentally ended up here
 df_player = df_player.filter(col("_metadata.file_path").rlike(r"\d{4}_player\.csv$"))
 df_player.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.player")
@@ -73,16 +75,17 @@ df_player.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.player")
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 8
 # Play by Play Shifts
-df_play_shift = spark.read.option("header", "true").csv(f"{BASE_VOL}/play/*_playbyplay_shift.csv")
+df_play_shift = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/play/*_playbyplay_shift.csv")
 df_play_shift.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.playbyplay_shift")
 
 # Play by Play Player
-df_play_player = spark.read.option("header", "true").csv(f"{BASE_VOL}/play/*_playbyplay_player.csv")
+df_play_player = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/play/*_playbyplay_player.csv")
 df_play_player.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.playbyplay_player")
 
 # Play by Play Base
-df_playbyplay = spark.read.option("header", "true").csv(f"{BASE_VOL}/play/*_playbyplay.csv")
+df_playbyplay = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/play/*_playbyplay.csv")
 df_playbyplay = df_playbyplay.filter(col("_metadata.file_path").rlike(r"\d{4}_playbyplay\.csv$"))
 df_playbyplay.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.playbyplay")
 
@@ -94,12 +97,13 @@ df_playbyplay.write.mode("overwrite").option("overwriteSchema", "true").saveAsTa
 
 # COMMAND ----------
 
+# DBTITLE 1,Cell 10
 # Read odds files separately to handle schema differences
 # 2024 legacy file uses 'gameId', while 2025 files use 'gameid'
 
 # Helper function to normalize column names and add country
 def read_and_tag_odds(path_pattern, country_code):
-    df = spark.read.option("header", "true").csv(path_pattern)
+    df = spark.read.option("header", "true").option("inferSchema", "true").csv(path_pattern)
     # Normalize all column names to lowercase for consistency
     for col_name in df.columns:
         df = df.withColumnRenamed(col_name, col_name.lower())
