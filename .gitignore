@@ -11,3 +11,8 @@ all_packages.txt
 
 # Remove raw files not used in the main process or large enough
 **_extension.csv*
+.databricks
+GEMINI.md
+/.vscode
+databricks.yml
+__builtins__.pyi

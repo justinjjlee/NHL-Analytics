@@ -29,19 +29,6 @@ model_data = df_analytical.dropna(subset=['prob_home_shin', 'delta_CF_pct', 'del
 
 # COMMAND ----------
 
-# DBTITLE 1,Create Results Directory
-import os
-
-# Create results directory
-res_dir = 'res'
-if not os.path.exists(res_dir):
-    os.makedirs(res_dir)
-    print(f"Created directory: {res_dir}")
-else:
-    print(f"Directory already exists: {res_dir}")
-
-# COMMAND ----------
-
 # MAGIC %md
 # MAGIC ## 2. Theoretical Framework: ELO Specifications
 # MAGIC We maintain two concurrent Elo variations:
@@ -90,13 +77,77 @@ class EloTracker:
             
         return forecasts
 
+def optimize_elo_params(df, is_bors=False, burn_in_frac=0.25):
+    best_k = 10
+    best_hfa = 25
+    best_brier = float('inf')
+    
+    train_idx = int(len(df) * burn_in_frac)
+    eval_df = df.iloc[train_idx:].copy()
+    
+    results = []
+    
+    print(f"Optimizing {'BORS ' if is_bors else ''}Elo...")
+    for k in range(4, 34, 4):
+        for hfa in range(10, 55, 5):
+            tracker = EloTracker(k_factor=k, home_ice_adv=hfa, is_bors=is_bors)
+            forecasts = tracker.track_and_update(df)
+            
+            eval_forecasts = forecasts[train_idx:]
+            
+            valid_mask = ~pd.isna(eval_forecasts) & ~pd.isna(eval_df['target'].values)
+            if valid_mask.sum() > 0:
+                y_true = eval_df['target'].values[valid_mask]
+                y_pred = np.array(eval_forecasts)[valid_mask]
+                
+                brier = brier_score_loss(y_true, y_pred)
+                results.append({'K': k, 'HFA': hfa, 'Brier': brier})
+                
+                if brier < best_brier:
+                    best_brier = brier
+                    best_k = k
+                    best_hfa = hfa
+                    
+    results_df = pd.DataFrame(results)
+    return best_k, best_hfa, results_df
+
 # Compute Standard Elo
-elo_engine = EloTracker(k_factor=10, home_ice_adv=25, is_bors=False)
+opt_k, opt_hfa, elo_grid = optimize_elo_params(model_data, is_bors=False)
+hfa_prob_shift = (1 / (1 + 10 ** (-opt_hfa / 400))) - 0.5
+print(f"Optimal Standard Elo -> K: {opt_k}, HFA: {opt_hfa}")
+print(f"Implied isolated Home-Ice Advantage Win Probability Bump: +{hfa_prob_shift*100:.2f}%")
+
+elo_engine = EloTracker(k_factor=opt_k, home_ice_adv=opt_hfa, is_bors=False)
 model_data['prob_home_elo'] = elo_engine.track_and_update(model_data)
 
 # Compute BORS Elo
-bors_engine = EloTracker(k_factor=10, home_ice_adv=25, is_bors=True)
+opt_k_bors, opt_hfa_bors, bors_grid = optimize_elo_params(model_data, is_bors=True)
+bors_hfa_prob_shift = (1 / (1 + 10 ** (-opt_hfa_bors / 400))) - 0.5
+print(f"Optimal BORS Elo -> K: {opt_k_bors}, HFA: {opt_hfa_bors}")
+print(f"BORS Implied isolated Home-Ice Advantage Win Probability Bump: +{bors_hfa_prob_shift*100:.2f}%")
+
+bors_engine = EloTracker(k_factor=opt_k_bors, home_ice_adv=opt_hfa_bors, is_bors=True)
 model_data['prob_home_bors'] = bors_engine.track_and_update(model_data)
+
+# COMMAND ----------
+
+# DBTITLE 1,Home Ice Advantage Calibration Plot
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+for ax, grid, title in zip(axes, [elo_grid, bors_grid], ["Standard Elo", "BORS Elo"]):
+    pivot_table = grid.pivot(index="K", columns="HFA", values="Brier")
+    sns.heatmap(pivot_table, annot=True, fmt=".4f", cmap="YlGnBu_r", ax=ax)
+    ax.set_title(f"{title} Parameter Calibration (Brier Score)", fontsize=14)
+    ax.set_xlabel("Home Ice Advantage (Elo Points)")
+    ax.set_ylabel("K-Factor")
+    
+plt.tight_layout()
+plt.savefig('res/elo_hfa_calibration_heatmap.png', dpi=300, bbox_inches='tight')
+print("HFA Calibration Heatmap saved to res/elo_hfa_calibration_heatmap.png")
+display(fig)
 
 # COMMAND ----------
 
@@ -105,6 +156,8 @@ model_data['prob_home_bors'] = bors_engine.track_and_update(model_data)
 # MAGIC The third framework runs sequential Rolling Logistic Regressions targeting the predictive power of public Corsi/Fenwick metrics. 
 
 # COMMAND ----------
+
+from sklearn.preprocessing import StandardScaler
 
 # Calculate expanding rolling logit to evaluate informational content accumulation
 process_forecasts = []
@@ -118,16 +171,28 @@ for i in range(len(model_data)):
         process_forecasts.append(np.nan)
         continue
     
-    # Train on all strictly historical priors up to game g - 1
-    X_train = model_data.loc[:i-1, process_features]
-    y_train = model_data.loc[:i-1, 'target']
+    current_date = model_data.loc[i, 'date']
     
-    # Fit Logit
-    clf = LogisticRegression(solver='liblinear')
+    # Train strictly on historical dates to avoid intra-day temporal leakage
+    historical_mask = model_data['date'] < current_date
+    if historical_mask.sum() < burn_in:
+        process_forecasts.append(np.nan)
+        continue
+        
+    X_train_raw = model_data.loc[historical_mask, process_features]
+    y_train = model_data.loc[historical_mask, 'target']
+    
+    # Standardize to avoid default L2 penalization neutering unscaled fractional features
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train_raw)
+    
+    # Fit Logit mapping pure coefficient shifts without extensive regularization bias
+    clf = LogisticRegression(solver='lbfgs', C=1e5, max_iter=500)
     clf.fit(X_train, y_train)
     
     # Predict current game g
-    X_test = model_data.loc[i:i, process_features]
+    X_test_raw = model_data.loc[i:i, process_features]
+    X_test = scaler.transform(X_test_raw)
     prob = clf.predict_proba(X_test)[0][1]
     process_forecasts.append(prob)
 
@@ -385,36 +450,74 @@ print("\nResults saved to res/encompassing_regression.txt")
 
 # DBTITLE 1,Dynamic Market Efficiency Plot and Save
 import matplotlib.pyplot as plt
+import seaborn as sns
+import matplotlib.dates as mdates
 
 window_size = 50
 rolling_betas = []
 rolling_dates = []
+rolling_bse = []
 
-for i in range(window_size, len(eval_data)):
-    window_df = eval_data.iloc[i-window_size:i]
-    X_roll = sm.add_constant(window_df['prob_home_shin'])
-    y_roll = window_df['target']
+# Prepare data for 2-step analytic GMM without NaNs
+gmm_eval_data = eval_data.copy()
+gmm_eval_data['prob_shin_sq'] = gmm_eval_data['prob_home_shin'] ** 2
+gmm_eval_data['const'] = 1.0
+
+rolling_gmm_df = gmm_eval_data.dropna(subset=['prob_home_shin', 'prob_shin_sq', 'prob_home_elo', 'n_g_home']).reset_index(drop=True)
+
+for i in range(window_size, len(rolling_gmm_df)):
+    window_df = rolling_gmm_df.iloc[i-window_size:i]
     
-    roll_model = sm.OLS(y_roll, X_roll).fit(cov_type='HC1')
-    rolling_betas.append(roll_model.params.iloc[1])
-    rolling_dates.append(pd.to_datetime(window_df['date'].iloc[-1]))
+    y_mat = window_df['target'].values
+    X_mat = window_df[['const', 'prob_home_shin']].values
+    Z_mat = window_df[['const', 'prob_home_shin', 'prob_shin_sq', 'prob_home_elo', 'n_g_home']].values
+    
+    try:
+        # Step 1: Unweighted instrument projection
+        W_step1 = np.linalg.inv(Z_mat.T @ Z_mat)
+        ZX = Z_mat.T @ X_mat
+        Zy = Z_mat.T @ y_mat
+        theta_1 = np.linalg.inv(ZX.T @ W_step1 @ ZX) @ (ZX.T @ W_step1 @ Zy)
+        
+        # Calculate first stage residuals
+        resid_1 = y_mat - X_mat @ theta_1
+        
+        # Step 2: Establish robust Covariance Matrix (S)
+        S = Z_mat.T @ np.diag(resid_1**2) @ Z_mat
+        W_step2 = np.linalg.inv(S)
+        
+        # Compute optimal two-step GMM estimate
+        cov_matrix_gmm = np.linalg.inv(ZX.T @ W_step2 @ ZX)
+        theta_gmm = cov_matrix_gmm @ (ZX.T @ W_step2 @ Zy)
+        
+        # Extract Standard Error for Beta
+        beta_bse = np.sqrt(cov_matrix_gmm[1, 1])
+        
+        rolling_betas.append(theta_gmm[1])
+        rolling_bse.append(beta_bse)
+        rolling_dates.append(pd.to_datetime(window_df['date'].iloc[-1]))
+        
+    except np.linalg.LinAlgError:
+        pass # Collinearity anomaly, skip window
 
-# This array represents the learning convergence parameter beta as season iterates.
-# Approaching 1 represents total efficiency.
-
-import seaborn as sns
-import matplotlib.dates as mdates
+rolling_betas = np.array(rolling_betas)
+rolling_bse = np.array(rolling_bse)
 
 fig, ax = plt.subplots(figsize=(10, 6))
-# Create rolling plot
-sns.lineplot(x=rolling_dates, y=rolling_betas, ax=ax, color='navy', linewidth=2)
+# Create rolling plot with 95% Confidence Bounds
+sns.lineplot(x=rolling_dates, y=rolling_betas, ax=ax, color='navy', linewidth=2, label='GMM Estimate $\\hat{\\beta}_n$')
+ax.fill_between(rolling_dates, 
+                rolling_betas - 1.96 * rolling_bse, 
+                rolling_betas + 1.96 * rolling_bse, 
+                color='navy', alpha=0.2, label='95% Confidence Interval')
+
 ax.axhline(1.0, color='red', linestyle='--', label='Perfect Efficiency (Beta = 1)')
 # Formatting
-ax.set_title('Dynamic Market Efficiency: Rolling 50-Game Mincer-Zarnowitz $\\beta$', fontsize=14, pad=15)
+ax.set_title('Dynamic Market Efficiency: Rolling 50-Game 2-Step GMM $\\beta$', fontsize=14, pad=15)
 ax.set_ylabel('Market Coefficient ($\\beta$)', fontsize=12)
 ax.set_xlabel('Date', fontsize=12)
 ax.grid(True, alpha=0.3)
-ax.legend()
+ax.legend(loc='lower left')
 # Format x-axis dates nicely
 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m'))
 plt.xticks(rotation=45)
@@ -473,117 +576,7 @@ plt.tight_layout()
 # Save figure
 plt.savefig('res/calibration_diagrams.png', dpi=300, bbox_inches='tight')
 print("Plot saved to res/calibration_diagrams.png")
-print("Note: Using 'quantile' binning strategy to ensure adequate samples per bin")
 
 #display(fig) # Display inline to Databricks
 
 # COMMAND ----------
-
-# DBTITLE 1,Calibration Issue Investigation
-# MAGIC %md
-# MAGIC ### Calibration Diagnostic Analysis
-# MAGIC
-# MAGIC **Issue Identified:** The process-based model (`prob_home_process`) produces predictions that are highly concentrated around 0.5, with 99% of predictions falling in the narrow range [0.4, 0.6].
-# MAGIC
-# MAGIC **Root Cause:** The rolling logistic regression trained on process metrics (delta_CF_pct, delta_FF_pct, delta_pythagorean) produces weakly-dispersed predictions. This is typical when predictive features have limited discriminative power, causing the model to regress toward the base rate (~0.5 for balanced outcomes).
-# MAGIC
-# MAGIC **Impact:** When using 'uniform' binning strategy for calibration curves:
-# MAGIC * Bins are evenly spaced across [0, 1]
-# MAGIC * Most bins contain 0-2 samples (insufficient for reliable estimates)
-# MAGIC * Bins with few samples produce extreme empirical probabilities (0.0 or 1.0)
-# MAGIC * Creates misleading "staircase" pattern in calibration plot
-# MAGIC
-# MAGIC **Solution:** Changed calibration curve binning from `'uniform'` to `'quantile'` strategy:
-# MAGIC * Creates bins based on actual prediction distribution
-# MAGIC * Ensures each bin has adequate sample size (~1,748 samples per bin)
-# MAGIC * Produces reliable empirical probability estimates
-# MAGIC * Allows fair comparison across all models
-
-# COMMAND ----------
-
-# DBTITLE 1,Diagnose Process Model Calibration Issues
-# Investigate the prob_home_process calibration issue
-print("Process Model Diagnostics:")
-print("="*60)
-print(f"\nTotal samples: {len(eval_data)}")
-print(f"\nProb_home_process distribution:")
-print(eval_data['prob_home_process'].describe())
-print(f"\nNumber of predictions by probability range:")
-print(f"  < 0.3: {(eval_data['prob_home_process'] < 0.3).sum()}")
-print(f"  0.3-0.4: {((eval_data['prob_home_process'] >= 0.3) & (eval_data['prob_home_process'] < 0.4)).sum()}")
-print(f"  0.4-0.6: {((eval_data['prob_home_process'] >= 0.4) & (eval_data['prob_home_process'] < 0.6)).sum()}")
-print(f"  0.6-0.7: {((eval_data['prob_home_process'] >= 0.6) & (eval_data['prob_home_process'] < 0.7)).sum()}")
-print(f"  > 0.7: {(eval_data['prob_home_process'] >= 0.7).sum()}")
-
-# Check calibration with different bin strategies
-from sklearn.calibration import calibration_curve
-
-print("\n" + "="*60)
-print("Calibration Analysis by Bins:")
-print("="*60)
-
-# Use more bins to see finer detail
-prob_true, prob_pred = calibration_curve(
-    eval_data['target'], 
-    eval_data['prob_home_process'], 
-    n_bins=10, 
-    strategy='uniform'
-)
-
-print("\nBin-by-bin breakdown (uniform strategy, 10 bins):")
-for i, (pred, true) in enumerate(zip(prob_pred, prob_true)):
-    # Count samples in this bin
-    bin_width = 1.0 / 10
-    bin_start = i * bin_width
-    bin_end = (i + 1) * bin_width
-    n_in_bin = ((eval_data['prob_home_process'] >= bin_start) & 
-                (eval_data['prob_home_process'] < bin_end)).sum()
-    print(f"Bin {i+1}: Pred={pred:.3f}, Empirical={true:.3f}, N={n_in_bin}")
-
-# Try quantile strategy
-print("\n" + "="*60)
-prob_true_q, prob_pred_q = calibration_curve(
-    eval_data['target'], 
-    eval_data['prob_home_process'], 
-    n_bins=10, 
-    strategy='quantile'
-)
-
-print("\nBin-by-bin breakdown (quantile strategy, 10 bins):")
-for i, (pred, true) in enumerate(zip(prob_pred_q, prob_true_q)):
-    print(f"Bin {i+1}: Pred={pred:.3f}, Empirical={true:.3f}")
-
-# Check for NaN or extreme values
-print("\n" + "="*60)
-print("Data Quality Checks:")
-print("="*60)
-print(f"NaN values in prob_home_process: {eval_data['prob_home_process'].isna().sum()}")
-print(f"Values < 0: {(eval_data['prob_home_process'] < 0).sum()}")
-print(f"Values > 1: {(eval_data['prob_home_process'] > 1).sum()}")
-print(f"\nMin value: {eval_data['prob_home_process'].min():.6f}")
-print(f"Max value: {eval_data['prob_home_process'].max():.6f}")
-
-# Save diagnostic report
-with open('res/calibration_diagnostics.txt', 'w') as f:
-    f.write("="*60 + "\n")
-    f.write("CALIBRATION DIAGNOSTICS REPORT\n")
-    f.write("="*60 + "\n\n")
-    f.write("ISSUE IDENTIFIED:\n")
-    f.write("The process-based model predictions are highly concentrated around 0.5.\n")
-    f.write(f"99% of predictions fall in the range [0.4, 0.6].\n\n")
-    f.write("IMPACT:\n")
-    f.write("When using 'uniform' binning strategy, most bins have 0-2 samples,\n")
-    f.write("causing unreliable empirical probability estimates (e.g., 0.0 or 1.0).\n\n")
-    f.write("SOLUTION:\n")
-    f.write("Changed to 'quantile' binning strategy which creates bins based on\n")
-    f.write("the actual distribution, ensuring adequate samples per bin.\n\n")
-    f.write("="*60 + "\n")
-    f.write(f"Total samples: {len(eval_data)}\n\n")
-    f.write("Distribution by range:\n")
-    f.write(f"  < 0.3: {(eval_data['prob_home_process'] < 0.3).sum()} samples\n")
-    f.write(f"  0.3-0.4: {((eval_data['prob_home_process'] >= 0.3) & (eval_data['prob_home_process'] < 0.4)).sum()} samples\n")
-    f.write(f"  0.4-0.6: {((eval_data['prob_home_process'] >= 0.4) & (eval_data['prob_home_process'] < 0.6)).sum()} samples (99%)\n")
-    f.write(f"  0.6-0.7: {((eval_data['prob_home_process'] >= 0.6) & (eval_data['prob_home_process'] < 0.7)).sum()} samples\n")
-    f.write(f"  > 0.7: {(eval_data['prob_home_process'] >= 0.7).sum()} samples\n")
-
-print("\nDiagnostic report saved to res/calibration_diagnostics.txt")
