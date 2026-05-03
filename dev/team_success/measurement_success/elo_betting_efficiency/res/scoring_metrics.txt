@@ -3,8 +3,8 @@ MODEL SCORING METRICS
 ============================================================
 
           Model  Brier Score  Log Loss
-    Shin Market     0.245185  0.682854
-   Standard Elo     0.201243  0.588552
-       BORS Elo     0.300379  1.213992
-Process Metrics     0.246588  0.686335
+    Shin Market     0.245130  0.682738
+   Standard Elo     0.154394  0.489777
+       BORS Elo     0.253002  0.749264
+Process Metrics     0.247084  0.687309
 

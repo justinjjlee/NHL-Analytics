@@ -7,27 +7,27 @@ incremental predictive weighting outside of what the Market has already formulat
 
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                 target   R-squared:                       0.190
-Model:                            OLS   Adj. R-squared:                  0.190
-Method:                 Least Squares   F-statistic:                     1745.
-Date:                Fri, 24 Apr 2026   Prob (F-statistic):               0.00
-Time:                        06:22:12   Log-Likelihood:                -10716.
-No. Observations:               17478   AIC:                         2.144e+04
-Df Residuals:                   17474   BIC:                         2.147e+04
+Dep. Variable:                 target   R-squared:                       0.375
+Model:                            OLS   Adj. R-squared:                  0.375
+Method:                 Least Squares   F-statistic:                     4432.
+Date:                Sun, 03 May 2026   Prob (F-statistic):               0.00
+Time:                        21:28:42   Log-Likelihood:                -8433.1
+No. Observations:               17444   AIC:                         1.687e+04
+Df Residuals:                   17440   BIC:                         1.691e+04
 Df Model:                           3                                         
 Covariance Type:                  HC1                                         
 =====================================================================================
                         coef    std err          z      P>|z|      [0.025      0.975]
 -------------------------------------------------------------------------------------
-const                -0.2991      0.078     -3.850      0.000      -0.451      -0.147
-prob_home_shin        0.1978      0.025      7.827      0.000       0.148       0.247
-prob_home_process     0.4202      0.141      2.984      0.003       0.144       0.696
-prob_home_elo         0.9957      0.015     64.999      0.000       0.966       1.026
+const                 0.0366      0.075      0.486      0.627      -0.111       0.184
+prob_home_shin        0.1325      0.022      5.908      0.000       0.089       0.176
+prob_home_process    -0.1774      0.136     -1.303      0.193      -0.444       0.089
+prob_home_elo         0.9991      0.009    107.067      0.000       0.981       1.017
 ==============================================================================
-Omnibus:                    15784.723   Durbin-Watson:                   0.610
-Prob(Omnibus):                  0.000   Jarque-Bera (JB):             1128.130
-Skew:                          -0.160   Prob(JB):                    1.07e-245
-Kurtosis:                       1.797   Cond. No.                         65.1
+Omnibus:                       56.252   Durbin-Watson:                   0.638
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               56.668
+Skew:                          -0.137   Prob(JB):                     4.95e-13
+Kurtosis:                       2.946   Cond. No.                         75.8
 ==============================================================================
 
 Notes:

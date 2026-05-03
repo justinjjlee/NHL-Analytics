@@ -60,13 +60,13 @@ df_box_base.write.mode("overwrite").option("overwriteSchema", "true").saveAsTabl
 # DBTITLE 1,Cell 6
 # Team Season
 df_team_season = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/team/*_team_season.csv")
-df_team_season.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.team_season")
+df_team_season.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.team_season")
 
 # Player Season
 df_player = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/team/*_player.csv")
 # Filter out anything else like playbyplay_player if it accidentally ended up here
 df_player = df_player.filter(col("_metadata.file_path").rlike(r"\d{4}_player\.csv$"))
-df_player.write.mode("overwrite").saveAsTable(f"{CATALOG}.{DB}.player")
+df_player.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.player")
 
 # COMMAND ----------
 

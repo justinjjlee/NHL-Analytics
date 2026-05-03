@@ -6,8 +6,8 @@ Tests if additional instruments (Elo, game count, quadratic probabilities)
 predict residuals not captured by the Shin model.
 
 --- GMM Efficiency Estimations (Analytical 2-Step) ---
-Alpha (bias mapping): 0.2095
-Beta (efficiency projection): 0.7100
+Alpha (bias mapping): 0.1474
+Beta (efficiency projection): 0.8641
 
-J-statistic: 2902.1380 (p-value: 0.0000e+00, df: 3)
+J-statistic: 5867.2178 (p-value: 0.0000e+00, df: 3)
 Conclusion: Reject the null. Instruments contain information not priced by the market.
