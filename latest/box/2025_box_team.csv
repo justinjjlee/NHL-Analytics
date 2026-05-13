@@ -1,3 +1,5 @@
 gameIdx,team_tri,gameid,teamloc,goals,hits,goals_pp,shots,shots_blocked,poss_giveaway,poss_takeaway,win,seasonIdx,gameDate,gameEnd
-COL_MIN_2026-05-11,COL,2025030234,away,5,1.0,0.0,3.0,2.0,1.0,1.0,1,3,2026-05-11,REG
-COL_MIN_2026-05-11,MIN,2025030234,home,2,4.0,0.0,1.0,0.0,2.0,0.0,0,3,2026-05-11,REG
+BUF_MTL_2026-05-12,BUF,2025030214,away,3,1.0,1.0,3.0,3.0,2.0,0.0,1,3,2026-05-12,REG
+BUF_MTL_2026-05-12,MTL,2025030214,home,2,2.0,1.0,8.0,2.0,4.0,1.0,0,3,2026-05-12,REG
+ANA_VGK_2026-05-12,ANA,2025030245,away,2,1.0,0.0,4.0,1.0,0.0,2.0,0,3,2026-05-12,OT
+ANA_VGK_2026-05-12,VGK,2025030245,home,3,0.0,0.0,6.0,1.0,1.0,0.0,1,3,2026-05-12,OT
