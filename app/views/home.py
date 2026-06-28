@@ -1,25 +1,26 @@
 import streamlit as st
 import os
+from i18n import t
 
 def get_asset_path(rel_path):
     """Helper function to get correct asset paths"""
     current_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return os.path.join(current_dir, "assets", rel_path)
 
-st.title("Rinklytics: NHL Analytics App")
+st.title(t("home_title"))
 
-st.markdown("""
-Welcome to Rinklytics - a hub for insightful hockey statistics and visualizations.
+st.markdown(f"""
+{t("home_welcome")}
 """)
 
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Featured Visualizations")
-    st.markdown("""
-    * **Team Map** - Explore NHL team locations and interactive visulizations
-    * **Live Scoreboard** - Past game odds and scores
-    * **In-depth Analysis** - Answering questions by creating noble data and visualizations
+    st.subheader(t("home_feat_viz"))
+    st.markdown(f"""
+    {t("home_feat_1")}
+    {t("home_feat_2")}
+    {t("home_feat_3")}
     """)
 
 with col2:

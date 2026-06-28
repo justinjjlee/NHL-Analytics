@@ -108,7 +108,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2000,4,14,110,CAR,Jared,Newman,D,USA,74.0,201.0,OHL,Plymouth
 2000,4,15,111,BUF,Ghyslain,Rousseau,G,CAN,73.0,162.0,QMJHL,Baie Comeau
 2000,4,16,112,NYR,Premsyl,Duben,D,CZE,74.0,200.0,CZREP,Jihlava
-2000,4,17,113,EDM,Lou,Dickenson,F,CAN,74.0,192.0,OHABC,Mississauga
+2000,4,17,113,EDM,Lou,Dickenson,F,CAN,74.0,192.0,OHL,Mississauga
 2000,4,18,114,MTL,Christian,Larrivee,C,CAN,74.0,185.0,QMJHL,Chicoutimi
 2000,4,19,115,FLA,Chris,Eade,D,CAN,74.0,191.0,OHL,North Bay
 2000,4,20,116,CGY,Levente,Szuper,G,HUN,70.0,178.0,OHL,Ottawa
@@ -239,7 +239,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2000,8,14,243,MTL,Joni,Puurula,G,FIN,71.0,180.0,,Hermes Div. 1
 2000,8,15,244,ATL,Eric,Bowen,RW,USA,75.0,225.0,WHL,Portland
 2000,8,16,245,LAK,Dan,Welch,RW,USA,69.0,199.0,NCAA,U. of Minnesota
-2000,8,17,246,SJS,Chad,Wiseman,LW,CAN,73.0,205.0,OHABC,Mississauga
+2000,8,17,246,SJS,Chad,Wiseman,LW,CAN,73.0,205.0,OHL,Mississauga
 2000,8,18,247,EDM,Jason,Platt,D,USA,73.0,210.0,USHL,Omaha
 2000,8,19,248,PIT,Steven,Crampton,RW,CAN,75.0,197.0,WHL,Moose Jaw
 2000,8,20,249,PHX,Sami,Venalainen,RW,FIN,71.0,183.0,FINLAND,Tappara Jr.
@@ -690,7 +690,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2002,4,24,120,STL,Robin,Jonsson,D,SWE,74.0,194.0,SWEDEN,Bofors
 2002,4,25,121,BUF,Marty,Magers,G,USA,73.0,180.0,USHL,Omaha
 2002,4,26,122,TOR,David,Turon,D,CZE,75.0,202.0,CZE,Havirov
-2002,4,27,123,EDM,,,,,,,,
+2002,4,27,123,EDM,,Void,,,,,,
 2002,4,28,124,ATL,Lane,Manson,D,CAN,81.0,245.0,WHL,Moose Jaw
 2002,4,29,125,OTT,Johan,Bjork,D,SWE,73.0,176.0,SJL,Malmo Jr.
 2002,4,30,126,PHI,Konstantin,Baranov,F,RUS,74.0,185.0,RUS,Chelyabinsk
@@ -2416,7 +2416,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2009,4,24,115,WSH,Patrick,Wey,D,USA,75.0,203.0,USHL,Waterloo
 2009,4,25,116,MIN,Alex,Fallstrom,RW,SWE,74.0,192.0,HIGH-MN,Shattuck-St. Mary's
 2009,4,26,117,ATL,Edward,Pasquale,G,CAN,75.0,215.0,OHL,Saginaw
-2009,4,27,118,TOR,,,,,,,,
+2009,4,27,118,TOR,,Forfeited,,,,,,
 2009,4,28,119,CHI,Byron,Froese,C,CAN,72.0,176.0,WHL,Everett
 2009,4,29,120,ATL,Ben,Chiarot,D,CAN,74.0,211.0,OHL,Guelph
 2009,4,30,121,PIT,Nick,Petersen,RW,CAN,74.0,186.0,QMJHL,Shawinigan
@@ -2787,7 +2787,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2011,3,5,66,CBJ,T.J.,Tynan,C,USA,68.0,165.0,CCHA,Notre Dame
 2011,3,6,67,WPG,Adam,Lowry,LW,USA,76.0,187.0,WHL,Swift Current
 2011,3,7,68,PHI,Nick,Cousins,C,CAN,70.0,169.0,OHL,Sault Ste. Marie
-2011,3,8,69,NJD,,,,,,,,
+2011,3,8,69,NJD,,Forfeited,,,,,,
 2011,3,9,70,CHI,Michael,Paliotta,D,USA,75.0,198.0,USHL,USA U-18
 2011,3,10,71,VAN,David,Honzik,G,CZE,75.0,209.0,QMJHL,Victoriaville
 2011,3,11,72,NYR,Steven,Fogarty,C,USA,74.0,194.0,HIGH-MN,Edina H.S.
@@ -2949,7 +2949,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2012,1,19,19,TBL,Andrei,Vasilevskiy,G,RUS,75.0,210.0,RUSSIA,Ufa 2
 2012,1,20,20,PHI,Scott,Laughton,C,CAN,72.0,177.0,OHL,Oshawa
 2012,1,21,21,CGY,Mark,Jankowski,C,CAN,74.0,168.0,HIGH-QC,Stanstead College
-2012,1,22,22,PIT,Olli,Määttä,D,FIN,73.0,204.0,OHL,London
+2012,1,22,22,PIT,Olli,Maatta,D,FIN,73.0,204.0,OHL,London
 2012,1,23,23,FLA,Mike,Matheson,D,CAN,73.0,178.0,USHL,Dubuque
 2012,1,24,24,BOS,Malcolm,Subban,G,CAN,73.0,195.0,OHL,Belleville
 2012,1,25,25,STL,Jordan,Schmaltz,D,USA,74.0,180.0,USHL,Green Bay
@@ -3634,7 +3634,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2015,3,13,74,LAK,Alexander,Dergachyov,C,RUS,76.0,200.0,RUSSIA-JR.,SKA St. Petersburg 2
 2015,3,14,75,BOS,Dan,Vladar,G,CZE,77.0,185.0,CZREP-2,Kladno
 2015,3,15,76,ARI,Adin,Hill,G,CAN,75.0,198.0,WHL,Portland
-2015,3,16,77,FLA,Sam,Montembeault,G,CAN,74.0,173.0,QMJHL,Blainville-Boisbriand
+2015,3,16,77,FLA,Samuel,Montembeault,G,CAN,74.0,173.0,QMJHL,Blainville-Boisbriand
 2015,3,17,78,WPG,Erik,Foley,LW,USA,71.0,185.0,USHL,Cedar Rapids
 2015,3,18,79,NYR,Sergey,Zborovskiy,D,RUS,75.0,198.0,WHL,Regina
 2015,3,19,80,ANA,Brent,Gates Jr.,C,USA,73.0,196.0,USHL,Green Bay
@@ -3996,12 +3996,12 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2017,1,15,15,VGK,Erik,Brannstrom,D,SWE,69.0,179.0,SWEDEN,HV 71
 2017,1,16,16,CGY,Juuso,Välimäki,D,FIN,73.0,211.0,WHL,Tri-City
 2017,1,17,17,TOR,Timothy,Liljegren,D,SWE,71.0,188.0,SWEDEN,Rogle
-2017,1,18,18,BOS,Urho,Vaakanainen,D,FIN,73.0,188.0,FINLAND,JYP
+2017,1,18,18,BOS,Urho,Vaakanainen,D,FIN,73.0,188.0,FINLAND,Jyp
 2017,1,19,19,SJS,Josh,Norris,C,USA,72.0,189.0,NTDP,USA U-18
 2017,1,20,20,STL,Robert,Thomas,C,CAN,71.0,193.0,OHL,London
 2017,1,21,21,NYR,Filip,Chytil,C,CZE,74.0,192.0,Czech Republic,Zlin
 2017,1,22,22,EDM,Kailer,Yamamoto,RW,USA,67.0,146.0,WHL,Spokane
-2017,1,23,23,ARI,P.O,Joseph,D,CAN,74.0,163.0,QMJHL,Charlottetown
+2017,1,23,23,ARI,Pierre-Olivier,Joseph,D,CAN,74.0,163.0,QMJHL,Charlottetown
 2017,1,24,24,WPG,Kristian,Vesalainen,LW/RW,FIN,75.0,209.0,SWEDEN,Frolunda
 2017,1,25,25,MTL,Ryan,Poehling,C,USA,73.0,177.0,NCHC,St. Cloud State
 2017,1,26,26,DAL,Jake,Oettinger,G,USA,76.0,218.0,H-EAST,Boston University
@@ -4218,7 +4218,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2018,1,20,20,LAK,Rasmus,Kupari,C,FIN,73.0,189.0,FINLAND,Karpat
 2018,1,21,21,SJS,Ryan,Merkley,D,CAN,71.0,168.0,OHL,Guelph
 2018,1,22,22,NYR,K'Andre,Miller,D,USA,75.0,198.0,NTDP,USA U-18
-2018,1,23,23,ANA,Isac,Lundestrom,C,SWE,72.0,183.0,SWEDEN,Lulea
+2018,1,23,23,ANA,Isac,Lundeström,C,SWE,72.0,183.0,SWEDEN,Lulea
 2018,1,24,24,MIN,Filip,Johansson,D,SWE,72.0,176.0,SWEDEN-JR.,Leksand Jr.
 2018,1,25,25,STL,Dominik,Bokk,RW,DEU,73.0,176.0,SWEDEN-JR.,Vaxjo Jr.
 2018,1,26,26,OTT,Jacob,Bernard-Docker,D,CAN,72.0,187.0,AJHL,Okotoks
@@ -4650,7 +4650,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2020,1,18,18,NJD,Dawson,Mercer,C,CAN,72.0,180.0,QMJHL,Chicoutimi
 2020,1,19,19,NYR,Braden,Schneider,D,CAN,74.0,202.0,WHL,Brandon
 2020,1,20,20,NJD,Shakir,Mukhamadullin,D,RUS,75.0,178.0,RUSSIA,Ufa
-2020,1,21,21,CBJ,Yegor,Chinakhov,RW,RUS,72.0,178.0,RUSSIA-JR.,Omsk 2
+2020,1,21,21,CBJ,Egor,Chinakhov,RW,RUS,72.0,178.0,RUSSIA-JR.,Omsk 2
 2020,1,22,22,WSH,Hendrix,Lapierre,C,CAN,71.0,179.0,QMJHL,Chicoutimi
 2020,1,23,23,PHI,Tyson,Foerster,RW,CAN,73.0,194.0,OHL,Barrie
 2020,1,24,24,CGY,Connor,Zary,C,CAN,72.0,178.0,WHL,Kamloops
@@ -4678,7 +4678,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2020,2,15,46,CHI,Drew,Commesso,G,USA,74.0,180.0,NTDP,USA U-18
 2020,2,16,47,MTL,Luke,Tuch,LW,USA,74.0,203.0,NTDP,USA U-18
 2020,2,17,48,MTL,Jan,Mysak,C,CZE,70.0,175.0,OHL,Hamilton
-2020,2,18,49,ARI,,Void,,,,,,
+2020,2,18,49,ARI,,Forfeited,,,,,,
 2020,2,19,50,CGY,Yan,Kuznetsov,D,RUS,76.0,209.0,H-EAST,U. of Connecticut
 2020,2,20,51,DET,Theodor,Niederbach,C,SWE,71.0,172.0,SWEDEN-JR.,Frolunda Jr.
 2020,2,21,52,PIT,Joel,Blomqvist,G,FIN,73.0,183.0,FINLAND-JR.,Karpat Jr.
@@ -4857,13 +4857,13 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2021,1,8,8,LAK,Brandt,Clarke,D,CAN,74.0,185.0,OHL,Barrie
 2021,1,9,9,ARI,Dylan,Guenther,RW,CAN,73.0,175.0,WHL,Edmonton
 2021,1,10,10,OTT,Tyler,Boucher,RW,USA,73.0,205.0,NTDP,USA U-18
-2021,1,11,11,ARI,,Void,,,,,,
+2021,1,11,11,ARI,,Forfeited,,,,,,
 2021,1,12,12,CBJ,Cole,Sillinger,C,USA,72.0,197.0,USHL,Sioux Falls
 2021,1,13,13,CGY,Matt,Coronato,RW,USA,70.0,183.0,USHL,Chicago
 2021,1,14,14,BUF,Isak,Rosen,RW,SWE,71.0,156.0,SWEDEN,Leksand
 2021,1,15,15,DET,Sebastian,Cossa,G,CAN,78.0,210.0,WHL,Edmonton
 2021,1,16,16,NYR,Brennan,Othmann,LW,CAN,72.0,175.0,OHL,Flint
-2021,1,17,17,STL,Zack,Bolduc,C,CAN,73.0,175.0,QMJHL,Rimouski
+2021,1,17,17,STL,Zachary,Bolduc,C,CAN,73.0,175.0,QMJHL,Rimouski
 2021,1,18,18,WPG,Chaz,Lucius,C,USA,73.0,185.0,NTDP,USA U-18
 2021,1,19,19,NSH,Fedor,Svechkov,C,RUS,72.0,187.0,RUSSIA-2,Togliatti
 2021,1,20,20,MIN,Jesper,Wallstedt,G,SWE,75.0,214.0,SWEDEN,Lulea
@@ -4898,14 +4898,14 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2021,2,17,49,OTT,Ben,Roger,D,CAN,76.0,200.0,OHL,London
 2021,2,18,50,WPG,Nikita,Chibrikov,RW,RUS,70.0,170.0,RUSSIA,St. Petersburg
 2021,2,19,51,CAR,Ville,Koivunen,RW,FIN,71.0,161.0,FINLAND-JR.,Karpat Jr.
-2021,2,20,52,NYI,Aatu,Raty,C,FIN,74.0,185.0,FINLAND,Karpat
+2021,2,20,52,NYI,Aatu,Räty,C,FIN,74.0,185.0,FINLAND,Karpat
 2021,2,21,53,BUF,Aleksandr,Kisakov,LW,RUS,70.0,150.0,RUSSIA-JR.,Dynamo Moscow 2
 2021,2,22,54,MIN,Jack,Peart,D,USA,71.0,186.0,HIGH-MN,Grand Rapids
 2021,2,23,55,WSH,Vincent,Iorio,D,CAN,74.0,191.0,WHL,Brandon
 2021,2,24,56,FLA,Evan,Nause,D,CAN,74.0,186.0,QMJHL,Quebec
 2021,2,25,57,TOR,Matthew,Knies,LW,USA,74.0,210.0,USHL,Tri-City
 2021,2,26,58,PIT,Tristan,Broz,C,USA,71.0,178.0,USHL,Fargo
-2021,2,27,59,LAK,Samuel,Helenius,C,USA,78.0,201.0,FINLAND,JYP
+2021,2,27,59,LAK,Samuel,Helenius,C,USA,78.0,201.0,FINLAND,Jyp
 2021,2,28,60,ARI,J.J.,Moser,D,CHE,72.0,172.0,SWISS,Biel
 2021,2,29,61,COL,Sean,Behrens,D,USA,69.0,177.0,NTDP,USA U-18
 2021,2,30,62,CHI,Colton,Dach,C,CAN,76.0,196.0,WHL,Saskatoon
@@ -4945,7 +4945,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2021,3,32,96,TBL,Roman,Schmidt,D,USA,76.0,210.0,NTDP,USA U-18
 2021,4,1,97,BUF,Olivier,Nadeau,RW,CAN,74.0,204.0,QMJHL,Shawinigan
 2021,4,2,98,ANA,Josh,Lopina,C,USA,74.0,195.0,H-EAST,U. Mass.
-2021,4,3,99,SEA,Ville,Ottavainen,D,FIN,77.0,210.0,FINLAND,JYP
+2021,4,3,99,SEA,Ville,Ottavainen,D,FIN,77.0,210.0,FINLAND,Jyp
 2021,4,4,100,NJD,Jakub,Malek,G,CZE,76.0,170.0,CZREP-2,Vsetin
 2021,4,5,101,CBJ,Guillaume,Richard,D,CAN,74.0,170.0,USHL,Tri-City
 2021,4,6,102,VGK,Jakub,Brabenec,C,CZE,73.0,174.0,CZREP,Brno
@@ -5035,7 +5035,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2021,6,26,186,EDM,Shane,Lachance,LW,USA,76.0,195.0,USPHL - NCDC,Junior Bruins
 2021,6,27,187,CAR,Nikita,Quapp,G,DEU,74.0,187.0,GERMANY,Krefeld
 2021,6,28,188,BUF,Nikita,Novikov,D,RUS,75.0,196.0,RUSSIA-JR.,Dynamo Moscow 2
-2021,6,29,189,NYI,Aleksi,Malinen,D,FIN,72.0,176.0,FINLAND,JYP
+2021,6,29,189,NYI,Aleksi,Malinen,D,FIN,72.0,176.0,FINLAND,Jyp
 2021,6,30,190,VGK,Artur,Cholach,D,UKR,76.0,198.0,UKRAINE,Sokol Kiev
 2021,6,31,191,MTL,Xavier,Simoneau,C,CAN,66.0,172.0,QMJHL,Drummondville
 2021,6,32,192,TBL,Alex,Gagne,D,USA,76.0,205.0,USHL,Muskegon
@@ -5087,7 +5087,7 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2022,1,14,14,WPG,Rutger,McGroarty,RW,USA,73.0,204.0,NTDP,USA U-18
 2022,1,15,15,VAN,Jonathan,Lekkerimäki,RW,SWE,70.0,171.0,SWEDEN,Djurgarden
 2022,1,16,16,BUF,Noah,Ostlund,C,SWE,70.0,164.0,SWEDEN-JR.,Djurgarden Jr.
-2022,1,17,17,NSH,Joakim,Kemell,RW,FIN,70.0,185.0,FINLAND,JYP
+2022,1,17,17,NSH,Joakim,Kemell,RW,FIN,70.0,185.0,FINLAND,Jyp
 2022,1,18,18,DAL,Lian,Bichsel,D,CHE,78.0,225.0,SWEDEN,Leksand
 2022,1,19,19,MIN,Liam,Ohgren,LW,SWE,73.0,201.0,SWEDEN-JR.,Djurgarden Jr.
 2022,1,20,20,WSH,Ivan,Miroshnichenko,LW,RUS,73.0,185.0,RUSSIA-2,Omsk Krylia
@@ -5455,7 +5455,6 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2023,5,29,157,DAL,Arno,Tiefensee,G,DEU,76.0,192.0,GERMANY,Mannheim
 2023,5,30,158,CAR,Ruslan,Khazheyev,G,RUS,76.0,201.0,RUSSIA-JR.,Chelyabinsk Jr.
 2023,5,31,159,FLA,Olof,Glifford,G,SWE,76.0,191.0,SWE-JR. U18,HV 71 U18
-2023,5,32,160,ARI,Justin,Kipkie,D,CAN,75.0,195.0,WHL,Victoria
 2023,6,1,161,ANA,Vojtech,Port,D,CZE,74.0,168.0,WHL,Edmonton
 2023,6,2,162,ARI,Samu,Bau,C,FIN,77.0,214.0,FINLAND,Ilves
 2023,6,3,163,CAR,Timur,Mukhanov,LW,RUS,67.0,178.0,RUSSIA-JR.,Omsk Jr.
@@ -5520,3 +5519,676 @@ year,round,pickInRound,overallPick,teamAbbrev,firstName,lastName,position,countr
 2023,7,30,222,CAR,Egor,Velmakin,G,RUS,74.0,172.0,RUSSIA-2,Voronezh
 2023,7,31,223,PIT,Kalle,Kangas,D,FIN,76.0,205.0,FINLAND-JR.,Jokerit Jr.
 2023,7,32,224,CBJ,Tyler,Peddle,LW,CAN,73.0,204.0,QMJHL,Drummondville
+2024,1,1,1,SJS,Macklin,Celebrini,C,CAN,72.0,197.0,H-EAST,Boston University
+2024,1,2,2,CHI,Artyom,Levshunov,D,BLR,74.0,205.0,BIG10,Michigan State U.
+2024,1,3,3,ANA,Beckett,Sennecke,RW,CAN,75.0,182.0,OHL,Oshawa
+2024,1,4,4,CBJ,Cayden,Lindstrom,C,CAN,75.0,213.0,WHL,Medicine Hat
+2024,1,5,5,MTL,Ivan,Demidov,RW,RUS,73.0,192.0,RUSSIA-JR.,SKA Saint Petersburg Jr.
+2024,1,6,6,UTA,Tij,Iginla,C,CAN,72.0,191.0,WHL,Kelowna
+2024,1,7,7,OTT,Carter,Yakemchuk,D,CAN,75.0,202.0,WHL,Calgary
+2024,1,8,8,SEA,Berkly,Catton,C,CAN,71.0,175.0,WHL,Spokane
+2024,1,9,9,CGY,Zayne,Parekh,D,CAN,73.0,178.0,OHL,Saginaw
+2024,1,10,10,NJD,Anton,Silayev,D,RUS,79.0,211.0,RUSSIA,Nizhny Novgorod
+2024,1,11,11,SJS,Sam,Dickinson,D,CAN,75.0,203.0,OHL,London
+2024,1,12,12,MIN,Zeev,Buium,D,USA,72.0,186.0,NCHC,Denver
+2024,1,13,13,PHI,Jett,Luchanko,C,CAN,71.0,187.0,OHL,Guelph
+2024,1,14,14,BUF,Konsta,Helenius,C,FIN,71.0,189.0,FINLAND,Jukurit
+2024,1,15,15,DET,Michael,Brandsegg-Nygård,RW,NOR,73.0,207.0,SWEDEN-2,Mora
+2024,1,16,16,STL,Adam,Jiricek,D,CZE,75.0,167.0,CZECHIA,Plzen
+2024,1,17,17,WSH,Terik,Parascak,RW,CAN,72.0,179.0,WHL,Prince George
+2024,1,18,18,CHI,Sacha,Boisvert,C,CAN,74.0,183.0,USHL,Muskegon
+2024,1,19,19,VGK,Trevor,Connelly,LW,USA,73.0,160.0,USHL,Tri-City
+2024,1,20,20,NYI,Cole,Eiserman,LW,USA,72.0,197.0,NTDP - USHL,USA U-18
+2024,1,21,21,MTL,Michael,Hage,C,CAN,73.0,188.0,USHL,Chicago
+2024,1,22,22,NSH,Egor,Surin,C,RUS,73.0,197.0,RUSSIA-JR.,Yaroslavl Jr.
+2024,1,23,23,ANA,Stian,Solberg,D,NOR,74.0,205.0,NORWAY,Valerenga
+2024,1,24,24,UTA,Cole,Beaudoin,C,CAN,74.0,210.0,OHL,Barrie
+2024,1,25,25,BOS,Dean,Letourneau,C,CAN,79.0,214.0,HIGH-ON,St. Andrews College
+2024,1,26,26,LAK,Liam,Greentree,RW,CAN,75.0,215.0,OHL,Windsor
+2024,1,27,27,CHI,Marek,Vanacker,LW,CAN,73.0,178.0,OHL,Brantford
+2024,1,28,28,CGY,Matvei,Gridin,RW,RUS,74.0,189.0,USHL,Muskegon
+2024,1,29,29,DAL,Emil,Hemming,RW,FIN,74.0,205.0,FINLAND,TPS
+2024,1,30,30,NYR,EJ,Emery,D,CAN,76.0,183.0,NTDP - USHL,USA U-18
+2024,1,31,31,TOR,Ben,Danford,D,CAN,74.0,191.0,OHL,Oshawa
+2024,1,32,32,EDM,Sam,O'Reilly,RW,CAN,74.0,184.0,OHL,London
+2024,2,1,33,SJS,Igor,Chernyshov,LW,RUS,75.0,204.0,RUSSIA,Dynamo Moscow
+2024,2,2,34,CAR,Dominik,Badinka,D,CZE,75.0,185.0,SWEDEN,Malmo
+2024,2,3,35,ANA,Lucas,Pettersson,C,SWE,72.0,173.0,SWEDEN-JR.,Modo Jr.
+2024,2,4,36,CBJ,Charlie,Elick,D,CAN,76.0,202.0,WHL,Brandon
+2024,2,5,37,WPG,Alfons,Freij,D,SWE,73.0,197.0,SWEDEN-JR.,Vaxjo Jr.
+2024,2,6,38,COL,Ilya,Nabokov,G,RUS,72.0,179.0,RUSSIA,Magnitogorsk
+2024,2,7,39,OTT,Gabriel,Eliasson,D,SWE,79.0,206.0,SWEDEN-JR.,HV71 Jr.
+2024,2,8,40,SEA,Julius,Miettinen,C,FIN,75.0,201.0,WHL,Everett
+2024,2,9,41,CGY,Andrew,Basha,LW,CAN,72.0,187.0,WHL,Medicine Hat
+2024,2,10,42,BUF,Adam,Kleber,D,USA,78.0,215.0,USHL,Lincoln
+2024,2,11,43,WSH,Cole,Hutson,D,USA,71.0,165.0,NTDP - USHL,USA U-18
+2024,2,12,44,PIT,Harrison,Brunicke,D,ZAF,75.0,196.0,WHL,Kamloops
+2024,2,13,45,MIN,Ryder,Ritchie,RW,CAN,73.0,177.0,WHL,Prince Albert
+2024,2,14,46,PIT,Tanner,Howe,LW,CAN,70.0,184.0,WHL,Regina
+2024,2,15,47,DET,Max,Plante,LW,USA,71.0,177.0,NTDP - USHL,USA U-18
+2024,2,16,48,STL,Colin,Ralph,D,USA,77.0,226.0,HIGH-MN,Shattuck-St. Mary's
+2024,2,17,49,NJD,Mikhail,Yegorov,G,RUS,77.0,188.0,USHL,Omaha
+2024,2,18,50,CAR,Nikita,Artamonov,LW,RUS,71.0,187.0,RUSSIA,Nizhny Novgorod
+2024,2,19,51,PHI,Jack,Berglund,C,SWE,76.0,210.0,SWEDEN-JR.,Farjestad Jr.
+2024,2,20,52,WSH,Leon,Muggli,D,CHE,73.0,177.0,SWISS,Zug
+2024,2,21,53,SJS,Leo,Sahlin Wallenius,D,SWE,72.0,180.0,SWEDEN-JR.,Vaxjo Jr.
+2024,2,22,54,NYI,Jesse,Pulkkinen,D,FIN,78.0,219.0,FINLAND,Jyp
+2024,2,23,55,NSH,Teddy,Stiga,C,USA,70.0,178.0,NTDP - USHL,USA U-18
+2024,2,24,56,STL,Lukas,Fischer,D,USA,75.0,182.0,OHL,Sarnia
+2024,2,25,57,LAK,Carter,George,G,CAN,73.0,194.0,OHL,Owen Sound
+2024,2,26,58,FLA,Linus,Eriksson,C,SWE,72.0,189.0,SWEDEN-2,Djurgarden
+2024,2,27,59,PHI,Spencer,Gill,D,CAN,76.0,186.0,QMJHL,Rimouski
+2024,2,28,60,CBJ,Evan,Gardner,G,CAN,72.0,175.0,WHL,Saskatoon
+2024,2,29,61,NYI,Kamil,Bednarik,C,USA,73.0,187.0,NTDP - USHL,USA U-18
+2024,2,30,62,CGY,Jacob,Battaglia,RW,CAN,73.0,202.0,OHL,Kingston
+2024,2,31,63,SEA,Nathan,Villeneuve,C,CAN,71.0,193.0,OHL,Sudbury
+2024,2,32,64,EDM,Eemil,Vinni,G,FIN,75.0,187.0,FINLAND-2,Jokipojat
+2024,2,33,65,UTA,Will,Skahan,D,USA,77.0,215.0,NTDP - USHL,USA U-18
+2024,3,1,66,ANA,Maxim,Massé,RW,CAN,75.0,190.0,QMJHL,Chicoutimi
+2024,3,2,67,CHI,John,Mustard,C,CAN,73.0,186.0,USHL,Waterloo
+2024,3,3,68,ANA,Ethan,Procyszyn,C,CAN,75.0,190.0,OHL,North Bay
+2024,3,4,69,CAR,Noel,Fransén,D,SWE,72.0,183.0,SWEDEN-JR.,Farjestad Jr.
+2024,3,5,70,MTL,Aatos,Koivu,C,FIN,73.0,170.0,FINLAND-JR.,TPS Jr.
+2024,3,6,71,BUF,Brodie,Ziemer,RW,USA,71.0,196.0,NTDP - USHL,USA U-18
+2024,3,7,72,CHI,Anthony (AJ),Spellacy,RW,USA,75.0,200.0,OHL,Windsor
+2024,3,8,73,SEA,Alexis,Bernier,D,CAN,74.0,197.0,QMJHL,Baie Comeau
+2024,3,9,74,CGY,Henry,Mews,D,CAN,73.0,189.0,OHL,Ottawa
+2024,3,10,75,WSH,Ilya,Protas,LW,BLR,77.0,198.0,USHL,Des Moines
+2024,3,11,76,COL,William,Zellers,LW,USA,71.0,167.0,HIGH-MN,Shattuck-St. Mary's
+2024,3,12,77,NSH,Viggo,Gustafsson,D,SWE,74.0,194.0,SWEDEN-JR.,HV71 Jr.
+2024,3,13,78,MTL,Logan,Sawyer,C,CAN,73.0,173.0,BCHL,Brooks
+2024,3,14,79,ANA,Tarin,Smith,D,CAN,74.0,187.0,WHL,Everett
+2024,3,15,80,DET,Ondrej,Becher,C,CZE,74.0,187.0,WHL,Prince George
+2024,3,16,81,STL,Ondrej,Kos,LW,CZE,75.0,176.0,FINLAND-JR.,Ilves Jr.
+2024,3,17,82,SJS,Carson,Wetsch,RW,CAN,73.0,203.0,WHL,Calgary
+2024,3,18,83,VGK,Pavel,Moysevich,G,BLR,76.0,187.0,RUSSIA,SKA St. Petersburg
+2024,3,19,84,CGY,Kirill,Zarubin,G,RUS,75.0,178.0,RUSSIA-JR.,AKM Tula Jr.
+2024,3,20,85,NJD,Kasper,Pikkarainen,RW,FIN,75.0,197.0,FINLAND-JR.,TPS Jr.
+2024,3,21,86,CBJ,Luca,Marrelli,D,CAN,74.0,185.0,OHL,Oshawa
+2024,3,22,87,NSH,Miguel,Marques,RW,CAN,71.0,187.0,WHL,Lethbridge
+2024,3,23,88,SEA,Kim,Saarinen,G,FIN,77.0,176.0,FINLAND-JR.,HPK Jr.
+2024,3,24,89,UTA,Tomas,Lavoie,D,CAN,76.0,220.0,QMJHL,Cape Breton
+2024,3,25,90,WSH,Eriks,Mateiko,LW,LVA,77.0,216.0,QMJHL,Saint John
+2024,3,26,91,NJD,Herman,Träff,RW,SWE,75.0,216.0,SWEDEN-JR.,HV71 Jr.
+2024,3,27,92,CHI,Jack,Pridham,RW,CAN,73.0,177.0,BCHL,West Kelowna
+2024,3,28,93,VAN,Melvin,Fernström,RW,SWE,73.0,188.0,SWEDEN-JR.,Orebro Jr.
+2024,3,29,94,NSH,Hiroki,Gojsic,RW,CAN,75.0,198.0,WHL,Kelowna
+2024,3,30,95,STL,Adam,Jecho,C,CZE,77.0,201.0,WHL,Edmonton
+2024,3,31,96,UTA,Veeti,Väisänen,D,FIN,73.0,188.0,FINLAND,Kookoo
+2024,3,32,97,FLA,Matvei,Shuravin,D,RUS,76.0,218.0,RUSSIA-JR.,CSKA Jr.
+2024,4,1,98,UTA,Gregor,Biber,D,AUT,75.0,187.0,SWEDEN-JR.,Rogle Jr.
+2024,4,2,99,NSH,Jakub,Milota,G,CZE,73.0,170.0,QMJHL,Cape Breton
+2024,4,3,100,ANA,Alexandre,Blais,C,CAN,70.0,152.0,QMJHL,Rimouski
+2024,4,4,101,CBJ,Tanner,Henricks,D,USA,76.0,206.0,USHL,Lincoln
+2024,4,5,102,MTL,Owen,Protz,D,CAN,73.0,213.0,OHL,Brantford
+2024,4,6,103,UTA,Gabe,Smith,C,CAN,76.0,208.0,QMJHL,Moncton
+2024,4,7,104,OTT,Lucas,Ellinas,LW,CAN,74.0,198.0,OHL,Kitchener
+2024,4,8,105,SEA,Ollie,Josephson,C,CAN,73.0,190.0,WHL,Red Deer
+2024,4,9,106,CGY,Trevor,Hoskin,RW,CAN,73.0,175.0,OJHL,Cobourg
+2024,4,10,107,PHI,Heikki,Ruohonen,C,FIN,74.0,204.0,FINLAND-JR.,Kiekko-Espoo Jr.
+2024,4,11,108,BUF,Luke,Osburn,D,USA,73.0,172.0,USHL,Youngstown
+2024,4,12,109,WPG,Kevin,He,LW,CHN,72.0,181.0,OHL,Niagara
+2024,4,13,110,BOS,Elliott,Groenewold,D,USA,74.0,200.0,USHL,Cedar Rapids
+2024,4,14,111,PIT,Chase,Pietila,D,USA,74.0,186.0,CCHA,Michigan Tech
+2024,4,15,112,OTT,Javon,Moore,LW,USA,77.0,203.0,HIGH-MN,Minnetonka
+2024,4,16,113,STL,Tomas,Mrsic,C,CAN,72.0,170.0,WHL,Medicine Hat
+2024,4,17,114,WSH,Nicholas,Kempf,G,USA,74.0,189.0,NTDP - USHL,USA U-18
+2024,4,18,115,NYI,Dmitry,Gamzin,G,RUS,74.0,158.0,RUSSIA-2,Zvezda Moscow
+2024,4,19,116,SJS,Christian,Kirsch,G,CHE,75.0,174.0,SWISS-JR.,Zug Jr.
+2024,4,20,117,OTT,Blake,Montgomery,LW,USA,76.0,180.0,USHL,Lincoln
+2024,4,21,118,TBL,Jan,Golicic,D,SVN,78.0,188.0,QMJHL,Gatineau
+2024,4,22,119,NYR,Raoul,Boilard,C,CAN,73.0,189.0,QMJHL,Baie Comeau
+2024,4,23,120,TOR,Victor,Johansson,D,SWE,71.0,137.0,SWEDEN-JR.,Leksand Jr.
+2024,4,24,121,COL,Jake,Fisher,C,USA,74.0,190.0,USHL,Fargo
+2024,4,25,122,MIN,Aron,Kiviharju,D,DNK,70.0,184.0,FINLAND,HIFK
+2024,4,26,123,BUF,Simon-Pier,Brunet,D,CAN,74.0,196.0,QMJHL,Drummondville
+2024,4,27,124,CAR,Alexander,Siryatsky,D,RUS,74.0,159.0,RUSSIA-JR.,Magnitogorsk Jr.
+2024,4,28,125,VAN,Riley,Patterson,C,CAN,73.0,193.0,OHL,Barrie
+2024,4,29,126,DET,Landon,Miller,G,CAN,77.0,193.0,OHL,Sault Ste. Marie
+2024,4,30,127,NSH,Viktor,Norringer,LW,SWE,75.0,192.0,SWEDEN-JR.,Frolunda Jr.
+2024,4,31,128,TBL,Hagen,Burrows,RW,USA,75.0,177.0,HIGH-MN,Minnetonka
+2024,4,32,129,FLA,Simon,Zether,C,SWE,75.0,176.0,SWEDEN,Rogle
+2024,5,1,130,MTL,Tyler,Thorpe,RW,CAN,76.0,209.0,WHL,Vancouver
+2024,5,2,131,SJS,Colton,Roberts,D,CAN,76.0,204.0,WHL,Vancouver
+2024,5,3,132,COL,Louka,Cloutier,G,CAN,74.0,168.0,USHL,Chicago
+2024,5,4,133,CAR,Oskar,Vuollet,LW,SWE,71.0,173.0,SWEDEN-JR.,Skelleftea Jr.
+2024,5,5,134,MTL,Mikus,Vecvanags,G,LVA,75.0,159.0,LATVIA,HS Riga
+2024,5,6,135,UTA,Owen,Allard,C,CAN,74.0,199.0,OHL,Sault Ste. Marie
+2024,5,7,136,OTT,Eerik,Wallenius,D,FIN,76.0,212.0,FINLAND-JR.,HPK Jr.
+2024,5,8,137,COL,Ivan,Yunin,G,RUS,73.0,172.0,RUSSIA-JR.,Omsk Jr.
+2024,5,9,138,CHI,Joel,Svensson,C,SWE,74.0,185.0,SWEDEN-JR.,Vaxjo Jr.
+2024,5,10,139,NJD,Max,Graham,C,CAN,75.0,203.0,WHL,Kelowna
+2024,5,11,140,MIN,Sebastian,Soini,D,FIN,75.0,187.0,FINLAND-JR.,Ilves Jr.
+2024,5,12,141,SEA,Clarke,Caswell,LW,CAN,71.0,170.0,WHL,Swift Current
+2024,5,13,142,MIN,Chase,Wutzke,G,CAN,74.0,158.0,WHL,Red Deer
+2024,5,14,143,SJS,Nate,Misskey,D,CAN,76.0,210.0,WHL,Victoria
+2024,5,15,144,DET,John,Whipple,D,USA,73.0,192.0,NTDP - USHL,USA U-18
+2024,5,16,145,STL,William,McIsaac,D,CAN,75.0,192.0,WHL,Spokane
+2024,5,17,146,NJD,Veeti,Louhivaara,G,FIN,76.0,207.0,FINLAND-JR.,JYP Jr.
+2024,5,18,147,NYI,Marcus,Gidlöf,G,SWE,78.0,212.0,SWEDEN-JR.,Leksand Jr.
+2024,5,19,148,PHI,Noah,Powell,RW,USA,74.0,201.0,USHL,Dubuque
+2024,5,20,149,TBL,Joona,Saarelainen,C,FIN,69.0,183.0,FINLAND-JR.,Kalpa Jr.
+2024,5,21,150,CGY,Luke,Misa,C,CAN,70.0,174.0,OHL,Mississauga
+2024,5,22,151,TOR,Miroslav,Holinka,C,CZE,73.0,185.0,CZECHIA-JR.,Trinec Jr.
+2024,5,23,152,TOR,Alexander,Plesovskikh,LW,RUS,74.0,174.0,RUSSIA-JR.,Khanty-Mansiysk Jr.
+2024,5,24,153,UTA,Ales,Cech,D,CZE,75.0,196.0,CZECHIA,Mladá Boleslav
+2024,5,25,154,BOS,Jonathan,Morello,C,CAN,74.0,178.0,OJHL,St. Michael's
+2024,5,26,155,WPG,Markus,Loponen,C,FIN,73.0,186.0,FINLAND-JR.,Karpat Jr.
+2024,5,27,156,CAR,Justin,Poirier,RW,CAN,68.0,185.0,QMJHL,Baie Comeau
+2024,5,28,157,TOR,Timofei,Obvintsev,G,RUS,76.0,178.0,RUSSIA-JR.,CSKA Jr.
+2024,5,29,158,DAL,Niilopekka,Muhonen,D,FIN,77.0,195.0,FINLAND-JR.,Kalpa Jr.
+2024,5,30,159,NYR,Nathan,Aspinall,LW,CAN,78.0,185.0,OHL,Flint
+2024,5,31,160,EDM,Connor,Clattenburg,LW,CAN,74.0,198.0,OHL,Flint
+2024,5,32,161,COL,Maxmilian,Curran,C,CZE,75.0,185.0,WHL,Tri-City
+2024,6,1,162,VAN,Anthony,Romani,RW,CAN,73.0,184.0,OHL,North Bay
+2024,6,2,163,CHI,Ty,Henry,D,CAN,74.0,197.0,OHL,Erie
+2024,6,3,164,LAK,Jared,Woolley,D,CAN,77.0,207.0,OHL,London
+2024,6,4,165,CBJ,Luke,Ashton,D,CAN,79.0,231.0,BCHL,Langley
+2024,6,5,166,MTL,Ben,Merrill,C,USA,76.0,190.0,HIGH-MA,St. Sebastian's School
+2024,6,6,167,UTA,Vojtech,Hradec,C,CZE,76.0,202.0,CZECHIA,Mladá Boleslav
+2024,6,7,168,CAR,Timur,Kol,D,RUS,76.0,204.0,RUSSIA-JR.,Omsk Jr.
+2024,6,8,169,FLA,Stepan,Gorbunov,C,RUS,77.0,196.0,RUSSIA-JR.,Chelyabinsk Jr.
+2024,6,9,170,CGY,Hunter,Laing,C,USA,78.0,205.0,WHL,Prince George
+2024,6,10,171,NJD,Matyas,Melovsky,C,CZE,74.0,190.0,QMJHL,Baie Comeau
+2024,6,11,172,BUF,Patrick,Geary,D,USA,73.0,185.0,BIG10,Michigan State U.
+2024,6,12,173,PHI,Ilya,Pautov,RW,RUS,71.0,167.0,RUSSIA-JR.,CSKA Jr.
+2024,6,13,174,MIN,Stevie,Leskovar,D,CAN,75.0,207.0,OHL,Mississauga
+2024,6,14,175,PIT,Joona,Väisänen,D,FIN,73.0,175.0,USHL,Dubuque
+2024,6,15,176,DET,Charlie,Forslund,LW,SWE,75.0,212.0,SWEDEN-3,Falu IF
+2024,6,16,177,CGY,Eric,Jamieson,D,CAN,75.0,199.0,WHL,Everett
+2024,6,17,178,WSH,Petr,Sikora,C,CZE,71.0,172.0,CZECHIA-JR.,Trinec Jr.
+2024,6,18,179,NYI,Xavier,Veilleux,D,CAN,73.0,189.0,USHL,Muskegon
+2024,6,19,180,VGK,Trent,Swick,LW,CAN,79.0,214.0,OHL,Kitchener
+2024,6,20,181,TBL,Kaden,Pitre,C,CAN,72.0,180.0,OHL,Flint
+2024,6,21,182,ANA,Austin,Burnevik,RW,USA,76.0,195.0,USHL,Madison
+2024,6,22,183,EDM,Albin,Sundin,D,SWE,74.0,198.0,SWEDEN-JR.,Frolunda Jr.
+2024,6,23,184,CAR,Roman,Shokhrin,D,RUS,77.0,205.0,RUSSIA-JR.,LOKO-76 Yaroslavl
+2024,6,24,185,COL,Tory,Pitner,D,USA,73.0,180.0,USHL,Youngstown
+2024,6,25,186,BOS,Loke,Johansson,D,SWE,75.0,214.0,SWEDEN-JR.,AIK Jr.
+2024,6,26,187,WPG,Kieron,Walton,C,CAN,78.0,211.0,OHL,Sudbury
+2024,6,27,188,CAR,Fyodor,Avramov,LW,RUS,75.0,190.0,RUSSIA-JR.,Stupino Jr.
+2024,6,28,189,VAN,Parker,Alcos,D,CAN,75.0,180.0,WHL,Edmonton
+2024,6,29,190,UTA,Ludvig,Lafton,D,NOR,74.0,187.0,SWEDEN-JR.,Farjestad Jr.
+2024,6,30,191,NYR,Rico,Gredig,LW,CHE,73.0,180.0,SWISS,Davos
+2024,6,31,192,EDM,Dalyn,Wakely,C,CAN,72.0,198.0,OHL,North Bay
+2024,6,32,193,FLA,Hunter,St. Martin,LW,CAN,73.0,174.0,WHL,Medicine Hat
+2024,7,1,194,SJS,Yaroslav,Korostelyov,G,RUS,73.0,161.0,RUSSIA-JR.,SKA Saint Petersburg Jr.
+2024,7,2,195,TBL,Joe,Connor,LW,USA,70.0,173.0,USHL,Muskegon
+2024,7,3,196,EDM,William,Nicholl,C,CAN,72.0,184.0,OHL,London
+2024,7,4,197,VGK,Lucas,Van Vliet,C,USA,74.0,178.0,NTDP - USHL,USA U-18
+2024,7,5,198,LAK,James,Reeder,RW,USA,70.0,168.0,USHL,Dubuque
+2024,7,6,199,TBL,Noah,Steen,LW,NOR,73.0,187.0,SWEDEN-2,Mora
+2024,7,7,200,TOR,Matt,Lahey,D,CAN,77.0,203.0,BCHL,Nanaimo
+2024,7,8,201,FLA,Denis,Gabdrakhmanov,G,RUS,75.0,187.0,RUSSIA-JR.,Tyumen Jr.
+2024,7,9,202,SEA,Jakub,Fibigr,D,CZE,72.0,171.0,OHL,Mississauga
+2024,7,10,203,DET,Austin,Baker,LW,USA,72.0,190.0,NTDP - USHL,USA U-18
+2024,7,11,204,BUF,Vasily,Zelenov,RW,RUS,72.0,180.0,AUSTRIA-2,RB Hockey Juniors
+2024,7,12,205,PHI,Austin,Moline,D,USA,76.0,193.0,HIGH-MN,Shattuck-St. Mary's
+2024,7,13,206,TBL,Harrison,Meneghin,G,CAN,75.0,164.0,WHL,Lethbridge
+2024,7,14,207,PIT,Mac,Swanson,C,DEU,68.0,167.0,USHL,Fargo
+2024,7,15,208,DET,Fisher,Scott,D,USA,74.0,179.0,USHL,Dubuque
+2024,7,16,209,STL,Antoine,Dorion,C,CAN,73.0,190.0,QMJHL,Quebec
+2024,7,17,210,MTL,Makar,Khanin,RW,RUS,72.0,161.0,RUSSIA-JR.,Dynamo St. Petersburg Jr.
+2024,7,18,211,STL,Matvei,Korotky,C,RUS,73.0,198.0,RUSSIA-JR.,SKA Saint Petersburg Jr.
+2024,7,19,212,WSH,Miroslav,Satan,C,USA,79.0,190.0,SLOVAKIA-JR.,Bratislava Jr.
+2024,7,20,213,NSH,Erik,Påhlsson,C,SWE,73.0,185.0,USHL,Dubuque
+2024,7,21,214,ANA,Darels,Uljanskis,D,LVA,74.0,194.0,SWEDEN-JR.,AIK Jr.
+2024,7,22,215,COL,Christian,Humphreys,C,USA,71.0,164.0,NTDP - USHL,USA U-18
+2024,7,23,216,TOR,Sam,McCue,LW,CAN,74.0,187.0,OHL,Owen Sound
+2024,7,24,217,COL,Nikita,Prishchepov,C,RUS,73.0,194.0,QMJHL,Victoriaville
+2024,7,25,218,EDM,Bauer,Berry,D,USA,76.0,198.0,USHL,Muskegon
+2024,7,26,219,BUF,Ryerson,Leenders,G,CAN,73.0,165.0,OHL,Mississauga
+2024,7,27,220,CAR,Andrey,Krutov,LW,RUS,71.0,174.0,RUSSIA-JR.,Nizhny Novgorod Jr.
+2024,7,28,221,VAN,Basile,Sansonnens,D,CHE,75.0,196.0,SWISS-JR.,Fribourg Jr.
+2024,7,29,222,DAL,William,Samuelsson,C,SWE,72.0,176.0,SWEDEN-JR.,Sodertalje Jr.
+2024,7,30,223,PIT,Finn,Harding,D,CAN,73.0,198.0,OHL,Mississauga
+2024,7,31,224,MTL,Rasmus,Bergqvist,D,SWE,74.0,181.0,SWEDEN-JR.,Skelleftea Jr.
+2024,7,32,225,TOR,Nathan,Mayes,D,CAN,76.0,194.0,WHL,Spokane
+2025,1,1,1,NYI,Matthew,Schaefer,D,CAN,74.0,186.0,OHL,Erie
+2025,1,2,2,SJS,Michael,Misa,C,CAN,73.0,182.0,OHL,Saginaw
+2025,1,3,3,CHI,Anton,Frondell,C,SWE,74.0,204.0,SWEDEN-2,Djurgarden
+2025,1,4,4,UTA,Caleb,Desnoyers,C,CAN,74.0,182.0,QMJHL,Moncton
+2025,1,5,5,NSH,Brady,Martin,C,CAN,72.0,186.0,OHL,Sault Ste. Marie
+2025,1,6,6,PHI,Porter,Martone,RW,CAN,75.0,204.0,OHL,Brampton
+2025,1,7,7,BOS,James,Hagens,C,USA,71.0,186.0,H-EAST,Boston College
+2025,1,8,8,SEA,Jake,O'Brien,C,CAN,74.0,177.0,OHL,Brantford
+2025,1,9,9,BUF,Radim,Mrtka,D,CZE,78.0,218.0,WHL,Seattle
+2025,1,10,10,ANA,Roger,McQueen,C,CAN,78.0,198.0,WHL,Brandon
+2025,1,11,11,PIT,Benjamin,Kindel,C,CAN,71.0,180.0,WHL,Calgary
+2025,1,12,12,PHI,Jack,Nesbitt,C,CAN,77.0,186.0,OHL,Windsor
+2025,1,13,13,DET,Carter,Bear,LW,CAN,72.0,179.0,WHL,Everett
+2025,1,14,14,CBJ,Jackson,Smith,D,CAN,76.0,199.0,WHL,Tri-City
+2025,1,15,15,VAN,Braeden,Cootes,C,CAN,72.0,186.0,WHL,Seattle
+2025,1,16,16,NYI,Victor,Eklund,RW,SWE,71.0,169.0,SWEDEN-2,Djurgarden
+2025,1,17,17,NYI,Kashawn,Aitcheson,D,CAN,74.0,199.0,OHL,Barrie
+2025,1,18,18,CGY,Cole,Reschny,C,CAN,71.0,180.0,WHL,Victoria
+2025,1,19,19,STL,Justin,Carbonneau,RW,CAN,74.0,205.0,QMJHL,Blainville-Boisbriand
+2025,1,20,20,CBJ,Pyotr,Andreyanov,G,RUS,72.0,207.0,RUSSIA-JR.,CSKA Jr.
+2025,1,21,21,NSH,Cameron,Reid,D,CAN,72.0,183.0,OHL,Kitchener
+2025,1,22,22,PIT,Bill,Zonnon,RW,CAN,74.0,185.0,QMJHL,Rouyn-Noranda
+2025,1,23,23,OTT,Logan,Hensler,D,USA,75.0,198.0,BIG10,Wisconsin
+2025,1,24,24,PIT,William,Horcoff,C,CAN,77.0,203.0,BIG10,Michigan
+2025,1,25,25,CHI,Vaclav,Nestrasil,RW,CZE,78.0,185.0,USHL,Muskegon
+2025,1,26,26,NSH,Ryker,Lee,RW,USA,73.0,185.0,USHL,Madison
+2025,1,27,27,WSH,Lynden,Lakovic,LW,CAN,76.0,200.0,WHL,Moose Jaw
+2025,1,28,28,WPG,Sascha,Boumedienne,D,FIN,74.0,184.0,H-EAST,Boston University
+2025,1,29,29,CHI,Mason,West,C,USA,79.0,218.0,HIGH-MN,Edina
+2025,1,30,30,SJS,Joshua,Ravensbergen,G,CAN,78.0,191.0,WHL,Prince George
+2025,1,31,31,LAK,Henry,Brzustewicz,D,USA,74.0,203.0,OHL,London
+2025,1,32,32,CGY,Cullen,Potter,C,USA,70.0,172.0,NCHC,Arizona State
+2025,2,1,33,SJS,Simon (Haoxi),Wang,D,CHN,78.0,222.0,OHL,Oshawa
+2025,2,2,34,MTL,Alexander,Zharovsky,RW,RUS,73.0,163.0,RUSSIA-JR.,Ufa Jr.
+2025,2,3,35,NSH,Jacob,Rombach,D,USA,79.0,209.0,USHL,Lincoln
+2025,2,4,36,SEA,Blake,Fiddler,D,USA,77.0,220.0,WHL,Edmonton
+2025,2,5,37,WSH,Milton,Gastrin,C,SWE,73.0,194.0,SWEDEN-JR.,Modo Jr.
+2025,2,6,38,PHI,Carter,Amico,D,USA,78.0,232.0,NTDP - USHL,USA U-18
+2025,2,7,39,PIT,Peyton,Kettles,D,CAN,78.0,195.0,WHL,Swift Current
+2025,2,8,40,PHI,Jack,Murtagh,LW,USA,73.0,198.0,NTDP - USHL,USA U-18
+2025,2,9,41,CAR,Semyon,Frolov,G,RUS,75.0,203.0,RUSSIA-JR.,Spartak Jr.
+2025,2,10,42,NYI,Daniil,Prokhorov,RW,RUS,78.0,219.0,RUSSIA-JR.,Dynamo St. Petersburg Jr.
+2025,2,11,43,NYR,Malcolm,Spence,LW,CAN,73.0,190.0,OHL,Erie
+2025,2,12,44,DET,Eddie,Genborg,RW,SWE,74.0,205.0,SWEDEN,Linkoping
+2025,2,13,45,ANA,Eric,Nilson,C,CAN,72.0,166.0,SWEDEN-JR.,Djurgarden Jr.
+2025,2,14,46,UTA,Max,Psenicka,D,CZE,77.0,185.0,WHL,Portland
+2025,2,15,47,VAN,Alexei,Medvedev,G,RUS,75.0,180.0,OHL,London
+2025,2,16,48,PHI,Shane,Vansaghi,RW,USA,75.0,212.0,BIG10,Michigan State U.
+2025,2,17,49,CAR,Charlie,Cerrato,C,USA,72.0,190.0,BIG10,Penn State U.
+2025,2,18,50,NJD,Conrad,Fondrk,C,USA,72.0,202.0,NTDP - USHL,USA U-18
+2025,2,19,51,BOS,William,Moore,C,CAN,75.0,180.0,NTDP - USHL,USA U-18
+2025,2,20,52,MIN,Theodor,Hallquisth,D,SWE,74.0,186.0,SWEDEN-JR.,Orebro Jr.
+2025,2,21,53,SJS,Cole,McKinney,C,USA,72.0,200.0,NTDP - USHL,USA U-18
+2025,2,22,54,CGY,Theo,Stockselius,C,SWE,75.0,196.0,SWEDEN-JR.,Djurgarden Jr.
+2025,2,23,55,VGK,Jakob,Ihs Wozniak,RW,AUS,75.0,190.0,SWEDEN-JR.,Lulea Jr.
+2025,2,24,56,TBL,Ethan,Czata,C,CAN,74.0,178.0,OHL,Niagara
+2025,2,25,57,PHI,Matthew,Gard,C,CAN,77.0,195.0,WHL,Red Deer
+2025,2,26,58,NSH,Jack,Ivankovic,G,CAN,72.0,173.0,OHL,Brampton
+2025,2,27,59,LAK,Vojtech,Cihar,LW,CZE,73.0,180.0,CZECHIA,Karlovy Vary
+2025,2,28,60,ANA,Lasse,Boelius,D,FIN,73.0,190.0,FINLAND-JR.,Assat Jr.
+2025,2,29,61,BOS,Liam,Pettersson,D,SWE,74.0,170.0,SWEDEN-JR.,Vaxjo Jr.
+2025,2,30,62,CAR,Ivan,Ryabkin,C,RUS,71.0,210.0,USHL,Muskegon
+2025,2,31,63,NJD,Ben,Kevan,RW,USA,73.0,179.0,USHL,Des Moines
+2025,2,32,64,TOR,Tinus Luc,Koblar,C,SVN,76.0,189.0,SWEDEN-JR.,Leksand Jr.
+2025,3,1,65,VAN,Kieren,Dervin,C,CAN,73.0,184.0,HIGH-ON,St. Andrews College
+2025,3,2,66,CHI,Nathan,Behm,RW,CAN,74.0,202.0,WHL,Kamloops
+2025,3,3,67,CAR,Kurban,Limatov,D,RUS,76.0,190.0,RUSSIA-JR.,Dynamo Moscow Jr.
+2025,3,4,68,SEA,Will,Reynolds,D,CAN,75.0,188.0,QMJHL,Acadie-Bathurst
+2025,3,5,69,MTL,Hayden,Paupanekis,C,CAN,77.0,202.0,WHL,Kelowna
+2025,3,6,70,NYR,Sean,Barnhill,D,USA,78.0,214.0,USHL,Dubuque
+2025,3,7,71,BUF,David,Bedkowski,D,CAN,77.0,221.0,OHL,Owen Sound
+2025,3,8,72,ANA,Noah,Read,C,CAN,72.0,170.0,OHL,London
+2025,3,9,73,PIT,Charlton,Trethewey,D,USA,73.0,200.0,NTDP - USHL,USA U-18
+2025,3,10,74,NYI,Luca,Romano,C,CAN,72.0,177.0,OHL,Kitchener
+2025,3,11,75,DET,Michal,Pradel,G,SVK,77.0,199.0,USHL,Tri-City
+2025,3,12,76,CBJ,Malte,Vass,D,SWE,75.0,195.0,SWEDEN-JR.,Farjestad Jr.
+2025,3,13,77,COL,Francesco,Dell'elce,D,CAN,73.0,180.0,H-EAST,U. Mass.
+2025,3,14,78,UTA,Stepan,Hoch,LW,CZE,76.0,192.0,CZECHIA-JR.,C. Budejovice Jr.
+2025,3,15,79,BOS,Cooper,Simpson,LW,USA,73.0,180.0,HIGH-MN,Shakopee
+2025,3,16,80,CGY,Maceo,Phillips,D,USA,78.0,233.0,NTDP - USHL,USA U-18
+2025,3,17,81,MTL,Bryce,Pickford,D,CAN,73.0,183.0,WHL,Medicine Hat
+2025,3,18,82,MTL,Arseni,Radkov,G,BLR,76.0,194.0,RUSSIA-JR.,Tyumen Jr.
+2025,3,19,83,EDM,Tommy,Lafreniere,RW,CAN,72.0,175.0,WHL,Kamloops
+2025,3,20,84,PIT,Gabriel,D'Aigle,G,CAN,76.0,211.0,QMJHL,Victoriaville
+2025,3,21,85,VGK,Mateo,Nobert,C,CAN,72.0,166.0,QMJHL,Blainville-Boisbriand
+2025,3,22,86,TOR,Tyler,Hopkins,C,CAN,73.0,184.0,OHL,Kingston
+2025,3,23,87,CAR,Roman,Bausov,D,RUS,77.0,179.0,RUSSIA-JR.,Dynamo St. Petersburg Jr.
+2025,3,24,88,LAK,Kristian,Epperson,LW,USA,72.0,180.0,OHL,Saginaw
+2025,3,25,89,NYR,Artyom,Gonchar,D,RUS,72.0,156.0,RUSSIA-JR.,Magnitogorsk Jr.
+2025,3,26,90,NJD,Mason,Moe,C,USA,74.0,192.0,USHL,Madison
+2025,3,27,91,PIT,Brady,Peddle,D,CAN,75.0,202.0,USHL,Waterloo
+2025,3,28,92,WPG,Owen,Martin,C,CAN,72.0,185.0,WHL,Spokane
+2025,3,29,93,OTT,Blake,Vanek,RW,USA,75.0,205.0,HIGH-MN,Stillwater
+2025,3,30,94,DAL,Cameron,Schmidt,RW,CAN,68.0,160.0,WHL,Vancouver
+2025,3,31,95,SJS,Teddy,Mutryn,C,USA,73.0,210.0,USHL,Chicago
+2025,3,32,96,WSH,Maxim,Schafer,LW,DEU,76.0,182.0,GERMANY,Eisbaren Berlin
+2025,4,1,97,OTT,Lucas,Beckman,G,CAN,74.0,182.0,QMJHL,Baie Comeau
+2025,4,2,98,CHI,Julius,Sumpf,C,DEU,74.0,190.0,QMJHL,Moncton
+2025,4,3,99,NJD,Trenten,Bennett,G,CAN,80.0,205.0,CCHL,Kemptville
+2025,4,4,100,BOS,Vashek,Blanar,D,USA,76.0,183.0,SWE-JR. U18,TROJA-LJUNGBY U18
+2025,4,5,101,ANA,Drew,Schock,D,USA,72.0,178.0,NTDP - USHL,USA U-18
+2025,4,6,102,MIN,Adam,Benak,C,CZE,68.0,164.0,USHL,Youngstown
+2025,4,7,103,BUF,Matous,Kucharcik,C,ITA,76.0,180.0,CZECHIA-JR.,Slavia Jr.
+2025,4,8,104,ANA,Elijah,Neuenschwander,G,CHE,77.0,199.0,SWISS-JR.,Fribourg Jr.
+2025,4,9,105,PIT,Travis,Hayes,RW,USA,71.0,175.0,OHL,Sault Ste. Marie
+2025,4,10,106,NYI,Tomas,Poletin,LW,CZE,74.0,206.0,FINLAND,Pelicans
+2025,4,11,107,CHI,Parker,Holmes,LW,CAN,76.0,222.0,OHL,Brantford
+2025,4,12,108,TBL,Benjamin,Rautiainen,C,FIN,72.0,174.0,FINLAND,Tappara
+2025,4,13,109,DET,Brent,Solomon,RW,USA,72.0,173.0,HIGH-MN,Champlin Park
+2025,4,14,110,UTA,Yegor,Borikov,RW,BLR,73.0,180.0,RUSSIA,Minsk
+2025,4,15,111,NYR,Mikkel,Eriksen,C,NOR,71.0,187.0,SWEDEN-JR.,Farjestad Jr.
+2025,4,16,112,FLA,Mads Kongsbak,Klyvo,LW,DNK,74.0,194.0,SWEDEN-JR.,Frolunda Jr.
+2025,4,17,113,MTL,John,Mooney,C,USA,68.0,160.0,NTDP - USHL,USA U-18
+2025,4,18,114,NJD,Gustav,Hillstrom,C,SWE,74.0,174.0,SWEDEN-JR.,Brynas Jr.
+2025,4,19,115,SJS,Ilyas,Magomedsultanov,D,RUS,74.0,176.0,RUSSIA-JR.,Yaroslavl Jr.
+2025,4,20,116,BUF,Samuel,Meloche,G,CAN,74.0,190.0,QMJHL,Rouyn-Noranda
+2025,4,21,117,EDM,David,Lewandowski,LW,DEU,74.0,177.0,WHL,Saskatoon
+2025,4,22,118,COL,Linus,Funck,D,SWE,75.0,183.0,SWEDEN-JR.,Lulea Jr.
+2025,4,23,119,DET,Michal,Svrcek,LW,SVK,71.0,189.0,SWEDEN-JR.,Brynas Jr.
+2025,4,24,120,LAK,Caeden,Herrington,D,USA,74.0,204.0,USHL,Lincoln
+2025,4,25,121,MIN,Lirim,Amidovski,RW,CAN,73.0,180.0,OHL,North Bay
+2025,4,26,122,NSH,Alex,Huang,D,CAN,72.0,170.0,QMJHL,Chicoutimi
+2025,4,27,123,MIN,Carter,Klippenstein,C,CAN,75.0,180.0,WHL,Brandon
+2025,4,28,124,SJS,Zachary,Sharp,D,USA,73.0,180.0,NCHC,Western Michigan
+2025,4,29,125,LAK,Jimmy,Lombardi,C,CAN,72.0,175.0,OHL,Flint
+2025,4,30,126,DAL,Brandon,Gorzynski,C,USA,74.0,185.0,WHL,Calgary
+2025,4,31,127,TBL,Aiden,Foster,C,CAN,74.0,182.0,WHL,Prince George
+2025,4,32,128,FLA,Shea,Busch,LW,CAN,74.0,208.0,WHL,Everett
+2025,5,1,129,FLA,Shamar,Moses,RW,CAN,73.0,200.0,OHL,North Bay
+2025,5,2,130,PIT,Ryan,Miller,C,CAN,72.0,177.0,WHL,Portland
+2025,5,3,131,EDM,Asher,Barnett,D,USA,73.0,200.0,NTDP - USHL,USA U-18
+2025,5,4,132,PHI,Max,Westergard,LW,FIN,71.0,161.0,SWEDEN-JR.,Frolunda Jr.
+2025,5,5,133,BOS,Cole,Chandler,C,CAN,74.0,176.0,QMJHL,Shawinigan
+2025,5,6,134,SEA,Maxim,Agafonov,D,RUS,74.0,198.0,RUSSIA-JR.,Ufa Jr.
+2025,5,7,135,BUF,Noah,Laberge,D,CAN,73.0,187.0,QMJHL,Acadie-Bathurst
+2025,5,8,136,ANA,Alexis,Mathieu,D,CAN,76.0,197.0,QMJHL,Baie Comeau
+2025,5,9,137,TOR,William,Belle,RW,CHN,76.0,225.0,NTDP - USHL,USA U-18
+2025,5,10,138,NYI,Sam,Laurila,D,USA,73.0,191.0,USHL,Fargo
+2025,5,11,139,NYR,Zeb,Lindgren,D,SWE,74.0,198.0,SWEDEN-JR.,Skelleftea Jr.
+2025,5,12,140,DET,Nikita,Tyurin,D,RUS,72.0,174.0,RUSSIA-JR.,Spartak Jr.
+2025,5,13,141,MIN,Justin,Kipkie,D,CAN,76.0,208.0,WHL,Victoria
+2025,5,14,142,UTA,Ivan,Tkach-Tkachenko,G,RUS,75.0,185.0,RUSSIA-JR.,Ufa Jr.
+2025,5,15,143,VAN,Wilson,Bjorck,C,SWE,72.0,165.0,SWEDEN-JR.,Djurgarden Jr.
+2025,5,16,144,CGY,Ethan,Wyttenbach,LW,USA,70.0,180.0,USHL,Sioux Falls
+2025,5,17,145,MTL,Alexis,Cournoyer,G,CAN,75.0,195.0,QMJHL,Cape Breton
+2025,5,18,146,DAL,Atte,Joki,C,FIN,74.0,200.0,FINLAND-JR.,Lukko Jr.
+2025,5,19,147,STL,Mikhail,Fyodorov,RW,RUS,71.0,152.0,RUSSIA-JR.,Magnitogorsk Jr.
+2025,5,20,148,PIT,Quinn,Beauchesne,D,CAN,72.0,184.0,OHL,Guelph
+2025,5,21,149,OTT,Dmitri,Isayev,LW,RUS,69.0,148.0,RUSSIA-JR.,Yekaterinburg Jr.
+2025,5,22,150,SJS,Max,Heise,C,CAN,75.0,169.0,BCHL,Penticton
+2025,5,23,151,TBL,Everett,Baldwin,D,USA,72.0,178.0,HIGH-RI,St. George's School
+2025,5,24,152,LAK,Petteri,Rimpinen,G,FIN,72.0,176.0,FINLAND,K-Espoo
+2025,5,25,153,TOR,Harry,Nansi,RW,CAN,75.0,186.0,OHL,Owen Sound
+2025,5,26,154,PIT,Jordan,Charron,RW,CAN,73.0,188.0,OHL,Sault Ste. Marie
+2025,5,27,155,WSH,Jackson,Crowder,C,USA,75.0,184.0,USHL,Chicago
+2025,5,28,156,WPG,Viktor,Klingsell,RW,SWE,70.0,188.0,SWEDEN-JR.,Skelleftea Jr.
+2025,5,29,157,PHI,Luke,Vlooswyk,D,CAN,77.0,200.0,WHL,Red Deer
+2025,5,30,158,DAL,Mans,Goos,G,SWE,78.0,199.0,SWEDEN-JR.,Farjestad Jr.
+2025,5,31,159,ANA,Emile,Guite,LW,CAN,74.0,176.0,QMJHL,Chicoutimi
+2025,5,32,160,CBJ,Owen,Griffin,C,CAN,70.0,160.0,OHL,Oshawa
+2025,6,1,161,NJD,David,Rozsival,RW,CZE,73.0,188.0,CZECHIA-JR.,Liberec Jr.
+2025,6,2,162,CHI,Ashton,Cumby,D,CAN,77.0,216.0,WHL,Seattle
+2025,6,3,163,NSH,Daniel,Nieminen,D,FIN,72.0,187.0,FINLAND,Pelicans
+2025,6,4,164,PHI,Nathan,Quinn,C,CAN,71.0,173.0,QMJHL,Quebec
+2025,6,5,165,BOS,Kirill,Yemelyanov,C,RUS,73.0,170.0,RUSSIA-JR.,Yaroslavl Jr.
+2025,6,6,166,NYR,Samuel,Jung,RW,CZE,75.0,172.0,FINLAND-JR.,Karpat Jr.
+2025,6,7,167,BUF,Ashton,Schultz,C,USA,71.0,180.0,USHL,Chicago
+2025,6,8,168,ANA,Anthony,Allain-Samake,D,CAN,74.0,183.0,USHL,Sioux City
+2025,6,9,169,PIT,Carter,Sanderson,LW,USA,73.0,196.0,USHL,Muskegon
+2025,6,10,170,NYI,Burke,Hood,G,CAN,76.0,202.0,WHL,Vancouver
+2025,6,11,171,NYR,Evan,Passmore,D,CAN,77.0,212.0,OHL,Barrie
+2025,6,12,172,DET,Will,Murphy,D,CAN,76.0,209.0,QMJHL,Cape Breton
+2025,6,13,173,CBJ,Victor,Raftheim,D,SWE,76.0,181.0,SWEDEN-JR.,Brynas Jr.
+2025,6,14,174,UTA,Ludvig,Johnson,D,CHE,72.0,181.0,SWISS,Zug
+2025,6,15,175,VAN,Gabriel,Chiarot,RW,CAN,71.0,191.0,OHL,Brampton
+2025,6,16,176,CGY,Aiden,Lane,RW,CAN,73.0,193.0,HIGH-ON,St. Andrews College
+2025,6,17,177,MTL,Carlos,Handel,D,DEU,73.0,174.0,QMJHL,Halifax
+2025,6,18,178,NJD,Sigge,Holmgren,D,SWE,73.0,186.0,SWE-JR. U18,Brynas U18
+2025,6,19,179,STL,Love,Harenstam,G,SWE,74.0,196.0,SWEDEN-JR.,Skelleftea Jr.
+2025,6,20,180,WSH,Aron,Dahlqvist,D,SWE,75.0,205.0,SWEDEN-JR.,Brynas Jr.
+2025,6,21,181,OTT,Bruno,Idzan,LW,HRV,72.0,195.0,USHL,Lincoln
+2025,6,22,182,UTA,Reko,Alanko,D,FIN,77.0,201.0,FINLAND-JR.,Jokerit Jr.
+2025,6,23,183,CAR,Viggo,Nordlund,LW,SWE,69.0,168.0,SWEDEN-JR.,Skelleftea Jr.
+2025,6,24,184,LAK,Jan,Chovan,C,SVK,75.0,190.0,FINLAND-JR.,Tappara Jr.
+2025,6,25,185,TOR,Rylan,Fellinger,D,CAN,76.0,196.0,OHL,Flint
+2025,6,26,186,VGK,Alexander,Weiermair,C,USA,73.0,190.0,WHL,Portland
+2025,6,27,187,VGK,Gustav,Sjoqvist,D,SWE,75.0,207.0,SWEDEN-2,AIK
+2025,6,28,188,WPG,Edison,Engle,D,USA,74.0,175.0,USHL,Dubuque
+2025,6,29,189,MTL,Andrew,MacNiel,D,CAN,75.0,196.0,OHL,Kitchener
+2025,6,30,190,DAL,Dawson,Sharkey,RW,CAN,73.0,188.0,QMJHL,Acadie-Bathurst
+2025,6,31,191,EDM,Daniel,Salonen,G,FIN,75.0,185.0,FINLAND-JR.,Lukko Jr.
+2025,6,32,192,FLA,Arvid,Drott,RW,SWE,72.0,187.0,SWEDEN-JR.,Djurgarden Jr.
+2025,7,1,193,TBL,Caleb,Heil,G,USA,74.0,196.0,USHL,Madison
+2025,7,2,194,CHI,Ilya,Kanarsky,G,RUS,75.0,180.0,RUSSIA-JR.,AKM Tula Jr.
+2025,7,3,195,BUF,Melvin,Novotny,LW,SWE,74.0,185.0,SWEDEN-JR.,Leksand Jr.
+2025,7,4,196,LAK,Brendan,McMorrow,C,USA,72.0,173.0,USHL,Waterloo
+2025,7,5,197,FLA,Brendan,Dunphy,D,USA,77.0,207.0,WHL,Wenatchee
+2025,7,6,198,CBJ,Jeremy,Loranger,C,CAN,69.0,161.0,BCHL,Sherwood Park
+2025,7,7,199,BUF,Yevgeni,Prokhorov,G,BLR,75.0,179.0,RUSSIA-JR.,Dinamo-Shinnik Jr.
+2025,7,8,200,ANA,Brady,Turko,RW,CAN,72.0,167.0,WHL,Brandon
+2025,7,9,201,PIT,Kale,Dach,C,CAN,70.0,165.0,BCHL,Sherwood Park
+2025,7,10,202,NYI,Jacob,Kvasnicka,RW,USA,72.0,170.0,NTDP - USHL,USA U-18
+2025,7,11,203,NYR,Felix,Farhammar,D,SWE,73.0,185.0,SWEDEN-JR.,Orebro Jr.
+2025,7,12,204,DET,Grayden,Robertson-Palmer,C,CAN,71.0,197.0,HIGH-MA,Phillips Andover Academy
+2025,7,13,205,SEA,Karl,Annborn,D,SWE,73.0,188.0,SWEDEN-JR.,HV71 Jr.
+2025,7,14,206,TBL,Roman,Luttsev,C,RUS,72.0,170.0,RUSSIA-JR.,Yaroslavl Jr.
+2025,7,15,207,VAN,Matthew,Lansing,C,USA,73.0,186.0,USHL,Fargo
+2025,7,16,208,CGY,Jakob,Leander,D,SWE,76.0,196.0,SWEDEN-JR.,HV71 Jr.
+2025,7,17,209,MTL,Maxon,Vig,D,USA,74.0,212.0,USHL,Cedar Rapids
+2025,7,18,210,SJS,Richard,Gallant,LW,USA,68.0,166.0,NTDP - USHL,USA U-18
+2025,7,19,211,CGY,Yan,Matveiko,LW,RUS,73.0,150.0,RUSSIA-JR.,CSKA Jr.
+2025,7,20,212,TBL,Grant,Spada,D,CAN,77.0,185.0,OHL,Guelph
+2025,7,21,213,OTT,Andrei,Trofimov,G,RUS,74.0,187.0,RUSSIA-JR.,Magnitogorsk Jr.
+2025,7,22,214,COL,Nolan,Roed,C,USA,71.0,186.0,USHL,Tri-City
+2025,7,23,215,TBL,Marco,Mignosa,RW,CAN,72.0,172.0,OHL,Sault Ste. Marie
+2025,7,24,216,LAK,William,Sharpe,D,CAN,72.0,195.0,WHL,Kelowna
+2025,7,25,217,TOR,Matthew,Hlacar,LW,CAN,75.0,201.0,OHL,Kitchener
+2025,7,26,218,SEA,Loke,Krantz,RW,SWE,74.0,192.0,SWEDEN-JR.,Linkoping Jr.
+2025,7,27,219,BUF,Ryan,Rucinski,C,USA,70.0,176.0,USHL,Youngstown
+2025,7,28,220,WPG,Jacob,Cloutier,RW,CAN,70.0,171.0,OHL,Saginaw
+2025,7,29,221,CAR,Filip,Ekberg,RW,SWE,70.0,170.0,OHL,Ottawa
+2025,7,30,222,DAL,Charlie,Paquette,RW,CAN,74.0,207.0,OHL,Guelph
+2025,7,31,223,EDM,Aidan,Park,C,USA,73.0,188.0,USHL,Green Bay
+2025,7,32,224,FLA,Yegor,Midlak,G,RUS,78.0,176.0,RUSSIA-JR.,Spartak Jr.
+2026,1,1,1,TOR,Gavin,McKenna,LW,CAN,72.0,170.0,BIG10,PENN STATE
+2026,1,2,2,SJS,Ivar,Stenberg,LW,SWE,71.0,190.0,SWEDEN,FROLUNDA
+2026,1,3,3,VAN,Caleb,Malhotra,C,CAN,74.0,185.0,OHL,BRANTFORD
+2026,1,4,4,BUF,Daxon,Rudolph,D,CAN,75.0,205.0,WHL,PRINCE ALBERT
+2026,1,5,5,NYR,Alberts,Smits,D,LVA,75.0,209.0,GERMANY,MUNCHEN
+2026,1,6,6,CGY,Carson,Carels,D,CAN,74.0,194.0,WHL,PRINCE GEORGE
+2026,1,7,7,SEA,Chase,Reid,D,USA,75.0,190.0,OHL,SAULT STE. MARIE
+2026,1,8,8,WPG,Viggo,Bjorck,C,SWE,69.0,180.0,SWEDEN,DJURGARDEN
+2026,1,9,9,SJS,Keaton,Verhoeff,D,CAN,76.0,215.0,NCHC,NORTH DAKOTA
+2026,1,10,10,NSH,Wyatt,Cullen,LW,USA,73.0,183.0,NTDP - USHL,USA U-18
+2026,1,11,11,STL,Tynan,Lawrence,C,CAN,73.0,183.0,H-EAST,BOSTON UNIVERSITY
+2026,1,12,12,NJD,Alexander,Command,C,SWE,73.0,187.0,SWEDEN-JR.,OREBRO JR.
+2026,1,13,13,NYI,Malte,Gustafsson,D,SWE,77.0,203.0,SWEDEN,HV71
+2026,1,14,14,CBJ,Oscar,Hemming,LW,FIN,76.0,204.0,H-EAST,BOSTON COLLEGE
+2026,1,15,15,ANA,Nikita,Klepov,RW,USA,72.0,186.0,OHL,SAGINAW
+2026,1,16,16,STL,Maddox,Dagenais,C,CAN,76.0,198.0,QMJHL,QUEBEC
+2026,1,17,17,UTA,Ethan,Belchetz,LW,CAN,77.0,230.0,OHL,WINDSOR
+2026,1,18,18,WSH,Oliver,Suvanto,C,FIN,75.0,213.0,FINLAND,TAPPARA
+2026,1,19,19,LAK,Elton,Hermansson,RW,SWE,73.0,182.0,SWEDEN-2,MODO
+2026,1,20,20,BUF,Ilia,Morozov,C,RUS,75.0,205.0,NCHC,MIAMI
+2026,1,21,21,SJS,Ryan,Lin,D,CAN,71.0,180.0,WHL,VANCOUVER
+2026,1,22,22,PIT,Liam,Ruck,RW,CAN,72.0,174.0,WHL,MEDICINE HAT
+2026,1,23,23,DET,Jeffrey (JP),Hurlbert,LW,USA,72.0,190.0,WHL,KAMLOOPS
+2026,1,24,24,VAN,Adam,Novotny,LW,CZE,73.0,200.0,OHL,PETERBOROUGH
+2026,1,25,25,OTT,Jonas,Lagerberg Hoen,RW,SWE,75.0,178.0,SWEDEN-JR.,LEKSAND JR.
+2026,1,26,26,MTL,Gleb,Pugachyov,RW,KAZ,75.0,224.0,RUSSIA-JR.,NIZHNY NOVGOROD JR.
+2026,1,27,27,PHI,Maksim,Sokolovskii,D,KAZ,79.0,240.0,OHL,LONDON
+2026,1,28,28,ANA,Marcus,Nordmark,LW,SWE,74.0,190.0,SWEDEN-JR.,DJURGARDEN JR.
+2026,1,29,29,VGK,Juho,Piiparinen,D,FIN,74.0,204.0,FINLAND,TAPPARA
+2026,1,30,30,CGY,Jack,Hextall,C,USA,73.0,195.0,USHL,YOUNGSTOWN
+2026,1,31,31,NSH,Thomas,Bleyl,D,USA,71.0,170.0,QMJHL,MONCTON
+2026,1,32,32,OTT,Jaxon,Cover,RW,USA,74.0,183.0,OHL,LONDON
+2026,2,1,33,VAN,Brooks,Rogowski,C,USA,79.0,235.0,OHL,OSHAWA
+2026,2,2,34,CHI,Xavier,Villeneuve,D,CAN,71.0,164.0,QMJHL,BLAINVILLE-BOISBRIAND
+2026,2,3,35,CHI,Ryan,Roobroeck,LW,CAN,75.0,210.0,OHL,NIAGARA
+2026,2,4,36,CGY,Chase,Harrington,LW,CAN,73.0,202.0,WHL,SPOKANE
+2026,2,5,37,NJD,Matias,Vanhanen,LW,FIN,71.0,180.0,WHL,EVERETT
+2026,2,6,38,SEA,Casey,Mutryn,RW,USA,75.0,206.0,NTDP - USHL,USA U-18
+2026,2,7,39,PIT,Markus,Ruck,C,CAN,72.0,164.0,WHL,MEDICINE HAT
+2026,2,8,40,FLA,Simas,Ignatavicius,RW,USA,75.0,201.0,SWISS,GENEVE
+2026,2,9,41,VAN,Niklas,Aaram-Olsen,LW,NOR,72.0,185.0,SWEDEN-JR.,OREBRO JR.
+2026,2,10,42,CGY,Tobias,Trejbal,G,CZE,76.0,198.0,USHL,YOUNGSTOWN
+2026,2,11,43,COL,Egor,Shilov,C,RUS,73.0,177.0,QMJHL,VICTORIAVILLE
+2026,2,12,44,NJD,Nikita,Shcherbakov,D,RUS,77.0,187.0,RUSSIA-JR.,UFA JR.
+2026,2,13,45,ANA,Jayden,Kurtz,D,USA,75.0,190.0,HIGH-MN,ROGERS
+2026,2,14,46,LAK,Liam,Lefebvre,C,CAN,75.0,201.0,QMJHL,CHICOUTIMI
+2026,2,15,47,DET,Victor,Plante,LW,USA,70.0,165.0,NTDP - USHL,USA U-18
+2026,2,16,48,FLA,Ryder,Cali,C,CHE,74.0,214.0,OHL,NORTH BAY
+2026,2,17,49,LAK,Adam,Goljer,D,SVK,73.0,200.0,SLOVAKIA,TRENCIN
+2026,2,18,50,ANA,Mathis,Preston,RW,CAN,71.0,172.0,WHL,VANCOUVER
+2026,2,19,51,CAR,William,Hakansson,D,SWE,77.0,217.0,SWEDEN,LULEA
+2026,2,20,52,TBL,Oleg,Kulebiakin,RW,RUS,70.0,178.0,QMJHL,HALIFAX
+2026,2,21,53,PHI,Brek,Liske,D,CAN,73.0,190.0,WHL,EVERETT
+2026,2,22,54,PIT,Tomas,Galvas,D,CZE,70.0,168.0,CZECHIA,LIBEREC
+2026,2,23,55,CGY,Alan,Shaikhlislamov,RW,RUS,72.0,190.0,RUSSIA-JR.,UFA JR.
+2026,2,24,56,BOS,Yuri,Ivanov,G,RUS,75.0,166.0,RUSSIA-JR.,SPARTAK JR.
+2026,2,25,57,MTL,Timofei,Runtso,D,USA,75.0,194.0,WHL,VICTORIA
+2026,2,26,58,EDM,Rudolfs,Berzkalns,C,LVA,76.0,205.0,USHL,MUSKEGON
+2026,2,27,59,DAL,Jakub,Vanecek,D,CZE,74.0,203.0,WHL,TRI-CITY
+2026,2,28,60,TOR,Alexander,Bilecki,D,CAN,74.0,175.0,OHL,KITCHENER
+2026,2,29,61,CAR,Wiggo,Sorensson,C,SWE,70.0,180.0,SWEDEN-4,BORO/VETLANDA
+2026,2,30,62,PHI,Martin,Psohlavec,G,CZE,77.0,183.0,CZECHIA-JR.,KARLOVY VARY JR.
+2026,2,31,63,VGK,,Forfeited,,,,,,
+2026,2,32,64,NYR,Benjamin,MacBeath,D,CAN,74.0,196.0,WHL,CALGARY
+2026,3,1,65,CGY,Joe,Iginla,RW,CAN,70.0,170.0,WHL,VANCOUVER
+2026,3,2,66,CHI,Samu,Alalauri,D,FIN,74.0,221.0,FINLAND-JR.,PELICANS JR.
+2026,3,3,67,NYR,Danai,Shaiikov,G,KAZ,74.0,186.0,QMJHL,GATINEAU
+2026,3,4,68,CAR,Zachary,Lansard,RW,CAN,72.0,172.0,WHL,REGINA
+2026,3,5,69,TOR,Ethan,MacKenzie,D,CAN,73.0,190.0,WHL,EDMONTON
+2026,3,6,70,NSH,Dmitri,Borichev,G,RUS,74.0,188.0,RUSSIA-JR.,LOKO-76 YAROSLAVL
+2026,3,7,71,WPG,Samuel,Hrenak,G,SVK,75.0,190.0,USHL,FARGO
+2026,3,8,72,OTT,Adam,Nemec,LW,SVK,73.0,180.0,OHL,SUDBURY
+2026,3,9,73,TOR,Zach,Olsen,RW,CAN,73.0,207.0,WHL,SASKATOON
+2026,3,10,74,COL,Beckett,Hamilton,C,USA,71.0,174.0,WHL,RED DEER
+2026,3,11,75,STL,Luke,Schairer,D,USA,75.0,194.0,NTDP - USHL,USA U-18
+2026,3,12,76,TOR,Mans,Gudmundsson,D,SWE,75.0,185.0,SWEDEN-JR.,FARJESTAD JR.
+2026,3,13,77,NYR,Charlie,Morrison,D,CAN,76.0,200.0,QMJHL,QUEBEC
+2026,3,14,78,VAN,Dmitri,Ivchenko,G,RUS,75.0,179.0,RUSSIA-JR.,OMSK JR.
+2026,3,15,79,DET,Michal,Orsulak,G,CZE,76.0,224.0,WHL,PRINCE ALBERT
+2026,3,16,80,LAK,Blake,Zielinski,C,USA,71.0,190.0,USHL,DES MOINES
+2026,3,17,81,NYR,Tomas,Chrenko,C,SVK,71.0,172.0,SLOVAKIA,NITRA
+2026,3,18,82,ANA,Rian,Chudzinski,RW,USA,73.0,191.0,QMJHL,MONCTON
+2026,3,19,83,MIN,Adam,Andersson,C,SWE,76.0,218.0,SWEDEN-JR.,LEKSAND JR.
+2026,3,20,84,EDM,Malcom,Gastrin,LW,SWE,72.0,174.0,SWEDEN-JR.,MODO JR.
+2026,3,21,85,TOR,Juuso,Ainasto,G,FIN,76.0,198.0,FINLAND-JR.,JOKERIT JR.
+2026,3,22,86,PIT,Pierce,Mbuyi,LW,CAN,70.0,160.0,OHL,OWEN SOUND
+2026,3,23,87,OTT,Oscar,Holmertz,C,SWE,72.0,187.0,SWEDEN-JR.,LINKOPING JR.
+2026,3,24,88,BOS,Nils,Bartholdsson,RW,SWE,70.0,179.0,SWEDEN-JR.,ROGLE JR.
+2026,3,25,89,LAK,Yegor,Rybkin,G,RUS,78.0,212.0,RUSSIA-JR.,NIZHNY NOVGOROD JR.
+2026,3,26,90,TBL,Tomas,Kralovic,D,SVK,75.0,202.0,SLOVAKIA,BRATISLAVA
+2026,3,27,91,OTT,Louis Felix,Bourque,RW,CAN,74.0,214.0,QMJHL,DRUMMONDVILLE
+2026,3,28,92,VGK,Benjamin,Wilmott,C,USA,73.0,188.0,OHL,BARRIE
+2026,3,29,93,MTL,Cooper,Cleaves,D,USA,75.0,203.0,ECAC,DARTMOUTH
+2026,3,30,94,CBJ,Alessandro,Di Iorio,C,CAN,72.0,195.0,OHL,SARNIA
+2026,3,31,95,VGK,Sean,Burick,D,USA,80.0,214.0,WHL,PENTICTON
+2026,3,32,96,UTA,Adam,Valentini,C,CAN,70.0,183.0,BIG10,MICHIGAN
+2026,4,1,97,VAN,Yaroslav,Bryzgalov,LW,BLR,75.0,216.0,WHL,MEDICINE HAT
+2026,4,2,98,FLA,Jonas,Kemps,D,USA,78.0,195.0,USHL,CHICAGO
+2026,4,3,99,SEA,Viktor,Fedorov,C,RUS,71.0,183.0,RUSSIA-2,TORPEDO-GORKY NN
+2026,4,4,100,CGY,Egor,Barabanov,C,RUS,72.0,175.0,OHL,SAGINAW
+2026,4,5,101,WSH,Tyus,Sparks,C,USA,72.0,190.0,WHL,SPOKANE
+2026,4,6,102,NYR,Spencer,Bowes,LW,CAN,72.0,172.0,OHL,OTTAWA
+2026,4,7,103,LAK,Thomas,Vandenberg,C,CAN,72.0,180.0,OHL,OTTAWA
+2026,4,8,104,BOS,Matvei,Kotkov,RW,RUS,73.0,183.0,RUSSIA-JR.,YAROSLAVL JR.
+2026,4,9,105,CAR,Michael,Berchild,LW,USA,70.0,180.0,NTDP - USHL,USA U-18
+2026,4,10,106,NSH,Jakub,Floris,D,SVK,75.0,194.0,FINLAND-JR.,LUKKO JR.
+2026,4,11,107,STL,Landon,Nycz,D,USA,75.0,210.0,H-EAST,UMASS
+2026,4,12,108,DET,Adam,Levac,C,CAN,72.0,176.0,OHL,PETERBOROUGH
+2026,4,13,109,NYI,Lincoln,Kuehne,D,USA,74.0,210.0,NCHC,ARIZONA STATE
+2026,4,14,110,OTT,Elliot,Lennon,G,CAN,77.0,181.0,HIGH-MA,DEERFIELD
+2026,4,15,111,PIT,Parker,Von Richter,D,CAN,73.0,205.0,OHL,BARRIE
+2026,4,16,112,MIN,Kayden,Lemire,RW,CAN,76.0,194.0,WHL,PRINCE GEORGE
+2026,4,17,113,VGK,Jonah,Sivertson,RW,CAN,75.0,198.0,WHL,PRINCE ALBERT
+2026,4,18,114,TOR,Patriks,Plumins,G,LVA,76.0,214.0,LATVIA,ZEMGALE
+2026,4,19,115,UTA,Carl,Axelsson,G,SWE,75.0,184.0,USHL,MUSKEGON
+2026,4,20,116,WPG,Zach,Wooten,LW,USA,74.0,205.0,USHL,GREEN BAY
+2026,4,21,117,MTL,Brayden,Klimpke,D,CAN,72.0,174.0,WHL,SASKATOON
+2026,4,22,118,NSH,Justin,Graf,LW,USA,73.0,174.0,USHL,CEDAR RAPIDS
+2026,4,23,119,NJD,Lavr,Gashilov,C,RUS,71.0,186.0,RUSSIA-JR.,YEKATERINBURG JR.
+2026,4,24,120,PHI,Marek,Sklenicka,G,CZE,75.0,171.0,WHL,SEATTLE
+2026,4,25,121,CBJ,Evan,Jardine,LW,USA,72.0,185.0,USHL,YOUNGSTOWN
+2026,4,26,122,BOS,Oscar,Olsson,LW,SWE,76.0,187.0,SWEDEN-JR.,OREBRO JR.
+2026,4,27,123,STL,Vladimir,Proskurin,G,RUS,72.0,158.0,RUSSIA-JR.,MYTISCHI JR.
+2026,4,28,124,BUF,Olivers,Murnieks,C,LVA,73.0,192.0,QMJHL,SAINT JOHN
+2026,4,29,125,CAR,Ryder,Fetterolf,G,USA,72.0,184.0,OHL,OTTAWA
+2026,4,30,126,COL,Tobias,Tvrznik,G,CZE,76.0,193.0,WHL,WENATCHEE
+2026,4,31,127,SJS,Brady,Knowling,G,CAN,77.0,208.0,NTDP - USHL,USA U-18
+2026,4,32,128,COL,Axel,Elofsson,D,SWE,70.0,169.0,SWEDEN-JR.,OREBRO JR.
+2026,5,1,129,VAN,Connor,Davis,RW,CAN,72.0,188.0,USHL,CEDAR RAPIDS
+2026,5,2,130,UTA,Theodor,Knights,D,SWE,76.0,194.0,SWEDEN-JR.,MODO JR.
+2026,5,3,131,SEA,Finn,Kearns,D,CAN,75.0,206.0,HIGH-ON,ST. ANDREWS COLLEGE
+2026,5,4,132,CGY,Simon,Katolicky,LW,CZE,77.0,197.0,FINLAND-JR.,TAPPARA JR.
+2026,5,5,133,EDM,Andrew,Robinson,D,CAN,72.0,190.0,OHL,WINDSOR
+2026,5,6,134,TBL,Morgan,Anderberg,C,SWE,71.0,174.0,SWEDEN,VAXJO
+2026,5,7,135,WPG,Alexandre,Taillefer,D,CAN,72.0,164.0,QMJHL,QUEBEC
+2026,5,8,136,PHI,Kent,Sauer,C,USA,75.0,202.0,HIGH-MN,ANDOVER
+2026,5,9,137,MIN,Filip,Ruzicka,G,CZE,79.0,230.0,WHL,BRANDON
+2026,5,10,138,NSH,Philip,Hemmyr,LW,SWE,73.0,170.0,SWEDEN-2,BJORKLOVEN
+2026,5,11,139,STL,Nicholas,Bogas,D,USA,72.0,190.0,NTDP - USHL,USA U-18
+2026,5,12,140,COL,Cole,Tuminaro,D,USA,76.0,225.0,USHL,CHICAGO
+2026,5,13,141,NYI,Vladimir,Dravecky,D,USA,71.0,193.0,OHL,BRANTFORD
+2026,5,14,142,CBJ,Parker,Snell,G,CAN,74.0,176.0,WHL,EDMONTON
+2026,5,15,143,DET,Beckham,Edwards,C,CAN,73.0,190.0,OHL,SARNIA
+2026,5,16,144,WSH,Brian,McFadden,D,USA,77.0,183.0,HIGH-MA,THAYER ACADEMY
+2026,5,17,145,LAK,Vertti,Svensk,D,FIN,72.0,169.0,FINLAND-JR.,SAIPA JR.
+2026,5,18,146,ANA,Eric,Frossard,D,CAN,78.0,206.0,OHL,GUELPH
+2026,5,19,147,UTA,Florent,Houle,RW,CAN,72.0,191.0,QMJHL,SHERBROOKE
+2026,5,20,148,SEA,Luken,Huff,D,USA,75.0,200.0,USHL,CEDAR RAPIDS
+2026,5,21,149,NJD,Daniil,Rusakovich,G,BLR,76.0,188.0,RUSSIA-JR.,DINAMO-SHINNIK JR.
+2026,5,22,150,STL,Carter,Stevens,RW,CAN,74.0,195.0,OHL,GUELPH
+2026,5,23,151,OTT,Harris,Pangretitsch,D,CAN,76.0,219.0,OHL,SAULT STE. MARIE
+2026,5,24,152,COL,Theodore,Lechner,D,USA,74.0,164.0,HIGH-MN,HOLY ANGELS
+2026,5,25,153,LAK,Giorgos,Pantelas,D,CAN,75.0,211.0,WHL,BRANDON
+2026,5,26,154,TBL,Cooper,Soller,C,USA,70.0,172.0,USHL,SIOUX FALLS
+2026,5,27,155,DAL,Ryan,Brown,LW,CAN,71.0,177.0,OHL,LONDON
+2026,5,28,156,BUF,Doman,Szongoth,C,HUN,73.0,195.0,FINLAND-JR.,KOOKOO JR.
+2026,5,29,157,BOS,Jacob,Vandeven,D,CAN,77.0,183.0,GOHL,KOMOKA
+2026,5,30,158,TOR,Cooper,Williams,C,CAN,73.0,168.0,WHL,SASKATOON
+2026,5,31,159,VGK,Will,McLaughlin,D,CAN,74.0,168.0,WHL,PORTLAND
+2026,5,32,160,PIT,Matvei,Nikonovich,G,BLR,73.0,150.0,RUSSIA-JR.,TOGLIATTI JR.
+2026,6,1,161,TOR,Yaroslav,Fedoseyev,D,RUS,73.0,188.0,RUSSIA-JR.,CHELYABINSK JR.
+2026,6,2,162,NYR,Andre,Mondoux,D,CAN,75.0,201.0,OHL,KINGSTON
+2026,6,3,163,NYR,Darian,Anderson,RW,USA,75.0,196.0,OHL,FLINT
+2026,6,4,164,CGY,Bode,Laylin,D,USA,71.0,178.0,USHL,TRI-CITY
+2026,6,5,165,CAR,Zachary,Jovanovski,G,CAN,75.0,185.0,OHL,GUELPH
+2026,6,6,166,SEA,Ola,Palme,D,SWE,73.0,198.0,SWEDEN-JR.,VAXJO JR.
+2026,6,7,167,WPG,Landon,Hafele,C,USA,72.0,179.0,USHL,GREEN BAY
+2026,6,8,168,FLA,Vilho,Vanhatalo,RW,FIN,75.0,194.0,FINLAND-JR.,TAPPARA JR.
+2026,6,9,169,TOR,Brody,Pepoy,RW,USA,73.0,173.0,OHL,SAGINAW
+2026,6,10,170,BOS,Roberto,Henriquez,G,SVK,73.0,168.0,USHL,GREEN BAY
+2026,6,11,171,STL,Lars,Steiner,RW,CHE,70.0,175.0,QMJHL,ROUYN-NORANDA
+2026,6,12,172,NJD,Luke,Wilfley,C,USA,73.0,182.0,WHL,PORTLAND
+2026,6,13,173,NYI,Artyom,Matyuk,C,RUS,73.0,174.0,RUSSIA-JR.,NIZHNY NOVGOROD JR.
+2026,6,14,174,SJS,Jake,Gustafson,C,USA,76.0,182.0,WHL,PORTLAND
+2026,6,15,175,DET,Luka,Arkko,LW,FIN,75.0,212.0,FINLAND-JR.,PELICANS JR.
+2026,6,16,176,VAN,Lucian,Bernat,RW,SVK,76.0,201.0,FINLAND-JR.,TAPPARA JR.
+2026,6,17,177,LAK,Alex,Kostov,RW,CAN,76.0,207.0,OHL,FLINT
+2026,6,18,178,ANA,Gleb,Peshkov,G,RUS,75.0,212.0,RUSSIA-JR.,VLADIVOSTOK JR.
+2026,6,19,179,NSH,Benjamin,Cossette Ayotte,D,CAN,73.0,185.0,QMJHL,VAL-D'OR
+2026,6,20,180,EDM,Caden,Harvey,C,USA,73.0,183.0,OHL,WINDSOR
+2026,6,21,181,FLA,Cole,Zurawski,RW,CAN,73.0,188.0,OHL,OWEN SOUND
+2026,6,22,182,CBJ,Anttoni,Uronen,C,FIN,72.0,201.0,FINLAND,HIFK
+2026,6,23,183,OTT,Alexander,Grunin,D,RUS,75.0,176.0,RUSSIA-JR.,NOVOSIBIRSK JR.
+2026,6,24,184,VAN,Samuel,Eriksson,D,SWE,78.0,212.0,SWEDEN-JR.,FARJESTAD JR.
+2026,6,25,185,CBJ,Jonas,Woo,D,CAN,69.0,175.0,WHL,MEDICINE HAT
+2026,6,26,186,TBL,Stepan,Shurygin,G,RUS,77.0,207.0,OHL,SAGINAW
+2026,6,27,187,DAL,Anton Emil Wilde,Larsen,G,DNK,74.0,191.0,DENMARK,FREDERIKSHAVN
+2026,6,28,188,BUF,Dylan,Dumont,RW,CAN,72.0,168.0,QMJHL,DRUMMONDVILLE
+2026,6,29,189,MTL,Parker,Trottier,LW,USA,73.0,186.0,NTDP - USHL,USA U-18
+2026,6,30,190,MTL,Wesley,Royston,RW,CAN,76.0,186.0,OHL,OWEN SOUND
+2026,6,31,191,VGK,Matthew,Minchak,G,USA,77.0,195.0,OHL,KINGSTON
+2026,6,32,192,ANA,Noah,Kosick,C,DEU,72.0,160.0,WHL,SEATTLE
+2026,7,1,193,NYR,Ivan,Patrikhayev,D,RUS,72.0,185.0,RUSSIA,CSKA
+2026,7,2,194,CHI,Alexander,Ivanov,D,RUS,74.0,181.0,RUSSIA-2,BARS KAZAN
+2026,7,3,195,COL,Shawn,Carrier,LW,CAN,70.0,186.0,QMJHL,HALIFAX
+2026,7,4,196,DET,Myles,Brosnan,D,USA,72.0,194.0,HIGH-MA,DEXTER SCHOOL
+2026,7,5,197,DAL,Jasper,Kuhta,C,FIN,75.0,194.0,OHL,OTTAWA
+2026,7,6,198,SEA,Rylan,Singh,D,CAN,72.0,176.0,OHL,GUELPH
+2026,7,7,199,WPG,Alofa Tunoa,Ta'amu,D,USA,74.0,228.0,WHL,EDMONTON
+2026,7,8,200,CHI,William,Sorbrand,C,SWE,75.0,203.0,SWEDEN-JR.,TIMRA JR.
+2026,7,9,201,SJS,Alexander,Karmanov,D,MDA,85.0,272.0,OHL,NORTH BAY
+2026,7,10,202,NSH,Charlie,Puglisi,C,USA,72.0,162.0,HIGH-MA,WINCHENDON
+2026,7,11,203,STL,Colin,Fitzgerald,C,CAN,75.0,197.0,OHL,SAULT STE. MARIE
+2026,7,12,204,SEA,William,Tomko,C,USA,72.0,190.0,USHL,SIOUX CITY
+2026,7,13,205,NYI,Robert,Cowan,RW,USA,71.0,176.0,NCHC,WESTERN MICHIGAN
+2026,7,14,206,CBJ,Filip,Novak,LW,CZE,74.0,206.0,CZECHIA-JR.,SPARTA JR.
+2026,7,15,207,VGK,Noel,Pakarinen,LW,USA,74.0,200.0,FINLAND-JR.,K-ESPOO JR.
+2026,7,16,208,WSH,Logan,Stuart,C,USA,71.0,175.0,NTDP - USHL,USA U-18
+2026,7,17,209,LAK,Tobias,Krestan,RW,DEU,74.0,195.0,SWEDEN-JR.,HV71 JR.
+2026,7,18,210,ANA,James,Rieber,D,USA,74.0,176.0,USHL,WATERLOO
+2026,7,19,211,UTA,Artem,Prima,LW,RUS,72.0,178.0,NAHL,MINOT
+2026,7,20,212,EDM,Ryan,Cameron,G,USA,74.0,183.0,USHL,CEDAR RAPIDS
+2026,7,21,213,PHI,Max,Laatikainen,D,SWE,72.0,185.0,FINLAND-JR.,K-ESPOO JR.
+2026,7,22,214,COL,Ondrej,Ruml,D,CZE,72.0,171.0,OHL,OTTAWA
+2026,7,23,215,COL,Alexandre,Raymond,G,CAN,76.0,201.0,QMJHL,ROUYN-NORANDA
+2026,7,24,216,BOS,Cullen,McCrate,D,USA,73.0,199.0,USHL,FARGO
+2026,7,25,217,FLA,Louis-Antoine,Denault,G,CAN,80.0,210.0,QMJHL,NEWFOUNDLAND
+2026,7,26,218,TBL,Max,Vilen,D,SWE,75.0,198.0,QMJHL,MONCTON
+2026,7,27,219,DAL,Mikhail,Cherepanov,D,RUS,73.0,188.0,NAHL,NEW HAMPSHIRE
+2026,7,28,220,WPG,John,Parsons,G,USA,75.0,194.0,H-EAST,PROVIDENCE
+2026,7,29,221,MTL,Jean-Samuel,Daigneault,D,CAN,75.0,194.0,USHL,MUSKEGON
+2026,7,30,222,NJD,Quinn,McKenzie,C,USA,68.0,178.0,OHL,SAULT STE. MARIE
+2026,7,31,223,LAK,Lucas,Ambrosio,D,CAN,76.0,194.0,OHL,ERIE
+2026,7,32,224,MTL,Tyler,Deakos,RW,CAN,73.0,175.0,USHL,WATERLOO

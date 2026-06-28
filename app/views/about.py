@@ -1,21 +1,16 @@
 import streamlit as st
+from i18n import t
 
-st.title("About NHL Analytics")
+st.title(t("about_title"))
 
-st.markdown("""
-This application was created to analyze and visualize NHL team and player performance data.
+st.markdown(f"""
+{t("about_desc_1")}
 
-## About the Creator
+{t("about_desc_2")}
 
-I'm JJ - data scientist by day, and hockey enthusiast all day. This is my personal project, 
-analyzing and visualizing NHL team and player performance to unpack my curiosity.
-
-## Resources
-
-- [GitHub Repository](https://github.com/justinjjlee/NHL-Analytics)
-- [Medium Blog](https://medium.com/@thinkingjustin)
+{t("about_desc_3")}
 """)
 
 # Contact information
-st.subheader("Contact")
-st.markdown("Feel free to reach out via GitHub or Medium.")
+st.subheader(t("about_contact"))
+st.markdown(t("about_contact_desc"))

@@ -338,7 +338,7 @@ plt.tight_layout()
 
 # Save the visualization
 plt.savefig('./results/multi_exceptional_performers.png', dpi=300, bbox_inches='tight')
-plt.show()
+# plt.show()
 
 # Save the data for further analysis
 multi_exceptional_players.to_csv('./results/multi_exceptional_players.csv', index=False)

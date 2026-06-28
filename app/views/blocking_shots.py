@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import os
 import plotly.graph_objects as go
+from i18n import t
 
 def get_data_path(rel_path):
     """Helper function to get correct data paths regardless of run location"""
@@ -214,38 +215,35 @@ def create_sankey_diagram():
         return None
 
 def show():
-    st.title("The Valor of Blocking Shots")
     
-    st.markdown("""
-    This analysis examines sequense of plays after a player blocks a shot. The insights from this analysis can help teams assess 
-    the effectiveness and value of of shot-blocking strategies,
-    and potentially reacting and adjusting strategies based on the speed/transition of each game.
+    # ==========================================
+    # Application layout
+    # ==========================================
+    st.title(t("bs_title"))
     
-    *Based on the analysis documented in ["Human Shields on Ice: The Valor of Blocking Shots"](https://medium.com/@thinkingjustin/human-shields-on-ice-the-valor-of-blocking-shots-2d55e2f0482c)*
-    """)
+    st.markdown(t("bs_intro"))
     
     # Create tabs for different analyses
     tabs = st.tabs(["Interactive Flow Diagram", "Analysis Findings"])
     
     with tabs[0]:
-        st.subheader("Plays After Shot Blocks")
-        st.markdown("""
-        The Sankey diagram below visualizes the flow of events after a player blocks a shot. The interactive chart can be interepreted in order (left to right):
-        - **Posture of the Shot-Blocking Team**: The initial posture of the team that blocked the shot.
-        - **The Next Action**: The team that performed the next action after the block.
-        - **Action Category**: The general category of the subsequent action (e.g., shot, goal, hit).
-        - **Action Type**: The pecific type of the subsequent action (e.g., shot on goal, blocked shot, missed shot).
-        """)
+        st.subheader(t("bs_sub_track"))
+        st.markdown(t("bs_desc"))
+        
         # Create the Sankey diagram
         fig = create_sankey_diagram()
         
         if fig:
             # Display the plot
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
             
-            st.caption("""
-            The diagram is based on play-by-play level data of 2022-2023 and 2023-2024 regular seasons. The data can be updated
-            using the published code (see the Key Findings section).
+            st.caption(t("bs_caption_1"))
+            
+            # Additional context or interpretation
+            st.markdown(f"""
+            {t("bs_p_1")}
+            
+            {t("bs_p_2")}
             """)
         else:
             # If there was an error loading the data

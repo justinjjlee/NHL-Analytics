@@ -17,12 +17,29 @@ import time
     Once download, no need to re-run
 
 '''
-# Define list of years, from 2006 to 2023
-years = list(range(2000, 2024))
+# Define list of years, from 2000 to 2025 (latest)
+# Get the current date year
+import datetime
+end_year = datetime.datetime.now().year
+years = list(range(2000, end_year + 1))
+
+# Create the data directory if it doesn't exist
+data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'))
+os.makedirs(data_dir, exist_ok=True)
 
 # Dictionary to store DataFrames for each year
 drafted_players_raw = {}
 drafted_players_df = {}  # Will store processed DataFrames
+
+# Load existing draft data if it exists
+draft_file_path = os.path.join(data_dir, 'all_drafted_players.csv')
+if os.path.exists(draft_file_path):
+    existing_draft_df = pd.read_csv(draft_file_path)
+    existing_draft_years = existing_draft_df['year'].unique().tolist()
+    print(f"Loaded existing draft data: {len(existing_draft_df)} players from {len(existing_draft_years)} years.")
+else:
+    existing_draft_df = pd.DataFrame()
+    existing_draft_years = []
 
 # Define the specific columns we want to extract
 columns_to_extract = [
@@ -41,6 +58,10 @@ columns_to_extract = [
 ]
 
 for year in years:
+    if year in existing_draft_years:
+        print(f"Draft data for {year} already exists, skipping API call.")
+        continue
+
     # Get the JSON data from the API
     url = f"https://api-web.nhle.com/v1/draft/picks/{year}/all"
     
@@ -83,15 +104,16 @@ for year in years:
     except Exception as e:
         print(f"Error processing year {year}: {str(e)}")
 
-# Create the data directory if it doesn't exist
-data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'))
-os.makedirs(data_dir, exist_ok=True)
-
 # Create a combined DataFrame with all years
-all_drafted_players = pd.concat(drafted_players_df.values(), ignore_index=True)
-
-# Save the combined DataFrame to the data directory
-all_drafted_players.to_csv(os.path.join(data_dir, 'all_drafted_players.csv'), index=False)
+if drafted_players_df:
+    new_draft_data = pd.concat(drafted_players_df.values(), ignore_index=True)
+    all_drafted_players = pd.concat([existing_draft_df, new_draft_data], ignore_index=True)
+    # Save the combined DataFrame to the data directory
+    all_drafted_players.to_csv(draft_file_path, index=False)
+    print(f"Added {len(new_draft_data)} new players.")
+else:
+    all_drafted_players = existing_draft_df
+    print("No new draft data to add.")
 '''
 # Save individual year DataFrames if needed
 for year, df in drafted_players_df.items():
@@ -111,7 +133,7 @@ I evaluate seasons from 2006 to 2024
 
 # Create season mark for API: 2006-07 season is written as 20062007
 # Define the seasons to pull
-seasons = [f"{year}{year + 1}" for year in range(2000, 2025)]
+seasons = [f"{year}{year + 1}" for year in range(2000, end_year + 1)]
 
 '''
 This is the API block to pull the stats for players
@@ -126,8 +148,20 @@ limit=-1 means we want to pull all players
 player_stats = {}
 kpi_stats = 'points'  # Key Performance Indicator (KPI) for player stats
 
+stats_file_path = os.path.join(data_dir, 'all_player_stats.csv')
+if os.path.exists(stats_file_path):
+    existing_stats_df = pd.read_csv(stats_file_path)
+    existing_seasons = existing_stats_df['season'].astype(str).unique().tolist()
+    print(f"Loaded existing player stats data: {len(existing_stats_df)} records from {len(existing_seasons)} seasons.")
+else:
+    existing_stats_df = pd.DataFrame()
+    existing_seasons = []
+
 # Loop through each season and pull the stats
 for season in seasons:
+    if str(season) in existing_seasons:
+        print(f"Player stats for season {season} already exist, skipping API call.")
+        continue
     # Construct the URL for the API request
     url = f"https://api-web.nhle.com/v1/skater-stats-leaders/{season}/2?categories=points&limit=-1"
     
@@ -167,10 +201,15 @@ for season in seasons:
         print(f"Error processing season {season}: {str(e)}")
 
 # Create a combined DataFrame with all seasons' player stats
-all_player_stats = pd.concat(player_stats.values(), ignore_index=True)
-
-# Save the combined DataFrame to the data directory
-all_player_stats.to_csv(os.path.join(data_dir, 'all_player_stats.csv'), index=False)
+if player_stats:
+    new_player_stats = pd.concat(player_stats.values(), ignore_index=True)
+    all_player_stats = pd.concat([existing_stats_df, new_player_stats], ignore_index=True)
+    # Save the combined DataFrame to the data directory
+    all_player_stats.to_csv(stats_file_path, index=False)
+    print(f"Added {len(new_player_stats)} new player stats records.")
+else:
+    all_player_stats = existing_stats_df
+    print("No new player stats data to add.")
 
 print(f"Total player stats records: {len(all_player_stats)}")
 
@@ -226,16 +265,30 @@ print(f"Number of unmatched players: {len(unmatched)}")
     https://api-web.nhle.com/v1/player/8478402/landing
 '''
 
-# Get unique player IDs
-unique_player_ids = merged_data['id'].unique()
+# Get unique player IDs, but ONLY for 1st round picks to save API time
+# since the exceptional seasons analysis only looks at 1st round picks.
+first_round_ids = merged_data[merged_data['round'] == 1]['id'].unique()
 # exclude null
-unique_player_ids = unique_player_ids[~pd.isnull(unique_player_ids)]
+first_round_ids = first_round_ids[~pd.isnull(first_round_ids)]
 # conver to integer
-unique_player_ids = unique_player_ids.astype(int)
+unique_player_ids = first_round_ids.astype(int)
 
 # For each player ID, pull the player stats
 player_chronicle = {}
+
+chronicle_file_path = os.path.join(data_dir, 'all_drafted_players_chronicle.csv')
+if os.path.exists(chronicle_file_path):
+    existing_chronicle_df = pd.read_csv(chronicle_file_path)
+    existing_chronicle_ids = existing_chronicle_df['id'].unique().tolist()
+    print(f"Loaded existing player chronicles: {len(existing_chronicle_df)} records for {len(existing_chronicle_ids)} players.")
+else:
+    existing_chronicle_df = pd.DataFrame()
+    existing_chronicle_ids = []
+
 for player_id in unique_player_ids:
+    if player_id in existing_chronicle_ids:
+        continue
+
     # Construct the URL for the API request
     url = f"https://api-web.nhle.com/v1/player/{player_id}/landing"
     
@@ -267,23 +320,32 @@ for player_id in unique_player_ids:
     if len(player_chronicle) % 10 == 0:
         print(f"Processed {len(player_chronicle)} player IDs out of {len(unique_player_ids)}")
 
-    # Wait a second to provide a buffer for the API
-    time.sleep(1)
+    # Wait a short duration to provide a buffer for the API
+    time.sleep(0.05)
 
-all_player_chronicle = pd.concat(player_chronicle.values(), ignore_index=True)
-
-# Some clean up needing. 
-# for teamname (teamName or teamNameCommon) keep teamName.default and drop others
-all_player_chronicle = all_player_chronicle.drop(
-    columns=[
+if player_chronicle:
+    new_chronicle_df = pd.concat(player_chronicle.values(), ignore_index=True)
+    
+    # Some clean up needing. 
+    # for teamname (teamName or teamNameCommon) keep teamName.default and drop others
+    cols_to_drop = [
         'teamCommonName.cs', 'teamCommonName.de', 'teamCommonName.sk',
-       'teamCommonName.sv', 'teamName.cs', 'teamName.de', 'teamName.fi',
-       'teamName.sk', 'teamName.sv','teamName.fr', 'teamPlaceNameWithPreposition.fr',
-       'teamCommonName.default', 'teamCommonName.es',
-       'teamCommonName.fi', 'teamCommonName.fr',
-       'teamPlaceNameWithPreposition.default'
-        ])
-
-# Save the combined DataFrame to the data directory
-all_player_chronicle.to_csv(os.path.join(data_dir, 'all_drafted_players_chronicle.csv'), index=False)
+        'teamCommonName.sv', 'teamName.cs', 'teamName.de', 'teamName.fi',
+        'teamName.sk', 'teamName.sv','teamName.fr', 'teamPlaceNameWithPreposition.fr',
+        'teamCommonName.default', 'teamCommonName.es',
+        'teamCommonName.fi', 'teamCommonName.fr',
+        'teamPlaceNameWithPreposition.default'
+    ]
+    
+    existing_drop_cols = [c for c in cols_to_drop if c in new_chronicle_df.columns]
+    if existing_drop_cols:
+        new_chronicle_df = new_chronicle_df.drop(columns=existing_drop_cols)
+        
+    all_player_chronicle = pd.concat([existing_chronicle_df, new_chronicle_df], ignore_index=True)
+    # Save the combined DataFrame to the data directory
+    all_player_chronicle.to_csv(chronicle_file_path, index=False)
+    print(f"Added {len(new_chronicle_df)} new player chronicle records.")
+else:
+    all_player_chronicle = existing_chronicle_df
+    print("No new player chronicle data to add.")
 # %%

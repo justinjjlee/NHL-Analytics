@@ -14,6 +14,20 @@ def get_data_path(rel_path):
     # Construct the absolute path to the data
     return os.path.join(project_root, rel_path)
 
+def format_odds_value(odds_val):
+    if odds_val is None or pd.isna(odds_val):
+        return ""
+    
+    is_positive = odds_val > 0
+    abs_val = abs(odds_val)
+    
+    if abs_val >= 1000:
+        formatted = f"{abs_val/1000.0:.1f}k"
+    else:
+        formatted = f"{int(abs_val)}"
+        
+    return f"+{formatted}" if is_positive else f"-{formatted}"
+
 def load_box_scores_and_odds():
     """
     Load all box score data and betting odds data from the latest/box directory
@@ -146,11 +160,10 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
         with col_odds:
             if away_odds is not None:
                 # Money line 2 - always negative and positive - smaller font
+                odds_str = format_odds_value(away_odds)
                 if home_odds > away_odds:
-                    odds_str = f"+{int(away_odds)}" if away_odds > 0 else f"{int(away_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
-                    odds_str = f"+{int(away_odds)}" if away_odds > 0 else f"{int(away_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
             if away_score > home_score:
@@ -172,11 +185,10 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
         with col_odds:
             if home_odds is not None:
                 # Money line 2 - always negative and positive - smaller font
+                odds_str = format_odds_value(home_odds)
                 if home_odds < away_odds:
-                    odds_str = f"{int(home_odds)}" if home_odds < 0 else f"+{int(home_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
-                    odds_str = f"{int(home_odds)}" if home_odds < 0 else f"+{int(home_odds)}"
                     st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
             if home_score > away_score:
@@ -202,21 +214,28 @@ def render_scoreboard():
     if 'current_date_idx' not in st.session_state:
         st.session_state.current_date_idx = 0
     
-    # Use a simple centered layout for the date selector
-    col_date,_, _ = st.columns([2, 1, 1])
+    # Layout for date selector with navigation arrows
+    col_prev, col_date, col_next, col_latest, _ = st.columns([0.5, 2, 0.5, 1.5, 1.5])
     
-    # Date selector with calendar view
+    # Get current selected date
+    current_date = available_dates[st.session_state.current_date_idx]
+    
+    with col_prev:
+        st.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True)
+        # Left arrow goes back in time (older date, higher index)
+        if st.button("◀", key="prev_day"):
+            if st.session_state.current_date_idx < len(available_dates) - 1:
+                st.session_state.current_date_idx += 1
+                st.rerun()
+    
     with col_date:
-        # Get current selected date
-        current_date = available_dates[st.session_state.current_date_idx]
-        
         # Create calendar date input
         calendar_date = st.date_input(
             "Select Date",
             value=current_date,
             min_value=min(available_dates),
             max_value=max(available_dates),
-            key="calendar_date_picker"
+            key=f"calendar_date_picker_{st.session_state.current_date_idx}"
         )
         
         # Update index when date is selected from calendar
@@ -225,6 +244,23 @@ def render_scoreboard():
             closest_idx = find_closest_date_idx(available_dates, calendar_date)
             if closest_idx is not None:
                 st.session_state.current_date_idx = closest_idx
+                st.rerun()
+                
+    with col_next:
+        st.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True)
+        # Right arrow goes forward in time (newer date, lower index)
+        if st.button("▶", key="next_day"):
+            if st.session_state.current_date_idx > 0:
+                st.session_state.current_date_idx -= 1
+                st.rerun()
+
+    with col_latest:
+        st.markdown("<div style='margin-top: 28px;'></div>", unsafe_allow_html=True)
+        # Jump to most recent available date
+        if st.button("Latest Game", key="latest_day"):
+            if st.session_state.current_date_idx != 0:
+                st.session_state.current_date_idx = 0
+                st.rerun()
     
     # Get the selected date based on current index
     selected_date = available_dates[st.session_state.current_date_idx]

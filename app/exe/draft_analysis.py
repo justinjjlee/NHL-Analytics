@@ -4,6 +4,7 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 import os
+from i18n import t
 
 def get_data_path(rel_path):
     """Helper function to get correct data paths regardless of run location"""
@@ -142,28 +143,27 @@ def render_exceptional_players_analysis():
                 career_data['year_inNHL'] = career_data.groupby('id')['season'].rank(method='dense').astype(int)
 
             # Add a new section for exceptional players
-            st.header("1st Round Drafted Skaters")
+            st.header(t("da_first_round"))
     
             # Update the title and description with more emphasis on the 95th percentile calculation
-            st.markdown(f"""
-                Draft Years: {career_data.year.min()} - {career_data.year.max()} (Last updated for {exceptional_seasons_details['season_marking'].max()} season)
-            """)
-            st.subheader("Seasons of Exceptional Point Production")
-            st.markdown("""
-                An **exceptional season** is defined as a season where a skater's point production **exceeds the 95%** 
-                of all other active 1st round drafted skaters in the same regular season. **Most exceptional skaters** 
-                had long careers with greater number of the exceptional seasons.
-            """)
+            st.markdown(t("da_draft_years").format(
+                min_year=career_data.year.min(), 
+                max_year=career_data.year.max(), 
+                max_season=exceptional_seasons_details['season_marking'].max()
+            ))
+            st.subheader(t("da_exceptional"))
+            st.markdown(t("da_exceptional_desc"))
             
             # Display summary metrics
             cols = st.columns([1,2,3])
             with cols[0]:
-                st.metric("Skaters", len(multi_exceptional_players))
+                st.metric(t("da_skaters"), len(multi_exceptional_players))
             with cols[1]:
-                st.metric("Most Exceptional Seasons by a Skater", multi_exceptional_players['exceptional_seasons'].max())
+                st.metric(t("da_most_seasons"), multi_exceptional_players['exceptional_seasons'].max())
             with cols[2]:
-                top_player = multi_exceptional_players.iloc[0]
-                st.metric("Most Exceptional Skater", f"{top_player['firstName']} {top_player['lastName']}")
+                # find player with most exceptional seasons
+                top_player = multi_exceptional_players.loc[multi_exceptional_players['exceptional_seasons'].idxmax()]
+                st.metric(t("da_most_skater"), f"{top_player['firstName']} {top_player['lastName']}")
             
             fig = px.scatter(
                 multi_exceptional_players,
@@ -173,11 +173,11 @@ def render_exceptional_players_analysis():
                 size="exceptional_seasons",  # Size points by number of exceptional seasons
                 hover_name="fullName",
                 hover_data=["firstName", "lastName", "overallPick", "exceptional_seasons"],
-                title="Skaters with Multiple Exceptional Seasons",
+                title=t("da_chart1_title"),
                 labels={
-                    "season": "NHL Seasons Played", 
-                    "exceptional_seasons": "Number of Exceptional Seasons",
-                    "fullName": "Player"
+                    "season": t("da_chart1_x"), 
+                    "exceptional_seasons": t("da_chart1_y"),
+                    "fullName": t("da_chart1_player")
                 },
                 color_continuous_scale="viridis",
                 range_color=[2, multi_exceptional_players['exceptional_seasons'].max()],
@@ -185,8 +185,8 @@ def render_exceptional_players_analysis():
 
             # Customize layout
             fig.update_layout(
-                xaxis_title="Total NHL Seasons Played",
-                yaxis_title="Number of Exceptional Seasons",
+                xaxis_title=t("da_chart1_x"),
+                yaxis_title=t("da_chart1_y"),
                 height=500,
                 coloraxis_showscale=False,
                 hovermode="closest"
@@ -208,14 +208,14 @@ def render_exceptional_players_analysis():
             # Custom hover template
             fig.update_traces(
                 hovertemplate="<b>%{hovertext}</b><br>" +
-                            "Draft Position: #%{customdata[2]}<br>" +
-                            "Exceptional Seasons: %{y} / %{x} total seasons<br>" +
+                            t("da_chart1_draft") + ": #%{customdata[2]}<br>" +
+                            t("da_chart1_hover") + "<br>" +
                             "<extra></extra>"
             )
 
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
             
-            st.subheader("Tracking Career Point Productions of Exceptional Skaters")
+            st.subheader(t("da_tracking"))
             # Create detailed view of exceptional seasons
             st.markdown("""
                 Select skater(s) to view point productions over their career and exceptional seasons in detail.
@@ -231,7 +231,7 @@ def render_exceptional_players_analysis():
 
             # Create the multiselect with our default players
             selected_players = st.multiselect(
-                "Select Skaters to View Details",
+                t("da_select_skaters"),
                 options=player_list,
                 default=default_players
             )
@@ -262,13 +262,13 @@ def render_exceptional_players_analysis():
                             line=dict(color=px.colors.qualitative.Plotly[i % len(px.colors.qualitative.Plotly)])
                         , hovertemplate=
                             "<b>%{text}</b><br>" +
-                            "Points: %{y}<br>" +
-                            "Games Played: " + player_career['gamesPlayed'].astype(int).astype(str) + "<br>" +
-                            "Year: %{x}<br>" +
-                            "Team: " + player_career['teamAbbrev_stats'] + "<br>"
-                            "Draft: On " + \
-                                player_career['year'].astype(str) + " by " +\
-                                player_career['teamAbbrev_draft'] + " in 1st round drafted on " +\
+                            t("da_chart2_hover_pts") + ": %{y}<br>" +
+                            t("da_chart2_hover_gp") + ": " + player_career['gamesPlayed'].astype(int).astype(str) + "<br>" +
+                            t("da_chart2_hover_yr") + ": %{x}<br>" +
+                            t("da_chart2_hover_tm") + ": " + player_career['teamAbbrev_stats'] + "<br>" +
+                            t("da_chart2_hover_draft") + " " + \
+                                player_career['year'].astype(str) + " " + t("da_chart2_hover_by") + " " +\
+                                player_career['teamAbbrev_draft'] + " " + t("da_chart2_hover_overall") + " " +\
                                 player_career['overallPick'].astype(str) + "<br>",
                         text=[f"{row['firstName']} {row['lastName']} ({row['season_marking']})" 
                             for _, row in player_career.iterrows()],
@@ -302,13 +302,13 @@ def render_exceptional_players_analysis():
                         ),
                         hovertemplate=
                             "<b>%{text}</b><br>" +
-                            "Points: %{y}<br>" +
-                            "Games Played: " + player_exceptional['gamesPlayed'].astype(int).astype(str) + "<br>" +
-                            "Year: %{x}<br>" +
-                            "Team: " + player_exceptional['teamAbbrev_stats'] + "<br>"
-                            "Draft: On " + \
-                                player_exceptional['year'].astype(str) + " by " +\
-                                player_exceptional['teamAbbrev_draft'] + " in 1st round draft of " +\
+                            t("da_chart2_hover_pts") + ": %{y}<br>" +
+                            t("da_chart2_hover_gp") + ": " + player_exceptional['gamesPlayed'].astype(int).astype(str) + "<br>" +
+                            t("da_chart2_hover_yr") + ": %{x}<br>" +
+                            t("da_chart2_hover_tm") + ": " + player_exceptional['teamAbbrev_stats'] + "<br>" +
+                            t("da_chart2_hover_draft") + " " + \
+                                player_exceptional['year'].astype(str) + " " + t("da_chart2_hover_by") + " " +\
+                                player_exceptional['teamAbbrev_draft'] + " " + t("da_chart2_hover_overall") + " " +\
                                 player_exceptional['overallPick'].astype(str) + "<br>",
                         text=[f"{row['firstName']} {row['lastName']} ({row['season_marking']})" 
                             for _, row in player_exceptional.iterrows()],
@@ -316,28 +316,42 @@ def render_exceptional_players_analysis():
                 
                 # Update layout
                 fig.update_layout(
-                    title="Point Productions by 1st Round Drafted Skaters",
-                    xaxis_title="n-th Year in NHL (Regular Season)",
-                    yaxis_title="Points",
-                    legend_title="Skaters",
+                    title=t("da_chart2_title"),
+                    xaxis_title=t("da_chart2_x"),
+                    yaxis_title=t("da_chart2_y"),
+                    legend_title=t("da_chart2_legend"),
                     height=500
                 )
                 
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, width="stretch")
                 
                 # Show table with exceptional seasons details
-                with st.expander("View Exceptional Seasons Details"):
-                    st.dataframe(filtered_exceptional[
+                with st.expander(t("da_view_details")):
+                    st.markdown(t("da_table_desc"))
+                    
+                    display_df = filtered_exceptional[
                         ["firstName", "lastName", "season_marking", "year_inNHL", 
                         "points", "goals", "assists", "gamesPlayed", "pointspergame"]
-                    ].sort_values(["lastName", "year_inNHL"]))
+                    ].copy()
+                    
+                    display_df = display_df.sort_values(["lastName", "year_inNHL"])
+                    display_df["pointspergame"] = display_df["pointspergame"].round(2)
+                    
+                    display_df.columns = [
+                        t("da_col_fname"), t("da_col_lname"), t("da_col_season"),
+                        t("da_col_year"), t("da_col_pts"), t("da_col_g"),
+                        t("da_col_a"), t("da_col_gp"), t("da_col_ppg")
+                    ]
+                    
+                    st.dataframe(display_df, width="stretch", hide_index=True)
             else:
-                st.info("Please select at least one skater to view details.")
+                st.info(t("da_no_skater"))
                 
         else:
-            st.warning("Exceptional skaters data files not found. Please ensure the files exist in the results directory.")
+            st.warning(t("da_no_data"))
             
             # If files don't exist, provide info about what they would contain
+            st.info(t("da_requires_data"))
             st.info("""
             The exceptional skaters analysis shows players who have had multiple seasons performing above
             the 95th percentile in points production compared to their peers. This identifies the most 
@@ -345,5 +359,279 @@ def render_exceptional_players_analysis():
             """)
             
     except Exception as e:
-        st.error(f"An error occurred loading exceptional players data: {e}")
-        st.info("The exceptional skaters analysis requires data files generated from the draftee_lifecycle analysis.")
+        st.error(t("da_error") + f": {e}")
+        st.info(t("da_requires_data"))
+
+
+def render_not_so_magnificent_analysis():
+    st.subheader(t("nsm_title"))
+    st.markdown(t("nsm_desc"))
+
+    # Load data
+    files_exist, data_paths = load_draft_data()
+    if not files_exist:
+        st.warning(t("da_no_data"))
+        return
+
+    try:
+        draft_df = pd.read_csv(get_data_path('dev/player/player_draft/data/all_drafted_players.csv'))
+        merged_df = pd.read_csv(data_paths['merged_stats'])
+        chronicle_df = pd.read_csv(data_paths['player_stats'])
+    except Exception as e:
+        st.error(f"Error loading draft data: {e}")
+        return
+
+    is_fr = st.session_state.get('lang', 'FR') == 'FR'
+
+    # Dropdowns for Round and Cohorts
+    col1, col2 = st.columns(2)
+    with col1:
+        rounds = sorted(draft_df['round'].dropna().unique().tolist())
+        selected_round = st.selectbox(
+            t("nsm_select_round"),
+            options=rounds,
+            index=0,
+            key="nsm_round_select"
+        )
+    with col2:
+        years = sorted(draft_df['year'].dropna().unique().tolist())
+        import datetime
+        current_year = datetime.datetime.now().year
+        default_end = current_year - 5
+        default_start = default_end - 6
+        
+        min_yr_bound = int(min(years))
+        max_yr_bound = int(max(years))
+        
+        default_start = max(min_yr_bound, min(default_start, max_yr_bound))
+        default_end = max(min_yr_bound, min(default_end, max_yr_bound))
+        if default_start > default_end:
+            default_start = default_end
+
+        # Slider range for draft years
+        selected_years = st.slider(
+            t("nsm_select_cohort_range"),
+            min_value=min_yr_bound,
+            max_value=max_yr_bound,
+            value=(default_start, default_end),
+            key="nsm_years_slider"
+        )
+        min_yr, max_yr = selected_years
+
+    # Filter drafted players for the selected round and cohort range
+    cohort_drafted = draft_df[
+        (draft_df['round'] == selected_round) &
+        (draft_df['year'] >= min_yr) &
+        (draft_df['year'] <= max_yr)
+    ].copy()
+
+    if cohort_drafted.empty:
+        st.warning("No drafted players found for the selected criteria. / Aucun joueur trouvé.")
+        return
+
+    # Link drafted players to player stats ID
+    player_id_map = merged_df[
+        (merged_df['round'] == selected_round)
+    ][['firstName', 'lastName', 'year', 'id']].drop_duplicates(subset=['firstName', 'lastName', 'year'])
+
+    cohort_players = cohort_drafted.merge(
+        player_id_map,
+        on=['firstName', 'lastName', 'year'],
+        how='left'
+    )
+
+    # Total drafted players in each year
+    drafted_counts = cohort_players.groupby('year').size().to_dict()
+    total_drafted = len(cohort_players)
+
+    # Filter NHL regular season games in chronicle
+    nhl_chron = chronicle_df[
+        (chronicle_df['leagueAbbrev'] == 'NHL')
+    ].copy()
+    
+    # Group by id and season to handle trades / mid-season moves
+    nhl_chron = nhl_chron.groupby(['id', 'season']).agg({
+        'gamesPlayed': 'sum'
+    }).reset_index()
+    
+    # Calculate years since draft safely
+    nhl_chron = nhl_chron.dropna(subset=['season'])
+    nhl_chron['season'] = nhl_chron['season'].astype(float).astype(int).astype(str)
+    nhl_chron['season_year'] = nhl_chron['season'].str[:4].astype(int)
+
+    # Join chronicle with cohort_players on id
+    player_games = nhl_chron.merge(
+        cohort_players[['id', 'year', 'firstName', 'lastName']],
+        on='id',
+        how='inner'
+    )
+    player_games['years_since_draft'] = player_games['season_year'] - player_games['year']
+
+    # Filter to only years since draft between 0 and 10
+    player_games = player_games[
+        (player_games['years_since_draft'] >= 0) &
+        (player_games['years_since_draft'] <= 10)
+    ]
+
+    # Chart 1: Survival curves (Percentage Active playing >= 40 Games Played)
+    active_games = player_games[player_games['gamesPlayed'] >= 40]
+
+    # Calculate proportion active by years since draft for each cohort year
+    years_list = list(range(11))
+    cohort_years = sorted(cohort_players['year'].unique().tolist())
+
+    plot_data = []
+    
+    # Aggregate across all selected cohort years (Average curve)
+    avg_active_counts = active_games.groupby('years_since_draft')['id'].nunique().to_dict()
+    for ysd in years_list:
+        active_cnt = avg_active_counts.get(ysd, 0)
+        pct = (active_cnt / total_drafted) * 100 if total_drafted > 0 else 0
+        plot_data.append({
+            t("nsm_chart_col_ysd"): ysd,
+            t("nsm_chart_col_pct"): pct,
+            t("nsm_chart_col_cohort"): t("nsm_chart_val_avg"),
+            'Count': active_cnt,
+            'Total': total_drafted
+        })
+
+    # Aggregate across all selected cohort years (Cumulative curve)
+    # Find the very first year each player played >= 40 games
+    first_active_year = active_games.groupby('id')['years_since_draft'].min().reset_index()
+    avg_first_active_counts = first_active_year.groupby('years_since_draft')['id'].nunique().to_dict()
+    
+    cumulative_active = 0
+    for ysd in years_list:
+        cumulative_active += avg_first_active_counts.get(ysd, 0)
+        pct = (cumulative_active / total_drafted) * 100 if total_drafted > 0 else 0
+        plot_data.append({
+            t("nsm_chart_col_ysd"): ysd,
+            t("nsm_chart_col_pct"): pct,
+            t("nsm_chart_col_cohort"): t("nsm_chart_val_cum_avg"),
+            'Count': cumulative_active,
+            'Total': total_drafted
+        })
+
+    # Individual cohort years (optional checkbox)
+    show_individual = st.checkbox(t("nsm_show_individual"), value=False)
+    if show_individual:
+        for cy in cohort_years:
+            cy_drafted = drafted_counts.get(cy, 0)
+            if cy_drafted == 0:
+                continue
+            cy_active = active_games[active_games['year'] == cy]
+            cy_active_counts = cy_active.groupby('years_since_draft')['id'].nunique().to_dict()
+            for ysd in years_list:
+                active_cnt = cy_active_counts.get(ysd, 0)
+                pct = (active_cnt / cy_drafted) * 100
+                plot_data.append({
+                    t("nsm_chart_col_ysd"): ysd,
+                    t("nsm_chart_col_pct"): pct,
+                    t("nsm_chart_col_cohort"): f"{t('nsm_cohort_label')} {cy}",
+                    'Count': active_cnt,
+                    'Total': cy_drafted
+                })
+
+    plot_df = pd.DataFrame(plot_data)
+
+    fig1 = px.line(
+        plot_df,
+        x=t("nsm_chart_col_ysd"),
+        y=t("nsm_chart_col_pct"),
+        color=t("nsm_chart_col_cohort"),
+        title=t("nsm_chart1_title").format(r=selected_round),
+        labels={
+            t("nsm_chart_col_ysd"): t("nsm_chart_axis_ysd"),
+            t("nsm_chart_col_pct"): t("nsm_chart_axis_pct")
+        },
+        markers=True
+    )
+    
+    fig1.update_layout(
+        xaxis=dict(tickmode='linear', tick0=0, dtick=1, range=[0, 10]),
+        yaxis=dict(ticksuffix='%', range=[0, 105]),
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)',
+        legend_title="Cohort"
+    )
+    fig1.update_xaxes(showgrid=True, gridwidth=1, gridcolor='rgba(255,255,255,0.1)')
+    fig1.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(255,255,255,0.1)')
+    
+    st.info(t("nsm_chart1_explain"))
+    st.plotly_chart(fig1, width="stretch")
+
+    # ── Chart 2: Career Games Played Distribution ──
+    st.markdown("---")
+    st.subheader(t("nsm_chart2_header"))
+    st.info(t("nsm_chart2_explain"))
+    
+    # Selected cohort year
+    selected_cohort_year = st.selectbox(
+        t("nsm_select_cohort_year"),
+        options=cohort_years,
+        index=0,
+        key="nsm_cohort_year"
+    )
+
+
+    # Filter to selected cohort year
+    cohort_year_players = cohort_players[cohort_players['year'] == selected_cohort_year].copy()
+    cy_drafted_count = len(cohort_year_players)
+
+    # Calculate career games played for each player
+    career_gp = nhl_chron.groupby('id')['gamesPlayed'].sum().reset_index()
+    career_gp.rename(columns={'gamesPlayed': 'careerGamesPlayed'}, inplace=True)
+
+    cohort_year_players = cohort_year_players.merge(
+        career_gp,
+        on='id',
+        how='left'
+    )
+    cohort_year_players['careerGamesPlayed'] = cohort_year_players['careerGamesPlayed'].fillna(0).astype(int)
+
+    # Create games played bins
+    bins = [-1, 0, 99, 399, 799, 9999]
+    bin_labels = [
+        t("nsm_bin_0"),
+        t("nsm_bin_1_99"),
+        t("nsm_bin_100_399"),
+        t("nsm_bin_400_799"),
+        t("nsm_bin_800")
+    ]
+    cohort_year_players['GP_Group'] = pd.cut(
+        cohort_year_players['careerGamesPlayed'],
+        bins=bins,
+        labels=bin_labels
+    )
+
+    gp_dist = cohort_year_players['GP_Group'].value_counts().reindex(bin_labels).reset_index()
+    gp_dist.columns = [t("nsm_table_gp_cat"), t("nsm_table_player_cnt")]
+    gp_dist['Percentage'] = (gp_dist[t("nsm_table_player_cnt")] / cy_drafted_count) * 100 if cy_drafted_count > 0 else 0
+
+    # Build the bar chart
+    fig2 = px.bar(
+        gp_dist,
+        x=t("nsm_table_gp_cat"),
+        y=t("nsm_table_player_cnt"),
+        title=t("nsm_chart2_title").format(r=selected_round, y=selected_cohort_year),
+        labels={
+            t("nsm_table_gp_cat"): t("nsm_chart2_axis_x"),
+            t("nsm_table_player_cnt"): t("nsm_chart2_axis_y")
+        },
+        text=gp_dist[t("nsm_table_player_cnt")].astype(str) + " (" + gp_dist['Percentage'].round(1).astype(str) + "%)"
+    )
+    fig2.update_layout(
+        plot_bgcolor='rgba(0,0,0,0)',
+        paper_bgcolor='rgba(0,0,0,0)'
+    )
+    fig2.update_yaxes(showgrid=True, gridwidth=1, gridcolor='rgba(255,255,255,0.1)')
+    st.plotly_chart(fig2, width="stretch")
+
+    # Expandable player details
+    with st.expander(t("nsm_view_player_details").format(y=selected_cohort_year)):
+        display_tbl = cohort_year_players[['pickInRound', 'overallPick', 'teamAbbrev', 'firstName', 'lastName', 'position', 'careerGamesPlayed']].copy()
+        display_tbl.columns = [
+            t("nsm_tbl_pick"), t("nsm_tbl_overall"), t("nsm_tbl_team"),
+            t("nsm_tbl_fname"), t("nsm_tbl_lname"), t("nsm_tbl_pos"), t("nsm_tbl_gp")
+        ]
+        st.dataframe(display_tbl.sort_values(t("nsm_tbl_overall")), width="stretch", hide_index=True)

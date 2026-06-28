@@ -2,8 +2,9 @@ import streamlit as st
 import os
 from exe.map_utils import load_map_data, render_team_map
 from streamlit_folium import st_folium
+from i18n import t
 
-st.title("NHL Team Locations & Distance")
+st.title(t("map_title"))
 
 # Initialize session state for reset functionality
 if 'reset_map' not in st.session_state:
@@ -26,7 +27,7 @@ with col_button:
         st.markdown('<div class="push-button-down">', unsafe_allow_html=True)
         
         # Place the button
-        if st.button("Refresh Map"):
+        if st.button(t("map_refresh")):
             st.session_state.reset_map = True
             st.rerun()
             
@@ -51,7 +52,7 @@ else:
 with col_team1:
     team_options = [""] + sorted(map_data["home_team"].unique().tolist())
     home_team = st.selectbox(
-        "Select Home Team", 
+        t("map_select_home"), 
         options=team_options,
         index=0 if initial_home == "" else team_options.index(initial_home)
     )
@@ -59,7 +60,7 @@ with col_team1:
 # Away team selection on the right column
 with col_team2:
     away_team = st.selectbox(
-        "Select Away Team", 
+        t("map_select_away"), 
         options=team_options,
         index=0 if initial_away == "" else team_options.index(initial_away)
     )

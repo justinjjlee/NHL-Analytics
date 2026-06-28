@@ -40,7 +40,7 @@ try: # If the data exist,
     df_kpi, summary_game = team_season.dataproc(df_box_team)
 
     summary_game.to_csv(f"{BOX_DIR}/{iter_year}_box_gameStats.csv")
-    df_kpi.to_csv(f"{TEAM_DIR}/{iter_year}_team_season.csv")
+    df_kpi.to_csv(f"{TEAM_DIR}/season/{iter_year}_team_season.csv")
 
     print("Team - season-level statistics compute completed")
 except: # Data does not exist

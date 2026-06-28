@@ -95,6 +95,9 @@ class nhl_dataproc_teamsuccess:
 
         # Join with the existing team stats
         dfteams = dfteams.join(rank_pairwise_win)
+        if 'pairwise_win' in dfteams.columns:
+            dfteams['pairwise_win'] = dfteams['pairwise_win'].fillna(0.0)
+            
         # Normalize
         dfteams['kpi_pairwise']  = kpinorm(dfteams.pairwise_win)
         dfteams['kpi_rpi']  = kpinorm(dfteams.rpi)
@@ -449,6 +452,9 @@ def pairwise_h2h(df_box_exnt, dff_h2h_com):
 
     df_own = df_own.join(df_ow)
     df_own = df_own.join(df_oow)
+
+    df_own['wp_ow'] = df_own['wp_ow'].fillna(0.0)
+    df_own['wp_oow'] = df_own['wp_oow'].fillna(0.0)
 
     df_own['rpi'] = (df_own.wp_own * 0.25) \
                     + (df_own.wp_ow * 0.5) \

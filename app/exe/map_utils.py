@@ -67,9 +67,7 @@ def render_team_map(df, home_team="", away_team="", refresh_button=False, travel
     # Show all team logos if no teams are selected
     if (home_team == "" and away_team == "") or refresh_button:
         # Show all team logos
-        tempdf = df.drop_duplicates(subset="tricode_home")
-        tempdf.sort_values(by="tricode_home", ascending=True, inplace=True)
-        tempdf.reset_index(drop=True, inplace=True)
+        tempdf = df.drop_duplicates(subset="tricode_home").sort_values(by="tricode_home", ascending=True).reset_index(drop=True)
         
         for index, row in tempdf.iterrows():
             home_geo = json.loads(row["geometry_home"])  # Convert GeoJSON to dict

@@ -288,17 +288,19 @@ for iter_year in iter_years:
         try:
             # Load the previous data, if exist
             df_player = pd.read_csv(f"{BOX_DIR}/{iter_year}_box_player.csv",
-                                    parse_dates = ['gameDate'], 
-                                    index_col = 'gameIdx')
+                                    parse_dates = ['gameDate'])
             df_team   = pd.read_csv(f"{BOX_DIR}/{iter_year}_box_team.csv",
                                     parse_dates = ['gameDate'], 
                                     index_col = 'gameIdx')
             df_box_player = pd.concat([df_player, df_box_player], ignore_index=True)
             df_box_team   = pd.concat([df_team, df_box_team])
-        except: # Scip the process, create the new file
-            # Player stats & Box scores for each game for each team
-            df_box_player.to_csv(f"{BOX_DIR}/{iter_year}_box_player.csv", index=False)
-            df_box_team.to_csv(f"{BOX_DIR}/{iter_year}_box_team.csv")
+        except FileNotFoundError:
+            # File does not exist yet (first pull of the season)
+            pass
+
+        # Save data for player-level & team-level statistics
+        df_box_player.to_csv(f"{BOX_DIR}/{iter_year}_box_player.csv", index=False)
+        df_box_team.to_csv(f"{BOX_DIR}/{iter_year}_box_team.csv")
 
         # Save 'games" and "game_list"
         #   Game records are full list pulled by 

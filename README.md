@@ -1,7 +1,7 @@
 <h1>
 <a href="https://medium.com/@thinkingjustin">
 <img src="docs/images/logo_bing.jpeg" width="80px" align="left" style="margin-right: 10px;", alt="nhla-logo"> 
-</a> NHL Analytics: A Ice Hockey Sports Analytics Platform Based on National Hockey League (NHL) Data
+</a> Rinklytics: A Ice Hockey Sports Analytics Platform Based on National Hockey League (NHL) Data
 </h1>
 
 If you find my work to be useful, please star this repository!
@@ -22,6 +22,16 @@ I use publicly available data to build up the analytics capabilities and insight
 
  * Capture complex strategical, behavioral, and performance trends asked by fans of the sport
  * Integrate different data sources (e.g. college hockey roaster and building up performance trend beyond players' professional career)
+
+### Core Capabilities
+
+| Capability Area | Description |
+| :--- | :--- |
+| **Databricks Production** | Orchestrates and automates heavy data engineering workloads and ML pipelines in the cloud. |
+| **LLM Agent Skillsets** | Integrates AI-driven workflows for automated insights, data extraction, and deep analysis across various analytical domains. |
+| **Team & Player Analysis** | Provides comprehensive evaluation of team KPIs, player performance metrics, draft history, and college prospects. |
+| **Sports Betting Analytics** | Analyzes game-level odds and models team performance using Elo ratings for predictive betting insights. |
+| **[Streamlit Dashboard](https://share.streamlit.io/user/justinjjlee)** | An interactive web application that visualizes data, tracks trends, and presents predictive models to users. |
 
 I hope works saved in this repository allows for replications, explorations, and advancing new measurements and insights.
 
