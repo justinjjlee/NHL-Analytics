@@ -478,16 +478,15 @@ def render_not_so_magnificent_analysis():
 
     # Player position selector
     st.write(t("nsm_select_positions_label"))
-    positions_list = ["Center", "Winger", "Defenseman", "Goalie"]
+    positions_list = ["Center", "Winger", "Defenseman"]
     
     pos_labels_mapping = {
         "Center": t("sk_pos_C"),
         "Winger": t("sk_pos_LR"),
-        "Defenseman": t("sk_pos_D"),
-        "Goalie": "Gardien (G)" if is_fr else "Goalie (G)"
+        "Defenseman": t("sk_pos_D")
     }
     
-    pos_cols = st.columns(4)
+    pos_cols = st.columns(3)
     selected_positions = []
     
     for i, pos in enumerate(positions_list):
@@ -523,8 +522,6 @@ def render_not_so_magnificent_analysis():
             pos_codes.extend(['LW', 'RW', 'LW/RW', 'F'])
         elif pos == "Defenseman":
             pos_codes.extend(['D'])
-        elif pos == "Goalie":
-            pos_codes.extend(['G'])
 
     # Filter drafted players for the selected cohort criteria
     if cohort_type_val == "Round":

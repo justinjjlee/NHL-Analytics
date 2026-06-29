@@ -127,7 +127,7 @@ with top_tab1:
             m5.metric("+/-",                     int(latest.get('plusMinus',0) or 0))
             m6.metric("PTS/PJ" if is_fr else "PTS/GP", f"{ppg:.2f}" if pd.notna(ppg) else "—")
 
-            st.divider()
+            #st.divider()
             st.subheader(t("sk_career_trend"))
             trend = player_df.sort_values('season_year')
 

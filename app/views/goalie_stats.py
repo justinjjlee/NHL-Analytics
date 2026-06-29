@@ -106,7 +106,7 @@ with top_tab1:
             m5.metric("MAB" if is_fr else "GAA", f"{gaa:.2f}" if pd.notna(gaa) else "—")
             m6.metric("% Arr." if is_fr else "SV%", f"{svp:.3f}" if pd.notna(svp) else "—")
 
-            st.divider()
+            #st.divider()
             st.subheader(t("gl_career_trend"))
             trend = goalie_df.sort_values('season_year')
 
