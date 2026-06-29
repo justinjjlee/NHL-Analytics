@@ -363,6 +363,17 @@ def render_exceptional_players_analysis():
         st.info(t("da_requires_data"))
 
 
+def toggle_round(r):
+    key = f"nsm_round_btn_{r}"
+    if key in st.session_state:
+        st.session_state[key] = not st.session_state[key]
+
+def toggle_position(pos):
+    key = f"nsm_pos_btn_{pos}"
+    if key in st.session_state:
+        st.session_state[key] = not st.session_state[key]
+
+
 def render_not_so_magnificent_analysis():
     st.subheader(t("nsm_title"))
     st.markdown(t("nsm_desc"))
@@ -383,16 +394,19 @@ def render_not_so_magnificent_analysis():
 
     is_fr = st.session_state.get('lang', 'FR') == 'FR'
 
-    # Dropdowns for Round and Cohorts
+    # Cohort Selection Options
     col1, col2 = st.columns(2)
     with col1:
-        rounds = sorted(draft_df['round'].dropna().unique().tolist())
-        selected_round = st.selectbox(
-            t("nsm_select_round"),
-            options=rounds,
+        cohort_type_options = [t("nsm_cohort_type_round"), t("nsm_cohort_type_overall")]
+        selected_cohort_type_lbl = st.radio(
+            t("nsm_select_cohort_type"),
+            options=cohort_type_options,
             index=0,
-            key="nsm_round_select"
+            horizontal=True,
+            key="nsm_cohort_type_radio"
         )
+        cohort_type_val = "Round" if selected_cohort_type_lbl == t("nsm_cohort_type_round") else "Overall"
+        
     with col2:
         years = sorted(draft_df['year'].dropna().unique().tolist())
         import datetime
@@ -418,20 +432,126 @@ def render_not_so_magnificent_analysis():
         )
         min_yr, max_yr = selected_years
 
-    # Filter drafted players for the selected round and cohort range
-    cohort_drafted = draft_df[
-        (draft_df['round'] == selected_round) &
-        (draft_df['year'] >= min_yr) &
-        (draft_df['year'] <= max_yr)
-    ].copy()
+    # Select Rounds OR Overall Pick Range depending on cohort type selection
+    selected_rounds = []
+    min_overall = 1
+    max_overall = 250
+    
+    if cohort_type_val == "Round":
+        st.write(t("nsm_select_rounds_label"))
+        round_cols = st.columns(7)
+        for r in range(1, 8):
+            key = f"nsm_round_btn_{r}"
+            if key not in st.session_state:
+                st.session_state[key] = (r == 1) # Default Round 1 to True
+                
+            with round_cols[r-1]:
+                is_selected = st.session_state[key]
+                btn_label = f"✓ R{r}" if is_selected else f"R{r}"
+                st.button(
+                    btn_label,
+                    key=f"nsm_round_trigger_{r}",
+                    on_click=toggle_round,
+                    args=(r,),
+                    type="primary" if is_selected else "secondary",
+                    use_container_width=True
+                )
+                if is_selected:
+                    selected_rounds.append(r)
+                    
+        if not selected_rounds:
+            st.warning(t("nsm_warn_select_at_least_one_round"))
+            return
+            
+    else:
+        # Overall pick range selector slider
+        min_overall_bound = int(draft_df['overallPick'].dropna().min())
+        max_overall_bound = int(draft_df['overallPick'].dropna().max())
+        selected_overall = st.slider(
+            t("nsm_select_overall_range"),
+            min_value=min_overall_bound,
+            max_value=max_overall_bound,
+            value=(1, min(250, max_overall_bound)),
+            key="nsm_overall_slider"
+        )
+        min_overall, max_overall = selected_overall
+
+    # Player position selector
+    st.write(t("nsm_select_positions_label"))
+    positions_list = ["Center", "Winger", "Defenseman", "Goalie"]
+    
+    pos_labels_mapping = {
+        "Center": t("sk_pos_C"),
+        "Winger": t("sk_pos_LR"),
+        "Defenseman": t("sk_pos_D"),
+        "Goalie": "Gardien (G)" if is_fr else "Goalie (G)"
+    }
+    
+    pos_cols = st.columns(4)
+    selected_positions = []
+    
+    for i, pos in enumerate(positions_list):
+        key = f"nsm_pos_btn_{pos}"
+        if key not in st.session_state:
+            st.session_state[key] = True  # Default all to True
+            
+        with pos_cols[i]:
+            is_selected = st.session_state[key]
+            display_label = pos_labels_mapping[pos]
+            btn_label = f"✓ {display_label}" if is_selected else display_label
+            st.button(
+                btn_label,
+                key=f"nsm_pos_trigger_{pos}",
+                on_click=toggle_position,
+                args=(pos,),
+                type="primary" if is_selected else "secondary",
+                use_container_width=True
+            )
+            if is_selected:
+                selected_positions.append(pos)
+                
+    if not selected_positions:
+        st.warning(t("nsm_warn_select_at_least_one_position"))
+        return
+
+    # Map positions to draft codes
+    pos_codes = []
+    for pos in selected_positions:
+        if pos == "Center":
+            pos_codes.extend(['C', 'C/RW', 'C/LW'])
+        elif pos == "Winger":
+            pos_codes.extend(['LW', 'RW', 'LW/RW', 'F'])
+        elif pos == "Defenseman":
+            pos_codes.extend(['D'])
+        elif pos == "Goalie":
+            pos_codes.extend(['G'])
+
+    # Filter drafted players for the selected cohort criteria
+    if cohort_type_val == "Round":
+        cohort_filter = draft_df['round'].isin(selected_rounds)
+    else:
+        cohort_filter = (draft_df['overallPick'] >= min_overall) & (draft_df['overallPick'] <= max_overall)
+        
+    position_filter = draft_df['position'].isin(pos_codes)
+    year_filter = (draft_df['year'] >= min_yr) & (draft_df['year'] <= max_yr)
+    
+    cohort_drafted = draft_df[cohort_filter & position_filter & year_filter].copy()
 
     if cohort_drafted.empty:
         st.warning("No drafted players found for the selected criteria. / Aucun joueur trouvé.")
         return
 
     # Link drafted players to player stats ID
+    if cohort_type_val == "Round":
+        merged_cohort_filter = merged_df['round'].isin(selected_rounds)
+    else:
+        merged_cohort_filter = (merged_df['overallPick'] >= min_overall) & (merged_df['overallPick'] <= max_overall)
+        
+    merged_pos_filter = merged_df['position_draft'].isin(pos_codes)
+    merged_year_filter = (merged_df['year'] >= min_yr) & (merged_df['year'] <= max_yr)
+    
     player_id_map = merged_df[
-        (merged_df['round'] == selected_round)
+        merged_cohort_filter & merged_pos_filter & merged_year_filter
     ][['firstName', 'lastName', 'year', 'id']].drop_duplicates(subset=['firstName', 'lastName', 'year'])
 
     cohort_players = cohort_drafted.merge(
@@ -479,6 +599,10 @@ def render_not_so_magnificent_analysis():
     # Calculate proportion active by years since draft for each cohort year
     years_list = list(range(11))
     cohort_years = sorted(cohort_players['year'].unique().tolist())
+
+    if not cohort_years:
+        st.warning("No cohort years available for the selected criteria. / Aucune année disponible.")
+        return
 
     plot_data = []
     
@@ -534,12 +658,32 @@ def render_not_so_magnificent_analysis():
 
     plot_df = pd.DataFrame(plot_data)
 
+    # Dynamic bilingual title for Chart 1
+    if is_fr:
+        if cohort_type_val == "Round":
+            if len(selected_rounds) == 1:
+                r_title = f"choix de la ronde {selected_rounds[0]}"
+            else:
+                r_title = f"choix des rondes {', '.join(map(str, selected_rounds))}"
+        else:
+            r_title = f"choix globaux {min_overall}-{max_overall}"
+        chart1_title = f"Proportion des {r_title} jouant au moins 40 matchs de saison régulière LNH"
+    else:
+        if cohort_type_val == "Round":
+            if len(selected_rounds) == 1:
+                r_title = f"Round {selected_rounds[0]}"
+            else:
+                r_title = f"Rounds {', '.join(map(str, selected_rounds))}"
+        else:
+            r_title = f"Overall Picks {min_overall}-{max_overall}"
+        chart1_title = f"Proportion of {r_title} Picks Playing >= 40 NHL Regular Season Games"
+
     fig1 = px.line(
         plot_df,
         x=t("nsm_chart_col_ysd"),
         y=t("nsm_chart_col_pct"),
         color=t("nsm_chart_col_cohort"),
-        title=t("nsm_chart1_title").format(r=selected_round),
+        title=chart1_title,
         labels={
             t("nsm_chart_col_ysd"): t("nsm_chart_axis_ysd"),
             t("nsm_chart_col_pct"): t("nsm_chart_axis_pct")
@@ -573,7 +717,6 @@ def render_not_so_magnificent_analysis():
         key="nsm_cohort_year"
     )
 
-
     # Filter to selected cohort year
     cohort_year_players = cohort_players[cohort_players['year'] == selected_cohort_year].copy()
     cy_drafted_count = len(cohort_year_players)
@@ -598,6 +741,7 @@ def render_not_so_magnificent_analysis():
         t("nsm_bin_400_799"),
         t("nsm_bin_800")
     ]
+
     cohort_year_players['GP_Group'] = pd.cut(
         cohort_year_players['careerGamesPlayed'],
         bins=bins,
@@ -608,12 +752,32 @@ def render_not_so_magnificent_analysis():
     gp_dist.columns = [t("nsm_table_gp_cat"), t("nsm_table_player_cnt")]
     gp_dist['Percentage'] = (gp_dist[t("nsm_table_player_cnt")] / cy_drafted_count) * 100 if cy_drafted_count > 0 else 0
 
+    # Dynamic bilingual title for Chart 2
+    if is_fr:
+        if cohort_type_val == "Round":
+            if len(selected_rounds) == 1:
+                r_title2 = f"les choix de la ronde {selected_rounds[0]}"
+            else:
+                r_title2 = f"les choix des rondes {', '.join(map(str, selected_rounds))}"
+        else:
+            r_title2 = f"les choix globaux {min_overall}-{max_overall}"
+        chart2_title = f"Matchs LNH en carrière pour {r_title2} (Promo {selected_cohort_year})"
+    else:
+        if cohort_type_val == "Round":
+            if len(selected_rounds) == 1:
+                r_title2 = f"Round {selected_rounds[0]} Picks"
+            else:
+                r_title2 = f"Rounds {', '.join(map(str, selected_rounds))} Picks"
+        else:
+            r_title2 = f"Overall Picks {min_overall}-{max_overall}"
+        chart2_title = f"Career NHL Games Played for {r_title2} (Class of {selected_cohort_year})"
+
     # Build the bar chart
     fig2 = px.bar(
         gp_dist,
         x=t("nsm_table_gp_cat"),
         y=t("nsm_table_player_cnt"),
-        title=t("nsm_chart2_title").format(r=selected_round, y=selected_cohort_year),
+        title=chart2_title,
         labels={
             t("nsm_table_gp_cat"): t("nsm_chart2_axis_x"),
             t("nsm_table_player_cnt"): t("nsm_chart2_axis_y")
