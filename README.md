@@ -63,6 +63,36 @@ Required package version used is saved in `./src/requirement` through `.sh` comm
 
 </details>
 
+<details>
+<summary><strong><em>Running Impact of Hits Pipeline Locally</em></strong></summary>
+
+The `impact_of_hits` decision science workflow supports running entirely offline (without Databricks) using the `uv` Python environment and native Pandas logic. To run the full momentum modeling and visualization pipeline out-of-core:
+
+1. **Navigate to the module directory:**
+   ```bash
+   cd dev/decision_science/impact_of_hits
+   ```
+
+2. **Run Data Preparation (Extract Tensors):**
+   Converts the raw `latest/` CSV drops into a cleaned PyTorch Tensor format (`df_master.parquet`).
+   ```bash
+   PYTHONPATH=. uv run python notebooks/01_data_preparation.py
+   ```
+
+3. **Run Model Estimation (Kalman Filter):**
+   Ensure `ENV = "LOCAL"` is set at the top of the script. This will train the continuous-time State-Space Model on the prepared data. *Note: You can adjust `n_epochs` and `n_boot` in the script to speed up testing.*
+   ```bash
+   PYTHONPATH=. uv run python notebooks/02_model_estimation.py
+   ```
+
+4. **Generate Insights & Visualizations:**
+   Extracts the smoothed latent states, calculates the Expected Goals (xG) surface, and generates the final charts in the `data/` directory.
+   ```bash
+   PYTHONPATH=. uv run python notebooks/03_insights_and_visualizations.py
+   ```
+
+</details>
+
 ```
    ,
     -   \O                                     ,  .-.___

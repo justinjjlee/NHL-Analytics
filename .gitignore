@@ -16,3 +16,7 @@ GEMINI.md
 /.vscode
 databricks.yml
 __builtins__.pyi
+dev/decision_science/impact_of_hits/REVIEW.md
+dev/decision_science/impact_of_hits/data/df_master.parquet
+dev/decision_science/impact_of_hits/data/base_model.pt
+dev/decision_science/impact_of_hits/data/B_samples.npy
