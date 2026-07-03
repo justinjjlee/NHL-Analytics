@@ -44,10 +44,10 @@ Standard regression treats each event independently. A state-space model instead
 | ID | Hypothesis | Test |
 |----|-----------|------|
 | H1 | Teams with higher first-10-minute hit differential have higher mean latent momentum at minute 10, controlling for other events | Coefficient on `hit_diff_0_10` in the momentum state at t=600s |
-| H2 | A single hit produces a positive impulse in x̂_t that decays within 60–90 seconds | Impulse response function from fitted model |
+| H2 | A single hit produces a positive impulse in $\hat{x}_t$ that decays within 60–90 seconds | Impulse response function from fitted model |
 | H3 | Hit B-coefficient is significantly smaller than shot, takeaway, and blocked-shot coefficients | Magnitude and CI comparison of B vector elements |
 | H4 | The hit B-coefficient is larger when the hitting team is trailing than when leading | Score-stratified model re-estimation |
-| H5 | Cumulative hit volume does not predict goal differential when shot-based metrics are controlled | Long-horizon regression of integrated x̂_t on outcome |
+| H5 | Cumulative hit volume does not predict goal differential when shot-based metrics are controlled | Long-horizon regression of integrated $\hat{x}_t$ on outcome |
 | H6 | A hit burst (≥3 hits in 120s) is followed by elevated opponent hit rate within 60s | Event sequence analysis post-burst |
 | H7 | The tone-setter effect (H1) is larger in games that end as one-goal decisions | Score-margin stratification of H1 test |
 
@@ -416,7 +416,7 @@ $$
 A_t = a_0^{\Delta t_t}
 $$
 
-where $\Delta t_t = \text{elapsed\_sec}(t) - \text{elapsed\_sec}(t-1)$. This makes momentum decay proportional to real time elapsed between events, not to the number of events. This is the **preferred specification**.
+where $\Delta t_t = \text{elapsed\\_sec}(t) - \text{elapsed\\_sec}(t-1)$. This makes momentum decay proportional to real time elapsed between events, not to the number of events. This is the **preferred specification**.
 
 ### 6.3 Observation Equation
 
@@ -430,7 +430,7 @@ $$
 | $C$ | scalar | State loading — maps latent momentum to observed proxy scale |
 | $\hat{x}_t$ | scalar | Kalman-filtered state estimate |
 | $D$ | $1 \times 4$ | Team strength / baseline loading vector |
-| $\mathbf{z}_t$ | $4 \times 1$ | Baseline covariates: $[\text{is\_home},\; \Delta\text{Pythagorean},\; \Delta\text{CF\%},\; \text{score\_state}]$ |
+| $\mathbf{z}_t$ | $4 \times 1$ | Baseline covariates: $[\text{is\\_home},\; \Delta\text{Pythagorean},\; \Delta\text{CF\%},\; \text{score\\_state}]$ |
 | $v_t$ | scalar | Observation noise; $R$ is its variance (estimated) |
 
 The $D \cdot \mathbf{z}_t$ term is the key extension — it allows the baseline expected observation to shift according to team quality. Without it, the model conflates a strong team's persistently high zone-time share with genuine momentum, when in fact it reflects pre-game quality.
@@ -442,7 +442,7 @@ x_0 \sim \mathcal{N}(\mu_0,\; P_0)
 $$
 
 where:
-- $\mu_0 = \alpha \cdot \text{is\_home} + \beta \cdot \Delta\text{Pythagorean}$: a non-zero prior mean encoding pre-game quality and home-ice advantage
+- $\mu_0 = \alpha \cdot \text{is\\_home} + \beta \cdot \Delta\text{Pythagorean}$: a non-zero prior mean encoding pre-game quality and home-ice advantage
 - $P_0$: initial uncertainty, set to a large value (e.g., $P_0 = 1.0$) to be diffuse
 
 This is the critical link between team strength and the momentum prior — a stronger team starts with a slightly positive expected momentum even before puck drop.
@@ -488,10 +488,10 @@ Both confounders are active simultaneously. Team strength controls address the f
 The pre-game momentum prior $\mu_0$ encodes what we expect the latent state to look like at puck drop, given publicly observable information:
 
 $$
-\mu_0^{(g)} = \alpha \cdot \text{is\_home} + \beta \cdot \Delta\text{Pythagorean}_{i,g}
+\mu_0^{(g)} = \alpha \cdot \text{is\\_home} + \beta \cdot \Delta\text{Pythagorean}_{i,g}
 $$
 
-where $\text{is\_home} \in \{0, 1\}$ captures home-ice advantage, and $\Delta\text{Pythagorean}$ is the pre-game Pythagorean win expectation differential.
+where $\text{is\\_home} \in \{0, 1\}$ captures home-ice advantage, and $\Delta\text{Pythagorean}$ is the pre-game Pythagorean win expectation differential.
 
 Parameters $\alpha$ and $\beta$ are estimated jointly with the rest of $\boldsymbol{\theta}$. If $\alpha = \beta = 0$, the model reduces to the quality-naive version — this is a testable restriction.
 
@@ -500,10 +500,10 @@ Parameters $\alpha$ and $\beta$ are estimated jointly with the rest of $\boldsym
 The observation equation baseline $D \cdot \mathbf{z}_t$ shifts the expected observable (rolling 90s zone share) for a stronger or home team upward, independently of in-game momentum. The vector $\mathbf{z}_t$ contains:
 
 $$
-\mathbf{z}_t = \begin{bmatrix} \text{is\_home} \\ \Delta\text{Pythagorean}_{i,g} \\ \Delta\text{CF\%}_{i,g} \\ \text{score\_state}_t \end{bmatrix}
+\mathbf{z}_t = \begin{bmatrix} \text{is\\_home} \\ \Delta\text{Pythagorean}_{i,g} \\ \Delta\text{CF\%}_{i,g} \\ \text{score\\_state}_t \end{bmatrix}
 $$
 
-Note that $\text{is\_home}$, $\Delta\text{Pythagorean}$, and $\Delta\text{CF\%}$ are **constant within a game** (they are pre-game measurements), while `score_state` changes as goals are scored.
+Note that $\text{is\\_home}$, $\Delta\text{Pythagorean}$, and $\Delta\text{CF\%}$ are **constant within a game** (they are pre-game measurements), while `score_state` changes as goals are scored.
 
 ### 7.4 Identification of Momentum vs. Quality
 
@@ -658,7 +658,7 @@ With the vectorized execution graph minimizing computational overhead, the param
 ```mermaid
 flowchart TD
     A[Load master_events.parquet] --> B[Build per-game tensors\nU, Y, Z, dt]
-    B --> B2[pad_sequence batching\n(B, max_T, D) format]
+    B --> B2["pad_sequence batching\n(B, max_T, D) format"]
     B2 --> C[Initialize MomentumSSM]
     C --> D{Outer loop:\n300 epochs}
     D --> E[Vectorized Kalman filter forward\nacross all games simultaneously]
@@ -719,10 +719,10 @@ for ss in [-2, -1, 0, 1, 2]:
 | Parameter | Symbol | Units | What it measures |
 |-----------|--------|-------|-----------------|
 | Per-second decay | $a_0$ | dimensionless | Rate at which a momentum impulse fades per second of elapsed time |
-| Hit impact (O-zone) | $B[\text{hit\_for\_O}]$ | momentum units | Expected momentum gain from landing an O-zone hit (5v5) |
-| Hit impact (D-zone) | $B[\text{hit\_for\_D}]$ | momentum units | Expected momentum gain from landing a D-zone hit (5v5) |
-| Hit impact (N-zone) | $B[\text{hit\_for\_N}]$ | momentum units | Expected momentum gain from a neutral-zone hit |
-| Shot impact | $B[\text{shot\_for}]$ | momentum units | Expected gain from a shot on goal |
+| Hit impact (O-zone) | $B[\text{hit\\_for\\_O}]$ | momentum units | Expected momentum gain from landing an O-zone hit (5v5) |
+| Hit impact (D-zone) | $B[\text{hit\\_for\\_D}]$ | momentum units | Expected momentum gain from landing a D-zone hit (5v5) |
+| Hit impact (N-zone) | $B[\text{hit\\_for\\_N}]$ | momentum units | Expected momentum gain from a neutral-zone hit |
+| Shot impact | $B[\text{shot\\_for}]$ | momentum units | Expected gain from a shot on goal |
 | Takeaway impact | $B[\text{takeaway}]$ | momentum units | Expected gain from winning possession |
 | Observation loading | $C$ | proxy units per momentum unit | Converts latent momentum to observable zone share |
 | Home-ice loading | $D[0]$ | proxy units | Baseline shift for home team |
@@ -736,13 +736,13 @@ for ss in [-2, -1, 0, 1, 2]:
 Given fitted $a_0$ and $B$, the expected momentum trajectory following a **single isolated hit** at $t=0$ on a neutral-state game (all other $u_\tau = 0$ for $\tau > 0$) is:
 
 $$
-\hat{x}_\tau = B[\text{hit\_for}] \cdot a_0^{\tau} \quad \text{for } \tau > 0 \text{ seconds}
+\hat{x}_\tau = B[\text{hit\\_for}] \cdot a_0^{\tau} \quad \text{for } \tau > 0 \text{ seconds}
 $$
 
 The **total momentum value** of a hit (area under the impulse response curve, in seconds of momentum) is:
 
 $$
-V_{\text{hit}} = B[\text{hit\_for}] \cdot \sum_{\tau=0}^{\infty} a_0^{\tau} = \frac{B[\text{hit\_for}]}{1 - a_0}
+V_{\text{hit}} = B[\text{hit\\_for}] \cdot \sum_{\tau=0}^{\infty} a_0^{\tau} = \frac{B[\text{hit\\_for}]}{1 - a_0}
 $$
 
 Similarly for any other event type. This provides a **single comparable scalar** measuring each event's total contribution to momentum.
@@ -752,7 +752,7 @@ Similarly for any other event type. This provides a **single comparable scalar**
 To link latent momentum to goal probability, fit an auxiliary logistic regression on post-estimation smoothed states:
 
 $$
-P(\text{goal in next 60s} \mid \hat{x}_t,\; \mathbf{z}_t) = \sigma\left(\lambda_0 + \lambda_1 \hat{x}_t + \lambda_2 \Delta\text{ELO} + \lambda_3 \text{score\_state}\right)
+P(\text{goal in next 60s} \mid \hat{x}_t,\; \mathbf{z}_t) = \sigma\left(\lambda_0 + \lambda_1 \hat{x}_t + \lambda_2 \Delta\text{ELO} + \lambda_3 \text{score\\_state}\right)
 $$
 
 ```python
@@ -896,7 +896,7 @@ The insights pipeline (`03_insights_and_visualizations.py`) generates seven visu
 The following visualizations from the original analysis plan require additional infrastructure (score-state stratified re-estimation, burst detection) and are planned for future development:
 
 - **Tone-Setter Heatmap (H1, H7):** 2D heatmap of first-10-minute hit differential vs final game margin, colored by observed win rate.
-- **Score-State Interaction (H4, H6):** Bar chart of $\hat{B}[\text{hit\_for}]$ re-estimated within each score state, plus opponent hit-rate escalation around burst events.
+- **Score-State Interaction (H4, H6):** Bar chart of $\hat{B}[\text{hit\\_for}]$ re-estimated within each score state, plus opponent hit-rate escalation around burst events.
 
 ---
 
