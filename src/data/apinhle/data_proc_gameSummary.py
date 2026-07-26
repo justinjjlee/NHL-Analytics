@@ -14,37 +14,36 @@ import os
 BOX_DIR = get_box_dir()
 TEAM_DIR = get_team_dir()
 
-# Latest data setting
-yr_now = datetime.datetime.today().year
-mo_now = datetime.datetime.today().month
-
-# Select starting year for season to pull.
-#   Until the following season starts, always pull the current/past eyar
-if mo_now < 8: # Season starts on October
-    # Then the season marks starts in the previous calendar year
-    iter_year = yr_now - 1
-else:
-    iter_year = yr_now
+import glob
 
 # %% Team success measurements
 # -----------------------------------------------------
-# Load the current data
-try: # If the data exist,
-    df_box_team   = pd.read_csv(
-        f"{BOX_DIR}/{iter_year}_box_team.csv",
-        parse_dates = ['gameDate'], 
-        index_col = 'gameIdx'
-    )
+# Load and process all available box team data files
+box_team_files = sorted(glob.glob(f"{BOX_DIR}/*_box_team.csv"))
 
-    team_season = nhl_dataproc_teamsuccess(iter_year)
-    df_kpi, summary_game = team_season.dataproc(df_box_team)
+if not box_team_files:
+    print("No box team data files found in BOX_DIR.")
+else:
+    for file_path in box_team_files:
+        filename = os.path.basename(file_path)
+        iter_year = filename.split('_')[0]
+        try:
+            df_box_team = pd.read_csv(
+                file_path,
+                parse_dates=['gameDate'],
+                index_col='gameIdx'
+            )
 
-    summary_game.to_csv(f"{BOX_DIR}/{iter_year}_box_gameStats.csv")
-    df_kpi.to_csv(f"{TEAM_DIR}/season/{iter_year}_team_season.csv")
+            team_season = nhl_dataproc_teamsuccess(iter_year)
+            df_kpi, summary_game = team_season.dataproc(df_box_team)
 
-    print("Team - season-level statistics compute completed")
-except: # Data does not exist
-    print("The data currently does not exist. Exit the process safely.")
+            summary_game.to_csv(f"{BOX_DIR}/{iter_year}_box_gameStats.csv")
+            os.makedirs(f"{TEAM_DIR}/season", exist_ok=True)
+            df_kpi.to_csv(f"{TEAM_DIR}/season/{iter_year}_team_season.csv")
+
+            print(f"Team - season-level statistics compute completed for {iter_year}")
+        except Exception as e:
+            print(f"Error processing season {iter_year}: {e}")
 
 # %% Plot: Generate statistics for team success measurements
 '''

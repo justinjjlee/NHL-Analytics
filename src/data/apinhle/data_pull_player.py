@@ -32,63 +32,68 @@ else:
     iter_year = yr_now - 1
 
 print(f"Iterative season: {iter_year}")
-# Ping and pull data from NHL API
-# ---------------------------------------------------
-# Team codes for the list pull
+from config import get_box_dir
+
+BOX_DIR = get_box_dir()
+
+# Collect missing player stats from 2013 onwards
+iter_years = []
+for y in range(2013, iter_year + 1):
+    if not (os.path.exists(f"{BOX_DIR}/{y}_box_player.csv") or os.path.exists(f"{TEAM_DIR}/{y}_player.csv")):
+        iter_years.append(y)
+
+if not iter_years:
+    iter_years.append(iter_year)
+
 teamcode = pd.read_csv(f"{TEAM_DIR}/teamlist.csv")
 
-# %%
-# Player data 
-# ===================================================
-# Player data download - season aggregation, up-to-date
-playerstats = []
-# For each team
-for iter_team in list(teamcode.tricode):
-    # Pull seasons played by each  team
-    r = requests.get(url=f'https://api-web.nhle.com/v1/roster-season/{iter_team}')
-    seasons = r.json()
+for iter_year in iter_years:
+    print(f"Pulling player statistics for season: {iter_year}")
+    playerstats = []
+    # For each team
+    for iter_team in list(teamcode.tricode):
+        iter_sesn = str(iter_year) + str(iter_year+1)
+        for iter_season_type in [2, 3]: # regular season (2), and playoff (3)
+            try:
+                r = requests.get(url=f'https://api-web.nhle.com/v1/club-stats/{iter_team}/{iter_sesn}/{iter_season_type}')
+                clubstats = r.json()
 
-    # For season download: 
-    iter_sesn = str(iter_year) + str(iter_year+1)
-    for iter_season_type in [2, 3]: # pre season (1), regular season (2), and playoff (3) - if available
-        try:
-            # Pull club stats, only regular seasons for now
-            r = requests.get(url=f'https://api-web.nhle.com/v1/club-stats/{iter_team}/{iter_sesn}/{iter_season_type}')
-            clubstats = r.json()
+                if "goalies" in clubstats and len(clubstats["goalies"]) > 0:
+                    temp_df = pd.json_normalize(clubstats["goalies"])
+                    temp_df['team_tri'] = iter_team
+                    temp_df["idx_season"] = iter_year
+                    temp_df["idx_season_type"] = iter_season_type
+                    temp_df["positionCode"] = "G"
+                    playerstats.append(temp_df)
 
-            temp_df = pd.json_normalize(clubstats["goalies"])
-            temp_df['team_tri'] = iter_team
-            temp_df["idx_season"] = iter_year
-            temp_df["idx_season_type"] = iter_season_type
-            temp_df["positionCode"] = "G"
-            playerstats.append(temp_df)
-            temp_df = pd.json_normalize(clubstats["skaters"])
-            temp_df['team_tri'] = iter_team
-            temp_df["idx_season"] = iter_year
-            playerstats.append(temp_df)
-        except:
-            None
-    print(f"{iter_team} completed ...")
-    # Pause to play safe with the API
-    time.sleep(1)
-# %%
-# Data concatenation
-playerstats = pd.concat(playerstats)
-# Aggregate and concatenate
-col_remove = list(playerstats.filter(regex='firstName'))
-col_remove.extend(list(playerstats.filter(regex='lastName')))
-col_remove.extend(['headshot'])
-col_remove.remove('firstName.default')
-col_remove.remove('lastName.default')
+                if "skaters" in clubstats and len(clubstats["skaters"]) > 0:
+                    temp_df = pd.json_normalize(clubstats["skaters"])
+                    temp_df['team_tri'] = iter_team
+                    temp_df["idx_season"] = iter_year
+                    temp_df["idx_season_type"] = iter_season_type
+                    playerstats.append(temp_df)
+            except Exception:
+                pass
+        time.sleep(0.3)
 
-playerstats.drop(columns=col_remove, inplace=True)
-# %%
-# Column re-order
-first_cols = ['idx_season','team_tri','playerId','firstName.default','lastName.default','positionCode','gamesPlayed']
-last_cols = [col for col in playerstats.columns if col not in first_cols]
+    if playerstats:
+        df_players = pd.concat(playerstats, ignore_index=True)
+        col_remove = list(df_players.filter(regex='firstName'))
+        col_remove.extend(list(df_players.filter(regex='lastName')))
+        col_remove.extend(['headshot'])
+        if 'firstName.default' in col_remove:
+            col_remove.remove('firstName.default')
+        if 'lastName.default' in col_remove:
+            col_remove.remove('lastName.default')
 
-# save sata
-playerstats = playerstats[first_cols+last_cols]
-playerstats.to_csv(f"{TEAM_DIR}/{iter_year}_player.csv", index=False)
+        cols_to_drop = [c for c in col_remove if c in df_players.columns]
+        df_players.drop(columns=cols_to_drop, inplace=True, errors='ignore')
+
+        first_cols = [c for c in ['idx_season','team_tri','playerId','firstName.default','lastName.default','positionCode','gamesPlayed'] if c in df_players.columns]
+        last_cols = [col for col in df_players.columns if col not in first_cols]
+
+        df_players = df_players[first_cols + last_cols]
+        df_players.to_csv(f"{BOX_DIR}/{iter_year}_box_player.csv", index=False)
+        print(f"Completed player stats for season {iter_year}")
 
 print("au revoir.")

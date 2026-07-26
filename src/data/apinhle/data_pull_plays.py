@@ -12,6 +12,17 @@ from function.procs_playbyplay import *
 import os
 from config import get_box_dir, get_play_dir
 
+def safe_get(url, max_retries=5, timeout=15):
+    for attempt in range(max_retries):
+        try:
+            r = requests.get(url, timeout=timeout)
+            if r.status_code == 200:
+                return r
+        except Exception as e:
+            print(f"Network retry {attempt+1}/{max_retries} for {url}: {e}")
+            time.sleep(2 * (attempt + 1))
+    return None
+
 BOX_DIR = get_box_dir()
 PLAY_DIR = get_play_dir()
 
@@ -40,11 +51,11 @@ print(f"Iterative season: {iter_year}")
 # ---------------------------------------------------
 
 iter_years = []
-for y in range(2023, iter_year + 1):
+for y in range(2013, iter_year + 1):
     if not os.path.exists(f"{PLAY_DIR}/{y}_playbyplay.csv"):
         iter_years.append(y)
 
-if iter_year not in iter_years:
+if not iter_years:
     iter_years.append(iter_year)
 
 for iter_year in iter_years:
@@ -77,19 +88,16 @@ for iter_year in iter_years:
         # Pick up games with newest data points
         gamecode = gamecode.loc[~gamecode["gameid"].isin(gameids_exist), :]
         print(f"Found {len(gamecode)} new game records, will append to the new data")
-    # ---------------------------------------------------
     # Pull team/game lists of the games for the season
-    '''
-    Pulling full season game would take a long time. If some game records were already pulled, 
-        I recommend to skip those game records
-    '''
     if len(gamecode["gameid"]) != 0:
         # At least one records need to be pulled
         df_playbyplay = []
         df_playerinfo = []
         for _, row in gamecode.iterrows():
             # Pull game's play-by-play stat
-            r = requests.get(url=f'https://api-web.nhle.com/v1/gamecenter/{row.gameid}/play-by-play')
+            r = safe_get(f'https://api-web.nhle.com/v1/gamecenter/{row.gameid}/play-by-play')
+            if r is None:
+                continue
             
             iter_playbyplay, iter_player = proc_playbyplay_clean(r, row)
             # Append to save
@@ -97,7 +105,7 @@ for iter_year in iter_years:
             df_playerinfo.append(iter_player)
             print(f"Pulled game {row.gameid} play-by-play data")
             # Pause to play safe with the API
-            time.sleep(0.5)
+            time.sleep(0.3)
 
         # Save, full data
         df_playbyplay = pd.concat(df_playbyplay)

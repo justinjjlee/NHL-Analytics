@@ -58,6 +58,10 @@ TRANSLATIONS = {
         "tss_select_trend_metric": "Sélectionner la métrique pour la tendance",
         "tss_trend_chart_title": "Tendances à travers les saisons",
         "tss_no_teams": "Sélectionnez au moins une équipe pour voir les tendances.",
+        "tss_metric_guide_title": "Guide des métriques et valorisation",
+        "tss_wp_desc": "**Win %** : Pourcentage de victoires brutes ($V / MJ$). Indique la proportion de matchs gagnés.",
+        "tss_pairwise_desc": "**Rang Pairwise** : Évalue la force de l'équipe en comparant les fiches de confrontation directe contre des adversaires communs. Il prend en compte la **qualité des victoires et la difficulté du calendrier** (la meilleure équipe commence au Rang 1).",
+        "tss_pe_desc": "**Expectation Pythagoricienne (PE)** : Calculée à partir du différentiel de buts ($BP^2 / (BP^2 + BC^2)$). Évalue la performance réelle attendue en éliminant la chance des matchs serrés.",
 
         # blocking_shots.py
         "bs_title": "La valeur des tirs bloqués",
@@ -290,6 +294,10 @@ TRANSLATIONS = {
         "tss_select_trend_metric": "Select Metric for Trend",
         "tss_trend_chart_title": "Trends Across Seasons",
         "tss_no_teams": "Select at least one team to view trends.",
+        "tss_metric_guide_title": "Metric Guide & Valuation",
+        "tss_wp_desc": "**Win %**: Raw win ratio ($W / GP$). Measures overall season victory outcomes.",
+        "tss_pairwise_desc": "**Pairwise Rank**: Head-to-head strength rank evaluating records against common opponents. Accounts for **win quality and schedule strength**, ranking top teams starting at Rank 1.",
+        "tss_pe_desc": "**Pythagorean Expectation (PE)**: Calculated as $GF^2 / (GF^2 + GA^2)$. Estimates expected winning capability based on goal differential rather than luck.",
 
         # blocking_shots.py
         "bs_title": "The Valor of Blocking Shots",

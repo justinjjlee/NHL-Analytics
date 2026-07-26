@@ -87,19 +87,20 @@ class nhl_dataproc_teamsuccess:
         ) * 1
         # For each team, count how many opponents the team has winning record against 
         rank_pairwise_win = dff_h2h_com_win.groupby(['team_tri_for_ow']) \
-                            .agg({'h2h_win':'sum'}) \
-                            .sort_values(by = 'h2h_win', ascending = False)
-        rank_pairwise_win.columns = ['pairwise_win']
+                            .agg({'h2h_win':'sum'})
+        rank_pairwise_win['pairwise_win'] = rank_pairwise_win['h2h_win'].rank(ascending=False, method='min').astype(int)
+        rank_pairwise_win = rank_pairwise_win[['pairwise_win']]
 
         # Here the rank can even be more continuous (how much they win instead of count in games)
 
         # Join with the existing team stats
         dfteams = dfteams.join(rank_pairwise_win)
         if 'pairwise_win' in dfteams.columns:
-            dfteams['pairwise_win'] = dfteams['pairwise_win'].fillna(0.0)
+            max_rank = dfteams['pairwise_win'].max()
+            dfteams['pairwise_win'] = dfteams['pairwise_win'].fillna(max_rank + 1 if pd.notnull(max_rank) else 1).astype(int)
             
-        # Normalize
-        dfteams['kpi_pairwise']  = kpinorm(dfteams.pairwise_win)
+        # Normalize (invert rank for KPI so rank 1 yields highest KPI 1.0)
+        dfteams['kpi_pairwise']  = kpinorm(-dfteams.pairwise_win.astype(float))
         dfteams['kpi_rpi']  = kpinorm(dfteams.rpi)
         dfteams['kpi_wp']  = kpinorm(dfteams.wp)
 

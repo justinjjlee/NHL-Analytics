@@ -74,7 +74,6 @@ def load_season_data():
 
 # Main Page UI
 st.title(t("tss_title"))
-st.markdown(t("tss_description"))
 
 with st.spinner(t("tss_loading")):
     df = load_season_data()
@@ -84,12 +83,12 @@ if df.empty:
     st.stop()
 
 # Ensure integer types for standard stats
-for col in ['GP', 'W', 'L', 'OTL', 'PTS']:
+for col in ['GP', 'W', 'L', 'OTL', 'PTS', 'pairwise_win']:
     if col in df.columns:
         df[col] = df[col].astype(int)
 
 # Round specific metrics to 3 decimal places
-for col in ['wp', 'kpi_corsi', 'kpi_fenwick', 'rpi', 'pairwise_win']:
+for col in ['wp', 'rpe', 'kpi_pe', 'kpi_pairwise', 'kpi_wp']:
     if col in df.columns:
         df[col] = df[col].round(3)
 
@@ -105,18 +104,16 @@ METRIC_NAMES = {
     'OTL': 'OTL',
     'PTS': 'PTS',
     'wp': 'Win %',
-    'kpi_corsi': 'Corsi',
-    'kpi_fenwick': 'Fenwick',
-    'kpi_pe': 'Pyth. Exp.',
+    'kpi_corsi': 'Corsi (KPI)',
+    'kpi_fenwick': 'Fenwick (KPI)',
     'rpi': 'RPI',
-    'pairwise_win': 'Pairwise',
-    'kpi_pairwise': 'Pairwise',
-    'kpi_rpi': 'RPI',
+    'kpi_rpi': 'RPI (KPI)',
+    'rpe': 'Pyth. Exp. (PE)',
+    'kpi_pe': 'Pyth. Exp.',
+    'pairwise_win': 'Pairwise Rank',
+    'kpi_pairwise': 'Pairwise KPI',
     'kpi_wp': 'Win %',
     'rwin_fittedPE': 'Fitted PE Wins',
-    'fenwick_lvl': 'Fenwick Lvl',
-    'corsi_lvl': 'Corsi Lvl',
-    'rpe': 'RPE',
     'rwin': 'RWin',
     'rgame': 'RGame',
     'wp_own': 'WP Own',
@@ -132,18 +129,28 @@ def format_metric(m):
 tab1, tab2 = st.tabs([t("tss_tab1"), t("tss_tab2")])
 
 with tab1:
-    col_empty, col_season = st.columns([3, 1])
-    with col_season:
-        selected_season = st.selectbox(t("tss_select_season"), seasons)
-    
+    # Top split row for Season Overview: metric guide on left, season selector on right
+    col_left, col_right = st.columns([3, 1])
+
+    with col_left:
+        st.info(
+            f"**{t('tss_metric_guide_title')}**\n\n"
+            f"- {t('tss_wp_desc')}\n"
+            f"- {t('tss_pairwise_desc')}\n"
+            f"- {t('tss_pe_desc')}"
+        )
+
+    with col_right:
+        selected_season = st.selectbox(t("tss_select_season"), seasons, key="season_overview_selector")
+
     # Filter data for selected season
     df_season = df[df['Season'] == selected_season].copy()
     
     # Sort by Points (PTS) by default
     df_season = df_season.sort_values(by='PTS', ascending=False).reset_index(drop=True)
     
-    # Define columns to show in the primary data table
-    default_cols = ['team', 'GP', 'W', 'L', 'OTL', 'PTS', 'wp', 'kpi_corsi', 'kpi_fenwick', 'rpi', 'pairwise_win']
+    # Define columns to show in the primary data table (Pairwise Rank next to PE)
+    default_cols = ['team', 'GP', 'W', 'L', 'OTL', 'PTS', 'wp', 'pairwise_win', 'rpe']
     cols_to_show = [c for c in default_cols if c in df_season.columns]
     
     st.subheader(f"{t('tss_standings')} ({selected_season})")
@@ -155,11 +162,19 @@ with tab1:
     # Rename columns to beautified names
     df_display = df_display.rename(columns=METRIC_NAMES)
     
-    # Render table with st.dataframe for sortability
+    # Render table with st.dataframe for sortability and 3-decimal alignment
     st.dataframe(
         df_display,
         column_config={
-            " ": st.column_config.ImageColumn(" ", help="Team Logo")
+            " ": st.column_config.ImageColumn(" ", help="Team Logo"),
+            METRIC_NAMES['wp']: st.column_config.NumberColumn(METRIC_NAMES['wp'], format="%.3f", help="Winning percentage (W / GP)"),
+            METRIC_NAMES['rpe']: st.column_config.NumberColumn(METRIC_NAMES['rpe'], format="%.3f", help="Pythagorean Expectation (GF^2 / (GF^2 + GA^2))"),
+            METRIC_NAMES['pairwise_win']: st.column_config.NumberColumn(METRIC_NAMES['pairwise_win'], format="%d", help="Pairwise Rank (Head-to-head win strength)"),
+            METRIC_NAMES['PTS']: st.column_config.NumberColumn(METRIC_NAMES['PTS'], format="%d"),
+            METRIC_NAMES['W']: st.column_config.NumberColumn(METRIC_NAMES['W'], format="%d"),
+            METRIC_NAMES['L']: st.column_config.NumberColumn(METRIC_NAMES['L'], format="%d"),
+            METRIC_NAMES['OTL']: st.column_config.NumberColumn(METRIC_NAMES['OTL'], format="%d"),
+            METRIC_NAMES['GP']: st.column_config.NumberColumn(METRIC_NAMES['GP'], format="%d"),
         },
         hide_index=True,
         width="stretch"
@@ -172,14 +187,14 @@ with tab1:
     numeric_cols = df_season.select_dtypes(include=['float64', 'int64']).columns.tolist()
     available_metrics = [c for c in numeric_cols if c not in ['Season']]
     
-    # Define the restricted set of trend metrics
-    trend_metrics = [c for c in ['wp', 'kpi_corsi', 'kpi_fenwick', 'kpi_pe', 'rpi', 'pairwise_win', 'kpi_pairwise', 'kpi_rpi', 'kpi_wp'] if c in available_metrics]
+    # Define trend metrics for scatter plot and trend chart (including Corsi, Fenwick, RPI)
+    trend_metrics = [c for c in ['wp', 'pairwise_win', 'rpe', 'kpi_corsi', 'kpi_fenwick', 'rpi', 'kpi_pe', 'kpi_pairwise', 'kpi_rpi', 'kpi_wp'] if c in available_metrics]
     if not trend_metrics:
         trend_metrics = available_metrics
     
     col_x, col_y = st.columns(2)
     with col_x:
-        default_x = 'kpi_corsi' if 'kpi_corsi' in trend_metrics else trend_metrics[0]
+        default_x = 'pairwise_win' if 'pairwise_win' in trend_metrics else trend_metrics[0]
         x_metric = st.selectbox(t("tss_x_axis"), trend_metrics, index=trend_metrics.index(default_x), format_func=format_metric)
     with col_y:
         default_y = 'wp' if 'wp' in trend_metrics else (trend_metrics[1] if len(trend_metrics) > 1 else trend_metrics[0])

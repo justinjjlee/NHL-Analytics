@@ -39,14 +39,25 @@ else:
     iter_year = yr_now - 1
 
 print(f"Iterative season: {iter_year}")
-# In case you need to pull all historical data
+# In case you need to pull all historical/vintage data going back to 2013
 iter_years = []
-for y in range(2023, iter_year + 1):
-    if not os.path.exists(f"{BOX_DIR}/{y}_box.csv"):
+for y in range(2013, iter_year + 1):
+    if not (os.path.exists(f"{BOX_DIR}/{y}_box.csv") and os.path.exists(f"{BOX_DIR}/{y}_box_team.csv")):
         iter_years.append(y)
 
-if iter_year not in iter_years:
+if not iter_years:
     iter_years.append(iter_year)
+def safe_get(url, max_retries=5, timeout=15):
+    for attempt in range(max_retries):
+        try:
+            r = requests.get(url, timeout=timeout)
+            if r.status_code == 200:
+                return r
+        except Exception as e:
+            print(f"Network retry {attempt+1}/{max_retries} for {url}: {e}")
+            time.sleep(2 * (attempt + 1))
+    return None
+
 # %%
 for iter_year in iter_years:
 
@@ -58,11 +69,12 @@ for iter_year in iter_years:
 
     for iter_team in teamcode.tricode:
         try:
-            time.sleep(1)
+            time.sleep(0.5)
             iter_sesn = str(iter_year) + str(iter_year+1)
 
-            r = requests.get(url='https://api-web.nhle.com/v1/club-schedule-season/'
-                            + iter_team + "/" + iter_sesn)
+            r = safe_get('https://api-web.nhle.com/v1/club-schedule-season/' + iter_team + "/" + iter_sesn)
+            if r is None:
+                continue
             data = r.json()
             data = pd.json_normalize(data['games'])
             # Filter out columns and rows
@@ -162,9 +174,11 @@ for iter_year in iter_years:
     #   In order to save the API pull time, I only need to pull records
     #   Not currently pulled and saved
     try:
-        game_list_last = pd.read_csv(f"{BOX_DIR}/{iter_year}_box.csv")
-        # Pick up games with newest data points
-        inx_gamesnodata = game_list.loc[~game_list["gameid"].isin(game_list_last["gameid"]), "gameid"]
+        if not os.path.exists(f"{BOX_DIR}/{iter_year}_box_team.csv"):
+            inx_gamesnodata = game_list["gameid"]
+        else:
+            game_list_last = pd.read_csv(f"{BOX_DIR}/{iter_year}_box.csv")
+            inx_gamesnodata = game_list.loc[~game_list["gameid"].isin(game_list_last["gameid"]), "gameid"]
     except:
         # New season, create 
         inx_gamesnodata = game_list["gameid"]
@@ -181,8 +195,9 @@ for iter_year in iter_years:
             # Maybe wait a minute?
             time.sleep(0.5)
             # Call data
-            r = requests.get(url='https://api-web.nhle.com/v1/gamecenter/'
-                                + str(iter_game) + "/boxscore")
+            r = safe_get('https://api-web.nhle.com/v1/gamecenter/' + str(iter_game) + "/boxscore")
+            if r is None:
+                continue
             data = r.json()
 
             team_stat_empty = []
