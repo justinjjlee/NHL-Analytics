@@ -64,34 +64,36 @@ The Shin (1992, 1993) model formalizes this intuition. It posits that a fraction
 
 The following diagram illustrates the informational equilibrium the bookmaker operates in:
 
-```
- ┌─────────────────────────────────────────────────────────────────┐
- │                   BOOKMAKER'S PRICING PROBLEM                   │
- │                                                                 │
- │   True probability of home win:  π_H  (unobservable)           │
- │                                                                 │
- │   Bettor population:                                            │
- │   ┌─────────────────────┐    ┌─────────────────────────────┐   │
- │   │  Noise bettors      │    │  Informed bettors           │   │
- │   │  fraction: (1 - z)  │    │  fraction: z                │   │
- │   │  bet on any side    │    │  always bet correct side    │   │
- │   └─────────────────────┘    └─────────────────────────────┘   │
- │                    │                        │                   │
- │                    └──────────┬─────────────┘                   │
- │                               ▼                                 │
- │           Bookmaker sets posted odds  p̃_H, p̃_A                 │
- │           such that expected profit ≥ 0 against both           │
- │                                                                 │
- │   Equilibrium condition:                                        │
- │   p̃_H = [z√π_H + (1-z)π_H] / Σ_k[z√π_k + (1-z)π_k]          │
- │                                                                 │
- │   Consequence: overround σ is allocated MORE heavily           │
- │   onto high-probability outcomes (favorites)                    │
- │                                                                 │
- │   ──────────────────────────────────────────────────           │
- │   Recovery goal: invert the equilibrium condition              │
- │   to recover π_H from the observed p̃_H  →  Shin (1992)        │
- └─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph BP["BOOKMAKER'S PRICING PROBLEM"]
+        direction TB
+        A["True probability of home win: π_H (unobservable)"]
+        
+        subgraph Bettors["Bettor population"]
+            direction LR
+            B1["Noise bettors<br/>fraction: (1 - z)<br/>bet on any side"]
+            B2["Informed bettors<br/>fraction: z<br/>always bet correct side"]
+        end
+        
+        A ~~~ Bettors
+        B1 --> C
+        B2 --> C
+        
+        C["Bookmaker sets posted odds p̃_H, p̃_A<br/>such that expected profit ≥ 0 against both"]
+        
+        D["Equilibrium condition:<br/>p̃_H = [z√π_H + (1-z)π_H] / Σ_k[z√π_k + (1-z)π_k]"]
+        
+        C --> D
+        
+        E["Consequence: overround σ is allocated MORE heavily<br/>onto high-probability outcomes (favorites)"]
+        
+        D --> E
+        
+        F["Recovery goal: invert the equilibrium condition<br/>to recover π_H from the observed p̃_H → Shin (1992)"]
+        
+        E -.-> F
+    end
 ```
 
 The recovery of $\pi_H$ from $\tilde{p}_H$ is the Shin correction. Note that $z$ is itself an estimable parameter — it captures the degree of insider trading in the market. A higher $z$ implies a market where informed bettors play a larger role in price formation, and where naive normalization produces larger biases.
