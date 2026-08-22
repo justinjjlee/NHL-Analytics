@@ -25,4 +25,5 @@ dependencies = [
     "python-dateutil>=2.9.0",
     "pytz>=2024.1",
     "databricks-connect>=15.0.0, <16.0.0",
+    "gitpython>=3.1.59",
 ]
