@@ -1,0 +1,4 @@
+hit_zone,zone_name,total_hits,immediate_possession_pct,immediate_takeaway_pct,shots_for,shots_against,shots_for_per_100_hits,shots_against_per_100_hits,net_shot_diff_per_100,goals_for,goals_against,goals_for_per_100_hits,goals_against_per_100_hits,net_goal_diff_per_100
+D,Defensive Zone (In-Zone),47318,37.75,2.26,1245.0,2298.0,2.63,4.86,-2.23,61.0,68.0,0.129,0.144,-0.015
+N,Neutral Zone (Rush Disruption),16976,46.22,2.4,499.0,625.0,2.94,3.68,-0.74,11.0,24.0,0.065,0.141,-0.077
+O,Offensive Zone (Forecheck),57349,53.2,2.76,2248.0,1788.0,3.92,3.12,0.8,77.0,59.0,0.134,0.103,0.031

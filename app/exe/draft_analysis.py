@@ -392,20 +392,27 @@ def render_not_so_magnificent_analysis():
         st.error(f"Error loading draft data: {e}")
         return
 
-    is_fr = st.session_state.get('lang', 'FR') == 'FR'
+    is_fr = st.session_state.get('lang', 'EN') == 'FR'
 
     # Cohort Selection Options
     col1, col2 = st.columns(2)
     with col1:
-        cohort_type_options = [t("nsm_cohort_type_round"), t("nsm_cohort_type_overall")]
-        selected_cohort_type_lbl = st.radio(
+        cur_l = st.session_state.get('lang', 'EN')
+        cohort_type_options = ["Round", "Overall"]
+        cohort_type_labels = {
+            "Round": t("nsm_cohort_type_round", lang=cur_l),
+            "Overall": t("nsm_cohort_type_overall", lang=cur_l),
+        }
+        if "nsm_cohort_type_radio" in st.session_state and st.session_state.nsm_cohort_type_radio not in cohort_type_options:
+            st.session_state.nsm_cohort_type_radio = "Round"
+        cohort_type_val = st.radio(
             t("nsm_select_cohort_type"),
             options=cohort_type_options,
+            format_func=lambda c, l=cohort_type_labels: l.get(c, c),
             index=0,
             horizontal=True,
             key="nsm_cohort_type_radio"
         )
-        cohort_type_val = "Round" if selected_cohort_type_lbl == t("nsm_cohort_type_round") else "Overall"
         
     with col2:
         years = sorted(draft_df['year'].dropna().unique().tolist())
@@ -454,7 +461,7 @@ def render_not_so_magnificent_analysis():
                     on_click=toggle_round,
                     args=(r,),
                     type="primary" if is_selected else "secondary",
-                    use_container_width=True
+                    width="stretch"
                 )
                 if is_selected:
                     selected_rounds.append(r)
@@ -504,7 +511,7 @@ def render_not_so_magnificent_analysis():
                 on_click=toggle_position,
                 args=(pos,),
                 type="primary" if is_selected else "secondary",
-                use_container_width=True
+                width="stretch"
             )
             if is_selected:
                 selected_positions.append(pos)
@@ -707,6 +714,8 @@ def render_not_so_magnificent_analysis():
     st.info(t("nsm_chart2_explain"))
     
     # Selected cohort year
+    if "nsm_cohort_year" in st.session_state and st.session_state.nsm_cohort_year not in cohort_years:
+        st.session_state.nsm_cohort_year = cohort_years[0]
     selected_cohort_year = st.selectbox(
         t("nsm_select_cohort_year"),
         options=cohort_years,

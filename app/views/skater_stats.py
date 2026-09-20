@@ -31,7 +31,7 @@ st.markdown(t("sk_desc"))
 st.divider()
 
 # ── Load ──────────────────────────────────────────────────────────────────────
-is_fr = st.session_state.get('lang', 'FR') == 'FR'
+is_fr = st.session_state.get('lang', 'EN') == 'FR'
 loading_msg = "Chargement..." if is_fr else "Loading..."
 with st.spinner(loading_msg):
     skaters, _ = load_player_season_data()
@@ -59,28 +59,54 @@ top_tab1, top_tab2 = st.tabs([TAB_PLAYER, TAB_LEADERBOARD])
 with top_tab1:
     # ── Filters ──
     st.markdown("#### Filtres / Filters")
+    cur_l = st.session_state.get('lang', 'EN')
     pos_map = {
-        t("sk_pos_all"): None,
-        t("sk_pos_C"): ["C"],
-        t("sk_pos_LR"): ["L", "R"],
-        t("sk_pos_D"): ["D"],
+        "ALL": None,
+        "C": ["C"],
+        "LR": ["L", "R"],
+        "D": ["D"],
+    }
+    pos_labels = {
+        "ALL": t("sk_pos_all", lang=cur_l),
+        "C": t("sk_pos_C", lang=cur_l),
+        "LR": t("sk_pos_LR", lang=cur_l),
+        "D": t("sk_pos_D", lang=cur_l),
     }
     
     # Row 1: Position, Team, Season
     fr1_col1, fr1_col2, fr1_col3 = st.columns(3)
     with fr1_col1:
-        pos_choice = st.selectbox(t("sk_select_position"), list(pos_map.keys()), key="sk_pos_filter")
+        if "sk_pos_filter" in st.session_state and st.session_state.sk_pos_filter not in pos_map:
+            st.session_state.sk_pos_filter = "ALL"
+        pos_choice = st.selectbox(
+            t("sk_select_position"),
+            list(pos_map.keys()),
+            format_func=lambda c, p=pos_labels: p.get(c, c),
+            key="sk_pos_filter"
+        )
     with fr1_col2:
-        selected_team = st.selectbox(t("sk_select_team"), [t("sk_all_teams")] + all_teams, key="sk_team_filter")
+        team_opts = ["ALL"] + all_teams
+        team_labels = {
+            "ALL": t("sk_all_teams", lang=cur_l),
+            **{tm: tm for tm in all_teams}
+        }
+        if "sk_team_filter" in st.session_state and st.session_state.sk_team_filter not in team_opts:
+            st.session_state.sk_team_filter = "ALL"
+        selected_team = st.selectbox(
+            t("sk_select_team"),
+            team_opts,
+            format_func=lambda tm, l=team_labels: l.get(tm, tm),
+            key="sk_team_filter"
+        )
     with fr1_col3:
         sel_season_lbl = st.selectbox(t("sk_select_season"), season_labels[::-1], key="sk_season_filter")
         sel_season_yr  = season_years[season_labels.index(sel_season_lbl)]
 
     # Filter skaters to restrict player name list
     filtered_skaters = skaters.copy()
-    if selected_team != t("sk_all_teams"):
+    if selected_team != "ALL":
         filtered_skaters = filtered_skaters[filtered_skaters['team_tri'] == selected_team]
-    if pos_map[pos_choice]:
+    if pos_map.get(pos_choice):
         filtered_skaters = filtered_skaters[filtered_skaters['positionCode'].isin(pos_map[pos_choice])]
 
     filtered_names = get_player_list(filtered_skaters)
@@ -91,6 +117,8 @@ with top_tab1:
 
     # Row 2: Player selection
     default_idx = filtered_names.index(DEFAULT) if DEFAULT in filtered_names else 0
+    if "sk_player_select" in st.session_state and st.session_state.sk_player_select not in filtered_names:
+        st.session_state.sk_player_select = filtered_names[default_idx]
     selected_player = st.selectbox(t("sk_search"), filtered_names, index=default_idx, key="sk_player_select")
 
 
@@ -100,9 +128,9 @@ with top_tab1:
     # ── INNER TAB 1: Season Profile ───────────────────────────────────────────
     with inner1:
         player_df = skaters[skaters['fullName'] == selected_player].copy()
-        if selected_team != t("sk_all_teams"):
+        if selected_team != "ALL":
             player_df = player_df[player_df['team_tri'] == selected_team]
-        if pos_map[pos_choice]:
+        if pos_map.get(pos_choice):
             player_df = player_df[player_df['positionCode'].isin(pos_map[pos_choice])]
 
         if player_df.empty:
@@ -193,9 +221,9 @@ with top_tab1:
             sel_player_row = skaters[skaters['fullName'] == selected_player]
             sel_player_id = sel_player_row.iloc[0]['playerId'] if not sel_player_row.empty else None
 
-            game_df = resolve_game_player_name(skater_games, sel_player_id, lang=st.session_state.get('lang', 'FR'))
+            game_df = resolve_game_player_name(skater_games, sel_player_id, lang=st.session_state.get('lang', 'EN'))
             game_df = game_df[game_df['season_year'] == sel_season_yr]
-            if selected_team != t("sk_all_teams"):
+            if selected_team != "ALL":
                 game_df = game_df[game_df['own_team'] == selected_team]
 
 
@@ -277,15 +305,30 @@ with top_tab2:
     with lb_c2:
         min_gp = st.slider(t("sk_min_games"), 5, 60, 20, key="sk_lb_mingames")
     with lb_c3:
-        pos_opts_lb = {
-            t("sk_pos_all"): None, t("sk_pos_C"): ["C"],
-            t("sk_pos_LR"): ["L","R"], t("sk_pos_D"): ["D"],
+        pos_map_lb = {
+            "ALL": None,
+            "C": ["C"],
+            "LR": ["L", "R"],
+            "D": ["D"],
         }
-        pos_lb = st.selectbox(t("sk_select_position"), list(pos_opts_lb.keys()), key="sk_lb_pos")
+        pos_labels_lb = {
+            "ALL": t("sk_pos_all", lang=cur_l),
+            "C": t("sk_pos_C", lang=cur_l),
+            "LR": t("sk_pos_LR", lang=cur_l),
+            "D": t("sk_pos_D", lang=cur_l),
+        }
+        if "sk_lb_pos" in st.session_state and st.session_state.sk_lb_pos not in pos_map_lb:
+            st.session_state.sk_lb_pos = "ALL"
+        pos_lb = st.selectbox(
+            t("sk_select_position"),
+            list(pos_map_lb.keys()),
+            format_func=lambda c, p=pos_labels_lb: p.get(c, c),
+            key="sk_lb_pos",
+        )
 
     ppi_df = compute_skater_ppi(skaters, season_year=lb_yr, min_games=min_gp)
-    if pos_opts_lb[pos_lb]:
-        ppi_df = ppi_df[ppi_df['positionCode'].isin(pos_opts_lb[pos_lb])]
+    if pos_map_lb.get(pos_lb):
+        ppi_df = ppi_df[ppi_df['positionCode'].isin(pos_map_lb[pos_lb])]
 
     if ppi_df.empty:
         st.warning(t("chart_not_enough"))

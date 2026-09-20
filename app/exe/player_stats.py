@@ -336,7 +336,7 @@ def _strip_accents(text):
     ).lower()
 
 
-def resolve_display_name_df(df, lang='FR'):
+def resolve_display_name_df(df, lang='EN'):
     """
     Dynamically update 'playerName' column in df based on current active language.
     If FR, check name.fr first. Otherwise/fallback, check other locales from right to left (last available).
@@ -365,7 +365,7 @@ def resolve_display_name_df(df, lang='FR'):
     return df
 
 
-def resolve_game_player_name(game_df, player_id, lang='FR'):
+def resolve_game_player_name(game_df, player_id, lang='EN'):
     """
     Given a player_id from season data, find matching rows in game_df.
     Dynamically resolves playerName to the correct language locale.

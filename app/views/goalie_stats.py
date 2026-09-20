@@ -31,7 +31,7 @@ st.markdown(t("gl_desc"))
 st.divider()
 
 # ── Load Data ─────────────────────────────────────────────────────────────────
-is_fr = st.session_state.get('lang', 'FR') == 'FR'
+is_fr = st.session_state.get('lang', 'EN') == 'FR'
 loading_msg = "Chargement..." if is_fr else "Loading..."
 with st.spinner(loading_msg):
     _, goalies = load_player_season_data()
@@ -57,17 +57,29 @@ top_tab1, top_tab2 = st.tabs([TAB_PLAYER, TAB_LEADERBOARD])
 # TOP TAB 1 — Goalie Profile + Game Log
 # ══════════════════════════════════════════════════════════════════════════════
 with top_tab1:
-    # Row 1: Team, Season
+    cur_l = st.session_state.get('lang', 'EN')
     fr1_col1, fr1_col2 = st.columns(2)
     with fr1_col1:
-        selected_team = st.selectbox(t("gl_select_team"), [t("gl_all_teams")] + all_teams, key="gl_team_filter")
+        team_opts = ["ALL"] + all_teams
+        team_labels = {
+            "ALL": t("gl_all_teams", lang=cur_l),
+            **{tm: tm for tm in all_teams}
+        }
+        if "gl_team_filter" in st.session_state and st.session_state.gl_team_filter not in team_opts:
+            st.session_state.gl_team_filter = "ALL"
+        selected_team = st.selectbox(
+            t("gl_select_team"),
+            team_opts,
+            format_func=lambda tm, l=team_labels: l.get(tm, tm),
+            key="gl_team_filter"
+        )
     with fr1_col2:
         sel_season_lbl = st.selectbox(t("gl_select_season"), season_labels[::-1], key="gl_season_filter")
         sel_season_yr  = season_years[season_labels.index(sel_season_lbl)]
 
     # Filter goalies to restrict goalie name list
     filtered_goalies = goalies.copy()
-    if selected_team != t("gl_all_teams"):
+    if selected_team != "ALL":
         filtered_goalies = filtered_goalies[filtered_goalies['team_tri'] == selected_team]
 
     filtered_names = get_player_list(filtered_goalies)
@@ -78,6 +90,8 @@ with top_tab1:
 
     # Row 2: Goalie selection
     default_idx = filtered_names.index(DEFAULT) if DEFAULT in filtered_names else 0
+    if "gl_goalie_select" in st.session_state and st.session_state.gl_goalie_select not in filtered_names:
+        st.session_state.gl_goalie_select = filtered_names[default_idx]
     selected_goalie = st.selectbox(t("gl_search"), filtered_names, index=default_idx, key="gl_goalie_select")
 
 
@@ -87,7 +101,7 @@ with top_tab1:
     # ── INNER TAB 1: Season Profile ───────────────────────────────────────────
     with inner1:
         goalie_df = goalies[goalies['fullName'] == selected_goalie].copy()
-        if selected_team != t("gl_all_teams"):
+        if selected_team != "ALL":
             goalie_df = goalie_df[goalie_df['team_tri'] == selected_team]
 
         if goalie_df.empty:
@@ -173,9 +187,9 @@ with top_tab1:
             sel_goalie_row = goalies[goalies['fullName'] == selected_goalie]
             sel_goalie_id = sel_goalie_row.iloc[0]['playerId'] if not sel_goalie_row.empty else None
 
-            game_df = resolve_game_player_name(goalie_games, sel_goalie_id, lang=st.session_state.get('lang', 'FR'))
+            game_df = resolve_game_player_name(goalie_games, sel_goalie_id, lang=st.session_state.get('lang', 'EN'))
             game_df = game_df[game_df['season_year'] == sel_season_yr]
-            if selected_team != t("gl_all_teams"):
+            if selected_team != "ALL":
                 game_df = game_df[game_df['own_team'] == selected_team]
 
 

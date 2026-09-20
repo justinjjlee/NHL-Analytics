@@ -9,6 +9,12 @@
 
 import streamlit as st
 import os
+import importlib
+import i18n
+try:
+    importlib.reload(i18n)
+except Exception:
+    pass
 from i18n import t
 
 # Set page configuration
@@ -51,25 +57,26 @@ def get_asset_path(rel_path):
 
 # Initialize language state
 if 'lang' not in st.session_state:
-    st.session_state.lang = 'FR'
+    st.session_state.lang = 'EN'
 
 # Sidebar language toggle
 st.sidebar.radio(
-    "Langue / Language", 
-    ["FR", "EN"], 
+    "Language / Langue", 
+    ["EN", "FR"], 
     key="lang"
 )
 
-# Define pages for navigation
-HOME = st.Page(page="views/home.py", title=t("nav_home"), default=True)
-TEAM_MAP = st.Page(page="views/teams_map.py", title=t("nav_team_map"))
-SCOREBOARD = st.Page(page="views/scoreboard.py", title=t("nav_scoreboard"))
-TEAM_SEASON_STATS = st.Page(page="views/team_season_stats.py", title=t("nav_team_season"))
-SKATERS = st.Page(page="views/magnifiques_patineuses.py", title=t("nav_mag_patineuses"))
-BLOCKING_SHOTS = st.Page(page="views/blocking_shots.py", title=t("nav_blocking_shots"))
-SKATER_STATS = st.Page(page="views/skater_stats.py", title=t("nav_skater_stats"))
-GOALIE_STATS = st.Page(page="views/goalie_stats.py", title=t("nav_goalie_stats"))
-ABOUT = st.Page(page="views/about.py", title=t("nav_about"))
+# Define pages for navigation with constant url_path to preserve selection across languages
+HOME = st.Page(page="views/home.py", title=t("nav_home"), url_path="home", default=True)
+TEAM_MAP = st.Page(page="views/teams_map.py", title=t("nav_team_map"), url_path="teams-map")
+SCOREBOARD = st.Page(page="views/scoreboard.py", title=t("nav_scoreboard"), url_path="scoreboard")
+TEAM_SEASON_STATS = st.Page(page="views/team_season_stats.py", title=t("nav_team_season"), url_path="team-season-stats")
+SKATERS = st.Page(page="views/magnifiques_patineuses.py", title=t("nav_mag_patineuses"), url_path="magnifiques-patineuses")
+BLOCKING_SHOTS = st.Page(page="views/blocking_shots.py", title=t("nav_blocking_shots"), url_path="blocking-shots")
+HIT_IMPACT = st.Page(page="views/hit_impact.py", title=t("nav_hit_impact"), url_path="hit-impact")
+SKATER_STATS = st.Page(page="views/skater_stats.py", title=t("nav_skater_stats"), url_path="skater-stats")
+GOALIE_STATS = st.Page(page="views/goalie_stats.py", title=t("nav_goalie_stats"), url_path="goalie-stats")
+ABOUT = st.Page(page="views/about.py", title=t("nav_about"), url_path="about")
 
 # Add logo at the top
 #st.image(get_asset_path("img_main.jpeg"), width=120)
@@ -78,7 +85,8 @@ ABOUT = st.Page(page="views/about.py", title=t("nav_about"))
 pages = {
     t("nav_bienvenue"): [HOME, ABOUT],
     t("nav_team"): [SCOREBOARD, TEAM_MAP, TEAM_SEASON_STATS],
-    t("nav_skaters"): [SKATER_STATS, GOALIE_STATS, SKATERS, BLOCKING_SHOTS],
+    t("nav_skaters"): [SKATER_STATS, GOALIE_STATS, SKATERS],
+    t("nav_action"): [BLOCKING_SHOTS, HIT_IMPACT],
 }
 pg = st.navigation(pages)
 pg.run()

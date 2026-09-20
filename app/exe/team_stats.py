@@ -157,19 +157,29 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
             """, unsafe_allow_html=True)
         with col2:
             st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{iter_away_team}</p>", unsafe_allow_html=True)
+        has_both_odds = (
+            home_odds is not None and not pd.isna(home_odds) and
+            away_odds is not None and not pd.isna(away_odds)
+        )
+        has_both_scores = (
+            home_score is not None and not pd.isna(home_score) and
+            away_score is not None and not pd.isna(away_score)
+        )
+
         with col_odds:
-            if away_odds is not None:
+            if away_odds is not None and not pd.isna(away_odds):
                 # Money line 2 - always negative and positive - smaller font
                 odds_str = format_odds_value(away_odds)
-                if home_odds > away_odds:
+                if has_both_odds and home_odds > away_odds:
                     st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
                     st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
-            if away_score > home_score:
-                st.markdown(f"<p style='color:#28a745;text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{away_score}</p>", unsafe_allow_html=True)
+            score_disp = away_score if (away_score is not None and not pd.isna(away_score)) else ""
+            if has_both_scores and away_score > home_score:
+                st.markdown(f"<p style='color:#28a745;text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{score_disp}</p>", unsafe_allow_html=True)
             else:
-                st.markdown(f"<p style='text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{away_score}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{score_disp}</p>", unsafe_allow_html=True)
         
         # Home team row - more compact
         col1, col2, col_odds, col_score = st.columns([0.8, 1, 0.8, 0.6])
@@ -183,18 +193,19 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
         with col2:
             st.markdown(f"<p style='text-align:center; font-weight:bold; margin:5px 0;'>{iter_home_team}</p>", unsafe_allow_html=True)
         with col_odds:
-            if home_odds is not None:
+            if home_odds is not None and not pd.isna(home_odds):
                 # Money line 2 - always negative and positive - smaller font
                 odds_str = format_odds_value(home_odds)
-                if home_odds < away_odds:
+                if has_both_odds and home_odds < away_odds:
                     st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
                     st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
-            if home_score > away_score:
-                st.markdown(f"<p style='color:#28a745;text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{home_score}</p>", unsafe_allow_html=True)
+            score_disp = home_score if (home_score is not None and not pd.isna(home_score)) else ""
+            if has_both_scores and home_score > away_score:
+                st.markdown(f"<p style='color:#28a745;text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{score_disp}</p>", unsafe_allow_html=True)
             else:
-                st.markdown(f"<p style='text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{home_score}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p style='text-align:center;font-weight:bold;font-size:16px;margin:5px 0;'>{score_disp}</p>", unsafe_allow_html=True)
         
         
 def render_scoreboard():
@@ -211,7 +222,7 @@ def render_scoreboard():
         return
     
     # Initialize session state for date if not already set
-    if 'current_date_idx' not in st.session_state:
+    if 'current_date_idx' not in st.session_state or st.session_state.current_date_idx >= len(available_dates) or st.session_state.current_date_idx < 0:
         st.session_state.current_date_idx = 0
     
     # Layout for date selector with navigation arrows
@@ -303,8 +314,8 @@ def render_scoreboard():
                     create_scoreboard_card(
                         iter_home_team=game['tricode_for'],
                         iter_away_team=game['tricode_against'],
-                        home_score=int(game['metric_score_for']),
-                        away_score=int(game['metric_score_against']),
+                        home_score=int(game['metric_score_for']) if pd.notna(game.get('metric_score_for')) else None,
+                        away_score=int(game['metric_score_against']) if pd.notna(game.get('metric_score_against')) else None,
                         game_date=game['date'],
                         game_status=game["period_ending"],
                         home_odds=home_odds,

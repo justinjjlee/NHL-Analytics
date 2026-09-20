@@ -54,7 +54,7 @@ with col_team1:
     home_team = st.selectbox(
         t("map_select_home"), 
         options=team_options,
-        index=0 if initial_home == "" else team_options.index(initial_home)
+        index=team_options.index(initial_home) if initial_home in team_options else 0
     )
 
 # Away team selection on the right column
@@ -62,7 +62,7 @@ with col_team2:
     away_team = st.selectbox(
         t("map_select_away"), 
         options=team_options,
-        index=0 if initial_away == "" else team_options.index(initial_away)
+        index=team_options.index(initial_away) if initial_away in team_options else 0
     )
 
 # Store selections
