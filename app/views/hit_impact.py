@@ -309,7 +309,7 @@ def render_interactive_rink_heatmap(df_grid, df_goals, selected_loc=None, half_r
                     ),
                     name=t("hit_panel_goals_scored"),
                     text=[f"{t('hit_tree_event_goal')}! {r['outcome_side']} (+{r['delta_sec']}s)" for _, r in goals_from_loc.iterrows()],
-                    hoverinfo="none"
+                    hoverinfo="skip"
                 ))
 
     fig.update_layout(
@@ -581,7 +581,7 @@ def create_shot_outcome_decision_tree(df_goals, selected_zone="All", highlight=N
         x=edge_x1, y=edge_y1,
         mode="lines",
         line=dict(color="rgba(148, 163, 184, 0.15)" if hl_layer else "rgba(148, 163, 184, 0.4)", width=1.5 if hl_layer else 2.5),
-        hoverinfo="none",
+        hoverinfo="skip",
         showlegend=False
     ))
     # Highlighted Zone->Side lines
@@ -590,7 +590,7 @@ def create_shot_outcome_decision_tree(df_goals, selected_zone="All", highlight=N
             x=edge_x1_hl, y=edge_y1_hl,
             mode="lines",
             line=dict(color="rgba(56, 189, 248, 0.7)", width=2.8),
-            hoverinfo="none",
+            hoverinfo="skip",
             showlegend=False
         ))
 
@@ -623,7 +623,7 @@ def create_shot_outcome_decision_tree(df_goals, selected_zone="All", highlight=N
         x=edge_x2, y=edge_y2,
         mode="lines",
         line=dict(color="rgba(148, 163, 184, 0.1)" if hl_layer else "rgba(148, 163, 184, 0.3)", width=1 if hl_layer else 1.8),
-        hoverinfo="none",
+        hoverinfo="skip",
         showlegend=False
     ))
     # Highlighted Side->Event lines
@@ -632,7 +632,7 @@ def create_shot_outcome_decision_tree(df_goals, selected_zone="All", highlight=N
             x=edge_x2_hl, y=edge_y2_hl,
             mode="lines",
             line=dict(color="rgba(250, 204, 21, 0.85)" if (hl_layer == 3 and hl_cat == "goal") else "rgba(56, 189, 248, 0.75)", width=2.8),
-            hoverinfo="none",
+            hoverinfo="skip",
             showlegend=False
         ))
 
@@ -1210,13 +1210,22 @@ def show():
                     index=tz_idx,
                     key=f"select_tree_zone_scope_{cur_l}"
                 )
-                st.session_state.select_tree_zone_scope_val = selected_tree_zone
+                if selected_tree_zone != prev_tree_zone:
+                    # Scope changed: if a layer-1 zone was highlighted that doesn't match the new scope, reset it
+                    if st.session_state.get("tree_highlight") and st.session_state["tree_highlight"].get("layer") == 1:
+                        if selected_tree_zone != "All" and st.session_state["tree_highlight"].get("category") != selected_tree_zone:
+                            st.session_state.tree_highlight = None
+                            st.session_state.tree_highlight_source = None
+                            st.session_state.last_clicked_tree_pt = None
+                    st.session_state.select_tree_zone_scope_val = selected_tree_zone
 
             # Initialize session state for interactive tree highlighting
             if "tree_highlight" not in st.session_state:
                 st.session_state.tree_highlight = None
             if "last_clicked_tree_pt" not in st.session_state:
                 st.session_state.last_clicked_tree_pt = None
+            if "tree_highlight_source" not in st.session_state:
+                st.session_state.tree_highlight_source = None
 
             # Category filter buttons in order of tree hierarchy
             st.success(t("hit_btn_success_desc"))
@@ -1290,72 +1299,69 @@ def show():
             </style>
             """, unsafe_allow_html=True)
 
+            chart_key = f"tree_chart_{selected_tree_zone}"
+
+            # Callback for category button clicks to guarantee state updates before rerun
+            def on_tree_ribbon_click(layer, cat, lbl, ck):
+                if layer == "clear":
+                    st.session_state.tree_highlight = None
+                    st.session_state.tree_highlight_source = None
+                    st.session_state.last_clicked_tree_pt = None
+                else:
+                    st.session_state.tree_highlight = {"layer": layer, "category": cat, "label": lbl}
+                    st.session_state.tree_highlight_source = "button"
+                    st.session_state.last_clicked_tree_pt = f"{layer}_{cat}"
+                if ck in st.session_state and isinstance(st.session_state[ck], dict):
+                    st.session_state[ck] = {"selection": {"points": []}}
+
             # Button ribbon ordered by Tree Hierarchy:
             # Stage 2: Hitting Team (For) -> Opponent (Against)
             # Stage 3: Goals -> Shots on Goal -> Missed Shots -> Blocked Shots
             btn_cols = st.columns(7)
             with btn_cols[0]:
-                btn_reset = st.button(t("hit_btn_reset"), key="btn_tree_reset", width="stretch")
+                st.button(t("hit_btn_reset"), key="btn_tree_reset", width="stretch",
+                          on_click=on_tree_ribbon_click, args=("clear", None, None, chart_key))
             with btn_cols[1]:
-                btn_for = st.button(t("hit_btn_for"), key="btn_tree_for", width="stretch")
+                st.button(t("hit_btn_for"), key="btn_tree_for", width="stretch",
+                          on_click=on_tree_ribbon_click, args=(2, "Hitting Team (For)", t("hit_btn_for"), chart_key))
             with btn_cols[2]:
-                btn_agst = st.button(t("hit_btn_agst"), key="btn_tree_agst", width="stretch")
+                st.button(t("hit_btn_agst"), key="btn_tree_agst", width="stretch",
+                          on_click=on_tree_ribbon_click, args=(2, "Opponent (Against)", t("hit_btn_agst"), chart_key))
             with btn_cols[3]:
-                btn_goal = st.button(t("hit_btn_goal"), key="btn_tree_goal", width="stretch")
+                st.button(t("hit_btn_goal"), key="btn_tree_goal", width="stretch",
+                          on_click=on_tree_ribbon_click, args=(3, "goal", t("hit_btn_goal"), chart_key))
             with btn_cols[4]:
-                btn_sog = st.button(t("hit_btn_sog"), key="btn_tree_sog", width="stretch")
+                st.button(t("hit_btn_sog"), key="btn_tree_sog", width="stretch",
+                          on_click=on_tree_ribbon_click, args=(3, "shot-on-goal", t("hit_btn_sog"), chart_key))
             with btn_cols[5]:
-                btn_miss = st.button(t("hit_btn_miss"), key="btn_tree_miss", width="stretch")
+                st.button(t("hit_btn_miss"), key="btn_tree_miss", width="stretch",
+                          on_click=on_tree_ribbon_click, args=(3, "missed-shot", t("hit_btn_miss"), chart_key))
             with btn_cols[6]:
-                btn_block = st.button(t("hit_btn_block"), key="btn_tree_block", width="stretch")
+                st.button(t("hit_btn_block"), key="btn_tree_block", width="stretch",
+                          on_click=on_tree_ribbon_click, args=(3, "blocked-shot", t("hit_btn_block"), chart_key))
 
-            # Handle button click actions
-            btn_action = None
-            if btn_reset:
-                btn_action = ("clear", None, None)
-            elif btn_for:
-                btn_action = (2, "Hitting Team (For)", t("hit_btn_for"))
-            elif btn_agst:
-                btn_action = (2, "Opponent (Against)", t("hit_btn_agst"))
-            elif btn_goal:
-                btn_action = (3, "goal", t("hit_btn_goal"))
-            elif btn_sog:
-                btn_action = (3, "shot-on-goal", t("hit_btn_sog"))
-            elif btn_miss:
-                btn_action = (3, "missed-shot", t("hit_btn_miss"))
-            elif btn_block:
-                btn_action = (3, "blocked-shot", t("hit_btn_block"))
-
-            if btn_action:
-                if btn_action[0] == "clear":
-                    st.session_state.tree_highlight = None
-                    st.session_state.last_clicked_tree_pt = None
-                else:
-                    layer, cat, lbl = btn_action
-                    st.session_state.tree_highlight = {"layer": layer, "category": cat, "label": lbl}
-                    st.session_state.last_clicked_tree_pt = f"{layer}_{cat}"
-
-            # Check for chart point click in session state
-            chart_key = f"tree_chart_{selected_tree_zone}"
+            # Check for chart point click in session state (populated by Streamlit before script execution)
             chart_state = st.session_state.get(chart_key)
-            if chart_state and isinstance(chart_state, dict) and not btn_action:
+            if chart_state and isinstance(chart_state, dict):
                 sel = chart_state.get("selection", {})
                 pts = sel.get("points", [])
                 if pts:
                     cd = pts[0].get("customdata")
-                    if cd and len(cd) >= 3:
+                    if cd and len(cd) >= 3 and cd[0] is not None and cd[1] is not None:
                         click_id = f"{cd[0]}_{cd[1]}"
-                        if click_id != st.session_state.get("last_clicked_tree_pt"):
-                            st.session_state.last_clicked_tree_pt = click_id
-                            st.session_state.tree_highlight = {
-                                "layer": int(cd[0]),
-                                "category": str(cd[1]),
-                                "label": str(cd[2])
-                            }
+                        st.session_state.last_clicked_tree_pt = click_id
+                        st.session_state.tree_highlight_source = "chart"
+                        st.session_state.tree_highlight = {
+                            "layer": int(cd[0]),
+                            "category": str(cd[1]),
+                            "label": str(cd[2])
+                        }
                 else:
-                    if st.session_state.get("last_clicked_tree_pt") is not None and not btn_action:
+                    # Only deselect if the current highlight was initiated by a chart click
+                    if st.session_state.get("tree_highlight_source") == "chart":
                         st.session_state.last_clicked_tree_pt = None
                         st.session_state.tree_highlight = None
+                        st.session_state.tree_highlight_source = None
 
             # Render Decision Tree with Plotly and on_select="rerun"
             st.plotly_chart(
@@ -1593,6 +1599,8 @@ def show():
             # Initialize session state for selected location
             if "selected_hit_loc" not in st.session_state:
                 st.session_state.selected_hit_loc = None
+            if "last_rink_clicked_pt" not in st.session_state:
+                st.session_state.last_rink_clicked_pt = None
 
             rink_ctrl_1, rink_ctrl_2 = st.columns([1, 1])
             with rink_ctrl_1:
@@ -1610,6 +1618,15 @@ def show():
                     key=f"heat_rink_view_{cur_l}"
                 )
                 st.session_state.heat_rink_view_val = view_mode
+
+                # If in half rink mode and selected location is in defensive half (x < 0), clear selection
+                if view_mode == "half" and st.session_state.selected_hit_loc is not None:
+                    if st.session_state.selected_hit_loc[0] < 0:
+                        st.session_state.selected_hit_loc = None
+                        st.session_state.last_rink_clicked_pt = None
+                        if "rink_heat_chart" in st.session_state and isinstance(st.session_state["rink_heat_chart"], dict):
+                            st.session_state["rink_heat_chart"] = {"selection": {"points": []}}
+
             with rink_ctrl_2:
                 hotspot_preset_coords = {
                     "o_corner": (90.0, -30.0),
@@ -1631,8 +1648,8 @@ def show():
                     "d_corner_l": t("hit_rink_preset_d_corner_l", lang=cur_l),
                     "d_net": t("hit_rink_preset_d_net", lang=cur_l)
                 }
+                preset_opts = [k for k, coords in hotspot_preset_coords.items() if (coords[0] >= 0 if view_mode == "half" else True)]
                 prev_preset_key = st.session_state.get("select_rink_preset_key_val", "o_corner")
-                preset_opts = list(hotspot_preset_coords.keys())
                 pr_idx = preset_opts.index(prev_preset_key) if prev_preset_key in preset_opts else 0
 
                 preset_key = st.selectbox(
@@ -1643,9 +1660,44 @@ def show():
                     key=f"select_rink_preset_key_{cur_l}"
                 )
                 st.session_state.select_rink_preset_key_val = preset_key
-                if st.button(t("hit_rink_preset_btn")):
-                    st.session_state.selected_hit_loc = hotspot_preset_coords[preset_key]
-                    st.rerun()
+
+                def on_apply_rink_preset(coords):
+                    st.session_state.selected_hit_loc = coords
+                    st.session_state.last_rink_clicked_pt = None
+                    if "rink_heat_chart" in st.session_state and isinstance(st.session_state["rink_heat_chart"], dict):
+                        st.session_state["rink_heat_chart"] = {"selection": {"points": []}}
+
+                st.button(
+                    t("hit_rink_preset_btn"),
+                    key="btn_apply_rink_preset",
+                    on_click=on_apply_rink_preset,
+                    args=(hotspot_preset_coords[preset_key],)
+                )
+
+            # Process Reactive Chart Click from Session State (populated by Streamlit before script run)
+            chart_state = st.session_state.get("rink_heat_chart")
+            if chart_state and isinstance(chart_state, dict):
+                sel = chart_state.get("selection", {})
+                pts = sel.get("points", [])
+                if pts:
+                    pt = pts[0]
+                    # Only accept clicks on curve 0 (the heatmap tiles trace)
+                    if pt.get("curve_number", 0) == 0:
+                        px_val = pt.get("x")
+                        py_val = pt.get("y")
+                        if px_val is not None and py_val is not None:
+                            try:
+                                clicked_pt = (float(px_val), float(py_val))
+                                if ((df_grid["x_bin"] == clicked_pt[0]) & (df_grid["y_bin"] == clicked_pt[1])).any():
+                                    st.session_state.selected_hit_loc = clicked_pt
+                                    st.session_state.last_rink_clicked_pt = clicked_pt
+                            except (ValueError, TypeError):
+                                pass
+                else:
+                    # User clicked chart background to deselect (only if prior selection was from chart)
+                    if st.session_state.get("last_rink_clicked_pt") is not None:
+                        st.session_state.selected_hit_loc = None
+                        st.session_state.last_rink_clicked_pt = None
 
             # Render Heatmap figure (all tiles visible and clickable, min_density=0.0)
             fig_rink = render_interactive_rink_heatmap(
@@ -1657,22 +1709,13 @@ def show():
             )
 
             # Reactive click selection via Streamlit plotly_chart on_select
-            selected_event = st.plotly_chart(
+            st.plotly_chart(
                 fig_rink,
                 width="stretch",
                 on_select="rerun",
                 selection_mode=["points"],
                 key="rink_heat_chart"
             )
-
-            # If user clicked on a point, update session state
-            if selected_event and "selection" in selected_event and selected_event["selection"]["points"]:
-                pt = selected_event["selection"]["points"][0]
-                if "x" in pt and "y" in pt:
-                    clicked_pt = (float(pt["x"]), float(pt["y"]))
-                    if clicked_pt != st.session_state.selected_hit_loc:
-                        st.session_state.selected_hit_loc = clicked_pt
-                        st.rerun()
 
             # Detailed Inspection Panel for Selected Location
             if st.session_state.selected_hit_loc is not None:
@@ -1683,13 +1726,21 @@ def show():
                     cell = matched_cell.iloc[0]
                     zone_desc = t("hit_tree_zone_o") if cell["spatial_zone"] == "O" else (t("hit_tree_zone_d") if cell["spatial_zone"] == "D" else t("hit_tree_zone_n"))
 
+                    def on_clear_rink_selection():
+                        st.session_state.selected_hit_loc = None
+                        st.session_state.last_rink_clicked_pt = None
+                        if "rink_heat_chart" in st.session_state and isinstance(st.session_state["rink_heat_chart"], dict):
+                            st.session_state["rink_heat_chart"] = {"selection": {"points": []}}
+
                     col_title, col_clear = st.columns([4, 1])
                     with col_title:
                         st.markdown(f"### {t('hit_rink_inspected_loc').format(x=f'{sel_x:+.0f}', y=f'{sel_y:+.0f}', zone=zone_desc)}")
                     with col_clear:
-                        if st.button(get_rink_text("hit_rink_clear_btn"), key="btn_clear_rink_sel"):
-                            st.session_state.selected_hit_loc = None
-                            st.rerun()
+                        st.button(
+                            get_rink_text("hit_rink_clear_btn"),
+                            key="btn_clear_rink_sel",
+                            on_click=on_clear_rink_selection
+                        )
 
                     st.markdown(
                         f"""
@@ -1881,57 +1932,60 @@ def show():
                     (df_team_kpi["season"] == selected_season) & (df_team_kpi["team"] != "LEAGUE_AVG")
                 ].copy()
 
-                league_teams["team_label"] = league_teams["team"].map(team_name_map).fillna(league_teams["team"])
-                league_teams["is_selected"] = league_teams["team"] == primary_tri
+                if not league_teams.empty:
+                    league_teams["team_label"] = league_teams["team"].map(team_name_map).fillna(league_teams["team"])
+                    league_teams["is_selected"] = league_teams["team"] == primary_tri
 
-                fig_scatter = px.scatter(
-                    league_teams,
-                    x="ozone_pct",
-                    y="puck_win_pct",
-                    size="total_hits",
-                    color="net_shots_per_100",
-                    color_continuous_scale="RdYlGn",
-                    hover_name="team_label",
-                    hover_data={
-                        "total_hits": ":,",
-                        "hits_per_game": ":.1f",
-                        "ozone_pct": ":.1f%",
-                        "puck_win_pct": ":.1f%",
-                        "net_shots_per_100": ":+.2f",
-                        "is_selected": False
-                    },
-                    labels={
-                        "ozone_pct": t("hit_scatter_x_label"),
-                        "puck_win_pct": t("hit_scatter_y_label"),
-                        "net_shots_per_100": t("hit_scatter_color_label"),
-                        "total_hits": t("hit_scatter_total_hits"),
-                        "hits_per_game": t("hit_scatter_hits_per_game")
-                    },
-                    title=t("hit_team_scatter_title_full").format(season=selected_season_label)
-                )
+                    fig_scatter = px.scatter(
+                        league_teams,
+                        x="ozone_pct",
+                        y="puck_win_pct",
+                        size="total_hits",
+                        color="net_shots_per_100",
+                        color_continuous_scale="RdYlGn",
+                        hover_name="team_label",
+                        hover_data={
+                            "total_hits": ":,",
+                            "hits_per_game": ":.1f",
+                            "ozone_pct": ":.1f%",
+                            "puck_win_pct": ":.1f%",
+                            "net_shots_per_100": ":+.2f",
+                            "is_selected": False
+                        },
+                        labels={
+                            "ozone_pct": t("hit_scatter_x_label"),
+                            "puck_win_pct": t("hit_scatter_y_label"),
+                            "net_shots_per_100": t("hit_scatter_color_label"),
+                            "total_hits": t("hit_scatter_total_hits"),
+                            "hits_per_game": t("hit_scatter_hits_per_game")
+                        },
+                        title=t("hit_team_scatter_title_full").format(season=selected_season_label)
+                    )
 
-                # Highlight the primary selected team
-                t1_row = league_teams[league_teams["team"] == primary_tri]
-                if not t1_row.empty:
-                    fig_scatter.add_trace(go.Scatter(
-                        x=[t1_row["ozone_pct"].values[0]],
-                        y=[t1_row["puck_win_pct"].values[0]],
-                        mode="markers+text",
-                        marker=dict(symbol="star", size=22, color="#facc15", line=dict(color="black", width=1.5)),
-                        text=[f"  [{primary_tri}]"],
-                        textposition="top right",
-                        textfont=dict(color="#facc15", size=13),
-                        name=f"{t('hit_scatter_selected_prefix')} {primary_tri}"
-                    ))
+                    # Highlight the primary selected team
+                    t1_row = league_teams[league_teams["team"] == primary_tri]
+                    if not t1_row.empty:
+                        fig_scatter.add_trace(go.Scatter(
+                            x=[t1_row["ozone_pct"].values[0]],
+                            y=[t1_row["puck_win_pct"].values[0]],
+                            mode="markers+text",
+                            marker=dict(symbol="star", size=22, color="#facc15", line=dict(color="black", width=1.5)),
+                            text=[f"  [{primary_tri}]"],
+                            textposition="top right",
+                            textfont=dict(color="#facc15", size=13),
+                            name=f"{t('hit_scatter_selected_prefix')} {primary_tri}"
+                        ))
 
-                fig_scatter.update_layout(
-                    paper_bgcolor="rgba(0,0,0,0)",
-                    plot_bgcolor="rgba(0,0,0,0)",
-                    font=dict(color="white"),
-                    height=480,
-                    margin=dict(l=10, r=10, t=40, b=10)
-                )
-                st.plotly_chart(fig_scatter, width="stretch")
+                    fig_scatter.update_layout(
+                        paper_bgcolor="rgba(0,0,0,0)",
+                        plot_bgcolor="rgba(0,0,0,0)",
+                        font=dict(color="white"),
+                        height=480,
+                        margin=dict(l=10, r=10, t=40, b=10)
+                    )
+                    st.plotly_chart(fig_scatter, width="stretch")
+            else:
+                st.warning(f"No metric data available for {primary_choice} or {benchmark_label} for season {selected_season_label}.")
 
     # ══════════════════════════════════════════════════════════════════════════
     # LAYER 1 - TAB 3: TACTICAL INSIGHTS
