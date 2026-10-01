@@ -4,10 +4,18 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["NHL API pull data for game-level stats (games and odds)"]
+    types: [completed]
+  schedule:
+    # Daily at 21:00 UTC during hockey season (1 hour after the 20:00 UTC data pull)
+    - cron: '0 21 * 1-6,9-12 *'
 
 jobs:
   sync-to-hf-space:
     runs-on: ubuntu-latest
+    # Only run on successful completion if triggered by workflow_run
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,4 +34,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         if: env.HF_TOKEN != ''
         run: |
-          python deploy_hf.py --repo "jjerlee/rinklytics"
+          python deploy_hf.py --repo "jjerlee/rinklytics" --no-wait
