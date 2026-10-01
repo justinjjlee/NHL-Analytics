@@ -1,7 +1,7 @@
 <h1>
 <a href="https://medium.com/@thinkingjustin">
 <img src="docs/images/logo_bing.jpeg" width="80px" align="left" style="margin-right: 10px;", alt="nhla-logo"> 
-</a> Rinklytics: An Ice Hockey Sports Analytics Platform Based on National Hockey League (NHL) Data
+</a> Rinklytics: Sports Data Analytics using NHL Data
 </h1>
 
 If you find my work to be useful, please star this repository!
