@@ -1,16 +1,3 @@
----
-title: Rinklytics - NHL Analytics Dashboard
-emoji: 🏒
-colorFrom: red
-colorTo: gray
-sdk: gradio
-sdk_version: 6.29.0
-python_version: "3.12"
-app_file: app.py
-pinned: false
-license: mit
----
-
 <h1>
 <a href="https://medium.com/@thinkingjustin">
 <img src="docs/images/logo_bing.jpeg" width="80px" align="left" style="margin-right: 10px;", alt="nhla-logo"> 

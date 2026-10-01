@@ -14,6 +14,21 @@ except ImportError:
     sys.exit(1)
 
 
+HF_SPACE_FRONTMATTER = """---
+title: Rinklytics - NHL Analytics Dashboard
+emoji: 🏒
+colorFrom: red
+colorTo: gray
+sdk: gradio
+sdk_version: 6.29.0
+python_version: "3.12"
+app_file: app.py
+pinned: false
+license: mit
+---
+"""
+
+
 def get_token():
     # 1. Environment variable
     token = os.environ.get("HF_TOKEN") or os.environ.get("rinklytics")
@@ -51,6 +66,7 @@ def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True):
         repo_id=repo_id,
         repo_type="space",
         ignore_patterns=[
+            "README.md",
             ".git/**",
             ".venv/**",
             "venv/**",
@@ -79,6 +95,22 @@ def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True):
         ],
         commit_message="Deploy Rinklytics Streamlit dashboard and datasets",
     )
+
+    # Upload Space README.md with required YAML frontmatter metadata
+    readme_path = repo_root / "README.md"
+    if readme_path.exists():
+        readme_content = readme_path.read_text(encoding="utf-8")
+        if not readme_content.startswith("---"):
+            readme_to_upload = f"{HF_SPACE_FRONTMATTER}\n{readme_content}"
+        else:
+            readme_to_upload = readme_content
+        api.upload_file(
+            path_or_fileobj=readme_to_upload.encode("utf-8"),
+            path_in_repo="README.md",
+            repo_id=repo_id,
+            repo_type="space",
+            commit_message="Update Space README with configuration metadata",
+        )
     print("Files uploaded successfully!")
 
     if wait:
