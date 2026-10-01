@@ -20,6 +20,7 @@ folium>=0.14.0
 
 # API and web
 requests>=2.32.0
+urllib3>=2.8.0
 flask>=3.0.0
 
 # Utilities
