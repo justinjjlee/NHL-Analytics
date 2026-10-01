@@ -136,223 +136,218 @@ def render_exceptional_players_analysis():
         multi_exceptional_players, exceptional_seasons_details, career_data = get_processed_exceptional_data()
         if multi_exceptional_players is None or career_data is None:
             st.warning(t("da_no_data"))
-            return
-
-            # Add a new section for exceptional players
-            st.header(t("da_first_round"))
-    
-            # Update the title and description with more emphasis on the 95th percentile calculation
-            st.markdown(t("da_draft_years").format(
-                min_year=career_data.year.min(), 
-                max_year=career_data.year.max(), 
-                max_season=exceptional_seasons_details['season_marking'].max()
-            ))
-            st.subheader(t("da_exceptional"))
-            st.markdown(t("da_exceptional_desc"))
-            
-            # Display summary metrics
-            cols = st.columns([1,2,3])
-            with cols[0]:
-                st.metric(t("da_skaters"), len(multi_exceptional_players))
-            with cols[1]:
-                st.metric(t("da_most_seasons"), multi_exceptional_players['exceptional_seasons'].max())
-            with cols[2]:
-                # find player with most exceptional seasons
-                top_player = multi_exceptional_players.loc[multi_exceptional_players['exceptional_seasons'].idxmax()]
-                st.metric(t("da_most_skater"), f"{top_player['firstName']} {top_player['lastName']}")
-            
-            fig = px.scatter(
-                multi_exceptional_players,
-                x="season",  # Using season count as x-axis
-                y="exceptional_seasons",
-                color="exceptional_seasons",
-                size="exceptional_seasons",  # Size points by number of exceptional seasons
-                hover_name="fullName",
-                hover_data=["firstName", "lastName", "overallPick", "exceptional_seasons"],
-                title=t("da_chart1_title"),
-                labels={
-                    "season": t("da_chart1_x"), 
-                    "exceptional_seasons": t("da_chart1_y"),
-                    "fullName": t("da_chart1_player")
-                },
-                color_continuous_scale="viridis",
-                range_color=[2, multi_exceptional_players['exceptional_seasons'].max()],
-            )
-
-            # Customize layout
-            fig.update_layout(
-                xaxis_title=t("da_chart1_x"),
-                yaxis_title=t("da_chart1_y"),
-                height=500,
-                coloraxis_showscale=False,
-                hovermode="closest"
-            )
-
-            # Add player names as text labels
-            fig.update_traces(
-                textposition="top center",
-                textfont=dict(size=10),
-                text=[f"{row['lastName']} (#{row['overallPick']})" for _, row in multi_exceptional_players.iterrows()]
-            )
-
-            # Show only integer ticks on y-axis
-            fig.update_yaxes(
-                dtick=1,
-                tick0=0
-            )
-
-            # Custom hover template
-            fig.update_traces(
-                hovertemplate="<b>%{hovertext}</b><br>" +
-                            t("da_chart1_draft") + ": #%{customdata[2]}<br>" +
-                            t("da_chart1_hover") + "<br>" +
-                            "<extra></extra>"
-            )
-
-            st.plotly_chart(fig, width="stretch")
-            
-            st.subheader(t("da_tracking"))
-            # Create detailed view of exceptional seasons
-            st.markdown("""
-                Select skater(s) to view point productions over their career and exceptional seasons in detail.
-            """)
-            # Allow user to filter by player
-            default_players = []
-            player_list = sorted(career_data["fullName"].unique())
-
-            # Check if our desired default players are in the dataset
-            for player in ["Patrick Kane", "Duncan Keith", "Jonathan Toews", "Connor Bedard"]:
-                if player in player_list:
-                    default_players.append(player)
-
-            # Create the multiselect with our default players
-            selected_players = st.multiselect(
-                t("da_select_skaters"),
-                options=player_list,
-                default=default_players
-            )
-            
-            # Create scatter plot of exceptional seasons with complete career lines
-            if selected_players:
-                # Filter exceptional seasons data for selected players
-                filtered_exceptional = exceptional_seasons_details[
-                    exceptional_seasons_details["fullName"].isin(selected_players)
-                ]
-                
-                # Create figure for our visualization
-                fig = go.Figure()
-                
-                # For each selected player, add lines from career data
-                for i, player in enumerate(selected_players):
-                    # Find player in career data - first try by name
-                    player_career = career_data[(career_data['fullName'] == player)]
-                    
-                    if len(player_career) > 0:
-                        # Sort and plot
-                        player_career = player_career.sort_values('year_inNHL')
-                        fig.add_trace(go.Scatter(
-                            x=player_career['year_inNHL'],
-                            y=player_career['points'],
-                            mode='lines',
-                            name=f"{player}",
-                            line=dict(color=px.colors.qualitative.Plotly[i % len(px.colors.qualitative.Plotly)])
-                        , hovertemplate=
-                            "<b>%{text}</b><br>" +
-                            t("da_chart2_hover_pts") + ": %{y}<br>" +
-                            t("da_chart2_hover_gp") + ": " + player_career['gamesPlayed'].astype(int).astype(str) + "<br>" +
-                            t("da_chart2_hover_yr") + ": %{x}<br>" +
-                            t("da_chart2_hover_tm") + ": " + player_career['teamAbbrev_stats'] + "<br>" +
-                            t("da_chart2_hover_draft") + " " + \
-                                player_career['year'].astype(str) + " " + t("da_chart2_hover_by") + " " +\
-                                player_career['teamAbbrev_draft'] + " " + t("da_chart2_hover_overall") + " " +\
-                                player_career['overallPick'].astype(str) + "<br>",
-                        text=[f"{row['firstName']} {row['lastName']} ({row['season_marking']})" 
-                            for _, row in player_career.iterrows()],
-                        ))
-                
-                # Add scatter points for exceptional seasons
-                for i, player in enumerate(selected_players):
-                    player_exceptional = filtered_exceptional[
-                        filtered_exceptional['fullName'] == player
-                    ]
-                    # Merge with career data to get other information
-                    player_exceptional_seasonstats = career_data[
-                        (career_data['fullName'] == player)
-                    ][['fullName', 'season', 'year', 'teamAbbrev_stats', 'teamAbbrev_draft']]
-                    # left join with same columns
-                    player_exceptional = player_exceptional.merge(
-                        player_exceptional_seasonstats,
-                        on=['fullName', 'season'],
-                        how='left'
-                    )
-                    # Plot exceptional seasons as markers
-                    fig.add_trace(go.Scatter(
-                        x=player_exceptional['year_inNHL'],
-                        y=player_exceptional['points'],
-                        mode='markers',
-                        name=f"{player} (95%+)",
-                        marker=dict(
-                            color=px.colors.qualitative.Plotly[i % len(px.colors.qualitative.Plotly)],
-                            size=12,
-                            line=dict(width=2, color='white')
-                        ),
-                        hovertemplate=
-                            "<b>%{text}</b><br>" +
-                            t("da_chart2_hover_pts") + ": %{y}<br>" +
-                            t("da_chart2_hover_gp") + ": " + player_exceptional['gamesPlayed'].astype(int).astype(str) + "<br>" +
-                            t("da_chart2_hover_yr") + ": %{x}<br>" +
-                            t("da_chart2_hover_tm") + ": " + player_exceptional['teamAbbrev_stats'] + "<br>" +
-                            t("da_chart2_hover_draft") + " " + \
-                                player_exceptional['year'].astype(str) + " " + t("da_chart2_hover_by") + " " +\
-                                player_exceptional['teamAbbrev_draft'] + " " + t("da_chart2_hover_overall") + " " +\
-                                player_exceptional['overallPick'].astype(str) + "<br>",
-                        text=[f"{row['firstName']} {row['lastName']} ({row['season_marking']})" 
-                            for _, row in player_exceptional.iterrows()],
-                    ))
-                
-                # Update layout
-                fig.update_layout(
-                    title=t("da_chart2_title"),
-                    xaxis_title=t("da_chart2_x"),
-                    yaxis_title=t("da_chart2_y"),
-                    legend_title=t("da_chart2_legend"),
-                    height=500
-                )
-                
-                st.plotly_chart(fig, width="stretch")
-                
-                # Show table with exceptional seasons details
-                with st.expander(t("da_view_details")):
-                    st.markdown(t("da_table_desc"))
-                    
-                    display_df = filtered_exceptional[
-                        ["firstName", "lastName", "season_marking", "year_inNHL", 
-                        "points", "goals", "assists", "gamesPlayed", "pointspergame"]
-                    ].copy()
-                    
-                    display_df = display_df.sort_values(["lastName", "year_inNHL"])
-                    display_df["pointspergame"] = display_df["pointspergame"].round(2)
-                    
-                    display_df.columns = [
-                        t("da_col_fname"), t("da_col_lname"), t("da_col_season"),
-                        t("da_col_year"), t("da_col_pts"), t("da_col_g"),
-                        t("da_col_a"), t("da_col_gp"), t("da_col_ppg")
-                    ]
-                    
-                    st.dataframe(display_df, width="stretch", hide_index=True)
-            else:
-                st.info(t("da_no_skater"))
-                
-        else:
-            st.warning(t("da_no_data"))
-            
-            # If files don't exist, provide info about what they would contain
             st.info(t("da_requires_data"))
             st.info("""
             The exceptional skaters analysis shows players who have had multiple seasons performing above
             the 95th percentile in points production compared to their peers. This identifies the most 
             consistently elite performers among NHL draft picks.
             """)
+            return
+
+        # Add a new section for exceptional players
+        st.header(t("da_first_round"))
+
+        # Update the title and description with more emphasis on the 95th percentile calculation
+        st.markdown(t("da_draft_years").format(
+            min_year=career_data.year.min(), 
+            max_year=career_data.year.max(), 
+            max_season=exceptional_seasons_details['season_marking'].max()
+        ))
+        st.subheader(t("da_exceptional"))
+        st.markdown(t("da_exceptional_desc"))
+        
+        # Display summary metrics
+        cols = st.columns([1,2,3])
+        with cols[0]:
+            st.metric(t("da_skaters"), len(multi_exceptional_players))
+        with cols[1]:
+            st.metric(t("da_most_seasons"), multi_exceptional_players['exceptional_seasons'].max())
+        with cols[2]:
+            # find player with most exceptional seasons
+            top_player = multi_exceptional_players.loc[multi_exceptional_players['exceptional_seasons'].idxmax()]
+            st.metric(t("da_most_skater"), f"{top_player['firstName']} {top_player['lastName']}")
+        
+        fig = px.scatter(
+            multi_exceptional_players,
+            x="season",  # Using season count as x-axis
+            y="exceptional_seasons",
+            color="exceptional_seasons",
+            size="exceptional_seasons",  # Size points by number of exceptional seasons
+            hover_name="fullName",
+            hover_data=["firstName", "lastName", "overallPick", "exceptional_seasons"],
+            title=t("da_chart1_title"),
+            labels={
+                "season": t("da_chart1_x"), 
+                "exceptional_seasons": t("da_chart1_y"),
+                "fullName": t("da_chart1_player")
+            },
+            color_continuous_scale="viridis",
+            range_color=[2, multi_exceptional_players['exceptional_seasons'].max()],
+        )
+
+        # Customize layout
+        fig.update_layout(
+            xaxis_title=t("da_chart1_x"),
+            yaxis_title=t("da_chart1_y"),
+            height=500,
+            coloraxis_showscale=False,
+            hovermode="closest"
+        )
+
+        # Add player names as text labels
+        fig.update_traces(
+            textposition="top center",
+            textfont=dict(size=10),
+            text=[f"{row['lastName']} (#{row['overallPick']})" for _, row in multi_exceptional_players.iterrows()]
+        )
+
+        # Show only integer ticks on y-axis
+        fig.update_yaxes(
+            dtick=1,
+            tick0=0
+        )
+
+        # Custom hover template
+        fig.update_traces(
+            hovertemplate="<b>%{hovertext}</b><br>" +
+                        t("da_chart1_draft") + ": #%{customdata[2]}<br>" +
+                        t("da_chart1_hover") + "<br>" +
+                        "<extra></extra>"
+        )
+
+        st.plotly_chart(fig, width="stretch")
+        
+        st.subheader(t("da_tracking"))
+        # Create detailed view of exceptional seasons
+        st.markdown("""
+            Select skater(s) to view point productions over their career and exceptional seasons in detail.
+        """)
+        # Allow user to filter by player
+        default_players = []
+        player_list = sorted(career_data["fullName"].unique())
+
+        # Check if our desired default players are in the dataset
+        for player in ["Patrick Kane", "Duncan Keith", "Jonathan Toews", "Connor Bedard"]:
+            if player in player_list:
+                default_players.append(player)
+
+        # Create the multiselect with our default players
+        selected_players = st.multiselect(
+            t("da_select_skaters"),
+            options=player_list,
+            default=default_players
+        )
+        
+        # Create scatter plot of exceptional seasons with complete career lines
+        if selected_players:
+            # Filter exceptional seasons data for selected players
+            filtered_exceptional = exceptional_seasons_details[
+                exceptional_seasons_details["fullName"].isin(selected_players)
+            ]
+            
+            # Create figure for our visualization
+            fig = go.Figure()
+            
+            # For each selected player, add lines from career data
+            for i, player in enumerate(selected_players):
+                # Find player in career data - first try by name
+                player_career = career_data[(career_data['fullName'] == player)]
+                
+                if len(player_career) > 0:
+                    # Sort and plot
+                    player_career = player_career.sort_values('year_inNHL')
+                    fig.add_trace(go.Scatter(
+                        x=player_career['year_inNHL'],
+                        y=player_career['points'],
+                        mode='lines',
+                        name=f"{player}",
+                        line=dict(color=px.colors.qualitative.Plotly[i % len(px.colors.qualitative.Plotly)])
+                    , hovertemplate=
+                        "<b>%{text}</b><br>" +
+                        t("da_chart2_hover_pts") + ": %{y}<br>" +
+                        t("da_chart2_hover_gp") + ": " + player_career['gamesPlayed'].astype(int).astype(str) + "<br>" +
+                        t("da_chart2_hover_yr") + ": %{x}<br>" +
+                        t("da_chart2_hover_tm") + ": " + player_career['teamAbbrev_stats'] + "<br>" +
+                        t("da_chart2_hover_draft") + " " + \
+                            player_career['year'].astype(str) + " " + t("da_chart2_hover_by") + " " +\
+                            player_career['teamAbbrev_draft'] + " " + t("da_chart2_hover_overall") + " " +\
+                            player_career['overallPick'].astype(str) + "<br>",
+                    text=[f"{row['firstName']} {row['lastName']} ({row['season_marking']})" 
+                        for _, row in player_career.iterrows()],
+                    ))
+            
+            # Add scatter points for exceptional seasons
+            for i, player in enumerate(selected_players):
+                player_exceptional = filtered_exceptional[
+                    filtered_exceptional['fullName'] == player
+                ]
+                # Merge with career data to get other information
+                player_exceptional_seasonstats = career_data[
+                    (career_data['fullName'] == player)
+                ][['fullName', 'season', 'year', 'teamAbbrev_stats', 'teamAbbrev_draft']]
+                # left join with same columns
+                player_exceptional = player_exceptional.merge(
+                    player_exceptional_seasonstats,
+                    on=['fullName', 'season'],
+                    how='left'
+                )
+                # Plot exceptional seasons as markers
+                fig.add_trace(go.Scatter(
+                    x=player_exceptional['year_inNHL'],
+                    y=player_exceptional['points'],
+                    mode='markers',
+                    name=f"{player} (95%+)",
+                    marker=dict(
+                        color=px.colors.qualitative.Plotly[i % len(px.colors.qualitative.Plotly)],
+                        size=12,
+                        line=dict(width=2, color='white')
+                    ),
+                    hovertemplate=
+                        "<b>%{text}</b><br>" +
+                        t("da_chart2_hover_pts") + ": %{y}<br>" +
+                        t("da_chart2_hover_gp") + ": " + player_exceptional['gamesPlayed'].astype(int).astype(str) + "<br>" +
+                        t("da_chart2_hover_yr") + ": %{x}<br>" +
+                        t("da_chart2_hover_tm") + ": " + player_exceptional['teamAbbrev_stats'] + "<br>" +
+                        t("da_chart2_hover_draft") + " " + \
+                            player_exceptional['year'].astype(str) + " " + t("da_chart2_hover_by") + " " +\
+                            player_exceptional['teamAbbrev_draft'] + " " + t("da_chart2_hover_overall") + " " +\
+                            player_exceptional['overallPick'].astype(str) + "<br>",
+                    text=[f"{row['firstName']} {row['lastName']} ({row['season_marking']})" 
+                        for _, row in player_exceptional.iterrows()],
+                ))
+            
+            # Update layout
+            fig.update_layout(
+                title=t("da_chart2_title"),
+                xaxis_title=t("da_chart2_x"),
+                yaxis_title=t("da_chart2_y"),
+                legend_title=t("da_chart2_legend"),
+                height=500
+            )
+            
+            st.plotly_chart(fig, width="stretch")
+            
+            # Show table with exceptional seasons details
+            with st.expander(t("da_view_details")):
+                st.markdown(t("da_table_desc"))
+                
+                display_df = filtered_exceptional[
+                    ["firstName", "lastName", "season_marking", "year_inNHL", 
+                    "points", "goals", "assists", "gamesPlayed", "pointspergame"]
+                ].copy()
+                
+                display_df = display_df.sort_values(["lastName", "year_inNHL"])
+                display_df["pointspergame"] = display_df["pointspergame"].round(2)
+                
+                display_df.columns = [
+                    t("da_col_fname"), t("da_col_lname"), t("da_col_season"),
+                    t("da_col_year"), t("da_col_pts"), t("da_col_g"),
+                    t("da_col_a"), t("da_col_gp"), t("da_col_ppg")
+                ]
+                
+                st.dataframe(display_df, width="stretch", hide_index=True)
+        else:
+            st.info(t("da_no_skater"))
             
     except Exception as e:
         st.error(t("da_error") + f": {e}")
