@@ -21,7 +21,7 @@ def get_data_path(rel_path):
 # Season-level data
 # ─────────────────────────────────────────────────────────────────────────────
 
-@st.cache_data(ttl=3600)
+@st.cache_data(max_entries=1, ttl=3600)
 def load_player_season_data():
     """
     Load all latest/player/{YYYY}_player.csv files.
@@ -57,20 +57,18 @@ def load_player_season_data():
     box_dir = get_data_path('latest/box')
     box_files = sorted(glob.glob(os.path.join(box_dir, '*_box_player.csv')))
     id_to_accent = {}
+    cols = ['name.cs', 'name.sk', 'name.fi', 'name.sv', 'name.de', 'name.es', 'name.fr']
     for f in box_files:
         try:
-            df_b = pd.read_csv(f, low_memory=False)
-            cols = ['name.cs', 'name.sk', 'name.fi', 'name.sv', 'name.de', 'name.es', 'name.fr']
-            avail_cols = [c for c in cols if c in df_b.columns]
+            header = pd.read_csv(f, nrows=0).columns.tolist()
+            avail_cols = [c for c in cols if c in header]
             if not avail_cols:
                 continue
-            subset = df_b.dropna(subset=['playerId']).copy()
-            subset['playerId'] = subset['playerId'].astype(int)
-            # Find the last non-null column for each player
+            df_b = pd.read_csv(f, usecols=['playerId'] + avail_cols, low_memory=False).dropna(subset=['playerId'])
+            df_b['playerId'] = df_b['playerId'].astype(int)
             for col in avail_cols:
-                rows = subset[subset[col].notna()]
-                for _, row in rows.iterrows():
-                    id_to_accent[int(row['playerId'])] = row[col]
+                non_null = df_b[df_b[col].notna()][['playerId', col]].drop_duplicates('playerId')
+                id_to_accent.update(dict(zip(non_null['playerId'], non_null[col])))
         except Exception:
             pass
 
@@ -142,21 +140,51 @@ def load_player_season_data():
 # Game-level data
 # ─────────────────────────────────────────────────────────────────────────────
 
-@st.cache_data(ttl=3600)
-def load_player_game_data():
+@st.cache_data(max_entries=2, ttl=1800)
+def load_player_game_data(season_year=None):
     """
-    Load all latest/box/{YYYY}_box_player.csv files.
+    Load latest/box/{YYYY}_box_player.csv files.
+    If season_year is provided, loads only that season.
+    If season_year is None, loads active player seasons.
     Returns (skater_games_df, goalie_games_df).
     """
     box_dir = get_data_path('latest/box')
-    files = sorted(glob.glob(os.path.join(box_dir, '*_box_player.csv')))
+    if season_year is not None:
+        target_file = os.path.join(box_dir, f"{season_year}_box_player.csv")
+        files = [target_file] if os.path.exists(target_file) else []
+    else:
+        # Load only seasons present in latest/player/
+        player_dir = get_data_path('latest/player')
+        p_files = glob.glob(os.path.join(player_dir, '*_player.csv'))
+        active_years = {os.path.basename(pf).split('_')[0] for pf in p_files}
+        files = [
+            os.path.join(box_dir, f"{yr}_box_player.csv")
+            for yr in sorted(active_years)
+            if os.path.exists(os.path.join(box_dir, f"{yr}_box_player.csv"))
+        ]
+        if not files:
+            files = sorted(glob.glob(os.path.join(box_dir, '*_box_player.csv')))
+
     if not files:
         return None, None
+
+    needed_cols = [
+        'gameid', 'playerId', 'teamloc', 'abbrev', 'position', 'gameDate',
+        'goals', 'assists', 'points', 'plusMinus', 'pim', 'hits',
+        'powerPlayGoals', 'sog', 'faceoffWinningPctg', 'blockedShots',
+        'shifts', 'giveaways', 'takeaways', 'toi',
+        'savePctg', 'goalsAgainst', 'shotsAgainst', 'saves',
+        'evenStrengthGoalsAgainst', 'powerPlayGoalsAgainst',
+        'name.default', 'name.cs', 'name.sk', 'name.fi', 'name.de', 'name.es', 'name.fr',
+        'saveShotsAgainst', 'decision'
+    ]
 
     frames = []
     for f in files:
         try:
-            df = pd.read_csv(f, low_memory=False)
+            header = pd.read_csv(f, nrows=0).columns.tolist()
+            use_cols = [c for c in needed_cols if c in header]
+            df = pd.read_csv(f, usecols=use_cols, low_memory=False)
             frames.append(df)
         except Exception:
             pass
@@ -167,7 +195,6 @@ def load_player_game_data():
     all_df = pd.concat(frames, ignore_index=True)
 
     # Resolve best player name: pick last non-null locale variant (native spelling)
-    # Priority: cs/sk (used for Slavic + Nordic diacritics) > fi > de > default
     locale_cols = ['name.cs', 'name.sk', 'name.fi', 'name.de', 'name.es']
     all_df['playerName'] = all_df.get('name.default', pd.Series(dtype=str))
     for col in locale_cols:
@@ -178,11 +205,13 @@ def load_player_game_data():
 
     all_df['gameDate'] = pd.to_datetime(all_df['gameDate'], errors='coerce')
 
-    # Derive season_year from gameDate: Oct-Dec → that year; Jan-Sep → previous year
-    # e.g., 2024-10-04 → 2024 (the "2024-25" season); 2025-03-01 → 2024
-    all_df['season_year'] = all_df['gameDate'].apply(
-        lambda d: d.year if pd.notna(d) and d.month >= 10 else (d.year - 1 if pd.notna(d) else None)
-    )
+    # Derive season_year
+    if season_year is not None:
+        all_df['season_year'] = int(season_year)
+    else:
+        m = all_df['gameDate'].dt.month
+        y = all_df['gameDate'].dt.year
+        all_df['season_year'] = np.where(m >= 10, y, y - 1)
 
     num_cols = [
         'goals', 'assists', 'points', 'plusMinus', 'pim', 'hits',
@@ -195,21 +224,23 @@ def load_player_game_data():
         if col in all_df.columns:
             all_df[col] = pd.to_numeric(all_df[col], errors='coerce')
 
-    # Derive opponent team: abbrev is only populated for the first player per team per game.
-    # Build gameid → {home: abbrev, away: abbrev} lookup, then broadcast to all rows.
+    # Vectorized opponent and own team lookup
     team_abbrev_rows = all_df[all_df['abbrev'].notna()][['gameid', 'teamloc', 'abbrev']].drop_duplicates()
-    home_map = team_abbrev_rows[team_abbrev_rows['teamloc'] == 'home'].set_index('gameid')['abbrev'].to_dict()
-    away_map = team_abbrev_rows[team_abbrev_rows['teamloc'] == 'away'].set_index('gameid')['abbrev'].to_dict()
+    home_map = team_abbrev_rows[team_abbrev_rows['teamloc'] == 'home'].set_index('gameid')['abbrev']
+    away_map = team_abbrev_rows[team_abbrev_rows['teamloc'] == 'away'].set_index('gameid')['abbrev']
 
-    all_df['own_team'] = all_df.apply(
-        lambda r: home_map.get(r['gameid']) if r['teamloc'] == 'home' else away_map.get(r['gameid']), axis=1
-    )
-    all_df['opp_team'] = all_df.apply(
-        lambda r: away_map.get(r['gameid']) if r['teamloc'] == 'home' else home_map.get(r['gameid']), axis=1
-    )
+    home_teams = all_df['gameid'].map(home_map)
+    away_teams = all_df['gameid'].map(away_map)
+    is_home = all_df['teamloc'] == 'home'
+    all_df['own_team'] = np.where(is_home, home_teams, away_teams)
+    all_df['opp_team'] = np.where(is_home, away_teams, home_teams)
 
     skater_games = all_df[all_df['position'].isin(['C', 'L', 'R', 'D'])].copy()
     goalie_games = all_df[all_df['position'] == 'G'].copy()
+
+    import gc
+    del all_df, frames
+    gc.collect()
 
     return skater_games, goalie_games
 

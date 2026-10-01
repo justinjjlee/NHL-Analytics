@@ -19,7 +19,7 @@ def get_logo_url(team_tri):
     """Helper to get SVG URL for st.dataframe ImageColumn"""
     return f"https://assets.nhle.com/logos/nhl/svg/{team_tri}_light.svg"
 
-@st.cache_data
+@st.cache_data(max_entries=1, ttl=3600)
 def load_season_data():
     """Load and aggregate box scores, merge with team_season stats across all available years."""
     # Find all team season files

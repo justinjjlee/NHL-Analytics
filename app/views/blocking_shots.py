@@ -13,6 +13,7 @@ def get_data_path(rel_path):
     # Navigate to the data file
     return os.path.join(repo_root, "dev", "decision_science", "plays_blockingShots", rel_path)
 
+@st.cache_data(max_entries=1, ttl=3600)
 def create_sankey_diagram():
     """Create and return the Sankey diagram figure"""
     try:

@@ -1,7 +1,19 @@
+---
+title: Rinklytics - NHL Analytics Dashboard
+emoji: 🏒
+colorFrom: red
+colorTo: yellow
+sdk: streamlit
+sdk_version: "1.45.0"
+app_file: app/app.py
+pinned: false
+license: mit
+---
+
 <h1>
 <a href="https://medium.com/@thinkingjustin">
 <img src="docs/images/logo_bing.jpeg" width="80px" align="left" style="margin-right: 10px;", alt="nhla-logo"> 
-</a> Rinklytics: A Ice Hockey Sports Analytics Platform Based on National Hockey League (NHL) Data
+</a> Rinklytics: An Ice Hockey Sports Analytics Platform Based on National Hockey League (NHL) Data
 </h1>
 
 If you find my work to be useful, please star this repository!
@@ -11,6 +23,7 @@ If you find my work to be useful, please star this repository!
 [![forks - NHL-Analytics](https://img.shields.io/github/forks/justinjjlee/NHL-Analytics?style=social)](https://github.com/justinjjlee/NHL-Analytics)
 [![Medium - NHL-Analytics](https://img.shields.io/badge/Medium-Read-green?logo=Medium)](https://medium.com/@thinkingjustin)
 [![Streamlit - NHL-Analytics](https://img.shields.io/badge/Streamlit-Explore-FF4B4B?style=flat&logo=streamlit&logoColor=white/)](https://share.streamlit.io/user/justinjjlee)
+[![Hugging Face - Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/jjerlee/rinklytics)
 
 This is a collection of methods for collecting, compiling, cleaning, analyzing, modeling, and predicting team and player (skaters and goalies) performances and strategies. This repository does not claim ownership of the data and reflects the perspectives of the organizations or entities mentioned. All original code (including generic and model algorithms) may be used freely, provided proper citation and credit are given to this repository.
 

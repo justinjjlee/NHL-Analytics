@@ -43,104 +43,100 @@ def load_draft_data():
     except Exception as e:
         return False, f"Error loading draft data: {str(e)}"
 
+@st.cache_data(max_entries=1, ttl=3600)
+def get_processed_exceptional_data():
+    """Load and preprocess exceptional players and career datasets."""
+    files_exist, data_paths = load_draft_data()
+    if not files_exist:
+        return None, None, None
+
+    multi_exceptional_players = pd.read_csv(data_paths['exceptional_players'])
+    exceptional_seasons_details = pd.read_csv(data_paths['exceptional_seasons'])
+
+    # Format season column to YYYY-YYYY format
+    if 'season' in exceptional_seasons_details.columns:
+        exceptional_seasons_details['season_marking'] = exceptional_seasons_details['season'].astype(str).apply(
+            lambda x: f"{x[:4]}-{x[4:]}" if len(x) >= 8 else x
+        )
+    # Create full name for easier filter
+    exceptional_seasons_details['fullName'] = (
+        exceptional_seasons_details['firstName'] + " " + exceptional_seasons_details['lastName']
+    )
+    multi_exceptional_players['fullName'] = (
+        multi_exceptional_players['firstName'] + " " + multi_exceptional_players['lastName']
+    )
+
+    # Add career lines first if career data is available
+    career_data = pd.read_csv(data_paths['merged_stats'])
+    # Create full name for easier filter
+    career_data['fullName'] = (
+        career_data['firstName'] + " " + career_data['lastName']
+    )
+    # join with player stats
+    player_stats = pd.read_csv(data_paths['player_stats'])
+    player_stats = player_stats[
+            (player_stats['leagueAbbrev'] == 'NHL') & 
+            (player_stats['gameTypeId'] == 2) 
+        ]\
+        .groupby(['id', 'season']).agg(
+            {
+                'points': 'sum',
+                'goals': 'sum',
+                'assists': 'sum',
+                'gamesPlayed': 'sum',
+                'faceoffWinningPctg': 'mean',
+                'gameWinningGoals':'sum',
+                'plusMinus':'sum',
+                'powerPlayGoals':'sum',
+                'shorthandedGoals':'sum',
+                'avgToi': 'last',
+                'otGoals':'sum',
+                'powerPlayPoints':'sum',
+                'shootingPctg': 'mean',
+                'shorthandedPoints':'sum',
+                'shots':'sum'
+            }).reset_index()
+    player_stats_simple = player_stats.groupby(['id'])\
+        .agg({'season': 'count'})
+    multi_exceptional_players = multi_exceptional_players.merge(
+        player_stats_simple,
+        on=['id'],
+        how='left'
+    )
+    for col in ['points', 'goals', 'assists', 'gamesPlayed', 'plusMinus', 'gameWinningGoals',
+                'powerPlayGoals', 'shorthandedGoals', 'otGoals', 'powerPlayPoints',
+                'shorthandedPoints', 'shots']:
+        player_stats[col] = player_stats[col].astype(int)
+    player_stats['pointspergame'] = player_stats['points'] / player_stats['gamesPlayed']
+    player_stats.rename(columns={
+        'points': 'points_tempseasoy',
+    }, inplace=True)
+    career_data = career_data.merge(
+        player_stats,
+        on=['id', 'season'],
+        how='inner'
+    )
+
+    if 'season' in career_data.columns:
+        career_data['season_marking'] = career_data['season'].astype(str).apply(
+            lambda x: f"{x[:4]}-{x[4:]}" if len(x) >= 8 else x
+        )
+    if 'round' in career_data.columns:
+        career_data = career_data[career_data['round'] == 1]
+
+    if 'year_inNHL' not in career_data.columns:
+        career_data['year_inNHL'] = career_data.groupby('id')['season'].rank(method='dense').astype(int)
+
+    return multi_exceptional_players, exceptional_seasons_details, career_data
+
+
 def render_exceptional_players_analysis():
     """Render the exceptional players analysis tab"""
-    # Load exceptional players data from results directory
-    files_exist, data_paths = load_draft_data()
-    
-    # Try to load the files
     try:
-        if files_exist:
-            # Load data files
-            multi_exceptional_players = pd.read_csv(data_paths['exceptional_players'])
-            exceptional_seasons_details = pd.read_csv(data_paths['exceptional_seasons'])
-            
-            # Format season column to YYYY-YYYY format
-            if 'season' in exceptional_seasons_details.columns:
-                exceptional_seasons_details['season_marking'] = exceptional_seasons_details['season'].astype(str).apply(
-                    lambda x: f"{x[:4]}-{x[4:]}" if len(x) >= 8 else x
-                )
-            # Create full name for easier filter
-            exceptional_seasons_details['fullName'] = (
-                exceptional_seasons_details['firstName'] + " " + exceptional_seasons_details['lastName']
-            )
-            multi_exceptional_players['fullName'] = (
-                multi_exceptional_players['firstName'] + " " + multi_exceptional_players['lastName']
-            )
-            
-            # Add career lines first if career data is available
-            career_data = pd.read_csv(data_paths['merged_stats'])
-            # Create full name for easier filter
-            career_data['fullName'] = (
-                career_data['firstName'] + " " + career_data['lastName']
-            )
-            # join with player stats
-            player_stats = pd.read_csv(data_paths['player_stats'])
-            # Some cleaning needed: Player season level stats (disregarding team movements)
-            # by player id, season - aggregate up statistics 
-            # Before all that, just account for NHL career stats + Regular season only
-            player_stats = player_stats[
-                    (player_stats['leagueAbbrev'] == 'NHL') & 
-                    (player_stats['gameTypeId'] == 2) 
-                ]\
-                .groupby(['id', 'season']).agg(
-                    {
-                        'points': 'sum',
-                        'goals': 'sum',
-                        'assists': 'sum',
-                        'gamesPlayed': 'sum',
-                        'faceoffWinningPctg': 'mean',
-                        'gameWinningGoals':'sum',
-                        'plusMinus':'sum',
-                        'powerPlayGoals':'sum',
-                        'shorthandedGoals':'sum',
-                        'avgToi': 'last',
-                        'otGoals':'sum',
-                        'powerPlayPoints':'sum',
-                        'shootingPctg': 'mean',
-                        'shorthandedPoints':'sum',
-                        'shots':'sum'
-                    }).reset_index()
-            # create simplifed version for player career at the time of the analysis
-            player_stats_simple = player_stats.groupby(['id'])\
-                .agg({'season': 'count'})
-            # Left join nto multi exceptional players
-            multi_exceptional_players = multi_exceptional_players.merge(
-                player_stats_simple,
-                on=['id'],
-                how='left'
-            )
-            # Convert data formats to int: excluding pct, all should be int
-            # run through for loop: points, goals, assists, gamesPlayed, plusminus, Goals, points etc...
-            for col in ['points', 'goals', 'assists', 'gamesPlayed', 'plusMinus', 'gameWinningGoals',
-                        'powerPlayGoals', 'shorthandedGoals', 'otGoals', 'powerPlayPoints',
-                        'shorthandedPoints', 'shots']:
-                player_stats[col] = player_stats[col].astype(int)
-            # Calculate points per game
-            player_stats['pointspergame'] = player_stats['points'] / player_stats['gamesPlayed']
-            # Rename some columns for consistency
-            player_stats.rename(columns={
-                'points': 'points_tempseasoy',
-            }, inplace=True)
-            # Merge with career data
-            career_data = career_data.merge(
-                player_stats,
-                on=['id', 'season'],
-                how='inner'
-            )
-
-            # Format season column to YYYY-YYYY format
-            if 'season' in career_data.columns:
-                career_data['season_marking'] = career_data['season'].astype(str).apply(
-                    lambda x: f"{x[:4]}-{x[4:]}" if len(x) >= 8 else x
-                )
-            # Simple filter for first round picks
-            if 'round' in career_data.columns:
-                career_data = career_data[career_data['round'] == 1]
-        
-            # Calculate year_inNHL if not present
-            if 'year_inNHL' not in career_data.columns:
-                career_data['year_inNHL'] = career_data.groupby('id')['season'].rank(method='dense').astype(int)
+        multi_exceptional_players, exceptional_seasons_details, career_data = get_processed_exceptional_data()
+        if multi_exceptional_players is None or career_data is None:
+            st.warning(t("da_no_data"))
+            return
 
             # Add a new section for exceptional players
             st.header(t("da_first_round"))
@@ -374,22 +370,29 @@ def toggle_position(pos):
         st.session_state[key] = not st.session_state[key]
 
 
+@st.cache_data(max_entries=1, ttl=3600)
+def get_processed_not_so_magnificent_data():
+    """Load and return draft datasets for not so magnificent analysis."""
+    files_exist, data_paths = load_draft_data()
+    if not files_exist:
+        return None, None, None
+    try:
+        draft_df = pd.read_csv(get_data_path('dev/player/player_draft/data/all_drafted_players.csv'))
+        merged_df = pd.read_csv(data_paths['merged_stats'])
+        chronicle_df = pd.read_csv(data_paths['player_stats'])
+        return draft_df, merged_df, chronicle_df
+    except Exception:
+        return None, None, None
+
+
 def render_not_so_magnificent_analysis():
     st.subheader(t("nsm_title"))
     st.markdown(t("nsm_desc"))
 
     # Load data
-    files_exist, data_paths = load_draft_data()
-    if not files_exist:
+    draft_df, merged_df, chronicle_df = get_processed_not_so_magnificent_data()
+    if draft_df is None or merged_df is None or chronicle_df is None:
         st.warning(t("da_no_data"))
-        return
-
-    try:
-        draft_df = pd.read_csv(get_data_path('dev/player/player_draft/data/all_drafted_players.csv'))
-        merged_df = pd.read_csv(data_paths['merged_stats'])
-        chronicle_df = pd.read_csv(data_paths['player_stats'])
-    except Exception as e:
-        st.error(f"Error loading draft data: {e}")
         return
 
     is_fr = st.session_state.get('lang', 'EN') == 'FR'

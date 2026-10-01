@@ -50,7 +50,7 @@ def get_data_path(filename):
     repo_root = os.path.abspath(os.path.join(current_dir, "../.."))
     return os.path.join(repo_root, "dev/decision_science/impact_of_hits/data", filename)
 
-@st.cache_data
+@st.cache_data(max_entries=1, ttl=3600)
 def load_all_data():
     """Load tabulated sequence, KPI, grid, and team-season datasets."""
     kpi_file = get_data_path("hit_zone_summary_kpi.csv")
@@ -1217,6 +1217,8 @@ def show():
                             st.session_state.tree_highlight = None
                             st.session_state.tree_highlight_source = None
                             st.session_state.last_clicked_tree_pt = None
+                    if "tree_chart_version" in st.session_state:
+                        st.session_state.tree_chart_version += 1
                     st.session_state.select_tree_zone_scope_val = selected_tree_zone
 
             # Initialize session state for interactive tree highlighting
@@ -1226,6 +1228,8 @@ def show():
                 st.session_state.last_clicked_tree_pt = None
             if "tree_highlight_source" not in st.session_state:
                 st.session_state.tree_highlight_source = None
+            if "tree_chart_version" not in st.session_state:
+                st.session_state.tree_chart_version = 0
 
             # Category filter buttons in order of tree hierarchy
             st.success(t("hit_btn_success_desc"))
@@ -1299,10 +1303,10 @@ def show():
             </style>
             """, unsafe_allow_html=True)
 
-            chart_key = f"tree_chart_{selected_tree_zone}"
+            chart_key = f"tree_chart_{selected_tree_zone}_{st.session_state.tree_chart_version}"
 
             # Callback for category button clicks to guarantee state updates before rerun
-            def on_tree_ribbon_click(layer, cat, lbl, ck):
+            def on_tree_ribbon_click(layer, cat, lbl):
                 if layer == "clear":
                     st.session_state.tree_highlight = None
                     st.session_state.tree_highlight_source = None
@@ -1311,8 +1315,7 @@ def show():
                     st.session_state.tree_highlight = {"layer": layer, "category": cat, "label": lbl}
                     st.session_state.tree_highlight_source = "button"
                     st.session_state.last_clicked_tree_pt = f"{layer}_{cat}"
-                if ck in st.session_state and isinstance(st.session_state[ck], dict):
-                    st.session_state[ck] = {"selection": {"points": []}}
+                st.session_state.tree_chart_version += 1
 
             # Button ribbon ordered by Tree Hierarchy:
             # Stage 2: Hitting Team (For) -> Opponent (Against)
@@ -1320,25 +1323,25 @@ def show():
             btn_cols = st.columns(7)
             with btn_cols[0]:
                 st.button(t("hit_btn_reset"), key="btn_tree_reset", width="stretch",
-                          on_click=on_tree_ribbon_click, args=("clear", None, None, chart_key))
+                          on_click=on_tree_ribbon_click, args=("clear", None, None))
             with btn_cols[1]:
                 st.button(t("hit_btn_for"), key="btn_tree_for", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(2, "Hitting Team (For)", t("hit_btn_for"), chart_key))
+                          on_click=on_tree_ribbon_click, args=(2, "Hitting Team (For)", t("hit_btn_for")))
             with btn_cols[2]:
                 st.button(t("hit_btn_agst"), key="btn_tree_agst", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(2, "Opponent (Against)", t("hit_btn_agst"), chart_key))
+                          on_click=on_tree_ribbon_click, args=(2, "Opponent (Against)", t("hit_btn_agst")))
             with btn_cols[3]:
                 st.button(t("hit_btn_goal"), key="btn_tree_goal", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "goal", t("hit_btn_goal"), chart_key))
+                          on_click=on_tree_ribbon_click, args=(3, "goal", t("hit_btn_goal")))
             with btn_cols[4]:
                 st.button(t("hit_btn_sog"), key="btn_tree_sog", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "shot-on-goal", t("hit_btn_sog"), chart_key))
+                          on_click=on_tree_ribbon_click, args=(3, "shot-on-goal", t("hit_btn_sog")))
             with btn_cols[5]:
                 st.button(t("hit_btn_miss"), key="btn_tree_miss", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "missed-shot", t("hit_btn_miss"), chart_key))
+                          on_click=on_tree_ribbon_click, args=(3, "missed-shot", t("hit_btn_miss")))
             with btn_cols[6]:
                 st.button(t("hit_btn_block"), key="btn_tree_block", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "blocked-shot", t("hit_btn_block"), chart_key))
+                          on_click=on_tree_ribbon_click, args=(3, "blocked-shot", t("hit_btn_block")))
 
             # Check for chart point click in session state (populated by Streamlit before script execution)
             chart_state = st.session_state.get(chart_key)
@@ -1601,6 +1604,8 @@ def show():
                 st.session_state.selected_hit_loc = None
             if "last_rink_clicked_pt" not in st.session_state:
                 st.session_state.last_rink_clicked_pt = None
+            if "rink_chart_version" not in st.session_state:
+                st.session_state.rink_chart_version = 0
 
             rink_ctrl_1, rink_ctrl_2 = st.columns([1, 1])
             with rink_ctrl_1:
@@ -1624,8 +1629,7 @@ def show():
                     if st.session_state.selected_hit_loc[0] < 0:
                         st.session_state.selected_hit_loc = None
                         st.session_state.last_rink_clicked_pt = None
-                        if "rink_heat_chart" in st.session_state and isinstance(st.session_state["rink_heat_chart"], dict):
-                            st.session_state["rink_heat_chart"] = {"selection": {"points": []}}
+                        st.session_state.rink_chart_version += 1
 
             with rink_ctrl_2:
                 hotspot_preset_coords = {
@@ -1664,8 +1668,7 @@ def show():
                 def on_apply_rink_preset(coords):
                     st.session_state.selected_hit_loc = coords
                     st.session_state.last_rink_clicked_pt = None
-                    if "rink_heat_chart" in st.session_state and isinstance(st.session_state["rink_heat_chart"], dict):
-                        st.session_state["rink_heat_chart"] = {"selection": {"points": []}}
+                    st.session_state.rink_chart_version += 1
 
                 st.button(
                     t("hit_rink_preset_btn"),
@@ -1674,8 +1677,10 @@ def show():
                     args=(hotspot_preset_coords[preset_key],)
                 )
 
+            rink_chart_key = f"rink_heat_chart_{st.session_state.rink_chart_version}"
+
             # Process Reactive Chart Click from Session State (populated by Streamlit before script run)
-            chart_state = st.session_state.get("rink_heat_chart")
+            chart_state = st.session_state.get(rink_chart_key)
             if chart_state and isinstance(chart_state, dict):
                 sel = chart_state.get("selection", {})
                 pts = sel.get("points", [])
@@ -1714,7 +1719,7 @@ def show():
                 width="stretch",
                 on_select="rerun",
                 selection_mode=["points"],
-                key="rink_heat_chart"
+                key=rink_chart_key
             )
 
             # Detailed Inspection Panel for Selected Location
@@ -1729,8 +1734,7 @@ def show():
                     def on_clear_rink_selection():
                         st.session_state.selected_hit_loc = None
                         st.session_state.last_rink_clicked_pt = None
-                        if "rink_heat_chart" in st.session_state and isinstance(st.session_state["rink_heat_chart"], dict):
-                            st.session_state["rink_heat_chart"] = {"selection": {"points": []}}
+                        st.session_state.rink_chart_version += 1
 
                     col_title, col_clear = st.columns([4, 1])
                     with col_title:

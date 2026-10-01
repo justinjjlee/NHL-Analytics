@@ -28,6 +28,7 @@ def format_odds_value(odds_val):
         
     return f"+{formatted}" if is_positive else f"-{formatted}"
 
+@st.cache_data(max_entries=1, ttl=3600)
 def load_box_scores_and_odds():
     """
     Load all box score data and betting odds data from the latest/box directory

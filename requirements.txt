@@ -1,0 +1,7 @@
+# Core dependencies for Rinklytics Streamlit Dashboard (Streamlit Cloud & Hugging Face Spaces)
+streamlit>=1.45.0
+streamlit-folium>=0.23.0
+folium>=0.18.0
+pandas>=2.2.0
+numpy>=1.26.0
+plotly>=5.23.0

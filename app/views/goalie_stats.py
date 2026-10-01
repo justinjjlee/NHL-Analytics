@@ -11,6 +11,7 @@ import sys, os
 import plotly.graph_objects as go
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'exe'))
 
 from i18n import t
@@ -35,7 +36,6 @@ is_fr = st.session_state.get('lang', 'EN') == 'FR'
 loading_msg = "Chargement..." if is_fr else "Loading..."
 with st.spinner(loading_msg):
     _, goalies = load_player_season_data()
-    _, goalie_games = load_player_game_data()
 
 if goalies is None or goalies.empty:
     st.error(t("gl_no_data"))
@@ -180,6 +180,7 @@ with top_tab1:
 
     # ── INNER TAB 2: Weekly Game Log ──────────────────────────────────────────
     with inner2:
+        _, goalie_games = load_player_game_data(season_year=sel_season_yr)
         if goalie_games is None or goalie_games.empty:
             st.info(t("gl_no_game_data"))
         else:
@@ -188,7 +189,8 @@ with top_tab1:
             sel_goalie_id = sel_goalie_row.iloc[0]['playerId'] if not sel_goalie_row.empty else None
 
             game_df = resolve_game_player_name(goalie_games, sel_goalie_id, lang=st.session_state.get('lang', 'EN'))
-            game_df = game_df[game_df['season_year'] == sel_season_yr]
+            if 'season_year' in game_df.columns:
+                game_df = game_df[game_df['season_year'] == sel_season_yr]
             if selected_team != "ALL":
                 game_df = game_df[game_df['own_team'] == selected_team]
 

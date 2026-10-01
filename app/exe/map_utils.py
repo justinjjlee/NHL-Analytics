@@ -16,6 +16,7 @@ def get_data_path(rel_path):
     # Construct the absolute path
     return os.path.join(project_root, 'app', 'data', rel_path)
 
+@st.cache_data(max_entries=1, ttl=3600)
 def load_map_data():
     """Load the necessary data for the map visualization with proper path handling"""
     try:

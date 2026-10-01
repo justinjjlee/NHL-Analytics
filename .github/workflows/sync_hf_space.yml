@@ -1,0 +1,28 @@
+name: Sync to Hugging Face Space
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Push to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          # Set your Hugging Face space repository in the format: <username>/<space-name>
+          HF_SPACE_REPO: "jjerlee/rinklytics"
+        if: env.HF_TOKEN != ''
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git remote add space "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE_REPO}"
+          git push --force space main
