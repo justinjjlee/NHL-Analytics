@@ -9,37 +9,19 @@ import datetime
 # Functions to process box scores
 from function.procs_boxscore import *
 import os
-from config import get_team_dir
+from config import get_team_dir, get_player_dir, get_current_season_year
 
 TEAM_DIR = get_team_dir()
+PLAYER_DIR = get_player_dir()
 
-
-# %% 
-# Get current date
-yr_now = datetime.datetime.today().year
-mo_now = datetime.datetime.today().month
-dy_now = datetime.datetime.today().day
-
-# Select starting year for season to pull.
-#   Until the following season starts, always pull the current/past eyar
-if (mo_now > 10) | ((mo_now == 10) & (dy_now > 15)): 
-    # Season starts on October - start with regular season since pre season games don't have full data
-    #   Start the regular season data pull on 10/15
-    # Then the season marks starts in the previous calendar year
-    iter_year = yr_now
-else:
-    # iter year starts from previous 
-    iter_year = yr_now - 1
-
+# %% Settings
+iter_year = get_current_season_year()
 print(f"Iterative season: {iter_year}")
-from config import get_box_dir
-
-BOX_DIR = get_box_dir()
 
 # Collect missing player stats from 2013 onwards
 iter_years = []
 for y in range(2013, iter_year + 1):
-    if not (os.path.exists(f"{BOX_DIR}/{y}_box_player.csv") or os.path.exists(f"{TEAM_DIR}/{y}_player.csv")):
+    if not os.path.exists(f"{PLAYER_DIR}/{y}_player.csv"):
         iter_years.append(y)
 
 if not iter_years:
@@ -93,7 +75,7 @@ for iter_year in iter_years:
         last_cols = [col for col in df_players.columns if col not in first_cols]
 
         df_players = df_players[first_cols + last_cols]
-        df_players.to_csv(f"{BOX_DIR}/{iter_year}_box_player.csv", index=False)
+        df_players.to_csv(f"{PLAYER_DIR}/{iter_year}_player.csv", index=False)
         print(f"Completed player stats for season {iter_year}")
 
 print("au revoir.")

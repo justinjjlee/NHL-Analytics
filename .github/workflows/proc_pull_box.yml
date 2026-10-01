@@ -3,8 +3,8 @@ name: NHL API pull data for game-level stats (games and odds)
 on:
   schedule:
     # This runs the workflow daily at 20:00 UTC, which is 3 PM CT during Daylight Saving Time
-    # Only in hockey season months (January to June and October to December)
-    - cron: '0 20 * 1-6,10-12 *'
+    # Only in hockey season months (January to June and September to December)
+    - cron: '0 20 * 1-6,9-12 *'
   push:
     branches:
       - main
@@ -40,14 +40,9 @@ jobs:
       if: always()
       run: python src/data/apinhle/data_proc_gameSummary.py
 
-    # For local prod environment only
-    #- name: Run NHL Game-level Play-by-play record data
-    #  if: always()
-    #  run: python src/data/apinhle/data_pull_plays.py
-
-    #- name: Run NHL Shift-level data pull
-    #  if: always()
-    #  run: python src/data/apinhle/data_pull_lines.py
+    - name: Run NHL Game-level Play-by-play record data
+      if: always()
+      run: python src/data/apinhle/data_pull_plays.py
 
     - name: Configure Git
       run: |

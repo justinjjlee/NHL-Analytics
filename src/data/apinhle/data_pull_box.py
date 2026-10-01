@@ -9,7 +9,7 @@ import datetime
 # Functions to process box scores
 #from src.data.apinhle.function.procs_boxscore import *
 from function.procs_boxscore import *
-from config import get_box_dir, get_team_dir
+from config import get_box_dir, get_team_dir, get_current_season_year
 import os
 
 BOX_DIR = get_box_dir()
@@ -22,22 +22,7 @@ teamcode = pd.read_csv(f"{TEAM_DIR}/teamlist.csv")
 
 # %% Settings
 
-# Get current date
-yr_now = datetime.datetime.today().year
-mo_now = datetime.datetime.today().month
-dy_now = datetime.datetime.today().day
-
-# Select starting year for season to pull.
-#   Until the following season starts, always pull the current/past eyar
-if (mo_now > 10) | ((mo_now == 10) & (dy_now > 3)): 
-    # Season starts on October - start with regular season since pre season games don't have full data
-    #   Start the regular season data pull on 10/15
-    # Then the season marks starts in the previous calendar year
-    iter_year = yr_now
-else:
-    # iter year starts from previous 
-    iter_year = yr_now - 1
-
+iter_year = get_current_season_year()
 print(f"Iterative season: {iter_year}")
 # In case you need to pull all historical/vintage data going back to 2013
 iter_years = []
@@ -322,8 +307,7 @@ for iter_year in iter_years:
         games.to_csv(f"{BOX_DIR}/{iter_year}_gamelist_raw.csv", index=False)
         game_list.to_csv(f"{BOX_DIR}/{iter_year}_box.csv", index=False)
     else:
-        # No data to pull, exit
-        print("Error occured. Maybe due to off-season or script error. Please confirm.")
-        None
+        # No new completed games to pull
+        print(f"No new completed games to pull for season {iter_year}. Data is up to date.")
 
 print("au revoir.")

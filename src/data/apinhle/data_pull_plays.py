@@ -10,7 +10,7 @@ import datetime
 from function.procs_boxscore import *
 from function.procs_playbyplay import *
 import os
-from config import get_box_dir, get_play_dir
+from config import get_box_dir, get_play_dir, get_current_season_year
 
 def safe_get(url, max_retries=5, timeout=15):
     for attempt in range(max_retries):
@@ -28,22 +28,7 @@ PLAY_DIR = get_play_dir()
 
 # %% Settings
 
-# Get current date
-yr_now = datetime.datetime.today().year
-mo_now = datetime.datetime.today().month
-dy_now = datetime.datetime.today().day
-
-# Select starting year for season to pull.
-#   Until the following season starts, always pull the current/past year
-if (mo_now > 10) | ((mo_now == 10) & (dy_now > 15)): 
-    # Season starts on October - start with regular season since pre season games don't have full data
-    #   Start the regular season data pull on 10/15
-    # Then the season marks starts in the previous calendar year
-    iter_year = yr_now
-else:
-    # iter year starts from previous 
-    iter_year = yr_now - 1
-
+iter_year = get_current_season_year()
 print(f"Iterative season: {iter_year}")
 
 # %% 

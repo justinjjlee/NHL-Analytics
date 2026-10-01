@@ -8,9 +8,8 @@ on:
     # 0 - At minute 0
     # 8 - At hour 8 (8:00 AM UTC)
     # * - Any day of the month
-    # 1-6,10-12 - Only in months 1-6 (Jan-Jun) and 10-12 (Oct-Dec), skipping 7-9 (Jul-Sep)
-    # 1 - Only on Mondays
-    - cron: '0 8 * 1-6,10-12 1'
+    # Only in hockey season months (January to June and September to December, skipping July, August)
+    - cron: '0 8 * 1-6,9-12 1'
   push:
     branches:
       - main
