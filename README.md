@@ -47,7 +47,7 @@ I use publicly available data to build up the analytics capabilities and insight
 | **LLM Agent Skillsets** | Integrates AI-driven workflows for automated insights, data extraction, and deep analysis across various analytical domains. |
 | **Team & Player Analysis** | Provides comprehensive evaluation of team KPIs, player performance metrics, draft history, and college prospects. |
 | **Sports Betting Analytics** | Analyzes game-level odds and models team performance using Elo ratings for predictive betting insights. |
-| **[Streamlit Dashboard](https://share.streamlit.io/user/justinjjlee)** | An interactive web application that visualizes data, tracks trends, and presents predictive models to users. |
+| **[HuggingFace Space - Application](https://huggingface.co/spaces/jjerlee/rinklytics)** | An interactive web application that visualizes data, tracks trends, and presents predictive models to users. |
 
 I hope works saved in this repository allows for replications, explorations, and advancing new measurements and insights.
 

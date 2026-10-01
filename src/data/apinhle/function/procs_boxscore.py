@@ -116,22 +116,24 @@ class nhl_dataproc_teamsuccess:
                     .merge(dfteams.reset_index(), 
                             left_on = ['team_tri_against'], 
                             right_on = ['team_tri_for'],
-                            suffixes=('', '_against'))
+                            suffixes=('', '_against')).copy()
         # Check wins against better opponent
         # Is the team-for facing eventual better opponent?
         #   Using pairwise here - alternatively can use RPI
         # ...........................................................................
         # Observing win streaks
         # Is opponent better than average?
-        df_box_exnt['idx_OppoGood'] = df_box_exnt.rpi_against > \
-                                        np.quantile(df_box_exnt.rpi_against, 0.75) 
+        idx_oppo_good = df_box_exnt.rpi_against > \
+            np.quantile(df_box_exnt.rpi_against, 0.75)
         # Playing against worse team, thus leading to expected outcome?
-        df_box_exnt['idx_OppoBetter'] = df_box_exnt.pairwise_win_against < \
-                                        df_box_exnt.pairwise_win
-        df_box_exnt['idx_OppoBetter'] = df_box_exnt.rpi_against < \
-                                        df_box_exnt.rpi
-        df_box_exnt['win_for_better'] = df_box_exnt.win_for * df_box_exnt.idx_OppoGood
-        df_box_exnt['win_for_expected'] = df_box_exnt.win_for * df_box_exnt.idx_OppoBetter
+        idx_oppo_better = df_box_exnt.rpi_against < df_box_exnt.rpi
+
+        df_box_exnt = df_box_exnt.assign(
+            idx_OppoGood=idx_oppo_good,
+            idx_OppoBetter=idx_oppo_better,
+            win_for_better=df_box_exnt.win_for * idx_oppo_good,
+            win_for_expected=df_box_exnt.win_for * idx_oppo_better,
+        )
 
         pivot_teamcumwin = df_box_exnt \
             .groupby(['team_tri_for', 'rgame']) \
@@ -182,9 +184,11 @@ class nhl_dataproc_teamsuccess:
         # ...........................................................................
         # output data
         #   (a) game-level stats
+        df_box_exnt = df_box_exnt.copy()
         df_box_exnt['yr_season'] = self.str_year
         #df_box_exnt.to_csv(str_dirc_save + "_box_team_game.csv")
         #   (b) team-level stats for each season
+        dfteams = dfteams.copy()
         dfteams['yr_season'] = self.str_year
         #dfteams.to_csv(str_dirc_save + "_box_team_season.csv")
 
@@ -192,6 +196,7 @@ class nhl_dataproc_teamsuccess:
 
 # Data pull
 def df_unpack(df_box):
+    df_box = df_box.copy()
     # Collect the team names
     str_team_names = list(df_box.team_tri.unique())
 
@@ -210,8 +215,8 @@ def df_unpack(df_box):
     # For the team, match the opponent team info.
     def oppo_match(df, str_team_to_eval):
         # The function is used to match specific opponenets, without matching all teams
-        df_box_team_oppo = df_box.loc[df_box['team_tri'] == str_team_to_eval, :]
-        df_box_team_excl = df_box.loc[df_box['team_tri'] != str_team_to_eval, :]
+        df_box_team_oppo = df.loc[df['team_tri'] == str_team_to_eval, :]
+        df_box_team_excl = df.loc[df['team_tri'] != str_team_to_eval, :]
         
         # join the opponent information
         df_box_team_oppo = df_box_team_oppo.join(df_box_team_excl, 
@@ -221,12 +226,9 @@ def df_unpack(df_box):
                                         rsuffix = '_against')
         return df_box_team_oppo
 
-    # first team to run
-    iter_team = str_team_names[0]
-    df_box_exnt = oppo_match(df_box, iter_team)
-    # then match rest of the teams
-    for iter_team in str_team_names[1:]:
-      df_box_exnt = pd.concat([df_box_exnt, oppo_match(df_box, iter_team)])
+    # match all teams at once
+    chunks = [oppo_match(df_box, iter_team) for iter_team in str_team_names]
+    df_box_exnt = pd.concat(chunks).copy()
     
     return df_box_exnt
 
@@ -302,7 +304,7 @@ def df_metrics(df_box_exnt):
                                     suffixes = ('', '_oppo'))
     df_box_exnt.set_index('gameIdx_now_for', inplace = True)
     # remove duplicated column with merged opponent data
-    df_box_exnt = df_box_exnt.loc[:,~df_box_exnt.columns.duplicated()]
+    df_box_exnt = df_box_exnt.loc[:,~df_box_exnt.columns.duplicated()].copy()
     
     return df_box_exnt
 
@@ -365,6 +367,7 @@ def df_gen_h2h_common(dffunc_origin, iter_time):
     # (A) Go through each team to calculate head to head estimation
     dff_h2h = df_gen_h2h(tempdf)
 
+    h2h_common_list = []
     # ------------------------------------------------------------------------
     # Go through each of own team
     for idx_team, iter_team in enumerate(tempdf.team_tri_for.unique()):
@@ -384,7 +387,8 @@ def df_gen_h2h_common(dffunc_origin, iter_time):
             # Get the list of opponent's opponents
             team_opponents_oppo = list(temp_df_oppo.team_tri_against_oow.unique())
             # Drop the two team compared 
-            team_opponents_oppo.remove(iter_team)
+            if iter_team in team_opponents_oppo:
+                team_opponents_oppo.remove(iter_team)
 
             # Get the list of common opponents
             team_opponents_common = list(set(team_opponents) & set(team_opponents_oppo))
@@ -397,11 +401,15 @@ def df_gen_h2h_common(dffunc_origin, iter_time):
             temp_h2h_common = temp_df_own.merge(temp_df_oppo, 
                                             left_on = 'team_tri_against_ow', 
                                             right_on = 'team_tri_against_oow', how='inner')
-            if (idx_team == 0) & (idx_opponent == 0): 
-                # For the very first iteration
-                h2h_common = temp_h2h_common
-            else:
-                h2h_common = pd.concat([h2h_common, temp_h2h_common]).reset_index(drop = True)
+            if not temp_h2h_common.empty:
+                h2h_common_list.append(temp_h2h_common)
+
+    if h2h_common_list:
+        h2h_common = pd.concat(h2h_common_list, ignore_index=True)
+    else:
+        ow_cols = [f"{c}_ow" for c in temp_str_col]
+        oow_cols = [f"{c}_oow" for c in temp_str_col]
+        h2h_common = pd.DataFrame(columns=ow_cols + oow_cols)
     # Record date last available
     h2h_common["gameDate_last"] = iter_time
 
@@ -454,8 +462,8 @@ def pairwise_h2h(df_box_exnt, dff_h2h_com):
     df_own = df_own.join(df_ow)
     df_own = df_own.join(df_oow)
 
-    df_own['wp_ow'] = df_own['wp_ow'].fillna(0.0)
-    df_own['wp_oow'] = df_own['wp_oow'].fillna(0.0)
+    df_own['wp_ow'] = pd.to_numeric(df_own['wp_ow'], errors='coerce').fillna(0.0)
+    df_own['wp_oow'] = pd.to_numeric(df_own['wp_oow'], errors='coerce').fillna(0.0)
 
     df_own['rpi'] = (df_own.wp_own * 0.25) \
                     + (df_own.wp_ow * 0.5) \
