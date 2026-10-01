@@ -20,17 +20,9 @@ PLAY_DIR = get_play_dir()
 iter_year = get_current_season_year()
 print(f"Iterative season: {iter_year}")
 
-# %% 
-# Ping and pull data from NHL API
-# ---------------------------------------------------
-
-iter_years = []
-for y in range(2023, iter_year + 1):
-    if not os.path.exists(f"{PLAY_DIR}/{y}_playbyplay_shift.csv"):
-        iter_years.append(y)
-
-if iter_year not in iter_years:
-    iter_years.append(iter_year)
+# Default to current season for daily ingestion (or set SEASON_YEAR env var for specific season)
+target_year = int(os.environ.get("SEASON_YEAR", iter_year))
+iter_years = [target_year]
 
 for iter_year in iter_years:
 
@@ -43,58 +35,46 @@ for iter_year in iter_years:
 
     # Load the previous game stats, if exist
     try:
-        # If previously pulled data exist
         df_playbyplay_exist = pd.read_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_shift.csv")
-        df_playbyplay_exist.columns = df_playbyplay_exist.columns.str.lower()
-        # NOTE: This process does not account for any record revisions
+        df_playbyplay_exist.columns = [str(c).lower() for c in df_playbyplay_exist.columns]
         idx_exist = True
     except:
-        # New data needed, no need to append the old one
         idx_exist = False
         print("No existing game records found, will pull all game records")
 
-    if idx_exist: # If the current season data exist
-        # Don't need to pull all game records
+    if idx_exist:
         print("Found existing game records, will only pull new game records")
-        # Unique of all existing game records
         gameids_exist = df_playbyplay_exist["gameid"].unique()
-        # Remove the existing game records
-        # Pick up games with newest data points
         gamecode = gamecode.loc[~gamecode["gameid"].isin(gameids_exist), :]
         print(f"Found {len(gamecode)} new game records, will append to the new data")
-    # ---------------------------------------------------
-    # Pull team/game lists of the games for the season
-    '''
-    Pulling full season game would take a long time. If some game records were already pulled, 
-        I recommend to skip those game records
-    '''
+
     if len(gamecode["gameid"]) != 0:
-        # At least one records need to be pulled
         df_playbyplay = []
         for _, row in gamecode.iterrows():
-            # Pull game's play-by-play stat
-            r = requests.get(url=f'https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId={row.gameid}')
-            # Pretty simple data form
-            iter_shift = pd.DataFrame(r.json()['data'])
-            iter_shift.columns = iter_shift.columns.str.lower()
-            # Append to save
-            df_playbyplay.append(iter_shift)
-            print(f"Pulled game {row.gameid} shift data")
-            # Pause to play safe with the API
-            time.sleep(0.5)
+            try:
+                r = requests.get(
+                    url=f'https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId={row.gameid}',
+                    timeout=15
+                )
+                data = r.json().get('data', [])
+                if not data:
+                    print(f"Game {row.gameid} has no shift data recorded")
+                    continue
+                iter_shift = pd.DataFrame(data)
+                iter_shift.columns = [str(c).lower() for c in iter_shift.columns]
+                df_playbyplay.append(iter_shift)
+                print(f"Pulled game {row.gameid} shift data ({len(iter_shift)} shifts)")
+            except Exception as e:
+                print(f"Error fetching shift data for {row.gameid}: {e}")
+            time.sleep(0.3)
 
-        # Save, full data
-        df_playbyplay = pd.concat(df_playbyplay)
-
-        if idx_exist:
-            # If the old record exists, append the old record
-            df_playbyplay = pd.concat([df_playbyplay_exist, df_playbyplay], axis=0)
-        
-        # Save data
-        df_playbyplay.to_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_shift.csv", index=False)
+        if df_playbyplay:
+            new_shifts = pd.concat(df_playbyplay, ignore_index=True)
+            if idx_exist:
+                new_shifts = pd.concat([df_playbyplay_exist, new_shifts], ignore_index=True)
+            new_shifts.to_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_shift.csv", index=False)
+            print(f"Saved shift data to {PLAY_DIR}/{iter_year}_playbyplay_shift.csv")
     else:
-        # No records need to be pulled
-        print("All records currently existing, no need to pull records")
-        
+        print(f"All shift records currently up to date for season {iter_year}")
+
 print("au revoir.")
-# %%
