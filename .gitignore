@@ -5,6 +5,7 @@ __pycache__/
 .DS_store
 .conda
 credentials.json
+.env
 
 # Package requirement control
 all_packages.txt

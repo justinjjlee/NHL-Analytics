@@ -6,23 +6,24 @@ on:
   workflow_dispatch:
 
 jobs:
-  sync-to-hub:
+  sync-to-hf-space:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          lfs: true
 
-      - name: Push to Hugging Face Hub
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install huggingface_hub
+
+      - name: Deploy to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          # Set your Hugging Face space repository in the format: <username>/<space-name>
-          HF_SPACE_REPO: "jjerlee/rinklytics"
         if: env.HF_TOKEN != ''
         run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
-          git remote add space "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE_REPO}"
-          git push --force space main
+          python deploy_hf.py --repo "jjerlee/rinklytics"

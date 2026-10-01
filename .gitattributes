@@ -1,3 +1,0 @@
-# Git LFS configuration for large datasets (Required for Hugging Face Spaces sync)
-latest/play/*.csv filter=lfs diff=lfs merge=lfs -text
-*.parquet filter=lfs diff=lfs merge=lfs -text

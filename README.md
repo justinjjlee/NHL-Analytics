@@ -2,10 +2,11 @@
 title: Rinklytics - NHL Analytics Dashboard
 emoji: 🏒
 colorFrom: red
-colorTo: yellow
-sdk: streamlit
-sdk_version: "1.45.0"
-app_file: app/app.py
+colorTo: gray
+sdk: gradio
+sdk_version: 6.29.0
+python_version: "3.12"
+app_file: app.py
 pinned: false
 license: mit
 ---
