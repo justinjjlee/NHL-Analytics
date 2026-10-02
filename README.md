@@ -1,6 +1,6 @@
 <h1>
 <a href="https://medium.com/@thinkingjustin">
-<img src="docs/images/logo_bing.jpeg" width="80px" align="left" style="margin-right: 10px;", alt="nhla-logo"> 
+<img src="app/assets/img_main.jpeg" width="80px" align="left" style="margin-right: 10px;", alt="nhla-logo"> 
 </a> Rinklytics: Sports Data Analytics using NHL Data
 </h1>
 
