@@ -1,9 +1,0 @@
-[browser]
-gatherUsageStats = false
-
-[server]
-maxMessageSize = 50
-enableXsrfProtection = true
-
-[client]
-showErrorDetails = "stacktrace"
