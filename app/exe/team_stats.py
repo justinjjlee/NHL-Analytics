@@ -22,9 +22,9 @@ def format_odds_value(odds_val):
     abs_val = abs(odds_val)
     
     if abs_val >= 1000:
-        formatted = f"{abs_val/1000.0:.1f}k"
+        formatted = f"{int(round(abs_val / 1000.0))}k"
     else:
-        formatted = f"{int(abs_val)}"
+        formatted = f"{int(round(abs_val))}"
         
     return f"+{formatted}" if is_positive else f"-{formatted}"
 
@@ -172,9 +172,9 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
                 # Money line 2 - always negative and positive - smaller font
                 odds_str = format_odds_value(away_odds)
                 if has_both_odds and home_odds > away_odds:
-                    st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;white-space:nowrap;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
-                    st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;white-space:nowrap;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
             score_disp = away_score if (away_score is not None and not pd.isna(away_score)) else ""
             if has_both_scores and away_score > home_score:
@@ -198,9 +198,9 @@ def create_scoreboard_card(iter_home_team, iter_away_team, home_score, away_scor
                 # Money line 2 - always negative and positive - smaller font
                 odds_str = format_odds_value(home_odds)
                 if has_both_odds and home_odds < away_odds:
-                    st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='text-align:center;'><span style='color:#28a745;font-size:12px;white-space:nowrap;'>{odds_str}</span></div>", unsafe_allow_html=True)
                 else:
-                    st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;'>{odds_str}</span></div>", unsafe_allow_html=True)
+                    st.markdown(f"<div style='text-align:center;'><span style='font-size:12px;white-space:nowrap;'>{odds_str}</span></div>", unsafe_allow_html=True)
         with col_score:
             score_disp = home_score if (home_score is not None and not pd.isna(home_score)) else ""
             if has_both_scores and home_score > away_score:

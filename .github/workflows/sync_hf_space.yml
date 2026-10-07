@@ -5,11 +5,11 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ["NHL API pull data for game-level stats (games and odds)"]
+    workflows: ["NHL API pull data for game-level stats (box, plays, and summaries)"]
     types: [completed]
   schedule:
-    # Daily at 21:00 UTC during hockey season (1 hour after the 20:00 UTC data pull)
-    - cron: '0 21 * 1-6,9-12 *'
+    # Daily at 10:00 UTC during hockey season (1 hour after the 9:00 UTC data pull)
+    - cron: '0 10 * 1-6,9-12 *'
 
 jobs:
   sync-to-hf-space:

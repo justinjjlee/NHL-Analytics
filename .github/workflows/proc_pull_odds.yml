@@ -1,10 +1,10 @@
-name: NHL API pull data for game-level stats (box, plays, and summaries)
+name: NHL API pull data for betting odds
 
 on:
   schedule:
-    # Runs daily at 09:00 UTC (3:00 AM CST / 4:00 AM CDT), ensuring all late games have concluded
+    # Runs daily at 20:00 UTC (3:00 PM CDT / 2:00 PM CST), before evening games start
     # Only in hockey season months (January to June and September to December)
-    - cron: '0 9 * 1-6,9-12 *'
+    - cron: '0 20 * 1-6,9-12 *'
   push:
     branches:
       - main
@@ -30,16 +30,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r src/requirements/requirements.txt
 
-    - name: Run NHL Game Record Data
-      run: python src/data/apinhle/data_pull_box.py
-
-    - name: Run NHL Game-level Summary to Game Records and Season-team Statistics
-      if: always()
-      run: python src/data/apinhle/data_proc_gameSummary.py
-
-    - name: Run NHL Game-level Play-by-play record data
-      if: always()
-      run: python src/data/apinhle/data_pull_plays.py
+    - name: Run NHL Odds Data
+      run: python src/data/apinhle/data_pull_box_odds.py
 
     - name: Configure Git
       run: |
@@ -48,14 +40,13 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git add latest/box/*_box*.csv
-        git add latest/team/season/*.csv
-        git add latest/play/*.csv 
+        git add latest/box/*_odds_*.csv
+        git add latest/box/*_odds_*.json
         if git diff-index --quiet HEAD --; then
           echo "No changes to commit"
           exit 0
         else
-          git commit -m 'Automated data update (game stats)'
+          git commit -m 'Automated data update (betting odds)'
           git pull --rebase origin main
           git push
         fi
