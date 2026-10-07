@@ -46,12 +46,13 @@ jobs:
     - name: Commit and push changes
       run: |
         git add latest/player/*.csv
-        if git diff-index --quiet HEAD --; then
+        if git diff --staged --quiet; then
           echo "No changes to commit"
           exit 0
         else
+          git checkout -- .
           git commit -m 'Automated data update'
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
           git push
         fi
       env:

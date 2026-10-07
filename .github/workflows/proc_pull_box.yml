@@ -48,15 +48,16 @@ jobs:
 
     - name: Commit and push changes
       run: |
-        git add latest/box/*_box*.csv
+        git add latest/box/*.csv
         git add latest/team/season/*.csv
         git add latest/play/*.csv 
-        if git diff-index --quiet HEAD --; then
+        if git diff --staged --quiet; then
           echo "No changes to commit"
           exit 0
         else
+          git checkout -- .
           git commit -m 'Automated data update (game stats)'
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
           git push
         fi
       env:
