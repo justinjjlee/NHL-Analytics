@@ -1,0 +1,1001 @@
+gameid,gameDate,period,elapsed_sec,eventId,details.eventOwnerTeam,zoneCode,next_type,next_category,next_owner,next_owner_rel,next_zone,delta_sec,is_zone_exit,is_sog_for,is_sog_against,is_goal_for,is_goal_against
+2024020001,2024-10-04,1,5,147,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,3.0,0,0,1,0,0
+2024020001,2024-10-04,1,36,208,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,4.0,0,0,1,0,0
+2024020001,2024-10-04,1,63,230,NJD,N,stoppage,Stoppage,NJD,Hitting Team,N,1.0,0,0,0,0,0
+2024020001,2024-10-04,1,94,255,NJD,N,penalty,Penalty,NJD,Hitting Team,N,3.0,0,0,0,0,0
+2024020001,2024-10-04,1,118,260,NJD,N,hit,Physical Battle,NJD,Hitting Team,D,16.0,0,0,0,0,0
+2024020001,2024-10-04,1,134,1731721,NJD,D,hit,Physical Battle,NJD,Hitting Team,N,4.0,1,0,0,0,0
+2024020001,2024-10-04,1,138,278,NJD,N,giveaway,Possession Change,BUF,Opponent,N,44.0,0,0,0,0,0
+2024020001,2024-10-04,1,250,296,NJD,N,hit,Physical Battle,BUF,Opponent,N,8.0,0,0,0,0,0
+2024020001,2024-10-04,1,258,298,BUF,N,missed-shot,Shot Attempt,BUF,Hitting Team,O,29.0,0,0,0,0,0
+2024020001,2024-10-04,1,362,1730555,NJD,N,missed-shot,Shot Attempt,BUF,Opponent,O,5.0,0,0,0,0,0
+2024020001,2024-10-04,1,378,1730569,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,1.0,0,0,0,0,0
+2024020001,2024-10-04,1,379,1730582,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,11.0,0,0,0,0,0
+2024020001,2024-10-04,1,390,1730598,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,1.0,0,0,0,0,0
+2024020001,2024-10-04,1,391,1730606,BUF,N,giveaway,Possession Change,NJD,Opponent,D,1.0,0,0,0,0,0
+2024020001,2024-10-04,1,455,1730613,BUF,N,hit,Physical Battle,BUF,Hitting Team,D,11.0,0,0,0,0,0
+2024020001,2024-10-04,1,466,1731722,BUF,D,hit,Physical Battle,BUF,Hitting Team,N,4.0,1,0,0,0,0
+2024020001,2024-10-04,1,470,1730619,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,36.0,0,0,1,0,0
+2024020001,2024-10-04,1,511,1730623,BUF,N,hit,Physical Battle,NJD,Opponent,N,2.0,0,0,0,0,0
+2024020001,2024-10-04,1,513,1730627,NJD,N,faceoff,Stoppage,NJD,Hitting Team,N,6.0,0,0,0,0,0
+2024020001,2024-10-04,1,549,1730706,NJD,N,shot-on-goal,Shot Attempt,NJD,Hitting Team,O,3.0,0,1,0,0,0
+2024020001,2024-10-04,1,666,1730729,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,25.0,0,0,1,0,0
+2024020001,2024-10-04,1,784,1730737,NJD,N,giveaway,Possession Change,BUF,Opponent,O,42.0,0,0,0,0,0
+2024020001,2024-10-04,1,887,1730738,NJD,N,blocked-shot,Shot Attempt,BUF,Opponent,O,22.0,0,0,0,0,0
+2024020001,2024-10-04,1,967,1730739,NJD,N,hit,Physical Battle,NJD,Hitting Team,N,8.0,0,0,0,0,0
+2024020001,2024-10-04,1,975,1730740,NJD,N,shot-on-goal,Shot Attempt,BUF,Opponent,O,31.0,0,0,1,0,0
+2024020001,2024-10-04,1,1011,1731723,NJD,D,blocked-shot,Shot Attempt,BUF,Opponent,D,6.0,0,0,0,0,0
+2024020001,2024-10-04,1,1030,1730741,BUF,N,delayed-penalty,Penalty,BUF,Hitting Team,N,1.0,0,0,0,0,0
+2024020001,2024-10-04,1,1175,1730742,NJD,N,missed-shot,Shot Attempt,BUF,Opponent,O,9.0,0,0,0,0,0
+2024020001,2024-10-04,2,1255,1730870,NJD,N,blocked-shot,Shot Attempt,BUF,Opponent,D,2.0,0,0,0,0,0
+2024020001,2024-10-04,2,1309,1730887,BUF,N,stoppage,Stoppage,NJD,Opponent,N,2.0,0,0,0,0,0
+2024020001,2024-10-04,2,1343,1730907,NJD,N,hit,Physical Battle,NJD,Hitting Team,N,4.0,0,0,0,0,0
+2024020001,2024-10-04,2,1347,1730908,NJD,N,hit,Physical Battle,BUF,Opponent,D,50.0,0,0,0,0,0
+2024020001,2024-10-04,2,1397,1731724,BUF,D,shot-on-goal,Shot Attempt,NJD,Opponent,O,8.0,1,0,1,0,0
+2024020001,2024-10-04,2,1468,1730932,NJD,N,hit,Physical Battle,BUF,Opponent,N,19.0,0,0,0,0,0
+2024020001,2024-10-04,2,1487,1730935,BUF,N,shot-on-goal,Shot Attempt,BUF,Hitting Team,O,21.0,0,1,0,0,0
+2024020001,2024-10-04,2,1546,1730951,BUF,N,giveaway,Possession Change,NJD,Opponent,D,3.0,0,0,0,0,0
+2024020001,2024-10-04,2,1713,1730973,NJD,N,hit,Physical Battle,NJD,Hitting Team,D,1.0,0,0,0,0,0
+2024020001,2024-10-04,2,1714,1731725,NJD,D,missed-shot,Shot Attempt,NJD,Hitting Team,O,17.0,1,0,0,0,0
+2024020001,2024-10-04,2,1793,1730996,BUF,N,hit,Physical Battle,NJD,Opponent,N,3.0,0,0,0,0,0
+2024020001,2024-10-04,2,1796,1731001,NJD,N,stoppage,Stoppage,NJD,Hitting Team,N,10.0,0,0,0,0,0
+2024020001,2024-10-04,2,1818,1731017,BUF,N,hit,Physical Battle,NJD,Opponent,N,10.0,0,0,0,0,0
+2024020001,2024-10-04,2,1828,1731018,NJD,N,hit,Physical Battle,BUF,Opponent,N,8.0,0,0,0,0,0
+2024020001,2024-10-04,2,1836,1731019,BUF,N,shot-on-goal,Shot Attempt,BUF,Hitting Team,O,56.0,0,1,0,0,0
+2024020001,2024-10-04,2,1959,1731726,BUF,D,stoppage,Stoppage,NJD,Opponent,N,18.0,1,0,0,0,0
+2024020001,2024-10-04,2,2003,1731039,NJD,D,blocked-shot,Shot Attempt,BUF,Opponent,D,6.0,0,0,0,0,0
+2024020001,2024-10-04,2,2327,1731089,BUF,N,missed-shot,Shot Attempt,NJD,Opponent,O,9.0,0,0,0,0,0
+2024020001,2024-10-04,2,2364,1731090,NJD,N,giveaway,Possession Change,NJD,Hitting Team,D,8.0,0,0,0,0,0
+2024020001,2024-10-04,3,2435,1731115,BUF,N,shot-on-goal,Shot Attempt,BUF,Hitting Team,O,6.0,0,1,0,0,0
+2024020001,2024-10-04,3,2468,1731727,NJD,N,hit,Physical Battle,NJD,Hitting Team,N,14.0,0,0,0,0,0
+2024020001,2024-10-04,3,2482,1731134,NJD,N,missed-shot,Shot Attempt,BUF,Opponent,O,10.0,0,0,0,0,0
+2024020001,2024-10-04,3,2524,1731728,BUF,D,hit,Physical Battle,BUF,Hitting Team,N,53.0,1,0,0,0,0
+2024020001,2024-10-04,3,2577,1731163,BUF,N,giveaway,Possession Change,NJD,Opponent,D,1.0,0,0,0,0,0
+2024020001,2024-10-04,3,2585,1731170,BUF,N,blocked-shot,Shot Attempt,BUF,Hitting Team,D,36.0,0,0,0,0,0
+2024020001,2024-10-04,3,2812,1731198,NJD,N,blocked-shot,Shot Attempt,BUF,Opponent,D,10.0,0,0,0,0,0
+2024020001,2024-10-04,3,2977,1731228,NJD,N,hit,Physical Battle,BUF,Opponent,N,1.0,0,0,0,0,0
+2024020001,2024-10-04,3,2978,1731234,BUF,N,giveaway,Possession Change,BUF,Hitting Team,O,2.0,0,0,0,0,0
+2024020001,2024-10-04,3,2992,1731729,NJD,O,hit,Physical Battle,NJD,Hitting Team,O,2.0,0,0,0,0,0
+2024020001,2024-10-04,3,2994,1731730,NJD,O,shot-on-goal,Shot Attempt,BUF,Opponent,O,8.0,0,0,1,0,0
+2024020001,2024-10-04,3,3006,1731264,NJD,N,faceoff,Stoppage,NJD,Hitting Team,N,1.0,0,0,0,0,0
+2024020001,2024-10-04,3,3011,1731267,BUF,N,faceoff,Stoppage,BUF,Hitting Team,D,5.0,0,0,0,0,0
+2024020001,2024-10-04,3,3052,1731731,NJD,D,shot-on-goal,Shot Attempt,BUF,Opponent,O,29.0,1,0,1,0,0
+2024020001,2024-10-04,3,3143,1731732,BUF,O,faceoff,Stoppage,BUF,Hitting Team,N,8.0,0,0,0,0,0
+2024020001,2024-10-04,3,3221,1731733,NJD,D,shot-on-goal,Shot Attempt,BUF,Opponent,O,2.0,1,0,1,0,0
+2024020002,2024-10-05,1,75,225,BUF,N,hit,Physical Battle,NJD,Opponent,N,2.0,0,0,0,0,0
+2024020002,2024-10-05,1,77,248,NJD,N,stoppage,Stoppage,BUF,Opponent,N,6.0,0,0,0,0,0
+2024020002,2024-10-05,1,137,1613451,BUF,O,blocked-shot,Shot Attempt,BUF,Hitting Team,D,7.0,0,0,0,0,0
+2024020002,2024-10-05,1,152,249,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,N,3.0,0,0,1,0,0
+2024020002,2024-10-05,1,241,312,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,22.0,0,0,1,0,0
+2024020002,2024-10-05,1,315,347,NJD,N,shot-on-goal,Shot Attempt,BUF,Opponent,O,27.0,0,0,1,0,0
+2024020002,2024-10-05,1,521,1612562,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,11.0,0,0,0,0,0
+2024020002,2024-10-05,1,532,1612572,BUF,N,blocked-shot,Shot Attempt,NJD,Opponent,D,10.0,0,0,0,0,0
+2024020002,2024-10-05,1,557,1612593,BUF,N,giveaway,Possession Change,BUF,Hitting Team,D,9.0,0,0,0,0,0
+2024020002,2024-10-05,1,570,1613452,NJD,O,missed-shot,Shot Attempt,NJD,Hitting Team,O,4.0,0,0,0,0,0
+2024020002,2024-10-05,1,581,1612612,BUF,N,missed-shot,Shot Attempt,BUF,Hitting Team,O,25.0,0,0,0,0,0
+2024020002,2024-10-05,1,704,1612643,NJD,N,missed-shot,Shot Attempt,NJD,Hitting Team,O,51.0,0,0,0,0,0
+2024020002,2024-10-05,1,794,1612663,NJD,N,shot-on-goal,Shot Attempt,NJD,Hitting Team,O,24.0,0,1,0,0,0
+2024020002,2024-10-05,1,818,1613453,NJD,O,giveaway,Possession Change,BUF,Opponent,D,7.0,0,0,0,0,0
+2024020002,2024-10-05,1,841,1612669,BUF,N,shot-on-goal,Shot Attempt,BUF,Hitting Team,O,6.0,0,1,0,0,0
+2024020002,2024-10-05,1,892,1612721,BUF,N,blocked-shot,Shot Attempt,NJD,Opponent,D,1.0,0,0,0,0,0
+2024020002,2024-10-05,1,913,1612723,BUF,N,blocked-shot,Shot Attempt,BUF,Hitting Team,D,53.0,0,0,0,0,0
+2024020002,2024-10-05,1,1106,1612724,BUF,N,giveaway,Possession Change,NJD,Opponent,O,12.0,0,0,0,0,0
+2024020002,2024-10-05,1,1121,1612725,NJD,N,giveaway,Possession Change,NJD,Hitting Team,D,3.0,0,0,0,0,0
+2024020002,2024-10-05,1,1156,1612726,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,5.0,0,0,1,0,0
+2024020002,2024-10-05,1,1165,1613454,NJD,O,shot-on-goal,Shot Attempt,NJD,Hitting Team,O,3.0,0,1,0,0,0
+2024020002,2024-10-05,1,1199,1613455,BUF,D,period-end,Stoppage,BUF,Hitting Team,N,1.0,1,0,0,0,0
+2024020002,2024-10-05,2,1213,1612825,BUF,N,giveaway,Possession Change,NJD,Opponent,O,8.0,0,0,0,0,0
+2024020002,2024-10-05,2,1239,1613457,BUF,N,faceoff,Stoppage,NJD,Opponent,O,2.0,0,0,0,0,0
+2024020002,2024-10-05,2,1599,1612871,BUF,N,hit,Physical Battle,NJD,Opponent,N,8.0,0,0,0,0,0
+2024020002,2024-10-05,2,1607,1612886,NJD,N,missed-shot,Shot Attempt,BUF,Opponent,O,5.0,0,0,0,0,0
+2024020002,2024-10-05,2,1664,1612903,NJD,N,shot-on-goal,Shot Attempt,NJD,Hitting Team,O,5.0,0,1,0,0,0
+2024020002,2024-10-05,2,1711,1612936,NJD,N,giveaway,Possession Change,BUF,Opponent,O,7.0,0,0,0,0,0
+2024020002,2024-10-05,2,1748,1612943,BUF,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,6.0,0,0,1,0,0
+2024020002,2024-10-05,2,1977,1613458,NJD,D,blocked-shot,Shot Attempt,BUF,Opponent,D,6.0,0,0,0,0,0
+2024020002,2024-10-05,2,2340,1613027,BUF,N,giveaway,Possession Change,NJD,Opponent,D,11.0,0,0,0,0,0
+2024020002,2024-10-05,2,2368,1613028,BUF,N,giveaway,Possession Change,NJD,Opponent,D,1.0,0,0,0,0,0
+2024020002,2024-10-05,3,2485,1613459,NJD,N,shot-on-goal,Shot Attempt,BUF,Opponent,O,4.0,0,0,1,0,0
+2024020002,2024-10-05,3,2687,1613112,BUF,N,missed-shot,Shot Attempt,NJD,Opponent,O,12.0,0,0,0,0,0
+2024020002,2024-10-05,3,2824,1613130,NJD,N,giveaway,Possession Change,NJD,Hitting Team,D,3.0,0,0,0,0,0
+2024020002,2024-10-05,3,2856,1613161,BUF,N,hit,Physical Battle,NJD,Opponent,N,4.0,0,0,0,0,0
+2024020002,2024-10-05,3,2860,1613164,NJD,N,hit,Physical Battle,BUF,Opponent,N,13.0,0,0,0,0,0
+2024020002,2024-10-05,3,2873,1613175,BUF,N,giveaway,Possession Change,NJD,Opponent,O,4.0,0,0,0,0,0
+2024020002,2024-10-05,3,2878,1613181,BUF,N,stoppage,Stoppage,BUF,Hitting Team,N,25.0,0,0,0,0,0
+2024020002,2024-10-05,3,3056,1613199,NJD,N,faceoff,Stoppage,NJD,Hitting Team,D,2.0,0,0,0,0,0
+2024020002,2024-10-05,3,3135,1613210,NJD,N,blocked-shot,Shot Attempt,BUF,Opponent,D,35.0,0,0,0,0,0
+2024020002,2024-10-05,3,3242,1613226,BUF,N,missed-shot,Shot Attempt,NJD,Opponent,O,10.0,0,0,0,0,0
+2024020002,2024-10-05,3,3268,1613235,BUF,N,missed-shot,Shot Attempt,BUF,Hitting Team,O,8.0,0,0,0,0,0
+2024020002,2024-10-05,3,3322,1613255,NJD,N,giveaway,Possession Change,NJD,Hitting Team,D,6.0,0,0,0,0,0
+2024020002,2024-10-05,3,3461,1613273,BUF,N,missed-shot,Shot Attempt,NJD,Opponent,D,3.0,0,0,0,0,0
+2024020002,2024-10-05,3,3569,1613286,BUF,N,giveaway,Possession Change,BUF,Hitting Team,O,6.0,0,0,0,0,0
+2024020003,2024-10-08,1,8,75,SEA,D,hit,Physical Battle,STL,Opponent,N,2.0,1,0,0,0,0
+2024020003,2024-10-08,1,10,78,STL,N,shot-on-goal,Shot Attempt,STL,Hitting Team,O,28.0,0,1,0,0,0
+2024020003,2024-10-08,1,94,96,STL,N,blocked-shot,Shot Attempt,SEA,Opponent,D,13.0,0,0,0,0,0
+2024020003,2024-10-08,1,114,105,STL,N,hit,Physical Battle,STL,Hitting Team,N,22.0,0,0,0,0,0
+2024020003,2024-10-08,1,136,114,STL,N,missed-shot,Shot Attempt,SEA,Opponent,O,2.0,0,0,0,0,0
+2024020003,2024-10-08,1,157,126,STL,N,shot-on-goal,Shot Attempt,SEA,Opponent,O,1.0,0,0,1,0,0
+2024020003,2024-10-08,1,231,135,STL,N,blocked-shot,Shot Attempt,STL,Hitting Team,D,14.0,0,0,0,0,0
+2024020003,2024-10-08,1,279,138,STL,N,hit,Physical Battle,STL,Hitting Team,D,3.0,0,0,0,0,0
+2024020003,2024-10-08,1,282,1391,STL,D,shot-on-goal,Shot Attempt,STL,Hitting Team,O,36.0,1,1,0,0,0
+2024020003,2024-10-08,1,593,298,STL,N,hit,Physical Battle,SEA,Opponent,N,4.0,0,0,0,0,0
+2024020003,2024-10-08,1,597,351,SEA,N,hit,Physical Battle,STL,Opponent,N,4.0,0,0,0,0,0
+2024020003,2024-10-08,1,601,353,STL,N,giveaway,Possession Change,STL,Hitting Team,D,25.0,0,0,0,0,0
+2024020003,2024-10-08,1,650,362,STL,N,shot-on-goal,Shot Attempt,SEA,Opponent,O,31.0,0,0,1,0,0
+2024020003,2024-10-08,1,706,371,SEA,D,stoppage,Stoppage,STL,Opponent,N,46.0,1,0,0,0,0
+2024020003,2024-10-08,1,812,390,SEA,O,shot-on-goal,Shot Attempt,SEA,Hitting Team,O,3.0,0,1,0,0,0
+2024020003,2024-10-08,1,941,414,STL,N,takeaway,Possession Change,SEA,Opponent,D,34.0,0,0,0,0,0
+2024020003,2024-10-08,1,1051,452,SEA,D,hit,Physical Battle,SEA,Hitting Team,D,31.0,0,0,0,0,0
+2024020003,2024-10-08,1,1082,457,SEA,D,hit,Physical Battle,STL,Opponent,N,23.0,1,0,0,0,0
+2024020003,2024-10-08,1,1105,459,STL,N,shot-on-goal,Shot Attempt,SEA,Opponent,O,10.0,0,0,1,0,0
+2024020003,2024-10-08,2,1223,470,STL,N,shot-on-goal,Shot Attempt,SEA,Opponent,O,3.0,0,0,1,0,0
+2024020003,2024-10-08,2,1268,558,STL,N,blocked-shot,Shot Attempt,SEA,Opponent,D,21.0,0,0,0,0,0
+2024020003,2024-10-08,2,1309,562,STL,N,shot-on-goal,Shot Attempt,SEA,Opponent,O,6.0,0,0,1,0,0
+2024020003,2024-10-08,2,1355,575,STL,N,stoppage,Stoppage,STL,Hitting Team,N,22.0,0,0,0,0,0
+2024020003,2024-10-08,2,1438,653,STL,N,shot-on-goal,Shot Attempt,STL,Hitting Team,O,6.0,0,1,0,0,0
+2024020003,2024-10-08,2,1459,656,STL,N,shot-on-goal,Shot Attempt,SEA,Opponent,O,8.0,0,0,1,0,0
+2024020003,2024-10-08,2,1607,1392,SEA,D,shot-on-goal,Shot Attempt,SEA,Hitting Team,O,6.0,1,1,0,0,0
+2024020003,2024-10-08,2,1648,668,STL,N,hit,Physical Battle,STL,Hitting Team,D,5.0,0,0,0,0,0
+2024020003,2024-10-08,2,1653,1393,STL,D,blocked-shot,Shot Attempt,STL,Hitting Team,D,30.0,0,0,0,0,0
+2024020003,2024-10-08,2,1818,704,SEA,D,shot-on-goal,Shot Attempt,STL,Opponent,O,12.0,1,0,1,0,0
+2024020003,2024-10-08,2,1879,719,SEA,O,giveaway,Possession Change,STL,Opponent,D,9.0,0,0,0,0,0
+2024020003,2024-10-08,2,1899,1394,STL,N,missed-shot,Shot Attempt,STL,Hitting Team,O,26.0,0,0,0,0,0
+2024020003,2024-10-08,2,1941,731,SEA,N,giveaway,Possession Change,STL,Opponent,D,26.0,0,0,0,0,0
+2024020003,2024-10-08,2,2048,765,SEA,D,hit,Physical Battle,SEA,Hitting Team,D,6.0,0,0,0,0,0
+2024020003,2024-10-08,2,2054,1395,SEA,D,hit,Physical Battle,STL,Opponent,N,33.0,1,0,0,0,0
+2024020003,2024-10-08,2,2087,777,STL,N,hit,Physical Battle,SEA,Opponent,D,23.0,0,0,0,0,0
+2024020003,2024-10-08,2,2110,779,SEA,D,faceoff,Stoppage,SEA,Hitting Team,N,7.0,1,0,0,0,0
+2024020003,2024-10-08,2,2320,893,STL,N,stoppage,Stoppage,STL,Hitting Team,N,6.0,0,0,0,0,0
+2024020003,2024-10-08,2,2361,895,SEA,D,shot-on-goal,Shot Attempt,STL,Opponent,O,8.0,1,0,1,0,0
+2024020003,2024-10-08,3,2536,929,STL,N,blocked-shot,Shot Attempt,SEA,Opponent,D,17.0,0,0,0,0,0
+2024020003,2024-10-08,3,2585,938,STL,N,missed-shot,Shot Attempt,STL,Hitting Team,O,12.0,0,0,0,0,0
+2024020003,2024-10-08,3,2622,950,STL,N,takeaway,Possession Change,STL,Hitting Team,N,8.0,0,0,0,0,0
+2024020003,2024-10-08,3,2631,1012,SEA,N,blocked-shot,Shot Attempt,SEA,Hitting Team,D,26.0,0,0,0,0,0
+2024020003,2024-10-08,3,2957,1065,STL,N,hit,Physical Battle,STL,Hitting Team,N,13.0,0,0,0,0,0
+2024020003,2024-10-08,3,2970,1070,STL,N,takeaway,Possession Change,STL,Hitting Team,O,20.0,0,0,0,0,0
+2024020003,2024-10-08,3,3053,1094,STL,N,giveaway,Possession Change,STL,Hitting Team,D,10.0,0,0,0,0,0
+2024020003,2024-10-08,3,3110,1096,SEA,D,faceoff,Stoppage,SEA,Hitting Team,D,1.0,0,0,0,0,0
+2024020003,2024-10-08,3,3235,1125,SEA,D,stoppage,Stoppage,STL,Opponent,N,63.0,1,0,0,0,0
+2024020003,2024-10-08,3,3382,1154,SEA,O,giveaway,Possession Change,STL,Opponent,D,2.0,0,0,0,0,0
+2024020003,2024-10-08,3,3388,1157,SEA,O,missed-shot,Shot Attempt,STL,Opponent,O,10.0,0,0,0,0,0
+2024020003,2024-10-08,3,3399,1161,SEA,D,hit,Physical Battle,SEA,Hitting Team,D,8.0,0,0,0,0,0
+2024020003,2024-10-08,3,3407,1173,SEA,D,hit,Physical Battle,STL,Opponent,N,4.0,1,0,0,0,0
+2024020003,2024-10-08,3,3411,1174,STL,N,giveaway,Possession Change,SEA,Opponent,N,15.0,0,0,0,0,0
+2024020003,2024-10-08,3,3470,1182,SEA,D,blocked-shot,Shot Attempt,SEA,Hitting Team,O,36.0,1,0,0,0,0
+2024020004,2024-10-08,1,10,109,FLA,O,stoppage,Stoppage,BOS,Opponent,N,11.0,0,0,0,0,0
+2024020004,2024-10-08,1,26,123,FLA,O,takeaway,Possession Change,BOS,Opponent,O,9.0,0,0,0,0,0
+2024020004,2024-10-08,1,36,1341,FLA,D,shot-on-goal,Shot Attempt,FLA,Hitting Team,O,30.0,1,1,0,0,0
+2024020004,2024-10-08,1,78,142,BOS,N,hit,Physical Battle,FLA,Opponent,O,3.0,0,0,0,0,0
+2024020004,2024-10-08,1,81,155,FLA,O,hit,Physical Battle,BOS,Opponent,N,12.0,0,0,0,0,0
+2024020004,2024-10-08,1,93,169,BOS,N,hit,Physical Battle,FLA,Opponent,O,3.0,0,0,0,0,0
+2024020004,2024-10-08,1,96,1342,FLA,O,hit,Physical Battle,FLA,Hitting Team,O,5.0,0,0,0,0,0
+2024020004,2024-10-08,1,101,182,FLA,O,hit,Physical Battle,FLA,Hitting Team,O,27.0,0,0,0,0,0
+2024020004,2024-10-08,1,128,186,FLA,O,giveaway,Possession Change,BOS,Opponent,D,10.0,0,0,0,0,0
+2024020004,2024-10-08,1,169,192,BOS,N,shot-on-goal,Shot Attempt,FLA,Opponent,N,29.0,0,0,1,0,0
+2024020004,2024-10-08,1,205,254,FLA,O,blocked-shot,Shot Attempt,BOS,Opponent,O,17.0,0,0,0,0,0
+2024020004,2024-10-08,1,291,275,BOS,N,takeaway,Possession Change,BOS,Hitting Team,O,1.0,0,0,0,0,0
+2024020004,2024-10-08,1,303,277,FLA,O,giveaway,Possession Change,BOS,Opponent,D,1.0,0,0,0,0,0
+2024020004,2024-10-08,1,351,284,BOS,N,faceoff,Stoppage,FLA,Opponent,N,4.0,0,0,0,0,0
+2024020004,2024-10-08,1,394,373,FLA,O,missed-shot,Shot Attempt,BOS,Opponent,O,9.0,0,0,0,0,0
+2024020004,2024-10-08,1,431,376,BOS,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,18.0,0,0,1,0,0
+2024020004,2024-10-08,1,493,1343,BOS,D,missed-shot,Shot Attempt,FLA,Opponent,O,2.0,1,0,0,0,0
+2024020004,2024-10-08,1,511,412,BOS,N,stoppage,Stoppage,BOS,Hitting Team,N,26.0,0,0,0,0,0
+2024020004,2024-10-08,1,550,414,FLA,N,stoppage,Stoppage,BOS,Opponent,N,8.0,0,0,0,0,0
+2024020004,2024-10-08,1,768,440,BOS,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,10.0,0,0,1,0,0
+2024020004,2024-10-08,1,793,452,FLA,O,stoppage,Stoppage,BOS,Opponent,N,2.0,0,0,0,0,0
+2024020004,2024-10-08,1,803,462,BOS,N,blocked-shot,Shot Attempt,FLA,Opponent,D,17.0,0,0,0,0,0
+2024020004,2024-10-08,1,829,467,BOS,N,missed-shot,Shot Attempt,FLA,Opponent,O,6.0,0,0,0,0,0
+2024020004,2024-10-08,1,1105,479,FLA,O,faceoff,Stoppage,FLA,Hitting Team,N,9.0,0,0,0,0,0
+2024020004,2024-10-08,1,1183,480,BOS,N,hit,Physical Battle,FLA,Opponent,D,4.0,0,0,0,0,0
+2024020004,2024-10-08,1,1187,481,FLA,D,blocked-shot,Shot Attempt,FLA,Hitting Team,D,7.0,0,0,0,0,0
+2024020004,2024-10-08,2,1244,498,BOS,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,1.0,0,0,1,0,0
+2024020004,2024-10-08,2,1282,1344,FLA,D,blocked-shot,Shot Attempt,BOS,Opponent,D,7.0,0,0,0,0,0
+2024020004,2024-10-08,2,1340,573,FLA,O,missed-shot,Shot Attempt,FLA,Hitting Team,D,5.0,0,0,0,0,0
+2024020004,2024-10-08,2,1351,1345,FLA,N,stoppage,Stoppage,BOS,Opponent,N,8.0,0,0,0,0,0
+2024020004,2024-10-08,2,1397,596,BOS,N,giveaway,Possession Change,BOS,Hitting Team,D,10.0,0,0,0,0,0
+2024020004,2024-10-08,2,1494,706,FLA,D,blocked-shot,Shot Attempt,FLA,Hitting Team,D,41.0,0,0,0,0,0
+2024020004,2024-10-08,2,1575,712,BOS,N,stoppage,Stoppage,BOS,Hitting Team,N,40.0,0,0,0,0,0
+2024020004,2024-10-08,2,1618,727,BOS,N,missed-shot,Shot Attempt,BOS,Hitting Team,O,1.0,0,0,0,0,0
+2024020004,2024-10-08,2,1732,750,FLA,D,giveaway,Possession Change,BOS,Opponent,N,14.0,1,0,0,0,0
+2024020004,2024-10-08,2,1885,828,FLA,O,missed-shot,Shot Attempt,FLA,Hitting Team,O,34.0,0,0,0,0,0
+2024020004,2024-10-08,2,1970,848,BOS,N,hit,Physical Battle,FLA,Opponent,O,4.0,0,0,0,0,0
+2024020004,2024-10-08,2,1974,849,FLA,O,hit,Physical Battle,FLA,Hitting Team,O,42.0,0,0,0,0,0
+2024020004,2024-10-08,2,2016,850,FLA,O,shot-on-goal,Shot Attempt,BOS,Opponent,O,4.0,0,0,1,0,0
+2024020004,2024-10-08,2,2234,882,BOS,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,18.0,0,0,1,0,0
+2024020004,2024-10-08,2,2301,884,BOS,N,delayed-penalty,Penalty,FLA,Opponent,N,15.0,0,0,0,0,0
+2024020004,2024-10-08,3,2606,949,BOS,N,giveaway,Possession Change,FLA,Opponent,O,7.0,0,0,0,0,0
+2024020004,2024-10-08,3,2653,977,BOS,N,faceoff,Stoppage,BOS,Hitting Team,D,25.0,0,0,0,0,0
+2024020004,2024-10-08,3,2728,992,FLA,O,blocked-shot,Shot Attempt,FLA,Hitting Team,D,8.0,0,0,0,0,0
+2024020004,2024-10-08,3,2745,993,BOS,N,faceoff,Stoppage,FLA,Opponent,N,41.0,0,0,0,0,0
+2024020004,2024-10-08,3,2877,1058,BOS,N,shot-on-goal,Shot Attempt,BOS,Hitting Team,N,13.0,0,1,0,0,0
+2024020004,2024-10-08,3,2922,1066,BOS,N,hit,Physical Battle,BOS,Hitting Team,N,16.0,0,0,0,0,0
+2024020004,2024-10-08,3,2938,1072,BOS,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,8.0,0,0,1,0,0
+2024020004,2024-10-08,3,2949,1081,BOS,N,missed-shot,Shot Attempt,FLA,Opponent,O,2.0,0,0,0,0,0
+2024020004,2024-10-08,3,2968,1093,FLA,D,delayed-penalty,Penalty,BOS,Opponent,N,7.0,1,0,0,0,0
+2024020004,2024-10-08,3,3165,1120,BOS,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,2.0,0,0,1,0,0
+2024020004,2024-10-08,3,3398,1346,FLA,N,faceoff,Stoppage,FLA,Hitting Team,N,13.0,0,0,0,0,0
+2024020004,2024-10-08,3,3419,1160,FLA,O,delayed-penalty,Penalty,FLA,Hitting Team,N,3.0,0,0,0,0,0
+2024020005,2024-10-08,1,67,140,CHI,N,blocked-shot,Shot Attempt,CHI,Hitting Team,D,8.0,0,0,0,0,0
+2024020005,2024-10-08,1,87,145,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,19.0,0,0,0,0,0
+2024020005,2024-10-08,1,106,153,CHI,N,hit,Physical Battle,UTA,Opponent,O,2.0,0,0,0,0,0
+2024020005,2024-10-08,1,108,165,UTA,O,stoppage,Stoppage,CHI,Opponent,N,31.0,0,0,0,0,0
+2024020005,2024-10-08,1,248,1471,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,26.0,0,0,0,0,0
+2024020005,2024-10-08,1,274,187,CHI,N,faceoff,Stoppage,CHI,Hitting Team,N,22.0,0,0,0,0,0
+2024020005,2024-10-08,1,503,223,CHI,N,hit,Physical Battle,UTA,Opponent,O,26.0,0,0,0,0,0
+2024020005,2024-10-08,1,529,1472,UTA,O,giveaway,Possession Change,UTA,Hitting Team,N,12.0,0,0,0,0,0
+2024020005,2024-10-08,1,553,227,UTA,O,giveaway,Possession Change,UTA,Hitting Team,D,23.0,0,0,0,0,0
+2024020005,2024-10-08,1,641,247,UTA,O,blocked-shot,Shot Attempt,UTA,Hitting Team,D,8.0,0,0,0,0,0
+2024020005,2024-10-08,1,728,261,UTA,O,shot-on-goal,Shot Attempt,UTA,Hitting Team,O,2.0,0,1,0,0,0
+2024020005,2024-10-08,1,762,264,UTA,O,stoppage,Stoppage,CHI,Opponent,N,3.0,0,0,0,0,0
+2024020005,2024-10-08,1,801,275,CHI,N,delayed-penalty,Penalty,CHI,Hitting Team,N,11.0,0,0,0,0,0
+2024020005,2024-10-08,1,818,284,CHI,N,hit,Physical Battle,UTA,Opponent,O,5.0,0,0,0,0,0
+2024020005,2024-10-08,1,823,285,UTA,O,stoppage,Stoppage,CHI,Opponent,N,17.0,0,0,0,0,0
+2024020005,2024-10-08,1,891,405,UTA,D,blocked-shot,Shot Attempt,CHI,Opponent,D,18.0,0,0,0,0,0
+2024020005,2024-10-08,1,1095,447,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,35.0,0,0,0,0,0
+2024020005,2024-10-08,1,1130,448,CHI,N,blocked-shot,Shot Attempt,UTA,Opponent,D,10.0,0,0,0,0,0
+2024020005,2024-10-08,1,1157,1473,CHI,N,period-end,Stoppage,CHI,Hitting Team,N,43.0,0,0,0,0,0
+2024020005,2024-10-08,2,1256,577,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,4.0,0,0,0,0,0
+2024020005,2024-10-08,2,1260,1474,CHI,N,missed-shot,Shot Attempt,CHI,Hitting Team,O,12.0,0,0,0,0,0
+2024020005,2024-10-08,2,1282,580,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,9.0,0,0,0,0,0
+2024020005,2024-10-08,2,1291,586,CHI,N,giveaway,Possession Change,UTA,Opponent,D,1.0,0,0,0,0,0
+2024020005,2024-10-08,2,1300,1475,CHI,O,hit,Physical Battle,UTA,Opponent,O,37.0,0,0,0,0,0
+2024020005,2024-10-08,2,1337,591,UTA,O,blocked-shot,Shot Attempt,CHI,Opponent,D,7.0,0,0,0,0,0
+2024020005,2024-10-08,2,1460,622,CHI,N,blocked-shot,Shot Attempt,CHI,Hitting Team,D,7.0,0,0,0,0,0
+2024020005,2024-10-08,2,1469,625,CHI,N,missed-shot,Shot Attempt,CHI,Hitting Team,O,5.0,0,0,0,0,0
+2024020005,2024-10-08,2,1480,627,CHI,N,blocked-shot,Shot Attempt,CHI,Hitting Team,D,21.0,0,0,0,0,0
+2024020005,2024-10-08,2,1512,1476,UTA,N,missed-shot,Shot Attempt,CHI,Opponent,O,9.0,0,0,0,0,0
+2024020005,2024-10-08,2,1539,628,UTA,N,stoppage,Stoppage,CHI,Opponent,N,24.0,0,0,0,0,0
+2024020005,2024-10-08,2,1695,656,UTA,D,shot-on-goal,Shot Attempt,UTA,Hitting Team,O,7.0,1,1,0,0,0
+2024020005,2024-10-08,2,1715,661,CHI,N,faceoff,Stoppage,UTA,Opponent,N,11.0,0,0,0,0,0
+2024020005,2024-10-08,2,1766,679,UTA,O,hit,Physical Battle,CHI,Opponent,N,9.0,0,0,0,0,0
+2024020005,2024-10-08,2,1775,690,CHI,N,takeaway,Possession Change,CHI,Hitting Team,O,2.0,0,0,0,0,0
+2024020005,2024-10-08,2,1962,735,CHI,N,giveaway,Possession Change,UTA,Opponent,D,2.0,0,0,0,0,0
+2024020005,2024-10-08,2,2071,745,CHI,N,penalty,Penalty,UTA,Opponent,O,5.0,0,0,0,0,0
+2024020005,2024-10-08,2,2286,803,UTA,O,faceoff,Stoppage,CHI,Opponent,O,4.0,0,0,0,0,0
+2024020005,2024-10-08,3,2492,839,UTA,O,giveaway,Possession Change,CHI,Opponent,D,2.0,0,0,0,0,0
+2024020005,2024-10-08,3,2498,849,UTA,O,blocked-shot,Shot Attempt,UTA,Hitting Team,D,15.0,0,0,0,0,0
+2024020005,2024-10-08,3,2628,878,UTA,O,shot-on-goal,Shot Attempt,UTA,Hitting Team,O,6.0,0,1,0,0,0
+2024020005,2024-10-08,3,2840,1477,CHI,O,hit,Physical Battle,UTA,Opponent,N,25.0,0,0,0,0,0
+2024020005,2024-10-08,3,2865,932,UTA,N,hit,Physical Battle,CHI,Opponent,N,2.0,0,0,0,0,0
+2024020005,2024-10-08,3,2867,918,CHI,N,hit,Physical Battle,UTA,Opponent,D,5.0,0,0,0,0,0
+2024020005,2024-10-08,3,2872,1478,UTA,D,blocked-shot,Shot Attempt,CHI,Opponent,D,24.0,0,0,0,0,0
+2024020005,2024-10-08,3,2909,1003,UTA,N,hit,Physical Battle,CHI,Opponent,N,23.0,0,0,0,0,0
+2024020005,2024-10-08,3,2932,1479,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,15.0,0,0,0,0,0
+2024020005,2024-10-08,3,2947,1013,CHI,N,giveaway,Possession Change,UTA,Opponent,D,4.0,0,0,0,0,0
+2024020005,2024-10-08,3,2976,1027,CHI,N,shot-on-goal,Shot Attempt,CHI,Hitting Team,O,23.0,0,1,0,0,0
+2024020005,2024-10-08,3,3106,1058,UTA,O,hit,Physical Battle,CHI,Opponent,D,8.0,0,0,0,0,0
+2024020005,2024-10-08,3,3114,1480,CHI,D,blocked-shot,Shot Attempt,UTA,Opponent,D,2.0,0,0,0,0,0
+2024020005,2024-10-08,3,3165,1073,UTA,N,giveaway,Possession Change,UTA,Hitting Team,O,13.0,0,0,0,0,0
+2024020005,2024-10-08,3,3251,1079,CHI,N,takeaway,Possession Change,CHI,Hitting Team,O,2.0,0,0,0,0,0
+2024020005,2024-10-08,3,3453,1117,CHI,N,blocked-shot,Shot Attempt,CHI,Hitting Team,D,6.0,0,0,0,0,0
+2024020005,2024-10-08,3,3584,1135,UTA,O,blocked-shot,Shot Attempt,CHI,Opponent,D,6.0,0,0,0,0,0
+2024020006,2024-10-09,1,9,117,TOR,N,shot-on-goal,Shot Attempt,TOR,Hitting Team,O,5.0,0,1,0,0,0
+2024020006,2024-10-09,1,167,151,MTL,N,hit,Physical Battle,TOR,Opponent,N,21.0,0,0,0,0,0
+2024020006,2024-10-09,1,188,155,TOR,N,hit,Physical Battle,TOR,Hitting Team,N,15.0,0,0,0,0,0
+2024020006,2024-10-09,1,203,164,TOR,N,hit,Physical Battle,TOR,Hitting Team,N,21.0,0,0,0,0,0
+2024020006,2024-10-09,1,224,168,TOR,N,blocked-shot,Shot Attempt,TOR,Hitting Team,D,10.0,0,0,0,0,0
+2024020006,2024-10-09,1,350,195,TOR,N,blocked-shot,Shot Attempt,MTL,Opponent,D,9.0,0,0,0,0,0
+2024020006,2024-10-09,1,374,196,TOR,N,shot-on-goal,Shot Attempt,MTL,Opponent,O,16.0,0,0,1,0,0
+2024020006,2024-10-09,1,540,318,TOR,N,missed-shot,Shot Attempt,TOR,Hitting Team,O,8.0,0,0,0,0,0
+2024020006,2024-10-09,1,552,323,MTL,N,takeaway,Possession Change,MTL,Hitting Team,O,7.0,0,0,0,0,0
+2024020006,2024-10-09,1,567,325,TOR,N,missed-shot,Shot Attempt,MTL,Opponent,O,16.0,0,0,0,0,0
+2024020006,2024-10-09,1,589,327,MTL,N,hit,Physical Battle,TOR,Opponent,N,31.0,0,0,0,0,0
+2024020006,2024-10-09,1,620,332,TOR,N,hit,Physical Battle,MTL,Opponent,N,9.0,0,0,0,0,0
+2024020006,2024-10-09,1,629,347,MTL,N,shot-on-goal,Shot Attempt,MTL,Hitting Team,O,52.0,0,1,0,0,0
+2024020006,2024-10-09,1,757,372,TOR,N,shot-on-goal,Shot Attempt,TOR,Hitting Team,O,11.0,0,1,0,0,0
+2024020006,2024-10-09,1,821,376,MTL,N,shot-on-goal,Shot Attempt,TOR,Opponent,O,3.0,0,0,1,0,0
+2024020006,2024-10-09,1,828,378,MTL,N,missed-shot,Shot Attempt,TOR,Opponent,O,17.0,0,0,0,0,0
+2024020006,2024-10-09,1,907,438,TOR,N,missed-shot,Shot Attempt,TOR,Hitting Team,O,5.0,0,0,0,0,0
+2024020006,2024-10-09,1,949,1431,TOR,O,giveaway,Possession Change,MTL,Opponent,D,1.0,0,0,0,0,0
+2024020006,2024-10-09,1,955,415,MTL,N,blocked-shot,Shot Attempt,MTL,Hitting Team,D,9.0,0,0,0,0,0
+2024020006,2024-10-09,1,1097,450,TOR,N,hit,Physical Battle,MTL,Opponent,N,22.0,0,0,0,0,0
+2024020006,2024-10-09,1,1119,452,MTL,N,shot-on-goal,Shot Attempt,TOR,Opponent,O,31.0,0,0,1,0,0
+2024020006,2024-10-09,2,1350,488,MTL,N,missed-shot,Shot Attempt,TOR,Opponent,O,8.0,0,0,0,0,0
+2024020006,2024-10-09,2,1471,663,MTL,N,shot-on-goal,Shot Attempt,TOR,Opponent,O,5.0,0,0,1,0,0
+2024020006,2024-10-09,2,1494,683,TOR,N,blocked-shot,Shot Attempt,TOR,Hitting Team,D,8.0,0,0,0,0,0
+2024020006,2024-10-09,2,1534,1432,MTL,N,shot-on-goal,Shot Attempt,MTL,Hitting Team,O,16.0,0,1,0,0,0
+2024020006,2024-10-09,2,1593,698,TOR,N,missed-shot,Shot Attempt,TOR,Hitting Team,O,15.0,0,0,0,0,0
+2024020006,2024-10-09,2,1619,700,MTL,N,hit,Physical Battle,MTL,Hitting Team,N,5.0,0,0,0,0,0
+2024020006,2024-10-09,2,1624,701,MTL,N,shot-on-goal,Shot Attempt,TOR,Opponent,N,10.0,0,0,1,0,0
+2024020006,2024-10-09,2,1700,1433,MTL,O,giveaway,Possession Change,TOR,Opponent,D,4.0,0,0,0,0,0
+2024020006,2024-10-09,2,1859,743,TOR,N,giveaway,Possession Change,TOR,Hitting Team,O,8.0,0,0,0,0,0
+2024020006,2024-10-09,2,2269,826,MTL,N,stoppage,Stoppage,TOR,Opponent,N,22.0,0,0,0,0,0
+2024020006,2024-10-09,2,2361,843,TOR,N,blocked-shot,Shot Attempt,TOR,Hitting Team,D,23.0,0,0,0,0,0
+2024020006,2024-10-09,2,2385,844,MTL,N,period-end,Stoppage,TOR,Opponent,N,15.0,0,0,0,0,0
+2024020006,2024-10-09,3,2423,876,TOR,N,shot-on-goal,Shot Attempt,TOR,Hitting Team,O,16.0,0,1,0,0,0
+2024020006,2024-10-09,3,2566,896,MTL,N,hit,Physical Battle,TOR,Opponent,N,26.0,0,0,0,0,0
+2024020006,2024-10-09,3,2592,905,TOR,N,blocked-shot,Shot Attempt,TOR,Hitting Team,D,6.0,0,0,0,0,0
+2024020006,2024-10-09,3,2601,909,TOR,N,hit,Physical Battle,MTL,Opponent,D,3.0,0,0,0,0,0
+2024020006,2024-10-09,3,2604,1434,MTL,D,hit,Physical Battle,TOR,Opponent,O,2.0,1,0,0,0,0
+2024020006,2024-10-09,3,2606,1435,TOR,O,hit,Physical Battle,MTL,Opponent,N,31.0,0,0,0,0,0
+2024020006,2024-10-09,3,2637,924,MTL,N,hit,Physical Battle,MTL,Hitting Team,N,17.0,0,0,0,0,0
+2024020006,2024-10-09,3,2654,935,MTL,N,missed-shot,Shot Attempt,MTL,Hitting Team,O,20.0,0,0,0,0,0
+2024020006,2024-10-09,3,2834,968,MTL,N,giveaway,Possession Change,MTL,Hitting Team,D,10.0,0,0,0,0,0
+2024020006,2024-10-09,3,2852,980,MTL,N,shot-on-goal,Shot Attempt,TOR,Opponent,O,7.0,0,0,1,0,0
+2024020006,2024-10-09,3,3098,1436,TOR,O,giveaway,Possession Change,TOR,Hitting Team,N,8.0,0,0,0,0,0
+2024020006,2024-10-09,3,3145,1016,MTL,N,hit,Physical Battle,TOR,Opponent,N,27.0,0,0,0,0,0
+2024020006,2024-10-09,3,3172,1026,TOR,N,takeaway,Possession Change,TOR,Hitting Team,O,46.0,0,0,0,0,0
+2024020007,2024-10-09,1,11,131,NYR,N,giveaway,Possession Change,PIT,Opponent,O,4.0,0,0,0,0,0
+2024020007,2024-10-09,1,106,226,PIT,N,goal,Goal,NYR,Opponent,O,38.0,0,0,0,0,1
+2024020007,2024-10-09,1,302,267,NYR,N,blocked-shot,Shot Attempt,PIT,Opponent,D,23.0,0,0,0,0,0
+2024020007,2024-10-09,1,382,280,PIT,N,shot-on-goal,Shot Attempt,NYR,Opponent,O,3.0,0,0,1,0,0
+2024020007,2024-10-09,1,444,1431,NYR,D,hit,Physical Battle,PIT,Opponent,N,21.0,1,0,0,0,0
+2024020007,2024-10-09,1,465,284,PIT,N,missed-shot,Shot Attempt,PIT,Hitting Team,O,11.0,0,0,0,0,0
+2024020007,2024-10-09,1,508,292,PIT,N,stoppage,Stoppage,NYR,Opponent,N,16.0,0,0,0,0,0
+2024020007,2024-10-09,1,575,366,NYR,N,missed-shot,Shot Attempt,PIT,Opponent,O,1.0,0,0,0,0,0
+2024020007,2024-10-09,1,650,552,NYR,N,hit,Physical Battle,PIT,Opponent,N,4.0,0,0,0,0,0
+2024020007,2024-10-09,1,654,553,PIT,N,hit,Physical Battle,PIT,Hitting Team,N,29.0,0,0,0,0,0
+2024020007,2024-10-09,1,683,554,PIT,N,hit,Physical Battle,NYR,Opponent,O,17.0,0,0,0,0,0
+2024020007,2024-10-09,1,700,1432,NYR,O,giveaway,Possession Change,NYR,Hitting Team,D,15.0,0,0,0,0,0
+2024020007,2024-10-09,1,728,555,PIT,N,missed-shot,Shot Attempt,PIT,Hitting Team,O,14.0,0,0,0,0,0
+2024020007,2024-10-09,1,814,556,PIT,N,giveaway,Possession Change,NYR,Opponent,D,1.0,0,0,0,0,0
+2024020007,2024-10-09,1,815,557,NYR,N,blocked-shot,Shot Attempt,PIT,Opponent,D,2.0,0,0,0,0,0
+2024020007,2024-10-09,1,873,558,PIT,N,missed-shot,Shot Attempt,PIT,Hitting Team,O,28.0,0,0,0,0,0
+2024020007,2024-10-09,1,1032,559,NYR,N,faceoff,Stoppage,NYR,Hitting Team,N,11.0,0,0,0,0,0
+2024020007,2024-10-09,1,1061,577,PIT,N,shot-on-goal,Shot Attempt,NYR,Opponent,O,23.0,0,0,1,0,0
+2024020007,2024-10-09,2,1447,709,NYR,N,hit,Physical Battle,NYR,Hitting Team,N,21.0,0,0,0,0,0
+2024020007,2024-10-09,2,1468,717,NYR,N,missed-shot,Shot Attempt,NYR,Hitting Team,O,1.0,0,0,0,0,0
+2024020007,2024-10-09,2,1501,739,NYR,N,shot-on-goal,Shot Attempt,PIT,Opponent,O,13.0,0,0,1,0,0
+2024020007,2024-10-09,2,1788,806,PIT,N,shot-on-goal,Shot Attempt,PIT,Hitting Team,O,14.0,0,1,0,0,0
+2024020007,2024-10-09,2,1867,821,PIT,N,shot-on-goal,Shot Attempt,NYR,Opponent,O,27.0,0,0,1,0,0
+2024020007,2024-10-09,2,1898,829,PIT,N,shot-on-goal,Shot Attempt,NYR,Opponent,O,2.0,0,0,1,0,0
+2024020007,2024-10-09,2,2271,846,NYR,N,missed-shot,Shot Attempt,PIT,Opponent,O,39.0,0,0,0,0,0
+2024020007,2024-10-09,3,2448,880,PIT,N,stoppage,Stoppage,NYR,Opponent,N,7.0,0,0,0,0,0
+2024020007,2024-10-09,3,2479,893,PIT,N,blocked-shot,Shot Attempt,PIT,Hitting Team,D,11.0,0,0,0,0,0
+2024020007,2024-10-09,3,2501,906,PIT,N,giveaway,Possession Change,PIT,Hitting Team,N,23.0,0,0,0,0,0
+2024020007,2024-10-09,3,2559,927,PIT,N,hit,Physical Battle,PIT,Hitting Team,N,22.0,0,0,0,0,0
+2024020007,2024-10-09,3,2581,937,PIT,N,hit,Physical Battle,NYR,Opponent,N,13.0,0,0,0,0,0
+2024020007,2024-10-09,3,2594,941,NYR,N,takeaway,Possession Change,NYR,Hitting Team,N,6.0,0,0,0,0,0
+2024020007,2024-10-09,3,2611,942,NYR,N,giveaway,Possession Change,PIT,Opponent,N,13.0,0,0,0,0,0
+2024020007,2024-10-09,3,2685,1433,NYR,O,shot-on-goal,Shot Attempt,NYR,Hitting Team,O,15.0,0,1,0,0,0
+2024020007,2024-10-09,3,2709,958,PIT,N,hit,Physical Battle,PIT,Hitting Team,D,2.0,0,0,0,0,0
+2024020007,2024-10-09,3,2711,974,PIT,D,giveaway,Possession Change,NYR,Opponent,O,19.0,1,0,0,0,0
+2024020007,2024-10-09,3,2767,1434,PIT,O,missed-shot,Shot Attempt,NYR,Opponent,O,4.0,0,0,0,0,0
+2024020007,2024-10-09,3,2942,1067,NYR,N,hit,Physical Battle,PIT,Opponent,N,9.0,0,0,0,0,0
+2024020007,2024-10-09,3,2951,1079,PIT,N,shot-on-goal,Shot Attempt,PIT,Hitting Team,O,43.0,0,1,0,0,0
+2024020007,2024-10-09,3,3039,1154,NYR,N,delayed-penalty,Penalty,NYR,Hitting Team,N,5.0,0,0,0,0,0
+2024020007,2024-10-09,3,3228,1186,PIT,N,shot-on-goal,Shot Attempt,PIT,Hitting Team,O,22.0,0,1,0,0,0
+2024020007,2024-10-09,3,3264,1187,PIT,N,hit,Physical Battle,PIT,Hitting Team,N,2.0,0,0,0,0,0
+2024020007,2024-10-09,3,3266,1188,PIT,N,missed-shot,Shot Attempt,NYR,Opponent,O,28.0,0,0,0,0,0
+2024020007,2024-10-09,3,3449,1189,NYR,N,giveaway,Possession Change,NYR,Hitting Team,D,3.0,0,0,0,0,0
+2024020008,2024-10-09,1,7,88,WPG,O,hit,Physical Battle,WPG,Hitting Team,O,7.0,0,0,0,0,0
+2024020008,2024-10-09,1,14,1331,WPG,O,hit,Physical Battle,WPG,Hitting Team,O,8.0,0,0,0,0,0
+2024020008,2024-10-09,1,22,203,WPG,O,hit,Physical Battle,WPG,Hitting Team,D,5.0,0,0,0,0,0
+2024020008,2024-10-09,1,27,210,WPG,D,shot-on-goal,Shot Attempt,WPG,Hitting Team,O,47.0,1,1,0,0,0
+2024020008,2024-10-09,1,141,215,EDM,N,hit,Physical Battle,WPG,Opponent,O,5.0,0,0,0,0,0
+2024020008,2024-10-09,1,146,220,WPG,O,hit,Physical Battle,EDM,Opponent,N,26.0,0,0,0,0,0
+2024020008,2024-10-09,1,172,228,EDM,N,shot-on-goal,Shot Attempt,EDM,Hitting Team,O,36.0,0,1,0,0,0
+2024020008,2024-10-09,1,475,247,EDM,N,blocked-shot,Shot Attempt,WPG,Opponent,D,31.0,0,0,0,0,0
+2024020008,2024-10-09,1,835,337,EDM,N,stoppage,Stoppage,WPG,Opponent,N,3.0,0,0,0,0,0
+2024020008,2024-10-09,1,1013,427,EDM,N,faceoff,Stoppage,WPG,Opponent,N,102.0,0,0,0,0,0
+2024020008,2024-10-09,2,1375,486,WPG,D,hit,Physical Battle,EDM,Opponent,N,14.0,1,0,0,0,0
+2024020008,2024-10-09,2,1389,493,EDM,N,giveaway,Possession Change,EDM,Hitting Team,D,35.0,0,0,0,0,0
+2024020008,2024-10-09,2,1461,615,EDM,N,faceoff,Stoppage,EDM,Hitting Team,N,16.0,0,0,0,0,0
+2024020008,2024-10-09,2,1500,661,EDM,N,takeaway,Possession Change,EDM,Hitting Team,O,27.0,0,0,0,0,0
+2024020008,2024-10-09,2,1537,622,EDM,N,takeaway,Possession Change,EDM,Hitting Team,O,17.0,0,0,0,0,0
+2024020008,2024-10-09,2,1895,1332,WPG,D,shot-on-goal,Shot Attempt,EDM,Opponent,O,35.0,1,0,1,0,0
+2024020008,2024-10-09,2,1970,1333,EDM,O,blocked-shot,Shot Attempt,WPG,Opponent,D,19.0,0,0,0,0,0
+2024020008,2024-10-09,2,2114,1334,EDM,D,blocked-shot,Shot Attempt,EDM,Hitting Team,D,12.0,0,0,0,0,0
+2024020008,2024-10-09,2,2185,778,EDM,N,takeaway,Possession Change,WPG,Opponent,D,8.0,0,0,0,0,0
+2024020008,2024-10-09,2,2229,798,EDM,N,stoppage,Stoppage,WPG,Opponent,N,32.0,0,0,0,0,0
+2024020008,2024-10-09,2,2300,1335,EDM,D,faceoff,Stoppage,EDM,Hitting Team,O,3.0,1,0,0,0,0
+2024020008,2024-10-09,2,2329,864,EDM,N,blocked-shot,Shot Attempt,EDM,Hitting Team,D,15.0,0,0,0,0,0
+2024020008,2024-10-09,3,2569,913,WPG,O,takeaway,Possession Change,WPG,Hitting Team,O,4.0,0,0,0,0,0
+2024020008,2024-10-09,3,2575,925,EDM,N,giveaway,Possession Change,WPG,Opponent,D,20.0,0,0,0,0,0
+2024020008,2024-10-09,3,2607,931,EDM,N,stoppage,Stoppage,WPG,Opponent,N,4.0,0,0,0,0,0
+2024020008,2024-10-09,3,2615,1336,EDM,N,missed-shot,Shot Attempt,EDM,Hitting Team,O,8.0,0,0,0,0,0
+2024020008,2024-10-09,3,3021,1063,WPG,D,blocked-shot,Shot Attempt,EDM,Opponent,D,13.0,0,0,0,0,0
+2024020008,2024-10-09,3,3293,1126,WPG,D,hit,Physical Battle,EDM,Opponent,N,3.0,1,0,0,0,0
+2024020008,2024-10-09,3,3296,1138,EDM,N,takeaway,Possession Change,WPG,Opponent,D,14.0,0,0,0,0,0
+2024020008,2024-10-09,3,3552,1337,EDM,D,blocked-shot,Shot Attempt,EDM,Hitting Team,D,29.0,0,0,0,0,0
+2024020008,2024-10-09,3,3593,1160,WPG,O,period-end,Stoppage,WPG,Hitting Team,N,7.0,0,0,0,0,0
+2024020009,2024-10-09,1,3,71,CGY,N,blocked-shot,Shot Attempt,VAN,Opponent,D,15.0,0,0,0,0,0
+2024020009,2024-10-09,1,92,154,VAN,O,penalty,Penalty,VAN,Hitting Team,D,29.0,0,0,0,0,0
+2024020009,2024-10-09,1,277,223,CGY,N,giveaway,Possession Change,CGY,Hitting Team,D,6.0,0,0,0,0,0
+2024020009,2024-10-09,1,290,1431,CGY,D,blocked-shot,Shot Attempt,CGY,Hitting Team,D,7.0,0,0,0,0,0
+2024020009,2024-10-09,1,325,230,CGY,N,hit,Physical Battle,VAN,Opponent,O,15.0,0,0,0,0,0
+2024020009,2024-10-09,1,340,231,VAN,O,giveaway,Possession Change,CGY,Opponent,N,3.0,0,0,0,0,0
+2024020009,2024-10-09,1,412,237,CGY,N,hit,Physical Battle,VAN,Opponent,O,43.0,0,0,0,0,0
+2024020009,2024-10-09,1,455,260,VAN,O,stoppage,Stoppage,CGY,Opponent,N,6.0,0,0,0,0,0
+2024020009,2024-10-09,1,575,320,CGY,N,faceoff,Stoppage,CGY,Hitting Team,N,5.0,0,0,0,0,0
+2024020009,2024-10-09,1,722,486,CGY,N,shot-on-goal,Shot Attempt,VAN,Opponent,O,12.0,0,0,1,0,0
+2024020009,2024-10-09,1,763,493,CGY,N,giveaway,Possession Change,VAN,Opponent,D,1.0,0,0,0,0,0
+2024020009,2024-10-09,1,810,1432,CGY,D,blocked-shot,Shot Attempt,VAN,Opponent,D,5.0,0,0,0,0,0
+2024020009,2024-10-09,1,1120,1433,VAN,O,shot-on-goal,Shot Attempt,VAN,Hitting Team,O,9.0,0,1,0,0,0
+2024020009,2024-10-09,2,1235,506,VAN,O,stoppage,Stoppage,CGY,Opponent,N,19.0,0,0,0,0,0
+2024020009,2024-10-09,2,1258,518,VAN,D,giveaway,Possession Change,VAN,Hitting Team,N,22.0,1,0,0,0,0
+2024020009,2024-10-09,2,1336,528,CGY,N,blocked-shot,Shot Attempt,VAN,Opponent,O,18.0,0,0,0,0,0
+2024020009,2024-10-09,2,1438,549,CGY,N,shot-on-goal,Shot Attempt,CGY,Hitting Team,O,24.0,0,1,0,0,0
+2024020009,2024-10-09,2,1511,1434,VAN,D,shot-on-goal,Shot Attempt,CGY,Opponent,O,7.0,1,0,1,0,0
+2024020009,2024-10-09,2,1576,635,CGY,N,giveaway,Possession Change,VAN,Opponent,O,2.0,0,0,0,0,0
+2024020009,2024-10-09,2,1710,665,CGY,N,blocked-shot,Shot Attempt,VAN,Opponent,D,2.0,0,0,0,0,0
+2024020009,2024-10-09,2,1766,1435,CGY,O,shot-on-goal,Shot Attempt,CGY,Hitting Team,O,6.0,0,1,0,0,0
+2024020009,2024-10-09,2,2055,784,CGY,N,blocked-shot,Shot Attempt,VAN,Opponent,D,4.0,0,0,0,0,0
+2024020009,2024-10-09,2,2074,786,VAN,D,hit,Physical Battle,VAN,Hitting Team,N,28.0,1,0,0,0,0
+2024020009,2024-10-09,2,2102,795,VAN,N,faceoff,Stoppage,VAN,Hitting Team,O,3.0,0,0,0,0,0
+2024020009,2024-10-09,2,2368,876,CGY,N,hit,Physical Battle,CGY,Hitting Team,N,5.0,0,0,0,0,0
+2024020009,2024-10-09,2,2373,877,CGY,N,period-end,Stoppage,CGY,Hitting Team,N,27.0,0,0,0,0,0
+2024020009,2024-10-09,3,2491,907,VAN,D,shot-on-goal,Shot Attempt,VAN,Hitting Team,O,7.0,1,1,0,0,0
+2024020009,2024-10-09,3,2576,934,VAN,D,hit,Physical Battle,CGY,Opponent,N,5.0,1,0,0,0,0
+2024020009,2024-10-09,3,2581,1001,CGY,N,takeaway,Possession Change,VAN,Opponent,O,12.0,0,0,0,0,0
+2024020009,2024-10-09,3,2629,1007,CGY,N,faceoff,Stoppage,VAN,Opponent,D,11.0,0,0,0,0,0
+2024020009,2024-10-09,3,2816,1022,VAN,D,faceoff,Stoppage,CGY,Opponent,O,22.0,1,0,0,0,0
+2024020009,2024-10-09,3,3003,1065,CGY,N,shot-on-goal,Shot Attempt,VAN,Opponent,O,7.0,0,0,1,0,0
+2024020009,2024-10-09,3,3123,1152,VAN,O,hit,Physical Battle,CGY,Opponent,N,6.0,0,0,0,0,0
+2024020009,2024-10-09,3,3129,1161,CGY,N,shot-on-goal,Shot Attempt,VAN,Opponent,O,34.0,0,0,1,0,0
+2024020009,2024-10-09,3,3172,1436,VAN,D,shot-on-goal,Shot Attempt,CGY,Opponent,O,3.0,1,0,1,0,0
+2024020009,2024-10-09,3,3422,1437,VAN,N,faceoff,Stoppage,VAN,Hitting Team,O,30.0,0,0,0,0,0
+2024020009,2024-10-09,3,3552,1241,VAN,D,blocked-shot,Shot Attempt,VAN,Hitting Team,D,10.0,0,0,0,0,0
+2024020009,2024-10-09,4,3617,1259,VAN,D,blocked-shot,Shot Attempt,VAN,Hitting Team,D,8.0,0,0,0,0,0
+2024020010,2024-10-09,1,13,163,VGK,O,blocked-shot,Shot Attempt,COL,Opponent,D,7.0,0,0,0,0,0
+2024020010,2024-10-09,1,278,218,VGK,D,giveaway,Possession Change,VGK,Hitting Team,D,7.0,0,0,0,0,0
+2024020010,2024-10-09,1,331,240,COL,N,shot-on-goal,Shot Attempt,COL,Hitting Team,O,3.0,0,1,0,0,0
+2024020010,2024-10-09,1,365,306,COL,N,takeaway,Possession Change,VGK,Opponent,D,3.0,0,0,0,0,0
+2024020010,2024-10-09,1,392,315,VGK,D,giveaway,Possession Change,COL,Opponent,N,50.0,1,0,0,0,0
+2024020010,2024-10-09,1,471,337,COL,N,giveaway,Possession Change,COL,Hitting Team,D,52.0,0,0,0,0,0
+2024020010,2024-10-09,1,623,349,VGK,D,stoppage,Stoppage,COL,Opponent,N,8.0,1,0,0,0,0
+2024020010,2024-10-09,1,682,364,COL,N,shot-on-goal,Shot Attempt,COL,Hitting Team,O,46.0,0,1,0,0,0
+2024020010,2024-10-09,1,828,384,COL,N,giveaway,Possession Change,VGK,Opponent,D,5.0,0,0,0,0,0
+2024020010,2024-10-09,1,852,395,COL,N,hit,Physical Battle,VGK,Opponent,O,31.0,0,0,0,0,0
+2024020010,2024-10-09,1,883,406,VGK,O,hit,Physical Battle,COL,Opponent,N,19.0,0,0,0,0,0
+2024020010,2024-10-09,1,902,408,COL,N,stoppage,Stoppage,COL,Hitting Team,N,24.0,0,0,0,0,0
+2024020010,2024-10-09,1,944,414,VGK,O,giveaway,Possession Change,COL,Opponent,O,17.0,0,0,0,0,0
+2024020010,2024-10-09,1,1081,437,VGK,D,giveaway,Possession Change,COL,Opponent,O,8.0,1,0,0,0,0
+2024020010,2024-10-09,2,1255,487,COL,N,stoppage,Stoppage,COL,Hitting Team,N,27.0,0,0,0,0,0
+2024020010,2024-10-09,2,1318,496,VGK,D,hit,Physical Battle,COL,Opponent,N,41.0,1,0,0,0,0
+2024020010,2024-10-09,2,1359,500,COL,N,faceoff,Stoppage,COL,Hitting Team,O,14.0,0,0,0,0,0
+2024020010,2024-10-09,2,1488,657,COL,N,giveaway,Possession Change,VGK,Opponent,N,7.0,0,0,0,0,0
+2024020010,2024-10-09,2,1542,670,COL,N,faceoff,Stoppage,COL,Hitting Team,N,7.0,0,0,0,0,0
+2024020010,2024-10-09,2,1613,697,VGK,D,hit,Physical Battle,COL,Opponent,O,13.0,1,0,0,0,0
+2024020010,2024-10-09,2,1626,1141,COL,O,blocked-shot,Shot Attempt,COL,Hitting Team,D,59.0,0,0,0,0,0
+2024020010,2024-10-09,2,1695,711,COL,N,hit,Physical Battle,COL,Hitting Team,N,6.0,0,0,0,0,0
+2024020010,2024-10-09,2,1701,721,COL,N,hit,Physical Battle,COL,Hitting Team,O,14.0,0,0,0,0,0
+2024020010,2024-10-09,2,1715,1142,COL,O,takeaway,Possession Change,VGK,Opponent,O,14.0,0,0,0,0,0
+2024020010,2024-10-09,2,1780,734,VGK,O,blocked-shot,Shot Attempt,COL,Opponent,D,19.0,0,0,0,0,0
+2024020010,2024-10-09,2,1863,1143,VGK,D,giveaway,Possession Change,VGK,Hitting Team,N,20.0,1,0,0,0,0
+2024020010,2024-10-09,2,1926,1144,VGK,D,blocked-shot,Shot Attempt,COL,Opponent,D,14.0,0,0,0,0,0
+2024020010,2024-10-09,2,2002,1145,COL,O,blocked-shot,Shot Attempt,COL,Hitting Team,D,22.0,0,0,0,0,0
+2024020010,2024-10-09,2,2066,762,COL,N,takeaway,Possession Change,COL,Hitting Team,O,5.0,0,0,0,0,0
+2024020010,2024-10-09,2,2177,772,COL,N,stoppage,Stoppage,COL,Hitting Team,N,11.0,0,0,0,0,0
+2024020010,2024-10-09,2,2218,774,VGK,O,hit,Physical Battle,COL,Opponent,N,14.0,0,0,0,0,0
+2024020010,2024-10-09,2,2232,775,COL,N,shot-on-goal,Shot Attempt,COL,Hitting Team,O,18.0,0,1,0,0,0
+2024020010,2024-10-09,2,2276,776,VGK,O,delayed-penalty,Penalty,COL,Opponent,N,9.0,0,0,0,0,0
+2024020010,2024-10-09,3,2518,809,VGK,O,blocked-shot,Shot Attempt,VGK,Hitting Team,D,4.0,0,0,0,0,0
+2024020010,2024-10-09,3,2676,835,COL,N,hit,Physical Battle,COL,Hitting Team,N,10.0,0,0,0,0,0
+2024020010,2024-10-09,3,2686,838,COL,N,faceoff,Stoppage,COL,Hitting Team,O,12.0,0,0,0,0,0
+2024020010,2024-10-09,3,2848,877,VGK,D,shot-on-goal,Shot Attempt,COL,Opponent,O,10.0,1,0,1,0,0
+2024020010,2024-10-09,3,3221,1041,VGK,O,faceoff,Stoppage,VGK,Hitting Team,N,13.0,0,0,0,0,0
+2024020010,2024-10-09,3,3326,1063,COL,N,giveaway,Possession Change,COL,Hitting Team,O,22.0,0,0,0,0,0
+2024020010,2024-10-09,3,3520,1146,VGK,D,shot-on-goal,Shot Attempt,COL,Opponent,O,24.0,1,0,1,0,0
+2024020010,2024-10-09,3,3557,1147,VGK,D,giveaway,Possession Change,COL,Opponent,O,3.0,1,0,0,0,0
+2024020011,2024-10-10,1,11,109,MTL,N,shot-on-goal,Shot Attempt,BOS,Opponent,O,4.0,0,0,1,0,0
+2024020011,2024-10-10,1,41,126,MTL,N,stoppage,Stoppage,MTL,Hitting Team,N,7.0,0,0,0,0,0
+2024020011,2024-10-10,1,306,175,MTL,N,shot-on-goal,Shot Attempt,MTL,Hitting Team,O,3.0,0,1,0,0,0
+2024020011,2024-10-10,1,317,182,BOS,N,hit,Physical Battle,BOS,Hitting Team,N,29.0,0,0,0,0,0
+2024020011,2024-10-10,1,346,190,BOS,N,blocked-shot,Shot Attempt,BOS,Hitting Team,D,21.0,0,0,0,0,0
+2024020011,2024-10-10,1,495,260,BOS,O,faceoff,Stoppage,BOS,Hitting Team,N,11.0,0,0,0,0,0
+2024020011,2024-10-10,1,577,283,MTL,N,shot-on-goal,Shot Attempt,BOS,Opponent,O,14.0,0,0,1,0,0
+2024020011,2024-10-10,1,647,296,BOS,N,shot-on-goal,Shot Attempt,MTL,Opponent,O,2.0,0,0,1,0,0
+2024020011,2024-10-10,1,676,1431,BOS,D,hit,Physical Battle,BOS,Hitting Team,N,3.0,1,0,0,0,0
+2024020011,2024-10-10,1,679,418,BOS,N,hit,Physical Battle,MTL,Opponent,N,8.0,0,0,0,0,0
+2024020011,2024-10-10,1,687,422,MTL,N,missed-shot,Shot Attempt,MTL,Hitting Team,O,39.0,0,0,0,0,0
+2024020011,2024-10-10,1,796,433,BOS,N,faceoff,Stoppage,BOS,Hitting Team,N,8.0,0,0,0,0,0
+2024020011,2024-10-10,1,833,1432,MTL,O,giveaway,Possession Change,BOS,Opponent,O,4.0,0,0,0,0,0
+2024020011,2024-10-10,1,860,448,BOS,N,stoppage,Stoppage,MTL,Opponent,N,6.0,0,0,0,0,0
+2024020011,2024-10-10,1,1081,589,MTL,N,missed-shot,Shot Attempt,BOS,Opponent,O,5.0,0,0,0,0,0
+2024020011,2024-10-10,1,1133,609,MTL,N,giveaway,Possession Change,BOS,Opponent,O,5.0,0,0,0,0,0
+2024020011,2024-10-10,1,1151,1433,BOS,O,giveaway,Possession Change,MTL,Opponent,D,10.0,0,0,0,0,0
+2024020011,2024-10-10,1,1192,1434,MTL,D,period-end,Stoppage,MTL,Hitting Team,N,8.0,1,0,0,0,0
+2024020011,2024-10-10,2,1224,629,MTL,N,shot-on-goal,Shot Attempt,BOS,Opponent,O,5.0,0,0,1,0,0
+2024020011,2024-10-10,2,1337,651,BOS,N,giveaway,Possession Change,MTL,Opponent,D,0.0,0,0,0,0,0
+2024020011,2024-10-10,2,1348,655,BOS,N,giveaway,Possession Change,MTL,Opponent,D,1.0,0,0,0,0,0
+2024020011,2024-10-10,2,1378,669,MTL,N,hit,Physical Battle,BOS,Opponent,N,3.0,0,0,0,0,0
+2024020011,2024-10-10,2,1381,671,BOS,N,hit,Physical Battle,BOS,Hitting Team,N,32.0,0,0,0,0,0
+2024020011,2024-10-10,2,1413,676,BOS,N,hit,Physical Battle,MTL,Opponent,N,10.0,0,0,0,0,0
+2024020011,2024-10-10,2,1423,682,MTL,N,faceoff,Stoppage,MTL,Hitting Team,D,13.0,0,0,0,0,0
+2024020011,2024-10-10,2,1588,710,BOS,N,hit,Physical Battle,BOS,Hitting Team,O,2.0,0,0,0,0,0
+2024020011,2024-10-10,2,1590,1435,BOS,O,takeaway,Possession Change,MTL,Opponent,D,12.0,0,0,0,0,0
+2024020011,2024-10-10,2,1997,787,BOS,N,shot-on-goal,Shot Attempt,MTL,Opponent,O,9.0,0,0,1,0,0
+2024020011,2024-10-10,2,2110,810,MTL,N,giveaway,Possession Change,BOS,Opponent,D,20.0,0,0,0,0,0
+2024020011,2024-10-10,2,2169,827,MTL,N,missed-shot,Shot Attempt,BOS,Opponent,O,40.0,0,0,0,0,0
+2024020011,2024-10-10,3,2440,867,BOS,N,hit,Physical Battle,MTL,Opponent,N,33.0,0,0,0,0,0
+2024020011,2024-10-10,3,2473,881,MTL,N,blocked-shot,Shot Attempt,BOS,Opponent,D,25.0,0,0,0,0,0
+2024020011,2024-10-10,3,2511,886,MTL,N,giveaway,Possession Change,BOS,Opponent,D,2.0,0,0,0,0,0
+2024020011,2024-10-10,3,2614,903,BOS,N,blocked-shot,Shot Attempt,MTL,Opponent,D,11.0,0,0,0,0,0
+2024020011,2024-10-10,3,2779,938,BOS,N,missed-shot,Shot Attempt,MTL,Opponent,O,10.0,0,0,0,0,0
+2024020011,2024-10-10,3,2841,963,BOS,N,shot-on-goal,Shot Attempt,MTL,Opponent,O,53.0,0,0,1,0,0
+2024020011,2024-10-10,3,2929,1436,MTL,O,missed-shot,Shot Attempt,MTL,Hitting Team,O,9.0,0,0,0,0,0
+2024020011,2024-10-10,3,3043,996,MTL,N,giveaway,Possession Change,BOS,Opponent,O,15.0,0,0,0,0,0
+2024020011,2024-10-10,3,3105,1437,BOS,N,hit,Physical Battle,BOS,Hitting Team,N,11.0,0,0,0,0,0
+2024020011,2024-10-10,3,3116,1008,BOS,N,missed-shot,Shot Attempt,BOS,Hitting Team,O,6.0,0,0,0,0,0
+2024020011,2024-10-10,3,3287,1042,MTL,N,hit,Physical Battle,MTL,Hitting Team,N,7.0,0,0,0,0,0
+2024020011,2024-10-10,3,3294,1044,MTL,N,hit,Physical Battle,BOS,Opponent,N,5.0,0,0,0,0,0
+2024020011,2024-10-10,3,3299,1045,BOS,N,hit,Physical Battle,BOS,Hitting Team,N,2.0,0,0,0,0,0
+2024020011,2024-10-10,3,3301,1046,BOS,N,stoppage,Stoppage,MTL,Opponent,N,3.0,0,0,0,0,0
+2024020011,2024-10-10,3,3356,1111,MTL,N,faceoff,Stoppage,BOS,Opponent,N,4.0,0,0,0,0,0
+2024020011,2024-10-10,3,3473,1438,BOS,D,hit,Physical Battle,MTL,Opponent,O,63.0,1,0,0,0,0
+2024020011,2024-10-10,3,3536,1439,MTL,O,stoppage,Stoppage,MTL,Hitting Team,N,3.0,0,0,0,0,0
+2024020011,2024-10-10,3,3576,1146,MTL,N,blocked-shot,Shot Attempt,MTL,Hitting Team,D,15.0,0,0,0,0,0
+2024020012,2024-10-10,1,70,115,LAK,N,stoppage,Stoppage,LAK,Hitting Team,N,7.0,0,0,0,0,0
+2024020012,2024-10-10,1,87,122,LAK,N,hit,Physical Battle,LAK,Hitting Team,N,9.0,0,0,0,0,0
+2024020012,2024-10-10,1,96,127,LAK,N,hit,Physical Battle,BUF,Opponent,N,20.0,0,0,0,0,0
+2024020012,2024-10-10,1,116,134,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,5.0,0,0,0,0,0
+2024020012,2024-10-10,1,121,145,BUF,N,hit,Physical Battle,BUF,Hitting Team,O,12.0,0,0,0,0,0
+2024020012,2024-10-10,1,133,1431,BUF,O,hit,Physical Battle,BUF,Hitting Team,N,7.0,0,0,0,0,0
+2024020012,2024-10-10,1,140,146,BUF,N,stoppage,Stoppage,LAK,Opponent,N,10.0,0,0,0,0,0
+2024020012,2024-10-10,1,215,156,LAK,N,faceoff,Stoppage,BUF,Opponent,O,3.0,0,0,0,0,0
+2024020012,2024-10-10,1,420,193,LAK,N,missed-shot,Shot Attempt,BUF,Opponent,O,23.0,0,0,0,0,0
+2024020012,2024-10-10,1,465,195,LAK,N,giveaway,Possession Change,BUF,Opponent,N,5.0,0,0,0,0,0
+2024020012,2024-10-10,1,493,211,BUF,N,shot-on-goal,Shot Attempt,LAK,Opponent,D,20.0,0,0,1,0,0
+2024020012,2024-10-10,1,616,237,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,9.0,0,0,0,0,0
+2024020012,2024-10-10,1,625,239,BUF,N,shot-on-goal,Shot Attempt,BUF,Hitting Team,O,14.0,0,1,0,0,0
+2024020012,2024-10-10,1,707,252,LAK,N,hit,Physical Battle,BUF,Opponent,N,13.0,0,0,0,0,0
+2024020012,2024-10-10,1,720,257,BUF,N,delayed-penalty,Penalty,BUF,Hitting Team,N,2.0,0,0,0,0,0
+2024020012,2024-10-10,1,743,259,BUF,N,faceoff,Stoppage,LAK,Opponent,O,1.0,0,0,0,0,0
+2024020012,2024-10-10,1,776,294,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,4.0,0,0,0,0,0
+2024020012,2024-10-10,1,780,295,BUF,N,hit,Physical Battle,LAK,Opponent,D,71.0,0,0,0,0,0
+2024020012,2024-10-10,1,851,1432,LAK,D,takeaway,Possession Change,BUF,Opponent,D,12.0,0,0,0,0,0
+2024020012,2024-10-10,1,878,407,BUF,N,blocked-shot,Shot Attempt,LAK,Opponent,D,22.0,0,0,0,0,0
+2024020012,2024-10-10,1,971,1433,LAK,D,hit,Physical Battle,BUF,Opponent,N,18.0,1,0,0,0,0
+2024020012,2024-10-10,1,989,433,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,4.0,0,0,0,0,0
+2024020012,2024-10-10,1,993,435,BUF,N,missed-shot,Shot Attempt,LAK,Opponent,O,48.0,0,0,0,0,0
+2024020012,2024-10-10,2,1291,525,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,15.0,0,0,0,0,0
+2024020012,2024-10-10,2,1306,528,BUF,N,stoppage,Stoppage,LAK,Opponent,N,14.0,0,0,0,0,0
+2024020012,2024-10-10,2,1378,1434,LAK,D,shot-on-goal,Shot Attempt,BUF,Opponent,O,7.0,1,0,1,0,0
+2024020012,2024-10-10,2,1607,685,BUF,N,giveaway,Possession Change,BUF,Hitting Team,D,4.0,0,0,0,0,0
+2024020012,2024-10-10,2,1644,698,BUF,N,blocked-shot,Shot Attempt,LAK,Opponent,D,2.0,0,0,0,0,0
+2024020012,2024-10-10,2,1739,715,BUF,N,missed-shot,Shot Attempt,LAK,Opponent,O,37.0,0,0,0,0,0
+2024020012,2024-10-10,2,1790,732,BUF,N,shot-on-goal,Shot Attempt,LAK,Opponent,O,14.0,0,0,1,0,0
+2024020012,2024-10-10,2,1836,746,LAK,N,hit,Physical Battle,BUF,Opponent,N,2.0,0,0,0,0,0
+2024020012,2024-10-10,2,1838,750,BUF,N,hit,Physical Battle,BUF,Hitting Team,N,3.0,0,0,0,0,0
+2024020012,2024-10-10,2,1841,761,BUF,N,blocked-shot,Shot Attempt,BUF,Hitting Team,D,15.0,0,0,0,0,0
+2024020012,2024-10-10,2,1884,1436,LAK,O,giveaway,Possession Change,LAK,Hitting Team,O,14.0,0,0,0,0,0
+2024020012,2024-10-10,2,1915,764,LAK,N,blocked-shot,Shot Attempt,BUF,Opponent,D,11.0,0,0,0,0,0
+2024020012,2024-10-10,2,1964,775,BUF,N,shot-on-goal,Shot Attempt,LAK,Opponent,O,9.0,0,0,1,0,0
+2024020012,2024-10-10,2,2125,803,BUF,N,giveaway,Possession Change,LAK,Opponent,O,8.0,0,0,0,0,0
+2024020012,2024-10-10,2,2155,810,LAK,N,giveaway,Possession Change,LAK,Hitting Team,D,4.0,0,0,0,0,0
+2024020012,2024-10-10,2,2273,841,BUF,N,delayed-penalty,Penalty,LAK,Opponent,N,12.0,0,0,0,0,0
+2024020012,2024-10-10,3,2427,875,LAK,N,giveaway,Possession Change,BUF,Opponent,D,34.0,0,0,0,0,0
+2024020012,2024-10-10,3,2526,891,BUF,N,hit,Physical Battle,LAK,Opponent,N,11.0,0,0,0,0,0
+2024020012,2024-10-10,3,2537,892,LAK,N,faceoff,Stoppage,LAK,Hitting Team,D,5.0,0,0,0,0,0
+2024020012,2024-10-10,3,2848,1343,LAK,O,takeaway,Possession Change,BUF,Opponent,O,9.0,0,0,0,0,0
+2024020012,2024-10-10,3,3026,1003,BUF,N,hit,Physical Battle,LAK,Opponent,N,6.0,0,0,0,0,0
+2024020012,2024-10-10,3,3032,1004,LAK,N,missed-shot,Shot Attempt,BUF,Opponent,N,35.0,0,0,0,0,0
+2024020012,2024-10-10,3,3202,1030,BUF,N,stoppage,Stoppage,LAK,Opponent,N,2.0,0,0,0,0,0
+2024020012,2024-10-10,3,3238,1045,LAK,N,stoppage,Stoppage,LAK,Hitting Team,N,24.0,0,0,0,0,0
+2024020012,2024-10-10,3,3287,1058,LAK,N,shot-on-goal,Shot Attempt,BUF,Opponent,O,3.0,0,0,1,0,0
+2024020012,2024-10-10,3,3412,1092,BUF,N,giveaway,Possession Change,LAK,Opponent,O,3.0,0,0,0,0,0
+2024020013,2024-10-10,1,28,116,FLA,D,hit,Physical Battle,OTT,Opponent,O,4.0,1,0,0,0,0
+2024020013,2024-10-10,1,32,1381,OTT,O,hit,Physical Battle,OTT,Hitting Team,N,22.0,0,0,0,0,0
+2024020013,2024-10-10,1,54,121,OTT,N,stoppage,Stoppage,FLA,Opponent,N,2.0,0,0,0,0,0
+2024020013,2024-10-10,1,80,133,OTT,N,hit,Physical Battle,FLA,Opponent,O,9.0,0,0,0,0,0
+2024020013,2024-10-10,1,89,137,FLA,O,hit,Physical Battle,OTT,Opponent,N,5.0,0,0,0,0,0
+2024020013,2024-10-10,1,94,142,OTT,N,blocked-shot,Shot Attempt,FLA,Opponent,D,3.0,0,0,0,0,0
+2024020013,2024-10-10,1,108,147,OTT,N,blocked-shot,Shot Attempt,FLA,Opponent,O,2.0,0,0,0,0,0
+2024020013,2024-10-10,1,117,153,FLA,O,stoppage,Stoppage,FLA,Hitting Team,N,28.0,0,0,0,0,0
+2024020013,2024-10-10,1,181,179,FLA,O,shot-on-goal,Shot Attempt,OTT,Opponent,O,16.0,0,0,1,0,0
+2024020013,2024-10-10,1,276,194,OTT,N,stoppage,Stoppage,FLA,Opponent,N,7.0,0,0,0,0,0
+2024020013,2024-10-10,1,382,225,FLA,D,giveaway,Possession Change,FLA,Hitting Team,N,3.0,1,0,0,0,0
+2024020013,2024-10-10,1,407,236,OTT,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,15.0,0,0,1,0,0
+2024020013,2024-10-10,1,470,306,OTT,N,delayed-penalty,Penalty,OTT,Hitting Team,N,7.0,0,0,0,0,0
+2024020013,2024-10-10,1,477,308,OTT,N,faceoff,Stoppage,FLA,Opponent,O,2.0,0,0,0,0,0
+2024020013,2024-10-10,1,608,1382,OTT,D,hit,Physical Battle,FLA,Opponent,O,3.0,1,0,0,0,0
+2024020013,2024-10-10,1,611,329,FLA,O,giveaway,Possession Change,FLA,Hitting Team,O,3.0,0,0,0,0,0
+2024020013,2024-10-10,1,614,331,OTT,N,giveaway,Possession Change,OTT,Hitting Team,D,4.0,0,0,0,0,0
+2024020013,2024-10-10,1,662,1383,FLA,O,hit,Physical Battle,OTT,Opponent,N,7.0,0,0,0,0,0
+2024020013,2024-10-10,1,669,361,OTT,N,stoppage,Stoppage,FLA,Opponent,N,22.0,0,0,0,0,0
+2024020013,2024-10-10,1,732,375,FLA,O,blocked-shot,Shot Attempt,FLA,Hitting Team,D,15.0,0,0,0,0,0
+2024020013,2024-10-10,1,798,396,OTT,N,shot-on-goal,Shot Attempt,OTT,Hitting Team,O,4.0,0,1,0,0,0
+2024020013,2024-10-10,1,924,1384,FLA,O,hit,Physical Battle,FLA,Hitting Team,D,6.0,0,0,0,0,0
+2024020013,2024-10-10,1,930,581,FLA,D,blocked-shot,Shot Attempt,FLA,Hitting Team,D,3.0,0,0,0,0,0
+2024020013,2024-10-10,1,957,594,OTT,N,blocked-shot,Shot Attempt,FLA,Opponent,D,7.0,0,0,0,0,0
+2024020013,2024-10-10,1,1078,597,FLA,O,missed-shot,Shot Attempt,OTT,Opponent,O,24.0,0,0,0,0,0
+2024020013,2024-10-10,1,1113,1385,OTT,O,shot-on-goal,Shot Attempt,OTT,Hitting Team,O,9.0,0,1,0,0,0
+2024020013,2024-10-10,1,1126,598,OTT,N,giveaway,Possession Change,FLA,Opponent,D,20.0,0,0,0,0,0
+2024020013,2024-10-10,1,1193,599,OTT,N,shot-on-goal,Shot Attempt,OTT,Hitting Team,O,5.0,0,1,0,0,0
+2024020013,2024-10-10,2,1230,609,FLA,O,shot-on-goal,Shot Attempt,OTT,Opponent,N,8.0,0,0,1,0,0
+2024020013,2024-10-10,2,1327,637,OTT,N,hit,Physical Battle,OTT,Hitting Team,N,14.0,0,0,0,0,0
+2024020013,2024-10-10,2,1341,644,OTT,N,blocked-shot,Shot Attempt,FLA,Opponent,D,27.0,0,0,0,0,0
+2024020013,2024-10-10,2,1369,653,FLA,O,stoppage,Stoppage,FLA,Hitting Team,N,5.0,0,0,0,0,0
+2024020013,2024-10-10,2,1481,669,FLA,D,hit,Physical Battle,OTT,Opponent,N,5.0,1,0,0,0,0
+2024020013,2024-10-10,2,1486,672,OTT,N,hit,Physical Battle,OTT,Hitting Team,N,8.0,0,0,0,0,0
+2024020013,2024-10-10,2,1494,685,OTT,N,faceoff,Stoppage,OTT,Hitting Team,D,3.0,0,0,0,0,0
+2024020013,2024-10-10,2,1640,700,OTT,N,blocked-shot,Shot Attempt,FLA,Opponent,D,15.0,0,0,0,0,0
+2024020013,2024-10-10,2,1694,714,OTT,N,giveaway,Possession Change,OTT,Hitting Team,O,58.0,0,0,0,0,0
+2024020013,2024-10-10,2,1794,743,FLA,O,missed-shot,Shot Attempt,FLA,Hitting Team,O,13.0,0,0,0,0,0
+2024020013,2024-10-10,2,1851,759,FLA,O,blocked-shot,Shot Attempt,FLA,Hitting Team,D,68.0,0,0,0,0,0
+2024020013,2024-10-10,2,1919,761,FLA,O,shot-on-goal,Shot Attempt,FLA,Hitting Team,O,11.0,0,1,0,0,0
+2024020013,2024-10-10,2,2221,828,FLA,O,takeaway,Possession Change,OTT,Opponent,D,36.0,0,0,0,0,0
+2024020013,2024-10-10,3,2525,891,OTT,N,blocked-shot,Shot Attempt,FLA,Opponent,D,2.0,0,0,0,0,0
+2024020013,2024-10-10,3,2635,925,FLA,D,shot-on-goal,Shot Attempt,OTT,Opponent,O,1.0,1,0,1,0,0
+2024020013,2024-10-10,3,2658,940,FLA,D,blocked-shot,Shot Attempt,OTT,Opponent,D,20.0,0,0,0,0,0
+2024020013,2024-10-10,3,2826,967,OTT,N,blocked-shot,Shot Attempt,FLA,Opponent,D,53.0,0,0,0,0,0
+2024020013,2024-10-10,3,2930,995,OTT,N,hit,Physical Battle,FLA,Opponent,O,28.0,0,0,0,0,0
+2024020013,2024-10-10,3,2958,1004,FLA,O,giveaway,Possession Change,OTT,Opponent,D,1.0,0,0,0,0,0
+2024020013,2024-10-10,3,3012,1008,OTT,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,4.0,0,0,1,0,0
+2024020013,2024-10-10,3,3136,1026,OTT,N,missed-shot,Shot Attempt,FLA,Opponent,O,27.0,0,0,0,0,0
+2024020013,2024-10-10,3,3248,1056,OTT,N,hit,Physical Battle,FLA,Opponent,O,23.0,0,0,0,0,0
+2024020013,2024-10-10,3,3271,1057,FLA,O,shot-on-goal,Shot Attempt,OTT,Opponent,O,32.0,0,0,1,0,0
+2024020013,2024-10-10,3,3444,1090,OTT,N,shot-on-goal,Shot Attempt,FLA,Opponent,O,45.0,0,0,1,0,0
+2024020014,2024-10-10,1,3,117,DET,N,stoppage,Stoppage,PIT,Opponent,N,15.0,0,0,0,0,0
+2024020014,2024-10-10,1,109,1341,DET,O,giveaway,Possession Change,DET,Hitting Team,O,17.0,0,0,0,0,0
+2024020014,2024-10-10,1,127,159,DET,N,takeaway,Possession Change,DET,Hitting Team,O,1.0,0,0,0,0,0
+2024020014,2024-10-10,1,184,175,DET,N,hit,Physical Battle,PIT,Opponent,N,4.0,0,0,0,0,0
+2024020014,2024-10-10,1,188,191,PIT,N,giveaway,Possession Change,PIT,Hitting Team,D,14.0,0,0,0,0,0
+2024020014,2024-10-10,1,364,236,PIT,N,blocked-shot,Shot Attempt,PIT,Hitting Team,D,20.0,0,0,0,0,0
+2024020014,2024-10-10,1,414,242,DET,N,hit,Physical Battle,PIT,Opponent,N,12.0,0,0,0,0,0
+2024020014,2024-10-10,1,426,249,PIT,N,stoppage,Stoppage,PIT,Hitting Team,N,3.0,0,0,0,0,0
+2024020014,2024-10-10,1,474,267,PIT,N,shot-on-goal,Shot Attempt,DET,Opponent,O,12.0,0,0,1,0,0
+2024020014,2024-10-10,1,719,311,PIT,N,blocked-shot,Shot Attempt,DET,Opponent,D,18.0,0,0,0,0,0
+2024020014,2024-10-10,1,746,1342,PIT,D,shot-on-goal,Shot Attempt,DET,Opponent,O,60.0,1,0,1,0,0
+2024020014,2024-10-10,1,831,331,PIT,N,giveaway,Possession Change,DET,Opponent,D,1.0,0,0,0,0,0
+2024020014,2024-10-10,1,916,401,PIT,N,blocked-shot,Shot Attempt,DET,Opponent,D,32.0,0,0,0,0,0
+2024020014,2024-10-10,1,972,410,PIT,N,hit,Physical Battle,PIT,Hitting Team,N,3.0,0,0,0,0,0
+2024020014,2024-10-10,1,975,419,PIT,N,missed-shot,Shot Attempt,PIT,Hitting Team,O,29.0,0,0,0,0,0
+2024020014,2024-10-10,1,1170,426,DET,N,hit,Physical Battle,PIT,Opponent,N,1.0,0,0,0,0,0
+2024020014,2024-10-10,1,1171,428,PIT,N,hit,Physical Battle,PIT,Hitting Team,D,5.0,0,0,0,0,0
+2024020014,2024-10-10,1,1176,1343,PIT,D,giveaway,Possession Change,PIT,Hitting Team,O,4.0,1,0,0,0,0
+2024020014,2024-10-10,2,1275,505,DET,N,hit,Physical Battle,PIT,Opponent,N,9.0,0,0,0,0,0
+2024020014,2024-10-10,2,1284,510,PIT,N,giveaway,Possession Change,DET,Opponent,D,0.0,0,0,0,0,0
+2024020014,2024-10-10,2,1395,542,DET,N,faceoff,Stoppage,PIT,Opponent,N,38.0,0,0,0,0,0
+2024020014,2024-10-10,2,1436,603,DET,N,missed-shot,Shot Attempt,DET,Hitting Team,O,36.0,0,0,0,0,0
+2024020014,2024-10-10,2,1536,631,DET,N,hit,Physical Battle,PIT,Opponent,N,5.0,0,0,0,0,0
+2024020014,2024-10-10,2,1541,632,PIT,N,takeaway,Possession Change,PIT,Hitting Team,D,14.0,0,0,0,0,0
+2024020014,2024-10-10,2,1584,649,PIT,N,shot-on-goal,Shot Attempt,DET,Opponent,O,20.0,0,0,1,0,0
+2024020014,2024-10-10,2,1669,1344,DET,D,penalty,Penalty,DET,Hitting Team,N,1.0,1,0,0,0,0
+2024020014,2024-10-10,2,1681,671,DET,N,hit,Physical Battle,DET,Hitting Team,N,23.0,0,0,0,0,0
+2024020014,2024-10-10,2,1704,681,DET,N,shot-on-goal,Shot Attempt,PIT,Opponent,O,20.0,0,0,1,0,0
+2024020014,2024-10-10,2,1796,689,DET,N,shot-on-goal,Shot Attempt,PIT,Opponent,O,1.0,0,0,1,0,0
+2024020014,2024-10-10,2,1824,701,DET,N,delayed-penalty,Penalty,PIT,Opponent,N,4.0,0,0,0,0,0
+2024020014,2024-10-10,2,2002,1345,DET,N,stoppage,Stoppage,PIT,Opponent,N,13.0,0,0,0,0,0
+2024020014,2024-10-10,2,2025,732,PIT,N,shot-on-goal,Shot Attempt,PIT,Hitting Team,O,13.0,0,1,0,0,0
+2024020014,2024-10-10,2,2221,805,PIT,N,shot-on-goal,Shot Attempt,DET,Opponent,O,11.0,0,0,1,0,0
+2024020014,2024-10-10,2,2282,821,DET,N,blocked-shot,Shot Attempt,DET,Hitting Team,O,78.0,0,0,0,0,0
+2024020014,2024-10-10,3,2441,850,PIT,N,delayed-penalty,Penalty,DET,Opponent,N,8.0,0,0,0,0,0
+2024020014,2024-10-10,3,2667,968,DET,N,hit,Physical Battle,DET,Hitting Team,N,31.0,0,0,0,0,0
+2024020014,2024-10-10,3,2698,974,DET,N,hit,Physical Battle,DET,Hitting Team,N,8.0,0,0,0,0,0
+2024020014,2024-10-10,3,2706,978,DET,N,giveaway,Possession Change,DET,Hitting Team,O,15.0,0,0,0,0,0
+2024020014,2024-10-10,3,3013,1036,PIT,N,hit,Physical Battle,DET,Opponent,N,32.0,0,0,0,0,0
+2024020014,2024-10-10,3,3045,1046,DET,N,hit,Physical Battle,PIT,Opponent,N,11.0,0,0,0,0,0
+2024020014,2024-10-10,3,3056,1052,PIT,N,takeaway,Possession Change,PIT,Hitting Team,O,10.0,0,0,0,0,0
+2024020014,2024-10-10,3,3281,1120,PIT,N,shot-on-goal,Shot Attempt,PIT,Hitting Team,O,19.0,0,1,0,0,0
+2024020014,2024-10-10,3,3535,1121,DET,N,missed-shot,Shot Attempt,PIT,Opponent,O,3.0,0,0,0,0,0
+2024020014,2024-10-10,3,3556,1122,PIT,N,blocked-shot,Shot Attempt,DET,Opponent,D,25.0,0,0,0,0,0
+2024020015,2024-10-10,1,61,75,NJD,N,giveaway,Possession Change,TOR,Opponent,D,2.0,0,0,0,0,0
+2024020015,2024-10-10,1,193,107,NJD,N,giveaway,Possession Change,TOR,Opponent,D,29.0,0,0,0,0,0
+2024020015,2024-10-10,1,297,134,TOR,N,blocked-shot,Shot Attempt,NJD,Opponent,D,13.0,0,0,0,0,0
+2024020015,2024-10-10,1,392,207,NJD,N,blocked-shot,Shot Attempt,TOR,Opponent,D,5.0,0,0,0,0,0
+2024020015,2024-10-10,1,416,215,TOR,N,missed-shot,Shot Attempt,NJD,Opponent,O,29.0,0,0,0,0,0
+2024020015,2024-10-10,1,600,337,NJD,N,hit,Physical Battle,NJD,Hitting Team,N,10.0,0,0,0,0,0
+2024020015,2024-10-10,1,610,340,NJD,N,missed-shot,Shot Attempt,NJD,Hitting Team,N,17.0,0,0,0,0,0
+2024020015,2024-10-10,1,647,407,TOR,N,faceoff,Stoppage,TOR,Hitting Team,N,42.0,0,0,0,0,0
+2024020015,2024-10-10,1,1007,532,NJD,N,blocked-shot,Shot Attempt,TOR,Opponent,O,3.0,0,0,0,0,0
+2024020015,2024-10-10,1,1190,533,NJD,N,blocked-shot,Shot Attempt,NJD,Hitting Team,D,7.0,0,0,0,0,0
+2024020015,2024-10-10,2,1221,554,NJD,N,blocked-shot,Shot Attempt,TOR,Opponent,D,9.0,0,0,0,0,0
+2024020015,2024-10-10,2,1270,567,NJD,N,giveaway,Possession Change,TOR,Opponent,O,1.0,0,0,0,0,0
+2024020015,2024-10-10,2,1378,589,TOR,N,hit,Physical Battle,TOR,Hitting Team,N,1.0,0,0,0,0,0
+2024020015,2024-10-10,2,1379,594,TOR,N,hit,Physical Battle,NJD,Opponent,N,6.0,0,0,0,0,0
+2024020015,2024-10-10,2,1385,707,NJD,N,faceoff,Stoppage,TOR,Opponent,O,1.0,0,0,0,0,0
+2024020015,2024-10-10,2,1572,743,NJD,N,stoppage,Stoppage,TOR,Opponent,N,8.0,0,0,0,0,0
+2024020015,2024-10-10,2,1630,1431,NJD,D,hit,Physical Battle,NJD,Hitting Team,N,7.0,1,0,0,0,0
+2024020015,2024-10-10,2,1637,770,NJD,N,blocked-shot,Shot Attempt,NJD,Hitting Team,D,6.0,0,0,0,0,0
+2024020015,2024-10-10,2,1648,774,NJD,N,stoppage,Stoppage,TOR,Opponent,N,2.0,0,0,0,0,0
+2024020015,2024-10-10,2,1808,799,NJD,N,hit,Physical Battle,TOR,Opponent,N,5.0,0,0,0,0,0
+2024020015,2024-10-10,2,1813,808,TOR,N,stoppage,Stoppage,TOR,Hitting Team,N,4.0,0,0,0,0,0
+2024020015,2024-10-10,2,1880,832,TOR,N,shot-on-goal,Shot Attempt,TOR,Hitting Team,O,6.0,0,1,0,0,0
+2024020015,2024-10-10,2,2063,850,NJD,N,blocked-shot,Shot Attempt,NJD,Hitting Team,O,7.0,0,0,0,0,0
+2024020015,2024-10-10,2,2096,894,TOR,N,giveaway,Possession Change,TOR,Hitting Team,D,6.0,0,0,0,0,0
+2024020015,2024-10-10,2,2158,898,NJD,N,shot-on-goal,Shot Attempt,NJD,Hitting Team,O,17.0,0,1,0,0,0
+2024020015,2024-10-10,2,2200,899,TOR,N,missed-shot,Shot Attempt,NJD,Opponent,O,11.0,0,0,0,0,0
+2024020015,2024-10-10,2,2234,900,NJD,N,missed-shot,Shot Attempt,NJD,Hitting Team,O,22.0,0,0,0,0,0
+2024020015,2024-10-10,2,2304,1432,TOR,O,hit,Physical Battle,NJD,Opponent,N,23.0,0,0,0,0,0
+2024020015,2024-10-10,2,2327,901,NJD,N,hit,Physical Battle,TOR,Opponent,N,8.0,0,0,0,0,0
+2024020015,2024-10-10,2,2335,902,TOR,N,shot-on-goal,Shot Attempt,NJD,Opponent,O,2.0,0,0,1,0,0
+2024020015,2024-10-10,3,2480,924,NJD,N,giveaway,Possession Change,TOR,Opponent,D,2.0,0,0,0,0,0
+2024020015,2024-10-10,3,2548,954,NJD,N,missed-shot,Shot Attempt,TOR,Opponent,O,37.0,0,0,0,0,0
+2024020015,2024-10-10,3,2645,986,NJD,N,delayed-penalty,Penalty,TOR,Opponent,N,3.0,0,0,0,0,0
+2024020015,2024-10-10,3,2711,1002,NJD,N,blocked-shot,Shot Attempt,NJD,Hitting Team,D,13.0,0,0,0,0,0
+2024020015,2024-10-10,3,2913,1060,NJD,N,shot-on-goal,Shot Attempt,TOR,Opponent,O,10.0,0,0,1,0,0
+2024020015,2024-10-10,3,2933,1073,NJD,N,blocked-shot,Shot Attempt,NJD,Hitting Team,D,15.0,0,0,0,0,0
+2024020015,2024-10-10,3,2971,1089,NJD,N,giveaway,Possession Change,NJD,Hitting Team,D,12.0,0,0,0,0,0
+2024020015,2024-10-10,3,2988,1090,NJD,N,hit,Physical Battle,NJD,Hitting Team,N,2.0,0,0,0,0,0
+2024020015,2024-10-10,3,2990,1091,NJD,N,hit,Physical Battle,NJD,Hitting Team,N,16.0,0,0,0,0,0
+2024020015,2024-10-10,3,3006,1100,NJD,N,giveaway,Possession Change,TOR,Opponent,D,4.0,0,0,0,0,0
+2024020015,2024-10-10,3,3047,1108,TOR,N,giveaway,Possession Change,NJD,Opponent,O,62.0,0,0,0,0,0
+2024020015,2024-10-10,3,3256,1145,NJD,N,hit,Physical Battle,NJD,Hitting Team,N,9.0,0,0,0,0,0
+2024020015,2024-10-10,3,3265,1147,NJD,N,blocked-shot,Shot Attempt,TOR,Opponent,D,4.0,0,0,0,0,0
+2024020015,2024-10-10,3,3394,1155,NJD,N,giveaway,Possession Change,NJD,Hitting Team,D,29.0,0,0,0,0,0
+2024020016,2024-10-10,1,15,110,NYI,O,blocked-shot,Shot Attempt,UTA,Opponent,D,6.0,0,0,0,0,0
+2024020016,2024-10-10,1,74,141,NYI,O,takeaway,Possession Change,UTA,Opponent,D,9.0,0,0,0,0,0
+2024020016,2024-10-10,1,101,1611,NYI,D,giveaway,Possession Change,UTA,Opponent,O,20.0,1,0,0,0,0
+2024020016,2024-10-10,1,144,1612,NYI,O,shot-on-goal,Shot Attempt,UTA,Opponent,O,15.0,0,0,1,0,0
+2024020016,2024-10-10,1,195,166,NYI,D,missed-shot,Shot Attempt,UTA,Opponent,O,4.0,1,0,0,0,0
+2024020016,2024-10-10,1,303,197,NYI,O,missed-shot,Shot Attempt,UTA,Opponent,O,7.0,0,0,0,0,0
+2024020016,2024-10-10,1,409,237,NYI,O,missed-shot,Shot Attempt,UTA,Opponent,O,9.0,0,0,0,0,0
+2024020016,2024-10-10,1,464,257,NYI,N,blocked-shot,Shot Attempt,UTA,Opponent,D,7.0,0,0,0,0,0
+2024020016,2024-10-10,1,481,258,UTA,O,missed-shot,Shot Attempt,UTA,Hitting Team,O,6.0,0,0,0,0,0
+2024020016,2024-10-10,1,521,271,NYI,D,missed-shot,Shot Attempt,UTA,Opponent,O,2.0,1,0,0,0,0
+2024020016,2024-10-10,1,533,272,NYI,O,blocked-shot,Shot Attempt,UTA,Opponent,D,11.0,0,0,0,0,0
+2024020016,2024-10-10,1,569,273,NYI,O,giveaway,Possession Change,UTA,Opponent,D,1.0,0,0,0,0,0
+2024020016,2024-10-10,1,585,278,UTA,D,hit,Physical Battle,NYI,Opponent,O,4.0,1,0,0,0,0
+2024020016,2024-10-10,1,589,286,NYI,O,giveaway,Possession Change,UTA,Opponent,O,19.0,0,0,0,0,0
+2024020016,2024-10-10,1,922,453,UTA,D,missed-shot,Shot Attempt,NYI,Opponent,O,11.0,1,0,0,0,0
+2024020016,2024-10-10,1,1052,474,UTA,O,blocked-shot,Shot Attempt,UTA,Hitting Team,D,14.0,0,0,0,0,0
+2024020016,2024-10-10,1,1154,488,NYI,D,missed-shot,Shot Attempt,NYI,Hitting Team,O,16.0,1,0,0,0,0
+2024020016,2024-10-10,2,1374,527,NYI,D,missed-shot,Shot Attempt,UTA,Opponent,O,29.0,1,0,0,0,0
+2024020016,2024-10-10,2,1459,544,UTA,D,stoppage,Stoppage,UTA,Hitting Team,N,7.0,1,0,0,0,0
+2024020016,2024-10-10,2,1493,655,NYI,D,shot-on-goal,Shot Attempt,NYI,Hitting Team,O,10.0,1,1,0,0,0
+2024020016,2024-10-10,2,1546,660,UTA,O,shot-on-goal,Shot Attempt,UTA,Hitting Team,O,14.0,0,1,0,0,0
+2024020016,2024-10-10,2,1587,666,NYI,O,stoppage,Stoppage,UTA,Opponent,N,4.0,0,0,0,0,0
+2024020016,2024-10-10,2,1624,681,NYI,N,giveaway,Possession Change,NYI,Hitting Team,N,1.0,0,0,0,0,0
+2024020016,2024-10-10,2,1839,721,NYI,D,takeaway,Possession Change,NYI,Hitting Team,D,2.0,0,0,0,0,0
+2024020016,2024-10-10,2,1842,723,UTA,O,missed-shot,Shot Attempt,UTA,Hitting Team,O,10.0,0,0,0,0,0
+2024020016,2024-10-10,2,1855,1613,NYI,D,shot-on-goal,Shot Attempt,UTA,Opponent,D,13.0,0,0,1,0,0
+2024020016,2024-10-10,2,1956,743,NYI,D,faceoff,Stoppage,NYI,Hitting Team,N,31.0,1,0,0,0,0
+2024020016,2024-10-10,2,2014,768,NYI,O,faceoff,Stoppage,UTA,Opponent,O,37.0,0,0,0,0,0
+2024020016,2024-10-10,3,2417,1614,NYI,N,shot-on-goal,Shot Attempt,NYI,Hitting Team,O,17.0,0,1,0,0,0
+2024020016,2024-10-10,3,2596,894,UTA,N,shot-on-goal,Shot Attempt,UTA,Hitting Team,O,7.0,0,1,0,0,0
+2024020016,2024-10-10,3,2664,912,UTA,O,stoppage,Stoppage,UTA,Hitting Team,N,18.0,0,0,0,0,0
+2024020016,2024-10-10,3,2785,919,UTA,O,shot-on-goal,Shot Attempt,UTA,Hitting Team,O,1.0,0,1,0,0,0
+2024020016,2024-10-10,3,2885,954,UTA,O,blocked-shot,Shot Attempt,NYI,Opponent,D,21.0,0,0,0,0,0
+2024020016,2024-10-10,3,2928,957,NYI,O,giveaway,Possession Change,NYI,Hitting Team,N,18.0,0,0,0,0,0
+2024020016,2024-10-10,3,2953,978,UTA,D,shot-on-goal,Shot Attempt,NYI,Opponent,O,4.0,1,0,1,0,0
+2024020016,2024-10-10,3,3273,1031,UTA,O,blocked-shot,Shot Attempt,NYI,Opponent,D,10.0,0,0,0,0,0
+2024020016,2024-10-10,3,3479,1059,NYI,O,faceoff,Stoppage,NYI,Hitting Team,N,7.0,0,0,0,0,0
+2024020017,2024-10-10,1,319,180,NSH,N,shot-on-goal,Shot Attempt,NSH,Hitting Team,O,21.0,0,1,0,0,0
+2024020017,2024-10-10,1,357,1291,NSH,D,stoppage,Stoppage,DAL,Opponent,N,5.0,1,0,0,0,0
+2024020017,2024-10-10,1,422,207,NSH,N,giveaway,Possession Change,NSH,Hitting Team,O,8.0,0,0,0,0,0
+2024020017,2024-10-10,1,490,1292,NSH,D,hit,Physical Battle,DAL,Opponent,N,8.0,1,0,0,0,0
+2024020017,2024-10-10,1,498,231,DAL,N,takeaway,Possession Change,NSH,Opponent,N,13.0,0,0,0,0,0
+2024020017,2024-10-10,1,613,316,NSH,N,missed-shot,Shot Attempt,DAL,Opponent,O,2.0,0,0,0,0,0
+2024020017,2024-10-10,1,643,336,NSH,N,takeaway,Possession Change,DAL,Opponent,N,12.0,0,0,0,0,0
+2024020017,2024-10-10,1,655,326,DAL,N,giveaway,Possession Change,DAL,Hitting Team,D,41.0,0,0,0,0,0
+2024020017,2024-10-10,1,707,346,DAL,N,stoppage,Stoppage,DAL,Hitting Team,N,11.0,0,0,0,0,0
+2024020017,2024-10-10,1,785,1293,NSH,D,faceoff,Stoppage,NSH,Hitting Team,O,24.0,1,0,0,0,0
+2024020017,2024-10-10,1,1013,389,NSH,N,giveaway,Possession Change,DAL,Opponent,D,10.0,0,0,0,0,0
+2024020017,2024-10-10,1,1081,1294,NSH,D,blocked-shot,Shot Attempt,DAL,Opponent,D,4.0,0,0,0,0,0
+2024020017,2024-10-10,1,1125,435,DAL,N,shot-on-goal,Shot Attempt,NSH,Opponent,D,17.0,0,0,1,0,0
+2024020017,2024-10-10,2,1449,1295,NSH,O,shot-on-goal,Shot Attempt,NSH,Hitting Team,O,19.0,0,1,0,0,0
+2024020017,2024-10-10,2,1694,653,NSH,N,giveaway,Possession Change,DAL,Opponent,O,18.0,0,0,0,0,0
+2024020017,2024-10-10,2,1726,662,NSH,N,giveaway,Possession Change,DAL,Opponent,D,24.0,0,0,0,0,0
+2024020017,2024-10-10,2,1890,698,NSH,N,blocked-shot,Shot Attempt,DAL,Opponent,D,22.0,0,0,0,0,0
+2024020017,2024-10-10,2,2003,822,NSH,N,blocked-shot,Shot Attempt,NSH,Hitting Team,D,12.0,0,0,0,0,0
+2024020017,2024-10-10,2,2028,1296,DAL,O,giveaway,Possession Change,NSH,Opponent,O,44.0,0,0,0,0,0
+2024020017,2024-10-10,2,2161,850,DAL,N,shot-on-goal,Shot Attempt,DAL,Hitting Team,O,22.0,0,1,0,0,0
+2024020017,2024-10-10,2,2277,874,NSH,N,blocked-shot,Shot Attempt,DAL,Opponent,D,6.0,0,0,0,0,0
+2024020017,2024-10-10,3,2424,917,DAL,N,shot-on-goal,Shot Attempt,NSH,Opponent,O,20.0,0,0,1,0,0
+2024020017,2024-10-10,3,2639,1004,DAL,N,hit,Physical Battle,NSH,Opponent,D,20.0,0,0,0,0,0
+2024020017,2024-10-10,3,2659,1297,NSH,D,shot-on-goal,Shot Attempt,DAL,Opponent,O,4.0,1,0,1,0,0
+2024020017,2024-10-10,3,2773,1048,NSH,N,hit,Physical Battle,NSH,Hitting Team,N,21.0,0,0,0,0,0
+2024020017,2024-10-10,3,2794,1056,NSH,N,faceoff,Stoppage,DAL,Opponent,N,21.0,0,0,0,0,0
+2024020017,2024-10-10,3,3001,1096,NSH,D,blocked-shot,Shot Attempt,DAL,Opponent,D,5.0,0,0,0,0,0
+2024020017,2024-10-10,3,3058,1298,NSH,O,takeaway,Possession Change,NSH,Hitting Team,D,10.0,0,0,0,0,0
+2024020017,2024-10-10,3,3093,1119,NSH,N,shot-on-goal,Shot Attempt,DAL,Opponent,D,21.0,0,0,1,0,0
+2024020017,2024-10-10,3,3321,1178,DAL,D,shot-on-goal,Shot Attempt,NSH,Opponent,O,21.0,1,0,1,0,0
+2024020017,2024-10-10,3,3415,1183,DAL,N,faceoff,Stoppage,DAL,Hitting Team,D,17.0,0,0,0,0,0
+2024020017,2024-10-10,3,3557,1196,DAL,N,takeaway,Possession Change,NSH,Opponent,O,16.0,0,0,0,0,0
+2024020018,2024-10-10,1,19,1241,MIN,D,stoppage,Stoppage,CBJ,Opponent,N,24.0,1,0,0,0,0
+2024020018,2024-10-10,1,70,122,CBJ,N,stoppage,Stoppage,CBJ,Hitting Team,N,36.0,0,0,0,0,0
+2024020018,2024-10-10,1,260,664,CBJ,N,stoppage,Stoppage,CBJ,Hitting Team,N,28.0,0,0,0,0,0
+2024020018,2024-10-10,1,294,665,CBJ,N,shot-on-goal,Shot Attempt,CBJ,Hitting Team,O,17.0,0,1,0,0,0
+2024020018,2024-10-10,1,326,666,CBJ,N,shot-on-goal,Shot Attempt,CBJ,Hitting Team,O,71.0,0,1,0,0,0
+2024020018,2024-10-10,1,410,667,CBJ,N,shot-on-goal,Shot Attempt,MIN,Opponent,O,8.0,0,0,1,0,0
+2024020018,2024-10-10,1,442,669,MIN,N,missed-shot,Shot Attempt,CBJ,Opponent,O,4.0,0,0,0,0,0
+2024020018,2024-10-10,1,486,670,MIN,N,blocked-shot,Shot Attempt,CBJ,Opponent,D,91.0,0,0,0,0,0
+2024020018,2024-10-10,1,625,671,MIN,N,shot-on-goal,Shot Attempt,MIN,Hitting Team,O,102.0,0,1,0,0,0
+2024020018,2024-10-10,1,845,672,MIN,N,stoppage,Stoppage,CBJ,Opponent,N,4.0,0,0,0,0,0
+2024020018,2024-10-10,2,1227,515,CBJ,N,missed-shot,Shot Attempt,MIN,Opponent,O,28.0,0,0,0,0,0
+2024020018,2024-10-10,2,1396,569,CBJ,N,hit,Physical Battle,MIN,Opponent,N,57.0,0,0,0,0,0
+2024020018,2024-10-10,2,1453,583,MIN,N,shot-on-goal,Shot Attempt,CBJ,Opponent,O,26.0,0,0,1,0,0
+2024020018,2024-10-10,2,1917,704,CBJ,N,hit,Physical Battle,CBJ,Hitting Team,N,2.0,0,0,0,0,0
+2024020018,2024-10-10,2,1919,705,CBJ,N,shot-on-goal,Shot Attempt,MIN,Opponent,O,9.0,0,0,1,0,0
+2024020018,2024-10-10,2,1938,706,MIN,N,missed-shot,Shot Attempt,CBJ,Opponent,O,6.0,0,0,0,0,0
+2024020018,2024-10-10,2,1985,679,CBJ,N,giveaway,Possession Change,MIN,Opponent,N,10.0,0,0,0,0,0
+2024020018,2024-10-10,2,2039,682,CBJ,N,stoppage,Stoppage,CBJ,Hitting Team,N,4.0,0,0,0,0,0
+2024020018,2024-10-10,2,2079,683,MIN,N,shot-on-goal,Shot Attempt,CBJ,Opponent,O,8.0,0,0,1,0,0
+2024020018,2024-10-10,2,2161,691,CBJ,N,faceoff,Stoppage,MIN,Opponent,N,34.0,0,0,0,0,0
+2024020018,2024-10-10,2,2359,698,MIN,N,shot-on-goal,Shot Attempt,MIN,Hitting Team,O,1.0,0,1,0,0,0
+2024020018,2024-10-10,2,2380,699,MIN,N,hit,Physical Battle,CBJ,Opponent,N,5.0,0,0,0,0,0
+2024020018,2024-10-10,2,2385,700,CBJ,N,giveaway,Possession Change,MIN,Opponent,O,1.0,0,0,0,0,0
+2024020018,2024-10-10,3,2472,714,CBJ,N,missed-shot,Shot Attempt,CBJ,Hitting Team,O,27.0,0,0,0,0,0
+2024020018,2024-10-10,3,2548,1242,MIN,D,shot-on-goal,Shot Attempt,MIN,Hitting Team,O,33.0,1,1,0,0,0
+2024020018,2024-10-10,3,2598,720,MIN,N,hit,Physical Battle,MIN,Hitting Team,N,10.0,0,0,0,0,0
+2024020018,2024-10-10,3,2608,722,MIN,N,shot-on-goal,Shot Attempt,CBJ,Opponent,O,18.0,0,0,1,0,0
+2024020018,2024-10-10,3,2671,726,CBJ,N,hit,Physical Battle,CBJ,Hitting Team,N,10.0,0,0,0,0,0
+2024020018,2024-10-10,3,2681,727,CBJ,N,giveaway,Possession Change,MIN,Opponent,D,13.0,0,0,0,0,0
+2024020018,2024-10-10,3,2773,737,CBJ,N,hit,Physical Battle,CBJ,Hitting Team,N,9.0,0,0,0,0,0
+2024020018,2024-10-10,3,2782,738,CBJ,N,missed-shot,Shot Attempt,MIN,Opponent,O,2.0,0,0,0,0,0
+2024020018,2024-10-10,3,2928,1243,CBJ,D,shot-on-goal,Shot Attempt,MIN,Opponent,O,40.0,1,0,1,0,0
+2024020018,2024-10-10,3,3043,903,MIN,N,stoppage,Stoppage,CBJ,Opponent,N,21.0,0,0,0,0,0
+2024020018,2024-10-10,3,3188,910,CBJ,N,hit,Physical Battle,MIN,Opponent,N,9.0,0,0,0,0,0
+2024020018,2024-10-10,3,3197,913,MIN,N,shot-on-goal,Shot Attempt,MIN,Hitting Team,O,30.0,0,1,0,0,0
+2024020018,2024-10-10,3,3390,1244,MIN,D,giveaway,Possession Change,MIN,Hitting Team,D,2.0,0,0,0,0,0
+2024020018,2024-10-10,3,3399,922,CBJ,N,penalty,Penalty,MIN,Opponent,D,11.0,0,0,0,0,0
+2024020018,2024-10-10,3,3494,935,MIN,N,shot-on-goal,Shot Attempt,CBJ,Opponent,O,21.0,0,0,1,0,0
+2024020019,2024-10-10,1,114,86,SJS,N,hit,Physical Battle,STL,Opponent,N,3.0,0,0,0,0,0
+2024020019,2024-10-10,1,117,99,STL,N,shot-on-goal,Shot Attempt,STL,Hitting Team,O,30.0,0,1,0,0,0
+2024020019,2024-10-10,1,222,173,SJS,N,hit,Physical Battle,SJS,Hitting Team,N,7.0,0,0,0,0,0
+2024020019,2024-10-10,1,229,178,SJS,N,giveaway,Possession Change,STL,Opponent,O,25.0,0,0,0,0,0
+2024020019,2024-10-10,1,275,194,STL,N,shot-on-goal,Shot Attempt,SJS,Opponent,O,11.0,0,0,1,0,0
+2024020019,2024-10-10,1,322,1291,STL,O,stoppage,Stoppage,STL,Hitting Team,N,7.0,0,0,0,0,0
+2024020019,2024-10-10,1,353,215,STL,N,hit,Physical Battle,STL,Hitting Team,N,19.0,0,0,0,0,0
+2024020019,2024-10-10,1,372,218,STL,N,giveaway,Possession Change,SJS,Opponent,D,1.0,0,0,0,0,0
+2024020019,2024-10-10,1,426,1292,SJS,O,blocked-shot,Shot Attempt,STL,Opponent,D,25.0,0,0,0,0,0
+2024020019,2024-10-10,1,537,1293,STL,N,hit,Physical Battle,STL,Hitting Team,D,4.0,0,0,0,0,0
+2024020019,2024-10-10,1,541,1294,STL,D,shot-on-goal,Shot Attempt,SJS,Opponent,O,21.0,1,0,1,0,0
+2024020019,2024-10-10,1,637,353,STL,N,giveaway,Possession Change,SJS,Opponent,N,9.0,0,0,0,0,0
+2024020019,2024-10-10,1,992,462,STL,N,hit,Physical Battle,STL,Hitting Team,N,9.0,0,0,0,0,0
+2024020019,2024-10-10,1,1001,467,STL,N,takeaway,Possession Change,STL,Hitting Team,D,1.0,0,0,0,0,0
+2024020019,2024-10-10,2,1307,604,STL,N,shot-on-goal,Shot Attempt,SJS,Opponent,O,6.0,0,0,1,0,0
+2024020019,2024-10-10,2,1395,624,STL,N,blocked-shot,Shot Attempt,SJS,Opponent,D,29.0,0,0,0,0,0
+2024020019,2024-10-10,2,1437,635,SJS,N,stoppage,Stoppage,STL,Opponent,N,12.0,0,0,0,0,0
+2024020019,2024-10-10,2,1471,646,SJS,N,giveaway,Possession Change,STL,Opponent,D,17.0,0,0,0,0,0
+2024020019,2024-10-10,2,1714,683,STL,N,hit,Physical Battle,SJS,Opponent,N,15.0,0,0,0,0,0
+2024020019,2024-10-10,2,1729,687,SJS,N,hit,Physical Battle,STL,Opponent,N,3.0,0,0,0,0,0
+2024020019,2024-10-10,2,1732,688,STL,N,hit,Physical Battle,STL,Hitting Team,N,4.0,0,0,0,0,0
+2024020019,2024-10-10,2,1736,692,STL,N,stoppage,Stoppage,STL,Hitting Team,N,9.0,0,0,0,0,0
+2024020019,2024-10-10,2,2022,755,SJS,N,giveaway,Possession Change,SJS,Hitting Team,O,31.0,0,0,0,0,0
+2024020019,2024-10-10,2,2121,778,SJS,N,missed-shot,Shot Attempt,STL,Opponent,O,7.0,0,0,0,0,0
+2024020019,2024-10-10,2,2142,786,SJS,N,giveaway,Possession Change,SJS,Hitting Team,D,31.0,0,0,0,0,0
+2024020019,2024-10-10,3,2597,911,SJS,N,blocked-shot,Shot Attempt,SJS,Hitting Team,D,13.0,0,0,0,0,0
+2024020019,2024-10-10,3,2670,918,SJS,N,shot-on-goal,Shot Attempt,STL,Opponent,O,54.0,0,0,1,0,0
+2024020019,2024-10-10,3,2730,925,SJS,N,faceoff,Stoppage,SJS,Hitting Team,N,9.0,0,0,0,0,0
+2024020019,2024-10-10,3,2753,927,SJS,N,faceoff,Stoppage,STL,Opponent,N,18.0,0,0,0,0,0
+2024020019,2024-10-10,3,2819,950,SJS,N,giveaway,Possession Change,STL,Opponent,D,5.0,0,0,0,0,0
+2024020019,2024-10-10,3,2943,1295,STL,D,shot-on-goal,Shot Attempt,SJS,Opponent,O,1.0,1,0,1,0,0
+2024020019,2024-10-10,3,2976,1296,SJS,N,hit,Physical Battle,SJS,Hitting Team,N,6.0,0,0,0,0,0
+2024020019,2024-10-10,3,2982,974,SJS,N,faceoff,Stoppage,SJS,Hitting Team,D,25.0,0,0,0,0,0
+2024020019,2024-10-10,3,3121,997,SJS,N,hit,Physical Battle,STL,Opponent,N,30.0,0,0,0,0,0
+2024020019,2024-10-10,3,3151,1004,STL,N,giveaway,Possession Change,SJS,Opponent,D,17.0,0,0,0,0,0
+2024020019,2024-10-10,3,3249,1027,SJS,N,hit,Physical Battle,SJS,Hitting Team,N,19.0,0,0,0,0,0
+2024020019,2024-10-10,3,3268,1038,SJS,N,hit,Physical Battle,STL,Opponent,N,9.0,0,0,0,0,0
+2024020019,2024-10-10,3,3277,1297,STL,N,hit,Physical Battle,SJS,Opponent,N,16.0,0,0,0,0,0
+2024020019,2024-10-10,3,3293,1050,SJS,N,blocked-shot,Shot Attempt,STL,Opponent,D,47.0,0,0,0,0,0
+2024020020,2024-10-11,1,47,122,TBL,N,hit,Physical Battle,TBL,Hitting Team,N,16.0,0,0,0,0,0
+2024020020,2024-10-11,1,63,129,TBL,N,blocked-shot,Shot Attempt,CAR,Opponent,D,20.0,0,0,0,0,0
+2024020020,2024-10-11,1,97,134,TBL,N,stoppage,Stoppage,TBL,Hitting Team,N,11.0,0,0,0,0,0
+2024020020,2024-10-11,1,114,147,TBL,N,giveaway,Possession Change,CAR,Opponent,D,2.0,0,0,0,0,0
+2024020020,2024-10-11,1,146,211,TBL,N,hit,Physical Battle,CAR,Opponent,N,10.0,0,0,0,0,0
+2024020020,2024-10-11,1,156,224,CAR,N,giveaway,Possession Change,CAR,Hitting Team,D,12.0,0,0,0,0,0
+2024020020,2024-10-11,1,292,249,TBL,N,giveaway,Possession Change,CAR,Opponent,D,6.0,0,0,0,0,0
+2024020020,2024-10-11,1,420,1241,CAR,O,delayed-penalty,Penalty,TBL,Opponent,N,4.0,0,0,0,0,0
+2024020020,2024-10-11,1,442,287,TBL,N,missed-shot,Shot Attempt,CAR,Opponent,O,16.0,0,0,0,0,0
+2024020020,2024-10-11,1,579,295,CAR,N,shot-on-goal,Shot Attempt,TBL,Opponent,D,3.0,0,0,1,0,0
+2024020020,2024-10-11,1,798,383,TBL,N,blocked-shot,Shot Attempt,CAR,Opponent,D,4.0,0,0,0,0,0
+2024020020,2024-10-11,1,915,464,TBL,N,shot-on-goal,Shot Attempt,CAR,Opponent,O,4.0,0,0,1,0,0
+2024020020,2024-10-11,1,923,472,TBL,N,giveaway,Possession Change,TBL,Hitting Team,D,32.0,0,0,0,0,0
+2024020020,2024-10-11,1,957,490,TBL,N,hit,Physical Battle,TBL,Hitting Team,N,14.0,0,0,0,0,0
+2024020020,2024-10-11,1,971,555,TBL,N,hit,Physical Battle,TBL,Hitting Team,N,6.0,0,0,0,0,0
+2024020020,2024-10-11,1,977,556,TBL,N,stoppage,Stoppage,TBL,Hitting Team,N,4.0,0,0,0,0,0
+2024020020,2024-10-11,1,1133,559,TBL,N,giveaway,Possession Change,CAR,Opponent,D,26.0,0,0,0,0,0
+2024020020,2024-10-11,2,1335,1242,CAR,D,delayed-penalty,Penalty,CAR,Hitting Team,N,5.0,1,0,0,0,0
+2024020020,2024-10-11,2,1345,601,CAR,N,faceoff,Stoppage,TBL,Opponent,N,8.0,0,0,0,0,0
+2024020020,2024-10-11,2,1392,614,CAR,N,stoppage,Stoppage,TBL,Opponent,N,10.0,0,0,0,0,0
+2024020020,2024-10-11,2,1490,639,CAR,N,stoppage,Stoppage,TBL,Opponent,N,3.0,0,0,0,0,0
+2024020020,2024-10-11,2,1584,708,CAR,N,hit,Physical Battle,CAR,Hitting Team,N,43.0,0,0,0,0,0
+2024020020,2024-10-11,2,1627,720,CAR,N,giveaway,Possession Change,TBL,Opponent,O,4.0,0,0,0,0,0
+2024020020,2024-10-11,2,1654,728,TBL,N,stoppage,Stoppage,TBL,Hitting Team,N,16.0,0,0,0,0,0
+2024020020,2024-10-11,2,1817,751,CAR,N,blocked-shot,Shot Attempt,TBL,Opponent,D,42.0,0,0,0,0,0
+2024020020,2024-10-11,2,1870,758,CAR,N,shot-on-goal,Shot Attempt,CAR,Hitting Team,O,39.0,0,1,0,0,0
+2024020020,2024-10-11,2,2118,796,TBL,N,faceoff,Stoppage,TBL,Hitting Team,N,20.0,0,0,0,0,0
+2024020020,2024-10-11,2,2202,811,CAR,N,delayed-penalty,Penalty,TBL,Opponent,N,4.0,0,0,0,0,0
+2024020020,2024-10-11,2,2368,840,CAR,N,blocked-shot,Shot Attempt,TBL,Opponent,D,11.0,0,0,0,0,0
+2024020020,2024-10-11,3,2621,1246,TBL,D,missed-shot,Shot Attempt,CAR,Opponent,O,28.0,1,0,0,0,0
+2024020020,2024-10-11,3,2890,947,CAR,N,hit,Physical Battle,TBL,Opponent,N,3.0,0,0,0,0,0
+2024020020,2024-10-11,3,2893,950,TBL,N,takeaway,Possession Change,CAR,Opponent,N,40.0,0,0,0,0,0
+2024020020,2024-10-11,3,2999,1000,TBL,N,hit,Physical Battle,CAR,Opponent,N,5.0,0,0,0,0,0
+2024020020,2024-10-11,3,3004,1062,CAR,N,missed-shot,Shot Attempt,TBL,Opponent,O,19.0,0,0,0,0,0
+2024020020,2024-10-11,3,3221,1117,TBL,N,shot-on-goal,Shot Attempt,TBL,Hitting Team,O,42.0,0,1,0,0,0
+2024020020,2024-10-11,3,3342,1129,CAR,N,missed-shot,Shot Attempt,CAR,Hitting Team,O,41.0,0,0,0,0,0
+2024020020,2024-10-11,3,3401,1136,CAR,N,hit,Physical Battle,CAR,Hitting Team,N,17.0,0,0,0,0,0
+2024020020,2024-10-11,3,3418,1142,CAR,N,giveaway,Possession Change,CAR,Hitting Team,N,11.0,0,0,0,0,0
+2024020020,2024-10-11,3,3440,1145,CAR,N,blocked-shot,Shot Attempt,CAR,Hitting Team,D,18.0,0,0,0,0,0
+2024020021,2024-10-11,1,57,74,CHI,N,giveaway,Possession Change,WPG,Opponent,D,41.0,0,0,0,0,0
+2024020021,2024-10-11,1,182,103,CHI,N,takeaway,Possession Change,WPG,Opponent,N,3.0,0,0,0,0,0
+2024020021,2024-10-11,1,238,126,WPG,D,hit,Physical Battle,CHI,Opponent,N,30.0,1,0,0,0,0
+2024020021,2024-10-11,1,268,147,CHI,N,giveaway,Possession Change,WPG,Opponent,O,4.0,0,0,0,0,0
+2024020021,2024-10-11,1,277,150,CHI,N,hit,Physical Battle,WPG,Opponent,O,11.0,0,0,0,0,0
+2024020021,2024-10-11,1,288,202,WPG,O,blocked-shot,Shot Attempt,WPG,Hitting Team,D,40.0,0,0,0,0,0
+2024020021,2024-10-11,1,370,206,WPG,D,missed-shot,Shot Attempt,WPG,Hitting Team,O,9.0,1,0,0,0,0
+2024020021,2024-10-11,1,529,244,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,39.0,0,0,0,0,0
+2024020021,2024-10-11,1,568,355,CHI,N,giveaway,Possession Change,WPG,Opponent,O,0.0,0,0,0,0,0
+2024020021,2024-10-11,1,731,376,CHI,N,delayed-penalty,Penalty,CHI,Hitting Team,N,9.0,0,0,0,0,0
+2024020021,2024-10-11,1,746,381,CHI,N,faceoff,Stoppage,WPG,Opponent,O,10.0,0,0,0,0,0
+2024020021,2024-10-11,1,947,491,CHI,N,giveaway,Possession Change,CHI,Hitting Team,D,7.0,0,0,0,0,0
+2024020021,2024-10-11,1,954,495,WPG,O,hit,Physical Battle,WPG,Hitting Team,O,7.0,0,0,0,0,0
+2024020021,2024-10-11,1,961,1241,WPG,O,hit,Physical Battle,WPG,Hitting Team,O,25.0,0,0,0,0,0
+2024020021,2024-10-11,1,986,506,WPG,O,takeaway,Possession Change,WPG,Hitting Team,D,7.0,0,0,0,0,0
+2024020021,2024-10-11,2,1349,602,WPG,O,missed-shot,Shot Attempt,CHI,Opponent,O,10.0,0,0,0,0,0
+2024020021,2024-10-11,2,1385,612,CHI,N,hit,Physical Battle,CHI,Hitting Team,N,48.0,0,0,0,0,0
+2024020021,2024-10-11,2,1433,618,CHI,N,shot-on-goal,Shot Attempt,WPG,Opponent,O,5.0,0,0,1,0,0
+2024020021,2024-10-11,2,1748,659,CHI,N,blocked-shot,Shot Attempt,CHI,Hitting Team,D,17.0,0,0,0,0,0
+2024020021,2024-10-11,2,2065,1242,CHI,N,missed-shot,Shot Attempt,CHI,Hitting Team,O,6.0,0,0,0,0,0
+2024020021,2024-10-11,2,2181,818,WPG,N,shot-on-goal,Shot Attempt,WPG,Hitting Team,O,17.0,0,1,0,0,0
+2024020021,2024-10-11,2,2221,834,CHI,N,blocked-shot,Shot Attempt,WPG,Opponent,O,15.0,0,0,0,0,0
+2024020021,2024-10-11,2,2244,835,CHI,N,missed-shot,Shot Attempt,CHI,Hitting Team,O,22.0,0,0,0,0,0
+2024020021,2024-10-11,2,2301,836,WPG,O,blocked-shot,Shot Attempt,CHI,Opponent,D,48.0,0,0,0,0,0
+2024020021,2024-10-11,3,2528,869,WPG,O,missed-shot,Shot Attempt,CHI,Opponent,O,26.0,0,0,0,0,0
+2024020021,2024-10-11,3,2674,900,WPG,D,giveaway,Possession Change,WPG,Hitting Team,D,21.0,0,0,0,0,0
+2024020021,2024-10-11,3,2870,940,WPG,O,shot-on-goal,Shot Attempt,CHI,Opponent,O,17.0,0,0,1,0,0
+2024020021,2024-10-11,3,3006,1243,CHI,D,shot-on-goal,Shot Attempt,WPG,Opponent,O,2.0,1,0,1,0,0
+2024020021,2024-10-11,3,3257,1022,CHI,N,takeaway,Possession Change,WPG,Opponent,O,30.0,0,0,0,0,0
+2024020021,2024-10-11,3,3383,1043,CHI,N,shot-on-goal,Shot Attempt,WPG,Opponent,O,11.0,0,0,1,0,0
+2024020021,2024-10-11,3,3440,1056,WPG,N,stoppage,Stoppage,CHI,Opponent,N,49.0,0,0,0,0,0
+2024020021,2024-10-11,3,3572,1088,WPG,O,hit,Physical Battle,CHI,Opponent,N,20.0,0,0,0,0,0
+2024020021,2024-10-11,3,3592,1091,CHI,N,period-end,Stoppage,CHI,Hitting Team,N,8.0,0,0,0,0,0
+2024020022,2024-10-11,1,25,620,VAN,O,stoppage,Stoppage,PHI,Opponent,N,7.0,0,0,0,0,0
+2024020022,2024-10-11,1,118,582,PHI,N,hit,Physical Battle,PHI,Hitting Team,N,1.0,0,0,0,0,0
+2024020022,2024-10-11,1,119,584,PHI,N,blocked-shot,Shot Attempt,VAN,Opponent,D,6.0,0,0,0,0,0
+2024020022,2024-10-11,1,294,588,VAN,O,giveaway,Possession Change,PHI,Opponent,O,1.0,0,0,0,0,0
+2024020022,2024-10-11,1,436,267,VAN,O,shot-on-goal,Shot Attempt,PHI,Opponent,O,4.0,0,0,1,0,0
+2024020022,2024-10-11,1,505,311,PHI,N,shot-on-goal,Shot Attempt,PHI,Hitting Team,O,8.0,0,1,0,0,0
+2024020022,2024-10-11,1,598,356,VAN,D,takeaway,Possession Change,PHI,Opponent,N,8.0,1,0,0,0,0
+2024020022,2024-10-11,1,623,380,PHI,N,hit,Physical Battle,PHI,Hitting Team,N,14.0,0,0,0,0,0
+2024020022,2024-10-11,1,637,390,PHI,N,shot-on-goal,Shot Attempt,PHI,Hitting Team,O,23.0,0,1,0,0,0
+2024020022,2024-10-11,1,717,473,PHI,N,shot-on-goal,Shot Attempt,PHI,Hitting Team,O,5.0,0,1,0,0,0
+2024020022,2024-10-11,1,763,475,VAN,D,stoppage,Stoppage,PHI,Opponent,N,5.0,1,0,0,0,0
+2024020022,2024-10-11,1,786,479,PHI,N,stoppage,Stoppage,PHI,Hitting Team,N,13.0,0,0,0,0,0
+2024020022,2024-10-11,1,871,480,PHI,N,stoppage,Stoppage,PHI,Hitting Team,N,4.0,0,0,0,0,0
+2024020022,2024-10-11,1,1089,491,VAN,O,takeaway,Possession Change,VAN,Hitting Team,D,1.0,0,0,0,0,0
+2024020022,2024-10-11,2,1230,573,PHI,N,shot-on-goal,Shot Attempt,VAN,Opponent,O,20.0,0,0,1,0,0
+2024020022,2024-10-11,2,1260,581,VAN,D,missed-shot,Shot Attempt,VAN,Hitting Team,O,10.0,1,0,0,0,0
+2024020022,2024-10-11,2,1284,587,PHI,N,missed-shot,Shot Attempt,VAN,Opponent,O,18.0,0,0,0,0,0
+2024020022,2024-10-11,2,1314,598,PHI,N,missed-shot,Shot Attempt,VAN,Opponent,O,8.0,0,0,0,0,0
+2024020022,2024-10-11,2,1372,610,PHI,N,shot-on-goal,Shot Attempt,VAN,Opponent,D,15.0,0,0,1,0,0
+2024020022,2024-10-11,2,1446,644,VAN,O,stoppage,Stoppage,PHI,Opponent,N,5.0,0,0,0,0,0
+2024020022,2024-10-11,2,1474,646,PHI,N,giveaway,Possession Change,VAN,Opponent,O,1.0,0,0,0,0,0
+2024020022,2024-10-11,2,1478,1391,VAN,O,hit,Physical Battle,VAN,Hitting Team,O,5.0,0,0,0,0,0
+2024020022,2024-10-11,2,1483,649,VAN,O,shot-on-goal,Shot Attempt,PHI,Opponent,O,9.0,0,0,1,0,0
+2024020022,2024-10-11,2,1580,728,VAN,D,shot-on-goal,Shot Attempt,PHI,Opponent,O,27.0,1,0,1,0,0
+2024020022,2024-10-11,2,1749,760,VAN,O,blocked-shot,Shot Attempt,VAN,Hitting Team,D,84.0,0,0,0,0,0
+2024020022,2024-10-11,2,1843,774,VAN,O,giveaway,Possession Change,PHI,Opponent,D,32.0,0,0,0,0,0
+2024020022,2024-10-11,2,2032,798,PHI,N,stoppage,Stoppage,PHI,Hitting Team,N,3.0,0,0,0,0,0
+2024020022,2024-10-11,2,2040,827,VAN,N,hit,Physical Battle,VAN,Hitting Team,D,5.0,0,0,0,0,0
+2024020022,2024-10-11,2,2045,828,VAN,D,stoppage,Stoppage,PHI,Opponent,N,5.0,1,0,0,0,0
+2024020022,2024-10-11,2,2072,830,PHI,N,missed-shot,Shot Attempt,VAN,Opponent,O,5.0,0,0,0,0,0
+2024020022,2024-10-11,2,2128,832,VAN,D,takeaway,Possession Change,PHI,Opponent,N,14.0,1,0,0,0,0
+2024020022,2024-10-11,2,2149,833,PHI,N,giveaway,Possession Change,PHI,Hitting Team,O,23.0,0,0,0,0,0
+2024020022,2024-10-11,2,2182,834,PHI,N,hit,Physical Battle,PHI,Hitting Team,N,9.0,0,0,0,0,0
+2024020022,2024-10-11,2,2191,835,PHI,N,hit,Physical Battle,VAN,Opponent,N,33.0,0,0,0,0,0
+2024020022,2024-10-11,2,2224,1392,VAN,N,takeaway,Possession Change,VAN,Hitting Team,N,7.0,0,0,0,0,0
+2024020022,2024-10-11,2,2283,836,VAN,D,hit,Physical Battle,VAN,Hitting Team,O,7.0,1,0,0,0,0
+2024020022,2024-10-11,2,2290,837,VAN,O,shot-on-goal,Shot Attempt,PHI,Opponent,O,31.0,0,0,1,0,0
+2024020022,2024-10-11,3,2408,848,VAN,O,missed-shot,Shot Attempt,PHI,Opponent,O,25.0,0,0,0,0,0
+2024020022,2024-10-11,3,2524,883,PHI,N,takeaway,Possession Change,PHI,Hitting Team,O,24.0,0,0,0,0,0
+2024020022,2024-10-11,3,2832,954,VAN,N,shot-on-goal,Shot Attempt,PHI,Opponent,O,42.0,0,0,1,0,0
+2024020022,2024-10-11,3,2904,1393,VAN,N,faceoff,Stoppage,VAN,Hitting Team,O,5.0,0,0,0,0,0
+2024020022,2024-10-11,3,3014,999,PHI,N,giveaway,Possession Change,PHI,Hitting Team,N,26.0,0,0,0,0,0
+2024020022,2024-10-11,3,3049,1009,VAN,O,shot-on-goal,Shot Attempt,PHI,Opponent,O,7.0,0,0,1,0,0
+2024020022,2024-10-11,3,3100,1020,VAN,N,missed-shot,Shot Attempt,PHI,Opponent,O,5.0,0,0,0,0,0
+2024020022,2024-10-11,3,3144,1394,VAN,D,shot-on-goal,Shot Attempt,VAN,Hitting Team,D,17.0,0,1,0,0,0
+2024020022,2024-10-11,3,3387,1082,VAN,O,giveaway,Possession Change,PHI,Opponent,D,1.0,0,0,0,0,0
+2024020022,2024-10-11,3,3410,1098,VAN,O,blocked-shot,Shot Attempt,VAN,Hitting Team,D,23.0,0,0,0,0,0
+2024020022,2024-10-11,3,3506,1128,VAN,O,hit,Physical Battle,VAN,Hitting Team,N,2.0,0,0,0,0,0
+2024020022,2024-10-11,3,3508,1131,VAN,N,takeaway,Possession Change,PHI,Opponent,D,6.0,0,0,0,0,0
+2024020022,2024-10-11,3,3528,1134,PHI,N,shot-on-goal,Shot Attempt,PHI,Hitting Team,N,13.0,0,1,0,0,0
+2024020023,2024-10-11,1,116,125,VGK,O,giveaway,Possession Change,VGK,Hitting Team,D,16.0,0,0,0,0,0
+2024020023,2024-10-11,1,174,133,STL,N,shot-on-goal,Shot Attempt,VGK,Opponent,O,11.0,0,0,1,0,0
+2024020023,2024-10-11,1,302,170,VGK,D,missed-shot,Shot Attempt,STL,Opponent,O,8.0,1,0,0,0,0
+2024020023,2024-10-11,1,431,208,VGK,D,shot-on-goal,Shot Attempt,STL,Opponent,O,6.0,1,0,1,0,0
+2024020023,2024-10-11,1,546,220,VGK,D,missed-shot,Shot Attempt,STL,Opponent,O,5.0,1,0,0,0,0
+2024020023,2024-10-11,1,830,331,STL,N,hit,Physical Battle,STL,Hitting Team,N,25.0,0,0,0,0,0
+2024020023,2024-10-11,1,855,348,STL,N,blocked-shot,Shot Attempt,VGK,Opponent,D,64.0,0,0,0,0,0
+2024020023,2024-10-11,1,976,355,STL,N,takeaway,Possession Change,VGK,Opponent,O,7.0,0,0,0,0,0
+2024020023,2024-10-11,1,1154,395,STL,N,blocked-shot,Shot Attempt,VGK,Opponent,D,15.0,0,0,0,0,0
+2024020023,2024-10-11,2,1321,476,STL,N,shot-on-goal,Shot Attempt,STL,Hitting Team,O,7.0,0,1,0,0,0
+2024020023,2024-10-11,2,1394,553,STL,N,stoppage,Stoppage,STL,Hitting Team,N,6.0,0,0,0,0,0
+2024020023,2024-10-11,2,1442,566,VGK,D,shot-on-goal,Shot Attempt,STL,Opponent,O,3.0,1,0,1,0,0
+2024020023,2024-10-11,2,1512,1141,VGK,D,hit,Physical Battle,VGK,Hitting Team,D,37.0,0,0,0,0,0
+2024020023,2024-10-11,2,1549,568,VGK,D,giveaway,Possession Change,VGK,Hitting Team,D,7.0,0,0,0,0,0
+2024020023,2024-10-11,2,1672,597,STL,N,giveaway,Possession Change,VGK,Opponent,O,2.0,0,0,0,0,0
+2024020023,2024-10-11,2,1775,619,STL,N,hit,Physical Battle,STL,Hitting Team,N,3.0,0,0,0,0,0
+2024020023,2024-10-11,2,1778,622,STL,N,takeaway,Possession Change,STL,Hitting Team,D,9.0,0,0,0,0,0
+2024020023,2024-10-11,2,1794,1142,STL,D,hit,Physical Battle,STL,Hitting Team,D,29.0,0,0,0,0,0
+2024020023,2024-10-11,2,1823,1143,STL,D,shot-on-goal,Shot Attempt,VGK,Opponent,O,27.0,1,0,1,0,0
+2024020023,2024-10-11,2,1876,641,VGK,O,delayed-penalty,Penalty,STL,Opponent,N,30.0,0,0,0,0,0
+2024020023,2024-10-11,2,2038,677,STL,N,blocked-shot,Shot Attempt,VGK,Opponent,D,2.0,0,0,0,0,0
+2024020023,2024-10-11,2,2058,678,STL,N,hit,Physical Battle,VGK,Opponent,O,31.0,0,0,0,0,0
+2024020023,2024-10-11,2,2089,684,VGK,O,takeaway,Possession Change,STL,Opponent,O,28.0,0,0,0,0,0
+2024020023,2024-10-11,2,2168,694,STL,N,giveaway,Possession Change,STL,Hitting Team,D,15.0,0,0,0,0,0
+2024020023,2024-10-11,2,2194,707,VGK,O,stoppage,Stoppage,STL,Opponent,N,11.0,0,0,0,0,0
+2024020023,2024-10-11,2,2287,724,STL,N,shot-on-goal,Shot Attempt,STL,Hitting Team,O,4.0,0,1,0,0,0
+2024020023,2024-10-11,3,2617,774,STL,N,shot-on-goal,Shot Attempt,STL,Hitting Team,O,12.0,0,1,0,0,0

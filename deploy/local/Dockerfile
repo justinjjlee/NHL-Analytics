@@ -32,6 +32,7 @@ COPY latest/player/ /workspace/latest/player/
 COPY dev/player/player_draft/ /workspace/dev/player/player_draft/
 COPY dev/decision_science/impact_of_hits/data/ /workspace/dev/decision_science/impact_of_hits/data/
 COPY dev/decision_science/plays_blockingShots/ /workspace/dev/decision_science/plays_blockingShots/
+COPY dev/decision_science/hit_eda/ /workspace/dev/decision_science/hit_eda/
 
 # Expose the local testing port
 EXPOSE 1901

@@ -67,8 +67,22 @@ def load_all_data():
     df_team_kpi = pd.read_csv(team_kpi_file) if os.path.exists(team_kpi_file) else None
     df_team_spatial = pd.read_csv(team_spatial_file) if os.path.exists(team_spatial_file) else None
 
-    # Load teamlist for full team names
     current_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.abspath(os.path.join(current_dir, "../.."))
+    eda_summary_file = get_data_path("hit_zone_summary.csv")
+    eda_events_file = get_data_path("hit_next_events.csv")
+    if not os.path.exists(eda_summary_file):
+        app_eda_dir = os.path.abspath(os.path.join(current_dir, "../data/hit_eda"))
+        eda_summary_file = os.path.join(app_eda_dir, "hit_zone_summary.csv")
+        eda_events_file = os.path.join(app_eda_dir, "hit_next_events.csv")
+    if not os.path.exists(eda_summary_file):
+        eda_summary_file = os.path.abspath(os.path.join(repo_root, "dev/decision_science/hit_eda/data/hit_zone_summary.csv"))
+        eda_events_file = os.path.abspath(os.path.join(repo_root, "dev/decision_science/hit_eda/data/hit_next_events.csv"))
+
+    df_eda_summary = pd.read_csv(eda_summary_file) if os.path.exists(eda_summary_file) else None
+    df_eda_events = pd.read_csv(eda_events_file) if os.path.exists(eda_events_file) else None
+
+    # Load teamlist for full team names
     teamlist_path = os.path.abspath(os.path.join(current_dir, "../data/teamlist.csv"))
     if os.path.exists(teamlist_path):
         tl = pd.read_csv(teamlist_path)
@@ -76,7 +90,327 @@ def load_all_data():
     else:
         team_name_map = {}
 
-    return df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial, team_name_map
+    return df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial, team_name_map, df_eda_summary, df_eda_events
+
+def create_eda_first_event_chart(df_events, selected_zone="All"):
+    """
+    Constructs a horizontal grouped bar chart showing the immediate first event categories
+    (Step +1) by initiation ownership (Hitting Team vs. Opponent).
+    """
+    if df_events is None or df_events.empty:
+        return go.Figure()
+
+    norm_zone = normalize_zone(selected_zone)
+    if norm_zone != "All":
+        filtered = df_events[df_events["zoneCode"] == norm_zone].copy()
+    else:
+        filtered = df_events.groupby(["next_category", "next_owner_rel"]).agg(
+            event_count=("event_count", "sum"),
+            avg_delta_sec=("avg_delta_sec", "mean"),
+            median_delta_sec=("median_delta_sec", "mean")
+        ).reset_index()
+        total_hits = filtered["event_count"].sum()
+        filtered["pct_of_zone"] = (filtered["event_count"] / total_hits) * 100
+
+    cat_map = {
+        "Shot Attempt": t("hit_cat_shot"),
+        "Physical Battle": t("hit_cat_battle"),
+        "Possession Change": t("hit_cat_poss"),
+        "Stoppage": t("hit_cat_stop"),
+        "Goal": t("hit_cat_goal"),
+        "Penalty": t("hit_cat_penalty", default="Penalty")
+    }
+    owner_map = {
+        "Hitting Team": t("hit_owner_for"),
+        "Opponent": t("hit_owner_against")
+    }
+
+    filtered["cat_disp"] = filtered["next_category"].map(cat_map).fillna(filtered["next_category"])
+    filtered["owner_disp"] = filtered["next_owner_rel"].map(owner_map).fillna(filtered["next_owner_rel"])
+
+    order_df = filtered.groupby("cat_disp")["event_count"].sum().sort_values(ascending=True).reset_index()
+    cat_order = list(order_df["cat_disp"])
+
+    fig = px.bar(
+        filtered,
+        y="cat_disp",
+        x="event_count",
+        color="owner_disp",
+        barmode="group",
+        category_orders={"cat_disp": cat_order},
+        color_discrete_map={
+            t("hit_owner_for"): "#10b981",
+            t("hit_owner_against"): "#ef4444"
+        },
+        labels={
+            "cat_disp": t("hit_chart_sub_cat", default="Event Category"),
+            "event_count": t("hit_chart_freq", default="Event Count"),
+            "owner_disp": t("hit_chart_initiated", default="Initiating Team")
+        },
+        custom_data=["pct_of_zone", "median_delta_sec", "avg_delta_sec"]
+    )
+
+    fig.update_traces(
+        hovertemplate="<b>%{y}</b> (%{data.name})<br>" +
+                      "Event Count: %{x:,}<br>" +
+                      "Share of Zone: %{customdata[0]:.1f}%<br>" +
+                      "Median Latency: %{customdata[1]:.1f}s<br>" +
+                      "Mean Latency: %{customdata[2]:.1f}s<extra></extra>"
+    )
+
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white"),
+        height=380,
+        margin=dict(l=10, r=10, t=30, b=10),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+    )
+    return fig
+
+
+def create_eda_latency_chart(df_events, selected_zone="All"):
+    """
+    Constructs a horizontal bar chart showing reaction duration (delta_t median seconds)
+    from hit to next event for Hitting Team vs. Opponent.
+    """
+    if df_events is None or df_events.empty:
+        return go.Figure()
+
+    norm_zone = normalize_zone(selected_zone)
+    if norm_zone != "All":
+        filtered = df_events[df_events["zoneCode"] == norm_zone].copy()
+    else:
+        filtered = df_events.groupby(["next_category", "next_owner_rel"]).agg(
+            event_count=("event_count", "sum"),
+            avg_delta_sec=("avg_delta_sec", "mean"),
+            median_delta_sec=("median_delta_sec", "mean")
+        ).reset_index()
+
+    cat_map = {
+        "Shot Attempt": t("hit_cat_shot"),
+        "Physical Battle": t("hit_cat_battle"),
+        "Possession Change": t("hit_cat_poss"),
+        "Stoppage": t("hit_cat_stop"),
+        "Goal": t("hit_cat_goal"),
+        "Penalty": t("hit_cat_penalty", default="Penalty")
+    }
+    owner_map = {
+        "Hitting Team": t("hit_owner_for"),
+        "Opponent": t("hit_owner_against")
+    }
+
+    filtered["cat_disp"] = filtered["next_category"].map(cat_map).fillna(filtered["next_category"])
+    filtered["owner_disp"] = filtered["next_owner_rel"].map(owner_map).fillna(filtered["next_owner_rel"])
+
+    order_df = filtered.groupby("cat_disp")["median_delta_sec"].mean().sort_values(ascending=True).reset_index()
+    cat_order = list(order_df["cat_disp"])
+
+    fig = px.bar(
+        filtered,
+        y="cat_disp",
+        x="median_delta_sec",
+        color="owner_disp",
+        barmode="group",
+        category_orders={"cat_disp": cat_order},
+        color_discrete_map={
+            t("hit_owner_for"): "#10b981",
+            t("hit_owner_against"): "#ef4444"
+        },
+        labels={
+            "cat_disp": t("hit_chart_sub_cat", default="Event Category"),
+            "median_delta_sec": "Median Duration (Seconds)",
+            "owner_disp": t("hit_chart_initiated", default="Initiating Team")
+        },
+        custom_data=["avg_delta_sec", "event_count"]
+    )
+
+    fig.update_traces(
+        hovertemplate="<b>%{y}</b> (%{data.name})<br>" +
+                      "Median Latency: %{x:.1f}s<br>" +
+                      "Average Latency: %{customdata[0]:.1f}s<br>" +
+                      "Total Plays: %{customdata[1]:,}<extra></extra>"
+    )
+
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white"),
+        height=380,
+        margin=dict(l=10, r=10, t=30, b=10),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+    )
+    return fig
+
+
+def create_eda_zone_split_charts(df_summary):
+    """
+    Constructs a dual-bar comparison chart illustrating:
+    1) Puck Recovery % by Zone (vs 50% parity)
+    2) Net Shots on Goal per 100 Hits (Diverging bar chart)
+    """
+    if df_summary is None or df_summary.empty:
+        return go.Figure(), go.Figure()
+
+    zone_map = {
+        "D": t("hit_tree_opt_d", default="Defensive Zone"),
+        "N": t("hit_tree_opt_n", default="Neutral Zone"),
+        "O": t("hit_tree_opt_o", default="Offensive Zone")
+    }
+
+    df_plot = df_summary.copy()
+    df_plot["zone_name"] = df_plot["zoneCode"].map(zone_map)
+    zone_order = [zone_map["D"], zone_map["N"], zone_map["O"]]
+
+    # Chart A: Puck Recovery Rate
+    fig_rec = px.bar(
+        df_plot,
+        x="zone_name",
+        y="recovery_pct",
+        category_orders={"zone_name": zone_order},
+        color="recovery_pct",
+        color_continuous_scale=["#ef4444", "#f59e0b", "#10b981"],
+        range_color=[35, 55],
+        labels={"zone_name": "Rink Zone", "recovery_pct": "Puck Recovery %"},
+        text=df_plot["recovery_pct"].apply(lambda x: f"{x:.1f}%")
+    )
+    fig_rec.add_hline(y=50, line_dash="dash", line_color="#94a3b8", annotation_text="50% Parity", annotation_position="top left")
+    fig_rec.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white"),
+        height=320,
+        margin=dict(l=10, r=10, t=30, b=10),
+        coloraxis_showscale=False
+    )
+    fig_rec.update_traces(textposition="outside")
+
+    # Chart B: Net Shot Differential per 100 Hits
+    colors = ["#ef4444" if v < 0 else "#10b981" for v in df_plot["net_sog_per_100"]]
+    fig_sog = go.Figure(go.Bar(
+        x=df_plot["zone_name"],
+        y=df_plot["net_sog_per_100"],
+        marker_color=colors,
+        text=df_plot["net_sog_per_100"].apply(lambda x: f"{x:+.2f}"),
+        textposition="outside"
+    ))
+    fig_sog.add_hline(y=0, line_dash="solid", line_color="#94a3b8")
+    fig_sog.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white"),
+        height=320,
+        margin=dict(l=10, r=10, t=30, b=10),
+        yaxis_title="Net SOG / 100 Hits",
+        xaxis_title="Rink Zone"
+    )
+
+    return fig_rec, fig_sog
+
+
+def create_eda_funnel_chart(df_summary, selected_zone="All"):
+    """
+    Constructs a bilateral conversion funnel comparing:
+    Hits (100) -> Shots on Goal Generated -> Goals Scored for Hitting Team vs. Opponent.
+    """
+    if df_summary is None or df_summary.empty:
+        return go.Figure()
+
+    norm_zone = normalize_zone(selected_zone)
+    if norm_zone != "All":
+        matching = df_summary[df_summary["zoneCode"] == norm_zone]
+        if not matching.empty:
+            row = matching.iloc[0]
+            sog_for = row["sog_for_per_100"]
+            sog_agst = row["sog_against_per_100"]
+            goals_for = row["goals_for_per_100"]
+            goals_agst = row["goals_against_per_100"]
+        else:
+            sog_for, sog_agst, goals_for, goals_agst = 0, 0, 0, 0
+    else:
+        tot_hits = df_summary["total_hits"].sum()
+        sog_for = (df_summary["sog_for"].sum() / tot_hits) * 100
+        sog_agst = (df_summary["sog_against"].sum() / tot_hits) * 100
+        goals_for = (df_summary["goals_for"].sum() / tot_hits) * 100
+        goals_agst = (df_summary["goals_against"].sum() / tot_hits) * 100
+
+    stages = ["Hits (Baseline 100)", "Shots on Goal Generated", "Goals Scored"]
+    for_vals = [100.0, sog_for, goals_for]
+    agst_vals = [100.0, sog_agst, goals_agst]
+
+    fig = go.Figure()
+    fig.add_trace(go.Bar(
+        name=t("hit_owner_for", default="Hitting Team"),
+        x=stages,
+        y=for_vals,
+        marker_color="#10b981",
+        text=[f"{v:.1f}" if i < 2 else f"{v:.2f}" for i, v in enumerate(for_vals)],
+        textposition="outside"
+    ))
+    fig.add_trace(go.Bar(
+        name=t("hit_owner_against", default="Opponent"),
+        x=stages,
+        y=agst_vals,
+        marker_color="#ef4444",
+        text=[f"{v:.1f}" if i < 2 else f"{v:.2f}" for i, v in enumerate(agst_vals)],
+        textposition="outside"
+    ))
+
+    fig.update_layout(
+        barmode="group",
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white"),
+        height=340,
+        margin=dict(l=10, r=10, t=30, b=10),
+        yaxis_title="Rate per 100 Hits",
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
+    )
+    return fig
+
+
+def create_eda_zone_exit_donut(df_summary):
+    """
+    Constructs an interactive donut chart showing Defensive Zone Exit vs. In-Zone Trap rates.
+    """
+    if df_summary is None or df_summary.empty:
+        return go.Figure()
+
+    row_d = df_summary[df_summary["zoneCode"] == "D"]
+    if row_d.empty:
+        return go.Figure()
+    r = row_d.iloc[0]
+
+    exit_count = int(r["zone_exits"])
+    tot_d = int(r["total_hits"])
+    pinned_count = tot_d - exit_count
+    exit_pct = (exit_count / tot_d) * 100
+    pinned_pct = (pinned_count / tot_d) * 100
+
+    labels = ["Clean Zone Exit (D → N/O)", "Pinned In-Zone (Trapped)"]
+    values = [exit_count, pinned_count]
+    colors = ["#10b981", "#ef4444"]
+
+    fig = go.Figure(data=[go.Pie(
+        labels=labels,
+        values=values,
+        hole=0.6,
+        marker_colors=colors,
+        textinfo="percent+label",
+        hoverinfo="label+value+percent"
+    )])
+
+    fig.update_layout(
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="white"),
+        height=320,
+        margin=dict(l=10, r=10, t=10, b=10),
+        showlegend=False,
+        annotations=[dict(text=f"<b>{exit_pct:.1f}%</b><br>Exit Rate", x=0.5, y=0.5, font_size=18, showarrow=False)]
+    )
+    return fig
+
 
 def normalize_zone(zone_val):
     """Safely normalizes any zone input (short code, localized string, or legacy label) to 'All', 'O', 'D', or 'N'."""
@@ -976,7 +1310,7 @@ def show():
     st.title(t("hit_title"))
     st.markdown(t("hit_subtitle"))
 
-    df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial, team_name_map = load_all_data()
+    df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial, team_name_map, df_eda_summary, df_eda_events = load_all_data()
 
     if any(x is None for x in [df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial]):
         st.error(t("hit_data_not_found"))
@@ -996,17 +1330,183 @@ def show():
 
     st.markdown("---")
 
-    # Two-Layer Main Analysis Navigation
+    # Four-Layer Main Analysis Navigation
     main_tabs = st.tabs([
+        t("hit_layer_eda"),
         t("hit_layer_sequence"),
         t("hit_layer_rink"),
         t("hit_layer_tactics")
     ])
 
     # ══════════════════════════════════════════════════════════════════════════
-    # LAYER 1 - TAB 1: SEQUENCE
+    # LAYER 1 - TAB 1: EXPLORATORY (EDA) FOUNDATIONS
     # ══════════════════════════════════════════════════════════════════════════
     with main_tabs[0]:
+        st.markdown(t("hit_eda_scope"))
+        st.subheader(t("hit_eda_heading"))
+        st.markdown(t("hit_eda_intro"))
+
+        # Dropdown write up for methodology (short and simple)
+        with st.expander(t("hit_exp_eda_title"), expanded=False):
+            st.markdown(f"""
+            {t("hit_exp_eda_intro")}
+
+            **{t("hit_exp_eda_sec1_title")}**
+            {t("hit_exp_eda_sec1_p1")}
+            """)
+            st.latex(r"\operatorname{eventId}(E_{k+1}) = \operatorname{eventId}(E_k) + 1 \quad \text{and} \quad \Delta t = t_{k+1} - t_k \ge 0")
+
+            st.markdown(f"""
+            **{t("hit_exp_eda_sec2_title")}**
+            {t("hit_exp_eda_sec2_p1")}
+            """)
+            st.latex(r"\text{Puck Recovery Rate } \Pi_{\text{recovery}}(Z) = \frac{1}{N_Z} \sum_{i=1}^{N_Z} \mathbb{I}(\operatorname{Owner}(E_{k+1, i}) = T_{\text{hit}})")
+            st.latex(r"\text{Zone Exit }(Z = \text{D}) \iff \operatorname{Zone}(E_{k+1}) \in \{\text{Neutral (N)}, \text{Offensive (O)}\}")
+
+            st.markdown(f"""
+            **{t("hit_exp_eda_sec3_title")}**
+            {t("hit_exp_eda_sec3_p1")}
+            """)
+            st.latex(r"\text{SOG Rate / 100 Hits} = \frac{100}{N} \sum_{i=1}^{N} \mathbb{I}(E_{k+1, i} = \text{Shot on Goal})")
+            st.latex(r"\text{Goal Rate / 100 Hits} = \frac{100}{N} \sum_{i=1}^{N} \mathbb{I}(E_{k+1, i} = \text{Goal})")
+
+        # Top EDA Baseline KPI Cards
+        tot_all_hits = df_eda_summary["total_hits"].sum() if df_eda_summary is not None else 125471
+        overall_rec = (df_eda_summary["recovery_pct"] * df_eda_summary["total_hits"]).sum() / tot_all_hits if df_eda_summary is not None else 46.3
+        d_row = df_eda_summary[df_eda_summary["zoneCode"] == "D"].iloc[0] if df_eda_summary is not None else None
+        o_row = df_eda_summary[df_eda_summary["zoneCode"] == "O"].iloc[0] if df_eda_summary is not None else None
+
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric("Sample Hits Analyzed", f"{tot_all_hits:,}", "NHL Regular Season Play-by-Play")
+        k2.metric("Overall Puck Recovery", f"{overall_rec:.1f}%", "-3.7% vs 50% Parity", delta_color="inverse")
+        k3.metric("Forecheck Recovery (O-Zone)", f"{o_row['recovery_pct']:.1f}%" if o_row is not None else "53.1%", "+3.1% Win Rate")
+        k4.metric("D-Zone Exit Rate", f"{d_row['zone_exit_pct']:.1f}%" if d_row is not None else "69.7%", "Relieving In-Zone Pressure")
+
+        st.markdown("---")
+
+        # Interactive Origin Zone Filter
+        cur_l = st.session_state.get("lang", "EN")
+        eda_zone_col, eda_space_col = st.columns([1, 1])
+        with eda_zone_col:
+            eda_zone_opts = ["All", "D", "N", "O"]
+            selected_eda_zone = st.selectbox(
+                t("hit_eda_zone_label"),
+                eda_zone_opts,
+                format_func=lambda x, l=cur_l: t("hit_tree_opt_all", lang=l) if x == "All" else (
+                    t("hit_tree_opt_d", lang=l) if x == "D" else (
+                        t("hit_tree_opt_n", lang=l) if x == "N" else t("hit_tree_opt_o", lang=l)
+                    )
+                ),
+                key=f"eda_zone_select_{cur_l}"
+            )
+
+        # ----------------------------------------------------------------------
+        # SECTION 1: FIRST EVENT BREAKDOWN & LATENCY
+        # ----------------------------------------------------------------------
+        st.subheader(t("hit_eda_sec1_heading"))
+        st.markdown("""
+        **What actually happens right after a physical body check?**  
+        Below is the immediate first registered event (Step +1) categorized by play type and initiating team (Hitting Team vs. Opponent), alongside reaction duration in seconds.
+        """)
+
+        c_ev1, c_ev2 = st.columns(2)
+        with c_ev1:
+            st.markdown("##### Immediate Event Frequency (Step +1)")
+            st.plotly_chart(create_eda_first_event_chart(df_eda_events, selected_eda_zone), width="stretch")
+        with c_ev2:
+            st.markdown("##### Median Action Latency (Seconds Elapsed)")
+            st.plotly_chart(create_eda_latency_chart(df_eda_events, selected_eda_zone), width="stretch")
+
+        st.info("""
+        💡 **Key Takeaways & Analytical Narrative — Immediate First Event & Reaction Horizon:**
+        - **Shot Attempts Dominate the Immediate Action:** Over **30%** of all physical hits across the league are immediately followed by a shot attempt rather than a controlled pass or breakout. In the defensive zone, an opponent shot attempt is the single most common next event (**34.2%** of all plays, over 10,500 occurrences).
+        - **The Puck Recovery Deficit:** Despite initiating contact, the hitting team only recovers immediate possession **44.8%** of the time overall, plummeting to **38.6%** in the defensive zone. Body checking does not magically dispossess the carrier; over 61% of the time, the offensive opponent retains the loose puck.
+        - **Reaction Time Disparity:** The median action latency across all events is **10.0 seconds**. Crucially, opponent shots develop in just **7.5 seconds** (in the defensive zone), while hitting team counter-attacks take **16.0 seconds**. The hitting defender is frequently taken out of position or off balance by delivering the hit, leaving passing lanes and shooting lanes vulnerable.
+        """)
+
+        st.markdown("---")
+
+        # ----------------------------------------------------------------------
+        # SECTION 2: DEFENSIVE VS. OFFENSIVE ZONE SPLIT
+        # ----------------------------------------------------------------------
+        st.subheader(t("hit_eda_sec2_heading"))
+        st.markdown("""
+        **Defensive Containment vs. Offensive Forechecking: The Tactical Inversion.**  
+        A hit delivered in the defensive zone is executed under severe space constraints, whereas an offensive zone hit aggressively pinches a breakout.
+        """)
+
+        c_z1, c_z2 = st.columns(2)
+        fig_rec, fig_sog = create_eda_zone_split_charts(df_eda_summary)
+        with c_z1:
+            st.markdown("##### Immediate Puck Recovery Rate (%) by Zone")
+            st.plotly_chart(fig_rec, width="stretch")
+        with c_z2:
+            st.markdown("##### Net Shots on Goal per 100 Hits by Zone")
+            st.plotly_chart(fig_sog, width="stretch")
+
+        st.info("""
+        💡 **Key Takeaways & Analytical Narrative — The Forechecking Inversion:**
+        - **The Forechecking Advantage (O-Zone):** Hits delivered deep in the offensive zone successfully win puck possession **53.1%** of the time and generate a positive shot differential (**+1.42 net SOG per 100 hits**). Disrupting an opponent breakout behind the net creates high-danger turnovers.
+        - **The Defensive Zone Hazard (D-Zone):** Conversely, defensive zone hits produce a dismal **38.6% puck recovery rate** and a catastrophic shot differential of **-7.92 net shots per 100 hits**. In their own end, teams deliver body checks out of defensive desperation while under sustained pressure, and the attacking team maintains cycling dominance.
+        """)
+
+        st.markdown("---")
+
+        # ----------------------------------------------------------------------
+        # SECTION 3: SHOT-TO-GOAL CONVERSION FUNNEL
+        # ----------------------------------------------------------------------
+        st.subheader(t("hit_eda_sec3_heading"))
+        st.markdown("""
+        **How physical contact propagates into shots on goal and goals.**  
+        Tracking the downstream scoreboard conversion pipeline: Total Hits Delivered (100 baseline) → Shots on Goal Generated → Goals Scored for the hitting team vs. the opponent.
+        """)
+
+        st.plotly_chart(create_eda_funnel_chart(df_eda_summary, selected_eda_zone), width="stretch")
+
+        st.info("""
+        💡 **Key Takeaways & Analytical Narrative — Scoring Conversion Funnel:**
+        - **Bilateral Conversion Asymmetry:** In the defensive zone, opponents generate **13.9 Shots on Goal and 1.06 Goals per 100 hits**, compared to just **6.0 SOG and 0.51 Goals** for the hitting team. Opponents score at more than **double the rate** following a defensive body check.
+        - **Offensive Forecheck Scoring:** In the offensive zone, hitting teams score **0.60 goals per 100 hits** (226 goals across the sample), with a post-hit shooting conversion rate exceeding 6%, proving that physical forechecking creates genuine goal-mouth opportunities.
+        """)
+
+        st.markdown("---")
+
+        # ----------------------------------------------------------------------
+        # SECTION 4: DEFENSIVE ZONE CLEARANCE & BREAKOUT
+        # ----------------------------------------------------------------------
+        st.subheader(t("hit_eda_sec4_heading"))
+        st.markdown("""
+        **Does delivering a defensive zone body check relieve pressure or lead to an in-zone trap?**  
+        Evaluating whether defensive hits facilitate a clean breakout past the blue line (D → N/O) or leave the defending team trapped in their own zone.
+        """)
+
+        c_ex1, c_ex2 = st.columns([1, 1])
+        with c_ex1:
+            st.markdown("##### D-Zone Exit vs. In-Zone Trap Distribution")
+            st.plotly_chart(create_eda_zone_exit_donut(df_eda_summary), width="stretch")
+        with c_ex2:
+            st.markdown("##### Breakout Breakdown & Trap Consequences")
+            st.markdown("""
+            Out of **30,804 defensive zone hits** analyzed:
+            - **Clean Zone Exit:** **21,463 plays (69.7%)** successfully advance the puck past the defensive blue line into the neutral or offensive zone.
+            - **Pinned In-Zone (Trapped):** **9,341 plays (30.3%)** fail to clear the zone, keeping the team pinned under sustained pressure.
+            
+            **What happens when the team remains pinned?**
+            - **10,524 Opponent Shot Attempts** surrendered in the defensive zone.
+            - **325 Direct Goals Conceded** on immediate follow-up sequences.
+            - **3,227 Secondary Physical Battles** along the boards with no clear puck exit.
+            """)
+
+        st.info("""
+        💡 **Key Takeaways & Analytical Narrative — Zone Exit vs. In-Zone Trap:**
+        - **Relieving Immediate Pressure:** Approximately 7 out of 10 times (69.7%), a defensive body check successfully breaks up the play enough to allow the defending team or loose puck to exit into the neutral zone.
+        - **The 30% Trap Danger:** However, in nearly 1 out of 3 hits (30.3%), the defending team remains trapped in their defensive zone. When a hit fails to clear the zone, it routinely yields high-danger slot chances, as the hitting player is often temporarily incapacitated along the boards while the puck remains in play.
+        """)
+
+    # ══════════════════════════════════════════════════════════════════════════
+    # LAYER 1 - TAB 2: SEQUENCE
+    # ══════════════════════════════════════════════════════════════════════════
+    with main_tabs[1]:
         with st.expander(t("hit_exp_seq_title"), expanded=False):
             st.markdown(f"""
             {t("hit_exp_seq_intro")}
@@ -1516,9 +2016,9 @@ def show():
                 }), width="stretch")
 
     # ══════════════════════════════════════════════════════════════════════════
-    # LAYER 1 - TAB 2: RINK LOCATION
+    # LAYER 1 - TAB 3: RINK LOCATION
     # ══════════════════════════════════════════════════════════════════════════
-    with main_tabs[1]:
+    with main_tabs[2]:
         with st.expander(t("hit_exp_spatial_title"), expanded=False):
             st.markdown(f"""
             {t("hit_exp_spatial_intro")}
@@ -1992,9 +2492,9 @@ def show():
                 st.warning(f"No metric data available for {primary_choice} or {benchmark_label} for season {selected_season_label}.")
 
     # ══════════════════════════════════════════════════════════════════════════
-    # LAYER 1 - TAB 3: TACTICAL INSIGHTS
+    # LAYER 1 - TAB 4: TACTICAL INSIGHTS
     # ══════════════════════════════════════════════════════════════════════════
-    with main_tabs[2]:
+    with main_tabs[3]:
         st.markdown(t("hit_sub_tactics_scope"))
 
         st.subheader(t("hit_sub_tactics_heading"))
