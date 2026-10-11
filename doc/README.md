@@ -26,6 +26,12 @@ Welcome to the **NHL Analytics (Rinklytics)** knowledge base. This directory doc
 * **Streak Disentanglement:** Isolating true quality-adjusted "Hot Streaks" ($\text{RPI}_{\text{opp}} \ge Q_{0.75}$) from schedule-favored "Expected Streaks".
 * **Individual Composite Impact:** Player Performance Index ($\text{PPI}$) composite z-score formulation for skaters and goaltenders.
 
+### 4. [Physical Hits Exploratory Data Analysis (EDA)](../dev/decision_science/hit_eda/EXPLORATORY.md)
+* **[1D Hit Telemetry & Sequence EDA](../dev/decision_science/hit_eda/EXPLORATORY.md):** Simplified, intuitive baseline framework for dissecting physical hits before advanced modeling.
+* **Immediate Post-Hit Sequences ($\text{Step} +1$):** First registered event types, puck recovery rates ($\Pi_{\text{recovery}}$), and empirical action latency ($\Delta t$).
+* **Defensive vs. Offensive Posture:** Inversion of tactical incentives between D-zone cycle defense and O-zone forechecking pressure.
+* **Conversion Funnels & Zone Exits:** Sequential propagation from physical contact to Shots on Goal ($\text{SOG}$), Goals, and defensive zone breakout clearances.
+
 ---
 
 ## Planned Sections for Future Findings & Capabilities

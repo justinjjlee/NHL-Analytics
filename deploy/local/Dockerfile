@@ -1,5 +1,5 @@
-# Use official Python 3.11 slim image as the base
-FROM python:3.11-slim
+# Use official Python 3.13 slim image as the base
+FROM python:3.13-slim
 
 # Set environment variables to optimize Python & Streamlit execution
 ENV PYTHONUNBUFFERED=1 \

@@ -39,12 +39,13 @@ for script in scripts_to_run:
     print(f"==================================================")
     
     # We run these as separate subprocesses to encapsulate their logic and handle their internal relative imports cleanly
-    result = subprocess.run(["python", script], cwd=apinhle_dir, capture_output=True, text=True)
+    result = subprocess.run([sys.executable, script], cwd=apinhle_dir, capture_output=True, text=True)
     
-    print(result.stdout)
+    if result.stdout:
+        print(result.stdout)
     
     if result.returncode != 0:
-        print(f"🚨 Error executing {script}:\n{result.stderr}")
+        print(f"🚨 Error executing {script} (exit code {result.returncode}):\n{result.stderr}")
         raise Exception(f"Failed to execute {script}")
     else:
         print(f"✅ Successfully completed {script}\n")

@@ -10,7 +10,8 @@ if IS_DATABRICKS:
     TEAM_DIR = "/Volumes/nhl-databricks/data/team"
     PLAY_DIR = "/Volumes/nhl-databricks/data/play"
     BETTING_DIR = "/Volumes/nhl-databricks/data/betting"
-    PLAYER_DIR = "/Volumes/nhl-databricks/data/player"
+    # Player metrics: Use dedicated volume if present, otherwise team volume
+    PLAYER_DIR = "/Volumes/nhl-databricks/data/player" if os.path.exists("/Volumes/nhl-databricks/data/player") else TEAM_DIR
 else:
     # Local GitHub Actions Paths (relative to project root)
     BOX_DIR = "./latest/box"
@@ -24,7 +25,40 @@ def get_box_dir(): return BOX_DIR
 def get_team_dir(): return TEAM_DIR
 def get_play_dir(): return PLAY_DIR
 def get_betting_dir(): return BETTING_DIR
-def get_player_dir(): return PLAYER_DIR
+def get_player_dir():
+    if IS_DATABRICKS:
+        if os.path.exists("/Volumes/nhl-databricks/data/player"):
+            return "/Volumes/nhl-databricks/data/player"
+        return TEAM_DIR
+    return PLAYER_DIR
+
+def get_teamlist_path():
+    """
+    Resolve path to teamlist.csv across local and Databricks environments.
+    If running in Databricks and missing from TEAM_DIR, auto-seeds from the repository clone.
+    """
+    primary = os.path.join(TEAM_DIR, "teamlist.csv")
+    if os.path.exists(primary):
+        return primary
+
+    base_dir = os.path.dirname(__file__)
+    candidates = [
+        os.path.abspath(os.path.join(base_dir, "../../../latest/team/teamlist.csv")),
+        os.path.abspath(os.path.join(base_dir, "../../../app/data/teamlist.csv")),
+        "./latest/team/teamlist.csv",
+        "./app/data/teamlist.csv",
+    ]
+    for cand in candidates:
+        if os.path.exists(cand):
+            if IS_DATABRICKS and os.path.exists(TEAM_DIR):
+                try:
+                    import shutil
+                    shutil.copy2(cand, primary)
+                    return primary
+                except Exception:
+                    pass
+            return cand
+    return primary
 
 def get_current_season_year():
     """
@@ -38,7 +72,12 @@ def get_current_season_year():
         return today.year - 1
     return today.year
 
-# Only check this here as a fallback; locally we should run from root
+# Directory initialization
 if not IS_DATABRICKS:
     for d in [BOX_DIR, TEAM_DIR, os.path.join(TEAM_DIR, 'season'), PLAY_DIR, PLAYER_DIR]:
         os.makedirs(d, exist_ok=True)
+else:
+    # Ensure nested subdirectories inside existing volumes
+    if os.path.exists(TEAM_DIR):
+        os.makedirs(os.path.join(TEAM_DIR, 'season'), exist_ok=True)
+

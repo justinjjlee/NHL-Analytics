@@ -9,7 +9,7 @@ import datetime
 # Functions to process box scores
 #from src.data.apinhle.function.procs_boxscore import *
 from function.procs_boxscore import *
-from config import get_box_dir, get_team_dir, get_current_season_year
+from config import get_box_dir, get_team_dir, get_teamlist_path, get_current_season_year
 import os
 
 BOX_DIR = get_box_dir()
@@ -18,7 +18,7 @@ TEAM_DIR = get_team_dir()
 # Ping and pull data from NHL API
 # ---------------------------------------------------
 # Team codes for the list pull
-teamcode = pd.read_csv(f"{TEAM_DIR}/teamlist.csv")
+teamcode = pd.read_csv(get_teamlist_path())
 
 # %% Settings
 

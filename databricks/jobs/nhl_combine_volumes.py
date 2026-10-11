@@ -62,8 +62,18 @@ df_box_base.write.mode("overwrite").option("overwriteSchema", "true").saveAsTabl
 df_team_season = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/team/*_team_season.csv")
 df_team_season.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.team_season")
 
-# Player Season
-df_player = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{BASE_VOL}/team/*_player.csv")
+# Player Season (supports both /Volumes/.../player and /Volumes/.../team)
+import os
+player_paths = []
+if os.path.exists(f"{BASE_VOL}/player"):
+    player_paths.append(f"{BASE_VOL}/player/*_player.csv")
+if os.path.exists(f"{BASE_VOL}/team"):
+    player_paths.append(f"{BASE_VOL}/team/*_player.csv")
+
+if not player_paths:
+    player_paths = [f"{BASE_VOL}/team/*_player.csv"]
+
+df_player = spark.read.option("header", "true").option("inferSchema", "true").csv(player_paths)
 # Filter out anything else like playbyplay_player if it accidentally ended up here
 df_player = df_player.filter(col("_metadata.file_path").rlike(r"\d{4}_player\.csv$"))
 df_player.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.player")

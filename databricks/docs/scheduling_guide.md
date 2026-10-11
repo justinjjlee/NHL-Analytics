@@ -9,10 +9,11 @@ Ensure the following Unity Catalog schema and volumes exist prior to running the
 - **Volumes**:
   - `box`: For game lists and box-score level statistics.
   - `play`: For play-by-play and shift event datasets.
-  - `team`: For team-level aggregations and player-season metrics.
+  - `team`: For team-level aggregations and player-season metrics (default location for `*_player.csv`).
   - `betting`: For bookies' odds.
+  - `player` *(optional)*: Dedicated volume for player season statistics. If created, the pipeline will store player metrics here; otherwise, it defaults cleanly to `team`.
 
-You also need to copy the static `teamlist.csv` reference file into `/Volumes/nhl-databricks/data/team/` manually, as the scripts rely on this file to map tricodes to API identifiers.
+The reference file `teamlist.csv` is automatically seeded into `/Volumes/nhl-databricks/data/team/` from the repository clone if not already present.
 
 ## 2. Importing the Repository
 1. Navigate to **Workspace > Repos** (or Workspace UI) in your Databricks environment.
