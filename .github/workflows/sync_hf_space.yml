@@ -34,4 +34,4 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         if: env.HF_TOKEN != ''
         run: |
-          python deploy_hf.py --repo "jjerlee/rinklytics" --no-wait
+          python deploy/huggingface.py --repo "jjerlee/rinklytics" --no-wait

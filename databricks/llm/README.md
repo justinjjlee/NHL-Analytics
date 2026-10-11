@@ -13,10 +13,10 @@ You have detailed knowledge of the codebase, data schemas, mathematical models, 
 
 ## Workspace Directory Layout
 When assisting developers or running automation, note the following key folders:
-* **[src/data/apinhle/](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/src/data/apinhle)**: Data collection scripts (pulling schedule lists, game boxscores, play-by-play, and betting odds).
-* **[latest/](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/latest)**: The "Data-as-Code" storage directory containing processed CSVs/JSONs (boxscores, play-by-play, betting, team lists) partitioned locally.
-* **[dev/](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/dev)**: Research and development experiments (decision science, player college analysis, ELO betting efficiency, playoff projections).
-* **[databricks/](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/databricks)**: Configurations, jobs, and RAG pipelines for running workflows on Databricks clusters.
+* **[`src/data/apinhle/`](../../src/data/apinhle)**: Data collection scripts (pulling schedule lists, game boxscores, play-by-play, and betting odds).
+* **[`latest/`](../../latest)**: The "Data-as-Code" storage directory containing processed CSVs/JSONs (boxscores, play-by-play, betting, team lists) partitioned locally.
+* **[`dev/`](../../dev)**: Research and development experiments (decision science, player college analysis, ELO betting efficiency, playoff projections).
+* **[`databricks/`](../)**: Configurations, jobs, and RAG pipelines for running workflows on Databricks clusters.
 
 ---
 
@@ -24,7 +24,7 @@ When assisting developers or running automation, note the following key folders:
 
 This agent's capabilities are split into **five main skillsets**. Click the links below to view the detailed mathematical formulations, Mermaid workflow diagrams, generalized Python blocks, and schemas:
 
-### [1. Data Ingestion & NHL API Documentation](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/databricks/llm/skills/1_data_ingestion_api.md)
+### [1. Data Ingestion & NHL API Documentation](skills/1_data_ingestion_api.md)
 * **Measurement Level:** Game, Player, Play-by-Play, Sports Betting.
 * **Scope:** Automating the extraction of game schedules, box scores, play-by-play JSONs, and real-time betting odds from the NHL API (`api-web.nhle.com`).
 * **Key Components:**
@@ -32,7 +32,7 @@ This agent's capabilities are split into **five main skillsets**. Click the link
   * Auto-updating loops with error handlers.
   * Local (`latest/`) vs Databricks Volume (`/Volumes/nhl-databricks/data/`) runtime path configurations.
 
-### [2. Team Success Metrics & KPIs](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/databricks/llm/skills/2_team_kpis.md)
+### [2. Team Success Metrics & KPIs](skills/2_team_kpis.md)
 * **Measurement Level:** Team, Season.
 * **Scope:** Aggregating box score metrics into high-level indicators of possession and season-long performance.
 * **Key Components:**
@@ -42,7 +42,7 @@ This agent's capabilities are split into **five main skillsets**. Click the link
   * **Pairwise Wins**: Head-to-head dominance comparisons over common opponents.
   * **Win Streaks & Hot Streaks**: Streak classification by opponent RPI difficulty.
 
-### [3. Sports Betting & ELO Calibration](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/databricks/llm/skills/3_sports_betting_elo.md)
+### [3. Sports Betting & ELO Calibration](skills/3_sports_betting_elo.md)
 * **Measurement Level:** Game, Sports Betting.
 * **Scope:** Processing moneyline odds, removing bookmaker margin (vig), and validating predictive ELO ratings against betting markets.
 * **Key Components:**
@@ -50,7 +50,7 @@ This agent's capabilities are split into **five main skillsets**. Click the link
   * **Shin's Method**: Mathematical Vig removal algorithm via bisection numerical methods.
   * **ELO Calibration**: Logistic regression and PyMC Bayesian calibration of ratings.
 
-### [4. NCAA-NHL Player Prospects](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/databricks/llm/skills/4_player_college_prospects.md)
+### [4. NCAA-NHL Player Prospects](skills/4_player_college_prospects.md)
 * **Measurement Level:** Player, College, Season.
 * **Scope:** Linking NCAA college career records with NHL player metrics to study career trajectories and draft production.
 * **Key Components:**
@@ -58,7 +58,7 @@ This agent's capabilities are split into **five main skillsets**. Click the link
   * **Tenure Analytics**: Testing whether years spent in college correlate with rookie debut vs. long-term NHL performance.
   * **Draft Pick Decay**: Analyzing goal production changes as draft picks mature.
 
-### [5. Decision Science & Latent Momentum SSM](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/databricks/llm/skills/5_decision_science_momentum.md)
+### [5. Decision Science & Latent Momentum SSM](skills/5_decision_science_momentum.md)
 * **Measurement Level:** Play-by-Play, Game.
 * **Scope:** In-game sequential event modeling, quantifying event-specific probabilities, and estimating unobserved team momentum states.
 * **Key Components:**

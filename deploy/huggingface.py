@@ -29,14 +29,20 @@ license: mit
 """
 
 
+def get_repo_root() -> Path:
+    """Return the absolute path to the repository root directory."""
+    # This script lives in deploy/huggingface.py -> repo root is parent.parent
+    return Path(__file__).resolve().parent.parent
+
+
 def get_token():
     # 1. Environment variable
     token = os.environ.get("HF_TOKEN") or os.environ.get("rinklytics")
     if token:
         return token.strip().strip('"').strip("'")
 
-    # 2. Check local .env file
-    env_file = Path(__file__).resolve().parent / ".env"
+    # 2. Check local .env file in repo root
+    env_file = get_repo_root() / ".env"
     if env_file.exists():
         for line in env_file.read_text().splitlines():
             line = line.strip()
@@ -56,7 +62,7 @@ def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True):
     user_info = api.whoami()
     print(f"Authenticated as: {user_info.get('name')}")
 
-    repo_root = Path(__file__).resolve().parent
+    repo_root = get_repo_root()
 
     print(f"Deploying Rinklytics to Hugging Face Space: {repo_id}...")
 
@@ -88,6 +94,8 @@ def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True):
             ".github/**",
             "tests/**",
             "scratch/**",
+            "deploy/**",
+            "doc/**",
             "deploy_hf.py",
         ],
         commit_message="Deploy Rinklytics Streamlit dashboard and datasets",

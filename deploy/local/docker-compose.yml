@@ -1,0 +1,14 @@
+services:
+  rinklytics-local:
+    build:
+      context: ../..
+      dockerfile: deploy/local/Dockerfile
+    image: rinklytics:local
+    container_name: rinklytics-local
+    ports:
+      - "1901:1901"
+    environment:
+      - STREAMLIT_SERVER_PORT=1901
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+    restart: unless-stopped

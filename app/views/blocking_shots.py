@@ -5,20 +5,39 @@ import plotly.graph_objects as go
 from i18n import t
 
 def get_data_path(rel_path):
-    """Helper function to get correct data paths regardless of run location"""
-    # Start with the app directory
-    app_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # Go up to the repository root
+    """Helper function to get correct data paths regardless of run location."""
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    app_dir = os.path.dirname(current_dir)
     repo_root = os.path.dirname(app_dir)
-    # Navigate to the data file
-    return os.path.join(repo_root, "dev", "decision_science", "plays_blockingShots", rel_path)
+
+    candidate_paths = [
+        # Standard repository root relative path: app/views/ -> repo_root
+        os.path.join(repo_root, "dev", "decision_science", "plays_blockingShots", rel_path),
+        # Working directory relative path
+        os.path.join(os.getcwd(), "dev", "decision_science", "plays_blockingShots", rel_path),
+        # Direct relative path from views directory
+        os.path.abspath(os.path.join(current_dir, "..", "..", "dev", "decision_science", "plays_blockingShots", rel_path)),
+        # Fallback to app data or assets if bundled
+        os.path.join(app_dir, "data", os.path.basename(rel_path)),
+        os.path.join(app_dir, "assets", os.path.basename(rel_path)),
+    ]
+
+    for candidate in candidate_paths:
+        if os.path.exists(candidate):
+            return candidate
+
+    return candidate_paths[0]
 
 @st.cache_data(max_entries=1, ttl=3600)
 def create_sankey_diagram():
     """Create and return the Sankey diagram figure"""
     try:
         # Load the data into a pandas dataframe
-        df = pd.read_csv(get_data_path("result/table - sequence blocked shot stats.csv"))
+        data_path = get_data_path("result/table - sequence blocked shot stats.csv")
+        if not os.path.exists(data_path):
+            st.error(f"Data file not found at: {data_path}. Please check if the analysis files are in the correct location.")
+            return None
+        df = pd.read_csv(data_path)
         
         # If the file doesn't exist, display a message
         if df.empty:

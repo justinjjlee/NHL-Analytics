@@ -7,7 +7,7 @@ This skillset documents how the Rinklytics system ingests, cleans, and stores da
 ## 1. Scope & Target Measurement Level
 * **Measurement Level:** Game Level (Matchups, Scores), Player Level (Individual game box score statistics), Play-by-Play Level (Sequences of events with ticks, coordinates, and types), and Sports Betting Level (Real-time country-stratified moneylines).
 * **Storage Location:** 
-  * *Local Runtime:* [latest/](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/latest) directory (`box/`, `team/`, `play/`).
+  * *Local Runtime:* [`latest/`](../../../latest) directory (`box/`, `team/`, `play/`).
   * *Databricks Runtime:* Unity Catalog Volumes (`/Volumes/nhl-databricks/data/` folders: `box/`, `team/`, `play/`, `betting/`).
 
 ---
