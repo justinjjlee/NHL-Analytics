@@ -32,11 +32,10 @@ def get_data_path(rel_path):
 def create_sankey_diagram():
     """Create and return the Sankey diagram figure"""
     try:
-        # Load the data into a pandas dataframe
+        # Load the data into a pandas dataframe with GitHub raw fallback
         data_path = get_data_path("result/table - sequence blocked shot stats.csv")
         if not os.path.exists(data_path):
-            st.error(f"Data file not found at: {data_path}. Please check if the analysis files are in the correct location.")
-            return None
+            data_path = "https://raw.githubusercontent.com/justinjjlee/NHL-Analytics/main/dev/decision_science/plays_blockingShots/result/table%20-%20sequence%20blocked%20shot%20stats.csv"
         df = pd.read_csv(data_path)
         
         # If the file doesn't exist, display a message

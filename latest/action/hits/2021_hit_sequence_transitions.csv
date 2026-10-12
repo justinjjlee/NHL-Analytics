@@ -1,0 +1,382 @@
+season,from_step,to_step,hit_zone,source_node,target_node,count
+20212022,0,1,D,D,Shot Attempt,13862
+20212022,0,1,D,D,Physical Battle,7273
+20212022,0,1,D,D,Stoppage,4987
+20212022,0,1,D,D,Possession Change,4268
+20212022,0,1,D,D,Goal,364
+20212022,0,1,D,D,Other,196
+20212022,0,1,N,N,Shot Attempt,2822
+20212022,0,1,N,N,Physical Battle,2125
+20212022,0,1,N,N,Stoppage,1626
+20212022,0,1,N,N,Possession Change,1095
+20212022,0,1,N,N,Goal,74
+20212022,0,1,N,N,Other,52
+20212022,0,1,O,O,Shot Attempt,10938
+20212022,0,1,O,O,Physical Battle,7028
+20212022,0,1,O,O,Stoppage,5096
+20212022,0,1,O,O,Possession Change,4001
+20212022,0,1,O,O,Goal,289
+20212022,0,1,O,O,Other,160
+20212022,1,2,D,Shot Attempt,Shot Attempt,5241
+20212022,1,2,D,Shot Attempt,Stoppage,3909
+20212022,1,2,D,Stoppage,Stoppage,3773
+20212022,1,2,D,Physical Battle,Shot Attempt,3031
+20212022,1,2,D,Shot Attempt,Physical Battle,2774
+20212022,1,2,D,Possession Change,Shot Attempt,2039
+20212022,1,2,D,Physical Battle,Physical Battle,1872
+20212022,1,2,D,Shot Attempt,Possession Change,1656
+20212022,1,2,D,Physical Battle,Stoppage,1258
+20212022,1,2,D,Physical Battle,Possession Change,981
+20212022,1,2,D,Possession Change,Physical Battle,858
+20212022,1,2,D,Possession Change,Stoppage,660
+20212022,1,2,D,Stoppage,Shot Attempt,632
+20212022,1,2,D,Possession Change,Possession Change,597
+20212022,1,2,D,Goal,Stoppage,364
+20212022,1,2,D,Stoppage,Goal,253
+20212022,1,2,D,Shot Attempt,Goal,182
+20212022,1,2,D,Other,Stoppage,133
+20212022,1,2,D,Shot Attempt,Other,100
+20212022,1,2,D,Possession Change,Goal,83
+20212022,1,2,D,Physical Battle,Goal,78
+20212022,1,2,D,Stoppage,Other,62
+20212022,1,2,D,Physical Battle,Other,53
+20212022,1,2,D,Other,Shot Attempt,46
+20212022,1,2,D,Possession Change,Other,31
+20212022,1,2,D,Stoppage,Physical Battle,22
+20212022,1,2,D,Stoppage,Possession Change,13
+20212022,1,2,D,Other,Physical Battle,9
+20212022,1,2,D,Other,Goal,6
+20212022,1,2,D,Other,Possession Change,2
+20212022,1,2,N,Stoppage,Stoppage,1344
+20212022,1,2,N,Shot Attempt,Shot Attempt,985
+20212022,1,2,N,Physical Battle,Shot Attempt,831
+20212022,1,2,N,Shot Attempt,Stoppage,827
+20212022,1,2,N,Shot Attempt,Physical Battle,608
+20212022,1,2,N,Physical Battle,Physical Battle,604
+20212022,1,2,N,Possession Change,Shot Attempt,508
+20212022,1,2,N,Physical Battle,Stoppage,360
+20212022,1,2,N,Shot Attempt,Possession Change,344
+20212022,1,2,N,Physical Battle,Possession Change,297
+20212022,1,2,N,Possession Change,Physical Battle,227
+20212022,1,2,N,Possession Change,Possession Change,167
+20212022,1,2,N,Possession Change,Stoppage,160
+20212022,1,2,N,Stoppage,Shot Attempt,142
+20212022,1,2,N,Goal,Stoppage,74
+20212022,1,2,N,Shot Attempt,Goal,42
+20212022,1,2,N,Stoppage,Goal,42
+20212022,1,2,N,Other,Stoppage,40
+20212022,1,2,N,Possession Change,Goal,22
+20212022,1,2,N,Physical Battle,Goal,20
+20212022,1,2,N,Shot Attempt,Other,16
+20212022,1,2,N,Physical Battle,Other,13
+20212022,1,2,N,Other,Shot Attempt,11
+20212022,1,2,N,Possession Change,Other,11
+20212022,1,2,N,Stoppage,Other,10
+20212022,1,2,N,Stoppage,Physical Battle,6
+20212022,1,2,N,Stoppage,Possession Change,2
+20212022,1,2,N,Other,Other,1
+20212022,1,2,O,Stoppage,Stoppage,4077
+20212022,1,2,O,Shot Attempt,Shot Attempt,3942
+20212022,1,2,O,Shot Attempt,Stoppage,3217
+20212022,1,2,O,Physical Battle,Shot Attempt,2885
+20212022,1,2,O,Shot Attempt,Physical Battle,2348
+20212022,1,2,O,Possession Change,Shot Attempt,1934
+20212022,1,2,O,Physical Battle,Physical Battle,1884
+20212022,1,2,O,Shot Attempt,Possession Change,1242
+20212022,1,2,O,Physical Battle,Stoppage,1196
+20212022,1,2,O,Physical Battle,Possession Change,941
+20212022,1,2,O,Possession Change,Physical Battle,850
+20212022,1,2,O,Possession Change,Stoppage,559
+20212022,1,2,O,Possession Change,Possession Change,556
+20212022,1,2,O,Stoppage,Shot Attempt,503
+20212022,1,2,O,Goal,Stoppage,287
+20212022,1,2,O,Stoppage,Goal,175
+20212022,1,2,O,Shot Attempt,Goal,126
+20212022,1,2,O,Other,Stoppage,100
+20212022,1,2,O,Possession Change,Goal,80
+20212022,1,2,O,Physical Battle,Goal,76
+20212022,1,2,O,Shot Attempt,Other,63
+20212022,1,2,O,Stoppage,Other,51
+20212022,1,2,O,Other,Shot Attempt,49
+20212022,1,2,O,Physical Battle,Other,46
+20212022,1,2,O,Stoppage,Physical Battle,28
+20212022,1,2,O,Possession Change,Other,22
+20212022,1,2,O,Stoppage,Possession Change,8
+20212022,1,2,O,Other,Physical Battle,5
+20212022,1,2,O,Other,Possession Change,2
+20212022,1,2,O,Other,Goal,2
+20212022,1,2,O,Other,Other,2
+20212022,1,2,O,Goal,Possession Change,2
+20212022,1,11,D,Shot Attempt,Opponent,9783
+20212022,1,11,D,Shot Attempt,Hitting Team,4079
+20212022,1,11,D,Physical Battle,Opponent,3729
+20212022,1,11,D,Physical Battle,Hitting Team,3544
+20212022,1,11,D,Stoppage,Opponent,2505
+20212022,1,11,D,Stoppage,Hitting Team,2482
+20212022,1,11,D,Possession Change,Hitting Team,2247
+20212022,1,11,D,Possession Change,Opponent,2021
+20212022,1,11,D,Goal,Opponent,246
+20212022,1,11,D,Goal,Hitting Team,118
+20212022,1,11,D,Other,Hitting Team,99
+20212022,1,11,D,Other,Opponent,97
+20212022,1,11,N,Shot Attempt,Opponent,1525
+20212022,1,11,N,Shot Attempt,Hitting Team,1297
+20212022,1,11,N,Physical Battle,Opponent,1145
+20212022,1,11,N,Physical Battle,Hitting Team,980
+20212022,1,11,N,Stoppage,Opponent,843
+20212022,1,11,N,Stoppage,Hitting Team,783
+20212022,1,11,N,Possession Change,Hitting Team,559
+20212022,1,11,N,Possession Change,Opponent,536
+20212022,1,11,N,Goal,Opponent,39
+20212022,1,11,N,Goal,Hitting Team,35
+20212022,1,11,N,Other,Opponent,29
+20212022,1,11,N,Other,Hitting Team,23
+20212022,1,11,O,Shot Attempt,Hitting Team,6451
+20212022,1,11,O,Shot Attempt,Opponent,4487
+20212022,1,11,O,Physical Battle,Hitting Team,3825
+20212022,1,11,O,Physical Battle,Opponent,3203
+20212022,1,11,O,Stoppage,Opponent,2633
+20212022,1,11,O,Stoppage,Hitting Team,2463
+20212022,1,11,O,Possession Change,Opponent,2069
+20212022,1,11,O,Possession Change,Hitting Team,1932
+20212022,1,11,O,Goal,Hitting Team,161
+20212022,1,11,O,Goal,Opponent,128
+20212022,1,11,O,Other,Hitting Team,89
+20212022,1,11,O,Other,Opponent,71
+20212022,2,3,D,Stoppage,Stoppage,5920
+20212022,2,3,D,Shot Attempt,Stoppage,3754
+20212022,2,3,D,Shot Attempt,Shot Attempt,3726
+20212022,2,3,D,Physical Battle,Shot Attempt,2257
+20212022,2,3,D,Stoppage,Shot Attempt,2217
+20212022,2,3,D,Shot Attempt,Physical Battle,2071
+20212022,2,3,D,Possession Change,Shot Attempt,1543
+20212022,2,3,D,Physical Battle,Physical Battle,1410
+20212022,2,3,D,Shot Attempt,Possession Change,1216
+20212022,2,3,D,Physical Battle,Stoppage,997
+20212022,2,3,D,Stoppage,Physical Battle,808
+20212022,2,3,D,Physical Battle,Possession Change,789
+20212022,2,3,D,Possession Change,Physical Battle,692
+20212022,2,3,D,Stoppage,Possession Change,574
+20212022,2,3,D,Possession Change,Stoppage,477
+20212022,2,3,D,Possession Change,Possession Change,447
+20212022,2,3,D,Goal,Stoppage,414
+20212022,2,3,D,Stoppage,Goal,293
+20212022,2,3,D,Shot Attempt,Goal,162
+20212022,2,3,D,Other,Stoppage,119
+20212022,2,3,D,Goal,Shot Attempt,93
+20212022,2,3,D,Stoppage,Other,77
+20212022,2,3,D,Possession Change,Goal,68
+20212022,2,3,D,Other,Shot Attempt,62
+20212022,2,3,D,Goal,Physical Battle,59
+20212022,2,3,D,Shot Attempt,Other,57
+20212022,2,3,D,Physical Battle,Goal,48
+20212022,2,3,D,Goal,Possession Change,34
+20212022,2,3,D,Physical Battle,Other,34
+20212022,2,3,D,Possession Change,Other,22
+20212022,2,3,D,Other,Physical Battle,7
+20212022,2,3,D,Goal,Other,2
+20212022,2,3,D,Other,Goal,1
+20212022,2,3,N,Stoppage,Stoppage,1542
+20212022,2,3,N,Shot Attempt,Shot Attempt,846
+20212022,2,3,N,Shot Attempt,Stoppage,835
+20212022,2,3,N,Stoppage,Shot Attempt,652
+20212022,2,3,N,Physical Battle,Shot Attempt,558
+20212022,2,3,N,Shot Attempt,Physical Battle,475
+20212022,2,3,N,Physical Battle,Physical Battle,403
+20212022,2,3,N,Possession Change,Shot Attempt,383
+20212022,2,3,N,Stoppage,Physical Battle,310
+20212022,2,3,N,Shot Attempt,Possession Change,274
+20212022,2,3,N,Physical Battle,Stoppage,274
+20212022,2,3,N,Physical Battle,Possession Change,189
+20212022,2,3,N,Stoppage,Possession Change,184
+20212022,2,3,N,Possession Change,Physical Battle,181
+20212022,2,3,N,Possession Change,Stoppage,118
+20212022,2,3,N,Possession Change,Possession Change,111
+20212022,2,3,N,Goal,Stoppage,95
+20212022,2,3,N,Stoppage,Goal,53
+20212022,2,3,N,Shot Attempt,Goal,33
+20212022,2,3,N,Other,Stoppage,30
+20212022,2,3,N,Goal,Physical Battle,15
+20212022,2,3,N,Shot Attempt,Other,14
+20212022,2,3,N,Possession Change,Goal,14
+20212022,2,3,N,Physical Battle,Goal,13
+20212022,2,3,N,Stoppage,Other,11
+20212022,2,3,N,Goal,Shot Attempt,10
+20212022,2,3,N,Physical Battle,Other,8
+20212022,2,3,N,Other,Shot Attempt,7
+20212022,2,3,N,Goal,Possession Change,6
+20212022,2,3,N,Possession Change,Other,3
+20212022,2,3,N,Other,Physical Battle,2
+20212022,2,3,N,Other,Possession Change,2
+20212022,2,3,N,Other,Other,1
+20212022,2,3,O,Stoppage,Stoppage,5269
+20212022,2,3,O,Shot Attempt,Shot Attempt,3221
+20212022,2,3,O,Shot Attempt,Stoppage,3071
+20212022,2,3,O,Stoppage,Shot Attempt,2197
+20212022,2,3,O,Physical Battle,Shot Attempt,2083
+20212022,2,3,O,Shot Attempt,Physical Battle,1821
+20212022,2,3,O,Physical Battle,Physical Battle,1325
+20212022,2,3,O,Possession Change,Shot Attempt,1311
+20212022,2,3,O,Shot Attempt,Possession Change,1022
+20212022,2,3,O,Physical Battle,Stoppage,911
+20212022,2,3,O,Stoppage,Physical Battle,898
+20212022,2,3,O,Physical Battle,Possession Change,702
+20212022,2,3,O,Possession Change,Physical Battle,567
+20212022,2,3,O,Stoppage,Possession Change,558
+20212022,2,3,O,Possession Change,Stoppage,418
+20212022,2,3,O,Possession Change,Possession Change,370
+20212022,2,3,O,Goal,Stoppage,333
+20212022,2,3,O,Stoppage,Goal,259
+20212022,2,3,O,Shot Attempt,Goal,124
+20212022,2,3,O,Other,Stoppage,92
+20212022,2,3,O,Possession Change,Goal,66
+20212022,2,3,O,Goal,Shot Attempt,57
+20212022,2,3,O,Physical Battle,Goal,54
+20212022,2,3,O,Shot Attempt,Other,52
+20212022,2,3,O,Stoppage,Other,50
+20212022,2,3,O,Goal,Physical Battle,49
+20212022,2,3,O,Physical Battle,Other,39
+20212022,2,3,O,Other,Shot Attempt,33
+20212022,2,3,O,Possession Change,Other,19
+20212022,2,3,O,Goal,Possession Change,19
+20212022,2,3,O,Other,Physical Battle,5
+20212022,2,3,O,Other,Possession Change,4
+20212022,2,3,O,Other,Other,3
+20212022,2,3,O,Other,Goal,2
+20212022,2,3,O,Goal,Other,1
+20212022,2,22,D,Shot Attempt,Opponent,6616
+20212022,2,22,D,Stoppage,Hitting Team,5064
+20212022,2,22,D,Stoppage,Opponent,5033
+20212022,2,22,D,Shot Attempt,Hitting Team,4373
+20212022,2,22,D,Physical Battle,Opponent,2788
+20212022,2,22,D,Physical Battle,Hitting Team,2747
+20212022,2,22,D,Possession Change,Hitting Team,1641
+20212022,2,22,D,Possession Change,Opponent,1608
+20212022,2,22,D,Goal,Opponent,383
+20212022,2,22,D,Goal,Hitting Team,219
+20212022,2,22,D,Other,Hitting Team,130
+20212022,2,22,D,Other,Opponent,116
+20212022,2,22,N,Stoppage,Opponent,1436
+20212022,2,22,N,Stoppage,Hitting Team,1369
+20212022,2,22,N,Shot Attempt,Opponent,1294
+20212022,2,22,N,Shot Attempt,Hitting Team,1183
+20212022,2,22,N,Physical Battle,Opponent,726
+20212022,2,22,N,Physical Battle,Hitting Team,719
+20212022,2,22,N,Possession Change,Hitting Team,409
+20212022,2,22,N,Possession Change,Opponent,401
+20212022,2,22,N,Goal,Opponent,78
+20212022,2,22,N,Goal,Hitting Team,48
+20212022,2,22,N,Other,Hitting Team,32
+20212022,2,22,N,Other,Opponent,19
+20212022,2,22,O,Shot Attempt,Hitting Team,5090
+20212022,2,22,O,Stoppage,Opponent,4818
+20212022,2,22,O,Stoppage,Hitting Team,4618
+20212022,2,22,O,Shot Attempt,Opponent,4223
+20212022,2,22,O,Physical Battle,Hitting Team,2592
+20212022,2,22,O,Physical Battle,Opponent,2523
+20212022,2,22,O,Possession Change,Hitting Team,1379
+20212022,2,22,O,Possession Change,Opponent,1372
+20212022,2,22,O,Goal,Hitting Team,264
+20212022,2,22,O,Goal,Opponent,195
+20212022,2,22,O,Other,Opponent,100
+20212022,2,22,O,Other,Hitting Team,84
+20212022,3,4,D,Stoppage,Stoppage,5843
+20212022,3,4,D,Shot Attempt,Shot Attempt,3497
+20212022,3,4,D,Shot Attempt,Stoppage,3275
+20212022,3,4,D,Stoppage,Shot Attempt,3220
+20212022,3,4,D,Physical Battle,Shot Attempt,2112
+20212022,3,4,D,Shot Attempt,Physical Battle,1797
+20212022,3,4,D,Possession Change,Shot Attempt,1439
+20212022,3,4,D,Physical Battle,Physical Battle,1250
+20212022,3,4,D,Stoppage,Physical Battle,1235
+20212022,3,4,D,Shot Attempt,Possession Change,1139
+20212022,3,4,D,Physical Battle,Stoppage,900
+20212022,3,4,D,Stoppage,Possession Change,785
+20212022,3,4,D,Physical Battle,Possession Change,703
+20212022,3,4,D,Possession Change,Physical Battle,616
+20212022,3,4,D,Possession Change,Stoppage,465
+20212022,3,4,D,Possession Change,Possession Change,453
+20212022,3,4,D,Goal,Stoppage,381
+20212022,3,4,D,Stoppage,Goal,286
+20212022,3,4,D,Shot Attempt,Goal,133
+20212022,3,4,D,Other,Stoppage,89
+20212022,3,4,D,Stoppage,Other,81
+20212022,3,4,D,Goal,Shot Attempt,75
+20212022,3,4,D,Goal,Physical Battle,71
+20212022,3,4,D,Possession Change,Goal,67
+20212022,3,4,D,Shot Attempt,Other,55
+20212022,3,4,D,Physical Battle,Goal,47
+20212022,3,4,D,Goal,Possession Change,44
+20212022,3,4,D,Other,Shot Attempt,41
+20212022,3,4,D,Physical Battle,Other,35
+20212022,3,4,D,Possession Change,Other,20
+20212022,3,4,D,Other,Physical Battle,5
+20212022,3,4,D,Other,Goal,3
+20212022,3,4,D,Other,Possession Change,1
+20212022,3,4,D,Goal,Goal,1
+20212022,3,4,N,Stoppage,Stoppage,1491
+20212022,3,4,N,Shot Attempt,Shot Attempt,812
+20212022,3,4,N,Stoppage,Shot Attempt,787
+20212022,3,4,N,Shot Attempt,Stoppage,778
+20212022,3,4,N,Physical Battle,Shot Attempt,549
+20212022,3,4,N,Shot Attempt,Physical Battle,523
+20212022,3,4,N,Physical Battle,Physical Battle,397
+20212022,3,4,N,Possession Change,Shot Attempt,352
+20212022,3,4,N,Shot Attempt,Possession Change,295
+20212022,3,4,N,Stoppage,Physical Battle,290
+20212022,3,4,N,Physical Battle,Stoppage,224
+20212022,3,4,N,Physical Battle,Possession Change,196
+20212022,3,4,N,Stoppage,Possession Change,181
+20212022,3,4,N,Possession Change,Physical Battle,160
+20212022,3,4,N,Possession Change,Stoppage,120
+20212022,3,4,N,Possession Change,Possession Change,111
+20212022,3,4,N,Goal,Stoppage,76
+20212022,3,4,N,Stoppage,Goal,72
+20212022,3,4,N,Shot Attempt,Goal,34
+20212022,3,4,N,Other,Stoppage,23
+20212022,3,4,N,Goal,Shot Attempt,19
+20212022,3,4,N,Possession Change,Goal,17
+20212022,3,4,N,Stoppage,Other,17
+20212022,3,4,N,Physical Battle,Goal,13
+20212022,3,4,N,Shot Attempt,Other,11
+20212022,3,4,N,Goal,Possession Change,9
+20212022,3,4,N,Goal,Physical Battle,9
+20212022,3,4,N,Physical Battle,Other,7
+20212022,3,4,N,Possession Change,Other,6
+20212022,3,4,N,Other,Shot Attempt,5
+20212022,3,4,N,Other,Goal,1
+20212022,3,4,O,Stoppage,Stoppage,5113
+20212022,3,4,O,Shot Attempt,Shot Attempt,3076
+20212022,3,4,O,Shot Attempt,Stoppage,2934
+20212022,3,4,O,Stoppage,Shot Attempt,2675
+20212022,3,4,O,Physical Battle,Shot Attempt,1913
+20212022,3,4,O,Shot Attempt,Physical Battle,1664
+20212022,3,4,O,Possession Change,Shot Attempt,1273
+20212022,3,4,O,Physical Battle,Physical Battle,1231
+20212022,3,4,O,Shot Attempt,Possession Change,1053
+20212022,3,4,O,Stoppage,Physical Battle,1050
+20212022,3,4,O,Physical Battle,Stoppage,807
+20212022,3,4,O,Stoppage,Possession Change,774
+20212022,3,4,O,Physical Battle,Possession Change,639
+20212022,3,4,O,Possession Change,Physical Battle,550
+20212022,3,4,O,Possession Change,Stoppage,393
+20212022,3,4,O,Possession Change,Possession Change,386
+20212022,3,4,O,Goal,Stoppage,346
+20212022,3,4,O,Stoppage,Goal,238
+20212022,3,4,O,Shot Attempt,Goal,121
+20212022,3,4,O,Other,Stoppage,76
+20212022,3,4,O,Goal,Shot Attempt,73
+20212022,3,4,O,Stoppage,Other,60
+20212022,3,4,O,Possession Change,Goal,57
+20212022,3,4,O,Physical Battle,Goal,52
+20212022,3,4,O,Shot Attempt,Other,52
+20212022,3,4,O,Goal,Physical Battle,49
+20212022,3,4,O,Other,Shot Attempt,39
+20212022,3,4,O,Goal,Possession Change,34
+20212022,3,4,O,Physical Battle,Other,23
+20212022,3,4,O,Possession Change,Other,16
+20212022,3,4,O,Other,Physical Battle,7
+20212022,3,4,O,Other,Other,4
+20212022,3,4,O,Goal,Other,3
+20212022,3,4,O,Other,Possession Change,1
+20212022,3,4,O,Other,Goal,1

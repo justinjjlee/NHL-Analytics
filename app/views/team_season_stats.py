@@ -6,6 +6,14 @@ import base64
 import plotly.express as px
 from i18n import t
 
+try:
+    from exe.data_loader import load_team_season_dataset as load_hf_team_season
+except ImportError:
+    try:
+        from data_loader import load_team_season_dataset as load_hf_team_season
+    except ImportError:
+        load_hf_team_season = None
+
 def get_data_path(rel_path):
     """Helper function to get correct data paths regardless of run location"""
     # Start with the current file location
@@ -21,7 +29,20 @@ def get_logo_url(team_tri):
 
 @st.cache_data(max_entries=1, ttl=3600)
 def load_season_data():
-    """Load and aggregate box scores, merge with team_season stats across all available years."""
+    """
+    Load and aggregate box scores, merge with team_season stats across all available years.
+    Primary: Hugging Face datasets (measurement/box/team_season.parquet and data/games.parquet).
+    Backup: local latest/team/season/*_team_season.csv files.
+    """
+    if load_hf_team_season is not None:
+        try:
+            df = load_hf_team_season()
+            if df is not None and not df.empty:
+                return df
+        except Exception:
+            pass
+
+    # Backup: Local latest/team/season files
     # Find all team season files
     season_dir = get_data_path("latest/team/season")
     season_files = glob.glob(f"{season_dir}/*_team_season.csv")

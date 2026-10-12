@@ -9,6 +9,21 @@ import glob
 import os
 import re
 
+try:
+    from exe.data_loader import (
+        load_player_season_dataset as load_hf_player_season,
+        load_player_game_dataset as load_hf_player_game
+    )
+except ImportError:
+    try:
+        from data_loader import (
+            load_player_season_dataset as load_hf_player_season,
+            load_player_game_dataset as load_hf_player_game
+        )
+    except ImportError:
+        load_hf_player_season = None
+        load_hf_player_game = None
+
 
 def get_data_path(rel_path):
     """Resolve absolute path relative to project root."""
@@ -24,9 +39,20 @@ def get_data_path(rel_path):
 @st.cache_data(max_entries=1, ttl=3600)
 def load_player_season_data():
     """
-    Load all latest/player/{YYYY}_player.csv files.
+    Load all player season metrics.
+    Primary: Hugging Face dataset (measurement/player/player_season.parquet).
+    Backup: latest/player/{YYYY}_player.csv files.
     Returns (skaters_df, goalies_df) with a 'season_label' column.
     """
+    if load_hf_player_season is not None:
+        try:
+            skaters, goalies = load_hf_player_season()
+            if skaters is not None and not skaters.empty:
+                return skaters, goalies
+        except Exception:
+            pass
+
+    # Backup: Load directly from local latest/player directory
     player_dir = get_data_path('latest/player')
     files = sorted(glob.glob(os.path.join(player_dir, '*_player.csv')))
     if not files:
@@ -143,11 +169,20 @@ def load_player_season_data():
 @st.cache_data(max_entries=2, ttl=1800)
 def load_player_game_data(season_year=None):
     """
-    Load latest/box/{YYYY}_box_player.csv files.
-    If season_year is provided, loads only that season.
-    If season_year is None, loads active player seasons.
+    Load individual game-by-game player performance records.
+    Primary: Hugging Face dataset (data/player_box.parquet).
+    Backup: latest/box/{YYYY}_box_player.csv files.
     Returns (skater_games_df, goalie_games_df).
     """
+    if load_hf_player_game is not None:
+        try:
+            skater_games, goalie_games = load_hf_player_game(season_year=season_year)
+            if skater_games is not None and not skater_games.empty:
+                return skater_games, goalie_games
+        except Exception:
+            pass
+
+    # Backup: Load directly from local latest/box directory
     box_dir = get_data_path('latest/box')
     if season_year is not None:
         target_file = os.path.join(box_dir, f"{season_year}_box_player.csv")

@@ -3,3 +3,4 @@ streamlit-folium==0.23.2
 folium==0.18.0
 pandas==2.2.2
 plotly
+pyarrow>=15.0.0

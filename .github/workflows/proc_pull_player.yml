@@ -57,3 +57,10 @@ jobs:
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Sync updated player statistics to Hugging Face Dataset
+      if: ${{ secrets.HF_TOKEN != '' }}
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        python deploy/huggingface/sync_dataset.py --repo "jjerlee/nhl-analytics" --target player

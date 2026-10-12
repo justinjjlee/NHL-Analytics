@@ -1,0 +1,471 @@
+season,zoneCode,next_category,next_owner_rel,event_count,avg_delta_sec,median_delta_sec,pct_of_zone
+20152016,D,Shot Attempt,Opponent,8768,12.61,8.0,31.87
+20152016,D,Shot Attempt,Hitting Team,3603,19.66,15.0,13.1
+20152016,D,Physical Battle,Opponent,3350,15.35,10.0,12.18
+20152016,D,Physical Battle,Hitting Team,3057,17.18,13.0,11.11
+20152016,D,Stoppage,Opponent,2191,14.83,10.0,7.96
+20152016,D,Stoppage,Hitting Team,2175,14.72,10.0,7.91
+20152016,D,Possession Change,Hitting Team,1887,16.71,13.0,6.86
+20152016,D,Possession Change,Opponent,1618,17.9,14.0,5.88
+20152016,D,Penalty,Hitting Team,278,12.83,8.0,1.01
+20152016,D,Penalty,Opponent,251,12.81,8.0,0.91
+20152016,D,Goal,Opponent,241,12.23,7.0,0.88
+20152016,D,Goal,Hitting Team,89,19.37,17.0,0.32
+20152016,N,Shot Attempt,Opponent,1533,16.38,12.0,19.85
+20152016,N,Shot Attempt,Hitting Team,1338,18.1,14.0,17.32
+20152016,N,Physical Battle,Opponent,1098,14.82,11.0,14.22
+20152016,N,Physical Battle,Hitting Team,944,17.49,14.0,12.22
+20152016,N,Stoppage,Opponent,806,12.33,8.0,10.44
+20152016,N,Stoppage,Hitting Team,764,12.39,8.0,9.89
+20152016,N,Possession Change,Hitting Team,539,18.08,14.0,6.98
+20152016,N,Possession Change,Opponent,461,18.84,16.0,5.97
+20152016,N,Penalty,Hitting Team,86,11.1,7.5,1.11
+20152016,N,Penalty,Opponent,82,12.28,9.0,1.06
+20152016,N,Goal,Opponent,38,14.87,9.0,0.49
+20152016,N,Goal,Hitting Team,34,16.47,13.0,0.44
+20152016,O,Shot Attempt,Hitting Team,6492,14.72,10.0,23.52
+20152016,O,Shot Attempt,Opponent,4650,17.19,13.0,16.84
+20152016,O,Physical Battle,Hitting Team,3832,15.42,11.0,13.88
+20152016,O,Physical Battle,Opponent,3260,17.06,13.0,11.81
+20152016,O,Stoppage,Opponent,2631,13.56,9.0,9.53
+20152016,O,Stoppage,Hitting Team,2448,12.92,8.0,8.87
+20152016,O,Possession Change,Hitting Team,1795,16.49,13.0,6.5
+20152016,O,Possession Change,Opponent,1692,16.27,13.0,6.13
+20152016,O,Penalty,Opponent,265,13.26,8.0,0.96
+20152016,O,Penalty,Hitting Team,256,13.56,9.0,0.93
+20152016,O,Goal,Hitting Team,150,15.15,13.0,0.54
+20152016,O,Goal,Opponent,136,16.13,11.5,0.49
+20162017,D,Shot Attempt,Opponent,8399,12.66,8.0,31.61
+20162017,D,Shot Attempt,Hitting Team,3605,19.61,15.0,13.57
+20162017,D,Physical Battle,Opponent,3061,16.01,11.0,11.52
+20162017,D,Physical Battle,Hitting Team,2840,17.33,13.0,10.69
+20162017,D,Stoppage,Hitting Team,2145,14.59,10.0,8.07
+20162017,D,Stoppage,Opponent,2050,14.4,10.0,7.72
+20162017,D,Possession Change,Hitting Team,1892,17.21,13.0,7.12
+20162017,D,Possession Change,Opponent,1734,17.71,14.0,6.53
+20162017,D,Penalty,Hitting Team,298,11.69,7.0,1.12
+20162017,D,Penalty,Opponent,225,12.53,8.0,0.85
+20162017,D,Goal,Opponent,205,13.56,9.0,0.77
+20162017,D,Goal,Hitting Team,115,19.3,13.0,0.43
+20162017,N,Shot Attempt,Opponent,1464,16.53,12.0,19.89
+20162017,N,Shot Attempt,Hitting Team,1316,18.34,14.0,17.88
+20162017,N,Physical Battle,Opponent,1041,14.95,11.0,14.15
+20162017,N,Physical Battle,Hitting Team,864,17.83,14.0,11.74
+20162017,N,Stoppage,Opponent,742,13.2,9.0,10.08
+20162017,N,Stoppage,Hitting Team,711,13.32,9.0,9.66
+20162017,N,Possession Change,Hitting Team,517,17.04,14.0,7.03
+20162017,N,Possession Change,Opponent,468,18.56,15.5,6.36
+20162017,N,Penalty,Hitting Team,75,12.25,6.0,1.02
+20162017,N,Penalty,Opponent,71,10.46,5.0,0.96
+20162017,N,Goal,Opponent,53,16.34,11.0,0.72
+20162017,N,Goal,Hitting Team,37,16.49,13.0,0.5
+20162017,O,Shot Attempt,Hitting Team,6199,14.24,10.0,24.75
+20162017,O,Shot Attempt,Opponent,4270,17.43,13.0,17.05
+20162017,O,Physical Battle,Hitting Team,3202,15.24,11.0,12.78
+20162017,O,Physical Battle,Opponent,2795,16.63,13.0,11.16
+20162017,O,Stoppage,Opponent,2328,13.17,8.0,9.3
+20162017,O,Stoppage,Hitting Team,2156,13.06,8.0,8.61
+20162017,O,Possession Change,Opponent,1716,16.21,12.0,6.85
+20162017,O,Possession Change,Hitting Team,1616,16.64,13.0,6.45
+20162017,O,Penalty,Opponent,257,12.54,8.0,1.03
+20162017,O,Penalty,Hitting Team,230,14.89,9.5,0.92
+20162017,O,Goal,Hitting Team,147,12.01,8.0,0.59
+20162017,O,Goal,Opponent,129,15.56,11.0,0.52
+20172018,D,Shot Attempt,Opponent,8892,12.61,8.0,32.13
+20172018,D,Shot Attempt,Hitting Team,3881,19.19,14.0,14.03
+20172018,D,Physical Battle,Opponent,3137,15.29,11.0,11.34
+20172018,D,Physical Battle,Hitting Team,2865,15.85,12.0,10.35
+20172018,D,Stoppage,Opponent,2088,13.72,10.0,7.55
+20172018,D,Stoppage,Hitting Team,2056,13.71,10.0,7.43
+20172018,D,Possession Change,Hitting Team,1963,16.95,13.0,7.09
+20172018,D,Possession Change,Opponent,1869,17.2,13.0,6.75
+20172018,D,Penalty,Hitting Team,308,11.28,6.0,1.11
+20172018,D,Goal,Opponent,251,11.41,7.0,0.91
+20172018,D,Penalty,Opponent,241,13.73,10.0,0.87
+20172018,D,Goal,Hitting Team,121,16.45,11.0,0.44
+20172018,N,Shot Attempt,Opponent,1583,15.68,12.0,21.2
+20172018,N,Shot Attempt,Hitting Team,1287,17.62,14.0,17.23
+20172018,N,Physical Battle,Opponent,1004,15.13,12.0,13.44
+20172018,N,Physical Battle,Hitting Team,815,16.82,13.0,10.91
+20172018,N,Stoppage,Opponent,752,12.28,9.0,10.07
+20172018,N,Stoppage,Hitting Team,715,12.66,9.0,9.57
+20172018,N,Possession Change,Hitting Team,559,17.9,15.0,7.49
+20172018,N,Possession Change,Opponent,510,18.29,15.0,6.83
+20172018,N,Penalty,Opponent,84,11.98,9.0,1.12
+20172018,N,Penalty,Hitting Team,82,11.82,8.5,1.1
+20172018,N,Goal,Opponent,43,14.37,12.0,0.58
+20172018,N,Goal,Hitting Team,34,19.18,15.0,0.46
+20172018,O,Shot Attempt,Hitting Team,5955,13.8,10.0,24.09
+20172018,O,Shot Attempt,Opponent,4275,16.78,13.0,17.29
+20172018,O,Physical Battle,Hitting Team,3190,14.85,11.0,12.9
+20172018,O,Physical Battle,Opponent,2606,16.51,13.0,10.54
+20172018,O,Stoppage,Opponent,2234,12.72,8.0,9.04
+20172018,O,Stoppage,Hitting Team,2092,13.25,8.0,8.46
+20172018,O,Possession Change,Hitting Team,1784,16.32,13.0,7.22
+20172018,O,Possession Change,Opponent,1783,16.24,13.0,7.21
+20172018,O,Penalty,Opponent,257,10.51,7.0,1.04
+20172018,O,Penalty,Hitting Team,253,11.61,8.0,1.02
+20172018,O,Goal,Hitting Team,165,14.02,9.0,0.67
+20172018,O,Goal,Opponent,127,14.19,11.0,0.51
+20182019,D,Shot Attempt,Opponent,9061,12.41,8.0,31.22
+20182019,D,Shot Attempt,Hitting Team,3865,19.02,15.0,13.32
+20182019,D,Physical Battle,Opponent,3357,14.98,10.0,11.57
+20182019,D,Physical Battle,Hitting Team,3133,16.01,12.0,10.79
+20182019,D,Possession Change,Hitting Team,2250,16.53,13.0,7.75
+20182019,D,Stoppage,Hitting Team,2180,13.54,9.0,7.51
+20182019,D,Possession Change,Opponent,2156,17.2,14.0,7.43
+20182019,D,Stoppage,Opponent,2099,13.8,10.0,7.23
+20182019,D,Penalty,Hitting Team,315,10.79,6.0,1.09
+20182019,D,Goal,Opponent,261,12.44,7.0,0.9
+20182019,D,Penalty,Opponent,221,16.06,11.0,0.76
+20182019,D,Goal,Hitting Team,128,20.26,14.5,0.44
+20182019,N,Shot Attempt,Opponent,1504,15.73,12.0,20.2
+20182019,N,Shot Attempt,Hitting Team,1275,17.46,13.0,17.12
+20182019,N,Physical Battle,Opponent,1089,14.49,11.0,14.63
+20182019,N,Physical Battle,Hitting Team,867,17.4,14.0,11.64
+20182019,N,Stoppage,Opponent,725,12.06,8.0,9.74
+20182019,N,Stoppage,Hitting Team,699,12.31,8.0,9.39
+20182019,N,Possession Change,Hitting Team,549,17.72,15.0,7.37
+20182019,N,Possession Change,Opponent,534,17.54,15.0,7.17
+20182019,N,Penalty,Hitting Team,66,10.94,8.0,0.89
+20182019,N,Penalty,Opponent,55,15.04,9.0,0.74
+20182019,N,Goal,Hitting Team,42,20.05,16.5,0.56
+20182019,N,Goal,Opponent,41,12.76,9.0,0.55
+20182019,O,Shot Attempt,Hitting Team,6163,13.88,10.0,23.89
+20182019,O,Shot Attempt,Opponent,4248,17.21,13.0,16.47
+20182019,O,Physical Battle,Hitting Team,3398,14.57,11.0,13.17
+20182019,O,Physical Battle,Opponent,2930,16.22,13.0,11.36
+20182019,O,Stoppage,Opponent,2279,12.74,8.0,8.83
+20182019,O,Stoppage,Hitting Team,2074,12.33,8.0,8.04
+20182019,O,Possession Change,Hitting Team,1973,17.35,14.0,7.65
+20182019,O,Possession Change,Opponent,1960,16.45,12.0,7.6
+20182019,O,Penalty,Hitting Team,230,13.83,9.0,0.89
+20182019,O,Penalty,Opponent,223,11.46,7.0,0.86
+20182019,O,Goal,Hitting Team,174,14.5,9.0,0.67
+20182019,O,Goal,Opponent,146,16.47,11.0,0.57
+20182019,O,Other,Opponent,1,0.0,0.0,0.0
+20192020,D,Shot Attempt,Opponent,8094,12.45,8.0,31.71
+20192020,D,Shot Attempt,Hitting Team,3291,19.26,15.0,12.89
+20192020,D,Physical Battle,Opponent,2971,15.3,11.0,11.64
+20192020,D,Physical Battle,Hitting Team,2859,16.73,13.0,11.2
+20192020,D,Stoppage,Opponent,1912,14.19,10.0,7.49
+20192020,D,Possession Change,Hitting Team,1899,17.1,13.0,7.44
+20192020,D,Possession Change,Opponent,1837,17.83,14.0,7.2
+20192020,D,Stoppage,Hitting Team,1797,14.14,10.0,7.04
+20192020,D,Penalty,Hitting Team,325,12.69,8.0,1.27
+20192020,D,Penalty,Opponent,248,12.92,9.0,0.97
+20192020,D,Goal,Opponent,198,12.92,7.0,0.78
+20192020,D,Goal,Hitting Team,95,19.39,16.0,0.37
+20192020,N,Shot Attempt,Opponent,1355,15.87,12.0,20.02
+20192020,N,Shot Attempt,Hitting Team,1101,17.61,14.0,16.27
+20192020,N,Physical Battle,Opponent,1021,14.91,11.0,15.08
+20192020,N,Physical Battle,Hitting Team,815,17.12,14.0,12.04
+20192020,N,Stoppage,Opponent,639,11.44,8.0,9.44
+20192020,N,Stoppage,Hitting Team,601,12.34,8.0,8.88
+20192020,N,Possession Change,Hitting Team,504,17.76,14.0,7.45
+20192020,N,Possession Change,Opponent,493,18.37,15.0,7.28
+20192020,N,Penalty,Hitting Team,89,14.35,7.0,1.31
+20192020,N,Penalty,Opponent,82,12.06,7.0,1.21
+20192020,N,Goal,Opponent,40,19.58,14.0,0.59
+20192020,N,Goal,Hitting Team,29,15.1,12.0,0.43
+20192020,O,Shot Attempt,Hitting Team,5655,13.77,10.0,24.06
+20192020,O,Shot Attempt,Opponent,3864,17.18,13.0,16.44
+20192020,O,Physical Battle,Hitting Team,3167,14.88,11.0,13.47
+20192020,O,Physical Battle,Opponent,2686,16.84,13.0,11.43
+20192020,O,Stoppage,Hitting Team,2001,12.58,8.0,8.51
+20192020,O,Stoppage,Opponent,1981,13.28,9.0,8.43
+20192020,O,Possession Change,Opponent,1757,16.38,13.0,7.47
+20192020,O,Possession Change,Hitting Team,1619,17.41,14.0,6.89
+20192020,O,Penalty,Opponent,297,10.53,8.0,1.26
+20192020,O,Penalty,Hitting Team,247,12.04,9.0,1.05
+20192020,O,Goal,Hitting Team,121,15.35,9.0,0.51
+20192020,O,Goal,Opponent,111,15.31,8.0,0.47
+20202021,D,Shot Attempt,Opponent,6516,13.1,9.0,31.76
+20202021,D,Shot Attempt,Hitting Team,2685,20.37,16.0,13.09
+20202021,D,Physical Battle,Opponent,2492,15.93,12.0,12.15
+20202021,D,Physical Battle,Hitting Team,2437,16.81,13.0,11.88
+20202021,D,Stoppage,Hitting Team,1563,14.94,10.0,7.62
+20202021,D,Stoppage,Opponent,1524,14.96,10.0,7.43
+20202021,D,Possession Change,Opponent,1338,18.63,15.0,6.52
+20202021,D,Possession Change,Hitting Team,1329,19.2,15.0,6.48
+20202021,D,Penalty,Hitting Team,208,11.15,7.0,1.01
+20202021,D,Penalty,Opponent,178,13.7,10.0,0.87
+20202021,D,Goal,Opponent,165,13.3,8.0,0.8
+20202021,D,Goal,Hitting Team,80,16.44,13.0,0.39
+20202021,N,Shot Attempt,Opponent,1113,17.18,13.0,20.7
+20202021,N,Shot Attempt,Hitting Team,937,19.27,15.0,17.43
+20202021,N,Physical Battle,Opponent,783,15.81,11.0,14.56
+20202021,N,Physical Battle,Hitting Team,658,18.69,14.0,12.24
+20202021,N,Stoppage,Opponent,557,13.87,10.0,10.36
+20202021,N,Stoppage,Hitting Team,459,13.4,9.0,8.54
+20202021,N,Possession Change,Hitting Team,364,19.8,17.0,6.77
+20202021,N,Possession Change,Opponent,341,20.98,17.0,6.34
+20202021,N,Penalty,Opponent,64,12.33,9.0,1.19
+20202021,N,Penalty,Hitting Team,40,13.5,8.0,0.74
+20202021,N,Goal,Hitting Team,30,19.73,16.5,0.56
+20202021,N,Goal,Opponent,30,16.3,15.0,0.56
+20202021,O,Shot Attempt,Hitting Team,4459,14.63,10.0,23.82
+20202021,O,Shot Attempt,Opponent,3153,18.58,14.0,16.84
+20202021,O,Physical Battle,Hitting Team,2578,15.46,11.0,13.77
+20202021,O,Physical Battle,Opponent,2282,17.27,13.0,12.19
+20202021,O,Stoppage,Opponent,1653,13.48,9.0,8.83
+20202021,O,Stoppage,Hitting Team,1546,12.91,8.0,8.26
+20202021,O,Possession Change,Opponent,1330,16.97,14.0,7.1
+20202021,O,Possession Change,Hitting Team,1181,18.64,15.0,6.31
+20202021,O,Penalty,Opponent,163,14.69,9.0,0.87
+20202021,O,Penalty,Hitting Team,158,14.03,10.0,0.84
+20202021,O,Goal,Hitting Team,117,13.79,9.0,0.62
+20202021,O,Goal,Opponent,102,15.12,11.0,0.54
+20212022,D,Shot Attempt,Opponent,9783,12.68,8.0,31.61
+20212022,D,Shot Attempt,Hitting Team,4079,19.54,15.0,13.18
+20212022,D,Physical Battle,Opponent,3729,15.62,11.0,12.05
+20212022,D,Physical Battle,Hitting Team,3544,17.07,13.0,11.45
+20212022,D,Stoppage,Opponent,2390,13.82,9.0,7.72
+20212022,D,Stoppage,Hitting Team,2343,14.29,10.0,7.57
+20212022,D,Possession Change,Hitting Team,2247,16.45,12.0,7.26
+20212022,D,Possession Change,Opponent,2021,17.75,14.0,6.53
+20212022,D,Goal,Opponent,246,12.65,7.0,0.79
+20212022,D,Penalty,Hitting Team,238,12.07,8.0,0.77
+20212022,D,Penalty,Opponent,212,14.13,9.0,0.68
+20212022,D,Goal,Hitting Team,118,16.74,12.5,0.38
+20212022,N,Shot Attempt,Opponent,1525,16.98,13.0,19.57
+20212022,N,Shot Attempt,Hitting Team,1297,18.44,15.0,16.64
+20212022,N,Physical Battle,Opponent,1145,15.4,11.0,14.69
+20212022,N,Physical Battle,Hitting Team,980,17.74,14.0,12.57
+20212022,N,Stoppage,Opponent,801,13.14,9.0,10.28
+20212022,N,Stoppage,Hitting Team,741,13.38,9.0,9.51
+20212022,N,Possession Change,Hitting Team,559,17.65,14.0,7.17
+20212022,N,Possession Change,Opponent,536,20.09,17.0,6.88
+20212022,N,Penalty,Opponent,71,13.34,8.0,0.91
+20212022,N,Penalty,Hitting Team,65,13.49,9.0,0.83
+20212022,N,Goal,Opponent,39,19.56,17.0,0.5
+20212022,N,Goal,Hitting Team,35,16.49,11.0,0.45
+20212022,O,Shot Attempt,Hitting Team,6451,14.25,10.0,23.45
+20212022,O,Shot Attempt,Opponent,4487,17.83,13.0,16.31
+20212022,O,Physical Battle,Hitting Team,3825,15.06,11.0,13.9
+20212022,O,Physical Battle,Opponent,3203,16.66,13.0,11.64
+20212022,O,Stoppage,Opponent,2490,13.17,9.0,9.05
+20212022,O,Stoppage,Hitting Team,2331,13.28,9.0,8.47
+20212022,O,Possession Change,Opponent,2069,16.66,13.0,7.52
+20212022,O,Possession Change,Hitting Team,1932,17.05,13.0,7.02
+20212022,O,Penalty,Hitting Team,221,12.93,9.0,0.8
+20212022,O,Penalty,Opponent,214,11.99,8.0,0.78
+20212022,O,Goal,Hitting Team,161,13.31,9.0,0.59
+20212022,O,Goal,Opponent,128,14.89,9.0,0.47
+20222023,D,Shot Attempt,Opponent,9684,12.35,8.0,32.18
+20222023,D,Shot Attempt,Hitting Team,3860,19.85,16.0,12.83
+20222023,D,Physical Battle,Opponent,3487,15.76,11.0,11.59
+20222023,D,Physical Battle,Hitting Team,3346,16.52,13.0,11.12
+20222023,D,Stoppage,Opponent,2382,14.41,10.0,7.92
+20222023,D,Stoppage,Hitting Team,2351,14.36,10.0,7.81
+20222023,D,Possession Change,Hitting Team,2269,16.14,12.0,7.54
+20222023,D,Possession Change,Opponent,2168,16.58,12.0,7.2
+20222023,D,Penalty,Hitting Team,164,12.82,9.0,0.54
+20222023,D,Goal,Opponent,156,10.57,8.0,0.52
+20222023,D,Penalty,Opponent,146,13.97,10.0,0.49
+20222023,D,Goal,Hitting Team,79,17.77,14.0,0.26
+20222023,N,Shot Attempt,Opponent,1540,16.67,12.0,19.86
+20222023,N,Shot Attempt,Hitting Team,1289,19.24,15.0,16.62
+20222023,N,Physical Battle,Opponent,1128,15.2,11.0,14.55
+20222023,N,Physical Battle,Hitting Team,932,17.01,14.0,12.02
+20222023,N,Stoppage,Opponent,802,13.22,10.0,10.34
+20222023,N,Stoppage,Hitting Team,695,14.31,10.0,8.96
+20222023,N,Possession Change,Hitting Team,630,17.71,14.0,8.12
+20222023,N,Possession Change,Opponent,601,17.44,14.0,7.75
+20222023,N,Penalty,Opponent,47,12.13,9.0,0.61
+20222023,N,Penalty,Hitting Team,41,13.93,12.0,0.53
+20222023,N,Goal,Opponent,29,15.17,16.0,0.37
+20222023,N,Goal,Hitting Team,20,13.25,11.0,0.26
+20222023,O,Shot Attempt,Hitting Team,6416,13.92,10.0,23.68
+20222023,O,Shot Attempt,Opponent,4477,17.73,13.0,16.52
+20222023,O,Physical Battle,Hitting Team,3801,14.94,11.0,14.03
+20222023,O,Physical Battle,Opponent,3120,16.66,13.0,11.51
+20222023,O,Stoppage,Opponent,2426,13.06,9.0,8.95
+20222023,O,Stoppage,Hitting Team,2312,13.29,9.0,8.53
+20222023,O,Possession Change,Opponent,2048,16.2,12.0,7.56
+20222023,O,Possession Change,Hitting Team,2014,15.76,12.0,7.43
+20222023,O,Penalty,Opponent,151,13.01,9.0,0.56
+20222023,O,Penalty,Hitting Team,150,14.9,10.5,0.55
+20222023,O,Goal,Hitting Team,99,13.68,9.0,0.37
+20222023,O,Goal,Opponent,85,14.13,10.0,0.31
+20232024,D,Shot Attempt,Opponent,10186,11.93,7.0,34.05
+20232024,D,Shot Attempt,Hitting Team,4011,19.19,15.0,13.41
+20232024,D,Physical Battle,Opponent,3542,14.64,10.0,11.84
+20232024,D,Physical Battle,Hitting Team,3535,14.87,11.0,11.82
+20232024,D,Stoppage,Opponent,2101,14.64,10.0,7.02
+20232024,D,Stoppage,Hitting Team,2058,15.02,10.0,6.88
+20232024,D,Possession Change,Hitting Team,2040,15.41,11.0,6.82
+20232024,D,Possession Change,Opponent,1987,15.43,11.0,6.64
+20232024,D,Penalty,Hitting Team,227,13.07,9.0,0.76
+20232024,D,Penalty,Opponent,177,15.03,11.0,0.59
+20232024,D,Goal,Opponent,37,10.68,7.0,0.12
+20232024,D,Goal,Hitting Team,17,20.59,11.0,0.06
+20232024,N,Shot Attempt,Opponent,1715,15.3,11.0,20.9
+20232024,N,Shot Attempt,Hitting Team,1486,18.34,15.0,18.11
+20232024,N,Physical Battle,Opponent,1214,14.97,10.0,14.8
+20232024,N,Physical Battle,Hitting Team,1101,14.92,12.0,13.42
+20232024,N,Stoppage,Hitting Team,740,12.96,9.0,9.02
+20232024,N,Stoppage,Opponent,705,13.6,10.0,8.59
+20232024,N,Possession Change,Hitting Team,561,16.85,13.0,6.84
+20232024,N,Possession Change,Opponent,556,16.49,13.0,6.78
+20232024,N,Penalty,Hitting Team,60,11.52,8.0,0.73
+20232024,N,Penalty,Opponent,55,11.31,7.0,0.67
+20232024,N,Goal,Opponent,9,29.56,33.0,0.11
+20232024,N,Goal,Hitting Team,2,7.5,7.5,0.02
+20232024,O,Shot Attempt,Hitting Team,6961,13.63,9.0,25.02
+20232024,O,Shot Attempt,Opponent,4836,16.42,12.0,17.38
+20232024,O,Physical Battle,Hitting Team,4117,13.66,9.0,14.8
+20232024,O,Physical Battle,Opponent,3264,15.85,12.0,11.73
+20232024,O,Stoppage,Hitting Team,2212,13.7,9.0,7.95
+20232024,O,Stoppage,Opponent,2183,13.21,9.0,7.85
+20232024,O,Possession Change,Opponent,1976,15.19,11.0,7.1
+20232024,O,Possession Change,Hitting Team,1875,15.85,12.0,6.74
+20232024,O,Penalty,Opponent,192,14.74,11.0,0.69
+20232024,O,Penalty,Hitting Team,163,15.73,12.0,0.59
+20232024,O,Goal,Hitting Team,23,15.09,13.0,0.08
+20232024,O,Goal,Opponent,22,14.18,16.0,0.08
+20242025,D,Shot Attempt,Opponent,8666,12.28,7.0,35.02
+20242025,D,Shot Attempt,Hitting Team,2951,21.46,17.0,11.93
+20242025,D,Physical Battle,Opponent,2689,12.78,8.0,10.87
+20242025,D,Physical Battle,Hitting Team,2516,14.85,11.0,10.17
+20242025,D,Possession Change,Opponent,2220,13.1,8.0,8.97
+20242025,D,Possession Change,Hitting Team,1995,14.7,9.0,8.06
+20242025,D,Stoppage,Hitting Team,1673,15.77,12.0,6.76
+20242025,D,Stoppage,Opponent,1641,16.48,12.0,6.63
+20242025,D,Penalty,Hitting Team,176,13.88,10.0,0.71
+20242025,D,Penalty,Opponent,172,15.03,9.5,0.7
+20242025,D,Goal,Opponent,34,15.94,8.5,0.14
+20242025,D,Goal,Hitting Team,13,25.08,16.0,0.05
+20242025,N,Shot Attempt,Opponent,1803,16.4,12.0,20.95
+20242025,N,Shot Attempt,Hitting Team,1466,20.63,16.0,17.03
+20242025,N,Physical Battle,Opponent,1228,13.16,8.0,14.27
+20242025,N,Physical Battle,Hitting Team,949,16.4,13.0,11.02
+20242025,N,Possession Change,Hitting Team,815,15.35,11.0,9.47
+20242025,N,Stoppage,Opponent,768,14.37,10.0,8.92
+20242025,N,Stoppage,Hitting Team,740,14.42,10.0,8.6
+20242025,N,Possession Change,Opponent,715,15.02,11.0,8.31
+20242025,N,Penalty,Opponent,72,13.76,10.0,0.84
+20242025,N,Penalty,Hitting Team,38,12.0,10.0,0.44
+20242025,N,Goal,Opponent,8,16.5,7.5,0.09
+20242025,N,Goal,Hitting Team,6,20.67,22.0,0.07
+20242025,O,Shot Attempt,Hitting Team,6693,15.38,11.0,22.82
+20242025,O,Shot Attempt,Opponent,5067,18.11,13.0,17.28
+20242025,O,Physical Battle,Hitting Team,4004,12.66,8.0,13.65
+20242025,O,Possession Change,Opponent,3141,11.24,6.0,10.71
+20242025,O,Physical Battle,Opponent,2902,16.34,12.0,9.89
+20242025,O,Possession Change,Hitting Team,2531,14.47,10.0,8.63
+20242025,O,Stoppage,Opponent,2311,14.6,10.0,7.88
+20242025,O,Stoppage,Hitting Team,2233,14.44,10.0,7.61
+20242025,O,Penalty,Hitting Team,211,14.67,10.0,0.72
+20242025,O,Penalty,Opponent,186,14.23,11.0,0.63
+20242025,O,Goal,Opponent,35,10.14,8.0,0.12
+20242025,O,Goal,Hitting Team,17,25.47,25.0,0.06
+20252026,D,Shot Attempt,Opponent,7873,12.29,8.0,34.88
+20252026,D,Shot Attempt,Hitting Team,2782,21.46,17.0,12.33
+20252026,D,Physical Battle,Opponent,2354,13.02,8.0,10.43
+20252026,D,Physical Battle,Hitting Team,2134,14.82,11.0,9.45
+20252026,D,Possession Change,Hitting Team,1995,14.75,10.0,8.84
+20252026,D,Possession Change,Opponent,1968,14.25,10.0,8.72
+20252026,D,Stoppage,Opponent,1372,15.41,11.0,6.08
+20252026,D,Stoppage,Hitting Team,1291,15.09,11.0,5.72
+20252026,D,Goal,Opponent,296,13.44,9.0,1.31
+20252026,D,Penalty,Hitting Team,188,13.14,8.0,0.83
+20252026,D,Penalty,Opponent,170,14.89,9.0,0.75
+20252026,D,Goal,Hitting Team,149,20.25,16.0,0.66
+20252026,N,Shot Attempt,Opponent,1705,17.3,12.0,20.38
+20252026,N,Shot Attempt,Hitting Team,1304,21.48,16.0,15.58
+20252026,N,Physical Battle,Opponent,1159,13.09,9.0,13.85
+20252026,N,Physical Battle,Hitting Team,926,17.02,13.0,11.07
+20252026,N,Possession Change,Opponent,861,14.49,10.0,10.29
+20252026,N,Possession Change,Hitting Team,838,16.24,11.0,10.01
+20252026,N,Stoppage,Opponent,672,13.89,9.0,8.03
+20252026,N,Stoppage,Hitting Team,650,14.18,9.0,7.77
+20252026,N,Penalty,Opponent,73,16.26,10.0,0.87
+20252026,N,Goal,Opponent,65,16.25,12.0,0.78
+20252026,N,Penalty,Hitting Team,60,18.97,15.0,0.72
+20252026,N,Goal,Hitting Team,55,23.38,19.0,0.66
+20252026,O,Shot Attempt,Hitting Team,6130,15.83,12.0,21.88
+20252026,O,Shot Attempt,Opponent,4757,18.26,13.0,16.98
+20252026,O,Physical Battle,Hitting Team,3835,12.95,8.0,13.69
+20252026,O,Possession Change,Opponent,3183,12.06,7.0,11.36
+20252026,O,Physical Battle,Opponent,2664,15.95,12.0,9.51
+20252026,O,Possession Change,Hitting Team,2439,15.51,11.0,8.71
+20252026,O,Stoppage,Opponent,2189,14.32,9.0,7.81
+20252026,O,Stoppage,Hitting Team,2027,13.7,9.0,7.23
+20252026,O,Goal,Hitting Team,208,18.0,14.0,0.74
+20252026,O,Goal,Opponent,204,17.14,12.0,0.73
+20252026,O,Penalty,Opponent,199,14.39,11.0,0.71
+20252026,O,Penalty,Hitting Team,183,14.27,10.0,0.65
+20262027,D,Shot Attempt,Opponent,453,11.3,7.0,33.09
+20262027,D,Physical Battle,Hitting Team,161,15.19,10.0,11.76
+20262027,D,Shot Attempt,Hitting Team,153,21.36,18.0,11.18
+20262027,D,Physical Battle,Opponent,150,13.99,9.0,10.96
+20262027,D,Possession Change,Opponent,133,14.35,9.0,9.72
+20262027,D,Possession Change,Hitting Team,110,13.68,12.0,8.04
+20262027,D,Stoppage,Opponent,85,18.78,15.0,6.21
+20262027,D,Stoppage,Hitting Team,84,14.01,10.0,6.14
+20262027,D,Goal,Opponent,15,13.73,15.0,1.1
+20262027,D,Penalty,Hitting Team,12,15.5,14.5,0.88
+20262027,D,Penalty,Opponent,11,13.64,8.0,0.8
+20262027,D,Goal,Hitting Team,2,16.0,16.0,0.15
+20262027,N,Shot Attempt,Opponent,127,17.05,14.0,22.01
+20262027,N,Physical Battle,Opponent,84,12.92,9.5,14.56
+20262027,N,Shot Attempt,Hitting Team,79,20.75,17.0,13.69
+20262027,N,Physical Battle,Hitting Team,73,14.81,13.0,12.65
+20262027,N,Possession Change,Opponent,62,11.44,7.5,10.75
+20262027,N,Possession Change,Hitting Team,50,13.78,7.5,8.67
+20262027,N,Stoppage,Hitting Team,49,10.71,10.0,8.49
+20262027,N,Stoppage,Opponent,33,9.85,7.0,5.72
+20262027,N,Penalty,Opponent,10,7.9,5.0,1.73
+20262027,N,Goal,Opponent,6,54.33,32.5,1.04
+20262027,N,Goal,Hitting Team,3,17.0,16.0,0.52
+20262027,N,Penalty,Hitting Team,1,15.0,15.0,0.17
+20262027,O,Shot Attempt,Hitting Team,426,14.56,10.0,23.22
+20262027,O,Shot Attempt,Opponent,280,18.11,13.0,15.26
+20262027,O,Physical Battle,Hitting Team,270,12.64,8.0,14.71
+20262027,O,Possession Change,Opponent,216,11.6,7.0,11.77
+20262027,O,Physical Battle,Opponent,161,15.27,11.0,8.77
+20262027,O,Possession Change,Hitting Team,157,15.04,10.0,8.56
+20262027,O,Stoppage,Hitting Team,145,14.61,8.0,7.9
+20262027,O,Stoppage,Opponent,128,13.71,8.0,6.98
+20262027,O,Goal,Hitting Team,15,20.2,17.0,0.82
+20262027,O,Penalty,Opponent,13,13.38,12.0,0.71
+20262027,O,Penalty,Hitting Team,12,17.58,14.5,0.65
+20262027,O,Goal,Opponent,12,13.08,10.0,0.65
+ALL,D,Goal,Hitting Team,1006,18.97,14.166666666666666,0.3393340821620236
+ALL,D,Goal,Opponent,2105,12.739166666666668,8.291666666666666,0.7100380148618883
+ALL,D,Penalty,Hitting Team,2737,12.575833333333334,8.375,0.9232180744308734
+ALL,D,Penalty,Opponent,2252,14.036666666666667,9.375,0.7596226173249275
+ALL,D,Physical Battle,Hitting Team,32427,16.1025,12.083333333333334,10.93795853108145
+ALL,D,Physical Battle,Opponent,34319,14.889166666666668,10.166666666666666,11.576149468905058
+ALL,D,Possession Change,Hitting Team,21876,16.235833333333336,12.166666666666666,7.378998391030247
+ALL,D,Possession Change,Opponent,21049,16.49416666666667,12.333333333333334,7.100042838398046
+ALL,D,Shot Attempt,Hitting Team,38766,19.9975,15.666666666666666,13.076168020967202
+ALL,D,Shot Attempt,Opponent,96375,12.389166666666666,7.833333333333333,32.50827253316603
+ALL,D,Stoppage,Hitting Team,21716,14.515,10.166666666666666,7.3250287556963265
+ALL,D,Stoppage,Opponent,21835,14.953333333333333,10.583333333333334,7.36516867197593
+ALL,N,Goal,Hitting Team,327,17.109166666666667,14.375,0.3918701915010905
+ALL,N,Goal,Opponent,401,20.465833333333332,15.666666666666666,0.48055029599980825
+ALL,N,Penalty,Hitting Team,703,13.239166666666668,9.5,0.8424609927378184
+ALL,N,Penalty,Opponent,766,12.404166666666667,8.083333333333334,0.9179589195407808
+ALL,N,Physical Battle,Hitting Team,9924,16.9375,13.5,11.892721041152363
+ALL,N,Physical Battle,Opponent,11994,14.570833333333333,10.458333333333334,14.373367207535411
+ALL,N,Possession Change,Hitting Team,6485,17.156666666666666,13.291666666666666,7.771492941543034
+ALL,N,Possession Change,Opponent,6138,17.295833333333334,13.833333333333334,7.355655154231479
+ALL,N,Shot Attempt,Hitting Team,14175,18.94,14.833333333333334,16.98703353066654
+ALL,N,Shot Attempt,Opponent,16967,16.4225,12.25,20.332909905807348
+ALL,N,Stoppage,Hitting Team,7564,13.031666666666666,9.0,9.064544735517579
+ALL,N,Stoppage,Opponent,8002,12.770833333333334,8.916666666666666,9.589435083766748
+ALL,O,Goal,Hitting Team,1397,15.880833333333333,12.0,0.4867273595127849
+ALL,O,Goal,Opponent,1237,14.695,10.708333333333334,0.43098192105749095
+ALL,O,Other,Opponent,1,0.0,0.0,0.00034840899034558687
+ALL,O,Penalty,Hitting Team,2314,14.17,10.041666666666666,0.806218403659688
+ALL,O,Penalty,Opponent,2417,12.894166666666665,9.083333333333334,0.8421045296652835
+ALL,O,Physical Battle,Hitting Team,39219,14.360833333333334,10.083333333333334,13.664252192363572
+ALL,O,Physical Battle,Opponent,31873,16.438333333333333,12.583333333333334,11.10483974928489
+ALL,O,Possession Change,Hitting Team,20916,16.3775,12.5,7.2873224420682945
+ALL,O,Possession Change,Opponent,22871,15.1225,11.083333333333334,7.968462018193917
+ALL,O,Shot Attempt,Hitting Team,68000,14.384166666666667,10.166666666666666,23.691811343499907
+ALL,O,Shot Attempt,Opponent,48364,17.569166666666668,13.0,16.850452409073963
+ALL,O,Stoppage,Hitting Team,23577,13.339166666666666,8.5,8.214438765377901
+ALL,O,Stoppage,Opponent,24833,13.418333333333335,8.75,8.652040457251958

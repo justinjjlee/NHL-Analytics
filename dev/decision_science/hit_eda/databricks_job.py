@@ -19,8 +19,12 @@ workspace_root = os.path.abspath(os.path.join(os.getcwd(), "../../../"))
 if workspace_root not in sys.path:
     sys.path.insert(0, workspace_root)
 
-from dev.decision_science.hit_eda.config import HitEDAConfig, detect_environment
-from dev.decision_science.hit_eda.dataproc import run_spark_pipeline, run_pandas_pipeline
+try:
+    from dev.decision_science.hit_eda.config import HitEDAConfig, detect_environment
+    from dev.decision_science.hit_eda.dataproc import run_spark_pipeline, run_pandas_pipeline
+except ImportError:
+    from config import HitEDAConfig, detect_environment
+    from dataproc import run_spark_pipeline, run_pandas_pipeline
 
 # COMMAND ----------
 

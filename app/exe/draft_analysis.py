@@ -16,7 +16,7 @@ def get_data_path(rel_path):
     return os.path.join(project_root, rel_path)
 
 def load_draft_data():
-    """Load all necessary data for draft analysis"""
+    """Load all necessary data for draft analysis with GitHub repository fallback"""
     try:
         # Define relative paths to data files
         relative_paths = {
@@ -25,19 +25,15 @@ def load_draft_data():
             'merged_stats': 'dev/player/player_draft/data/merged_draft_player_stats.csv',
             'player_stats': 'dev/player/player_draft/data/all_drafted_players_chronicle.csv'
         }
-        
-        # Convert to absolute paths
-        data_paths = {key: get_data_path(path) for key, path in relative_paths.items()}
-        
-        # Check if files exist
-        missing_files = []
-        for name, path in data_paths.items():
-            if not os.path.exists(path):
-                missing_files.append(path)
-        
-        if missing_files:
-            return False, f"Files not found: {', '.join(missing_files)}"
-        
+        github_base = "https://raw.githubusercontent.com/justinjjlee/NHL-Analytics/main"
+        data_paths = {}
+        for key, rel_p in relative_paths.items():
+            local_p = get_data_path(rel_p)
+            if os.path.exists(local_p):
+                data_paths[key] = local_p
+            else:
+                data_paths[key] = f"{github_base}/{rel_p}"
+
         return True, data_paths
     
     except Exception as e:
@@ -372,7 +368,10 @@ def get_processed_not_so_magnificent_data():
     if not files_exist:
         return None, None, None
     try:
-        draft_df = pd.read_csv(get_data_path('dev/player/player_draft/data/all_drafted_players.csv'))
+        draft_path = get_data_path('dev/player/player_draft/data/all_drafted_players.csv')
+        if not os.path.exists(draft_path):
+            draft_path = "https://raw.githubusercontent.com/justinjjlee/NHL-Analytics/main/dev/player/player_draft/data/all_drafted_players.csv"
+        draft_df = pd.read_csv(draft_path)
         merged_df = pd.read_csv(data_paths['merged_stats'])
         chronicle_df = pd.read_csv(data_paths['player_stats'])
         return draft_df, merged_df, chronicle_df

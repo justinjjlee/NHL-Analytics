@@ -14,6 +14,7 @@ on:
 jobs:
   sync-to-hf-space:
     runs-on: ubuntu-latest
+    environment: data-collection
     # Only run on successful completion if triggered by workflow_run
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     steps:
@@ -30,8 +31,8 @@ jobs:
           pip install huggingface_hub
 
       - name: Deploy to Hugging Face Space
+        if: ${{ secrets.HF_TOKEN != '' }}
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        if: env.HF_TOKEN != ''
         run: |
-          python deploy/huggingface.py --repo "jjerlee/rinklytics" --no-wait
+          python deploy/huggingface/spaces_rinklytics.py --repo "jjerlee/rinklytics" --no-wait

@@ -1,0 +1,4 @@
+season,zoneCode,total_hits,recovery_pct,opponent_possession_pct,avg_delta_sec,median_delta_sec,sog_for,sog_against,goals_for,goals_against,zone_exits,share_of_all_hits_pct,sog_for_per_100,sog_against_per_100,net_sog_per_100,goals_for_per_100,goals_against_per_100,net_goals_per_100,zone_exit_pct
+20192020,D,25526,40.22,59.78,15.16,11.0,1885.0,3864.0,95.0,198.0,20331.0,45.74,7.38,15.14,-7.75,0.372,0.776,-0.404,79.65
+20192020,N,6769,46.37,53.63,15.7,12.0,583.0,696.0,29.0,40.0,0.0,12.13,8.61,10.28,-1.67,0.428,0.591,-0.163,
+20192020,O,23506,54.5,45.5,15.09,11.0,2722.0,2149.0,121.0,111.0,0.0,42.12,11.58,9.14,2.44,0.515,0.472,0.043,

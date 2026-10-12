@@ -14,6 +14,7 @@ If you find my work to be useful, please star this repository!
 [![Streamlit - NHL-Analytics](https://img.shields.io/badge/Streamlit-Explore-FF4B4B?style=flat&logo=streamlit&logoColor=white/)](https://share.streamlit.io/user/justinjjlee)
 -->
 [![Hugging Face - Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/jjerlee/rinklytics)
+[![Hugging Face - Datasets](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue)](https://huggingface.co/datasets/jjerlee/nhl-analytics)
 
 This is a collection of methods for collecting, compiling, cleaning, analyzing, modeling, and predicting team and player (skaters and goalies) performances and strategies. This repository does not claim ownership of the data and reflects the perspectives of the organizations or entities mentioned. All original code (including generic and model algorithms) may be used freely, provided proper citation and credit are given to this repository.
 
@@ -34,7 +35,8 @@ I use publicly available data to build up the analytics capabilities and insight
 | **LLM Agent Skillsets** | Integrates AI-driven workflows for automated insights, data extraction, and deep analysis across various analytical domains. |
 | **Team & Player Analysis** | Provides comprehensive evaluation of team KPIs, player performance metrics, draft history, and college prospects. |
 | **Sports Betting Analytics** | Analyzes game-level odds and models team performance using Elo ratings for predictive betting insights. |
-| **[HuggingFace Space - Application](https://huggingface.co/spaces/jjerlee/rinklytics)** | An interactive web application that visualizes data, tracks trends, and presents predictive models to users. |
+| **[HuggingFace Space - Application](https://huggingface.co/spaces/jjerlee/rinklytics)** | Live interactive web dashboard visualizes data, tracks trends, and presents predictive models to users. |
+| **[HuggingFace Dataset - Public Lakehouse](https://huggingface.co/datasets/jjerlee/nhl-analytics)** | Public multi-season longitudinal Parquet panels (games, box scores, odds, play-by-play, hits, player season metrics) updated daily via GitHub Actions. |
 
 I hope works saved in this repository allows for replications, explorations, and advancing new measurements and insights.
 

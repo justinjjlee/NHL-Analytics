@@ -133,4 +133,44 @@ df_odds = df_2024.unionByName(df_us, allowMissingColumns=True) \
 
 df_odds.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.odds")
 
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC ### 5. Action Hits Volume Tables
+# MAGIC Ingests physical hit metrics and sequences from `/Volumes/.../action/hits` into Delta tables.
+
+# COMMAND ----------
+
+hits_vol = f"{BASE_VOL}/action/hits"
+if not os.path.exists(hits_vol) and os.path.exists(f"{BASE_VOL}/play/action_hits"):
+    hits_vol = f"{BASE_VOL}/play/action_hits"
+
+if os.path.exists(hits_vol):
+    try:
+        # Tables to ingest: (Delta Table Name, File Glob Pattern, Regex Filter)
+        hits_tables = [
+            ("action_hits_zone_summary", "*_hit_zone_summary.csv", r"\d{4}_hit_zone_summary\.csv$"),
+            ("action_hits_next_events", "*_hit_next_events.csv", r"\d{4}_hit_next_events\.csv$"),
+            ("action_hits_zone_kpi", "*_hit_zone_summary_kpi.csv", r"\d{4}_hit_zone_summary_kpi\.csv$"),
+            ("action_hits_tabulated_sequences", "*_tabulated_hit_sequences.csv", r"\d{4}_tabulated_hit_sequences\.csv$"),
+            ("action_hits_rink_grid", "*_rink_grid_hit_sequences.csv", r"\d{4}_rink_grid_hit_sequences\.csv$"),
+            ("action_hits_team_kpi", "*_team_season_hit_kpi.csv", r"\d{4}_team_season_hit_kpi\.csv$"),
+            ("action_hits_team_spatial", "*_team_season_spatial_hits.csv", r"\d{4}_team_season_spatial_hits\.csv$"),
+            ("action_hits_goal_window_30s", "*_hit_goal_window_30s.csv", r"\d{4}_hit_goal_window_30s\.csv$"),
+            ("action_hits_sequence_transitions", "*_hit_sequence_transitions.csv", r"\d{4}_hit_sequence_transitions\.csv$")
+        ]
+
+        for table_name, glob_pat, regex_pat in hits_tables:
+            try:
+                df = spark.read.option("header", "true").option("inferSchema", "true").csv(f"{hits_vol}/{glob_pat}")
+                df = df.filter(col("_metadata.file_path").rlike(regex_pat))
+                df.write.mode("overwrite").option("overwriteSchema", "true").saveAsTable(f"{CATALOG}.{DB}.{table_name}")
+                print(f"✅ Ingested {table_name} into {CATALOG}.{DB}.{table_name}")
+            except Exception as te:
+                print(f"⚠️ Notice while processing {table_name}: {te}")
+
+        print("Successfully merged action hits volume into Unity Catalog Delta tables.")
+    except Exception as e:
+        print(f"Notice: Action hits volume merge encountered: {e}")
+
 print("Successfully merged all Databricks Volumes into Unity Catalog Delta Tables.")

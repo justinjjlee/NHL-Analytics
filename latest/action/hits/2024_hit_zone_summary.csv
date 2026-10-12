@@ -1,0 +1,4 @@
+season,zoneCode,total_hits,recovery_pct,opponent_possession_pct,avg_delta_sec,median_delta_sec,sog_for,sog_against,goals_for,goals_against,zone_exits,share_of_all_hits_pct,sog_for_per_100,sog_against_per_100,net_sog_per_100,goals_for_per_100,goals_against_per_100,net_goals_per_100,zone_exit_pct
+20242025,D,24746,37.68,62.32,14.51,10.0,1469.0,3504.0,13.0,34.0,20486.0,39.48,5.94,14.16,-8.22,0.053,0.137,-0.085,82.79
+20242025,N,8608,46.63,53.37,16.05,12.0,697.0,831.0,6.0,8.0,0.0,13.73,8.1,9.65,-1.56,0.07,0.093,-0.023,
+20242025,O,29331,53.49,46.51,14.91,10.0,2769.0,2464.0,17.0,35.0,0.0,46.79,9.44,8.4,1.04,0.058,0.119,-0.061,

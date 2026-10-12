@@ -29,6 +29,7 @@ COPY app/ /workspace/app/
 COPY latest/box/ /workspace/latest/box/
 COPY latest/team/ /workspace/latest/team/
 COPY latest/player/ /workspace/latest/player/
+COPY latest/action/ /workspace/latest/action/
 COPY dev/player/player_draft/ /workspace/dev/player/player_draft/
 COPY dev/decision_science/impact_of_hits/data/ /workspace/dev/decision_science/impact_of_hits/data/
 COPY dev/decision_science/plays_blockingShots/ /workspace/dev/decision_science/plays_blockingShots/

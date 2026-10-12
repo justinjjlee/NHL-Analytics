@@ -1,0 +1,307 @@
+season,hit_zone,event_step,event_owner,event_category,event_type,count,avg_delta_sec,pct_of_step
+20192020,D,1,Opponent,Shot Attempt,shot-on-goal,3864,12.7,15.138
+20192020,D,1,Opponent,Physical Battle,hit,2971,15.3,11.639
+20192020,D,1,Hitting Team,Physical Battle,hit,2859,16.73,11.2
+20192020,D,1,Opponent,Shot Attempt,blocked-shot,2340,12.67,9.167
+20192020,D,1,Opponent,Shot Attempt,missed-shot,1890,11.65,7.404
+20192020,D,1,Hitting Team,Shot Attempt,shot-on-goal,1885,17.86,7.385
+20192020,D,1,Opponent,Stoppage,stoppage,1149,14.77,4.501
+20192020,D,1,Hitting Team,Possession Change,giveaway,1132,15.85,4.435
+20192020,D,1,Hitting Team,Stoppage,stoppage,1067,13.93,4.18
+20192020,D,1,Opponent,Possession Change,giveaway,1004,18.62,3.933
+20192020,D,1,Opponent,Possession Change,takeaway,833,16.87,3.263
+20192020,D,1,Hitting Team,Possession Change,takeaway,767,18.96,3.005
+20192020,D,1,Hitting Team,Shot Attempt,blocked-shot,741,21.12,2.903
+20192020,D,1,Hitting Team,Shot Attempt,missed-shot,665,21.15,2.605
+20192020,D,1,Opponent,Stoppage,faceoff,646,13.14,2.531
+20192020,D,1,Hitting Team,Stoppage,faceoff,625,14.23,2.448
+20192020,D,1,Hitting Team,Stoppage,penalty,208,11.29,0.815
+20192020,D,1,Opponent,Goal,goal,198,12.92,0.776
+20192020,D,1,Opponent,Stoppage,penalty,150,11.89,0.588
+20192020,D,1,Hitting Team,Other,delayed-penalty,117,15.17,0.458
+20192020,D,1,Opponent,Stoppage,period-end,117,14.34,0.458
+20192020,D,1,Hitting Team,Stoppage,period-end,105,15.65,0.411
+20192020,D,1,Opponent,Other,delayed-penalty,98,14.5,0.384
+20192020,D,1,Hitting Team,Goal,goal,95,19.39,0.372
+20192020,D,2,Opponent,Shot Attempt,shot-on-goal,2844,26.02,11.225
+20192020,D,2,Hitting Team,Physical Battle,hit,2302,30.72,9.086
+20192020,D,2,Opponent,Physical Battle,hit,2195,30.37,8.663
+20192020,D,2,Opponent,Stoppage,faceoff,2041,18.2,8.055
+20192020,D,2,Hitting Team,Stoppage,faceoff,1953,18.05,7.708
+20192020,D,2,Hitting Team,Shot Attempt,shot-on-goal,1883,30.87,7.432
+20192020,D,2,Hitting Team,Stoppage,stoppage,1798,21.33,7.096
+20192020,D,2,Opponent,Stoppage,stoppage,1750,20.85,6.907
+20192020,D,2,Opponent,Shot Attempt,blocked-shot,1449,28.13,5.719
+20192020,D,2,Opponent,Shot Attempt,missed-shot,1131,28.62,4.464
+20192020,D,2,Hitting Team,Shot Attempt,blocked-shot,909,33.81,3.588
+20192020,D,2,Hitting Team,Possession Change,giveaway,845,31.16,3.335
+20192020,D,2,Opponent,Possession Change,giveaway,807,33.33,3.185
+20192020,D,2,Hitting Team,Shot Attempt,missed-shot,730,33.2,2.881
+20192020,D,2,Hitting Team,Possession Change,takeaway,630,32.84,2.486
+20192020,D,2,Opponent,Possession Change,takeaway,570,30.97,2.25
+20192020,D,2,Opponent,Stoppage,penalty,312,19.08,1.231
+20192020,D,2,Hitting Team,Stoppage,penalty,301,17.83,1.188
+20192020,D,2,Opponent,Goal,goal,273,19.21,1.077
+20192020,D,2,Hitting Team,Goal,goal,192,25.49,0.758
+20192020,D,2,Hitting Team,Other,delayed-penalty,125,25.14,0.493
+20192020,D,2,Opponent,Stoppage,period-end,103,27.8,0.407
+20192020,D,2,Hitting Team,Stoppage,period-end,99,24.06,0.391
+20192020,D,2,Opponent,Other,delayed-penalty,65,28.37,0.257
+20192020,D,2,Opponent,Other,game-end,17,20.94,0.067
+20192020,D,2,Hitting Team,Other,game-end,13,18.62,0.051
+20192020,D,3,Opponent,Stoppage,faceoff,2419,26.61,9.623
+20192020,D,3,Hitting Team,Stoppage,faceoff,2416,25.52,9.611
+20192020,D,3,Opponent,Shot Attempt,shot-on-goal,2402,39.11,9.556
+20192020,D,3,Hitting Team,Physical Battle,hit,2007,42.84,7.984
+20192020,D,3,Hitting Team,Stoppage,stoppage,1973,30.83,7.849
+20192020,D,3,Opponent,Physical Battle,hit,1969,44.11,7.833
+20192020,D,3,Opponent,Stoppage,stoppage,1928,31.22,7.67
+20192020,D,3,Hitting Team,Shot Attempt,shot-on-goal,1874,43.47,7.455
+20192020,D,3,Opponent,Shot Attempt,blocked-shot,1194,41.16,4.75
+20192020,D,3,Hitting Team,Shot Attempt,blocked-shot,978,45.1,3.891
+20192020,D,3,Opponent,Shot Attempt,missed-shot,944,41.2,3.755
+20192020,D,3,Hitting Team,Possession Change,giveaway,803,43.3,3.194
+20192020,D,3,Opponent,Possession Change,giveaway,797,43.96,3.171
+20192020,D,3,Hitting Team,Shot Attempt,missed-shot,791,45.42,3.147
+20192020,D,3,Hitting Team,Possession Change,takeaway,557,46.8,2.216
+20192020,D,3,Opponent,Possession Change,takeaway,547,46.27,2.176
+20192020,D,3,Hitting Team,Stoppage,penalty,363,26.26,1.444
+20192020,D,3,Opponent,Stoppage,penalty,313,29.36,1.245
+20192020,D,3,Opponent,Goal,goal,253,31.05,1.006
+20192020,D,3,Hitting Team,Goal,goal,195,38.68,0.776
+20192020,D,3,Opponent,Stoppage,period-end,112,36.82,0.446
+20192020,D,3,Hitting Team,Stoppage,period-end,98,46.85,0.39
+20192020,D,3,Hitting Team,Other,delayed-penalty,88,39.33,0.35
+20192020,D,3,Opponent,Other,delayed-penalty,85,47.02,0.338
+20192020,D,3,Opponent,Other,game-end,19,35.42,0.076
+20192020,D,3,Hitting Team,Other,game-end,12,33.0,0.048
+20192020,D,4,Opponent,Shot Attempt,shot-on-goal,2316,50.43,9.289
+20192020,D,4,Opponent,Stoppage,faceoff,2251,39.97,9.029
+20192020,D,4,Hitting Team,Stoppage,faceoff,2209,39.56,8.86
+20192020,D,4,Hitting Team,Physical Battle,hit,2106,53.72,8.447
+20192020,D,4,Opponent,Physical Battle,hit,2065,53.39,8.283
+20192020,D,4,Hitting Team,Shot Attempt,shot-on-goal,2062,53.56,8.27
+20192020,D,4,Hitting Team,Stoppage,stoppage,1844,42.88,7.396
+20192020,D,4,Opponent,Stoppage,stoppage,1814,42.99,7.276
+20192020,D,4,Opponent,Shot Attempt,blocked-shot,1196,49.11,4.797
+20192020,D,4,Hitting Team,Shot Attempt,blocked-shot,995,53.38,3.991
+20192020,D,4,Opponent,Shot Attempt,missed-shot,968,50.29,3.883
+20192020,D,4,Opponent,Possession Change,giveaway,825,54.74,3.309
+20192020,D,4,Hitting Team,Shot Attempt,missed-shot,814,56.23,3.265
+20192020,D,4,Hitting Team,Possession Change,giveaway,804,54.35,3.225
+20192020,D,4,Hitting Team,Possession Change,takeaway,615,55.25,2.467
+20192020,D,4,Opponent,Possession Change,takeaway,555,53.77,2.226
+20192020,D,4,Hitting Team,Stoppage,penalty,362,38.37,1.452
+20192020,D,4,Opponent,Stoppage,penalty,330,40.08,1.324
+20192020,D,4,Opponent,Goal,goal,221,43.61,0.886
+20192020,D,4,Hitting Team,Goal,goal,195,46.64,0.782
+20192020,D,4,Hitting Team,Stoppage,period-end,116,53.76,0.465
+20192020,D,4,Opponent,Stoppage,period-end,105,52.54,0.421
+20192020,D,4,Opponent,Other,delayed-penalty,70,48.06,0.281
+20192020,D,4,Hitting Team,Other,delayed-penalty,57,46.89,0.229
+20192020,D,4,Opponent,Other,game-end,21,48.38,0.084
+20192020,D,4,Hitting Team,Other,game-end,16,48.44,0.064
+20192020,N,1,Opponent,Physical Battle,hit,1021,14.91,15.083
+20192020,N,1,Hitting Team,Physical Battle,hit,815,17.12,12.04
+20192020,N,1,Opponent,Shot Attempt,shot-on-goal,696,14.87,10.282
+20192020,N,1,Hitting Team,Shot Attempt,shot-on-goal,583,16.3,8.613
+20192020,N,1,Opponent,Stoppage,stoppage,393,10.65,5.806
+20192020,N,1,Opponent,Shot Attempt,blocked-shot,366,16.53,5.407
+20192020,N,1,Hitting Team,Stoppage,stoppage,357,12.66,5.274
+20192020,N,1,Hitting Team,Possession Change,giveaway,314,17.05,4.639
+20192020,N,1,Hitting Team,Shot Attempt,blocked-shot,303,19.46,4.476
+20192020,N,1,Opponent,Shot Attempt,missed-shot,293,17.44,4.329
+20192020,N,1,Opponent,Possession Change,giveaway,252,19.6,3.723
+20192020,N,1,Opponent,Possession Change,takeaway,241,17.09,3.56
+20192020,N,1,Hitting Team,Shot Attempt,missed-shot,215,18.56,3.176
+20192020,N,1,Opponent,Stoppage,faceoff,210,11.86,3.102
+20192020,N,1,Hitting Team,Stoppage,faceoff,204,12.17,3.014
+20192020,N,1,Hitting Team,Possession Change,takeaway,190,18.93,2.807
+20192020,N,1,Hitting Team,Stoppage,penalty,64,10.95,0.945
+20192020,N,1,Opponent,Stoppage,penalty,47,9.7,0.694
+20192020,N,1,Opponent,Goal,goal,40,19.58,0.591
+20192020,N,1,Hitting Team,Stoppage,period-end,40,10.4,0.591
+20192020,N,1,Opponent,Stoppage,period-end,36,17.61,0.532
+20192020,N,1,Opponent,Other,delayed-penalty,35,15.23,0.517
+20192020,N,1,Hitting Team,Goal,goal,29,15.1,0.428
+20192020,N,1,Hitting Team,Other,delayed-penalty,25,23.04,0.369
+20192020,N,2,Opponent,Physical Battle,hit,629,31.2,9.384
+20192020,N,2,Hitting Team,Physical Battle,hit,624,31.56,9.309
+20192020,N,2,Hitting Team,Shot Attempt,shot-on-goal,602,29.59,8.981
+20192020,N,2,Opponent,Shot Attempt,shot-on-goal,591,28.96,8.817
+20192020,N,2,Hitting Team,Stoppage,faceoff,587,16.27,8.757
+20192020,N,2,Opponent,Stoppage,faceoff,579,16.5,8.638
+20192020,N,2,Opponent,Stoppage,stoppage,499,20.41,7.444
+20192020,N,2,Hitting Team,Stoppage,stoppage,480,18.38,7.161
+20192020,N,2,Opponent,Shot Attempt,blocked-shot,321,31.43,4.789
+20192020,N,2,Hitting Team,Shot Attempt,blocked-shot,283,30.93,4.222
+20192020,N,2,Opponent,Shot Attempt,missed-shot,245,28.79,3.655
+20192020,N,2,Opponent,Possession Change,giveaway,226,32.05,3.372
+20192020,N,2,Hitting Team,Possession Change,giveaway,221,32.67,3.297
+20192020,N,2,Hitting Team,Shot Attempt,missed-shot,193,34.55,2.879
+20192020,N,2,Hitting Team,Possession Change,takeaway,157,33.89,2.342
+20192020,N,2,Opponent,Possession Change,takeaway,124,36.56,1.85
+20192020,N,2,Opponent,Stoppage,penalty,79,15.97,1.179
+20192020,N,2,Hitting Team,Stoppage,penalty,73,20.78,1.089
+20192020,N,2,Hitting Team,Goal,goal,52,24.31,0.776
+20192020,N,2,Opponent,Goal,goal,46,18.91,0.686
+20192020,N,2,Hitting Team,Stoppage,period-end,25,32.84,0.373
+20192020,N,2,Opponent,Other,delayed-penalty,23,21.52,0.343
+20192020,N,2,Opponent,Stoppage,period-end,18,29.44,0.269
+20192020,N,2,Hitting Team,Other,delayed-penalty,16,38.56,0.239
+20192020,N,2,Hitting Team,Other,game-end,6,7.17,0.09
+20192020,N,2,Opponent,Other,game-end,4,26.75,0.06
+20192020,N,3,Hitting Team,Stoppage,faceoff,614,26.8,9.223
+20192020,N,3,Opponent,Physical Battle,hit,610,41.33,9.163
+20192020,N,3,Opponent,Stoppage,faceoff,610,27.59,9.163
+20192020,N,3,Opponent,Shot Attempt,shot-on-goal,585,42.3,8.788
+20192020,N,3,Hitting Team,Physical Battle,hit,578,42.88,8.683
+20192020,N,3,Hitting Team,Shot Attempt,shot-on-goal,559,40.96,8.397
+20192020,N,3,Opponent,Stoppage,stoppage,491,31.19,7.376
+20192020,N,3,Hitting Team,Stoppage,stoppage,469,32.59,7.045
+20192020,N,3,Opponent,Shot Attempt,blocked-shot,318,40.03,4.777
+20192020,N,3,Hitting Team,Shot Attempt,blocked-shot,273,46.42,4.101
+20192020,N,3,Opponent,Shot Attempt,missed-shot,230,39.87,3.455
+20192020,N,3,Hitting Team,Possession Change,giveaway,226,43.13,3.395
+20192020,N,3,Opponent,Possession Change,giveaway,221,44.44,3.32
+20192020,N,3,Hitting Team,Shot Attempt,missed-shot,209,40.48,3.14
+20192020,N,3,Opponent,Possession Change,takeaway,143,46.15,2.148
+20192020,N,3,Hitting Team,Possession Change,takeaway,141,48.08,2.118
+20192020,N,3,Opponent,Stoppage,penalty,83,23.46,1.247
+20192020,N,3,Hitting Team,Stoppage,penalty,83,26.58,1.247
+20192020,N,3,Opponent,Goal,goal,55,35.67,0.826
+20192020,N,3,Hitting Team,Goal,goal,52,33.58,0.781
+20192020,N,3,Hitting Team,Stoppage,period-end,30,37.43,0.451
+20192020,N,3,Opponent,Stoppage,period-end,29,36.34,0.436
+20192020,N,3,Hitting Team,Other,delayed-penalty,25,34.48,0.376
+20192020,N,3,Opponent,Other,delayed-penalty,16,42.44,0.24
+20192020,N,3,Hitting Team,Other,game-end,4,49.5,0.06
+20192020,N,3,Opponent,Other,game-end,3,73.0,0.045
+20192020,N,4,Opponent,Shot Attempt,shot-on-goal,585,50.66,8.864
+20192020,N,4,Hitting Team,Stoppage,faceoff,576,39.52,8.727
+20192020,N,4,Hitting Team,Shot Attempt,shot-on-goal,569,50.54,8.621
+20192020,N,4,Hitting Team,Physical Battle,hit,561,53.72,8.5
+20192020,N,4,Opponent,Stoppage,faceoff,558,40.29,8.455
+20192020,N,4,Opponent,Physical Battle,hit,540,52.41,8.182
+20192020,N,4,Opponent,Stoppage,stoppage,533,44.6,8.076
+20192020,N,4,Hitting Team,Stoppage,stoppage,443,43.36,6.712
+20192020,N,4,Opponent,Shot Attempt,blocked-shot,305,50.08,4.621
+20192020,N,4,Hitting Team,Shot Attempt,blocked-shot,301,51.64,4.561
+20192020,N,4,Opponent,Shot Attempt,missed-shot,254,51.65,3.848
+20192020,N,4,Hitting Team,Shot Attempt,missed-shot,250,53.45,3.788
+20192020,N,4,Opponent,Possession Change,giveaway,219,53.66,3.318
+20192020,N,4,Hitting Team,Possession Change,giveaway,216,55.77,3.273
+20192020,N,4,Hitting Team,Possession Change,takeaway,169,59.96,2.561
+20192020,N,4,Opponent,Possession Change,takeaway,140,55.97,2.121
+20192020,N,4,Hitting Team,Stoppage,penalty,95,38.06,1.439
+20192020,N,4,Opponent,Stoppage,penalty,89,34.79,1.348
+20192020,N,4,Hitting Team,Goal,goal,47,49.81,0.712
+20192020,N,4,Opponent,Goal,goal,43,36.21,0.652
+20192020,N,4,Hitting Team,Other,delayed-penalty,27,67.11,0.409
+20192020,N,4,Opponent,Stoppage,period-end,25,59.08,0.379
+20192020,N,4,Hitting Team,Stoppage,period-end,24,50.96,0.364
+20192020,N,4,Opponent,Other,delayed-penalty,22,56.09,0.333
+20192020,N,4,Opponent,Other,game-end,7,37.43,0.106
+20192020,N,4,Hitting Team,Other,game-end,2,31.5,0.03
+20192020,O,1,Hitting Team,Physical Battle,hit,3167,14.88,13.473
+20192020,O,1,Hitting Team,Shot Attempt,shot-on-goal,2722,14.04,11.58
+20192020,O,1,Opponent,Physical Battle,hit,2686,16.84,11.427
+20192020,O,1,Opponent,Shot Attempt,shot-on-goal,2149,16.01,9.142
+20192020,O,1,Hitting Team,Shot Attempt,blocked-shot,1578,13.69,6.713
+20192020,O,1,Hitting Team,Shot Attempt,missed-shot,1355,13.32,5.764
+20192020,O,1,Opponent,Stoppage,stoppage,1193,13.12,5.075
+20192020,O,1,Hitting Team,Stoppage,stoppage,1146,12.45,4.875
+20192020,O,1,Opponent,Possession Change,giveaway,1085,14.96,4.616
+20192020,O,1,Opponent,Shot Attempt,blocked-shot,919,18.11,3.91
+20192020,O,1,Hitting Team,Possession Change,giveaway,891,18.57,3.791
+20192020,O,1,Opponent,Shot Attempt,missed-shot,796,19.28,3.386
+20192020,O,1,Hitting Team,Possession Change,takeaway,728,16.0,3.097
+20192020,O,1,Hitting Team,Stoppage,faceoff,728,12.77,3.097
+20192020,O,1,Opponent,Possession Change,takeaway,672,18.68,2.859
+20192020,O,1,Opponent,Stoppage,faceoff,643,13.3,2.735
+20192020,O,1,Opponent,Stoppage,penalty,190,9.56,0.808
+20192020,O,1,Hitting Team,Stoppage,penalty,172,9.94,0.732
+20192020,O,1,Opponent,Stoppage,period-end,145,14.4,0.617
+20192020,O,1,Hitting Team,Stoppage,period-end,127,12.64,0.54
+20192020,O,1,Hitting Team,Goal,goal,121,15.35,0.515
+20192020,O,1,Opponent,Goal,goal,111,15.31,0.472
+20192020,O,1,Opponent,Other,delayed-penalty,107,12.25,0.455
+20192020,O,1,Hitting Team,Other,delayed-penalty,75,16.87,0.319
+20192020,O,2,Hitting Team,Physical Battle,hit,2239,29.62,9.617
+20192020,O,2,Hitting Team,Shot Attempt,shot-on-goal,2183,27.61,9.377
+20192020,O,2,Opponent,Physical Battle,hit,2086,29.83,8.96
+20192020,O,2,Hitting Team,Stoppage,faceoff,1956,16.79,8.402
+20192020,O,2,Opponent,Shot Attempt,shot-on-goal,1914,29.26,8.221
+20192020,O,2,Opponent,Stoppage,faceoff,1891,16.3,8.123
+20192020,O,2,Opponent,Stoppage,stoppage,1767,20.94,7.59
+20192020,O,2,Hitting Team,Stoppage,stoppage,1608,20.13,6.907
+20192020,O,2,Hitting Team,Shot Attempt,blocked-shot,1123,29.63,4.824
+20192020,O,2,Opponent,Shot Attempt,blocked-shot,903,32.37,3.879
+20192020,O,2,Hitting Team,Shot Attempt,missed-shot,884,28.05,3.797
+20192020,O,2,Opponent,Possession Change,giveaway,780,30.5,3.35
+20192020,O,2,Hitting Team,Possession Change,giveaway,760,32.98,3.264
+20192020,O,2,Opponent,Shot Attempt,missed-shot,755,31.47,3.243
+20192020,O,2,Opponent,Possession Change,takeaway,515,34.72,2.212
+20192020,O,2,Hitting Team,Possession Change,takeaway,505,32.45,2.169
+20192020,O,2,Opponent,Stoppage,penalty,315,17.97,1.353
+20192020,O,2,Hitting Team,Stoppage,penalty,289,17.45,1.241
+20192020,O,2,Hitting Team,Goal,goal,214,18.13,0.919
+20192020,O,2,Opponent,Goal,goal,175,21.73,0.752
+20192020,O,2,Opponent,Stoppage,period-end,101,29.36,0.434
+20192020,O,2,Hitting Team,Stoppage,period-end,98,27.95,0.421
+20192020,O,2,Opponent,Other,delayed-penalty,89,24.29,0.382
+20192020,O,2,Hitting Team,Other,delayed-penalty,88,28.3,0.378
+20192020,O,2,Hitting Team,Other,game-end,22,19.45,0.094
+20192020,O,2,Opponent,Other,game-end,21,14.05,0.09
+20192020,O,3,Opponent,Stoppage,faceoff,2172,26.15,9.417
+20192020,O,3,Hitting Team,Stoppage,faceoff,2088,26.31,9.053
+20192020,O,3,Hitting Team,Shot Attempt,shot-on-goal,2070,39.22,8.975
+20192020,O,3,Hitting Team,Physical Battle,hit,1999,41.65,8.667
+20192020,O,3,Opponent,Physical Battle,hit,1927,42.47,8.355
+20192020,O,3,Opponent,Shot Attempt,shot-on-goal,1914,41.44,8.298
+20192020,O,3,Opponent,Stoppage,stoppage,1810,30.76,7.847
+20192020,O,3,Hitting Team,Stoppage,stoppage,1689,30.39,7.323
+20192020,O,3,Hitting Team,Shot Attempt,blocked-shot,1056,39.82,4.578
+20192020,O,3,Opponent,Shot Attempt,blocked-shot,925,42.52,4.01
+20192020,O,3,Hitting Team,Shot Attempt,missed-shot,859,41.19,3.724
+20192020,O,3,Opponent,Possession Change,giveaway,741,42.92,3.213
+20192020,O,3,Hitting Team,Possession Change,giveaway,735,43.7,3.187
+20192020,O,3,Opponent,Shot Attempt,missed-shot,728,42.25,3.156
+20192020,O,3,Hitting Team,Possession Change,takeaway,513,45.42,2.224
+20192020,O,3,Opponent,Possession Change,takeaway,490,45.29,2.124
+20192020,O,3,Opponent,Stoppage,penalty,323,25.38,1.4
+20192020,O,3,Hitting Team,Stoppage,penalty,310,29.59,1.344
+20192020,O,3,Hitting Team,Goal,goal,201,29.71,0.871
+20192020,O,3,Opponent,Goal,goal,177,34.49,0.767
+20192020,O,3,Hitting Team,Stoppage,period-end,104,41.31,0.451
+20192020,O,3,Opponent,Other,delayed-penalty,78,40.78,0.338
+20192020,O,3,Opponent,Stoppage,period-end,77,42.32,0.334
+20192020,O,3,Hitting Team,Other,delayed-penalty,54,37.89,0.234
+20192020,O,3,Hitting Team,Other,game-end,15,43.0,0.065
+20192020,O,3,Opponent,Other,game-end,10,47.5,0.043
+20192020,O,4,Hitting Team,Shot Attempt,shot-on-goal,2095,49.93,9.156
+20192020,O,4,Hitting Team,Stoppage,faceoff,2026,37.93,8.854
+20192020,O,4,Opponent,Stoppage,faceoff,2018,38.97,8.819
+20192020,O,4,Opponent,Shot Attempt,shot-on-goal,1967,51.33,8.596
+20192020,O,4,Hitting Team,Physical Battle,hit,1905,52.17,8.325
+20192020,O,4,Opponent,Physical Battle,hit,1884,53.13,8.234
+20192020,O,4,Opponent,Stoppage,stoppage,1755,43.47,7.67
+20192020,O,4,Hitting Team,Stoppage,stoppage,1609,43.64,7.032
+20192020,O,4,Hitting Team,Shot Attempt,blocked-shot,1094,49.47,4.781
+20192020,O,4,Opponent,Shot Attempt,blocked-shot,973,51.08,4.252
+20192020,O,4,Hitting Team,Shot Attempt,missed-shot,930,51.7,4.064
+20192020,O,4,Opponent,Possession Change,giveaway,757,53.44,3.308
+20192020,O,4,Opponent,Shot Attempt,missed-shot,757,52.6,3.308
+20192020,O,4,Hitting Team,Possession Change,giveaway,755,53.44,3.3
+20192020,O,4,Opponent,Possession Change,takeaway,515,54.34,2.251
+20192020,O,4,Hitting Team,Possession Change,takeaway,511,53.51,2.233
+20192020,O,4,Opponent,Stoppage,penalty,315,38.26,1.377
+20192020,O,4,Hitting Team,Stoppage,penalty,311,37.05,1.359
+20192020,O,4,Hitting Team,Goal,goal,181,47.52,0.791
+20192020,O,4,Opponent,Goal,goal,178,47.28,0.778
+20192020,O,4,Hitting Team,Stoppage,period-end,88,46.85,0.385
+20192020,O,4,Opponent,Other,delayed-penalty,86,51.19,0.376
+20192020,O,4,Opponent,Stoppage,period-end,85,46.15,0.371
+20192020,O,4,Hitting Team,Other,delayed-penalty,66,59.97,0.288
+20192020,O,4,Hitting Team,Other,game-end,11,46.45,0.048
+20192020,O,4,Opponent,Other,game-end,10,42.2,0.044

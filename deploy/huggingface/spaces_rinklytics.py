@@ -1,5 +1,8 @@
 """
-Deploy Rinklytics Streamlit Dashboard to Hugging Face Spaces.
+spaces_rinklytics.py — Deploy Rinklytics Streamlit Dashboard to Hugging Face Spaces.
+
+Synchronizes application code, layouts, and views to the Hugging Face Space:
+    https://huggingface.co/spaces/jjerlee/rinklytics
 """
 import argparse
 import os
@@ -31,8 +34,8 @@ license: mit
 
 def get_repo_root() -> Path:
     """Return the absolute path to the repository root directory."""
-    # This script lives in deploy/huggingface.py -> repo root is parent.parent
-    return Path(__file__).resolve().parent.parent
+    # This script lives in deploy/huggingface/spaces_rinklytics.py -> repo root is parent.parent.parent
+    return Path(__file__).resolve().parent.parent.parent
 
 
 def get_token():

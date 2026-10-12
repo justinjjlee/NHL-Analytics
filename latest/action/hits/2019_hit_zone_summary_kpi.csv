@@ -1,0 +1,4 @@
+season,hit_zone,zone_name,total_hits,immediate_possession_pct,immediate_takeaway_pct,shots_for,shots_against,shots_for_per_100_hits,shots_against_per_100_hits,net_shot_diff_per_100,goals_for,goals_against,goals_for_per_100_hits,goals_against_per_100_hits,net_goal_diff_per_100
+20192020,D,Defensive Zone (Pin & In-Zone Battle),25526,40.22,3.0,5021.0,10126.0,19.67,39.67,-20.0,291.0,445.0,1.14,1.743,-0.603
+20192020,N,Neutral Zone (Rush Disruption),6769,46.37,2.81,1688.0,1907.0,24.94,28.17,-3.24,95.0,79.0,1.403,1.167,0.236
+20192020,O,Offensive Zone (Forecheck Turnover),23506,54.5,3.1,7786.0,5761.0,33.12,24.51,8.61,354.0,288.0,1.506,1.225,0.281

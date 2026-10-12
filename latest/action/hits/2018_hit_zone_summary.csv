@@ -1,0 +1,4 @@
+season,zoneCode,total_hits,recovery_pct,opponent_possession_pct,avg_delta_sec,median_delta_sec,sog_for,sog_against,goals_for,goals_against,zone_exits,share_of_all_hits_pct,sog_for_per_100,sog_against_per_100,net_sog_per_100,goals_for_per_100,goals_against_per_100,net_goals_per_100,zone_exit_pct
+20182019,D,29026,40.9,59.1,14.88,11.0,2163.0,4321.0,128.0,261.0,22847.0,46.61,7.45,14.89,-7.43,0.441,0.899,-0.458,78.71
+20182019,N,7446,46.98,53.02,15.6,12.0,715.0,785.0,42.0,41.0,0.0,11.96,9.6,10.54,-0.94,0.564,0.551,0.013,
+20182019,O,25799,54.31,45.69,15.02,11.0,3021.0,2293.0,174.0,146.0,0.0,41.43,11.71,8.89,2.82,0.674,0.566,0.109,

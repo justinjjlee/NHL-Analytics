@@ -1,0 +1,4 @@
+season,zoneCode,total_hits,recovery_pct,opponent_possession_pct,avg_delta_sec,median_delta_sec,sog_for,sog_against,goals_for,goals_against,zone_exits,share_of_all_hits_pct,sog_for_per_100,sog_against_per_100,net_sog_per_100,goals_for_per_100,goals_against_per_100,net_goals_per_100,zone_exit_pct
+20152016,D,27508,40.31,59.69,15.33,11.0,1935.0,4043.0,89.0,241.0,22021.0,43.78,7.03,14.7,-7.66,0.324,0.876,-0.553,80.05
+20152016,N,7723,47.97,52.03,15.93,12.0,688.0,773.0,34.0,38.0,0.0,12.29,8.91,10.01,-1.1,0.44,0.492,-0.052,
+20152016,O,27607,54.24,45.76,15.43,11.0,3209.0,2479.0,150.0,136.0,0.0,43.93,11.62,8.98,2.64,0.543,0.493,0.051,

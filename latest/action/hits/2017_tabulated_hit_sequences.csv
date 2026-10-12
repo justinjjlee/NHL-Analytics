@@ -1,0 +1,283 @@
+season,hit_zone,event_step,event_owner,event_category,event_type,count,avg_delta_sec,pct_of_step
+20172018,D,1,Opponent,Shot Attempt,shot-on-goal,4129,12.77,14.921
+20172018,D,1,Opponent,Physical Battle,hit,3137,15.29,11.336
+20172018,D,1,Hitting Team,Physical Battle,hit,2865,15.85,10.353
+20172018,D,1,Opponent,Shot Attempt,blocked-shot,2656,12.62,9.598
+20172018,D,1,Hitting Team,Shot Attempt,shot-on-goal,2153,18.09,7.78
+20172018,D,1,Opponent,Shot Attempt,missed-shot,2107,12.31,7.614
+20172018,D,1,Opponent,Stoppage,stoppage,1275,13.31,4.608
+20172018,D,1,Hitting Team,Stoppage,stoppage,1242,13.71,4.488
+20172018,D,1,Hitting Team,Possession Change,giveaway,1088,16.04,3.932
+20172018,D,1,Opponent,Possession Change,giveaway,963,17.93,3.48
+20172018,D,1,Hitting Team,Shot Attempt,blocked-shot,925,21.08,3.343
+20172018,D,1,Opponent,Possession Change,takeaway,906,16.42,3.274
+20172018,D,1,Hitting Team,Possession Change,takeaway,875,18.08,3.162
+20172018,D,1,Hitting Team,Shot Attempt,missed-shot,803,19.98,2.902
+20172018,D,1,Opponent,Stoppage,faceoff,696,14.34,2.515
+20172018,D,1,Hitting Team,Stoppage,faceoff,681,13.64,2.461
+20172018,D,1,Hitting Team,Stoppage,penalty,308,11.28,1.113
+20172018,D,1,Opponent,Goal,goal,251,11.41,0.907
+20172018,D,1,Opponent,Stoppage,penalty,241,13.73,0.871
+20172018,D,1,Hitting Team,Stoppage,period-end,133,14.15,0.481
+20172018,D,1,Hitting Team,Goal,goal,121,16.45,0.437
+20172018,D,1,Opponent,Stoppage,period-end,117,14.38,0.423
+20172018,D,2,Opponent,Shot Attempt,shot-on-goal,2953,26.36,10.747
+20172018,D,2,Opponent,Stoppage,faceoff,2334,17.54,8.494
+20172018,D,2,Hitting Team,Stoppage,faceoff,2269,17.43,8.258
+20172018,D,2,Opponent,Physical Battle,hit,2254,29.77,8.203
+20172018,D,2,Hitting Team,Physical Battle,hit,2226,30.88,8.101
+20172018,D,2,Hitting Team,Shot Attempt,shot-on-goal,2081,30.57,7.574
+20172018,D,2,Hitting Team,Stoppage,stoppage,2076,20.22,7.555
+20172018,D,2,Opponent,Stoppage,stoppage,2070,21.25,7.534
+20172018,D,2,Opponent,Shot Attempt,blocked-shot,1558,27.28,5.67
+20172018,D,2,Opponent,Shot Attempt,missed-shot,1342,27.23,4.884
+20172018,D,2,Hitting Team,Shot Attempt,blocked-shot,1006,33.05,3.661
+20172018,D,2,Hitting Team,Shot Attempt,missed-shot,873,32.23,3.177
+20172018,D,2,Hitting Team,Possession Change,giveaway,839,30.22,3.053
+20172018,D,2,Opponent,Possession Change,giveaway,821,32.56,2.988
+20172018,D,2,Opponent,Possession Change,takeaway,636,31.19,2.315
+20172018,D,2,Hitting Team,Possession Change,takeaway,604,32.27,2.198
+20172018,D,2,Hitting Team,Stoppage,penalty,442,17.95,1.609
+20172018,D,2,Opponent,Stoppage,penalty,352,21.83,1.281
+20172018,D,2,Opponent,Goal,goal,301,21.31,1.095
+20172018,D,2,Hitting Team,Goal,goal,202,26.54,0.735
+20172018,D,2,Hitting Team,Stoppage,period-end,104,26.41,0.378
+20172018,D,2,Opponent,Stoppage,period-end,84,25.52,0.306
+20172018,D,2,Hitting Team,Other,game-end,28,16.96,0.102
+20172018,D,2,Opponent,Other,game-end,22,14.86,0.08
+20172018,D,3,Opponent,Stoppage,faceoff,2794,25.45,10.249
+20172018,D,3,Hitting Team,Stoppage,faceoff,2734,26.26,10.029
+20172018,D,3,Opponent,Shot Attempt,shot-on-goal,2570,38.88,9.427
+20172018,D,3,Hitting Team,Stoppage,stoppage,2299,31.4,8.433
+20172018,D,3,Opponent,Stoppage,stoppage,2225,31.26,8.162
+20172018,D,3,Hitting Team,Shot Attempt,shot-on-goal,2165,42.67,7.941
+20172018,D,3,Hitting Team,Physical Battle,hit,2080,42.63,7.63
+20172018,D,3,Opponent,Physical Battle,hit,1946,41.01,7.138
+20172018,D,3,Opponent,Shot Attempt,blocked-shot,1354,40.51,4.967
+20172018,D,3,Opponent,Shot Attempt,missed-shot,1117,40.37,4.097
+20172018,D,3,Hitting Team,Shot Attempt,blocked-shot,967,44.01,3.547
+20172018,D,3,Hitting Team,Shot Attempt,missed-shot,875,44.07,3.21
+20172018,D,3,Opponent,Possession Change,giveaway,763,43.98,2.799
+20172018,D,3,Hitting Team,Possession Change,giveaway,724,43.39,2.656
+20172018,D,3,Hitting Team,Possession Change,takeaway,630,44.26,2.311
+20172018,D,3,Opponent,Possession Change,takeaway,523,44.11,1.918
+20172018,D,3,Hitting Team,Stoppage,penalty,382,29.78,1.401
+20172018,D,3,Opponent,Stoppage,penalty,371,30.86,1.361
+20172018,D,3,Opponent,Goal,goal,260,31.64,0.954
+20172018,D,3,Hitting Team,Goal,goal,212,33.37,0.778
+20172018,D,3,Opponent,Stoppage,period-end,133,36.02,0.488
+20172018,D,3,Hitting Team,Stoppage,period-end,115,40.24,0.422
+20172018,D,3,Hitting Team,Other,game-end,15,41.6,0.055
+20172018,D,3,Opponent,Other,game-end,8,36.13,0.029
+20172018,D,4,Opponent,Shot Attempt,shot-on-goal,2564,49.46,9.487
+20172018,D,4,Opponent,Stoppage,faceoff,2546,38.55,9.42
+20172018,D,4,Hitting Team,Stoppage,faceoff,2482,38.52,9.183
+20172018,D,4,Hitting Team,Shot Attempt,shot-on-goal,2283,52.73,8.447
+20172018,D,4,Hitting Team,Physical Battle,hit,2151,53.03,7.959
+20172018,D,4,Hitting Team,Stoppage,stoppage,2130,42.69,7.881
+20172018,D,4,Opponent,Stoppage,stoppage,2090,42.96,7.733
+20172018,D,4,Opponent,Physical Battle,hit,1952,53.32,7.222
+20172018,D,4,Opponent,Shot Attempt,blocked-shot,1473,49.24,5.45
+20172018,D,4,Hitting Team,Shot Attempt,blocked-shot,1136,52.44,4.203
+20172018,D,4,Opponent,Shot Attempt,missed-shot,1106,49.54,4.092
+20172018,D,4,Hitting Team,Shot Attempt,missed-shot,913,53.56,3.378
+20172018,D,4,Hitting Team,Possession Change,giveaway,780,51.93,2.886
+20172018,D,4,Opponent,Possession Change,giveaway,773,52.71,2.86
+20172018,D,4,Hitting Team,Possession Change,takeaway,608,54.57,2.25
+20172018,D,4,Opponent,Possession Change,takeaway,601,52.0,2.224
+20172018,D,4,Hitting Team,Stoppage,penalty,351,40.19,1.299
+20172018,D,4,Opponent,Stoppage,penalty,343,43.84,1.269
+20172018,D,4,Opponent,Goal,goal,251,46.37,0.929
+20172018,D,4,Hitting Team,Goal,goal,206,48.49,0.762
+20172018,D,4,Hitting Team,Stoppage,period-end,136,48.68,0.503
+20172018,D,4,Opponent,Stoppage,period-end,116,50.76,0.429
+20172018,D,4,Opponent,Other,game-end,23,42.35,0.085
+20172018,D,4,Hitting Team,Other,game-end,13,59.08,0.048
+20172018,N,1,Opponent,Physical Battle,hit,1004,15.13,13.444
+20172018,N,1,Opponent,Shot Attempt,shot-on-goal,831,15.11,11.127
+20172018,N,1,Hitting Team,Physical Battle,hit,815,16.82,10.913
+20172018,N,1,Hitting Team,Shot Attempt,shot-on-goal,694,16.44,9.293
+20172018,N,1,Opponent,Stoppage,stoppage,475,11.68,6.36
+20172018,N,1,Hitting Team,Stoppage,stoppage,428,12.02,5.731
+20172018,N,1,Opponent,Shot Attempt,blocked-shot,382,16.3,5.115
+20172018,N,1,Opponent,Shot Attempt,missed-shot,370,16.34,4.954
+20172018,N,1,Hitting Team,Possession Change,giveaway,331,16.6,4.432
+20172018,N,1,Hitting Team,Shot Attempt,blocked-shot,314,19.19,4.205
+20172018,N,1,Hitting Team,Shot Attempt,missed-shot,279,18.76,3.736
+20172018,N,1,Opponent,Possession Change,giveaway,257,19.42,3.441
+20172018,N,1,Hitting Team,Stoppage,faceoff,254,13.16,3.401
+20172018,N,1,Opponent,Possession Change,takeaway,253,17.14,3.388
+20172018,N,1,Opponent,Stoppage,faceoff,236,13.21,3.16
+20172018,N,1,Hitting Team,Possession Change,takeaway,228,19.79,3.053
+20172018,N,1,Opponent,Stoppage,penalty,84,11.98,1.125
+20172018,N,1,Hitting Team,Stoppage,penalty,82,11.82,1.098
+20172018,N,1,Opponent,Goal,goal,43,14.37,0.576
+20172018,N,1,Opponent,Stoppage,period-end,41,13.85,0.549
+20172018,N,1,Hitting Team,Goal,goal,34,19.18,0.455
+20172018,N,1,Hitting Team,Stoppage,period-end,33,17.12,0.442
+20172018,N,2,Hitting Team,Stoppage,faceoff,715,16.57,9.649
+20172018,N,2,Opponent,Shot Attempt,shot-on-goal,683,28.24,9.217
+20172018,N,2,Opponent,Stoppage,faceoff,683,15.3,9.217
+20172018,N,2,Hitting Team,Shot Attempt,shot-on-goal,651,28.87,8.785
+20172018,N,2,Opponent,Stoppage,stoppage,632,21.26,8.529
+20172018,N,2,Hitting Team,Physical Battle,hit,615,31.46,8.3
+20172018,N,2,Opponent,Physical Battle,hit,547,29.45,7.382
+20172018,N,2,Hitting Team,Stoppage,stoppage,534,21.45,7.206
+20172018,N,2,Opponent,Shot Attempt,blocked-shot,397,30.32,5.358
+20172018,N,2,Hitting Team,Shot Attempt,blocked-shot,308,32.44,4.157
+20172018,N,2,Opponent,Shot Attempt,missed-shot,269,29.45,3.63
+20172018,N,2,Hitting Team,Shot Attempt,missed-shot,226,32.76,3.05
+20172018,N,2,Opponent,Possession Change,giveaway,195,33.06,2.632
+20172018,N,2,Hitting Team,Possession Change,giveaway,188,30.16,2.537
+20172018,N,2,Opponent,Possession Change,takeaway,173,33.06,2.335
+20172018,N,2,Hitting Team,Possession Change,takeaway,160,32.93,2.159
+20172018,N,2,Hitting Team,Stoppage,penalty,121,20.45,1.633
+20172018,N,2,Opponent,Stoppage,penalty,109,19.62,1.471
+20172018,N,2,Opponent,Goal,goal,76,26.17,1.026
+20172018,N,2,Hitting Team,Goal,goal,50,26.18,0.675
+20172018,N,2,Opponent,Stoppage,period-end,35,33.26,0.472
+20172018,N,2,Hitting Team,Stoppage,period-end,27,25.15,0.364
+20172018,N,2,Opponent,Other,game-end,10,13.5,0.135
+20172018,N,2,Hitting Team,Other,game-end,6,32.83,0.081
+20172018,N,3,Hitting Team,Stoppage,faceoff,768,27.73,10.458
+20172018,N,3,Opponent,Stoppage,faceoff,717,27.35,9.763
+20172018,N,3,Opponent,Stoppage,stoppage,627,31.42,8.538
+20172018,N,3,Opponent,Shot Attempt,shot-on-goal,593,40.54,8.075
+20172018,N,3,Hitting Team,Shot Attempt,shot-on-goal,591,41.68,8.047
+20172018,N,3,Hitting Team,Stoppage,stoppage,584,31.26,7.952
+20172018,N,3,Hitting Team,Physical Battle,hit,571,41.68,7.775
+20172018,N,3,Opponent,Physical Battle,hit,570,41.41,7.761
+20172018,N,3,Opponent,Shot Attempt,blocked-shot,333,41.28,4.534
+20172018,N,3,Hitting Team,Shot Attempt,blocked-shot,305,40.46,4.153
+20172018,N,3,Opponent,Shot Attempt,missed-shot,272,39.6,3.704
+20172018,N,3,Hitting Team,Shot Attempt,missed-shot,256,42.7,3.486
+20172018,N,3,Hitting Team,Possession Change,giveaway,207,41.01,2.819
+20172018,N,3,Opponent,Possession Change,giveaway,199,40.76,2.71
+20172018,N,3,Opponent,Possession Change,takeaway,173,44.49,2.356
+20172018,N,3,Hitting Team,Possession Change,takeaway,148,43.78,2.015
+20172018,N,3,Hitting Team,Stoppage,penalty,113,28.81,1.539
+20172018,N,3,Opponent,Stoppage,penalty,111,29.62,1.511
+20172018,N,3,Opponent,Goal,goal,77,38.78,1.048
+20172018,N,3,Hitting Team,Goal,goal,50,37.9,0.681
+20172018,N,3,Hitting Team,Stoppage,period-end,37,47.22,0.504
+20172018,N,3,Opponent,Stoppage,period-end,31,41.68,0.422
+20172018,N,3,Hitting Team,Other,game-end,6,18.33,0.082
+20172018,N,3,Opponent,Other,game-end,5,66.2,0.068
+20172018,N,4,Opponent,Stoppage,faceoff,699,40.0,9.606
+20172018,N,4,Hitting Team,Stoppage,faceoff,689,38.64,9.468
+20172018,N,4,Hitting Team,Shot Attempt,shot-on-goal,652,52.93,8.96
+20172018,N,4,Hitting Team,Physical Battle,hit,626,52.37,8.602
+20172018,N,4,Opponent,Shot Attempt,shot-on-goal,596,49.87,8.19
+20172018,N,4,Opponent,Stoppage,stoppage,587,43.19,8.067
+20172018,N,4,Opponent,Physical Battle,hit,574,55.61,7.888
+20172018,N,4,Hitting Team,Stoppage,stoppage,510,43.5,7.008
+20172018,N,4,Opponent,Shot Attempt,blocked-shot,360,48.41,4.947
+20172018,N,4,Hitting Team,Shot Attempt,blocked-shot,328,51.04,4.507
+20172018,N,4,Hitting Team,Shot Attempt,missed-shot,270,49.29,3.71
+20172018,N,4,Opponent,Shot Attempt,missed-shot,235,49.31,3.229
+20172018,N,4,Opponent,Possession Change,giveaway,218,53.42,2.996
+20172018,N,4,Hitting Team,Possession Change,giveaway,217,51.66,2.982
+20172018,N,4,Hitting Team,Possession Change,takeaway,182,51.54,2.501
+20172018,N,4,Opponent,Possession Change,takeaway,163,53.5,2.24
+20172018,N,4,Opponent,Stoppage,penalty,98,34.89,1.347
+20172018,N,4,Hitting Team,Stoppage,penalty,94,43.48,1.292
+20172018,N,4,Opponent,Goal,goal,56,44.61,0.77
+20172018,N,4,Hitting Team,Goal,goal,50,45.26,0.687
+20172018,N,4,Opponent,Stoppage,period-end,34,42.38,0.467
+20172018,N,4,Hitting Team,Stoppage,period-end,28,48.14,0.385
+20172018,N,4,Hitting Team,Other,game-end,6,64.33,0.082
+20172018,N,4,Opponent,Other,game-end,5,51.6,0.069
+20172018,O,1,Hitting Team,Physical Battle,hit,3190,14.85,12.904
+20172018,O,1,Hitting Team,Shot Attempt,shot-on-goal,2874,13.6,11.626
+20172018,O,1,Opponent,Physical Battle,hit,2606,16.51,10.542
+20172018,O,1,Opponent,Shot Attempt,shot-on-goal,2361,16.09,9.551
+20172018,O,1,Hitting Team,Shot Attempt,blocked-shot,1674,14.04,6.772
+20172018,O,1,Hitting Team,Shot Attempt,missed-shot,1407,13.94,5.692
+20172018,O,1,Opponent,Stoppage,stoppage,1371,12.4,5.546
+20172018,O,1,Hitting Team,Stoppage,stoppage,1268,13.04,5.129
+20172018,O,1,Opponent,Possession Change,giveaway,1108,14.68,4.482
+20172018,O,1,Opponent,Shot Attempt,blocked-shot,1035,18.19,4.187
+20172018,O,1,Hitting Team,Possession Change,takeaway,904,14.32,3.657
+20172018,O,1,Hitting Team,Possession Change,giveaway,880,18.38,3.56
+20172018,O,1,Opponent,Shot Attempt,missed-shot,879,17.0,3.556
+20172018,O,1,Opponent,Stoppage,faceoff,736,13.5,2.977
+20172018,O,1,Hitting Team,Stoppage,faceoff,717,13.66,2.9
+20172018,O,1,Opponent,Possession Change,takeaway,675,18.79,2.73
+20172018,O,1,Opponent,Stoppage,penalty,257,10.51,1.04
+20172018,O,1,Hitting Team,Stoppage,penalty,253,11.61,1.023
+20172018,O,1,Hitting Team,Goal,goal,165,14.02,0.667
+20172018,O,1,Opponent,Stoppage,period-end,127,11.69,0.514
+20172018,O,1,Opponent,Goal,goal,127,14.19,0.514
+20172018,O,1,Hitting Team,Stoppage,period-end,107,12.92,0.433
+20172018,O,2,Hitting Team,Shot Attempt,shot-on-goal,2390,27.13,9.743
+20172018,O,2,Opponent,Stoppage,faceoff,2231,16.57,9.095
+20172018,O,2,Hitting Team,Stoppage,faceoff,2131,16.55,8.687
+20172018,O,2,Hitting Team,Physical Battle,hit,2094,29.66,8.536
+20172018,O,2,Opponent,Physical Battle,hit,2079,30.06,8.475
+20172018,O,2,Opponent,Stoppage,stoppage,2015,20.9,8.214
+20172018,O,2,Opponent,Shot Attempt,shot-on-goal,1973,29.32,8.043
+20172018,O,2,Hitting Team,Stoppage,stoppage,1832,20.24,7.468
+20172018,O,2,Hitting Team,Shot Attempt,blocked-shot,1231,28.37,5.018
+20172018,O,2,Hitting Team,Shot Attempt,missed-shot,1025,27.71,4.179
+20172018,O,2,Opponent,Shot Attempt,blocked-shot,929,31.46,3.787
+20172018,O,2,Opponent,Shot Attempt,missed-shot,837,30.21,3.412
+20172018,O,2,Opponent,Possession Change,giveaway,675,30.75,2.752
+20172018,O,2,Hitting Team,Possession Change,giveaway,652,30.89,2.658
+20172018,O,2,Hitting Team,Possession Change,takeaway,567,30.8,2.311
+20172018,O,2,Opponent,Possession Change,takeaway,538,31.18,2.193
+20172018,O,2,Opponent,Stoppage,penalty,366,19.27,1.492
+20172018,O,2,Hitting Team,Stoppage,penalty,331,19.71,1.349
+20172018,O,2,Hitting Team,Goal,goal,236,19.73,0.962
+20172018,O,2,Opponent,Goal,goal,179,23.75,0.73
+20172018,O,2,Hitting Team,Stoppage,period-end,93,28.43,0.379
+20172018,O,2,Opponent,Stoppage,period-end,87,26.76,0.355
+20172018,O,2,Opponent,Other,game-end,26,11.96,0.106
+20172018,O,2,Hitting Team,Other,game-end,13,19.69,0.053
+20172018,O,3,Hitting Team,Stoppage,faceoff,2421,25.99,9.95
+20172018,O,3,Opponent,Stoppage,faceoff,2410,25.7,9.905
+20172018,O,3,Hitting Team,Shot Attempt,shot-on-goal,2213,39.06,9.095
+20172018,O,3,Hitting Team,Physical Battle,hit,1960,41.16,8.056
+20172018,O,3,Opponent,Stoppage,stoppage,1952,30.42,8.023
+20172018,O,3,Opponent,Shot Attempt,shot-on-goal,1940,41.74,7.973
+20172018,O,3,Opponent,Physical Battle,hit,1935,42.17,7.953
+20172018,O,3,Hitting Team,Stoppage,stoppage,1826,31.01,7.505
+20172018,O,3,Hitting Team,Shot Attempt,blocked-shot,1139,39.02,4.681
+20172018,O,3,Opponent,Shot Attempt,blocked-shot,1015,43.25,4.172
+20172018,O,3,Hitting Team,Shot Attempt,missed-shot,936,39.58,3.847
+20172018,O,3,Opponent,Shot Attempt,missed-shot,854,41.29,3.51
+20172018,O,3,Hitting Team,Possession Change,giveaway,750,43.48,3.082
+20172018,O,3,Opponent,Possession Change,giveaway,689,41.07,2.832
+20172018,O,3,Hitting Team,Possession Change,takeaway,544,42.66,2.236
+20172018,O,3,Opponent,Possession Change,takeaway,531,42.36,2.182
+20172018,O,3,Opponent,Stoppage,penalty,327,29.99,1.344
+20172018,O,3,Hitting Team,Stoppage,penalty,321,29.1,1.319
+20172018,O,3,Hitting Team,Goal,goal,200,35.44,0.822
+20172018,O,3,Opponent,Goal,goal,180,35.83,0.74
+20172018,O,3,Hitting Team,Stoppage,period-end,88,36.24,0.362
+20172018,O,3,Opponent,Stoppage,period-end,79,35.28,0.325
+20172018,O,3,Hitting Team,Other,game-end,16,32.69,0.066
+20172018,O,3,Opponent,Other,game-end,5,38.6,0.021
+20172018,O,4,Hitting Team,Shot Attempt,shot-on-goal,2193,50.28,9.073
+20172018,O,4,Opponent,Stoppage,faceoff,2178,38.91,9.011
+20172018,O,4,Hitting Team,Stoppage,faceoff,2146,38.51,8.878
+20172018,O,4,Opponent,Shot Attempt,shot-on-goal,2052,51.35,8.49
+20172018,O,4,Opponent,Stoppage,stoppage,2034,42.7,8.415
+20172018,O,4,Opponent,Physical Battle,hit,1969,52.14,8.146
+20172018,O,4,Hitting Team,Physical Battle,hit,1901,50.73,7.865
+20172018,O,4,Hitting Team,Stoppage,stoppage,1743,42.73,7.211
+20172018,O,4,Hitting Team,Shot Attempt,blocked-shot,1194,48.66,4.94
+20172018,O,4,Opponent,Shot Attempt,blocked-shot,1105,51.49,4.572
+20172018,O,4,Hitting Team,Shot Attempt,missed-shot,965,49.86,3.992
+20172018,O,4,Opponent,Shot Attempt,missed-shot,900,50.41,3.723
+20172018,O,4,Opponent,Possession Change,giveaway,724,52.33,2.995
+20172018,O,4,Hitting Team,Possession Change,giveaway,705,52.53,2.917
+20172018,O,4,Hitting Team,Possession Change,takeaway,558,53.15,2.309
+20172018,O,4,Opponent,Possession Change,takeaway,546,53.73,2.259
+20172018,O,4,Hitting Team,Stoppage,penalty,330,40.38,1.365
+20172018,O,4,Opponent,Stoppage,penalty,323,38.04,1.336
+20172018,O,4,Opponent,Goal,goal,203,47.96,0.84
+20172018,O,4,Hitting Team,Goal,goal,189,44.96,0.782
+20172018,O,4,Hitting Team,Stoppage,period-end,103,51.62,0.426
+20172018,O,4,Opponent,Stoppage,period-end,83,45.87,0.343
+20172018,O,4,Opponent,Other,game-end,14,44.29,0.058
+20172018,O,4,Hitting Team,Other,game-end,13,17.69,0.054

@@ -46,6 +46,36 @@ st.markdown("""
     .st-emotion-cache-18ni7ap {
         background-color: #CE0E2D !important;
     }
+
+    /* Widen selectboxes & popover menus to show full text without truncation */
+    div[data-baseweb="select"] {
+        min-width: 100% !important;
+    }
+    div[data-baseweb="select"] > div {
+        white-space: normal !important;
+        text-overflow: clip !important;
+        overflow: visible !important;
+        min-height: 42px !important;
+    }
+    div[data-baseweb="select"] span {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+    }
+    div[data-baseweb="popover"] {
+        min-width: max-content !important;
+        max-width: 95vw !important;
+    }
+    div[data-baseweb="popover"] ul[role="listbox"] {
+        min-width: max-content !important;
+        max-width: 95vw !important;
+    }
+    div[data-baseweb="popover"] li[role="option"] {
+        white-space: normal !important;
+        word-break: break-word !important;
+        line-height: 1.4 !important;
+        padding: 8px 12px !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 

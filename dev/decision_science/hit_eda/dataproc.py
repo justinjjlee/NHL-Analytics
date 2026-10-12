@@ -306,7 +306,7 @@ def run_spark_pipeline(config: HitEDAConfig, seasons_filter: list = None, save_d
 
     # Convert time string to seconds
     time_split = F.split(F.col("timeInPeriod"), ":")
-    period_sec = (F.col(time_split[0]).cast("int") * 60) + F.col(time_split[1]).cast("int")
+    period_sec = (time_split.getItem(0).cast("int") * 60) + time_split.getItem(1).cast("int")
     period_num = F.coalesce(F.col("periodDescriptor.number"), F.col("period"), F.lit(1))
     elapsed_sec = (period_num - 1) * 1200 + period_sec
 

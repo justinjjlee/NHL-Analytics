@@ -1,0 +1,379 @@
+season,from_step,to_step,hit_zone,source_node,target_node,count
+20232024,0,1,D,D,Shot Attempt,14197
+20232024,0,1,D,D,Physical Battle,7077
+20232024,0,1,D,D,Stoppage,4226
+20232024,0,1,D,D,Possession Change,4027
+20232024,0,1,D,D,Other,337
+20232024,0,1,D,D,Goal,54
+20232024,0,1,N,N,Shot Attempt,3201
+20232024,0,1,N,N,Physical Battle,2315
+20232024,0,1,N,N,Stoppage,1476
+20232024,0,1,N,N,Possession Change,1117
+20232024,0,1,N,N,Other,84
+20232024,0,1,N,N,Goal,11
+20232024,0,1,O,O,Shot Attempt,11797
+20232024,0,1,O,O,Physical Battle,7381
+20232024,0,1,O,O,Stoppage,4454
+20232024,0,1,O,O,Possession Change,3851
+20232024,0,1,O,O,Other,296
+20232024,0,1,O,O,Goal,45
+20232024,1,2,D,Shot Attempt,Shot Attempt,5666
+20232024,1,2,D,Shot Attempt,Stoppage,4221
+20232024,1,2,D,Stoppage,Stoppage,3414
+20232024,1,2,D,Physical Battle,Shot Attempt,3054
+20232024,1,2,D,Shot Attempt,Physical Battle,2557
+20232024,1,2,D,Possession Change,Shot Attempt,2086
+20232024,1,2,D,Physical Battle,Physical Battle,1911
+20232024,1,2,D,Shot Attempt,Possession Change,1578
+20232024,1,2,D,Physical Battle,Stoppage,1047
+20232024,1,2,D,Physical Battle,Possession Change,985
+20232024,1,2,D,Possession Change,Physical Battle,886
+20232024,1,2,D,Possession Change,Stoppage,516
+20232024,1,2,D,Stoppage,Goal,506
+20232024,1,2,D,Possession Change,Possession Change,484
+20232024,1,2,D,Other,Stoppage,236
+20232024,1,2,D,Shot Attempt,Other,144
+20232024,1,2,D,Other,Shot Attempt,82
+20232024,1,2,D,Physical Battle,Other,72
+20232024,1,2,D,Goal,Stoppage,54
+20232024,1,2,D,Stoppage,Other,52
+20232024,1,2,D,Possession Change,Other,38
+20232024,1,2,D,Shot Attempt,Goal,31
+20232024,1,2,D,Stoppage,Shot Attempt,20
+20232024,1,2,D,Possession Change,Goal,17
+20232024,1,2,D,Other,Physical Battle,16
+20232024,1,2,D,Physical Battle,Goal,8
+20232024,1,2,D,Stoppage,Physical Battle,8
+20232024,1,2,D,Stoppage,Possession Change,5
+20232024,1,2,D,Other,Possession Change,3
+20232024,1,2,N,Stoppage,Stoppage,1275
+20232024,1,2,N,Shot Attempt,Shot Attempt,1242
+20232024,1,2,N,Physical Battle,Shot Attempt,991
+20232024,1,2,N,Shot Attempt,Stoppage,964
+20232024,1,2,N,Physical Battle,Physical Battle,673
+20232024,1,2,N,Shot Attempt,Physical Battle,615
+20232024,1,2,N,Possession Change,Shot Attempt,524
+20232024,1,2,N,Physical Battle,Stoppage,344
+20232024,1,2,N,Shot Attempt,Possession Change,343
+20232024,1,2,N,Physical Battle,Possession Change,277
+20232024,1,2,N,Possession Change,Physical Battle,277
+20232024,1,2,N,Possession Change,Stoppage,150
+20232024,1,2,N,Possession Change,Possession Change,150
+20232024,1,2,N,Stoppage,Goal,104
+20232024,1,2,N,Other,Stoppage,58
+20232024,1,2,N,Shot Attempt,Other,30
+20232024,1,2,N,Physical Battle,Other,25
+20232024,1,2,N,Other,Shot Attempt,22
+20232024,1,2,N,Stoppage,Other,17
+20232024,1,2,N,Possession Change,Other,13
+20232024,1,2,N,Goal,Stoppage,11
+20232024,1,2,N,Shot Attempt,Goal,7
+20232024,1,2,N,Stoppage,Physical Battle,5
+20232024,1,2,N,Physical Battle,Goal,5
+20232024,1,2,N,Stoppage,Shot Attempt,4
+20232024,1,2,N,Other,Physical Battle,3
+20232024,1,2,N,Possession Change,Goal,3
+20232024,1,2,N,Other,Possession Change,1
+20232024,1,2,O,Shot Attempt,Shot Attempt,4489
+20232024,1,2,O,Stoppage,Stoppage,3668
+20232024,1,2,O,Shot Attempt,Stoppage,3480
+20232024,1,2,O,Physical Battle,Shot Attempt,3128
+20232024,1,2,O,Shot Attempt,Physical Battle,2383
+20232024,1,2,O,Physical Battle,Physical Battle,2141
+20232024,1,2,O,Possession Change,Shot Attempt,1970
+20232024,1,2,O,Shot Attempt,Possession Change,1270
+20232024,1,2,O,Physical Battle,Stoppage,1081
+20232024,1,2,O,Physical Battle,Possession Change,939
+20232024,1,2,O,Possession Change,Physical Battle,859
+20232024,1,2,O,Possession Change,Stoppage,508
+20232024,1,2,O,Possession Change,Possession Change,457
+20232024,1,2,O,Stoppage,Goal,406
+20232024,1,2,O,Other,Stoppage,211
+20232024,1,2,O,Shot Attempt,Other,147
+20232024,1,2,O,Physical Battle,Other,85
+20232024,1,2,O,Other,Shot Attempt,65
+20232024,1,2,O,Stoppage,Other,60
+20232024,1,2,O,Goal,Stoppage,45
+20232024,1,2,O,Possession Change,Other,43
+20232024,1,2,O,Shot Attempt,Goal,28
+20232024,1,2,O,Stoppage,Shot Attempt,24
+20232024,1,2,O,Possession Change,Goal,14
+20232024,1,2,O,Other,Physical Battle,11
+20232024,1,2,O,Stoppage,Physical Battle,10
+20232024,1,2,O,Physical Battle,Goal,7
+20232024,1,2,O,Other,Possession Change,7
+20232024,1,2,O,Stoppage,Possession Change,6
+20232024,1,2,O,Other,Goal,2
+20232024,1,11,D,Shot Attempt,Opponent,10186
+20232024,1,11,D,Shot Attempt,Hitting Team,4011
+20232024,1,11,D,Physical Battle,Opponent,3542
+20232024,1,11,D,Physical Battle,Hitting Team,3535
+20232024,1,11,D,Stoppage,Opponent,2128
+20232024,1,11,D,Stoppage,Hitting Team,2098
+20232024,1,11,D,Possession Change,Hitting Team,2040
+20232024,1,11,D,Possession Change,Opponent,1987
+20232024,1,11,D,Other,Hitting Team,187
+20232024,1,11,D,Other,Opponent,150
+20232024,1,11,D,Goal,Opponent,37
+20232024,1,11,D,Goal,Hitting Team,17
+20232024,1,11,N,Shot Attempt,Opponent,1715
+20232024,1,11,N,Shot Attempt,Hitting Team,1486
+20232024,1,11,N,Physical Battle,Opponent,1214
+20232024,1,11,N,Physical Battle,Hitting Team,1101
+20232024,1,11,N,Stoppage,Hitting Team,755
+20232024,1,11,N,Stoppage,Opponent,721
+20232024,1,11,N,Possession Change,Hitting Team,561
+20232024,1,11,N,Possession Change,Opponent,556
+20232024,1,11,N,Other,Hitting Team,45
+20232024,1,11,N,Other,Opponent,39
+20232024,1,11,N,Goal,Opponent,9
+20232024,1,11,N,Goal,Hitting Team,2
+20232024,1,11,O,Shot Attempt,Hitting Team,6961
+20232024,1,11,O,Shot Attempt,Opponent,4836
+20232024,1,11,O,Physical Battle,Hitting Team,4117
+20232024,1,11,O,Physical Battle,Opponent,3264
+20232024,1,11,O,Stoppage,Hitting Team,2235
+20232024,1,11,O,Stoppage,Opponent,2219
+20232024,1,11,O,Possession Change,Opponent,1976
+20232024,1,11,O,Possession Change,Hitting Team,1875
+20232024,1,11,O,Other,Opponent,156
+20232024,1,11,O,Other,Hitting Team,140
+20232024,1,11,O,Goal,Hitting Team,23
+20232024,1,11,O,Goal,Opponent,22
+20232024,2,3,D,Stoppage,Stoppage,6089
+20232024,2,3,D,Shot Attempt,Shot Attempt,4325
+20232024,2,3,D,Shot Attempt,Stoppage,3341
+20232024,2,3,D,Physical Battle,Shot Attempt,2335
+20232024,2,3,D,Shot Attempt,Physical Battle,1996
+20232024,2,3,D,Stoppage,Shot Attempt,1598
+20232024,2,3,D,Possession Change,Shot Attempt,1566
+20232024,2,3,D,Physical Battle,Physical Battle,1445
+20232024,2,3,D,Shot Attempt,Possession Change,1113
+20232024,2,3,D,Physical Battle,Stoppage,829
+20232024,2,3,D,Physical Battle,Possession Change,694
+20232024,2,3,D,Possession Change,Physical Battle,680
+20232024,2,3,D,Stoppage,Physical Battle,658
+20232024,2,3,D,Stoppage,Goal,529
+20232024,2,3,D,Possession Change,Stoppage,385
+20232024,2,3,D,Possession Change,Possession Change,380
+20232024,2,3,D,Stoppage,Possession Change,366
+20232024,2,3,D,Other,Stoppage,198
+20232024,2,3,D,Goal,Shot Attempt,181
+20232024,2,3,D,Goal,Stoppage,166
+20232024,2,3,D,Goal,Physical Battle,150
+20232024,2,3,D,Shot Attempt,Other,111
+20232024,2,3,D,Stoppage,Other,70
+20232024,2,3,D,Physical Battle,Other,66
+20232024,2,3,D,Goal,Possession Change,60
+20232024,2,3,D,Other,Shot Attempt,42
+20232024,2,3,D,Possession Change,Other,35
+20232024,2,3,D,Shot Attempt,Goal,22
+20232024,2,3,D,Other,Physical Battle,12
+20232024,2,3,D,Possession Change,Goal,9
+20232024,2,3,D,Physical Battle,Goal,8
+20232024,2,3,D,Goal,Other,4
+20232024,2,3,D,Other,Possession Change,4
+20232024,2,3,D,Other,Goal,1
+20232024,2,3,D,Goal,Goal,1
+20232024,2,3,N,Stoppage,Stoppage,1634
+20232024,2,3,N,Shot Attempt,Shot Attempt,1094
+20232024,2,3,N,Shot Attempt,Stoppage,825
+20232024,2,3,N,Physical Battle,Shot Attempt,677
+20232024,2,3,N,Shot Attempt,Physical Battle,552
+20232024,2,3,N,Stoppage,Shot Attempt,549
+20232024,2,3,N,Physical Battle,Physical Battle,409
+20232024,2,3,N,Possession Change,Shot Attempt,403
+20232024,2,3,N,Stoppage,Physical Battle,287
+20232024,2,3,N,Shot Attempt,Possession Change,275
+20232024,2,3,N,Physical Battle,Stoppage,254
+20232024,2,3,N,Physical Battle,Possession Change,214
+20232024,2,3,N,Possession Change,Physical Battle,163
+20232024,2,3,N,Stoppage,Possession Change,149
+20232024,2,3,N,Stoppage,Goal,117
+20232024,2,3,N,Possession Change,Stoppage,105
+20232024,2,3,N,Possession Change,Possession Change,80
+20232024,2,3,N,Other,Stoppage,53
+20232024,2,3,N,Goal,Shot Attempt,40
+20232024,2,3,N,Goal,Physical Battle,35
+20232024,2,3,N,Goal,Stoppage,31
+20232024,2,3,N,Shot Attempt,Other,31
+20232024,2,3,N,Physical Battle,Other,19
+20232024,2,3,N,Stoppage,Other,18
+20232024,2,3,N,Possession Change,Other,18
+20232024,2,3,N,Goal,Possession Change,13
+20232024,2,3,N,Other,Shot Attempt,10
+20232024,2,3,N,Shot Attempt,Goal,6
+20232024,2,3,N,Other,Physical Battle,5
+20232024,2,3,N,Possession Change,Goal,2
+20232024,2,3,N,Other,Goal,1
+20232024,2,3,O,Stoppage,Stoppage,5407
+20232024,2,3,O,Shot Attempt,Shot Attempt,3813
+20232024,2,3,O,Shot Attempt,Stoppage,2891
+20232024,2,3,O,Physical Battle,Shot Attempt,2276
+20232024,2,3,O,Shot Attempt,Physical Battle,1831
+20232024,2,3,O,Stoppage,Shot Attempt,1758
+20232024,2,3,O,Physical Battle,Physical Battle,1486
+20232024,2,3,O,Possession Change,Shot Attempt,1338
+20232024,2,3,O,Shot Attempt,Possession Change,990
+20232024,2,3,O,Physical Battle,Stoppage,853
+20232024,2,3,O,Stoppage,Physical Battle,739
+20232024,2,3,O,Physical Battle,Possession Change,721
+20232024,2,3,O,Possession Change,Physical Battle,591
+20232024,2,3,O,Stoppage,Goal,429
+20232024,2,3,O,Stoppage,Possession Change,402
+20232024,2,3,O,Possession Change,Stoppage,373
+20232024,2,3,O,Possession Change,Possession Change,333
+20232024,2,3,O,Other,Stoppage,208
+20232024,2,3,O,Goal,Shot Attempt,135
+20232024,2,3,O,Goal,Stoppage,134
+20232024,2,3,O,Goal,Physical Battle,130
+20232024,2,3,O,Shot Attempt,Other,121
+20232024,2,3,O,Stoppage,Other,83
+20232024,2,3,O,Physical Battle,Other,64
+20232024,2,3,O,Other,Shot Attempt,60
+20232024,2,3,O,Goal,Possession Change,52
+20232024,2,3,O,Possession Change,Other,33
+20232024,2,3,O,Shot Attempt,Goal,30
+20232024,2,3,O,Possession Change,Goal,11
+20232024,2,3,O,Other,Physical Battle,11
+20232024,2,3,O,Goal,Other,6
+20232024,2,3,O,Physical Battle,Goal,4
+20232024,2,3,O,Other,Possession Change,2
+20232024,2,3,O,Other,Goal,1
+20232024,2,3,O,Other,Other,1
+20232024,2,22,D,Shot Attempt,Opponent,6718
+20232024,2,22,D,Stoppage,Hitting Team,4788
+20232024,2,22,D,Stoppage,Opponent,4700
+20232024,2,22,D,Shot Attempt,Hitting Team,4190
+20232024,2,22,D,Physical Battle,Hitting Team,2773
+20232024,2,22,D,Physical Battle,Opponent,2605
+20232024,2,22,D,Possession Change,Hitting Team,1538
+20232024,2,22,D,Possession Change,Opponent,1517
+20232024,2,22,D,Goal,Opponent,373
+20232024,2,22,D,Goal,Hitting Team,189
+20232024,2,22,D,Other,Hitting Team,168
+20232024,2,22,D,Other,Opponent,138
+20232024,2,22,N,Stoppage,Opponent,1462
+20232024,2,22,N,Shot Attempt,Opponent,1393
+20232024,2,22,N,Shot Attempt,Hitting Team,1390
+20232024,2,22,N,Stoppage,Hitting Team,1340
+20232024,2,22,N,Physical Battle,Opponent,825
+20232024,2,22,N,Physical Battle,Hitting Team,748
+20232024,2,22,N,Possession Change,Hitting Team,406
+20232024,2,22,N,Possession Change,Opponent,365
+20232024,2,22,N,Goal,Opponent,64
+20232024,2,22,N,Goal,Hitting Team,55
+20232024,2,22,N,Other,Opponent,45
+20232024,2,22,N,Other,Hitting Team,40
+20232024,2,22,O,Shot Attempt,Hitting Team,5473
+20232024,2,22,O,Stoppage,Opponent,4555
+20232024,2,22,O,Stoppage,Hitting Team,4438
+20232024,2,22,O,Shot Attempt,Opponent,4203
+20232024,2,22,O,Physical Battle,Hitting Team,2785
+20232024,2,22,O,Physical Battle,Opponent,2619
+20232024,2,22,O,Possession Change,Hitting Team,1356
+20232024,2,22,O,Possession Change,Opponent,1323
+20232024,2,22,O,Goal,Hitting Team,250
+20232024,2,22,O,Goal,Opponent,207
+20232024,2,22,O,Other,Opponent,185
+20232024,2,22,O,Other,Hitting Team,150
+20232024,3,4,D,Stoppage,Stoppage,5868
+20232024,3,4,D,Shot Attempt,Shot Attempt,4035
+20232024,3,4,D,Shot Attempt,Stoppage,3029
+20232024,3,4,D,Stoppage,Shot Attempt,2730
+20232024,3,4,D,Physical Battle,Shot Attempt,2186
+20232024,3,4,D,Shot Attempt,Physical Battle,1845
+20232024,3,4,D,Possession Change,Shot Attempt,1310
+20232024,3,4,D,Physical Battle,Physical Battle,1267
+20232024,3,4,D,Stoppage,Physical Battle,1016
+20232024,3,4,D,Shot Attempt,Possession Change,999
+20232024,3,4,D,Physical Battle,Stoppage,720
+20232024,3,4,D,Physical Battle,Possession Change,698
+20232024,3,4,D,Stoppage,Possession Change,626
+20232024,3,4,D,Possession Change,Physical Battle,568
+20232024,3,4,D,Stoppage,Goal,450
+20232024,3,4,D,Possession Change,Stoppage,394
+20232024,3,4,D,Possession Change,Possession Change,312
+20232024,3,4,D,Other,Stoppage,175
+20232024,3,4,D,Goal,Shot Attempt,174
+20232024,3,4,D,Goal,Physical Battle,161
+20232024,3,4,D,Goal,Stoppage,148
+20232024,3,4,D,Shot Attempt,Other,118
+20232024,3,4,D,Stoppage,Other,112
+20232024,3,4,D,Goal,Possession Change,79
+20232024,3,4,D,Other,Shot Attempt,60
+20232024,3,4,D,Physical Battle,Other,58
+20232024,3,4,D,Possession Change,Other,29
+20232024,3,4,D,Shot Attempt,Goal,21
+20232024,3,4,D,Physical Battle,Goal,11
+20232024,3,4,D,Other,Physical Battle,8
+20232024,3,4,D,Other,Possession Change,6
+20232024,3,4,D,Goal,Other,6
+20232024,3,4,D,Possession Change,Goal,4
+20232024,3,4,D,Goal,Goal,2
+20232024,3,4,D,Other,Goal,1
+20232024,3,4,N,Stoppage,Stoppage,1569
+20232024,3,4,N,Shot Attempt,Shot Attempt,1093
+20232024,3,4,N,Shot Attempt,Stoppage,841
+20232024,3,4,N,Stoppage,Shot Attempt,704
+20232024,3,4,N,Physical Battle,Shot Attempt,623
+20232024,3,4,N,Shot Attempt,Physical Battle,516
+20232024,3,4,N,Physical Battle,Physical Battle,414
+20232024,3,4,N,Possession Change,Shot Attempt,355
+20232024,3,4,N,Shot Attempt,Possession Change,283
+20232024,3,4,N,Stoppage,Physical Battle,256
+20232024,3,4,N,Physical Battle,Stoppage,212
+20232024,3,4,N,Physical Battle,Possession Change,185
+20232024,3,4,N,Stoppage,Possession Change,181
+20232024,3,4,N,Possession Change,Physical Battle,177
+20232024,3,4,N,Stoppage,Goal,111
+20232024,3,4,N,Possession Change,Stoppage,96
+20232024,3,4,N,Possession Change,Possession Change,91
+20232024,3,4,N,Other,Stoppage,60
+20232024,3,4,N,Goal,Shot Attempt,47
+20232024,3,4,N,Goal,Physical Battle,35
+20232024,3,4,N,Shot Attempt,Other,35
+20232024,3,4,N,Goal,Stoppage,34
+20232024,3,4,N,Stoppage,Other,23
+20232024,3,4,N,Other,Shot Attempt,19
+20232024,3,4,N,Physical Battle,Other,13
+20232024,3,4,N,Goal,Possession Change,10
+20232024,3,4,N,Possession Change,Other,7
+20232024,3,4,N,Possession Change,Goal,5
+20232024,3,4,N,Shot Attempt,Goal,5
+20232024,3,4,N,Physical Battle,Goal,4
+20232024,3,4,N,Other,Physical Battle,1
+20232024,3,4,O,Stoppage,Stoppage,5347
+20232024,3,4,O,Shot Attempt,Shot Attempt,3701
+20232024,3,4,O,Shot Attempt,Stoppage,2802
+20232024,3,4,O,Stoppage,Shot Attempt,2370
+20232024,3,4,O,Physical Battle,Shot Attempt,2059
+20232024,3,4,O,Shot Attempt,Physical Battle,1773
+20232024,3,4,O,Physical Battle,Physical Battle,1341
+20232024,3,4,O,Possession Change,Shot Attempt,1248
+20232024,3,4,O,Shot Attempt,Possession Change,968
+20232024,3,4,O,Stoppage,Physical Battle,963
+20232024,3,4,O,Physical Battle,Stoppage,752
+20232024,3,4,O,Physical Battle,Possession Change,577
+20232024,3,4,O,Possession Change,Physical Battle,553
+20232024,3,4,O,Stoppage,Possession Change,539
+20232024,3,4,O,Stoppage,Goal,416
+20232024,3,4,O,Possession Change,Stoppage,337
+20232024,3,4,O,Possession Change,Possession Change,332
+20232024,3,4,O,Other,Stoppage,197
+20232024,3,4,O,Goal,Shot Attempt,154
+20232024,3,4,O,Goal,Stoppage,132
+20232024,3,4,O,Goal,Physical Battle,123
+20232024,3,4,O,Shot Attempt,Other,113
+20232024,3,4,O,Stoppage,Other,62
+20232024,3,4,O,Goal,Possession Change,61
+20232024,3,4,O,Other,Shot Attempt,55
+20232024,3,4,O,Physical Battle,Other,53
+20232024,3,4,O,Possession Change,Other,25
+20232024,3,4,O,Shot Attempt,Goal,23
+20232024,3,4,O,Other,Physical Battle,9
+20232024,3,4,O,Physical Battle,Goal,6
+20232024,3,4,O,Other,Possession Change,5
+20232024,3,4,O,Goal,Other,5
+20232024,3,4,O,Possession Change,Goal,5
+20232024,3,4,O,Other,Other,1

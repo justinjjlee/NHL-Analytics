@@ -1,0 +1,4 @@
+season,zoneCode,total_hits,recovery_pct,opponent_possession_pct,avg_delta_sec,median_delta_sec,sog_for,sog_against,goals_for,goals_against,zone_exits,share_of_all_hits_pct,sog_for_per_100,sog_against_per_100,net_sog_per_100,goals_for_per_100,goals_against_per_100,net_goals_per_100,zone_exit_pct
+20222023,D,30092,40.11,59.89,15.1,11.0,2099.0,4480.0,79.0,156.0,23959.0,46.33,6.98,14.89,-7.91,0.263,0.518,-0.256,79.62
+20222023,N,7754,46.52,53.48,16.44,13.0,678.0,810.0,20.0,29.0,0.0,11.94,8.74,10.45,-1.7,0.258,0.374,-0.116,
+20222023,O,27099,54.59,45.41,15.19,11.0,3056.0,2354.0,99.0,85.0,0.0,41.73,11.28,8.69,2.59,0.365,0.314,0.052,

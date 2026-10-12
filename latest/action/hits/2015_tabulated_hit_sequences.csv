@@ -1,0 +1,283 @@
+season,hit_zone,event_step,event_owner,event_category,event_type,count,avg_delta_sec,pct_of_step
+20152016,D,1,Opponent,Shot Attempt,shot-on-goal,4043,12.74,14.698
+20152016,D,1,Opponent,Physical Battle,hit,3350,15.35,12.178
+20152016,D,1,Hitting Team,Physical Battle,hit,3057,17.18,11.113
+20152016,D,1,Opponent,Shot Attempt,blocked-shot,2628,12.43,9.554
+20152016,D,1,Opponent,Shot Attempt,missed-shot,2097,12.58,7.623
+20152016,D,1,Hitting Team,Shot Attempt,shot-on-goal,1935,18.55,7.034
+20152016,D,1,Hitting Team,Stoppage,stoppage,1271,15.42,4.62
+20152016,D,1,Opponent,Stoppage,stoppage,1257,14.87,4.57
+20152016,D,1,Hitting Team,Possession Change,giveaway,1062,16.53,3.861
+20152016,D,1,Hitting Team,Shot Attempt,blocked-shot,915,21.55,3.326
+20152016,D,1,Opponent,Possession Change,giveaway,892,18.33,3.243
+20152016,D,1,Hitting Team,Possession Change,takeaway,825,16.94,2.999
+20152016,D,1,Opponent,Stoppage,faceoff,799,15.1,2.905
+20152016,D,1,Hitting Team,Stoppage,faceoff,786,13.91,2.857
+20152016,D,1,Hitting Team,Shot Attempt,missed-shot,753,20.21,2.737
+20152016,D,1,Opponent,Possession Change,takeaway,726,17.37,2.639
+20152016,D,1,Hitting Team,Stoppage,penalty,278,12.83,1.011
+20152016,D,1,Opponent,Stoppage,penalty,251,12.81,0.912
+20152016,D,1,Opponent,Goal,goal,241,12.23,0.876
+20152016,D,1,Opponent,Stoppage,period-end,135,12.92,0.491
+20152016,D,1,Hitting Team,Stoppage,period-end,118,12.69,0.429
+20152016,D,1,Hitting Team,Goal,goal,89,19.37,0.324
+20152016,D,2,Opponent,Shot Attempt,shot-on-goal,2908,26.24,10.654
+20152016,D,2,Hitting Team,Physical Battle,hit,2465,30.73,9.031
+20152016,D,2,Opponent,Stoppage,faceoff,2359,18.42,8.642
+20152016,D,2,Opponent,Physical Battle,hit,2355,31.43,8.628
+20152016,D,2,Hitting Team,Stoppage,faceoff,2340,19.48,8.573
+20152016,D,2,Hitting Team,Stoppage,stoppage,2127,21.61,7.792
+20152016,D,2,Opponent,Stoppage,stoppage,1981,21.45,7.257
+20152016,D,2,Hitting Team,Shot Attempt,shot-on-goal,1944,30.93,7.122
+20152016,D,2,Opponent,Shot Attempt,blocked-shot,1628,27.52,5.964
+20152016,D,2,Opponent,Shot Attempt,missed-shot,1262,28.13,4.623
+20152016,D,2,Hitting Team,Shot Attempt,blocked-shot,1017,33.58,3.726
+20152016,D,2,Hitting Team,Shot Attempt,missed-shot,808,33.97,2.96
+20152016,D,2,Hitting Team,Possession Change,giveaway,739,30.21,2.707
+20152016,D,2,Opponent,Possession Change,giveaway,715,32.35,2.619
+20152016,D,2,Opponent,Possession Change,takeaway,577,31.11,2.114
+20152016,D,2,Hitting Team,Possession Change,takeaway,562,32.51,2.059
+20152016,D,2,Hitting Team,Stoppage,penalty,402,20.77,1.473
+20152016,D,2,Opponent,Stoppage,penalty,369,20.37,1.352
+20152016,D,2,Opponent,Goal,goal,295,21.92,1.081
+20152016,D,2,Hitting Team,Goal,goal,181,24.5,0.663
+20152016,D,2,Opponent,Stoppage,period-end,119,28.89,0.436
+20152016,D,2,Hitting Team,Stoppage,period-end,106,26.46,0.388
+20152016,D,2,Hitting Team,Other,game-end,20,11.65,0.073
+20152016,D,2,Opponent,Other,game-end,17,13.53,0.062
+20152016,D,3,Hitting Team,Stoppage,faceoff,2817,27.23,10.404
+20152016,D,3,Opponent,Stoppage,faceoff,2761,27.87,10.197
+20152016,D,3,Opponent,Shot Attempt,shot-on-goal,2510,40.71,9.27
+20152016,D,3,Hitting Team,Physical Battle,hit,2264,43.38,8.362
+20152016,D,3,Hitting Team,Stoppage,stoppage,2213,30.51,8.173
+20152016,D,3,Opponent,Stoppage,stoppage,2178,31.41,8.044
+20152016,D,3,Opponent,Physical Battle,hit,2132,43.17,7.874
+20152016,D,3,Hitting Team,Shot Attempt,shot-on-goal,2009,43.18,7.42
+20152016,D,3,Opponent,Shot Attempt,blocked-shot,1291,40.67,4.768
+20152016,D,3,Hitting Team,Shot Attempt,blocked-shot,1066,46.42,3.937
+20152016,D,3,Opponent,Shot Attempt,missed-shot,1059,42.47,3.911
+20152016,D,3,Hitting Team,Shot Attempt,missed-shot,824,45.61,3.043
+20152016,D,3,Opponent,Possession Change,giveaway,706,44.51,2.607
+20152016,D,3,Hitting Team,Possession Change,giveaway,635,42.79,2.345
+20152016,D,3,Hitting Team,Possession Change,takeaway,547,44.2,2.02
+20152016,D,3,Opponent,Possession Change,takeaway,521,43.72,1.924
+20152016,D,3,Hitting Team,Stoppage,penalty,441,30.92,1.629
+20152016,D,3,Opponent,Stoppage,penalty,415,32.03,1.533
+20152016,D,3,Opponent,Goal,goal,224,34.83,0.827
+20152016,D,3,Hitting Team,Goal,goal,179,39.07,0.661
+20152016,D,3,Opponent,Stoppage,period-end,127,41.17,0.469
+20152016,D,3,Hitting Team,Stoppage,period-end,120,42.48,0.443
+20152016,D,3,Hitting Team,Other,game-end,19,34.68,0.07
+20152016,D,3,Opponent,Other,game-end,18,39.28,0.066
+20152016,D,4,Opponent,Stoppage,faceoff,2522,40.49,9.4
+20152016,D,4,Hitting Team,Stoppage,faceoff,2507,41.01,9.344
+20152016,D,4,Opponent,Shot Attempt,shot-on-goal,2408,50.5,8.975
+20152016,D,4,Opponent,Physical Battle,hit,2299,54.73,8.569
+20152016,D,4,Hitting Team,Physical Battle,hit,2266,54.48,8.446
+20152016,D,4,Hitting Team,Shot Attempt,shot-on-goal,2133,53.47,7.95
+20152016,D,4,Hitting Team,Stoppage,stoppage,2118,44.85,7.894
+20152016,D,4,Opponent,Stoppage,stoppage,2100,43.74,7.827
+20152016,D,4,Opponent,Shot Attempt,blocked-shot,1369,49.73,5.103
+20152016,D,4,Hitting Team,Shot Attempt,blocked-shot,1122,54.6,4.182
+20152016,D,4,Opponent,Shot Attempt,missed-shot,1087,50.57,4.052
+20152016,D,4,Hitting Team,Shot Attempt,missed-shot,967,55.69,3.604
+20152016,D,4,Hitting Team,Possession Change,giveaway,722,50.65,2.691
+20152016,D,4,Opponent,Possession Change,giveaway,713,53.76,2.658
+20152016,D,4,Hitting Team,Possession Change,takeaway,551,55.87,2.054
+20152016,D,4,Opponent,Possession Change,takeaway,530,56.04,1.975
+20152016,D,4,Opponent,Stoppage,penalty,378,40.05,1.409
+20152016,D,4,Hitting Team,Stoppage,penalty,363,40.55,1.353
+20152016,D,4,Opponent,Goal,goal,240,49.4,0.895
+20152016,D,4,Hitting Team,Goal,goal,191,49.72,0.712
+20152016,D,4,Hitting Team,Stoppage,period-end,104,46.19,0.388
+20152016,D,4,Opponent,Stoppage,period-end,97,52.3,0.362
+20152016,D,4,Opponent,Other,game-end,27,47.67,0.101
+20152016,D,4,Hitting Team,Other,game-end,15,34.33,0.056
+20152016,N,1,Opponent,Physical Battle,hit,1098,14.82,14.217
+20152016,N,1,Hitting Team,Physical Battle,hit,944,17.49,12.223
+20152016,N,1,Opponent,Shot Attempt,shot-on-goal,773,15.36,10.009
+20152016,N,1,Hitting Team,Shot Attempt,shot-on-goal,688,17.48,8.908
+20152016,N,1,Opponent,Stoppage,stoppage,486,11.84,6.293
+20152016,N,1,Hitting Team,Stoppage,stoppage,430,11.5,5.568
+20152016,N,1,Opponent,Shot Attempt,blocked-shot,420,18.0,5.438
+20152016,N,1,Hitting Team,Shot Attempt,blocked-shot,346,18.79,4.48
+20152016,N,1,Opponent,Shot Attempt,missed-shot,340,16.7,4.402
+20152016,N,1,Hitting Team,Possession Change,giveaway,333,17.45,4.312
+20152016,N,1,Hitting Team,Shot Attempt,missed-shot,304,18.73,3.936
+20152016,N,1,Hitting Team,Stoppage,faceoff,284,13.61,3.677
+20152016,N,1,Opponent,Stoppage,faceoff,276,12.8,3.574
+20152016,N,1,Opponent,Possession Change,giveaway,240,18.9,3.108
+20152016,N,1,Opponent,Possession Change,takeaway,221,18.77,2.862
+20152016,N,1,Hitting Team,Possession Change,takeaway,206,19.1,2.667
+20152016,N,1,Hitting Team,Stoppage,penalty,86,11.1,1.114
+20152016,N,1,Opponent,Stoppage,penalty,82,12.28,1.062
+20152016,N,1,Hitting Team,Stoppage,period-end,50,13.1,0.647
+20152016,N,1,Opponent,Stoppage,period-end,44,14.8,0.57
+20152016,N,1,Opponent,Goal,goal,38,14.87,0.492
+20152016,N,1,Hitting Team,Goal,goal,34,16.47,0.44
+20152016,N,2,Opponent,Stoppage,faceoff,733,17.14,9.583
+20152016,N,2,Hitting Team,Physical Battle,hit,717,30.46,9.374
+20152016,N,2,Opponent,Physical Battle,hit,711,31.9,9.295
+20152016,N,2,Hitting Team,Stoppage,faceoff,697,17.12,9.112
+20152016,N,2,Opponent,Shot Attempt,shot-on-goal,631,29.79,8.249
+20152016,N,2,Hitting Team,Shot Attempt,shot-on-goal,621,30.53,8.119
+20152016,N,2,Opponent,Stoppage,stoppage,619,21.97,8.093
+20152016,N,2,Hitting Team,Stoppage,stoppage,605,21.05,7.91
+20152016,N,2,Opponent,Shot Attempt,blocked-shot,360,29.48,4.706
+20152016,N,2,Hitting Team,Shot Attempt,blocked-shot,286,31.06,3.739
+20152016,N,2,Opponent,Shot Attempt,missed-shot,268,31.6,3.504
+20152016,N,2,Hitting Team,Shot Attempt,missed-shot,236,31.53,3.085
+20152016,N,2,Opponent,Possession Change,giveaway,217,35.12,2.837
+20152016,N,2,Hitting Team,Possession Change,giveaway,205,31.86,2.68
+20152016,N,2,Hitting Team,Possession Change,takeaway,151,33.58,1.974
+20152016,N,2,Opponent,Possession Change,takeaway,138,31.84,1.804
+20152016,N,2,Hitting Team,Stoppage,penalty,136,18.97,1.778
+20152016,N,2,Opponent,Stoppage,penalty,119,17.27,1.556
+20152016,N,2,Hitting Team,Goal,goal,60,25.7,0.784
+20152016,N,2,Opponent,Goal,goal,57,23.3,0.745
+20152016,N,2,Hitting Team,Stoppage,period-end,37,27.24,0.484
+20152016,N,2,Opponent,Stoppage,period-end,29,24.28,0.379
+20152016,N,2,Hitting Team,Other,game-end,8,12.13,0.105
+20152016,N,2,Opponent,Other,game-end,8,28.0,0.105
+20152016,N,3,Hitting Team,Stoppage,faceoff,824,28.4,10.876
+20152016,N,3,Opponent,Stoppage,faceoff,718,28.88,9.477
+20152016,N,3,Hitting Team,Physical Battle,hit,665,42.98,8.778
+20152016,N,3,Opponent,Stoppage,stoppage,649,30.1,8.567
+20152016,N,3,Opponent,Physical Battle,hit,647,42.74,8.54
+20152016,N,3,Opponent,Shot Attempt,shot-on-goal,616,40.01,8.131
+20152016,N,3,Hitting Team,Shot Attempt,shot-on-goal,594,43.94,7.841
+20152016,N,3,Hitting Team,Stoppage,stoppage,578,32.37,7.629
+20152016,N,3,Opponent,Shot Attempt,blocked-shot,335,42.23,4.422
+20152016,N,3,Hitting Team,Shot Attempt,blocked-shot,330,43.75,4.356
+20152016,N,3,Opponent,Shot Attempt,missed-shot,265,42.56,3.498
+20152016,N,3,Hitting Team,Shot Attempt,missed-shot,258,43.24,3.405
+20152016,N,3,Opponent,Possession Change,giveaway,215,43.76,2.838
+20152016,N,3,Hitting Team,Possession Change,giveaway,191,43.71,2.521
+20152016,N,3,Hitting Team,Possession Change,takeaway,163,42.51,2.152
+20152016,N,3,Opponent,Possession Change,takeaway,129,44.02,1.703
+20152016,N,3,Opponent,Stoppage,penalty,119,29.13,1.571
+20152016,N,3,Hitting Team,Stoppage,penalty,112,31.96,1.478
+20152016,N,3,Opponent,Goal,goal,62,35.6,0.818
+20152016,N,3,Hitting Team,Goal,goal,49,43.27,0.647
+20152016,N,3,Hitting Team,Stoppage,period-end,27,32.26,0.356
+20152016,N,3,Opponent,Stoppage,period-end,19,45.0,0.251
+20152016,N,3,Opponent,Other,game-end,7,41.86,0.092
+20152016,N,3,Hitting Team,Other,game-end,4,17.5,0.053
+20152016,N,4,Opponent,Stoppage,faceoff,745,39.39,9.903
+20152016,N,4,Opponent,Shot Attempt,shot-on-goal,680,51.75,9.039
+20152016,N,4,Hitting Team,Physical Battle,hit,657,52.8,8.733
+20152016,N,4,Hitting Team,Stoppage,faceoff,646,41.35,8.587
+20152016,N,4,Hitting Team,Shot Attempt,shot-on-goal,641,52.9,8.521
+20152016,N,4,Opponent,Physical Battle,hit,638,51.99,8.481
+20152016,N,4,Hitting Team,Stoppage,stoppage,592,43.3,7.869
+20152016,N,4,Opponent,Stoppage,stoppage,587,44.38,7.803
+20152016,N,4,Hitting Team,Shot Attempt,blocked-shot,354,51.72,4.706
+20152016,N,4,Opponent,Shot Attempt,blocked-shot,333,51.24,4.426
+20152016,N,4,Opponent,Shot Attempt,missed-shot,318,50.54,4.227
+20152016,N,4,Hitting Team,Shot Attempt,missed-shot,282,54.54,3.749
+20152016,N,4,Hitting Team,Possession Change,giveaway,198,54.68,2.632
+20152016,N,4,Opponent,Possession Change,giveaway,181,49.81,2.406
+20152016,N,4,Hitting Team,Possession Change,takeaway,165,53.67,2.193
+20152016,N,4,Opponent,Possession Change,takeaway,123,53.37,1.635
+20152016,N,4,Opponent,Stoppage,penalty,113,43.82,1.502
+20152016,N,4,Hitting Team,Stoppage,penalty,109,43.54,1.449
+20152016,N,4,Opponent,Goal,goal,57,48.28,0.758
+20152016,N,4,Hitting Team,Goal,goal,46,51.78,0.611
+20152016,N,4,Opponent,Stoppage,period-end,34,45.47,0.452
+20152016,N,4,Hitting Team,Stoppage,period-end,20,50.25,0.266
+20152016,N,4,Opponent,Other,game-end,3,38.33,0.04
+20152016,N,4,Hitting Team,Other,game-end,1,15.0,0.013
+20152016,O,1,Hitting Team,Physical Battle,hit,3832,15.42,13.881
+20152016,O,1,Opponent,Physical Battle,hit,3260,17.06,11.809
+20152016,O,1,Hitting Team,Shot Attempt,shot-on-goal,3209,14.8,11.624
+20152016,O,1,Opponent,Shot Attempt,shot-on-goal,2479,16.64,8.98
+20152016,O,1,Hitting Team,Shot Attempt,blocked-shot,1752,14.69,6.346
+20152016,O,1,Hitting Team,Shot Attempt,missed-shot,1531,14.56,5.546
+20152016,O,1,Opponent,Stoppage,stoppage,1520,13.22,5.506
+20152016,O,1,Hitting Team,Stoppage,stoppage,1332,12.37,4.825
+20152016,O,1,Opponent,Shot Attempt,blocked-shot,1205,18.42,4.365
+20152016,O,1,Opponent,Possession Change,giveaway,1067,14.65,3.865
+20152016,O,1,Hitting Team,Stoppage,faceoff,983,13.9,3.561
+20152016,O,1,Opponent,Shot Attempt,missed-shot,966,17.09,3.499
+20152016,O,1,Opponent,Stoppage,faceoff,964,14.24,3.492
+20152016,O,1,Hitting Team,Possession Change,giveaway,926,18.38,3.354
+20152016,O,1,Hitting Team,Possession Change,takeaway,869,14.47,3.148
+20152016,O,1,Opponent,Possession Change,takeaway,625,19.03,2.264
+20152016,O,1,Opponent,Stoppage,penalty,265,13.26,0.96
+20152016,O,1,Hitting Team,Stoppage,penalty,256,13.56,0.927
+20152016,O,1,Hitting Team,Goal,goal,150,15.15,0.543
+20152016,O,1,Opponent,Stoppage,period-end,147,12.63,0.532
+20152016,O,1,Opponent,Goal,goal,136,16.13,0.493
+20152016,O,1,Hitting Team,Stoppage,period-end,133,11.11,0.482
+20152016,O,2,Hitting Team,Shot Attempt,shot-on-goal,2562,27.56,9.359
+20152016,O,2,Hitting Team,Physical Battle,hit,2523,30.07,9.216
+20152016,O,2,Opponent,Stoppage,faceoff,2492,18.36,9.103
+20152016,O,2,Opponent,Physical Battle,hit,2481,30.66,9.063
+20152016,O,2,Hitting Team,Stoppage,faceoff,2455,17.7,8.968
+20152016,O,2,Opponent,Stoppage,stoppage,2262,20.72,8.263
+20152016,O,2,Opponent,Shot Attempt,shot-on-goal,2178,30.51,7.956
+20152016,O,2,Hitting Team,Stoppage,stoppage,1898,20.76,6.933
+20152016,O,2,Hitting Team,Shot Attempt,blocked-shot,1335,29.11,4.877
+20152016,O,2,Hitting Team,Shot Attempt,missed-shot,1082,28.32,3.953
+20152016,O,2,Opponent,Shot Attempt,blocked-shot,1067,31.12,3.898
+20152016,O,2,Opponent,Shot Attempt,missed-shot,938,32.63,3.426
+20152016,O,2,Opponent,Possession Change,giveaway,749,30.4,2.736
+20152016,O,2,Hitting Team,Possession Change,giveaway,702,31.92,2.564
+20152016,O,2,Hitting Team,Possession Change,takeaway,575,32.62,2.1
+20152016,O,2,Opponent,Possession Change,takeaway,548,33.14,2.002
+20152016,O,2,Opponent,Stoppage,penalty,432,20.05,1.578
+20152016,O,2,Hitting Team,Stoppage,penalty,403,19.96,1.472
+20152016,O,2,Hitting Team,Goal,goal,221,22.91,0.807
+20152016,O,2,Opponent,Goal,goal,199,27.18,0.727
+20152016,O,2,Opponent,Stoppage,period-end,125,27.3,0.457
+20152016,O,2,Hitting Team,Stoppage,period-end,106,24.43,0.387
+20152016,O,2,Hitting Team,Other,game-end,22,13.05,0.08
+20152016,O,2,Opponent,Other,game-end,20,18.8,0.073
+20152016,O,3,Hitting Team,Stoppage,faceoff,2658,27.47,9.797
+20152016,O,3,Opponent,Stoppage,faceoff,2569,28.27,9.469
+20152016,O,3,Hitting Team,Physical Battle,hit,2446,42.18,9.016
+20152016,O,3,Opponent,Stoppage,stoppage,2406,31.03,8.868
+20152016,O,3,Hitting Team,Shot Attempt,shot-on-goal,2389,40.01,8.805
+20152016,O,3,Opponent,Physical Battle,hit,2257,42.89,8.319
+20152016,O,3,Opponent,Shot Attempt,shot-on-goal,2115,42.58,7.796
+20152016,O,3,Hitting Team,Stoppage,stoppage,2033,32.22,7.493
+20152016,O,3,Hitting Team,Shot Attempt,blocked-shot,1267,39.16,4.67
+20152016,O,3,Opponent,Shot Attempt,blocked-shot,1146,42.14,4.224
+20152016,O,3,Hitting Team,Shot Attempt,missed-shot,1038,41.12,3.826
+20152016,O,3,Opponent,Shot Attempt,missed-shot,876,43.26,3.229
+20152016,O,3,Hitting Team,Possession Change,giveaway,725,43.7,2.672
+20152016,O,3,Opponent,Possession Change,giveaway,696,44.06,2.565
+20152016,O,3,Opponent,Possession Change,takeaway,569,45.75,2.097
+20152016,O,3,Hitting Team,Possession Change,takeaway,495,44.48,1.824
+20152016,O,3,Opponent,Stoppage,penalty,418,31.39,1.541
+20152016,O,3,Hitting Team,Stoppage,penalty,389,33.06,1.434
+20152016,O,3,Hitting Team,Goal,goal,209,34.96,0.77
+20152016,O,3,Opponent,Goal,goal,191,36.5,0.704
+20152016,O,3,Opponent,Stoppage,period-end,118,41.21,0.435
+20152016,O,3,Hitting Team,Stoppage,period-end,94,38.15,0.346
+20152016,O,3,Hitting Team,Other,game-end,19,19.37,0.07
+20152016,O,3,Opponent,Other,game-end,8,37.88,0.029
+20152016,O,4,Opponent,Stoppage,faceoff,2555,40.53,9.49
+20152016,O,4,Hitting Team,Stoppage,faceoff,2486,40.7,9.234
+20152016,O,4,Hitting Team,Physical Battle,hit,2365,52.21,8.784
+20152016,O,4,Hitting Team,Shot Attempt,shot-on-goal,2364,51.64,8.781
+20152016,O,4,Opponent,Physical Battle,hit,2294,52.93,8.521
+20152016,O,4,Opponent,Stoppage,stoppage,2259,43.57,8.391
+20152016,O,4,Opponent,Shot Attempt,shot-on-goal,2207,52.04,8.197
+20152016,O,4,Hitting Team,Stoppage,stoppage,1969,44.03,7.313
+20152016,O,4,Hitting Team,Shot Attempt,blocked-shot,1290,52.21,4.791
+20152016,O,4,Opponent,Shot Attempt,blocked-shot,1140,52.74,4.234
+20152016,O,4,Hitting Team,Shot Attempt,missed-shot,1081,51.4,4.015
+20152016,O,4,Opponent,Shot Attempt,missed-shot,966,51.91,3.588
+20152016,O,4,Hitting Team,Possession Change,giveaway,753,55.04,2.797
+20152016,O,4,Opponent,Possession Change,giveaway,677,54.27,2.515
+20152016,O,4,Opponent,Possession Change,takeaway,532,55.91,1.976
+20152016,O,4,Hitting Team,Possession Change,takeaway,508,52.59,1.887
+20152016,O,4,Hitting Team,Stoppage,penalty,402,41.25,1.493
+20152016,O,4,Opponent,Stoppage,penalty,394,39.43,1.463
+20152016,O,4,Opponent,Goal,goal,220,49.92,0.817
+20152016,O,4,Hitting Team,Goal,goal,200,44.84,0.743
+20152016,O,4,Hitting Team,Stoppage,period-end,126,48.52,0.468
+20152016,O,4,Opponent,Stoppage,period-end,107,53.12,0.397
+20152016,O,4,Opponent,Other,game-end,16,52.38,0.059
+20152016,O,4,Hitting Team,Other,game-end,12,38.83,0.045

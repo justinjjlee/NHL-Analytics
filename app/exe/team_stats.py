@@ -28,12 +28,31 @@ def format_odds_value(odds_val):
         
     return f"+{formatted}" if is_positive else f"-{formatted}"
 
+try:
+    from exe.data_loader import load_scoreboard_box_and_odds as load_hf_scoreboard
+except ImportError:
+    try:
+        from data_loader import load_scoreboard_box_and_odds as load_hf_scoreboard
+    except ImportError:
+        load_hf_scoreboard = None
+
 @st.cache_data(max_entries=1, ttl=3600)
 def load_box_scores_and_odds():
     """
-    Load all box score data and betting odds data from the latest/box directory
-    Returns dataframes with the scores, odds, and a list of available dates
+    Load all box score data and betting odds data.
+    Primary: Hugging Face datasets (data/games.parquet and data/odds.parquet).
+    Backup: Local latest/box directory and GitHub repository.
+    Returns dataframes with the scores, odds, and a list of available dates.
     """
+    if load_hf_scoreboard is not None:
+        try:
+            box_df, odds_df, available_dates = load_hf_scoreboard()
+            if box_df is not None and len(available_dates) > 0:
+                return box_df, odds_df, available_dates
+        except Exception:
+            pass
+
+    # Backup: Load directly from local latest/box/ files
     try:
         # Use absolute paths for box score files
         box_dir = get_data_path('latest/box')

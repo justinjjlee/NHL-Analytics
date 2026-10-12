@@ -28,7 +28,8 @@ scripts_to_run = [
     "data_proc_gameSummary.py",
     "data_pull_plays.py",
     "data_pull_lines.py",
-    "data_pull_player.py"
+    "data_pull_player.py",
+    "data_proc_hits.py"
 ]
 
 successes = 0

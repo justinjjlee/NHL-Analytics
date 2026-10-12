@@ -41,6 +41,10 @@ jobs:
       if: always()
       run: python src/data/apinhle/data_pull_plays.py
 
+    - name: Run NHL Physical Hits and Sequence Analytics
+      if: always()
+      run: python src/data/apinhle/data_proc_hits.py --incremental
+
     - name: Configure Git
       run: |
         git config --global user.name 'github-actions[bot]'
@@ -50,7 +54,10 @@ jobs:
       run: |
         git add latest/box/*.csv
         git add latest/team/season/*.csv
-        git add latest/play/*.csv 
+        git add latest/play/*.csv
+        git add latest/action/hits/*.csv
+        git add app/data/hit_eda/*.csv
+        git add dev/decision_science/impact_of_hits/data/*.csv
         if git diff --staged --quiet; then
           echo "No changes to commit"
           exit 0
@@ -62,3 +69,10 @@ jobs:
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Sync updated game records and statistics to Hugging Face Dataset
+      if: ${{ secrets.HF_TOKEN != '' }}
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        python deploy/huggingface/sync_dataset.py --repo "jjerlee/nhl-analytics" --target box

@@ -7,6 +7,14 @@ import streamlit as st
 from streamlit_folium import st_folium
 
 
+try:
+    from exe.data_loader import load_map_dataset
+except ImportError:
+    try:
+        from data_loader import load_map_dataset
+    except ImportError:
+        load_map_dataset = None
+
 def get_data_path(rel_path):
     """Helper function to get correct data paths regardless of run location"""
     # Start with the current file location
@@ -18,7 +26,15 @@ def get_data_path(rel_path):
 
 @st.cache_data(max_entries=1, ttl=3600)
 def load_map_data():
-    """Load the necessary data for the map visualization with proper path handling"""
+    """Load the necessary data for the map visualization with GitHub link fallback"""
+    if load_map_dataset is not None:
+        try:
+            df = load_map_dataset()
+            if df is not None and not df.empty:
+                return df
+        except Exception:
+            pass
+
     try:
         # Use absolute paths for data files
         teamlist_locations_path = get_data_path('teamlist_locations_distance_meters.csv')

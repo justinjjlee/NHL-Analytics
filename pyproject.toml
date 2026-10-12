@@ -27,4 +27,6 @@ dependencies = [
     "databricks-connect>=15.0.0, <16.0.0",
     "gitpython>=3.2.0",
     "urllib3>=2.8.0",
+    "huggingface_hub>=0.23.0",
+    "pyarrow>=15.0.0",
 ]

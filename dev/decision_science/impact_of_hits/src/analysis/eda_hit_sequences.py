@@ -10,18 +10,24 @@ import duckdb
 import pandas as pd
 import numpy as np
 
-def run_pipeline():
+import sys
+
+def run_pipeline(seasons=None):
     # Resolve repository root
     current_dir = os.path.dirname(os.path.abspath(__file__))
     repo_root = os.path.abspath(os.path.join(current_dir, "../../../../.."))
-    output_dir = os.path.join(repo_root, "dev/decision_science/impact_of_hits/data")
-    os.makedirs(output_dir, exist_ok=True)
+    if repo_root not in sys.path:
+        sys.path.insert(0, repo_root)
 
-    play_2024 = os.path.join(repo_root, "latest/play/2024_playbyplay.csv")
-    play_2025 = os.path.join(repo_root, "latest/play/2025_playbyplay.csv")
+    from src.data.apinhle.function.procs_hits import HitAnalyticsProcessor
 
-    print("Connecting to DuckDB and ingesting 2024 & 2025 play-by-play files...")
-    con = duckdb.connect()
+    print("Running Hit Analytics Pipeline (Decade Review & Action Hits)...")
+    processor = HitAnalyticsProcessor(
+        play_dir=os.path.join(repo_root, "latest/play"),
+        output_dir=os.path.join(repo_root, "latest/action/hits")
+    )
+    processor.run(seasons=seasons, sync_legacy=True)
+    return
 
     # Load 2024 & 2025 regular season play-by-play data
     con.execute(f"""

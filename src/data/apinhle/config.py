@@ -12,6 +12,13 @@ if IS_DATABRICKS:
     BETTING_DIR = "/Volumes/nhl-databricks/data/betting"
     # Player metrics: Use dedicated volume if present, otherwise team volume
     PLAYER_DIR = "/Volumes/nhl-databricks/data/player" if os.path.exists("/Volumes/nhl-databricks/data/player") else TEAM_DIR
+    # Hits metrics: Use dedicated action volume if present, otherwise fallback to play volume
+    if os.path.exists("/Volumes/nhl-databricks/data/action"):
+        ACTION_HITS_DIR = "/Volumes/nhl-databricks/data/action/hits"
+    elif os.path.exists("/Volumes/nhl-databricks/data/play"):
+        ACTION_HITS_DIR = "/Volumes/nhl-databricks/data/play/action_hits"
+    else:
+        ACTION_HITS_DIR = "/Volumes/nhl-databricks/data/action/hits"
 else:
     # Local GitHub Actions Paths (relative to project root)
     BOX_DIR = "./latest/box"
@@ -19,12 +26,27 @@ else:
     PLAY_DIR = "./latest/play"
     BETTING_DIR = "./latest/box" # betting originally saved to box locally
     PLAYER_DIR = "./latest/player"
+    ACTION_HITS_DIR = "./latest/action/hits"
 
 # Function to get the path config so we don't repeat logic
 def get_box_dir(): return BOX_DIR
 def get_team_dir(): return TEAM_DIR
 def get_play_dir(): return PLAY_DIR
 def get_betting_dir(): return BETTING_DIR
+def get_action_hits_dir():
+    if IS_DATABRICKS:
+        if os.path.exists("/Volumes/nhl-databricks/data/action"):
+            path = "/Volumes/nhl-databricks/data/action/hits"
+        elif os.path.exists("/Volumes/nhl-databricks/data/play"):
+            path = "/Volumes/nhl-databricks/data/play/action_hits"
+        else:
+            path = "/Volumes/nhl-databricks/data/action/hits"
+        try:
+            os.makedirs(path, exist_ok=True)
+        except Exception:
+            pass
+        return path
+    return ACTION_HITS_DIR
 def get_player_dir():
     if IS_DATABRICKS:
         if os.path.exists("/Volumes/nhl-databricks/data/player"):
@@ -74,10 +96,16 @@ def get_current_season_year():
 
 # Directory initialization
 if not IS_DATABRICKS:
-    for d in [BOX_DIR, TEAM_DIR, os.path.join(TEAM_DIR, 'season'), PLAY_DIR, PLAYER_DIR]:
+    for d in [BOX_DIR, TEAM_DIR, os.path.join(TEAM_DIR, 'season'), PLAY_DIR, PLAYER_DIR, ACTION_HITS_DIR]:
         os.makedirs(d, exist_ok=True)
 else:
-    # Ensure nested subdirectories inside existing volumes
     if os.path.exists(TEAM_DIR):
         os.makedirs(os.path.join(TEAM_DIR, 'season'), exist_ok=True)
+    try:
+        if os.path.exists("/Volumes/nhl-databricks/data/action"):
+            os.makedirs("/Volumes/nhl-databricks/data/action/hits", exist_ok=True)
+        elif os.path.exists("/Volumes/nhl-databricks/data/play"):
+            os.makedirs("/Volumes/nhl-databricks/data/play/action_hits", exist_ok=True)
+    except Exception:
+        pass
 

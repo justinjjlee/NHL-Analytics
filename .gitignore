@@ -26,3 +26,11 @@ dev/decision_science/impact_of_hits/data/B_samples.npy
 .agents/
 .claude/
 
+# Hugging Face Dataset local staging directory
+deploy/huggingface/staging_data/
+deploy/huggingface/staging_sync/
+deploy/huggingface/staging_*/
+
+# Unused package init files
+deploy/**/__init__.py
+deploy/__init__.py
