@@ -55,8 +55,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Sync updated betting odds to Hugging Face Dataset
-      if: ${{ secrets.HF_TOKEN != '' }}
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
+        if [ -z "$HF_TOKEN" ]; then
+          echo "HF_TOKEN secret not configured, skipping Hugging Face dataset sync."
+          exit 0
+        fi
         python deploy/huggingface/sync_dataset.py --repo "jjerlee/nhl-analytics" --target odds

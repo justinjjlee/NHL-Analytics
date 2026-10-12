@@ -31,8 +31,11 @@ jobs:
           pip install huggingface_hub
 
       - name: Deploy to Hugging Face Space
-        if: ${{ secrets.HF_TOKEN != '' }}
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "HF_TOKEN secret not configured, skipping deployment."
+            exit 0
+          fi
           python deploy/huggingface/spaces_rinklytics.py --repo "jjerlee/rinklytics" --no-wait
