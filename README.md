@@ -1,102 +1,147 @@
 <h1>
 <a href="https://medium.com/@thinkingjustin">
-<img src="app/assets/img_main.jpeg" width="80px" align="left" style="margin-right: 10px;", alt="nhla-logo"> 
-</a> Rinklytics: Sports Data Analytics using NHL Data
+<img src="app/assets/img_main.jpeg" width="80px" align="left" style="margin-right: 15px;" alt="nhla-logo"> 
+</a> Rinklytics: Sports Data Analytics & Public Lakehouse
 </h1>
-
-If you find my work to be useful, please star this repository!
 
 [![justinjjlee - NHL-Analytics](https://img.shields.io/static/v1?label=justinjjlee&message=NHL-Analytics&color=blue&logo=github)](https://github.com/justinjjlee/NHL-Analytics "Go to GitHub repo")
 [![stars - NHL-Analytics](https://img.shields.io/github/stars/justinjjlee/NHL-Analytics?style=social)](https://github.com/justinjjlee/NHL-Analytics)
 [![forks - NHL-Analytics](https://img.shields.io/github/forks/justinjjlee/NHL-Analytics?style=social)](https://github.com/justinjjlee/NHL-Analytics)
 [![Medium - NHL-Analytics](https://img.shields.io/badge/Medium-Read-green?logo=Medium)](https://medium.com/@thinkingjustin)
-<!-- 
-[![Streamlit - NHL-Analytics](https://img.shields.io/badge/Streamlit-Explore-FF4B4B?style=flat&logo=streamlit&logoColor=white/)](https://share.streamlit.io/user/justinjjlee)
--->
 [![Hugging Face - Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/jjerlee/rinklytics)
 [![Hugging Face - Datasets](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue)](https://huggingface.co/datasets/jjerlee/nhl-analytics)
+[![Databricks](https://img.shields.io/badge/Databricks-Cloud-FF3621?logo=databricks&logoColor=white)](https://databricks.com)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](deploy/local/README.md)
+[![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://www.python.org)
 
-This is a collection of methods for collecting, compiling, cleaning, analyzing, modeling, and predicting team and player (skaters and goalies) performances and strategies. This repository does not claim ownership of the data and reflects the perspectives of the organizations or entities mentioned. All original code (including generic and model algorithms) may be used freely, provided proper citation and credit are given to this repository.
+**NHL Analytics (Rinklytics)** is an end-to-end sports analytics platform and public open-data lakehouse. It collects, cleans, models, and visualizes National Hockey League (NHL) data, uncovering tactical behaviors, physical momentum, market odds efficiencies, and player career trajectories.
 
-## Analysis & Insights
-All of my analyses and deep-dive insights are written and presented in **[my Medium blog](https://medium.com/@thinkingjustin)**.
+All deep-dive articles and analytical methodologies are published on **[Medium (@thinkingjustin)](https://medium.com/@thinkingjustin)**.
 
-## Goals & Capabilities
-I use publicly available data to build up the analytics capabilities and insights generated beyond the headline statics easily measurable. 
+---
 
- * Capture complex strategical, behavioral, and performance trends asked by fans of the sport
- * Integrate different data sources (e.g. college hockey roaster and building up performance trend beyond players' professional career)
+## 🏛️ System Scope & Architecture
 
-### Core Capabilities
+The platform operates across four coordinated environments:
 
-| Capability Area | Description |
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        NHL API & Data Sources                          │
+└──────────────────────────────────┬─────────────────────────────────────┘
+                                   │ Daily Automated Pulls (09:00 & 20:00 UTC)
+                                   ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                   GitHub Actions Automation & CI/CD                    │
+│   • Scrapes raw box scores, odds, player logs, and play-by-play events │
+│   • Commits incremental updates to latest/ repository files            │
+│   • Deduplicates & synchronizes typed Parquet panels to Hugging Face   │
+└──────────────────┬──────────────────────────────────┬──────────────────┘
+                   │                                  │
+                   ▼                                  ▼
+┌──────────────────────────────────────┐  ┌──────────────────────────────┐
+│  🤗 Hugging Face Public Datasets     │  │  ☁️ Databricks & Cloud Lake  │
+│  (jjerlee/nhl-analytics)             │  │  • Large-scale out-of-core   │
+│  • 14 seasons (2013–present)         │  │    data engineering (DuckDB) │
+│  • Snappy-compressed Parquet tables  │  │  • Continuous-time SSM       │
+│  • Games, Odds, Plays, Hits, Players │  │    Kalman Filter estimation  │
+└──────────────────┬───────────────────┘  └──────────────────────────────┘
+                   │
+                   ▼ Fast Parquet Streaming
+┌────────────────────────────────────────────────────────────────────────┐
+│                   🤗 Rinklytics Web Application                        │
+│   • Live Production Space: https://huggingface.co/spaces/jjerlee/rinklytics │
+│   • Local Testing Container: Docker on port 1901 (http://localhost:1901)│
+│   • Visualizes Game Scores, Betting Odds, Hit Momentum, & Shot Maps    │
+└────────────────────────────────────────────────────────────────────────┘
+```
+
+### Core Components
+
+| Domain | Platform / Endpoint | Description |
+| :--- | :--- | :--- |
+| **Interactive Dashboard** | [**Hugging Face Spaces (`jjerlee/rinklytics`)**](https://huggingface.co/spaces/jjerlee/rinklytics) | Live Streamlit application streaming longitudinal data directly from Hugging Face Parquet tables with zero cold-start database overhead. |
+| **Public Data Lakehouse** | [**Hugging Face Datasets (`jjerlee/nhl-analytics`)**](https://huggingface.co/datasets/jjerlee/nhl-analytics) | Clean, typed multi-season panel datasets (2013–2026+) covering game box scores, US/CAN closing betting odds, player game appearances, play-by-play events, and physical hit sequences. |
+| **Big Data Engineering** | **Databricks Workspaces** | Distributed compute and ML pipelines for processing multi-million play-by-play sequences, training PyTorch state-space models, and out-of-core analytics via DuckDB. |
+| **Pipeline Automation** | **GitHub Actions Workflows** | Daily automated cron jobs that harvest NHL API endpoints, commit data to GitHub, and trigger atomic Parquet syncs to Hugging Face. |
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Tools & Technologies |
 | :--- | :--- |
-| **Databricks Production** | Orchestrates and automates heavy data engineering workloads and ML pipelines in the cloud. |
-| **LLM Agent Skillsets** | Integrates AI-driven workflows for automated insights, data extraction, and deep analysis across various analytical domains. |
-| **Team & Player Analysis** | Provides comprehensive evaluation of team KPIs, player performance metrics, draft history, and college prospects. |
-| **Sports Betting Analytics** | Analyzes game-level odds and models team performance using Elo ratings for predictive betting insights. |
-| **[HuggingFace Space - Application](https://huggingface.co/spaces/jjerlee/rinklytics)** | Live interactive web dashboard visualizes data, tracks trends, and presents predictive models to users. |
-| **[HuggingFace Dataset - Public Lakehouse](https://huggingface.co/datasets/jjerlee/nhl-analytics)** | Public multi-season longitudinal Parquet panels (games, box scores, odds, play-by-play, hits, player season metrics) updated daily via GitHub Actions. |
+| **Languages** | Python 3.13, Julia |
+| **Cloud & Deployment** | Databricks, Hugging Face Spaces & Datasets, GitHub Actions, Docker |
+| **Data Engine & Storage** | DuckDB, Pandas, PyArrow, Parquet (Snappy), Unity Catalog |
+| **Machine Learning & Modeling** | PyTorch (State-Space Models & Kalman Filtering), SciPy, Scikit-learn |
+| **Visualization & App** | Streamlit, Plotly Express & Graph Objects, Folium, Matplotlib, Seaborn |
 
-I hope works saved in this repository allows for replications, explorations, and advancing new measurements and insights.
+---
 
-<details>
-<summary><strong><em>Applied Tools</em></strong></summary>
+## 🚀 Running Locally
 
-Capabilities I use for data collection, processing, and analysis to derive insights, data visualizations, and predictive models.
+### 1. Dashboard Application
 
-| Capability | Tools used |
-| --- | --- |
-| General |  <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/python.svg" width="32"/> <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/julia.svg" width="32"/> |
-| Data Collection & Processing | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/duckdb.svg" width="32"/> |
-| ML Model Build | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/pytorch.svg" width="32"/> <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/scikitlearn.svg" width="32"/>|
-| Interactive Data Visualization | <img src="https://github.com/simple-icons/simple-icons/blob/develop/icons/tableau.svg" width="32"/> |
+You can run the Rinklytics interactive dashboard either directly with `uv` or inside an isolated container:
 
-</details>
+#### Option A: Native Execution
+```bash
+# Install dependencies
+uv pip install -r src/requirements/requirements.txt
 
-<details>
-<summary><strong><em>Data Pull & Process Automation with Github Actions</em></strong></summary>
+# Run the Streamlit app
+uv run streamlit run app/app.py
+```
+Access the application at 👉 **`http://localhost:8501`**
 
-The **Github Actions** is being used to update the data saved in this repository folder `./latest/`. The data collection is run every day.
+#### Option B: Isolated Docker Container (Port 1901)
+To run in an isolated local container mirroring production:
+```bash
+# Build and run container
+docker build -t rinklytics:local -f deploy/local/Dockerfile .
+docker run -d --name rinklytics-local -p 1901:1901 rinklytics:local
+```
+Access the container at 👉 **`http://localhost:1901`**  
+*(See [**`deploy/local/README.md`**](deploy/local/README.md) for full Docker and Docker Compose instructions).*
 
- * Team-level rank
- * Game-level stats
- * Game-level betting odds
- * Play-by-play records
+---
 
-Required package version used is saved in `./src/requirement` through `.sh` command. Note that the python environment function pull is based on where the script is located, where as data file reference is based on Github repository head directory.
+### 2. Data Pipelines & Hugging Face Dataset Sync
 
-</details>
+Data extraction and panel dataset generation can be triggered locally:
 
-<details>
-<summary><strong><em>Running Impact of Hits Pipeline Locally</em></strong></summary>
+```bash
+# Pull today's game box scores
+uv run python src/data/apinhle/data_pull_box.py
 
-The `impact_of_hits` decision science workflow supports running entirely offline (without Databricks) using the `uv` Python environment and native Pandas logic. To run the full momentum modeling and visualization pipeline out-of-core:
+# Pull today's closing betting odds
+uv run python src/data/apinhle/data_pull_box_odds.py
 
-1. **Navigate to the module directory:**
-   ```bash
-   cd dev/decision_science/impact_of_hits
-   ```
+# Sync updated box scores to the Hugging Face Dataset
+uv run python deploy/huggingface/sync_dataset.py --target box
 
-2. **Run Data Preparation (Extract Tensors):**
-   Converts the raw `latest/` CSV drops into a cleaned PyTorch Tensor format (`df_master.parquet`).
-   ```bash
-   PYTHONPATH=. uv run python notebooks/01_data_preparation.py
-   ```
+# Synchronize all domains with automatic deduplication
+uv run python deploy/huggingface/sync_dataset.py --target all
+```
+*(See [**`deploy/huggingface/README.md`**](deploy/huggingface/README.md) for detailed sync engine architecture and parameters).*
 
-3. **Run Model Estimation (Kalman Filter):**
-   Ensure `ENV = "LOCAL"` is set at the top of the script. This will train the continuous-time State-Space Model on the prepared data. *Note: You can adjust `n_epochs` and `n_boot` in the script to speed up testing.*
-   ```bash
-   PYTHONPATH=. uv run python notebooks/02_model_estimation.py
-   ```
+---
 
-4. **Generate Insights & Visualizations:**
-   Extracts the smoothed latent states, calculates the Expected Goals (xG) surface, and generates the final charts in the `data/` directory.
-   ```bash
-   PYTHONPATH=. uv run python notebooks/03_insights_and_visualizations.py
-   ```
+## 📚 Documentation & Deep-Dive Guides
 
-</details>
+For in-depth specifications, architectural details, and research notebooks, refer to the dedicated guides:
+
+| Guide / Resource | Description |
+| :--- | :--- |
+| [**`deploy/README.md`**](deploy/README.md) | Overview of deployment environments and container architecture. |
+| [**`deploy/huggingface/README.md`**](deploy/huggingface/README.md) | Complete guide to Hugging Face Spaces & Datasets synchronization engines and CI/CD triggers. |
+| [**`deploy/huggingface/huggingface_dataset.md`**](deploy/huggingface/huggingface_dataset.md) | Official Dataset Card, column dictionaries, schemas, and PyArrow/Polars loading examples. |
+| [**`deploy/local/README.md`**](deploy/local/README.md) | Docker & Docker Compose setup for local container testing on port 1901. |
+| [**`dev/decision_science/impact_of_hits/`**](dev/decision_science/impact_of_hits/) | Continuous-time State-Space Model and Kalman filter modeling the momentum effect of physical hits. |
+| [**`dev/player/player_draft/`**](dev/player/player_draft/) | Amateur draft lifecycle analysis, survival modeling, and NCAA prospect progression. |
+| [**`dev/team_success/`**](dev/team_success/) | Pythagorean expectation, Corsi/Fenwick metrics, and Elo rating betting efficiency. |
+
+---
 
 ```
    ,

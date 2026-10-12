@@ -106,14 +106,13 @@ BLOCKING_SHOTS = st.Page(page="views/blocking_shots.py", title=t("nav_blocking_s
 HIT_IMPACT = st.Page(page="views/hit_impact.py", title=t("nav_hit_impact"), url_path="hit-impact")
 SKATER_STATS = st.Page(page="views/skater_stats.py", title=t("nav_skater_stats"), url_path="skater-stats")
 GOALIE_STATS = st.Page(page="views/goalie_stats.py", title=t("nav_goalie_stats"), url_path="goalie-stats")
-ABOUT = st.Page(page="views/about.py", title=t("nav_about"), url_path="about")
 
 # Add logo at the top
 #st.image(get_asset_path("img_main.jpeg"), width=120)
 
 # Create navigation
 pages = {
-    t("nav_bienvenue"): [HOME, ABOUT],
+    t("nav_bienvenue"): [HOME],
     t("nav_team"): [SCOREBOARD, TEAM_MAP, TEAM_SEASON_STATS],
     t("nav_skaters"): [SKATER_STATS, GOALIE_STATS, SKATERS],
     t("nav_action"): [BLOCKING_SHOTS, HIT_IMPACT],

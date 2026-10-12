@@ -121,19 +121,30 @@ def create_eda_first_event_chart(df_events, selected_zone="All"):
     (Step +1) by initiation ownership (Hitting Team vs. Opponent).
     """
     if df_events is None or df_events.empty:
-        return go.Figure()
+        fig = go.Figure()
+        fig.add_annotation(text="No event frequency data available", showarrow=False, font=dict(color="#94a3b8"))
+        fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", height=280)
+        return fig
 
     norm_zone = normalize_zone(selected_zone)
     if norm_zone != "All":
         filtered = df_events[df_events["zoneCode"] == norm_zone].copy()
     else:
-        filtered = df_events.groupby(["next_category", "next_owner_rel"]).agg(
-            event_count=("event_count", "sum"),
-            avg_delta_sec=("avg_delta_sec", "mean"),
-            median_delta_sec=("median_delta_sec", "mean")
-        ).reset_index()
-        total_hits = filtered["event_count"].sum()
-        filtered["pct_of_zone"] = (filtered["event_count"] / total_hits) * 100
+        filtered = df_events.copy()
+
+    # Consolidate by next_category and next_owner_rel across multi-season records
+    if not filtered.empty:
+        grouped = filtered.groupby(["next_category", "next_owner_rel"], as_index=False).apply(
+            lambda g: pd.Series({
+                "event_count": int(g["event_count"].sum()),
+                "avg_delta_sec": round(float(np.average(g["avg_delta_sec"], weights=g["event_count"])), 1) if g["event_count"].sum() > 0 else 10.0,
+                "median_delta_sec": round(float(np.average(g["median_delta_sec"], weights=g["event_count"])), 1) if g["event_count"].sum() > 0 else 10.0,
+            }),
+            include_groups=False
+        )
+        tot_zone_hits = grouped["event_count"].sum()
+        grouped["pct_of_zone"] = (grouped["event_count"] / tot_zone_hits * 100.0).round(2) if tot_zone_hits > 0 else 0.0
+        filtered = grouped
 
     cat_map = {
         "Shot Attempt": t("hit_cat_shot"),
@@ -173,13 +184,25 @@ def create_eda_first_event_chart(df_events, selected_zone="All"):
         custom_data=["pct_of_zone", "median_delta_sec", "avg_delta_sec"]
     )
 
-    fig.update_traces(
-        hovertemplate="<b>%{y}</b> (%{data.name})<br>" +
-                      "Event Count: %{x:,}<br>" +
-                      "Share of Zone: %{customdata[0]:.1f}%<br>" +
-                      "Median Latency: %{customdata[1]:.1f}s<br>" +
-                      "Mean Latency: %{customdata[2]:.1f}s<extra></extra>"
-    )
+    cur_lang = st.session_state.get("lang", "EN")
+    if cur_lang == "FR":
+        hover_tmpl = (
+            "<b>%{y}</b> (%{data.name})<br>"
+            "Nombre d'événements : %{x:,}<br>"
+            "Part de la zone : %{customdata[0]:.1f} %<br>"
+            "Délai médian : %{customdata[1]:.1f} s<br>"
+            "Délai moyen : %{customdata[2]:.1f} s<extra></extra>"
+        )
+    else:
+        hover_tmpl = (
+            "<b>%{y}</b> (%{data.name})<br>"
+            "Event Count: %{x:,}<br>"
+            "Share of Zone: %{customdata[0]:.1f}%<br>"
+            "Median Latency: %{customdata[1]:.1f}s<br>"
+            "Mean Latency: %{customdata[2]:.1f}s<extra></extra>"
+        )
+
+    fig.update_traces(hovertemplate=hover_tmpl)
 
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
@@ -198,17 +221,30 @@ def create_eda_latency_chart(df_events, selected_zone="All"):
     from hit to next event for Hitting Team vs. Opponent.
     """
     if df_events is None or df_events.empty:
-        return go.Figure()
+        fig = go.Figure()
+        fig.add_annotation(text="No latency duration data available", showarrow=False, font=dict(color="#94a3b8"))
+        fig.update_layout(paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)", height=280)
+        return fig
 
     norm_zone = normalize_zone(selected_zone)
     if norm_zone != "All":
         filtered = df_events[df_events["zoneCode"] == norm_zone].copy()
     else:
-        filtered = df_events.groupby(["next_category", "next_owner_rel"]).agg(
-            event_count=("event_count", "sum"),
-            avg_delta_sec=("avg_delta_sec", "mean"),
-            median_delta_sec=("median_delta_sec", "mean")
-        ).reset_index()
+        filtered = df_events.copy()
+
+    # Consolidate by next_category and next_owner_rel across multi-season records
+    if not filtered.empty:
+        grouped = filtered.groupby(["next_category", "next_owner_rel"], as_index=False).apply(
+            lambda g: pd.Series({
+                "event_count": int(g["event_count"].sum()),
+                "avg_delta_sec": round(float(np.average(g["avg_delta_sec"], weights=g["event_count"])), 1) if g["event_count"].sum() > 0 else 10.0,
+                "median_delta_sec": round(float(np.average(g["median_delta_sec"], weights=g["event_count"])), 1) if g["event_count"].sum() > 0 else 10.0,
+            }),
+            include_groups=False
+        )
+        tot_zone_hits = grouped["event_count"].sum()
+        grouped["pct_of_zone"] = (grouped["event_count"] / tot_zone_hits * 100.0).round(2) if tot_zone_hits > 0 else 0.0
+        filtered = grouped
 
     cat_map = {
         "Shot Attempt": t("hit_cat_shot"),
@@ -229,6 +265,9 @@ def create_eda_latency_chart(df_events, selected_zone="All"):
     order_df = filtered.groupby("cat_disp")["median_delta_sec"].mean().sort_values(ascending=True).reset_index()
     cat_order = list(order_df["cat_disp"])
 
+    cur_lang = st.session_state.get("lang", "EN")
+    dur_label = "Délai médian d'action (secondes)" if cur_lang == "FR" else "Median Duration (Seconds)"
+
     fig = px.bar(
         filtered,
         y="cat_disp",
@@ -242,18 +281,28 @@ def create_eda_latency_chart(df_events, selected_zone="All"):
         },
         labels={
             "cat_disp": t("hit_chart_sub_cat", default="Event Category"),
-            "median_delta_sec": "Median Duration (Seconds)",
+            "median_delta_sec": dur_label,
             "owner_disp": t("hit_chart_initiated", default="Initiating Team")
         },
         custom_data=["avg_delta_sec", "event_count"]
     )
 
-    fig.update_traces(
-        hovertemplate="<b>%{y}</b> (%{data.name})<br>" +
-                      "Median Latency: %{x:.1f}s<br>" +
-                      "Average Latency: %{customdata[0]:.1f}s<br>" +
-                      "Total Plays: %{customdata[1]:,}<extra></extra>"
-    )
+    if cur_lang == "FR":
+        hover_lat = (
+            "<b>%{y}</b> (%{data.name})<br>"
+            "Délai médian : %{x:.1f} s<br>"
+            "Délai moyen : %{customdata[0]:.1f} s<br>"
+            "Total actions : %{customdata[1]:,}<extra></extra>"
+        )
+    else:
+        hover_lat = (
+            "<b>%{y}</b> (%{data.name})<br>"
+            "Median Latency: %{x:.1f}s<br>"
+            "Average Latency: %{customdata[0]:.1f}s<br>"
+            "Total Plays: %{customdata[1]:,}<extra></extra>"
+        )
+
+    fig.update_traces(hovertemplate=hover_lat)
 
     fig.update_layout(
         paper_bgcolor="rgba(0,0,0,0)",
@@ -274,6 +323,10 @@ def create_eda_zone_split_charts(df_summary):
     """
     if df_summary is None or df_summary.empty:
         return go.Figure(), go.Figure()
+
+    # Ensure aggregation across multi-season rows so exactly 1 bar and 1 label render per zone
+    if len(df_summary["zoneCode"].drop_duplicates()) < len(df_summary):
+        df_summary = aggregate_eda_summary(df_summary)
 
     cur_lang = st.session_state.get("lang", "EN")
     if cur_lang == "FR":
@@ -314,16 +367,25 @@ def create_eda_zone_split_charts(df_summary):
         margin=dict(l=10, r=10, t=30, b=10),
         coloraxis_showscale=False
     )
-    fig_rec.update_traces(textposition="outside")
+    if cur_lang == "FR":
+        hover_rec = "<b>%{x}</b><br>Taux de récupération : %{y:.1f} %<extra></extra>"
+    else:
+        hover_rec = "<b>%{x}</b><br>Recovery Rate: %{y:.1f}%<extra></extra>"
+    fig_rec.update_traces(textposition="outside", hovertemplate=hover_rec)
 
     # Chart B: Net Shot Differential per 100 Hits
     colors = ["#ef4444" if v < 0 else "#10b981" for v in df_plot["net_sog_per_100"]]
+    if cur_lang == "FR":
+        hover_sog = "<b>%{x}</b><br>Diff. net tirs / 100 : %{y:+.2f}<extra></extra>"
+    else:
+        hover_sog = "<b>%{x}</b><br>Net SOG / 100: %{y:+.2f}<extra></extra>"
     fig_sog = go.Figure(go.Bar(
         x=df_plot["zone_name"],
         y=df_plot["net_sog_per_100"],
         marker_color=colors,
         text=df_plot["net_sog_per_100"].apply(lambda x: f"{x:+.2f}"),
-        textposition="outside"
+        textposition="outside",
+        hovertemplate=hover_sog
     ))
     fig_sog.add_hline(y=0, line_dash="solid", line_color="#94a3b8")
     fig_sog.update_layout(
@@ -347,6 +409,9 @@ def create_eda_funnel_chart(df_summary, selected_zone="All"):
     if df_summary is None or df_summary.empty:
         return go.Figure()
 
+    if len(df_summary["zoneCode"].drop_duplicates()) < len(df_summary):
+        df_summary = aggregate_eda_summary(df_summary)
+
     norm_zone = normalize_zone(selected_zone)
     if norm_zone != "All":
         matching = df_summary[df_summary["zoneCode"] == norm_zone]
@@ -360,10 +425,10 @@ def create_eda_funnel_chart(df_summary, selected_zone="All"):
             sog_for, sog_agst, goals_for, goals_agst = 0, 0, 0, 0
     else:
         tot_hits = df_summary["total_hits"].sum()
-        sog_for = (df_summary["sog_for"].sum() / tot_hits) * 100
-        sog_agst = (df_summary["sog_against"].sum() / tot_hits) * 100
-        goals_for = (df_summary["goals_for"].sum() / tot_hits) * 100
-        goals_agst = (df_summary["goals_against"].sum() / tot_hits) * 100
+        sog_for = (df_summary["sog_for"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
+        sog_agst = (df_summary["sog_against"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
+        goals_for = (df_summary["goals_for"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
+        goals_agst = (df_summary["goals_against"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
 
     cur_lang = st.session_state.get("lang", "EN")
     if cur_lang == "FR":
@@ -414,12 +479,15 @@ def create_eda_zone_exit_donut(df_summary):
     if df_summary is None or df_summary.empty:
         return go.Figure()
 
+    if len(df_summary["zoneCode"].drop_duplicates()) < len(df_summary):
+        df_summary = aggregate_eda_summary(df_summary)
+
     row_d = df_summary[df_summary["zoneCode"] == "D"]
     if row_d.empty:
         return go.Figure()
     r = row_d.iloc[0]
 
-    exit_count = int(r["zone_exits"])
+    exit_count = int(r["zone_exits"]) if pd.notna(r.get("zone_exits")) else 0
     tot_d = int(r["total_hits"])
     pinned_count = tot_d - exit_count
     exit_pct = (exit_count / tot_d) * 100
@@ -705,6 +773,253 @@ def compute_density_contour_and_outliers(df_events, half_rink=False, sigma=7.0, 
 
     return xg, yg, Z_masked, df_outliers, True
 
+
+def aggregate_rink_grid(df_grid):
+    """
+    Consolidates multi-season rink grid tiles into a single unique (x_bin, y_bin) spatial surface
+    so that exactly 1 tile is rendered per rink cell, enabling true interactive dimming and consistent coloring.
+    """
+    if df_grid is None or df_grid.empty:
+        return pd.DataFrame()
+    if len(df_grid[["x_bin", "y_bin"]].drop_duplicates()) == len(df_grid):
+        return df_grid.copy()
+
+    def _agg_tile(g):
+        tot = float(g["total_hits"].sum())
+        puck_win = float(np.average(g["puck_win_pct"], weights=g["total_hits"])) if tot > 0 and "puck_win_pct" in g else 50.0
+        shot_for = float(np.average(g["shot_for_pct"], weights=g["total_hits"])) if tot > 0 and "shot_for_pct" in g else 0.0
+        shot_against = float(np.average(g["shot_against_pct"], weights=g["total_hits"])) if tot > 0 and "shot_against_pct" in g else 0.0
+        avg_delta = float(np.average(g["avg_delta_sec"], weights=g["total_hits"])) if tot > 0 and "avg_delta_sec" in g else 10.0
+        shots_f = float(g["shots_for_30s"].sum()) if "shots_for_30s" in g else 0.0
+        shots_a = float(g["shots_against_30s"].sum()) if "shots_against_30s" in g else 0.0
+        goals_f = float(g["goals_for_30s"].sum()) if "goals_for_30s" in g else 0.0
+        goals_a = float(g["goals_against_30s"].sum()) if "goals_against_30s" in g else 0.0
+        takeaway_f = float(np.average(g["takeaway_for_pct"], weights=g["total_hits"])) if tot > 0 and "takeaway_for_pct" in g else 0.0
+        giveaway_a = float(np.average(g["giveaway_against_pct"], weights=g["total_hits"])) if tot > 0 and "giveaway_against_pct" in g else 0.0
+        phys_battle = float(np.average(g["physical_battle_pct"], weights=g["total_hits"])) if tot > 0 and "physical_battle_pct" in g else 0.0
+        stoppage = float(np.average(g["stoppage_pct"], weights=g["total_hits"])) if tot > 0 and "stoppage_pct" in g else 0.0
+        goal_f = float(np.average(g["goal_for_pct"], weights=g["total_hits"])) if tot > 0 and "goal_for_pct" in g else 0.0
+        goal_a = float(np.average(g["goal_against_pct"], weights=g["total_hits"])) if tot > 0 and "goal_against_pct" in g else 0.0
+        return pd.Series({
+            "spatial_zone": g["spatial_zone"].iloc[0] if "spatial_zone" in g else ("D" if g["x_bin"].iloc[0] < -25 else ("O" if g["x_bin"].iloc[0] > 25 else "N")),
+            "total_hits": int(tot),
+            "puck_win_pct": round(puck_win, 1),
+            "shot_for_pct": round(shot_for, 1),
+            "shot_against_pct": round(shot_against, 1),
+            "takeaway_for_pct": round(takeaway_f, 1),
+            "giveaway_against_pct": round(giveaway_a, 1),
+            "physical_battle_pct": round(phys_battle, 1),
+            "stoppage_pct": round(stoppage, 1),
+            "goal_for_pct": round(goal_f, 1),
+            "goal_against_pct": round(goal_a, 1),
+            "avg_delta_sec": round(avg_delta, 1),
+            "shots_for_30s": shots_f,
+            "shots_against_30s": shots_a,
+            "goals_for_30s": goals_f,
+            "goals_against_30s": goals_a,
+        })
+
+    agg = df_grid.groupby(["x_bin", "y_bin"], as_index=False).apply(_agg_tile, include_groups=False)
+    tot_hits = agg["total_hits"].sum()
+    agg["density_pct"] = (agg["total_hits"] / tot_hits * 100.0) if tot_hits > 0 else 0.0
+    agg["sog_for_per_100"] = (agg["shots_for_30s"] / agg["total_hits"] * 100.0).fillna(0.0)
+    agg["sog_against_per_100"] = (agg["shots_against_30s"] / agg["total_hits"] * 100.0).fillna(0.0)
+    agg["net_sog_per_100"] = agg["sog_for_per_100"] - agg["sog_against_per_100"]
+    agg["goals_for_per_100"] = (agg["goals_for_30s"] / agg["total_hits"] * 100.0).fillna(0.0)
+    agg["goals_against_per_100"] = (agg["goals_against_30s"] / agg["total_hits"] * 100.0).fillna(0.0)
+    agg["net_goals_per_100"] = agg["goals_for_per_100"] - agg["goals_against_per_100"]
+    agg["season"] = "ALL"
+    return agg
+
+
+def aggregate_zone_kpi(df_kpi):
+    """
+    Consolidates multi-season zone KPI into exactly 3 rows (O, D, N) with weighted statistics.
+    """
+    if df_kpi is None or df_kpi.empty or len(df_kpi) <= 3:
+        return df_kpi.copy() if df_kpi is not None else pd.DataFrame()
+
+    rows = []
+    for zone in ["O", "D", "N"]:
+        sub = df_kpi[df_kpi["hit_zone"] == zone]
+        if sub.empty:
+            continue
+        tot_hits = int(sub["total_hits"].sum())
+        gf = int(sub["goals_for"].sum()) if "goals_for" in sub else 0
+        ga = int(sub["goals_against"].sum()) if "goals_against" in sub else 0
+        pwin = float(np.average(sub["immediate_possession_pct"], weights=sub["total_hits"])) if tot_hits > 0 else 50.0
+        sf100 = float(np.average(sub["shots_for_per_100_hits"], weights=sub["total_hits"])) if tot_hits > 0 else 0.0
+        sa100 = float(np.average(sub["shots_against_per_100_hits"], weights=sub["total_hits"])) if tot_hits > 0 else 0.0
+        ns100 = sf100 - sa100
+        z_name = sub["zone_name"].iloc[0] if "zone_name" in sub else zone
+        rows.append({
+            "season": "ALL",
+            "hit_zone": zone,
+            "zone_name": z_name,
+            "total_hits": tot_hits,
+            "immediate_possession_pct": round(pwin, 1),
+            "shots_for_per_100_hits": round(sf100, 2),
+            "shots_against_per_100_hits": round(sa100, 2),
+            "net_shot_diff_per_100": round(ns100, 2),
+            "goals_for": gf,
+            "goals_against": ga,
+        })
+    return pd.DataFrame(rows)
+
+
+def aggregate_eda_summary(df_summary):
+    """
+    Consolidates multi-season EDA zone summary into exactly 3 rows (D, N, O)
+    with total sums and weighted rates to prevent bar/label stacking.
+    """
+    if df_summary is None or df_summary.empty:
+        return pd.DataFrame()
+    if len(df_summary["zoneCode"].drop_duplicates()) == len(df_summary):
+        return df_summary.copy()
+
+    rows = []
+    tot_all = float(df_summary["total_hits"].sum())
+    for z in ["D", "N", "O"]:
+        sub = df_summary[df_summary["zoneCode"] == z]
+        if sub.empty:
+            continue
+        tot_hits = float(sub["total_hits"].sum())
+        rec_pct = float(np.average(sub["recovery_pct"], weights=sub["total_hits"])) if tot_hits > 0 else 50.0
+        opp_pct = float(np.average(sub["opponent_possession_pct"], weights=sub["total_hits"])) if tot_hits > 0 and "opponent_possession_pct" in sub else (100.0 - rec_pct)
+        avg_d = float(np.average(sub["avg_delta_sec"], weights=sub["total_hits"])) if tot_hits > 0 and "avg_delta_sec" in sub else 10.0
+        med_d = float(np.average(sub["median_delta_sec"], weights=sub["total_hits"])) if tot_hits > 0 and "median_delta_sec" in sub else 10.0
+        sog_f = float(sub["sog_for"].sum()) if "sog_for" in sub else 0.0
+        sog_a = float(sub["sog_against"].sum()) if "sog_against" in sub else 0.0
+        goals_f = float(sub["goals_for"].sum()) if "goals_for" in sub else 0.0
+        goals_a = float(sub["goals_against"].sum()) if "goals_against" in sub else 0.0
+
+        exits = float(sub["zone_exits"].dropna().sum()) if "zone_exits" in sub and not sub["zone_exits"].dropna().empty else np.nan
+        exit_pct = (exits / tot_hits * 100.0) if (pd.notna(exits) and tot_hits > 0) else np.nan
+
+        sog_f_100 = (sog_f / tot_hits * 100.0) if tot_hits > 0 else 0.0
+        sog_a_100 = (sog_a / tot_hits * 100.0) if tot_hits > 0 else 0.0
+        net_sog_100 = sog_f_100 - sog_a_100
+        goals_f_100 = (goals_f / tot_hits * 100.0) if tot_hits > 0 else 0.0
+        goals_a_100 = (goals_a / tot_hits * 100.0) if tot_hits > 0 else 0.0
+        net_goals_100 = goals_f_100 - goals_a_100
+        share_pct = (tot_hits / tot_all * 100.0) if tot_all > 0 else 0.0
+
+        rows.append({
+            "season": "ALL",
+            "zoneCode": z,
+            "total_hits": int(tot_hits),
+            "recovery_pct": round(rec_pct, 1),
+            "opponent_possession_pct": round(opp_pct, 1),
+            "avg_delta_sec": round(avg_d, 1),
+            "median_delta_sec": round(med_d, 1),
+            "sog_for": sog_f,
+            "sog_against": sog_a,
+            "goals_for": goals_f,
+            "goals_against": goals_a,
+            "zone_exits": exits,
+            "share_of_all_hits_pct": round(share_pct, 1),
+            "sog_for_per_100": round(sog_f_100, 2),
+            "sog_against_per_100": round(sog_a_100, 2),
+            "net_sog_per_100": round(net_sog_100, 2),
+            "goals_for_per_100": round(goals_f_100, 3),
+            "goals_against_per_100": round(goals_a_100, 3),
+            "net_goals_per_100": round(net_goals_100, 3),
+            "zone_exit_pct": round(exit_pct, 1) if pd.notna(exit_pct) else np.nan,
+        })
+    return pd.DataFrame(rows)
+
+
+def aggregate_eda_events(df_events):
+    """
+    Consolidates multi-season EDA first event telemetry by (zoneCode, next_category, next_owner_rel)
+    with total sums and weighted latency averages.
+    """
+    if df_events is None or df_events.empty:
+        return pd.DataFrame()
+    if len(df_events[["zoneCode", "next_category", "next_owner_rel"]].drop_duplicates()) == len(df_events):
+        return df_events.copy()
+
+    def _agg_ev(g):
+        tot = float(g["event_count"].sum())
+        avg_d = float(np.average(g["avg_delta_sec"], weights=g["event_count"])) if tot > 0 and "avg_delta_sec" in g else 10.0
+        med_d = float(np.average(g["median_delta_sec"], weights=g["event_count"])) if tot > 0 and "median_delta_sec" in g else 10.0
+        return pd.Series({
+            "event_count": int(tot),
+            "avg_delta_sec": round(avg_d, 1),
+            "median_delta_sec": round(med_d, 1),
+        })
+
+    agg = df_events.groupby(["zoneCode", "next_category", "next_owner_rel"], as_index=False).apply(_agg_ev, include_groups=False)
+    zone_totals = agg.groupby("zoneCode")["event_count"].transform("sum")
+    agg["pct_of_zone"] = (agg["event_count"] / zone_totals * 100.0).round(2)
+    agg["season"] = "ALL"
+    return agg
+
+
+def aggregate_team_kpi(df_team_kpi):
+    """
+    Consolidates multi-season team KPI into exactly 1 row per team (including LEAGUE_AVG)
+    with total sums and weighted averages across seasons.
+    """
+    if df_team_kpi is None or df_team_kpi.empty:
+        return pd.DataFrame()
+    if len(df_team_kpi["team"].drop_duplicates()) == len(df_team_kpi):
+        return df_team_kpi.copy()
+
+    rows = []
+    for team, grp in df_team_kpi.groupby("team"):
+        tot_hits = float(grp["total_hits"].sum())
+        gp = float(grp["games_played"].sum())
+        w = grp["total_hits"].values
+        if tot_hits > 0:
+            ozone = float(np.average(grp["ozone_pct"], weights=w))
+            dzone = float(np.average(grp["dzone_pct"], weights=w))
+            nzone = float(np.average(grp["nzone_pct"], weights=w))
+            puck_win = float(np.average(grp["puck_win_pct"], weights=w))
+            s1_f = float(np.average(grp["step1_shot_for_pct"], weights=w))
+            s1_a = float(np.average(grp["step1_shot_against_pct"], weights=w))
+        else:
+            ozone = float(grp["ozone_pct"].mean())
+            dzone = float(grp["dzone_pct"].mean())
+            nzone = float(grp["nzone_pct"].mean())
+            puck_win = float(grp["puck_win_pct"].mean())
+            s1_f = float(grp["step1_shot_for_pct"].mean())
+            s1_a = float(grp["step1_shot_against_pct"].mean())
+
+        s_for = float(grp["shots_for_30s"].sum())
+        s_agst = float(grp["shots_against_30s"].sum())
+        g_for = float(grp["goals_for_30s"].sum())
+        g_agst = float(grp["goals_against_30s"].sum())
+
+        hpg = tot_hits / gp if gp > 0 else 0.0
+        net_s100 = (s_for - s_agst) / tot_hits * 100.0 if tot_hits > 0 else 0.0
+        net_g100 = (g_for - g_agst) / tot_hits * 100.0 if tot_hits > 0 else 0.0
+
+        rows.append({
+            "season": "ALL",
+            "team": team,
+            "games_played": gp,
+            "total_hits": int(tot_hits),
+            "hits_per_game": round(hpg, 1),
+            "ozone_pct": round(ozone, 1),
+            "dzone_pct": round(dzone, 1),
+            "nzone_pct": round(nzone, 1),
+            "puck_win_pct": round(puck_win, 1),
+            "step1_shot_for_pct": round(s1_f, 1),
+            "step1_shot_against_pct": round(s1_a, 1),
+            "shots_for_30s": s_for,
+            "shots_against_30s": s_agst,
+            "shots_for_per_100": round(s_for / tot_hits * 100.0, 2) if tot_hits > 0 else 0.0,
+            "shots_against_per_100": round(s_agst / tot_hits * 100.0, 2) if tot_hits > 0 else 0.0,
+            "net_shots_per_100": round(net_s100, 2),
+            "goals_for_30s": g_for,
+            "goals_against_30s": g_agst,
+            "net_goals_per_100": round(net_g100, 3),
+        })
+    return pd.DataFrame(rows)
+
+
+
 def render_interactive_rink_heatmap(df_grid, df_goals, selected_loc=None, half_rink=False, min_density=0.0, event_type="goals", side_filter="both"):
     """
     Renders 2D density heatmap of hit occurrences with clickable hotspot tiles
@@ -712,10 +1027,13 @@ def render_interactive_rink_heatmap(df_grid, df_goals, selected_loc=None, half_r
     When a tile is selected, all other tiles are shaded out (dimmed) and the selected
     tile + its clear destination vectors and endpoints are highlighted without visual overlap.
     """
-    grid = df_grid.copy()
-    if min_density > 0:
+    grid = df_grid.copy() if df_grid is not None else pd.DataFrame()
+    if not grid.empty and len(grid[["x_bin", "y_bin"]].drop_duplicates()) < len(grid):
+        grid = aggregate_rink_grid(grid)
+
+    if min_density > 0 and not grid.empty and "density_pct" in grid.columns:
         grid = grid[grid["density_pct"] >= min_density]
-    if half_rink:
+    if half_rink and not grid.empty and "x_bin" in grid.columns:
         grid = grid[grid["x_bin"] >= 0]
 
     fig = go.Figure()
@@ -745,8 +1063,8 @@ def render_interactive_rink_heatmap(df_grid, df_goals, selected_loc=None, half_r
 
     # Dynamic shading: when selected_loc is set, shade out (dim) all unselected tiles
     if selected_loc is not None:
-        sel_x, sel_y = selected_loc
-        is_sel_list = [(x == sel_x and y == sel_y) for x, y in zip(grid["x_bin"], grid["y_bin"])]
+        sel_x, sel_y = float(selected_loc[0]), float(selected_loc[1])
+        is_sel_list = [(abs(float(x) - sel_x) < 1e-3 and abs(float(y) - sel_y) < 1e-3) for x, y in zip(grid["x_bin"], grid["y_bin"])]
         opacities = [1.0 if s else 0.16 for s in is_sel_list]
         border_colors = ["#facc15" if s else "rgba(255,255,255,0.06)" for s in is_sel_list]
         border_widths = [3.0 if s else 0.5 for s in is_sel_list]
@@ -812,7 +1130,7 @@ def render_interactive_rink_heatmap(df_grid, df_goals, selected_loc=None, half_r
         # Filter downstream events originating near this grid cell
         if df_goals is not None and not df_goals.empty:
             loc_events = df_goals[
-                (df_goals["x_bin"] == sel_x) & (df_goals["y_bin"] == sel_y)
+                (abs(df_goals["x_bin"] - sel_x) < 1e-3) & (abs(df_goals["y_bin"] - sel_y) < 1e-3)
             ].copy()
 
             if not loc_events.empty:
@@ -965,25 +1283,51 @@ def render_interactive_rink_heatmap(df_grid, df_goals, selected_loc=None, half_r
     )
     return fig
 
-def render_team_rink_heatmap(df_spatial, team_code, season_code, half_rink=False, display_name=None, is_benchmark=False, season_label=None, min_density=1.0):
+def render_team_rink_heatmap(df_spatial, team_code, season_code, half_rink=False, display_name=None, is_benchmark=False, season_label=None, min_density=1.0, show_title=False):
     """Renders a team-specific spatial hit density heatmap on the rink. Drops tiles lower than min_density%."""
-    sub = df_spatial[(df_spatial["team"] == team_code) & (df_spatial["season"].astype(str) == str(season_code))].copy()
+    is_all = str(season_code).upper() == "ALL"
+    if is_all:
+        if team_code == "LEAGUE_AVG":
+            base = df_spatial[df_spatial["team"] != "LEAGUE_AVG"]
+            if not base.empty:
+                team_totals = base.groupby(["team", "x_bin", "y_bin"], as_index=False)["hit_count"].sum()
+                team_sums = team_totals.groupby("team")["hit_count"].transform("sum")
+                team_totals["density_pct"] = (team_totals["hit_count"] / team_sums) * 100.0
+                sub = team_totals.groupby(["x_bin", "y_bin"], as_index=False).agg(
+                    hit_count=("hit_count", "mean"),
+                    density_pct=("density_pct", "mean")
+                )
+                sub["team"] = "LEAGUE_AVG"
+                sub["season"] = "ALL"
+            else:
+                sub = pd.DataFrame()
+        else:
+            base = df_spatial[df_spatial["team"] == team_code]
+            if not base.empty:
+                sub = base.groupby(["x_bin", "y_bin"], as_index=False)["hit_count"].sum()
+                tot_h = sub["hit_count"].sum()
+                sub["density_pct"] = (sub["hit_count"] / tot_h * 100.0) if tot_h > 0 else 0.0
+                sub["team"] = team_code
+                sub["season"] = "ALL"
+            else:
+                sub = pd.DataFrame()
+    else:
+        sub = df_spatial[(df_spatial["team"] == team_code) & (df_spatial["season"].astype(str) == str(season_code))].copy()
+        # Fallback for LEAGUE_AVG if specific season combination not pre-tabulated
+        if sub.empty and team_code == "LEAGUE_AVG":
+            base = df_spatial[(df_spatial["team"] != "LEAGUE_AVG") & (df_spatial["season"].astype(str) == str(season_code))]
+            if not base.empty:
+                sub = base.groupby(["x_bin", "y_bin"], as_index=False).agg(
+                    hit_count=("hit_count", "mean"),
+                    density_pct=("density_pct", "mean")
+                )
+                sub["team"] = "LEAGUE_AVG"
+                sub["season"] = season_code
 
-    # Fallback for LEAGUE_AVG if specific season combination not pre-tabulated
-    if sub.empty and team_code == "LEAGUE_AVG":
-        base = df_spatial[(df_spatial["team"] != "LEAGUE_AVG") & (df_spatial["season"].astype(str) == str(season_code))]
-        if not base.empty:
-            sub = base.groupby(["x_bin", "y_bin"], as_index=False).agg(
-                hit_count=("hit_count", "mean"),
-                density_pct=("density_pct", "mean")
-            )
-            sub["team"] = "LEAGUE_AVG"
-            sub["season"] = season_code
-
-    if min_density > 0:
+    if min_density > 0 and not sub.empty:
         sub = sub[sub["density_pct"] >= min_density]
 
-    if half_rink:
+    if half_rink and not sub.empty:
         sub = sub[sub["x_bin"] >= 0]
 
     fig = go.Figure()
@@ -1043,18 +1387,25 @@ def render_team_rink_heatmap(df_spatial, team_code, season_code, half_rink=False
             name=f"{label} {t('hit_th_total_hits')}"
         ))
 
-    prefix = f"{t('hit_val_benchmark')}: " if is_benchmark else f"{t('hit_val_selected_focus')}: "
-    fig.update_layout(
-        title=dict(
-            text=f"<b>{prefix}{label}</b><br><span style='font-size:11px;color:#94a3b8;'>({season_text})</span>",
+    if show_title:
+        prefix = f"{t('hit_val_benchmark')}: " if is_benchmark else f"{t('hit_val_selected_focus')}: "
+        title_config = dict(
+            text=f"<b>{prefix}{label}</b> <span style='font-size:11px;color:#94a3b8;'>({season_text})</span>",
             font=dict(size=12, color="white"),
-            y=0.98,
-            x=0.02,
+            y=0.96,
+            x=0.04,
             xanchor="left",
             yanchor="top"
-        ),
-        height=360 if half_rink else 270,
-        margin=dict(l=8, r=8, t=38, b=10)
+        )
+        t_margin = 28
+    else:
+        title_config = None
+        t_margin = 2
+
+    fig.update_layout(
+        title=title_config,
+        height=240 if half_rink else 195,
+        margin=dict(l=4, r=4, t=t_margin, b=2)
     )
     return fig
 
@@ -1693,77 +2044,73 @@ def show():
     selected_season_label = season_labels.get(selected_season, selected_season)
 
     # Slice all master DataFrames uniformly based on selected season
-    active_kpi = df_kpi[df_kpi["season"].astype(str) == str(selected_season)].copy() if "season" in df_kpi.columns else df_kpi.copy()
-    if active_kpi.empty:
-        active_kpi = df_kpi[df_kpi["season"].astype(str) == "ALL"].copy() if "season" in df_kpi.columns else df_kpi.copy()
-    if active_kpi.empty and not df_kpi.empty:
-        active_kpi = df_kpi.copy()
-
-    active_seq = df_seq[df_seq["season"].astype(str) == str(selected_season)].copy() if "season" in df_seq.columns else df_seq.copy()
-    if active_seq.empty:
-        active_seq = df_seq[df_seq["season"].astype(str) == "ALL"].copy() if "season" in df_seq.columns else df_seq.copy()
-    if active_seq.empty and not df_seq.empty:
-        active_seq = df_seq.copy()
-
-    active_trans = df_trans[df_trans["season"].astype(str) == str(selected_season)].copy() if (df_trans is not None and "season" in df_trans.columns) else (df_trans.copy() if df_trans is not None else None)
-    if active_trans is not None and active_trans.empty:
-        active_trans = df_trans[df_trans["season"].astype(str) == "ALL"].copy() if "season" in df_trans.columns else df_trans.copy()
-    if active_trans is not None and active_trans.empty and not df_trans.empty:
-        active_trans = df_trans.copy()
-
     if selected_season == "ALL":
+        active_kpi = aggregate_zone_kpi(df_kpi)
+        active_seq = df_seq.copy()
+        active_trans = df_trans.copy() if df_trans is not None else None
         active_goals = df_goals.copy()
-    elif "idx_season" in df_goals.columns:
-        try:
-            s_int = int(selected_season)
-            s_8digit = int(f"{s_int}{s_int + 1}")
-            active_goals = df_goals[
-                (df_goals["idx_season"] == s_int) |
-                (df_goals["idx_season"] == s_8digit) |
-                (df_goals["idx_season"] // 10000 == s_int)
-            ].copy()
-        except (ValueError, TypeError):
-            active_goals = df_goals[df_goals["idx_season"].astype(str).str.startswith(str(selected_season))].copy()
-    elif "season" in df_goals.columns:
-        active_goals = df_goals[df_goals["season"].astype(str).str.startswith(str(selected_season))].copy()
+        active_grid = aggregate_rink_grid(df_grid)
+        active_team_kpi = aggregate_team_kpi(df_team_kpi)
+        active_summary = aggregate_eda_summary(df_eda_summary)
+        active_events = aggregate_eda_events(df_eda_events)
     else:
-        active_goals = df_goals.copy()
+        active_kpi = df_kpi[df_kpi["season"].astype(str) == str(selected_season)].copy() if "season" in df_kpi.columns else df_kpi.copy()
+        if active_kpi.empty and not df_kpi.empty:
+            active_kpi = df_kpi.copy()
 
-    active_grid = df_grid[df_grid["season"].astype(str) == str(selected_season)].copy() if "season" in df_grid.columns else df_grid.copy()
-    if active_grid.empty:
-        active_grid = df_grid[df_grid["season"].astype(str) == "ALL"].copy() if "season" in df_grid.columns else df_grid.copy()
-    if active_grid.empty and not df_grid.empty:
-        active_grid = df_grid.copy()
+        active_seq = df_seq[df_seq["season"].astype(str) == str(selected_season)].copy() if "season" in df_seq.columns else df_seq.copy()
+        if active_seq.empty and not df_seq.empty:
+            active_seq = df_seq.copy()
 
-    active_team_kpi = df_team_kpi[df_team_kpi["season"].astype(str) == str(selected_season)].copy() if "season" in df_team_kpi.columns else df_team_kpi.copy()
-    if active_team_kpi.empty:
-        active_team_kpi = df_team_kpi[df_team_kpi["season"].astype(str) == "ALL"].copy() if "season" in df_team_kpi.columns else df_team_kpi.copy()
-    if active_team_kpi.empty and not df_team_kpi.empty:
-        active_team_kpi = df_team_kpi.copy()
+        active_trans = df_trans[df_trans["season"].astype(str) == str(selected_season)].copy() if (df_trans is not None and "season" in df_trans.columns) else (df_trans.copy() if df_trans is not None else None)
+        if active_trans is not None and active_trans.empty and not df_trans.empty:
+            active_trans = df_trans.copy()
 
-    active_summary = df_eda_summary[df_eda_summary["season"].astype(str) == str(selected_season)].copy() if "season" in df_eda_summary.columns else df_eda_summary.copy()
-    if active_summary.empty:
-        active_summary = df_eda_summary[df_eda_summary["season"].astype(str) == "ALL"].copy() if "season" in df_eda_summary.columns else df_eda_summary.copy()
-    if active_summary.empty and not df_eda_summary.empty:
-        active_summary = df_eda_summary.copy()
-        active_summary = df_eda_summary[df_eda_summary["season"] == "ALL"].copy() if "season" in df_eda_summary.columns else df_eda_summary.copy()
+        if "idx_season" in df_goals.columns:
+            try:
+                s_int = int(selected_season)
+                active_goals = df_goals[
+                    (df_goals["idx_season"] == s_int) |
+                    (df_goals["idx_season"] // 10000 == s_int) |
+                    (df_goals["idx_season"] == s_int // 10000)
+                ].copy()
+            except (ValueError, TypeError):
+                active_goals = df_goals[df_goals["idx_season"].astype(str).str.startswith(str(selected_season)[:4])].copy()
+        elif "season" in df_goals.columns:
+            active_goals = df_goals[df_goals["season"].astype(str).str.startswith(str(selected_season)[:4])].copy()
+        else:
+            active_goals = df_goals.copy()
+        if active_goals.empty and not df_goals.empty:
+            active_goals = df_goals.copy()
 
-    active_events = df_eda_events[df_eda_events["season"] == selected_season].copy() if "season" in df_eda_events.columns else df_eda_events.copy()
-    if active_events.empty:
-        active_events = df_eda_events[df_eda_events["season"] == "ALL"].copy() if "season" in df_eda_events.columns else df_eda_events.copy()
+        active_grid = df_grid[df_grid["season"].astype(str) == str(selected_season)].copy() if "season" in df_grid.columns else df_grid.copy()
+        if active_grid.empty and not df_grid.empty:
+            active_grid = df_grid.copy()
+
+        active_team_kpi = df_team_kpi[df_team_kpi["season"].astype(str) == str(selected_season)].copy() if "season" in df_team_kpi.columns else df_team_kpi.copy()
+        if active_team_kpi.empty and not df_team_kpi.empty:
+            active_team_kpi = df_team_kpi.copy()
+
+        active_summary = df_eda_summary[df_eda_summary["season"].astype(str) == str(selected_season)].copy() if "season" in df_eda_summary.columns else df_eda_summary.copy()
+        if active_summary.empty and not df_eda_summary.empty:
+            active_summary = df_eda_summary.copy()
+
+        active_events = df_eda_events[df_eda_events["season"].astype(str) == str(selected_season)].copy() if "season" in df_eda_events.columns else df_eda_events.copy()
+        if active_events.empty and not df_eda_events.empty:
+            active_events = df_eda_events.copy()
 
     # Top Executive Metric Ribbon
     c1, c2, c3, c4 = st.columns(4)
     total_hits = int(active_kpi["total_hits"].sum()) if not active_kpi.empty else 0
-    ozone_hits = int(active_kpi[active_kpi["hit_zone"] == "O"]["total_hits"].values[0]) if not active_kpi[active_kpi["hit_zone"] == "O"].empty else 0
-    dzone_hits = int(active_kpi[active_kpi["hit_zone"] == "D"]["total_hits"].values[0]) if not active_kpi[active_kpi["hit_zone"] == "D"].empty else 0
+    ozone_hits = int(active_kpi[active_kpi["hit_zone"] == "O"]["total_hits"].sum()) if not active_kpi[active_kpi["hit_zone"] == "O"].empty else 0
+    dzone_hits = int(active_kpi[active_kpi["hit_zone"] == "D"]["total_hits"].sum()) if not active_kpi[active_kpi["hit_zone"] == "D"].empty else 0
     total_goals_30s = int(active_kpi["goals_for"].sum() + active_kpi["goals_against"].sum()) if not active_kpi.empty else 0
 
     o_row = active_kpi[active_kpi["hit_zone"] == "O"]
-    o_puck_win = o_row["immediate_possession_pct"].values[0] if not o_row.empty else 52.9
+    o_puck_win = float(np.average(o_row["immediate_possession_pct"], weights=o_row["total_hits"])) if not o_row.empty and o_row["total_hits"].sum() > 0 else 52.9
 
     d_row = active_kpi[active_kpi["hit_zone"] == "D"]
-    d_sog_diff = d_row["net_shot_diff_per_100"].values[0] if not d_row.empty else -79.1
+    d_sog_diff = float(np.average(d_row["net_shot_diff_per_100"], weights=d_row["total_hits"])) if not d_row.empty and d_row["total_hits"].sum() > 0 else -79.1
 
     gf_tot = int(active_kpi["goals_for"].sum()) if not active_kpi.empty else 0
     ga_tot = int(active_kpi["goals_against"].sum()) if not active_kpi.empty else 0
@@ -1771,7 +2118,7 @@ def show():
     c1.metric(t("hit_metric_hits"), f"{total_hits:,}", help=f"{t('hit_team_sel_season_label')} {selected_season_label}")
     c2.metric(t("hit_metric_ozone"), f"{ozone_hits:,}", f"{o_puck_win:+.1f}% {t('hit_th_puck_win')}")
     c3.metric(t("hit_metric_dzone"), f"{dzone_hits:,}", f"{d_sog_diff:+.1f} {t('hit_th_net_shot_diff')}", delta_color="inverse")
-    c4.metric(t("hit_metric_goals"), f"{total_goals_30s:,}", f"{gf_tot - ga_tot:+d} {t('hit_th_net_goal_diff')}", help=f"{gf_tot} {t('hit_owner_for')} / {ga_tot} {t('hit_owner_against')}")
+    c4.metric(t("hit_metric_goals"), f"{total_goals_30s:,}", f"{gf_tot - ga_tot:+,} {t('hit_th_net_goal_diff')}", help=f"{gf_tot:,} {t('hit_owner_for')} / {ga_tot:,} {t('hit_owner_against')}")
 
     st.markdown("---")
 
@@ -1852,10 +2199,7 @@ def show():
         # SECTION 1: FIRST EVENT BREAKDOWN & LATENCY
         # ----------------------------------------------------------------------
         st.subheader(t("hit_eda_sec1_heading"))
-        st.markdown("""
-        **What actually happens right after a physical body check?**  
-        Below is the immediate first registered event (Step +1) categorized by play type and initiating team (Hitting Team vs. Opponent), alongside reaction duration in seconds.
-        """)
+        st.markdown(t("hit_eda_sec1_intro"))
 
         # Origin Zone Filter specifically for Section 1 First Event Telemetry
         eda_zone_opts = ["All", "D", "N", "O"]
@@ -1879,18 +2223,13 @@ def show():
 
         c_ev1, c_ev2 = st.columns(2)
         with c_ev1:
-            st.markdown("##### Immediate Event Frequency (Step +1)")
-            st.plotly_chart(create_eda_first_event_chart(active_events, selected_eda_zone), width="stretch")
+            st.markdown(f"##### {t('hit_eda_sec1_sub1')}")
+            st.plotly_chart(create_eda_first_event_chart(active_events, selected_eda_zone), width="stretch", key="eda_first_event_chart")
         with c_ev2:
-            st.markdown("##### Median Action Latency (Seconds Elapsed)")
-            st.plotly_chart(create_eda_latency_chart(active_events, selected_eda_zone), width="stretch")
+            st.markdown(f"##### {t('hit_eda_sec1_sub2')}")
+            st.plotly_chart(create_eda_latency_chart(active_events, selected_eda_zone), width="stretch", key="eda_latency_chart")
 
-        st.info("""
-        💡 **Key Takeaways & Analytical Narrative — Immediate First Event & Reaction Horizon:**
-        - **Shot Attempts Dominate the Immediate Action:** Over **30%** of all physical hits across the league are immediately followed by a shot attempt rather than a controlled pass or breakout. In the defensive zone, an opponent shot attempt is the single most common next event.
-        - **The Puck Recovery Deficit:** Despite initiating contact, the hitting team only recovers immediate possession **44.8%** of the time overall, plummeting to **38.6%** in the defensive zone. Body checking does not magically dispossess the carrier; over 60% of the time, the offensive opponent retains the loose puck.
-        - **Reaction Time Disparity:** The median action latency across all events is **10.0 seconds**. Crucially, opponent shots develop in just **7.5 seconds** (in the defensive zone), while hitting team counter-attacks take **16.0 seconds**. The hitting defender is frequently taken out of position or off balance by delivering the hit, leaving passing lanes and shooting lanes vulnerable.
-        """)
+        st.info(t("hit_eda_sec1_takeaways"))
 
         st.markdown("---")
 
@@ -1898,25 +2237,18 @@ def show():
         # SECTION 2: DEFENSIVE VS. OFFENSIVE ZONE SPLIT
         # ----------------------------------------------------------------------
         st.subheader(t("hit_eda_sec2_heading"))
-        st.markdown("""
-        **Defensive Containment vs. Offensive Forechecking: The Tactical Inversion.**  
-        A hit delivered in the defensive zone is executed under severe space constraints, whereas an offensive zone hit aggressively pinches a breakout.
-        """)
+        st.markdown(t("hit_eda_sec2_intro"))
 
         c_z1, c_z2 = st.columns(2)
         fig_rec, fig_sog = create_eda_zone_split_charts(active_summary)
         with c_z1:
-            st.markdown("##### Immediate Puck Recovery Rate (%) by Zone")
-            st.plotly_chart(fig_rec, width="stretch")
+            st.markdown(f"##### {t('hit_eda_sec2_sub1')}")
+            st.plotly_chart(fig_rec, width="stretch", key="eda_zone_split_recovery")
         with c_z2:
-            st.markdown("##### Net Shots on Goal per 100 Hits by Zone")
-            st.plotly_chart(fig_sog, width="stretch")
+            st.markdown(f"##### {t('hit_eda_sec2_sub2')}")
+            st.plotly_chart(fig_sog, width="stretch", key="eda_zone_split_sog")
 
-        st.info("""
-        💡 **Key Takeaways & Analytical Narrative — The Forechecking Inversion:**
-        - **The Forechecking Advantage (O-Zone):** Hits delivered deep in the offensive zone successfully win puck possession **53.1%** of the time and generate a positive shot differential (**+1.42 net SOG per 100 hits**). Disrupting an opponent breakout behind the net creates high-danger turnovers.
-        - **The Defensive Zone Hazard (D-Zone):** Conversely, defensive zone hits produce a dismal **38.6% puck recovery rate** and a catastrophic shot differential of **-7.92 net shots per 100 hits**. In their own end, teams deliver body checks out of defensive desperation while under sustained pressure, and the attacking team maintains cycling dominance.
-        """)
+        st.info(t("hit_eda_sec2_takeaways"))
 
         st.markdown("---")
 
@@ -1924,10 +2256,7 @@ def show():
         # SECTION 3: SHOT-TO-GOAL CONVERSION FUNNEL
         # ----------------------------------------------------------------------
         st.subheader(t("hit_eda_sec3_heading"))
-        st.markdown("""
-        **How physical contact propagates into shots on goal and goals.**  
-        Tracking the downstream scoreboard conversion pipeline: Total Hits Delivered (100 baseline) → Shots on Goal Generated → Goals Scored for the hitting team vs. the opponent.
-        """)
+        st.markdown(t("hit_eda_sec3_intro"))
 
         col_f_sel, _ = st.columns([2.5, 1])
         with col_f_sel:
@@ -1946,13 +2275,9 @@ def show():
             )
             st.session_state.eda_sec3_funnel_zone_val = selected_funnel_zone
 
-        st.plotly_chart(create_eda_funnel_chart(active_summary, selected_funnel_zone), width="stretch")
+        st.plotly_chart(create_eda_funnel_chart(active_summary, selected_funnel_zone), width="stretch", key="eda_funnel_chart")
 
-        st.info("""
-        💡 **Key Takeaways & Analytical Narrative — Scoring Conversion Funnel:**
-        - **Bilateral Conversion Asymmetry:** In the defensive zone, opponents generate **13.9 Shots on Goal and 1.06 Goals per 100 hits**, compared to just **6.0 SOG and 0.51 Goals** for the hitting team. Opponents score at more than **double the rate** following a defensive body check.
-        - **Offensive Forecheck Scoring:** In the offensive zone, hitting teams score positive goal differentials, proving that physical forechecking creates genuine goal-mouth opportunities.
-        """)
+        st.info(t("hit_eda_sec3_takeaways"))
 
         st.markdown("---")
 
@@ -1960,41 +2285,35 @@ def show():
         # SECTION 4: DEFENSIVE ZONE CLEARANCE & BREAKOUT
         # ----------------------------------------------------------------------
         st.subheader(t("hit_eda_sec4_heading"))
-        st.markdown("""
-        **Does delivering a defensive zone body check relieve pressure or lead to an in-zone trap?**  
-        Evaluating whether defensive hits facilitate a clean breakout past the blue line (D → N/O) or leave the defending team trapped in their own zone.
-        """)
+        st.markdown(t("hit_eda_sec4_intro"))
 
         c_ex1, c_ex2 = st.columns([1, 1])
         with c_ex1:
-            st.markdown("##### D-Zone Exit vs. In-Zone Trap Distribution")
-            st.plotly_chart(create_eda_zone_exit_donut(active_summary), width="stretch")
+            st.markdown(f"##### {t('hit_eda_sec4_sub1')}")
+            st.plotly_chart(create_eda_zone_exit_donut(active_summary), width="stretch", key="eda_zone_exit_donut")
         with c_ex2:
-            st.markdown("##### Breakout Breakdown & Trap Consequences")
+            st.markdown(f"##### {t('hit_eda_sec4_sub2')}")
             d_row_trap = active_summary[active_summary["zoneCode"] == "D"].iloc[0] if not active_summary[active_summary["zoneCode"] == "D"].empty else None
             d_hits = int(d_row_trap["total_hits"]) if d_row_trap is not None else 0
-            d_exits = int(d_row_trap["zone_exits"]) if d_row_trap is not None else 0
+            d_exits = int(d_row_trap["zone_exits"]) if d_row_trap is not None and pd.notna(d_row_trap.get("zone_exits")) else 0
             d_pinned = d_hits - d_exits
             d_exit_pct = (d_exits / d_hits * 100) if d_hits > 0 else 0
             d_pinned_pct = (d_pinned / d_hits * 100) if d_hits > 0 else 0
             d_sog_against = int(d_row_trap["sog_against"]) if d_row_trap is not None else 0
             d_goals_against = int(d_row_trap["goals_against"]) if d_row_trap is not None else 0
 
-            st.markdown(f"""
-            Out of **{d_hits:,} defensive zone hits** analyzed ({selected_season_label}):
-            - **Clean Zone Exit:** **{d_exits:,} plays ({d_exit_pct:.1f}%)** successfully advance the puck past the defensive blue line into the neutral or offensive zone.
-            - **Pinned In-Zone (Trapped):** **{d_pinned:,} plays ({d_pinned_pct:.1f}%)** fail to clear the zone, keeping the team pinned under sustained pressure.
-            
-            **Downstream Consequences in Defensive Zone:**
-            - **{d_sog_against:,} Opponent Shots on Goal** surrendered in the defensive zone.
-            - **{d_goals_against:,} Direct Goals Conceded** on immediate follow-up sequences.
-            """)
+            breakdown_text = f"""
+            {t("hit_eda_sec4_breakdown_intro").format(hits=f"{d_hits:,}", season=selected_season_label)}
+            {t("hit_eda_sec4_clean_exit").format(exits=f"{d_exits:,}", pct=f"{d_exit_pct:.1f}")}
+            {t("hit_eda_sec4_pinned_trap").format(pinned=f"{d_pinned:,}", pct=f"{d_pinned_pct:.1f}")}
 
-        st.info("""
-        💡 **Key Takeaways & Analytical Narrative — Zone Exit vs. In-Zone Trap:**
-        - **Relieving Immediate Pressure:** Approximately 7 out of 10 times (69.7%), a defensive body check successfully breaks up the play enough to allow the defending team or loose puck to exit into the neutral zone.
-        - **The 30% Trap Danger:** However, in nearly 1 out of 3 hits (30.3%), the defending team remains trapped in their defensive zone. When a hit fails to clear the zone, it routinely yields high-danger slot chances, as the hitting player is often temporarily incapacitated along the boards while the puck remains in play.
-        """)
+            {t("hit_eda_sec4_consequences_title")}
+            {t("hit_eda_sec4_consequences_sog").format(sog=f"{d_sog_against:,}")}
+            {t("hit_eda_sec4_consequences_goals").format(goals=f"{d_goals_against:,}")}
+            """
+            st.markdown(breakdown_text)
+
+        st.info(t("hit_eda_sec4_takeaways"))
 
     # ══════════════════════════════════════════════════════════════════════════
     # LAYER 1 - TAB 2: SEQUENCE
@@ -2086,7 +2405,7 @@ def show():
                 selected_step = st.slider(t("hit_event_step_label"), 1, 4, 1)
 
             # Flow Diagram
-            st.plotly_chart(create_sankey_sequence(active_trans, selected_zone, selected_step, active_seq), width="stretch")
+            st.plotly_chart(create_sankey_sequence(active_trans, selected_zone, selected_step, active_seq), width="stretch", key="sankey_sequence_chart")
 
             step_df = active_seq[active_seq["event_step"] == selected_step].copy()
             if selected_zone != "All":
@@ -2127,7 +2446,7 @@ def show():
                 height=380,
                 margin=dict(l=10, r=10, t=30, b=10)
             )
-            st.plotly_chart(fig_bar, width="stretch")
+            st.plotly_chart(fig_bar, width="stretch", key="event_progression_bar_chart")
 
         # ──────────────────────────────────────────────────────────────────────
         # SUBTAB 1.2: 30s Goal & Shot Dynamics
@@ -2163,8 +2482,8 @@ def show():
                 col_s100_f: "{:.2f}",
                 col_s100_a: "{:.2f}",
                 col_net_s: "{:+.2f}",
-                col_gf: "{:.0f}",
-                col_ga: "{:.0f}"
+                col_gf: "{:,.0f}",
+                col_ga: "{:,.0f}"
             }), width="stretch")
 
             st.markdown(f"#### {t('hit_time_elapsed_heading')}")
@@ -2184,7 +2503,7 @@ def show():
                 height=320,
                 margin=dict(l=10, r=10, t=20, b=10)
             )
-            st.plotly_chart(fig_hist, width="stretch")
+            st.plotly_chart(fig_hist, width="stretch", key="possession_duration_hist_chart")
 
             st.markdown("---")
             st.markdown(f"#### {t('hit_decision_tree_heading')}")
@@ -2229,15 +2548,19 @@ def show():
 
             st.markdown("""
             <style>
-            /* Equal size and typography for decision tree category buttons */
+            /* Equal size and multiline typography for decision tree category buttons */
             div[class*="st-key-btn_tree_"] button {
                 width: 100% !important;
-                min-height: 42px !important;
+                min-height: 48px !important;
+                height: auto !important;
                 font-weight: 700 !important;
                 font-size: 13px !important;
                 border-radius: 6px !important;
                 text-align: center !important;
                 padding: 6px 4px !important;
+                white-space: pre-wrap !important;
+                word-break: break-word !important;
+                line-height: 1.25 !important;
                 transition: transform 0.15s ease, filter 0.15s ease !important;
             }
             div[class*="st-key-btn_tree_"] button:hover {
@@ -2293,6 +2616,19 @@ def show():
                 color: #0f172a !important;
                 border: 1.5px solid #fdba74 !important;
             }
+
+            /* Responsive metric card typography */
+            div[data-testid="stMetricValue"] {
+                font-size: 1.35rem !important;
+                white-space: normal !important;
+                word-break: break-word !important;
+                line-height: 1.25 !important;
+            }
+            div[data-testid="stMetricLabel"] {
+                white-space: normal !important;
+                word-break: break-word !important;
+                line-height: 1.2 !important;
+            }
             </style>
             """, unsafe_allow_html=True)
 
@@ -2305,7 +2641,7 @@ def show():
                     st.session_state.tree_highlight_source = None
                     st.session_state.last_clicked_tree_pt = None
                 else:
-                    st.session_state.tree_highlight = {"layer": layer, "category": cat, "label": lbl}
+                    st.session_state.tree_highlight = {"layer": layer, "category": cat, "label": (lbl or "").replace("\n", " ")}
                     st.session_state.tree_highlight_source = "button"
                     st.session_state.last_clicked_tree_pt = f"{layer}_{cat}"
                 st.session_state.tree_chart_version += 1
@@ -2319,22 +2655,22 @@ def show():
                           on_click=on_tree_ribbon_click, args=("clear", None, None))
             with btn_cols[1]:
                 st.button(t("hit_btn_for"), key="btn_tree_for", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(2, "Hitting Team (For)", t("hit_btn_for")))
+                          on_click=on_tree_ribbon_click, args=(2, "Hitting Team (For)", t("hit_btn_for").replace("\n", " ")))
             with btn_cols[2]:
                 st.button(t("hit_btn_agst"), key="btn_tree_agst", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(2, "Opponent (Against)", t("hit_btn_agst")))
+                          on_click=on_tree_ribbon_click, args=(2, "Opponent (Against)", t("hit_btn_agst").replace("\n", " ")))
             with btn_cols[3]:
                 st.button(t("hit_btn_goal"), key="btn_tree_goal", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "goal", t("hit_btn_goal")))
+                          on_click=on_tree_ribbon_click, args=(3, "goal", t("hit_btn_goal").replace("\n", " ")))
             with btn_cols[4]:
                 st.button(t("hit_btn_sog"), key="btn_tree_sog", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "shot-on-goal", t("hit_btn_sog")))
+                          on_click=on_tree_ribbon_click, args=(3, "shot-on-goal", t("hit_btn_sog").replace("\n", " ")))
             with btn_cols[5]:
                 st.button(t("hit_btn_miss"), key="btn_tree_miss", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "missed-shot", t("hit_btn_miss")))
+                          on_click=on_tree_ribbon_click, args=(3, "missed-shot", t("hit_btn_miss").replace("\n", " ")))
             with btn_cols[6]:
                 st.button(t("hit_btn_block"), key="btn_tree_block", width="stretch",
-                          on_click=on_tree_ribbon_click, args=(3, "blocked-shot", t("hit_btn_block")))
+                          on_click=on_tree_ribbon_click, args=(3, "blocked-shot", t("hit_btn_block").replace("\n", " ")))
 
             # Check for chart point click in session state (populated by Streamlit before script execution)
             chart_state = st.session_state.get(chart_key)
@@ -2350,7 +2686,7 @@ def show():
                         st.session_state.tree_highlight = {
                             "layer": int(cd[0]),
                             "category": str(cd[1]),
-                            "label": str(cd[2])
+                            "label": str(cd[2]).replace("\n", " ")
                         }
                 else:
                     # Only deselect if the current highlight was initiated by a chart click
@@ -2382,19 +2718,28 @@ def show():
                 # Terminal shot outcome highlighted -> Compare across TWO higher levels: Possession Branch and Hit Origin Zone
                 cat_type = hl["category"]
                 cat_label_map = {
-                    "goal": t("hit_btn_goal"),
-                    "shot-on-goal": t("hit_btn_sog"),
-                    "missed-shot": t("hit_btn_miss"),
-                    "blocked-shot": t("hit_btn_block")
+                    "goal": t("hit_btn_goal").replace("\n", " "),
+                    "shot-on-goal": t("hit_btn_sog").replace("\n", " "),
+                    "missed-shot": t("hit_btn_miss").replace("\n", " "),
+                    "blocked-shot": t("hit_btn_block").replace("\n", " ")
                 }
-                cat_label = cat_label_map.get(cat_type, hl.get("label", cat_type))
+                cat_label = cat_label_map.get(cat_type, hl.get("label", cat_type)).replace("\n", " ")
                 st.markdown(f"##### {t('hit_comp_l3_heading').format(label=cat_label)}")
                 st.info(t("hit_comp_l3_info").format(label=cat_label))
 
                 df_comp3 = get_layer_3_comparison(active_goals, cat_type, selected_tree_zone)
                 for_cnt = int(df_comp3[df_comp3[col_branch] == t("hit_tree_side_for")][col_count].sum()) if not df_comp3.empty and col_branch in df_comp3 else 0
                 agst_cnt = int(df_comp3[df_comp3[col_branch] == t("hit_tree_side_agst")][col_count].sum()) if not df_comp3.empty and col_branch in df_comp3 else 0
+                tot_cnt = for_cnt + agst_cnt
                 net_diff = for_cnt - agst_cnt
+
+                for_share = (for_cnt / tot_cnt * 100.0) if tot_cnt > 0 else 0.0
+                agst_share = (agst_cnt / tot_cnt * 100.0) if tot_cnt > 0 else 0.0
+                net_margin = for_share - agst_share
+
+                w_b_share = (df_comp3[col_b_share] * df_comp3[col_count]).sum() / tot_cnt if tot_cnt > 0 else 0.0
+                w_z_share = (df_comp3[col_z_share] * df_comp3[col_count]).sum() / tot_cnt if tot_cnt > 0 else 0.0
+                w_time = (df_comp3[col_time] * df_comp3[col_count]).sum() / tot_cnt if tot_cnt > 0 else 0.0
 
                 active_events = df_comp3[df_comp3[col_count] > 0] if not df_comp3.empty and col_count in df_comp3 else pd.DataFrame()
                 if not active_events.empty:
@@ -2404,27 +2749,42 @@ def show():
                 else:
                     fastest_desc = "N/A"
 
-                m_col1, m_col2, m_col3, m_col4 = st.columns(4)
-                m_col1.metric(t("hit_comp_l3_m1"), f"{for_cnt:,}")
-                m_col2.metric(t("hit_comp_l3_m2"), f"{agst_cnt:,}")
-                m_col3.metric(t("hit_comp_l3_m3"), f"{net_diff:+,}")
-                m_col4.metric(t("hit_comp_l3_m4"), fastest_desc)
+                # 2 Row Metrics with 3 Metric Columns (Comparable % Shares & Differentials)
+                r1_c1, r1_c2, r1_c3 = st.columns(3)
+                r1_c1.metric(t("hit_l3_m_for_share"), f"{for_share:.1f}%", f"{for_cnt:,} events ({for_share - 50.0:+.1f}% vs 50%)")
+                r1_c2.metric(t("hit_l3_m_agst_share"), f"{agst_share:.1f}%", f"{agst_cnt:,} events", delta_color="inverse")
+                r1_c3.metric(t("hit_l3_m_net_margin"), f"{net_margin:+.1f}%", f"{net_diff:+,} net differential")
 
-                st.dataframe(df_comp3.style.format({
-                    col_count: "{:,}",
-                    col_b_share: "{:.1f}%",
-                    col_z_share: "{:.1f}%",
-                    col_time: "{:.1f}s"
-                }), width="stretch")
+                r2_c1, r2_c2, r2_c3 = st.columns(3)
+                r2_c1.metric(t("hit_th_branch_share"), f"{w_b_share:.1f}%", t("hit_l3_m_branch_help"))
+                r2_c2.metric(t("hit_th_zone_share"), f"{w_z_share:.1f}%", t("hit_l3_m_zone_help"))
+                r2_c3.metric(t("hit_th_avg_elapsed"), f"{w_time:.1f}s", f"Fastest: {fastest_desc}")
+
+                st.markdown("---")
+                # Measurements in 3 columns across rows: Branch Share %, Zone Share %, and Average Elapsed Time
+                st.markdown(f"**{cat_label} — Measurements by Origin Zone & Possession Branch**")
+                for _, r in df_comp3.iterrows():
+                    z_name = r[col_zone]
+                    b_name = r[col_branch]
+                    c_cnt = int(r[col_count])
+                    b_pct = r[col_b_share]
+                    z_pct = r[col_z_share]
+                    t_sec = r[col_time]
+
+                    st.markdown(f"**{z_name} — {b_name}** (`{c_cnt:,}` events)")
+                    mc1, mc2, mc3 = st.columns(3)
+                    mc1.metric(t("hit_th_branch_share"), f"{b_pct:.1f}%")
+                    mc2.metric(t("hit_th_zone_share"), f"{z_pct:.1f}%")
+                    mc3.metric(t("hit_th_avg_elapsed"), f"{t_sec:.1f}s")
 
             elif hl and hl.get("layer") == 2:
                 # Possession branch highlighted -> Compare across ONE higher level: Hit Origin Zone
                 cat_side = hl["category"]
                 side_label_map = {
-                    "Hitting Team (For)": t("hit_btn_for"),
-                    "Opponent (Against)": t("hit_btn_agst")
+                    "Hitting Team (For)": t("hit_btn_for").replace("\n", " "),
+                    "Opponent (Against)": t("hit_btn_agst").replace("\n", " ")
                 }
-                cat_label = side_label_map.get(cat_side, hl.get("label", cat_side))
+                cat_label = side_label_map.get(cat_side, hl.get("label", cat_side)).replace("\n", " ")
                 st.markdown(f"##### {t('hit_comp_l2_heading').format(label=cat_label)}")
                 st.info(t("hit_comp_l2_info").format(label=cat_label))
 
@@ -2433,25 +2793,50 @@ def show():
                 col_goals = t("hit_th_goals")
                 tot_shots = int(df_comp2[col_shots].sum()) if not df_comp2.empty and col_shots in df_comp2 else 0
                 tot_goals = int(df_comp2[col_goals].sum()) if not df_comp2.empty and col_goals in df_comp2 else 0
+                conv_rate = (tot_goals / tot_shots * 100.0) if tot_shots > 0 else 0.0
                 w_time = (df_comp2[col_time] * df_comp2[col_shots]).sum() / tot_shots if tot_shots > 0 else 0
-                top_zone = df_comp2.sort_values(col_shots, ascending=False).iloc[0][col_zone] if not df_comp2.empty and col_shots in df_comp2 else "N/A"
+                w_sog = (df_comp2[t("hit_th_sog_pct")] * df_comp2[col_shots]).sum() / tot_shots if tot_shots > 0 else 0
+                raw_top_zone = df_comp2.sort_values(col_shots, ascending=False).iloc[0][col_zone] if not df_comp2.empty and col_shots in df_comp2 else "N/A"
+                clean_top_zone = (
+                    raw_top_zone.replace(" Zone", "")
+                    .replace(" zone", "")
+                    .replace("Zone ", "")
+                    .replace("zone ", "")
+                    .replace("D-Zone", "D")
+                    .replace("Zone D", "D")
+                    .replace("zone D", "D")
+                    .strip()
+                )
+                if clean_top_zone:
+                    clean_top_zone = clean_top_zone[0].upper() + clean_top_zone[1:]
 
-                m_col1, m_col2, m_col3, m_col4 = st.columns(4)
-                m_col1.metric(t("hit_comp_l2_m1"), f"{tot_shots:,}")
-                m_col2.metric(t("hit_comp_l2_m2"), f"{tot_goals:,}")
-                m_col3.metric(t("hit_comp_l2_m3"), f"{w_time:.1f}s")
-                m_col4.metric(t("hit_comp_l2_m4"), top_zone)
+                # 2 Row Metrics with 3 Metric Columns
+                r1_c1, r1_c2, r1_c3 = st.columns(3)
+                r1_c1.metric(t("hit_l2_m_tot_shots"), f"{tot_shots:,}")
+                r1_c2.metric(t("hit_l2_m_tot_goals"), f"{tot_goals:,}")
+                r1_c3.metric(t("hit_l2_m_goal_conv"), f"{conv_rate:.1f}%", f"{tot_goals} goals / {tot_shots:,} shots")
 
-                st.dataframe(df_comp2.style.format({
-                    col_shots: "{:,}",
-                    t("hit_th_zone_poss_share"): "{:.1f}%",
-                    col_time: "{:.1f}s",
-                    col_goals: "{:,}",
-                    t("hit_th_goal_conv"): "{:.1f}%",
-                    t("hit_th_sog_pct"): "{:.1f}%",
-                    t("hit_th_miss_pct"): "{:.1f}%",
-                    t("hit_th_blocked_pct"): "{:.1f}%"
-                }), width="stretch")
+                r2_c1, r2_c2, r2_c3 = st.columns(3)
+                r2_c1.metric(t("hit_l2_m_sog_rate"), f"{w_sog:.1f}%")
+                r2_c2.metric(t("hit_l2_m_top_zone"), clean_top_zone)
+                r2_c3.metric(t("hit_l2_m_avg_time"), f"{w_time:.1f}s")
+
+                st.markdown("---")
+                st.markdown(f"**{cat_label} — Measurements by Origin Zone**")
+                for _, r in df_comp2.iterrows():
+                    z_name = r[col_zone]
+                    s_cnt = int(r[col_shots])
+                    z_share = r[t("hit_th_zone_poss_share")]
+                    g_conv = r[t("hit_th_goal_conv")]
+                    t_sec = r[col_time]
+
+                    z_lower = str(z_name).lower()
+                    z_icon = "⚔️" if any(k in z_lower for k in ["offens", "forecheck", "échec"]) else ("🛡️" if any(k in z_lower for k in ["défens", "defens", "zone d"]) else "🧊")
+                    st.markdown(f"**{z_icon} {z_name}** (`{s_cnt:,}` shots, `{int(r[col_goals]):,}` goals)")
+                    mc1, mc2, mc3 = st.columns(3)
+                    mc1.metric(t("hit_th_zone_poss_share"), f"{z_share:.1f}%")
+                    mc2.metric(t("hit_th_goal_conv"), f"{g_conv:.1f}%")
+                    mc3.metric(t("hit_th_avg_elapsed"), f"{t_sec:.1f}s")
 
             elif hl and hl.get("layer") == 1:
                 # Hit origin zone highlighted -> Compare against all zones
@@ -2461,7 +2846,7 @@ def show():
                     "D": t("hit_tree_zone_d"),
                     "N": t("hit_tree_zone_n")
                 }
-                cat_label = zone_label_map.get(cat_zone, hl.get("label", cat_zone))
+                cat_label = zone_label_map.get(cat_zone, hl.get("label", cat_zone)).replace("\n", " ")
                 st.markdown(f"##### {t('hit_comp_l1_heading').format(label=cat_label)}")
                 st.info(t("hit_comp_l1_info").format(label=cat_label))
 
@@ -2476,37 +2861,99 @@ def show():
                 sel_mask = df_comp1[col_status] == t("hit_val_selected_focus")
                 sel_row = df_comp1[sel_mask].iloc[0] if not df_comp1[sel_mask].empty else df_comp1.iloc[0]
 
-                m_col1, m_col2, m_col3, m_col4 = st.columns(4)
-                m_col1.metric(t("hit_comp_l1_m1"), f"{int(sel_row[col_tot_30s]):,}")
-                m_col2.metric(t("hit_comp_l1_m2"), f"{sel_row[col_puck]:.1f}%")
-                m_col3.metric(t("hit_comp_l1_m3"), f"{int(sel_row[col_for_s] - sel_row[col_agst_s]):+,}")
-                m_col4.metric(t("hit_comp_l1_m4"), f"{int(sel_row[col_net_g]):+,}")
+                puck_win_val = sel_row[col_puck]
+                tot_shots_val = int(sel_row[col_tot_30s])
+                net_shots_val = int(sel_row[col_for_s] - sel_row[col_agst_s])
+                gf_val = int(sel_row[t("hit_th_goals_for")])
+                ga_val = int(sel_row[t("hit_th_goals_agst")])
+                net_goals_val = int(sel_row[col_net_g])
 
-                st.dataframe(df_comp1.style.format({
-                    col_tot_30s: "{:,}",
-                    col_for_s: "{:,}",
-                    col_agst_s: "{:,}",
-                    col_puck: "{:.1f}%",
-                    t("hit_th_goals_for"): "{:,}",
-                    t("hit_th_goals_agst"): "{:,}",
-                    col_net_g: "{:+,}"
-                }), width="stretch")
+                # 2 Row Metrics with 3 Metric Columns
+                r1_c1, r1_c2, r1_c3 = st.columns(3)
+                r1_c1.metric(t("hit_l1_m_puck_win"), f"{puck_win_val:.1f}%", f"{puck_win_val - 50.0:+.1f}% vs 50%")
+                r1_c2.metric(t("hit_l1_m_shots_vol"), f"{tot_shots_val:,}")
+                r1_c3.metric(t("hit_l1_m_net_shots"), f"{net_shots_val:+,}")
+
+                r2_c1, r2_c2, r2_c3 = st.columns(3)
+                r2_c1.metric(t("hit_l1_m_goals_for"), f"{gf_val:,}")
+                r2_c2.metric(t("hit_l1_m_goals_agst"), f"{ga_val:,}", delta_color="inverse")
+                r2_c3.metric(t("hit_l1_m_net_goals"), f"{net_goals_val:+,}")
+
+                st.markdown("---")
+                st.markdown(f"**{cat_label} — Measurements across Origin Zones**")
+                for _, r in df_comp1.iterrows():
+                    z_name = r[col_zone]
+                    p_win = r[col_puck]
+                    n_s = int(r[col_for_s] - r[col_agst_s])
+                    n_g = int(r[col_net_g])
+                    is_focus = r[col_status] == t("hit_val_selected_focus")
+                    tag = f" 🌟 *({t('hit_val_selected_focus')})*" if is_focus else ""
+
+                    z_lower = str(z_name).lower()
+                    z_icon = "⚔️" if any(k in z_lower for k in ["offens", "forecheck", "échec"]) else ("🛡️" if any(k in z_lower for k in ["défens", "defens", "zone d"]) else "🧊")
+                    st.markdown(f"**{z_icon} {z_name}**{tag} (`{int(r[col_tot_30s]):,}` total 30s shots)")
+                    mc1, mc2, mc3 = st.columns(3)
+                    mc1.metric(t("hit_th_puck_win"), f"{p_win:.1f}%")
+                    mc2.metric(t("hit_th_net_shot_diff"), f"{n_s:+,}")
+                    mc3.metric(t("hit_th_net_goal_diff"), f"{n_g:+,}")
 
             else:
                 # Default: No highlight active -> Display comprehensive Decision Matrix
                 st.markdown(f"##### {t('hit_comp_default_heading')}")
                 st.caption(t("hit_comp_default_tip"))
                 matrix_df = get_decision_matrix(active_goals, selected_tree_zone)
-                st.dataframe(matrix_df.style.format({
-                    t("hit_th_30s_shots"): "{:,}",
-                    t("hit_th_branch_share"): "{:.1f}%",
-                    t("hit_th_avg_elapsed"): "{:.1f}s",
-                    t("hit_th_goals"): "{:,}",
-                    t("hit_th_goal_conv"): "{:.1f}%",
-                    t("hit_th_sog_pct"): "{:.1f}%",
-                    t("hit_th_miss_pct"): "{:.1f}%",
-                    t("hit_th_blocked_pct"): "{:.1f}%"
-                }), width="stretch")
+
+                st.markdown(f"**{t('hit_comp_default_heading')} — Measurements by Trajectory Branch**")
+                zone_desc_map = {
+                    t("hit_tree_zone_o"): t("hit_comp_zone_desc_o"),
+                    t("hit_tree_zone_d"): t("hit_comp_zone_desc_d"),
+                    t("hit_tree_zone_n"): t("hit_comp_zone_desc_n")
+                }
+
+                col_zone_hdr = t("hit_th_origin_zone")
+                col_branch_hdr = t("hit_th_possession_branch")
+                col_shots_hdr = t("hit_th_30s_shots")
+                col_goals_hdr = t("hit_th_goals")
+                col_bshare_hdr = t("hit_th_branch_share")
+                col_gconv_hdr = t("hit_th_goal_conv")
+                col_time_hdr = t("hit_th_avg_elapsed")
+
+                zone_icon_map = {
+                    t("hit_tree_zone_o"): "⚔️",
+                    t("hit_tree_zone_d"): "🛡️",
+                    t("hit_tree_zone_n"): "🧊"
+                }
+
+                for z_name, z_group in matrix_df.groupby(col_zone_hdr, sort=False):
+                    st.markdown("---")
+                    z_icon = zone_icon_map.get(z_name)
+                    if not z_icon:
+                        z_lower = str(z_name).lower()
+                        if any(k in z_lower for k in ["offens", "forecheck", "échec"]):
+                            z_icon = "⚔️"
+                        elif any(k in z_lower for k in ["défens", "defens", "zone d"]):
+                            z_icon = "🛡️"
+                        elif any(k in z_lower for k in ["neutr", "rupture"]):
+                            z_icon = "🧊"
+                        else:
+                            z_icon = "🏒"
+                    st.markdown(f"##### {z_icon} {z_name}")
+                    z_desc = zone_desc_map.get(z_name, "")
+                    if z_desc:
+                        st.caption(z_desc)
+
+                    for _, r in z_group.iterrows():
+                        b_name = r[col_branch_hdr]
+                        s_cnt = int(r[col_shots_hdr])
+                        b_share = r[col_bshare_hdr]
+                        g_conv = r[col_gconv_hdr]
+                        t_sec = r[col_time_hdr]
+
+                        st.markdown(f"**{b_name}** (`{s_cnt:,}` shots, `{int(r[col_goals_hdr]):,}` goals)")
+                        mc1, mc2, mc3 = st.columns(3)
+                        mc1.metric(col_bshare_hdr, f"{b_share:.1f}%")
+                        mc2.metric(col_gconv_hdr, f"{g_conv:.1f}%")
+                        mc3.metric(col_time_hdr, f"{t_sec:.1f}s")
 
     # ══════════════════════════════════════════════════════════════════════════
     # LAYER 1 - TAB 3: RINK LOCATION
@@ -2743,7 +3190,7 @@ def show():
                             if view_mode == "half" and clicked_x < 0:
                                 clicked_x = 0.0
                             clicked_pt = (clicked_x, clicked_y)
-                            if ((active_grid["x_bin"] == clicked_x) & (active_grid["y_bin"] == clicked_y)).any():
+                            if ((abs(active_grid["x_bin"] - clicked_x) < 1e-3) & (abs(active_grid["y_bin"] - clicked_y) < 1e-3)).any():
                                 st.session_state.selected_hit_loc = clicked_pt
                         except (ValueError, TypeError):
                             pass
@@ -2783,7 +3230,7 @@ def show():
                             if view_mode == "half" and clicked_x < 0:
                                 clicked_x = 0.0
                             clicked_pt = (clicked_x, clicked_y)
-                            if ((active_grid["x_bin"] == clicked_x) & (active_grid["y_bin"] == clicked_y)).any():
+                            if ((abs(active_grid["x_bin"] - clicked_x) < 1e-3) & (abs(active_grid["y_bin"] - clicked_y) < 1e-3)).any():
                                 if st.session_state.get("selected_hit_loc") != clicked_pt:
                                     st.session_state.selected_hit_loc = clicked_pt
                                     st.rerun()
@@ -2793,7 +3240,7 @@ def show():
             # Detailed Inspection Panel for Selected Location
             if st.session_state.selected_hit_loc is not None:
                 sel_x, sel_y = st.session_state.selected_hit_loc
-                matched_cell = active_grid[(active_grid["x_bin"] == sel_x) & (active_grid["y_bin"] == sel_y)]
+                matched_cell = active_grid[(abs(active_grid["x_bin"] - sel_x) < 1e-3) & (abs(active_grid["y_bin"] - sel_y) < 1e-3)]
 
                 if not matched_cell.empty:
                     cell = matched_cell.iloc[0]
@@ -2878,7 +3325,7 @@ def show():
                         height=340,
                         margin=dict(l=10, r=10, t=20, b=10)
                     )
-                    st.plotly_chart(fig_loc_bar, width="stretch")
+                    st.plotly_chart(fig_loc_bar, width="stretch", key="spatial_zone_distribution_bar")
                 else:
                     st.info(t("hit_rink_no_data").format(x=sel_x, y=sel_y))
             else:
@@ -2892,6 +3339,9 @@ def show():
 
             st.subheader(t("hit_sub_team_heading"))
             st.markdown(t("hit_sub_team_desc"))
+
+            if len(active_team_kpi["team"].drop_duplicates()) < len(active_team_kpi):
+                active_team_kpi = aggregate_team_kpi(active_team_kpi)
 
             team_list = sorted([tm for tm in active_team_kpi["team"].unique() if tm != "LEAGUE_AVG"])
             if not team_list:
@@ -2962,23 +3412,41 @@ def show():
                 st.markdown(f"#### {t('hit_team_spatial_comp_heading')}")
                 h_col1, h_col2 = st.columns(2)
                 with h_col1:
+                    focus_prefix = t("hit_val_selected_focus")
+                    st.markdown(
+                        f"<div style='font-size: 13.5px; font-weight: 700; color: #f8fafc; margin-bottom: 2px; padding-left: 2px;'>"
+                        f"{focus_prefix}: {primary_choice} "
+                        f"<span style='font-size: 11.5px; font-weight: 400; color: #94a3b8;'>({selected_season_label})</span>"
+                        f"</div>",
+                        unsafe_allow_html=True
+                    )
                     fig_t1 = render_team_rink_heatmap(
                         df_team_spatial, primary_tri, selected_season,
                         display_name=primary_choice,
                         is_benchmark=False,
                         season_label=selected_season_label,
-                        min_density=1.0
+                        min_density=1.0,
+                        show_title=False
                     )
-                    st.plotly_chart(fig_t1, width="stretch")
+                    st.plotly_chart(fig_t1, width="stretch", key="team_spatial_density_t1")
                 with h_col2:
+                    bench_prefix = t("hit_val_benchmark")
+                    st.markdown(
+                        f"<div style='font-size: 13.5px; font-weight: 700; color: #f8fafc; margin-bottom: 2px; padding-left: 2px;'>"
+                        f"{bench_prefix}: {benchmark_label} "
+                        f"<span style='font-size: 11.5px; font-weight: 400; color: #94a3b8;'>({selected_season_label})</span>"
+                        f"</div>",
+                        unsafe_allow_html=True
+                    )
                     fig_t2 = render_team_rink_heatmap(
                         df_team_spatial, benchmark_tri, selected_season,
                         display_name=benchmark_label,
                         is_benchmark=True,
                         season_label=selected_season_label,
-                        min_density=1.0
+                        min_density=1.0,
+                        show_title=False
                     )
-                    st.plotly_chart(fig_t2, width="stretch")
+                    st.plotly_chart(fig_t2, width="stretch", key="team_spatial_density_t2")
 
                 # League-wide 32-Team Scatter Plot
                 st.markdown(f"#### {t('hit_team_landscape_heading')}")
@@ -3030,14 +3498,42 @@ def show():
                             name=f"{t('hit_scatter_selected_prefix')} {primary_tri}"
                         ))
 
+                    # Benchmark dashed quadrant lines at league mean
+                    x_mid = float(league_teams["ozone_pct"].mean())
+                    y_mid = float(league_teams["puck_win_pct"].mean())
+                    fig_scatter.add_vline(x=x_mid, line_dash="dash", line_color="rgba(255,255,255,0.35)", line_width=1.5)
+                    fig_scatter.add_hline(y=y_mid, line_dash="dash", line_color="rgba(255,255,255,0.35)", line_width=1.5)
+
+                    # Quadrant Corner Annotations matching analytical takeaways
+                    fig_scatter.add_annotation(
+                        x=float(league_teams["ozone_pct"].max()), y=float(league_teams["puck_win_pct"].max()),
+                        text=f"<b>{t('hit_scatter_quad_top_right')}</b>", showarrow=False,
+                        xanchor="right", yanchor="top", font=dict(color="#86efac", size=10)
+                    )
+                    fig_scatter.add_annotation(
+                        x=float(league_teams["ozone_pct"].max()), y=float(league_teams["puck_win_pct"].min()),
+                        text=f"<b>{t('hit_scatter_quad_bot_right')}</b>", showarrow=False,
+                        xanchor="right", yanchor="bottom", font=dict(color="#fca5a5", size=10)
+                    )
+                    fig_scatter.add_annotation(
+                        x=float(league_teams["ozone_pct"].min()), y=float(league_teams["puck_win_pct"].max()),
+                        text=f"<b>{t('hit_scatter_quad_top_left')}</b>", showarrow=False,
+                        xanchor="left", yanchor="top", font=dict(color="#93c5fd", size=10)
+                    )
+                    fig_scatter.add_annotation(
+                        x=float(league_teams["ozone_pct"].min()), y=float(league_teams["puck_win_pct"].min()),
+                        text=f"<b>{t('hit_scatter_quad_bot_left')}</b>", showarrow=False,
+                        xanchor="left", yanchor="bottom", font=dict(color="#cbd5e1", size=10)
+                    )
+
                     fig_scatter.update_layout(
                         paper_bgcolor="rgba(0,0,0,0)",
                         plot_bgcolor="rgba(0,0,0,0)",
                         font=dict(color="white"),
-                        height=480,
+                        height=520,
                         margin=dict(l=10, r=10, t=40, b=10)
                     )
-                    st.plotly_chart(fig_scatter, width="stretch")
+                    st.plotly_chart(fig_scatter, width="stretch", key="team_efficiency_scatter_chart")
             else:
                 st.warning(f"No metric data available for {primary_choice} or {benchmark_label} for season {selected_season_label}.")
 
