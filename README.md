@@ -48,9 +48,9 @@ The platform operates across four coordinated environments:
                    │
                    ▼ Fast Parquet Streaming
 ┌────────────────────────────────────────────────────────────────────────┐
-│                   🤗 Rinklytics Web Application                        │
-│   • Live Production Space: https://huggingface.co/spaces/jjerlee/rinklytics │
-│   • Local Testing Container: Docker on port 1901 (http://localhost:1901)│
+│                     Rinklytics Web Application                         │
+│   • Live Space: https://huggingface.co/spaces/jjerlee/rinklytics       │
+│   • Local Testing Container: Docker on port 1901 (localhost:1901)      │
 │   • Visualizes Game Scores, Betting Odds, Hit Momentum, & Shot Maps    │
 └────────────────────────────────────────────────────────────────────────┘
 ```
@@ -80,11 +80,9 @@ The platform operates across four coordinated environments:
 
 ## 🚀 Running Locally
 
-### 1. Dashboard Application
+The dashboard runs out of the box using the pre-compiled datasets included in [`latest/`](latest/) or streamed directly from [Hugging Face Datasets](https://huggingface.co/datasets/jjerlee/nhl-analytics).
 
-You can run the Rinklytics interactive dashboard either directly with `uv` or inside an isolated container:
-
-#### Option A: Native Execution
+### Option A: Native Execution
 ```bash
 # Install dependencies
 uv pip install -r src/requirements/requirements.txt
@@ -94,8 +92,7 @@ uv run streamlit run app/app.py
 ```
 Access the application at 👉 **`http://localhost:8501`**
 
-#### Option B: Isolated Docker Container (Port 1901)
-To run in an isolated local container mirroring production:
+### Option B: Isolated Docker Container (Port 1901)
 ```bash
 # Build and run container
 docker build -t rinklytics:local -f deploy/local/Dockerfile .
@@ -103,27 +100,6 @@ docker run -d --name rinklytics-local -p 1901:1901 rinklytics:local
 ```
 Access the container at 👉 **`http://localhost:1901`**  
 *(See [**`deploy/local/README.md`**](deploy/local/README.md) for full Docker and Docker Compose instructions).*
-
----
-
-### 2. Data Pipelines & Hugging Face Dataset Sync
-
-Data extraction and panel dataset generation can be triggered locally:
-
-```bash
-# Pull today's game box scores
-uv run python src/data/apinhle/data_pull_box.py
-
-# Pull today's closing betting odds
-uv run python src/data/apinhle/data_pull_box_odds.py
-
-# Sync updated box scores to the Hugging Face Dataset
-uv run python deploy/huggingface/sync_dataset.py --target box
-
-# Synchronize all domains with automatic deduplication
-uv run python deploy/huggingface/sync_dataset.py --target all
-```
-*(See [**`deploy/huggingface/README.md`**](deploy/huggingface/README.md) for detailed sync engine architecture and parameters).*
 
 ---
 
