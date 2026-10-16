@@ -206,11 +206,21 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
                     "Recaps will be generated using the deterministic Algorithmic Guardrail Engine."
                 )
         else:
+            import os
             is_space_up, space_name, space_note = agent.narrator.check_hf_space_health()
-            st.info(
-                f"🌐 **Hugging Face Space Runtime ({space_name})**: Connected. "
-                "Generating verified recaps via Algorithmic Guardrail Engine."
+            custom_endpoint = (
+                agent.narrator.hf_llm_endpoint
+                or os.environ.get("HF_LLM_URL")
+                or os.environ.get("OPENAI_BASE_URL")
+                or os.environ.get("LLM_BASE_URL")
             )
+            if custom_endpoint:
+                st.info(f"🌐 **Remote LLM Endpoint Connected**: Synthesizing recaps via `{custom_endpoint}`.")
+            else:
+                st.info(
+                    f"ℹ️ **Production Runtime ({space_name})**: Connected. "
+                    "Reading pre-generated LLM recaps from dataset; on-demand runs use the deterministic Algorithmic Guardrail Engine (set `HF_LLM_URL` in Space Secrets for remote LLM inference)."
+                )
 
         try:
             analyzed_slate = agent.analyze_slate(target_date)

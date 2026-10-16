@@ -423,9 +423,14 @@ class NarratorEngine:
             logger.warning("Guardrail trigger: Narrative contains internal model reasoning leakage or malformed period label.")
             return False
 
-        if "halftime" in lower or "quarter" in lower:
-            logger.warning("Guardrail trigger: Narrative contains non-hockey terms ('halftime'/'quarter').")
+        if "halftime" in lower:
+            logger.warning("Guardrail trigger: Narrative contains non-hockey term 'halftime'.")
             return False
+
+        if re.search(r"\b(?:1st|2nd|3rd|4th|first|second|third|fourth)\s+quarter\b", lower):
+            if not re.search(r"\b(?:1st|2nd|3rd|4th|first|second|third|fourth)\s+quarter\s+of\s+the\s+(?:season|schedule|year|campaign)\b", lower):
+                logger.warning("Guardrail trigger: Narrative contains non-hockey period term 'quarter'.")
+                return False
 
         if game.period_type in ("REG", "OT") and ("penalty shootout" in lower or "in a shootout" in lower):
             logger.warning("Guardrail trigger: Game ended in %s but narrative claimed shootout.", game.period_type)
@@ -439,6 +444,12 @@ class NarratorEngine:
             return False
 
         # ROSTER & ROLE INTEGRITY AUDIT:
+        import unicodedata
+
+        def _strip_accents(text: str) -> str:
+            nfkd = unicodedata.normalize("NFKD", text)
+            return "".join(c for c in nfkd if not unicodedata.combining(c)).lower()
+
         all_skaters = list(game.away_skaters or []) + list(game.home_skaters or [])
         all_goalies = list(game.away_goalies or []) + list(game.home_goalies or [])
         scorer_names = {sp.goal_scorer.split()[-1].lower() for sp in (game.scoring_plays or []) if sp.goal_scorer}
@@ -471,14 +482,17 @@ class NarratorEngine:
             for part in re.findall(r"[A-Za-zÀ-ÿ-]+", p.name):
                 if len(part) >= 3:
                     roster_tokens.add(part.lower())
+                    roster_tokens.add(_strip_accents(part))
         for sp in (game.scoring_plays or []):
             for part in re.findall(r"[A-Za-zÀ-ÿ-]+", sp.goal_scorer):
                 if len(part) >= 3:
                     roster_tokens.add(part.lower())
+                    roster_tokens.add(_strip_accents(part))
             for a_name in (sp.assists or []):
                 for part in re.findall(r"[A-Za-zÀ-ÿ-]+", a_name):
                     if len(part) >= 3:
                         roster_tokens.add(part.lower())
+                        roster_tokens.add(_strip_accents(part))
 
         team_tokens = {
             game.away_team.team_abbrev.lower(),
@@ -487,6 +501,7 @@ class NarratorEngine:
         for t_name in (game.away_team.team_name, game.home_team.team_name, game.venue):
             for part in re.findall(r"[A-Za-zÀ-ÿ-]+", t_name):
                 team_tokens.add(part.lower())
+                team_tokens.add(_strip_accents(part))
 
         common_headline_words = {
             "the", "and", "for", "with", "over", "past", "from", "into", "after", "before",
@@ -509,16 +524,34 @@ class NarratorEngine:
             "club", "squad", "bench", "coach", "trio", "unit", "group", "frame", "contest", "matchup",
             "evening", "visitor", "host", "winner", "loser", "opponent", "penalty", "forward", "defense",
             "goalie", "goaltender", "netminder", "captain", "veteran", "rookie", "corsi", "fenwick", "pythagorean",
+            "tonight", "today", "yesterday", "tomorrow", "stretch", "trip", "stand", "homestand", "recap",
+            "action", "showcase", "meeting", "franchise", "organization", "roster", "lineup", "schedule",
+            "campaign", "race", "standings",
+            "it", "its", "there", "here", "that", "what", "who", "how", "let", "one", "someone", "anyone", "nobody", "everyone", "everybody",
+            "rival", "rivalry", "canada", "america", "blueliner", "skater", "defenseman", "pairing", "corps", "depth", "tandem", "milestone", "record", "history", "momentum", "intermission",
             "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
             "october", "november", "december", "january", "february", "march", "april", "may", "june",
         }
         allowed_headline_tokens = roster_tokens | team_tokens | common_headline_words
 
-        # Check possessive proper nouns in headline and narrative (e.g. "Tuch’s", "Knies's", "Coleman's")
-        for m in re.finditer(r"\b([A-Z][a-zÀ-ÿ-]+)['’]s\b", combined):
+        # Check possessive proper nouns in headline (e.g. "Tuch’s", "Knies's", "Coleman's")
+        for m in re.finditer(r"\b([A-Z][a-zÀ-ÿ-]+)['’]s\b", headline):
             word_low = m.group(1).lower()
-            if word_low not in allowed_headline_tokens:
-                logger.warning("Guardrail trigger: Non-roster possessive name '%s' detected.", m.group(1))
+            word_norm = _strip_accents(m.group(1))
+            if word_low not in allowed_headline_tokens and word_norm not in allowed_headline_tokens:
+                logger.warning("Guardrail trigger: Non-roster possessive name '%s' detected in headline.", m.group(1))
+                return False
+
+        # In narrative, check possessive proper nouns credited with goals/assists/saves/milestones
+        cred_pat = (
+            r"\b([A-Z][a-zÀ-ÿ-]+)['’]s\s+(?:[a-z0-9-]+\s+){0,2}"
+            r"(?:goal|winner|tally|marker|strike|assist|point|save|shutout|hat[- ]trick)\b"
+        )
+        for m in re.finditer(cred_pat, narrative, re.IGNORECASE):
+            word_low = m.group(1).lower()
+            word_norm = _strip_accents(m.group(1))
+            if word_low not in allowed_headline_tokens and word_norm not in allowed_headline_tokens:
+                logger.warning("Guardrail trigger: Non-roster player '%s' credited with play in narrative.", m.group(1))
                 return False
 
         if headline:
@@ -530,7 +563,8 @@ class NarratorEngine:
             )
             for m in re.finditer(verb_pat, headline):
                 word_low = m.group(1).lower()
-                if word_low not in allowed_headline_tokens:
+                word_norm = _strip_accents(m.group(1))
+                if word_low not in allowed_headline_tokens and word_norm not in allowed_headline_tokens:
                     logger.warning("Guardrail trigger: Non-roster player '%s' detected in headline '%s'.", m.group(1), headline)
                     return False
 
@@ -554,7 +588,7 @@ class NarratorEngine:
             )
         ):
             return False
-        if "halftime" in lower or "quarter" in lower:
+        if "halftime" in lower:
             return False
         return True
 
@@ -698,7 +732,41 @@ class NarratorEngine:
         cleaned = clean_llm_narrative(content)
         return cleaned.strip()
 
-    def _generate_game_narrative_with_lm_studio(self, game: AnalyzedGame, model_name: str) -> str:
+    def _generate_game_narrative_with_custom_endpoint(self, game: AnalyzedGame, endpoint_url: str) -> str:
+        """Invokes a custom remote OpenAI-compatible model server (e.g. Groq, remote LM Studio, or vLLM)."""
+        system_prompt = self.build_game_llm_system_prompt()
+        user_prompt = self.build_game_llm_user_prompt(game)
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+
+        url = f"{endpoint_url.rstrip('/')}/chat/completions"
+        api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("GROQ_API_KEY") or self.token or "none"
+        headers = {"Authorization": f"Bearer {api_key}"}
+        payload = {
+            "model": self.llm_model_id,
+            "messages": messages,
+            "max_tokens": 1500,
+            "temperature": 0.35,
+        }
+
+        resp = requests.post(url, headers=headers, json=payload, timeout=60.0)
+        resp.raise_for_status()
+        data = resp.json()
+        choice = data["choices"][0]
+        content = choice["message"].get("content") or ""
+        cleaned = clean_llm_narrative(content)
+        return cleaned.strip()
+
+    def _generate_game_narrative_with_lm_studio(
+        self,
+        game: AnalyzedGame,
+        model_name: str,
+        temperature: float = 0.35,
+        max_tokens: int = 1800,
+    ) -> str:
         """Invokes local LM Studio instance (e.g. nemotron / phi-4 / gemma) via OpenAI-compatible API without leaking reasoning."""
         system_prompt = self.build_game_llm_system_prompt()
         user_prompt = self.build_game_llm_user_prompt(game)
@@ -712,11 +780,11 @@ class NarratorEngine:
         payload = {
             "model": model_name,
             "messages": messages,
-            "max_tokens": 2800,
-            "temperature": 0.35,
+            "max_tokens": max_tokens,
+            "temperature": temperature,
         }
 
-        resp = requests.post(url, json=payload, timeout=120.0)
+        resp = requests.post(url, json=payload, timeout=180.0)
         resp.raise_for_status()
         data = resp.json()
         choice = data["choices"][0]
@@ -920,7 +988,16 @@ class NarratorEngine:
                         game.headline = llm_headline
                         model_stamp = f"lm-studio/{detected_model}"
                         return narrative, model_stamp
-                    logger.warning("LM Studio output failed factual or reasoning verification checks. Using algorithmic fallback.")
+
+                    logger.info("LM Studio first attempt failed verification checks. Retrying once with focused temperature (0.2)...")
+                    raw_retry = self._generate_game_narrative_with_lm_studio(game, detected_model, temperature=0.2, max_tokens=1800)
+                    retry_h, retry_narrative = extract_headline_and_narrative(raw_retry, default_h, game.period_type)
+                    if self._verify_game_narrative_facts(retry_narrative, game, headline=retry_h):
+                        game.headline = retry_h
+                        model_stamp = f"lm-studio/{detected_model}"
+                        return retry_narrative, model_stamp
+
+                    logger.warning("LM Studio output failed factual or reasoning verification checks after retry. Using algorithmic fallback.")
                 except Exception as e:
                     self._trigger_alarm(f"LM Studio generation error: {e}")
             elif mode in ("lm-studio", "local-llm", "local"):
@@ -931,6 +1008,19 @@ class NarratorEngine:
             # When running on Hugging Face Spaces, ping the Space host
             is_space_up, space_name, space_note = self.check_hf_space_health()
             logger.info("HF Space Status [%s]: %s (local_streamlit=False)", space_name, space_note)
+
+            # Check if custom OpenAI-compatible endpoint is configured (e.g. HF_LLM_URL or OPENAI_BASE_URL)
+            custom_endpoint = self.hf_llm_endpoint or os.environ.get("HF_LLM_URL") or os.environ.get("OPENAI_BASE_URL") or os.environ.get("LLM_BASE_URL")
+            if custom_endpoint:
+                try:
+                    logger.info("Attempting narrative generation via remote endpoint (%s)...", custom_endpoint)
+                    raw_output = self._generate_game_narrative_with_custom_endpoint(game, custom_endpoint)
+                    llm_headline, narrative = extract_headline_and_narrative(raw_output, default_h, game.period_type)
+                    if self._verify_game_narrative_facts(narrative, game, headline=llm_headline):
+                        game.headline = llm_headline
+                        return narrative.strip(), f"remote-endpoint/{self.llm_model_id}"
+                except Exception as e:
+                    logger.warning("Remote endpoint generation failed: %s", e)
 
             if mode in ("auto", "llm", "router-llm"):
                 client = self._get_inference_client()
@@ -944,7 +1034,11 @@ class NarratorEngine:
                             return narrative.strip(), self.llm_model_id
                         logger.warning("Router LLM failed factual verification checks. Using algorithmic fallback.")
                     except Exception as e:
-                        logger.warning("LLM inference call failed: %s. Using algorithmic fallback.", e)
+                        err_str = str(e)
+                        if "402" in err_str or "Payment Required" in err_str or "credits" in err_str.lower():
+                            logger.warning("Hugging Face Router LLM requires pre-paid credits (HTTP 402). Falling back to Algorithmic Guardrail Engine.")
+                        else:
+                            logger.warning("LLM inference call failed: %s. Using algorithmic fallback.", e)
 
         # 3. Explicit Remote Router LLM in local mode if requested
         elif mode in ("llm", "router-llm"):
@@ -1031,6 +1125,34 @@ class NarratorEngine:
         cleaned = clean_llm_narrative(content)
         return cleaned.strip()
 
+    def _generate_slate_narrative_with_custom_endpoint(self, slate: AnalyzedSlate, endpoint_url: str) -> str:
+        """Invokes custom remote endpoint for slate review."""
+        system_prompt = self.build_slate_llm_system_prompt()
+        user_prompt = self.build_slate_llm_user_prompt(slate)
+
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": user_prompt},
+        ]
+
+        url = f"{endpoint_url.rstrip('/')}/chat/completions"
+        api_key = os.environ.get("OPENAI_API_KEY") or os.environ.get("GROQ_API_KEY") or self.token or "none"
+        headers = {"Authorization": f"Bearer {api_key}"}
+        payload = {
+            "model": self.llm_model_id,
+            "messages": messages,
+            "max_tokens": 1200,
+            "temperature": 0.3,
+        }
+
+        resp = requests.post(url, headers=headers, json=payload, timeout=60.0)
+        resp.raise_for_status()
+        data = resp.json()
+        choice = data["choices"][0]
+        content = choice["message"].get("content") or ""
+        cleaned = clean_llm_narrative(content)
+        return cleaned.strip()
+
     def _generate_slate_narrative_with_lm_studio(self, slate: AnalyzedSlate, model_name: str) -> str:
         """Invokes local LM Studio instance for slate review without leaking reasoning."""
         system_prompt = self.build_slate_llm_system_prompt()
@@ -1045,11 +1167,11 @@ class NarratorEngine:
         payload = {
             "model": model_name,
             "messages": messages,
-            "max_tokens": 2500,
+            "max_tokens": 1200,
             "temperature": 0.3,
         }
 
-        resp = requests.post(url, json=payload, timeout=120.0)
+        resp = requests.post(url, json=payload, timeout=180.0)
         resp.raise_for_status()
         data = resp.json()
         choice = data["choices"][0]
@@ -1106,7 +1228,15 @@ class NarratorEngine:
                     if self._verify_slate_narrative_facts(narrative, slate):
                         slate.executive_headline = llm_headline
                         return narrative, f"lm-studio/{detected_model}"
-                    logger.warning("LM Studio output failed slate verification checks. Using algorithmic fallback.")
+
+                    logger.info("LM Studio first attempt failed slate verification checks. Retrying once with focused temperature (0.2)...")
+                    raw_retry = self._generate_slate_narrative_with_lm_studio(slate, detected_model)
+                    retry_h, retry_narrative = extract_headline_and_narrative(raw_retry, default_h)
+                    if self._verify_slate_narrative_facts(retry_narrative, slate):
+                        slate.executive_headline = retry_h
+                        return retry_narrative, f"lm-studio/{detected_model}"
+
+                    logger.warning("LM Studio output failed slate verification checks after retry. Using algorithmic fallback.")
                 except Exception as e:
                     self._trigger_alarm(f"LM Studio slate generation error: {e}")
             elif mode in ("lm-studio", "local-llm", "local"):
@@ -1116,6 +1246,19 @@ class NarratorEngine:
         if not is_local:
             is_space_up, space_name, space_note = self.check_hf_space_health()
             logger.info("HF Space Status [%s]: %s (local_streamlit=False)", space_name, space_note)
+
+            custom_endpoint = self.hf_llm_endpoint or os.environ.get("HF_LLM_URL") or os.environ.get("OPENAI_BASE_URL") or os.environ.get("LLM_BASE_URL")
+            if custom_endpoint:
+                try:
+                    logger.info("Attempting slate generation via remote endpoint (%s)...", custom_endpoint)
+                    raw_output = self._generate_slate_narrative_with_custom_endpoint(slate, custom_endpoint)
+                    llm_headline, narrative = extract_headline_and_narrative(raw_output, default_h)
+                    if self._verify_slate_narrative_facts(narrative, slate):
+                        slate.executive_headline = llm_headline
+                        return narrative, f"remote-endpoint/{self.llm_model_id}"
+                except Exception as e:
+                    logger.warning("Remote endpoint slate generation failed: %s", e)
+
             if mode in ("auto", "llm", "router-llm"):
                 client = self._get_inference_client()
                 if client:
@@ -1128,7 +1271,11 @@ class NarratorEngine:
                             return narrative.strip(), self.llm_model_id
                         logger.warning("Router LLM failed slate factual checks. Using algorithmic fallback.")
                     except Exception as e:
-                        logger.warning("Slate LLM generation failed: %s. Using algorithmic fallback.", e)
+                        err_str = str(e)
+                        if "402" in err_str or "Payment Required" in err_str or "credits" in err_str.lower():
+                            logger.warning("Hugging Face Router LLM requires pre-paid credits (HTTP 402). Falling back to Algorithmic Guardrail Engine.")
+                        else:
+                            logger.warning("Slate LLM generation failed: %s. Using algorithmic fallback.", e)
 
         # 3. Explicit Remote Router LLM in local mode if requested
         elif mode in ("llm", "router-llm"):
