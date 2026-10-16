@@ -1,0 +1,39 @@
+name: NHL Scoreboard Agent Nightly Ingestion
+
+on:
+  schedule:
+    # Runs daily at 07:00 UTC (2:00 AM Eastern / 11:00 PM Pacific)
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+    inputs:
+      target_date:
+        description: 'Specific date to analyze (YYYY-MM-DD), leave blank for latest'
+        required: false
+        default: ''
+
+jobs:
+  run-scoreboard-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests pandas pyarrow huggingface_hub
+
+      - name: Run Scoreboard Agent & Sync to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -n "${{ github.event.inputs.target_date }}" ]; then
+            python dev/agent/scoreboard/cli.py --date "${{ github.event.inputs.target_date }}" --record-hf --no-save
+          else
+            python dev/agent/scoreboard/cli.py --latest --record-hf --no-save
+          fi

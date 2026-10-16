@@ -11,4 +11,12 @@ services:
       - STREAMLIT_SERVER_PORT=1901
       - STREAMLIT_SERVER_ADDRESS=0.0.0.0
       - STREAMLIT_SERVER_HEADLESS=true
+      - local_streamlit=True
+      - LM_STUDIO_URL=http://host.docker.internal:1234/v1
+    env_file:
+      - ../../.env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ~/.cache/rinklytics:/root/.cache/rinklytics
     restart: unless-stopped

@@ -15,10 +15,13 @@ if IS_DATABRICKS:
     # Hits metrics: Use dedicated action volume if present, otherwise fallback to play volume
     if os.path.exists("/Volumes/nhl-databricks/data/action"):
         ACTION_HITS_DIR = "/Volumes/nhl-databricks/data/action/hits"
+        ACTION_SHIFTS_DIR = "/Volumes/nhl-databricks/data/action/shifts"
     elif os.path.exists("/Volumes/nhl-databricks/data/play"):
         ACTION_HITS_DIR = "/Volumes/nhl-databricks/data/play/action_hits"
+        ACTION_SHIFTS_DIR = "/Volumes/nhl-databricks/data/play/action_shifts"
     else:
         ACTION_HITS_DIR = "/Volumes/nhl-databricks/data/action/hits"
+        ACTION_SHIFTS_DIR = "/Volumes/nhl-databricks/data/action/shifts"
 else:
     # Local GitHub Actions Paths (relative to project root)
     BOX_DIR = "./latest/box"
@@ -27,6 +30,7 @@ else:
     BETTING_DIR = "./latest/box" # betting originally saved to box locally
     PLAYER_DIR = "./latest/player"
     ACTION_HITS_DIR = "./latest/action/hits"
+    ACTION_SHIFTS_DIR = "./latest/action/shifts"
 
 # Function to get the path config so we don't repeat logic
 def get_box_dir(): return BOX_DIR
@@ -47,6 +51,21 @@ def get_action_hits_dir():
             pass
         return path
     return ACTION_HITS_DIR
+
+def get_action_shifts_dir():
+    if IS_DATABRICKS:
+        if os.path.exists("/Volumes/nhl-databricks/data/action"):
+            path = "/Volumes/nhl-databricks/data/action/shifts"
+        elif os.path.exists("/Volumes/nhl-databricks/data/play"):
+            path = "/Volumes/nhl-databricks/data/play/action_shifts"
+        else:
+            path = "/Volumes/nhl-databricks/data/action/shifts"
+        try:
+            os.makedirs(path, exist_ok=True)
+        except Exception:
+            pass
+        return path
+    return ACTION_SHIFTS_DIR
 def get_player_dir():
     if IS_DATABRICKS:
         if os.path.exists("/Volumes/nhl-databricks/data/player"):

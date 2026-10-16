@@ -100,6 +100,7 @@ st.sidebar.radio(
 HOME = st.Page(page="views/home.py", title=t("nav_home"), url_path="home", default=True)
 TEAM_MAP = st.Page(page="views/teams_map.py", title=t("nav_team_map"), url_path="teams-map")
 SCOREBOARD = st.Page(page="views/scoreboard.py", title=t("nav_scoreboard"), url_path="scoreboard")
+GAME_RECAPS = st.Page(page="views/game_recaps.py", title="Game Recaps (Beta)", url_path="game-recaps")
 TEAM_SEASON_STATS = st.Page(page="views/team_season_stats.py", title=t("nav_team_season"), url_path="team-season-stats")
 SKATERS = st.Page(page="views/magnifiques_patineuses.py", title=t("nav_mag_patineuses"), url_path="magnifiques-patineuses")
 BLOCKING_SHOTS = st.Page(page="views/blocking_shots.py", title=t("nav_blocking_shots"), url_path="blocking-shots")
@@ -113,7 +114,7 @@ GOALIE_STATS = st.Page(page="views/goalie_stats.py", title=t("nav_goalie_stats")
 # Create navigation
 pages = {
     t("nav_bienvenue"): [HOME],
-    t("nav_team"): [SCOREBOARD, TEAM_MAP, TEAM_SEASON_STATS],
+    t("nav_team"): [SCOREBOARD, GAME_RECAPS, TEAM_MAP, TEAM_SEASON_STATS],
     t("nav_skaters"): [SKATER_STATS, GOALIE_STATS, SKATERS],
     t("nav_action"): [BLOCKING_SHOTS, HIT_IMPACT],
 }

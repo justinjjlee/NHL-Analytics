@@ -1,4 +1,4 @@
-name: NHL API pull data for game-level stats (box, plays, and summaries)
+name: NHL API pull data for game-level stats (box, plays, shifts, and summaries)
 
 on:
   schedule:
@@ -41,6 +41,14 @@ jobs:
       if: always()
       run: python src/data/apinhle/data_pull_plays.py
 
+    - name: Run NHL Game-level Play-by-play Shift record data
+      if: always()
+      run: python src/data/apinhle/data_pull_lines.py
+
+    - name: Run NHL Line Shift and L5 Trend Analytics
+      if: always()
+      run: python src/data/apinhle/data_proc_shifts.py
+
     - name: Run NHL Physical Hits and Sequence Analytics
       if: always()
       run: python src/data/apinhle/data_proc_hits.py --incremental
@@ -56,6 +64,7 @@ jobs:
         git add latest/team/season/*.csv
         git add latest/play/*.csv
         git add latest/action/hits/*.csv
+        git add latest/action/shifts/*.csv
         git add app/data/hit_eda/*.csv
         git add dev/decision_science/impact_of_hits/data/*.csv
         if git diff --staged --quiet; then

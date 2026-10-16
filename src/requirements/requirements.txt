@@ -24,6 +24,7 @@ requests>=2.32.0
 urllib3>=2.8.0
 flask>=3.0.0
 huggingface_hub>=0.23.0
+pydantic>=2.0.0
 
 # Utilities
 tqdm>=4.66.0

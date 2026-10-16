@@ -441,7 +441,11 @@ def sync_shifts(repo_root: Path, repo_id: str, token: Optional[str], season_year
         df_combined = build_shifts_panel(repo_root)
 
     dedup_cols = ["game_id", "player_id", "shift_number", "start_time"] if all(c in df_combined.columns for c in ["game_id", "player_id", "shift_number", "start_time"]) else ["shift_id"]
-    df_updated = df_combined.drop_duplicates(subset=dedup_cols, keep="last").reset_index(drop=True)
+    sort_cols = [c for c in ["game_id", "period", "start_time"] if c in df_combined.columns]
+    df_updated = df_combined.drop_duplicates(subset=dedup_cols, keep="last")
+    if sort_cols:
+        df_updated = df_updated.sort_values(by=sort_cols)
+    df_updated = df_updated.reset_index(drop=True)
 
     if has_changed(df_updated, df_remote, dedup_cols, season_year=season_year):
         out_path = staging_dir / rel_path
@@ -576,6 +580,116 @@ def sync_measurement_hits(repo_root: Path, repo_id: str, token: Optional[str], s
     return modified
 
 
+def sync_measurement_shifts(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path) -> bool:
+    """Syncs measurement/action/shifts/*.parquet metrics (line shifts, L5 line trends, L5 team trends)."""
+    shift_tables = [
+        ("game_line_shifts", ["season", "gameid", "team", "unit_type", "unit_key"]),
+        ("game_line_trends_l5", ["season", "gameid", "team", "unit_type", "unit_key"]),
+        ("team_game_trends_l5", ["season", "gameid", "team"]),
+    ]
+    modified = False
+    shifts_dir = repo_root / "latest" / "action" / "shifts"
+
+    for tbl_name, dedup_cols in shift_tables:
+        rel_path = f"measurement/action/shifts/{tbl_name}.parquet"
+        df_remote = load_remote_parquet(repo_id, rel_path, token)
+
+        season_csv = shifts_dir / f"{season_year}_{tbl_name}.csv"
+        master_csv = shifts_dir / f"{tbl_name}.csv"
+        if season_csv.exists():
+            df_fresh = pd.read_csv(season_csv, low_memory=False)
+        elif master_csv.exists():
+            df_fresh = pd.read_csv(master_csv, low_memory=False)
+        else:
+            df_fresh = pd.DataFrame()
+
+        if df_fresh.empty and df_remote is not None:
+            continue
+
+        if df_remote is not None and "season" in df_remote.columns and not df_fresh.empty:
+            df_hist = df_remote[df_remote["season"] != season_year].copy()
+            df_combined = pd.concat([df_hist, df_fresh], ignore_index=True)
+        elif not df_fresh.empty:
+            df_combined = df_fresh
+        else:
+            continue
+
+        valid_keys = [c for c in dedup_cols if c in df_combined.columns]
+        if valid_keys:
+            df_updated = df_combined.drop_duplicates(subset=valid_keys, keep="last").reset_index(drop=True)
+        else:
+            df_updated = df_combined.drop_duplicates().reset_index(drop=True)
+
+        if has_changed(df_updated, df_remote, valid_keys, season_year=season_year):
+            out_path = staging_dir / rel_path
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            df_updated.to_parquet(out_path, index=False, compression="snappy")
+            print(f"   🔄 Staged {rel_path}: {len(df_updated):,} rows.")
+            modified = True
+        else:
+            print(f"   ✓ {rel_path} is up-to-date ({len(df_updated):,} rows).")
+
+    return modified
+
+
+def sync_scoreboard_recaps(
+    repo_root: Path,
+    repo_id: str,
+    token: Optional[str],
+    season_year: int,
+    staging_dir: Path,
+    recent_dates_limit: int = 2,
+) -> bool:
+    """Ensures recent completed game dates in the active season have Scoreboard recaps generated and staged."""
+    try:
+        sys.path.insert(0, str(repo_root))
+        from dev.agent.scoreboard.agent import ScoreboardAgent
+        from dev.agent.scoreboard.dataset_store import HFScoreboardStore
+
+        box_file = repo_root / "latest" / "box" / f"{season_year}_box.csv"
+        if not box_file.exists():
+            return False
+
+        df_box = pd.read_csv(box_file, usecols=lambda c: c in ("date", "gameDate"))
+        d_col = "date" if "date" in df_box.columns else ("gameDate" if "gameDate" in df_box.columns else None)
+        if not d_col or df_box.empty:
+            return False
+
+        avail_dates = sorted(pd.to_datetime(df_box[d_col]).dt.strftime("%Y-%m-%d").dropna().unique().tolist(), reverse=True)
+        target_dates = avail_dates[:recent_dates_limit]
+
+        store = HFScoreboardStore(repo_id=repo_id, token=token)
+        store._load_tables(refresh_remote=True)
+
+        missing_dates = [d for d in target_dates if not store.is_slate_recorded(d)]
+        if not missing_dates:
+            print(f"   ✓ insights/scoreboard recaps are up-to-date for recent dates ({', '.join(target_dates)}).")
+            return False
+
+        agent = ScoreboardAgent()
+        modified = False
+        for d_str in sorted(missing_dates):
+            print(f"   ✍️ Generating Scoreboard recaps for {d_str}...")
+            slate = agent.analyze_slate(d_str)
+            if slate and slate.games:
+                store.record_slate(slate, generator_model=getattr(slate, "generator_model", "algorithmic-guardrails-v1"))
+                store.record_games(slate.games, generator_model=getattr(slate.games[0], "generator_model", "algorithmic-guardrails-v1"))
+                modified = True
+
+        if modified:
+            recap_stage_dir = staging_dir / "insights" / "scoreboard"
+            recap_stage_dir.mkdir(parents=True, exist_ok=True)
+            if store.game_recaps_file.exists():
+                shutil.copy2(store.game_recaps_file, recap_stage_dir / "game_recaps.parquet")
+            if store.slate_recaps_file.exists():
+                shutil.copy2(store.slate_recaps_file, recap_stage_dir / "slate_recaps.parquet")
+            print("   🔄 Staged insights/scoreboard/game_recaps.parquet and slate_recaps.parquet.")
+        return modified
+    except Exception as e:
+        print(f"   ⚠️ Warning in sync_scoreboard_recaps: {e}")
+        return False
+
+
 # -----------------------------------------------------------------------------
 # MAIN SYNC DISPATCHER
 # -----------------------------------------------------------------------------
@@ -622,6 +736,19 @@ def run_sync(
         any_modified |= sync_shifts(repo_root, repo_id, resolved_token, active_year, staging_dir)
         any_modified |= sync_measurement_box(repo_root, repo_id, resolved_token, active_year, staging_dir)
         any_modified |= sync_measurement_hits(repo_root, repo_id, resolved_token, active_year, staging_dir)
+        any_modified |= sync_measurement_shifts(repo_root, repo_id, resolved_token, active_year, staging_dir)
+        any_modified |= sync_scoreboard_recaps(repo_root, repo_id, resolved_token, active_year, staging_dir)
+
+    # 1b. Target: Shifts standalone
+    if target == "shifts":
+        print("\n⏱️ Processing Play-by-Play Shift Panels...")
+        any_modified |= sync_shifts(repo_root, repo_id, resolved_token, active_year, staging_dir)
+        any_modified |= sync_measurement_shifts(repo_root, repo_id, resolved_token, active_year, staging_dir)
+
+    # 1c. Target: Scoreboard Recaps standalone
+    if target == "recaps":
+        print("\n📰 Processing Scoreboard Recaps...")
+        any_modified |= sync_scoreboard_recaps(repo_root, repo_id, resolved_token, active_year, staging_dir)
 
     # 2. Target: Odds (20:00 UTC pipeline)
     if target in ("odds", "all"):
@@ -683,7 +810,7 @@ def run_sync(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Synchronize daily NHL Analytics updates to Hugging Face Datasets.")
     parser.add_argument("--repo", default="jjerlee/nhl-analytics", help="Hugging Face Dataset repo ID (default: jjerlee/nhl-analytics)")
-    parser.add_argument("--target", choices=["all", "box", "odds", "player"], default="all", help="Target domain to sync (default: all)")
+    parser.add_argument("--target", choices=["all", "box", "shifts", "recaps", "odds", "player"], default="all", help="Target domain to sync (default: all)")
     parser.add_argument("--season", type=int, default=None, help="Specific season year to process (e.g. 2026)")
     parser.add_argument("--token", default=None, help="Hugging Face access token (defaults to HF_TOKEN env variable)")
     parser.add_argument("--skip-upload", action="store_true", help="Stage updates locally without uploading")

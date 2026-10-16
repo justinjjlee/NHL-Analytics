@@ -24,6 +24,24 @@ print(f"Iterative season: {iter_year}")
 target_year = int(os.environ.get("SEASON_YEAR", iter_year))
 iter_years = [target_year]
 
+def safe_get(url, retries=5, backoff=3.0):
+    for attempt in range(retries):
+        try:
+            r = requests.get(url, timeout=15)
+            if r.status_code == 429:
+                wait_s = backoff * (2 ** attempt)
+                print(f"Rate limited (429) on {url}, sleeping {wait_s:.1f}s...")
+                time.sleep(wait_s)
+                continue
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            if attempt == retries - 1:
+                print(f"Failed to fetch {url} after {retries} attempts: {e}")
+                return None
+            time.sleep(backoff * (attempt + 1))
+    return None
+
 for iter_year in iter_years:
 
     # Pull all game lists
@@ -35,7 +53,7 @@ for iter_year in iter_years:
 
     # Load the previous game stats, if exist
     try:
-        df_playbyplay_exist = pd.read_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_shift.csv")
+        df_playbyplay_exist = pd.read_csv(f"{PLAY_DIR}/{iter_year}_playbyplay_shift.csv", low_memory=False)
         df_playbyplay_exist.columns = [str(c).lower() for c in df_playbyplay_exist.columns]
         idx_exist = True
     except:
@@ -51,22 +69,19 @@ for iter_year in iter_years:
     if len(gamecode["gameid"]) != 0:
         df_playbyplay = []
         for _, row in gamecode.iterrows():
-            try:
-                r = requests.get(
-                    url=f'https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId={row.gameid}',
-                    timeout=15
-                )
-                data = r.json().get('data', [])
-                if not data:
-                    print(f"Game {row.gameid} has no shift data recorded")
-                    continue
-                iter_shift = pd.DataFrame(data)
-                iter_shift.columns = [str(c).lower() for c in iter_shift.columns]
-                df_playbyplay.append(iter_shift)
-                print(f"Pulled game {row.gameid} shift data ({len(iter_shift)} shifts)")
-            except Exception as e:
-                print(f"Error fetching shift data for {row.gameid}: {e}")
-            time.sleep(0.3)
+            res = safe_get(f'https://api.nhle.com/stats/rest/en/shiftcharts?cayenneExp=gameId={row.gameid}')
+            if res is None:
+                continue
+            data = res.get('data', [])
+            if not data:
+                print(f"Game {row.gameid} has no shift data recorded")
+                time.sleep(0.5)
+                continue
+            iter_shift = pd.DataFrame(data)
+            iter_shift.columns = [str(c).lower() for c in iter_shift.columns]
+            df_playbyplay.append(iter_shift)
+            print(f"Pulled game {row.gameid} shift data ({len(iter_shift)} shifts)")
+            time.sleep(0.6)
 
         if df_playbyplay:
             new_shifts = pd.concat(df_playbyplay, ignore_index=True)

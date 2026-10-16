@@ -3870,744 +3870,749 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20252026,3,4,O,Other,Goal,6
 20252026,3,4,O,Goal,Shot Attempt,5
 20252026,3,4,O,Goal,Possession Change,3
-20262027,0,1,D,D,Shot Attempt,606
-20262027,0,1,D,D,Physical Battle,311
-20262027,0,1,D,D,Possession Change,243
-20262027,0,1,D,D,Stoppage,173
-20262027,0,1,D,D,Other,19
-20262027,0,1,D,D,Goal,17
-20262027,0,1,N,N,Shot Attempt,206
-20262027,0,1,N,N,Physical Battle,157
-20262027,0,1,N,N,Possession Change,112
-20262027,0,1,N,N,Stoppage,85
-20262027,0,1,N,N,Goal,9
-20262027,0,1,N,N,Other,8
-20262027,0,1,O,O,Shot Attempt,706
-20262027,0,1,O,O,Physical Battle,431
-20262027,0,1,O,O,Possession Change,373
-20262027,0,1,O,O,Stoppage,279
-20262027,0,1,O,O,Goal,27
-20262027,0,1,O,O,Other,19
-20262027,1,2,D,Shot Attempt,Shot Attempt,236
-20262027,1,2,D,Shot Attempt,Stoppage,168
-20262027,1,2,D,Stoppage,Stoppage,160
-20262027,1,2,D,Possession Change,Shot Attempt,112
-20262027,1,2,D,Physical Battle,Shot Attempt,107
-20262027,1,2,D,Shot Attempt,Physical Battle,95
-20262027,1,2,D,Physical Battle,Physical Battle,88
-20262027,1,2,D,Shot Attempt,Possession Change,83
-20262027,1,2,D,Physical Battle,Possession Change,65
-20262027,1,2,D,Possession Change,Physical Battle,51
-20262027,1,2,D,Possession Change,Possession Change,40
-20262027,1,2,D,Physical Battle,Stoppage,35
-20262027,1,2,D,Possession Change,Stoppage,30
-20262027,1,2,D,Goal,Stoppage,17
-20262027,1,2,D,Other,Stoppage,15
-20262027,1,2,D,Shot Attempt,Other,13
-20262027,1,2,D,Shot Attempt,Goal,11
-20262027,1,2,D,Physical Battle,Goal,9
-20262027,1,2,D,Physical Battle,Other,7
-20262027,1,2,D,Possession Change,Goal,6
-20262027,1,2,D,Possession Change,Other,4
-20262027,1,2,D,Stoppage,Other,3
+20262027,0,1,D,D,Shot Attempt,790
+20262027,0,1,D,D,Physical Battle,395
+20262027,0,1,D,D,Possession Change,322
+20262027,0,1,D,D,Stoppage,230
+20262027,0,1,D,D,Goal,26
+20262027,0,1,D,D,Other,24
+20262027,0,1,N,N,Shot Attempt,251
+20262027,0,1,N,N,Physical Battle,190
+20262027,0,1,N,N,Possession Change,149
+20262027,0,1,N,N,Stoppage,113
+20262027,0,1,N,N,Goal,14
+20262027,0,1,N,N,Other,12
+20262027,0,1,O,O,Shot Attempt,899
+20262027,0,1,O,O,Physical Battle,534
+20262027,0,1,O,O,Possession Change,456
+20262027,0,1,O,O,Stoppage,343
+20262027,0,1,O,O,Goal,32
+20262027,0,1,O,O,Other,24
+20262027,1,2,D,Shot Attempt,Shot Attempt,304
+20262027,1,2,D,Shot Attempt,Stoppage,221
+20262027,1,2,D,Stoppage,Stoppage,208
+20262027,1,2,D,Possession Change,Shot Attempt,154
+20262027,1,2,D,Physical Battle,Shot Attempt,129
+20262027,1,2,D,Shot Attempt,Physical Battle,122
+20262027,1,2,D,Physical Battle,Physical Battle,116
+20262027,1,2,D,Shot Attempt,Possession Change,114
+20262027,1,2,D,Physical Battle,Possession Change,81
+20262027,1,2,D,Possession Change,Physical Battle,61
+20262027,1,2,D,Possession Change,Possession Change,52
+20262027,1,2,D,Physical Battle,Stoppage,51
+20262027,1,2,D,Possession Change,Stoppage,39
+20262027,1,2,D,Goal,Stoppage,26
+20262027,1,2,D,Other,Stoppage,18
+20262027,1,2,D,Shot Attempt,Other,15
+20262027,1,2,D,Shot Attempt,Goal,14
+20262027,1,2,D,Possession Change,Goal,10
+20262027,1,2,D,Physical Battle,Goal,10
+20262027,1,2,D,Physical Battle,Other,8
+20262027,1,2,D,Possession Change,Other,6
+20262027,1,2,D,Stoppage,Other,5
+20262027,1,2,D,Stoppage,Goal,4
+20262027,1,2,D,Other,Goal,2
 20262027,1,2,D,Other,Shot Attempt,2
-20262027,1,2,D,Stoppage,Goal,2
-20262027,1,2,D,Other,Goal,1
 20262027,1,2,D,Other,Possession Change,1
-20262027,1,2,N,Shot Attempt,Shot Attempt,84
-20262027,1,2,N,Stoppage,Stoppage,83
-20262027,1,2,N,Shot Attempt,Stoppage,59
-20262027,1,2,N,Physical Battle,Shot Attempt,57
-20262027,1,2,N,Physical Battle,Physical Battle,47
-20262027,1,2,N,Possession Change,Shot Attempt,42
-20262027,1,2,N,Shot Attempt,Physical Battle,31
-20262027,1,2,N,Physical Battle,Possession Change,30
-20262027,1,2,N,Possession Change,Physical Battle,28
-20262027,1,2,N,Shot Attempt,Possession Change,26
-20262027,1,2,N,Possession Change,Possession Change,24
-20262027,1,2,N,Physical Battle,Stoppage,17
-20262027,1,2,N,Possession Change,Stoppage,11
-20262027,1,2,N,Goal,Stoppage,9
-20262027,1,2,N,Shot Attempt,Goal,4
-20262027,1,2,N,Possession Change,Other,4
-20262027,1,2,N,Other,Stoppage,4
-20262027,1,2,N,Possession Change,Goal,3
+20262027,1,2,D,Other,Physical Battle,1
+20262027,1,2,N,Stoppage,Stoppage,111
+20262027,1,2,N,Shot Attempt,Shot Attempt,100
+20262027,1,2,N,Shot Attempt,Stoppage,77
+20262027,1,2,N,Physical Battle,Shot Attempt,69
+20262027,1,2,N,Physical Battle,Physical Battle,54
+20262027,1,2,N,Possession Change,Shot Attempt,53
+20262027,1,2,N,Physical Battle,Possession Change,40
+20262027,1,2,N,Possession Change,Physical Battle,37
+20262027,1,2,N,Shot Attempt,Physical Battle,36
+20262027,1,2,N,Possession Change,Possession Change,32
+20262027,1,2,N,Shot Attempt,Possession Change,28
+20262027,1,2,N,Physical Battle,Stoppage,19
+20262027,1,2,N,Possession Change,Stoppage,17
+20262027,1,2,N,Goal,Stoppage,14
+20262027,1,2,N,Other,Stoppage,8
+20262027,1,2,N,Shot Attempt,Goal,7
+20262027,1,2,N,Possession Change,Goal,5
+20262027,1,2,N,Physical Battle,Goal,5
+20262027,1,2,N,Possession Change,Other,5
+20262027,1,2,N,Shot Attempt,Other,3
 20262027,1,2,N,Physical Battle,Other,3
-20262027,1,2,N,Physical Battle,Goal,3
 20262027,1,2,N,Other,Shot Attempt,2
 20262027,1,2,N,Other,Physical Battle,2
-20262027,1,2,N,Shot Attempt,Other,2
 20262027,1,2,N,Stoppage,Possession Change,1
-20262027,1,2,O,Stoppage,Stoppage,262
-20262027,1,2,O,Shot Attempt,Shot Attempt,233
-20262027,1,2,O,Shot Attempt,Stoppage,220
-20262027,1,2,O,Physical Battle,Shot Attempt,174
-20262027,1,2,O,Possession Change,Shot Attempt,150
-20262027,1,2,O,Shot Attempt,Physical Battle,121
-20262027,1,2,O,Shot Attempt,Possession Change,113
-20262027,1,2,O,Physical Battle,Physical Battle,105
-20262027,1,2,O,Possession Change,Physical Battle,86
-20262027,1,2,O,Physical Battle,Possession Change,80
-20262027,1,2,O,Possession Change,Possession Change,74
-20262027,1,2,O,Physical Battle,Stoppage,64
-20262027,1,2,O,Possession Change,Stoppage,48
-20262027,1,2,O,Goal,Stoppage,27
-20262027,1,2,O,Other,Stoppage,15
-20262027,1,2,O,Shot Attempt,Goal,12
-20262027,1,2,O,Possession Change,Goal,10
-20262027,1,2,O,Shot Attempt,Other,7
-20262027,1,2,O,Possession Change,Other,5
-20262027,1,2,O,Physical Battle,Goal,4
-20262027,1,2,O,Physical Battle,Other,4
+20262027,1,2,O,Stoppage,Stoppage,318
+20262027,1,2,O,Shot Attempt,Shot Attempt,309
+20262027,1,2,O,Shot Attempt,Stoppage,270
+20262027,1,2,O,Physical Battle,Shot Attempt,219
+20262027,1,2,O,Possession Change,Shot Attempt,189
+20262027,1,2,O,Shot Attempt,Physical Battle,152
+20262027,1,2,O,Shot Attempt,Possession Change,141
+20262027,1,2,O,Physical Battle,Physical Battle,128
+20262027,1,2,O,Possession Change,Physical Battle,102
+20262027,1,2,O,Physical Battle,Possession Change,94
+20262027,1,2,O,Possession Change,Possession Change,88
+20262027,1,2,O,Physical Battle,Stoppage,82
+20262027,1,2,O,Possession Change,Stoppage,59
+20262027,1,2,O,Goal,Stoppage,32
+20262027,1,2,O,Other,Stoppage,19
+20262027,1,2,O,Shot Attempt,Goal,16
+20262027,1,2,O,Possession Change,Goal,12
+20262027,1,2,O,Shot Attempt,Other,11
+20262027,1,2,O,Possession Change,Other,6
+20262027,1,2,O,Physical Battle,Other,6
+20262027,1,2,O,Physical Battle,Goal,5
 20262027,1,2,O,Stoppage,Other,3
 20262027,1,2,O,Other,Goal,2
+20262027,1,2,O,Other,Shot Attempt,2
 20262027,1,2,O,Other,Possession Change,1
-20262027,1,2,O,Other,Shot Attempt,1
-20262027,1,11,D,Shot Attempt,Opponent,453
-20262027,1,11,D,Physical Battle,Hitting Team,161
-20262027,1,11,D,Shot Attempt,Hitting Team,153
-20262027,1,11,D,Physical Battle,Opponent,150
-20262027,1,11,D,Possession Change,Opponent,133
-20262027,1,11,D,Possession Change,Hitting Team,110
-20262027,1,11,D,Stoppage,Opponent,88
-20262027,1,11,D,Stoppage,Hitting Team,85
-20262027,1,11,D,Goal,Opponent,15
+20262027,1,11,D,Shot Attempt,Opponent,579
+20262027,1,11,D,Shot Attempt,Hitting Team,211
+20262027,1,11,D,Physical Battle,Hitting Team,205
+20262027,1,11,D,Physical Battle,Opponent,190
+20262027,1,11,D,Possession Change,Opponent,179
+20262027,1,11,D,Possession Change,Hitting Team,143
+20262027,1,11,D,Stoppage,Hitting Team,115
+20262027,1,11,D,Stoppage,Opponent,115
+20262027,1,11,D,Goal,Opponent,22
+20262027,1,11,D,Other,Opponent,13
 20262027,1,11,D,Other,Hitting Team,11
-20262027,1,11,D,Other,Opponent,8
-20262027,1,11,D,Goal,Hitting Team,2
-20262027,1,11,N,Shot Attempt,Opponent,127
-20262027,1,11,N,Physical Battle,Opponent,84
-20262027,1,11,N,Shot Attempt,Hitting Team,79
-20262027,1,11,N,Physical Battle,Hitting Team,73
-20262027,1,11,N,Possession Change,Opponent,62
-20262027,1,11,N,Possession Change,Hitting Team,50
-20262027,1,11,N,Stoppage,Hitting Team,49
-20262027,1,11,N,Stoppage,Opponent,36
-20262027,1,11,N,Other,Opponent,7
-20262027,1,11,N,Goal,Opponent,6
-20262027,1,11,N,Goal,Hitting Team,3
-20262027,1,11,N,Other,Hitting Team,1
-20262027,1,11,O,Shot Attempt,Hitting Team,426
-20262027,1,11,O,Shot Attempt,Opponent,280
-20262027,1,11,O,Physical Battle,Hitting Team,270
-20262027,1,11,O,Possession Change,Opponent,216
-20262027,1,11,O,Physical Battle,Opponent,161
-20262027,1,11,O,Possession Change,Hitting Team,157
-20262027,1,11,O,Stoppage,Hitting Team,148
-20262027,1,11,O,Stoppage,Opponent,131
-20262027,1,11,O,Goal,Hitting Team,15
-20262027,1,11,O,Goal,Opponent,12
-20262027,1,11,O,Other,Opponent,10
-20262027,1,11,O,Other,Hitting Team,9
-20262027,2,3,D,Stoppage,Stoppage,284
-20262027,2,3,D,Shot Attempt,Shot Attempt,175
-20262027,2,3,D,Shot Attempt,Stoppage,129
-20262027,2,3,D,Physical Battle,Shot Attempt,97
-20262027,2,3,D,Possession Change,Shot Attempt,79
-20262027,2,3,D,Shot Attempt,Possession Change,72
-20262027,2,3,D,Shot Attempt,Physical Battle,64
-20262027,2,3,D,Stoppage,Shot Attempt,63
-20262027,2,3,D,Physical Battle,Physical Battle,55
-20262027,2,3,D,Physical Battle,Possession Change,48
-20262027,2,3,D,Possession Change,Physical Battle,38
-20262027,2,3,D,Stoppage,Possession Change,34
-20262027,2,3,D,Possession Change,Possession Change,34
-20262027,2,3,D,Possession Change,Stoppage,33
-20262027,2,3,D,Goal,Stoppage,29
-20262027,2,3,D,Stoppage,Physical Battle,28
-20262027,2,3,D,Physical Battle,Stoppage,28
-20262027,2,3,D,Other,Stoppage,17
-20262027,2,3,D,Shot Attempt,Goal,9
-20262027,2,3,D,Shot Attempt,Other,8
-20262027,2,3,D,Possession Change,Goal,5
-20262027,2,3,D,Stoppage,Goal,4
-20262027,2,3,D,Physical Battle,Other,3
-20262027,2,3,D,Other,Shot Attempt,3
+20262027,1,11,D,Goal,Hitting Team,4
+20262027,1,11,N,Shot Attempt,Opponent,156
+20262027,1,11,N,Physical Battle,Opponent,100
+20262027,1,11,N,Shot Attempt,Hitting Team,95
+20262027,1,11,N,Physical Battle,Hitting Team,90
+20262027,1,11,N,Possession Change,Opponent,77
+20262027,1,11,N,Possession Change,Hitting Team,72
+20262027,1,11,N,Stoppage,Hitting Team,64
+20262027,1,11,N,Stoppage,Opponent,49
+20262027,1,11,N,Other,Opponent,9
+20262027,1,11,N,Goal,Opponent,8
+20262027,1,11,N,Goal,Hitting Team,6
+20262027,1,11,N,Other,Hitting Team,3
+20262027,1,11,O,Shot Attempt,Hitting Team,543
+20262027,1,11,O,Shot Attempt,Opponent,356
+20262027,1,11,O,Physical Battle,Hitting Team,336
+20262027,1,11,O,Possession Change,Opponent,269
+20262027,1,11,O,Physical Battle,Opponent,198
+20262027,1,11,O,Possession Change,Hitting Team,187
+20262027,1,11,O,Stoppage,Hitting Team,180
+20262027,1,11,O,Stoppage,Opponent,163
+20262027,1,11,O,Goal,Hitting Team,17
+20262027,1,11,O,Goal,Opponent,15
+20262027,1,11,O,Other,Hitting Team,12
+20262027,1,11,O,Other,Opponent,12
+20262027,2,3,D,Stoppage,Stoppage,364
+20262027,2,3,D,Shot Attempt,Shot Attempt,225
+20262027,2,3,D,Shot Attempt,Stoppage,166
+20262027,2,3,D,Physical Battle,Shot Attempt,122
+20262027,2,3,D,Possession Change,Shot Attempt,113
+20262027,2,3,D,Shot Attempt,Possession Change,94
+20262027,2,3,D,Stoppage,Shot Attempt,85
+20262027,2,3,D,Shot Attempt,Physical Battle,81
+20262027,2,3,D,Physical Battle,Physical Battle,70
+20262027,2,3,D,Physical Battle,Possession Change,60
+20262027,2,3,D,Possession Change,Physical Battle,46
+20262027,2,3,D,Possession Change,Possession Change,44
+20262027,2,3,D,Stoppage,Possession Change,43
+20262027,2,3,D,Physical Battle,Stoppage,41
+20262027,2,3,D,Possession Change,Stoppage,39
+20262027,2,3,D,Goal,Stoppage,39
+20262027,2,3,D,Stoppage,Physical Battle,37
+20262027,2,3,D,Other,Stoppage,22
+20262027,2,3,D,Shot Attempt,Other,12
+20262027,2,3,D,Shot Attempt,Goal,11
+20262027,2,3,D,Stoppage,Goal,9
+20262027,2,3,D,Possession Change,Goal,6
+20262027,2,3,D,Stoppage,Other,5
+20262027,2,3,D,Physical Battle,Other,4
 20262027,2,3,D,Physical Battle,Goal,3
+20262027,2,3,D,Other,Shot Attempt,3
 20262027,2,3,D,Other,Physical Battle,2
-20262027,2,3,D,Stoppage,Other,2
 20262027,2,3,D,Other,Possession Change,1
 20262027,2,3,D,Other,Goal,1
-20262027,2,3,N,Stoppage,Stoppage,110
-20262027,2,3,N,Shot Attempt,Stoppage,65
-20262027,2,3,N,Shot Attempt,Shot Attempt,57
-20262027,2,3,N,Physical Battle,Shot Attempt,45
-20262027,2,3,N,Physical Battle,Physical Battle,34
-20262027,2,3,N,Possession Change,Shot Attempt,33
-20262027,2,3,N,Shot Attempt,Possession Change,29
-20262027,2,3,N,Stoppage,Shot Attempt,27
-20262027,2,3,N,Stoppage,Physical Battle,25
-20262027,2,3,N,Shot Attempt,Physical Battle,24
-20262027,2,3,N,Possession Change,Possession Change,21
-20262027,2,3,N,Stoppage,Possession Change,16
-20262027,2,3,N,Possession Change,Physical Battle,16
-20262027,2,3,N,Physical Battle,Possession Change,13
-20262027,2,3,N,Physical Battle,Stoppage,13
-20262027,2,3,N,Goal,Stoppage,10
-20262027,2,3,N,Possession Change,Stoppage,8
+20262027,2,3,D,Goal,Physical Battle,1
+20262027,2,3,N,Stoppage,Stoppage,147
+20262027,2,3,N,Shot Attempt,Shot Attempt,73
+20262027,2,3,N,Shot Attempt,Stoppage,72
+20262027,2,3,N,Physical Battle,Shot Attempt,54
+20262027,2,3,N,Stoppage,Shot Attempt,41
+20262027,2,3,N,Possession Change,Shot Attempt,39
+20262027,2,3,N,Physical Battle,Physical Battle,37
+20262027,2,3,N,Shot Attempt,Possession Change,35
+20262027,2,3,N,Shot Attempt,Physical Battle,33
+20262027,2,3,N,Stoppage,Physical Battle,29
+20262027,2,3,N,Possession Change,Possession Change,23
+20262027,2,3,N,Possession Change,Physical Battle,22
+20262027,2,3,N,Stoppage,Possession Change,21
+20262027,2,3,N,Physical Battle,Stoppage,19
+20262027,2,3,N,Goal,Stoppage,17
+20262027,2,3,N,Physical Battle,Possession Change,16
+20262027,2,3,N,Possession Change,Stoppage,12
 20262027,2,3,N,Shot Attempt,Goal,6
+20262027,2,3,N,Other,Stoppage,5
+20262027,2,3,N,Shot Attempt,Other,5
 20262027,2,3,N,Other,Shot Attempt,4
-20262027,2,3,N,Shot Attempt,Other,4
-20262027,2,3,N,Other,Stoppage,3
+20262027,2,3,N,Possession Change,Goal,3
+20262027,2,3,N,Stoppage,Other,2
 20262027,2,3,N,Physical Battle,Other,2
-20262027,2,3,N,Possession Change,Goal,2
 20262027,2,3,N,Stoppage,Goal,2
-20262027,2,3,N,Stoppage,Other,1
-20262027,2,3,N,Other,Physical Battle,1
-20262027,2,3,N,Physical Battle,Goal,1
+20262027,2,3,N,Possession Change,Other,2
 20262027,2,3,N,Other,Possession Change,1
-20262027,2,3,N,Possession Change,Other,1
-20262027,2,3,O,Stoppage,Stoppage,389
-20262027,2,3,O,Shot Attempt,Shot Attempt,204
-20262027,2,3,O,Shot Attempt,Stoppage,149
-20262027,2,3,O,Physical Battle,Shot Attempt,129
-20262027,2,3,O,Stoppage,Shot Attempt,123
-20262027,2,3,O,Possession Change,Shot Attempt,118
-20262027,2,3,O,Shot Attempt,Physical Battle,97
-20262027,2,3,O,Shot Attempt,Possession Change,88
-20262027,2,3,O,Physical Battle,Physical Battle,70
-20262027,2,3,O,Possession Change,Physical Battle,64
-20262027,2,3,O,Stoppage,Physical Battle,58
-20262027,2,3,O,Physical Battle,Possession Change,57
-20262027,2,3,O,Physical Battle,Stoppage,49
-20262027,2,3,O,Possession Change,Possession Change,48
-20262027,2,3,O,Stoppage,Possession Change,44
-20262027,2,3,O,Goal,Stoppage,28
-20262027,2,3,O,Possession Change,Stoppage,28
-20262027,2,3,O,Shot Attempt,Goal,16
-20262027,2,3,O,Other,Stoppage,12
-20262027,2,3,O,Stoppage,Other,8
-20262027,2,3,O,Stoppage,Goal,6
-20262027,2,3,O,Possession Change,Goal,5
-20262027,2,3,O,Possession Change,Other,5
-20262027,2,3,O,Physical Battle,Goal,4
-20262027,2,3,O,Shot Attempt,Other,4
+20262027,2,3,N,Physical Battle,Goal,1
+20262027,2,3,N,Other,Physical Battle,1
+20262027,2,3,O,Stoppage,Stoppage,480
+20262027,2,3,O,Shot Attempt,Shot Attempt,265
+20262027,2,3,O,Shot Attempt,Stoppage,198
+20262027,2,3,O,Physical Battle,Shot Attempt,163
+20262027,2,3,O,Stoppage,Shot Attempt,151
+20262027,2,3,O,Possession Change,Shot Attempt,142
+20262027,2,3,O,Shot Attempt,Physical Battle,119
+20262027,2,3,O,Shot Attempt,Possession Change,112
+20262027,2,3,O,Physical Battle,Physical Battle,83
+20262027,2,3,O,Possession Change,Physical Battle,78
+20262027,2,3,O,Physical Battle,Possession Change,69
+20262027,2,3,O,Stoppage,Physical Battle,67
+20262027,2,3,O,Possession Change,Possession Change,60
+20262027,2,3,O,Physical Battle,Stoppage,59
+20262027,2,3,O,Stoppage,Possession Change,56
+20262027,2,3,O,Goal,Stoppage,35
+20262027,2,3,O,Possession Change,Stoppage,32
+20262027,2,3,O,Shot Attempt,Goal,19
+20262027,2,3,O,Other,Stoppage,16
+20262027,2,3,O,Stoppage,Other,11
+20262027,2,3,O,Stoppage,Goal,7
+20262027,2,3,O,Possession Change,Other,6
+20262027,2,3,O,Shot Attempt,Other,6
+20262027,2,3,O,Possession Change,Goal,6
+20262027,2,3,O,Other,Shot Attempt,5
+20262027,2,3,O,Physical Battle,Goal,5
 20262027,2,3,O,Physical Battle,Other,3
-20262027,2,3,O,Other,Shot Attempt,2
 20262027,2,3,O,Other,Possession Change,1
 20262027,2,3,O,Other,Physical Battle,1
-20262027,2,22,D,Shot Attempt,Opponent,274
-20262027,2,22,D,Stoppage,Hitting Team,236
-20262027,2,22,D,Stoppage,Opponent,189
-20262027,2,22,D,Shot Attempt,Hitting Team,183
-20262027,2,22,D,Physical Battle,Hitting Team,120
-20262027,2,22,D,Physical Battle,Opponent,114
-20262027,2,22,D,Possession Change,Hitting Team,101
-20262027,2,22,D,Possession Change,Opponent,88
-20262027,2,22,D,Goal,Opponent,17
-20262027,2,22,D,Other,Opponent,16
-20262027,2,22,D,Goal,Hitting Team,12
-20262027,2,22,D,Other,Hitting Team,11
-20262027,2,22,N,Stoppage,Hitting Team,99
-20262027,2,22,N,Shot Attempt,Hitting Team,93
-20262027,2,22,N,Shot Attempt,Opponent,92
-20262027,2,22,N,Stoppage,Opponent,84
-20262027,2,22,N,Physical Battle,Hitting Team,61
-20262027,2,22,N,Physical Battle,Opponent,47
-20262027,2,22,N,Possession Change,Hitting Team,42
-20262027,2,22,N,Possession Change,Opponent,39
-20262027,2,22,N,Goal,Hitting Team,7
-20262027,2,22,N,Other,Opponent,7
-20262027,2,22,N,Goal,Opponent,3
-20262027,2,22,N,Other,Hitting Team,2
-20262027,2,22,O,Stoppage,Hitting Team,332
-20262027,2,22,O,Shot Attempt,Hitting Team,319
-20262027,2,22,O,Stoppage,Opponent,304
-20262027,2,22,O,Shot Attempt,Opponent,239
-20262027,2,22,O,Physical Battle,Hitting Team,167
-20262027,2,22,O,Physical Battle,Opponent,145
-20262027,2,22,O,Possession Change,Hitting Team,135
-20262027,2,22,O,Possession Change,Opponent,133
-20262027,2,22,O,Goal,Hitting Team,16
-20262027,2,22,O,Goal,Opponent,12
-20262027,2,22,O,Other,Hitting Team,11
-20262027,2,22,O,Other,Opponent,8
-20262027,3,4,D,Stoppage,Stoppage,295
-20262027,3,4,D,Shot Attempt,Shot Attempt,163
-20262027,3,4,D,Shot Attempt,Stoppage,130
-20262027,3,4,D,Stoppage,Shot Attempt,120
-20262027,3,4,D,Possession Change,Shot Attempt,78
-20262027,3,4,D,Physical Battle,Shot Attempt,72
-20262027,3,4,D,Shot Attempt,Possession Change,58
-20262027,3,4,D,Shot Attempt,Physical Battle,56
-20262027,3,4,D,Stoppage,Possession Change,47
-20262027,3,4,D,Physical Battle,Physical Battle,45
-20262027,3,4,D,Possession Change,Physical Battle,44
-20262027,3,4,D,Stoppage,Physical Battle,42
-20262027,3,4,D,Physical Battle,Possession Change,37
-20262027,3,4,D,Possession Change,Possession Change,35
-20262027,3,4,D,Possession Change,Stoppage,28
-20262027,3,4,D,Physical Battle,Stoppage,28
-20262027,3,4,D,Goal,Stoppage,22
-20262027,3,4,D,Other,Stoppage,8
-20262027,3,4,D,Stoppage,Goal,7
-20262027,3,4,D,Shot Attempt,Other,6
-20262027,3,4,D,Shot Attempt,Goal,4
+20262027,2,22,D,Shot Attempt,Opponent,360
+20262027,2,22,D,Stoppage,Hitting Team,303
+20262027,2,22,D,Stoppage,Opponent,260
+20262027,2,22,D,Shot Attempt,Hitting Team,229
+20262027,2,22,D,Physical Battle,Opponent,153
+20262027,2,22,D,Physical Battle,Hitting Team,147
+20262027,2,22,D,Possession Change,Hitting Team,131
+20262027,2,22,D,Possession Change,Opponent,117
+20262027,2,22,D,Goal,Opponent,22
+20262027,2,22,D,Other,Opponent,20
+20262027,2,22,D,Goal,Hitting Team,18
+20262027,2,22,D,Other,Hitting Team,14
+20262027,2,22,N,Stoppage,Hitting Team,127
+20262027,2,22,N,Stoppage,Opponent,119
+20262027,2,22,N,Shot Attempt,Opponent,118
+20262027,2,22,N,Shot Attempt,Hitting Team,106
+20262027,2,22,N,Physical Battle,Hitting Team,74
+20262027,2,22,N,Possession Change,Hitting Team,56
+20262027,2,22,N,Physical Battle,Opponent,55
+20262027,2,22,N,Possession Change,Opponent,45
+20262027,2,22,N,Goal,Hitting Team,10
+20262027,2,22,N,Other,Opponent,8
+20262027,2,22,N,Goal,Opponent,7
+20262027,2,22,N,Other,Hitting Team,3
+20262027,2,22,O,Shot Attempt,Hitting Team,417
+20262027,2,22,O,Stoppage,Hitting Team,404
+20262027,2,22,O,Stoppage,Opponent,376
+20262027,2,22,O,Shot Attempt,Opponent,302
+20262027,2,22,O,Physical Battle,Hitting Team,202
+20262027,2,22,O,Physical Battle,Opponent,180
+20262027,2,22,O,Possession Change,Hitting Team,163
+20262027,2,22,O,Possession Change,Opponent,161
+20262027,2,22,O,Goal,Hitting Team,19
+20262027,2,22,O,Goal,Opponent,16
+20262027,2,22,O,Other,Hitting Team,14
+20262027,2,22,O,Other,Opponent,12
+20262027,3,4,D,Stoppage,Stoppage,372
+20262027,3,4,D,Shot Attempt,Shot Attempt,213
+20262027,3,4,D,Shot Attempt,Stoppage,176
+20262027,3,4,D,Stoppage,Shot Attempt,164
+20262027,3,4,D,Possession Change,Shot Attempt,99
+20262027,3,4,D,Physical Battle,Shot Attempt,90
+20262027,3,4,D,Shot Attempt,Physical Battle,73
+20262027,3,4,D,Shot Attempt,Possession Change,72
+20262027,3,4,D,Physical Battle,Physical Battle,58
+20262027,3,4,D,Stoppage,Possession Change,56
+20262027,3,4,D,Stoppage,Physical Battle,56
+20262027,3,4,D,Possession Change,Physical Battle,54
+20262027,3,4,D,Possession Change,Possession Change,53
+20262027,3,4,D,Physical Battle,Possession Change,49
+20262027,3,4,D,Physical Battle,Stoppage,34
+20262027,3,4,D,Possession Change,Stoppage,32
+20262027,3,4,D,Goal,Stoppage,28
+20262027,3,4,D,Other,Stoppage,14
+20262027,3,4,D,Stoppage,Goal,10
+20262027,3,4,D,Shot Attempt,Other,8
+20262027,3,4,D,Shot Attempt,Goal,6
 20262027,3,4,D,Physical Battle,Goal,4
 20262027,3,4,D,Possession Change,Goal,3
+20262027,3,4,D,Other,Shot Attempt,3
 20262027,3,4,D,Other,Physical Battle,2
-20262027,3,4,D,Other,Shot Attempt,1
-20262027,3,4,D,Other,Possession Change,1
+20262027,3,4,D,Physical Battle,Other,2
 20262027,3,4,D,Possession Change,Other,1
 20262027,3,4,D,Stoppage,Other,1
-20262027,3,4,D,Physical Battle,Other,1
-20262027,3,4,N,Stoppage,Stoppage,113
-20262027,3,4,N,Shot Attempt,Shot Attempt,60
-20262027,3,4,N,Shot Attempt,Stoppage,57
-20262027,3,4,N,Stoppage,Shot Attempt,50
-20262027,3,4,N,Physical Battle,Shot Attempt,45
-20262027,3,4,N,Possession Change,Shot Attempt,38
-20262027,3,4,N,Physical Battle,Physical Battle,27
-20262027,3,4,N,Shot Attempt,Possession Change,26
-20262027,3,4,N,Stoppage,Physical Battle,23
-20262027,3,4,N,Shot Attempt,Physical Battle,20
-20262027,3,4,N,Possession Change,Physical Battle,16
-20262027,3,4,N,Physical Battle,Possession Change,15
-20262027,3,4,N,Possession Change,Possession Change,15
-20262027,3,4,N,Stoppage,Possession Change,14
-20262027,3,4,N,Physical Battle,Stoppage,11
-20262027,3,4,N,Goal,Stoppage,11
-20262027,3,4,N,Possession Change,Stoppage,6
-20262027,3,4,N,Other,Stoppage,4
-20262027,3,4,N,Other,Shot Attempt,4
+20262027,3,4,D,Goal,Possession Change,1
+20262027,3,4,D,Other,Possession Change,1
+20262027,3,4,D,Goal,Physical Battle,1
+20262027,3,4,N,Stoppage,Stoppage,147
+20262027,3,4,N,Shot Attempt,Stoppage,78
+20262027,3,4,N,Shot Attempt,Shot Attempt,75
+20262027,3,4,N,Stoppage,Shot Attempt,69
+20262027,3,4,N,Physical Battle,Shot Attempt,55
+20262027,3,4,N,Possession Change,Shot Attempt,46
+20262027,3,4,N,Physical Battle,Physical Battle,32
+20262027,3,4,N,Shot Attempt,Possession Change,29
+20262027,3,4,N,Stoppage,Physical Battle,26
+20262027,3,4,N,Shot Attempt,Physical Battle,25
+20262027,3,4,N,Physical Battle,Possession Change,20
+20262027,3,4,N,Stoppage,Possession Change,20
+20262027,3,4,N,Possession Change,Possession Change,19
+20262027,3,4,N,Possession Change,Physical Battle,19
+20262027,3,4,N,Physical Battle,Stoppage,13
+20262027,3,4,N,Goal,Stoppage,12
+20262027,3,4,N,Possession Change,Stoppage,7
+20262027,3,4,N,Other,Shot Attempt,5
+20262027,3,4,N,Other,Stoppage,5
 20262027,3,4,N,Possession Change,Other,4
-20262027,3,4,N,Shot Attempt,Goal,2
+20262027,3,4,N,Shot Attempt,Goal,3
+20262027,3,4,N,Stoppage,Goal,2
 20262027,3,4,N,Physical Battle,Goal,1
-20262027,3,4,N,Physical Battle,Other,1
+20262027,3,4,N,Other,Goal,1
 20262027,3,4,N,Possession Change,Goal,1
 20262027,3,4,N,Shot Attempt,Other,1
-20262027,3,4,N,Stoppage,Goal,1
-20262027,3,4,O,Stoppage,Stoppage,345
-20262027,3,4,O,Shot Attempt,Shot Attempt,225
-20262027,3,4,O,Shot Attempt,Stoppage,173
-20262027,3,4,O,Stoppage,Shot Attempt,161
-20262027,3,4,O,Physical Battle,Shot Attempt,110
-20262027,3,4,O,Possession Change,Shot Attempt,106
-20262027,3,4,O,Shot Attempt,Physical Battle,89
-20262027,3,4,O,Physical Battle,Physical Battle,84
-20262027,3,4,O,Stoppage,Physical Battle,72
-20262027,3,4,O,Shot Attempt,Possession Change,67
-20262027,3,4,O,Stoppage,Possession Change,61
-20262027,3,4,O,Possession Change,Physical Battle,48
-20262027,3,4,O,Physical Battle,Stoppage,44
-20262027,3,4,O,Physical Battle,Possession Change,42
-20262027,3,4,O,Possession Change,Possession Change,37
-20262027,3,4,O,Possession Change,Stoppage,34
-20262027,3,4,O,Goal,Stoppage,31
-20262027,3,4,O,Shot Attempt,Goal,14
+20262027,3,4,N,Physical Battle,Other,1
+20262027,3,4,O,Stoppage,Stoppage,429
+20262027,3,4,O,Shot Attempt,Shot Attempt,282
+20262027,3,4,O,Shot Attempt,Stoppage,218
+20262027,3,4,O,Stoppage,Shot Attempt,198
+20262027,3,4,O,Physical Battle,Shot Attempt,129
+20262027,3,4,O,Possession Change,Shot Attempt,129
+20262027,3,4,O,Shot Attempt,Physical Battle,112
+20262027,3,4,O,Physical Battle,Physical Battle,98
+20262027,3,4,O,Stoppage,Physical Battle,91
+20262027,3,4,O,Shot Attempt,Possession Change,85
+20262027,3,4,O,Stoppage,Possession Change,77
+20262027,3,4,O,Possession Change,Physical Battle,60
+20262027,3,4,O,Physical Battle,Stoppage,56
+20262027,3,4,O,Physical Battle,Possession Change,54
+20262027,3,4,O,Possession Change,Possession Change,53
+20262027,3,4,O,Possession Change,Stoppage,42
+20262027,3,4,O,Goal,Stoppage,37
+20262027,3,4,O,Shot Attempt,Goal,17
+20262027,3,4,O,Shot Attempt,Other,12
+20262027,3,4,O,Other,Stoppage,12
 20262027,3,4,O,Possession Change,Goal,9
-20262027,3,4,O,Other,Stoppage,9
-20262027,3,4,O,Shot Attempt,Other,8
+20262027,3,4,O,Stoppage,Other,7
 20262027,3,4,O,Physical Battle,Goal,6
-20262027,3,4,O,Stoppage,Other,6
-20262027,3,4,O,Possession Change,Other,4
-20262027,3,4,O,Physical Battle,Other,4
-20262027,3,4,O,Stoppage,Goal,3
-20262027,3,4,O,Other,Shot Attempt,3
+20262027,3,4,O,Stoppage,Goal,5
+20262027,3,4,O,Physical Battle,Other,5
+20262027,3,4,O,Possession Change,Other,5
+20262027,3,4,O,Other,Shot Attempt,4
 20262027,3,4,O,Other,Physical Battle,2
 20262027,3,4,O,Other,Possession Change,1
 20262027,3,4,O,Other,Other,1
-ALL,0,1,D,D,Goal,3111
-ALL,0,1,D,D,Other,1735
-ALL,0,1,D,D,Physical Battle,66746
-ALL,0,1,D,D,Possession Change,42925
-ALL,0,1,D,D,Shot Attempt,135141
-ALL,0,1,D,D,Stoppage,46805
-ALL,0,1,N,N,Goal,728
-ALL,0,1,N,N,Other,494
-ALL,0,1,N,N,Physical Battle,21918
-ALL,0,1,N,N,Possession Change,12623
-ALL,0,1,N,N,Shot Attempt,31142
-ALL,0,1,N,N,Stoppage,16541
-ALL,0,1,O,O,Goal,2634
-ALL,0,1,O,O,Other,1632
-ALL,0,1,O,O,Physical Battle,71092
-ALL,0,1,O,O,Possession Change,43787
-ALL,0,1,O,O,Shot Attempt,116364
-ALL,0,1,O,O,Stoppage,51510
+ALL,0,1,D,D,Goal,3120
+ALL,0,1,D,D,Other,1740
+ALL,0,1,D,D,Physical Battle,66830
+ALL,0,1,D,D,Possession Change,43004
+ALL,0,1,D,D,Shot Attempt,135325
+ALL,0,1,D,D,Stoppage,46862
+ALL,0,1,N,N,Goal,733
+ALL,0,1,N,N,Other,498
+ALL,0,1,N,N,Physical Battle,21951
+ALL,0,1,N,N,Possession Change,12660
+ALL,0,1,N,N,Shot Attempt,31187
+ALL,0,1,N,N,Stoppage,16569
+ALL,0,1,O,O,Goal,2639
+ALL,0,1,O,O,Other,1637
+ALL,0,1,O,O,Physical Battle,71195
+ALL,0,1,O,O,Possession Change,43870
+ALL,0,1,O,O,Shot Attempt,116557
+ALL,0,1,O,O,Stoppage,51574
 ALL,1,2,D,Goal,Physical Battle,4
 ALL,1,2,D,Goal,Possession Change,2
-ALL,1,2,D,Goal,Stoppage,3105
-ALL,1,2,D,Other,Goal,17
+ALL,1,2,D,Goal,Stoppage,3114
+ALL,1,2,D,Other,Goal,18
 ALL,1,2,D,Other,Other,3
-ALL,1,2,D,Other,Physical Battle,75
+ALL,1,2,D,Other,Physical Battle,76
 ALL,1,2,D,Other,Possession Change,26
 ALL,1,2,D,Other,Shot Attempt,422
-ALL,1,2,D,Other,Stoppage,1192
-ALL,1,2,D,Physical Battle,Goal,662
-ALL,1,2,D,Physical Battle,Other,382
-ALL,1,2,D,Physical Battle,Physical Battle,16762
-ALL,1,2,D,Physical Battle,Possession Change,9473
-ALL,1,2,D,Physical Battle,Shot Attempt,28397
-ALL,1,2,D,Physical Battle,Stoppage,11070
-ALL,1,2,D,Possession Change,Goal,814
-ALL,1,2,D,Possession Change,Other,246
-ALL,1,2,D,Possession Change,Physical Battle,8711
-ALL,1,2,D,Possession Change,Possession Change,6294
-ALL,1,2,D,Possession Change,Shot Attempt,20642
-ALL,1,2,D,Possession Change,Stoppage,6218
-ALL,1,2,D,Shot Attempt,Goal,1644
-ALL,1,2,D,Shot Attempt,Other,797
-ALL,1,2,D,Shot Attempt,Physical Battle,25333
-ALL,1,2,D,Shot Attempt,Possession Change,16268
-ALL,1,2,D,Shot Attempt,Shot Attempt,51410
-ALL,1,2,D,Shot Attempt,Stoppage,39689
-ALL,1,2,D,Stoppage,Goal,2402
-ALL,1,2,D,Stoppage,Other,501
+ALL,1,2,D,Other,Stoppage,1195
+ALL,1,2,D,Physical Battle,Goal,663
+ALL,1,2,D,Physical Battle,Other,383
+ALL,1,2,D,Physical Battle,Physical Battle,16790
+ALL,1,2,D,Physical Battle,Possession Change,9489
+ALL,1,2,D,Physical Battle,Shot Attempt,28419
+ALL,1,2,D,Physical Battle,Stoppage,11086
+ALL,1,2,D,Possession Change,Goal,818
+ALL,1,2,D,Possession Change,Other,248
+ALL,1,2,D,Possession Change,Physical Battle,8721
+ALL,1,2,D,Possession Change,Possession Change,6306
+ALL,1,2,D,Possession Change,Shot Attempt,20684
+ALL,1,2,D,Possession Change,Stoppage,6227
+ALL,1,2,D,Shot Attempt,Goal,1647
+ALL,1,2,D,Shot Attempt,Other,799
+ALL,1,2,D,Shot Attempt,Physical Battle,25360
+ALL,1,2,D,Shot Attempt,Possession Change,16299
+ALL,1,2,D,Shot Attempt,Shot Attempt,51478
+ALL,1,2,D,Shot Attempt,Stoppage,39742
+ALL,1,2,D,Stoppage,Goal,2404
+ALL,1,2,D,Stoppage,Other,503
 ALL,1,2,D,Stoppage,Physical Battle,209
 ALL,1,2,D,Stoppage,Possession Change,126
 ALL,1,2,D,Stoppage,Shot Attempt,4145
-ALL,1,2,D,Stoppage,Stoppage,37170
+ALL,1,2,D,Stoppage,Stoppage,37218
 ALL,1,2,N,Goal,Physical Battle,1
 ALL,1,2,N,Goal,Possession Change,2
 ALL,1,2,N,Goal,Shot Attempt,1
-ALL,1,2,N,Goal,Stoppage,724
+ALL,1,2,N,Goal,Stoppage,729
 ALL,1,2,N,Other,Goal,4
 ALL,1,2,N,Other,Other,1
 ALL,1,2,N,Other,Physical Battle,22
 ALL,1,2,N,Other,Possession Change,13
 ALL,1,2,N,Other,Shot Attempt,111
-ALL,1,2,N,Other,Stoppage,343
-ALL,1,2,N,Physical Battle,Goal,220
+ALL,1,2,N,Other,Stoppage,347
+ALL,1,2,N,Physical Battle,Goal,222
 ALL,1,2,N,Physical Battle,Other,138
-ALL,1,2,N,Physical Battle,Physical Battle,5933
-ALL,1,2,N,Physical Battle,Possession Change,3096
-ALL,1,2,N,Physical Battle,Shot Attempt,8842
-ALL,1,2,N,Physical Battle,Stoppage,3689
-ALL,1,2,N,Possession Change,Goal,227
-ALL,1,2,N,Possession Change,Other,87
-ALL,1,2,N,Possession Change,Physical Battle,2683
-ALL,1,2,N,Possession Change,Possession Change,1914
-ALL,1,2,N,Possession Change,Shot Attempt,5993
-ALL,1,2,N,Possession Change,Stoppage,1719
-ALL,1,2,N,Shot Attempt,Goal,307
-ALL,1,2,N,Shot Attempt,Other,143
-ALL,1,2,N,Shot Attempt,Physical Battle,6219
-ALL,1,2,N,Shot Attempt,Possession Change,3717
-ALL,1,2,N,Shot Attempt,Shot Attempt,11302
-ALL,1,2,N,Shot Attempt,Stoppage,9454
+ALL,1,2,N,Physical Battle,Physical Battle,5940
+ALL,1,2,N,Physical Battle,Possession Change,3106
+ALL,1,2,N,Physical Battle,Shot Attempt,8854
+ALL,1,2,N,Physical Battle,Stoppage,3691
+ALL,1,2,N,Possession Change,Goal,229
+ALL,1,2,N,Possession Change,Other,88
+ALL,1,2,N,Possession Change,Physical Battle,2692
+ALL,1,2,N,Possession Change,Possession Change,1922
+ALL,1,2,N,Possession Change,Shot Attempt,6004
+ALL,1,2,N,Possession Change,Stoppage,1725
+ALL,1,2,N,Shot Attempt,Goal,310
+ALL,1,2,N,Shot Attempt,Other,144
+ALL,1,2,N,Shot Attempt,Physical Battle,6224
+ALL,1,2,N,Shot Attempt,Possession Change,3719
+ALL,1,2,N,Shot Attempt,Shot Attempt,11318
+ALL,1,2,N,Shot Attempt,Stoppage,9472
 ALL,1,2,N,Stoppage,Goal,536
 ALL,1,2,N,Stoppage,Other,147
 ALL,1,2,N,Stoppage,Physical Battle,125
 ALL,1,2,N,Stoppage,Possession Change,53
 ALL,1,2,N,Stoppage,Shot Attempt,1037
-ALL,1,2,N,Stoppage,Stoppage,13850
+ALL,1,2,N,Stoppage,Stoppage,13878
 ALL,1,2,O,Goal,Physical Battle,4
 ALL,1,2,O,Goal,Possession Change,6
-ALL,1,2,O,Goal,Stoppage,2624
+ALL,1,2,O,Goal,Stoppage,2629
 ALL,1,2,O,Other,Goal,13
 ALL,1,2,O,Other,Other,4
 ALL,1,2,O,Other,Physical Battle,69
 ALL,1,2,O,Other,Possession Change,32
-ALL,1,2,O,Other,Shot Attempt,359
-ALL,1,2,O,Other,Stoppage,1155
-ALL,1,2,O,Physical Battle,Goal,586
-ALL,1,2,O,Physical Battle,Other,455
-ALL,1,2,O,Physical Battle,Physical Battle,18846
-ALL,1,2,O,Physical Battle,Possession Change,10309
-ALL,1,2,O,Physical Battle,Shot Attempt,29001
-ALL,1,2,O,Physical Battle,Stoppage,11895
-ALL,1,2,O,Possession Change,Goal,820
-ALL,1,2,O,Possession Change,Other,273
-ALL,1,2,O,Possession Change,Physical Battle,9145
-ALL,1,2,O,Possession Change,Possession Change,6528
-ALL,1,2,O,Possession Change,Shot Attempt,21086
-ALL,1,2,O,Possession Change,Stoppage,5935
-ALL,1,2,O,Shot Attempt,Goal,1307
-ALL,1,2,O,Shot Attempt,Other,697
-ALL,1,2,O,Shot Attempt,Physical Battle,23004
-ALL,1,2,O,Shot Attempt,Possession Change,13891
-ALL,1,2,O,Shot Attempt,Shot Attempt,42773
-ALL,1,2,O,Shot Attempt,Stoppage,34691
+ALL,1,2,O,Other,Shot Attempt,360
+ALL,1,2,O,Other,Stoppage,1159
+ALL,1,2,O,Physical Battle,Goal,587
+ALL,1,2,O,Physical Battle,Other,457
+ALL,1,2,O,Physical Battle,Physical Battle,18869
+ALL,1,2,O,Physical Battle,Possession Change,10323
+ALL,1,2,O,Physical Battle,Shot Attempt,29046
+ALL,1,2,O,Physical Battle,Stoppage,11913
+ALL,1,2,O,Possession Change,Goal,822
+ALL,1,2,O,Possession Change,Other,274
+ALL,1,2,O,Possession Change,Physical Battle,9161
+ALL,1,2,O,Possession Change,Possession Change,6542
+ALL,1,2,O,Possession Change,Shot Attempt,21125
+ALL,1,2,O,Possession Change,Stoppage,5946
+ALL,1,2,O,Shot Attempt,Goal,1311
+ALL,1,2,O,Shot Attempt,Other,701
+ALL,1,2,O,Shot Attempt,Physical Battle,23035
+ALL,1,2,O,Shot Attempt,Possession Change,13919
+ALL,1,2,O,Shot Attempt,Shot Attempt,42849
+ALL,1,2,O,Shot Attempt,Stoppage,34741
 ALL,1,2,O,Stoppage,Goal,2029
 ALL,1,2,O,Stoppage,Other,519
 ALL,1,2,O,Stoppage,Physical Battle,248
 ALL,1,2,O,Stoppage,Possession Change,111
 ALL,1,2,O,Stoppage,Shot Attempt,3550
-ALL,1,2,O,Stoppage,Stoppage,42554
-ALL,1,11,D,Goal,Hitting Team,1006
-ALL,1,11,D,Goal,Opponent,2105
+ALL,1,2,O,Stoppage,Stoppage,42610
+ALL,1,11,D,Goal,Hitting Team,1008
+ALL,1,11,D,Goal,Opponent,2112
 ALL,1,11,D,Other,Hitting Team,932
-ALL,1,11,D,Other,Opponent,803
-ALL,1,11,D,Physical Battle,Hitting Team,32427
-ALL,1,11,D,Physical Battle,Opponent,34319
-ALL,1,11,D,Possession Change,Hitting Team,21876
-ALL,1,11,D,Possession Change,Opponent,21049
-ALL,1,11,D,Shot Attempt,Hitting Team,38766
-ALL,1,11,D,Shot Attempt,Opponent,96375
-ALL,1,11,D,Stoppage,Hitting Team,23521
-ALL,1,11,D,Stoppage,Opponent,23284
-ALL,1,11,N,Goal,Hitting Team,327
-ALL,1,11,N,Goal,Opponent,401
-ALL,1,11,N,Other,Hitting Team,210
-ALL,1,11,N,Other,Opponent,284
-ALL,1,11,N,Physical Battle,Hitting Team,9924
-ALL,1,11,N,Physical Battle,Opponent,11994
-ALL,1,11,N,Possession Change,Hitting Team,6485
-ALL,1,11,N,Possession Change,Opponent,6138
-ALL,1,11,N,Shot Attempt,Hitting Team,14175
-ALL,1,11,N,Shot Attempt,Opponent,16967
-ALL,1,11,N,Stoppage,Hitting Team,8057
-ALL,1,11,N,Stoppage,Opponent,8484
-ALL,1,11,O,Goal,Hitting Team,1397
-ALL,1,11,O,Goal,Opponent,1237
-ALL,1,11,O,Other,Hitting Team,802
-ALL,1,11,O,Other,Opponent,830
-ALL,1,11,O,Physical Battle,Hitting Team,39219
-ALL,1,11,O,Physical Battle,Opponent,31873
-ALL,1,11,O,Possession Change,Hitting Team,20916
-ALL,1,11,O,Possession Change,Opponent,22871
-ALL,1,11,O,Shot Attempt,Hitting Team,68000
-ALL,1,11,O,Shot Attempt,Opponent,48364
-ALL,1,11,O,Stoppage,Hitting Team,25089
-ALL,1,11,O,Stoppage,Opponent,26421
+ALL,1,11,D,Other,Opponent,808
+ALL,1,11,D,Physical Battle,Hitting Team,32471
+ALL,1,11,D,Physical Battle,Opponent,34359
+ALL,1,11,D,Possession Change,Hitting Team,21909
+ALL,1,11,D,Possession Change,Opponent,21095
+ALL,1,11,D,Shot Attempt,Hitting Team,38824
+ALL,1,11,D,Shot Attempt,Opponent,96501
+ALL,1,11,D,Stoppage,Hitting Team,23551
+ALL,1,11,D,Stoppage,Opponent,23311
+ALL,1,11,N,Goal,Hitting Team,330
+ALL,1,11,N,Goal,Opponent,403
+ALL,1,11,N,Other,Hitting Team,212
+ALL,1,11,N,Other,Opponent,286
+ALL,1,11,N,Physical Battle,Hitting Team,9941
+ALL,1,11,N,Physical Battle,Opponent,12010
+ALL,1,11,N,Possession Change,Hitting Team,6507
+ALL,1,11,N,Possession Change,Opponent,6153
+ALL,1,11,N,Shot Attempt,Hitting Team,14191
+ALL,1,11,N,Shot Attempt,Opponent,16996
+ALL,1,11,N,Stoppage,Hitting Team,8072
+ALL,1,11,N,Stoppage,Opponent,8497
+ALL,1,11,O,Goal,Hitting Team,1399
+ALL,1,11,O,Goal,Opponent,1240
+ALL,1,11,O,Other,Hitting Team,805
+ALL,1,11,O,Other,Opponent,832
+ALL,1,11,O,Physical Battle,Hitting Team,39285
+ALL,1,11,O,Physical Battle,Opponent,31910
+ALL,1,11,O,Possession Change,Hitting Team,20946
+ALL,1,11,O,Possession Change,Opponent,22924
+ALL,1,11,O,Shot Attempt,Hitting Team,68117
+ALL,1,11,O,Shot Attempt,Opponent,48440
+ALL,1,11,O,Stoppage,Hitting Team,25121
+ALL,1,11,O,Stoppage,Opponent,26453
 ALL,2,3,D,Goal,Goal,2
 ALL,2,3,D,Goal,Other,13
-ALL,2,3,D,Goal,Physical Battle,658
+ALL,2,3,D,Goal,Physical Battle,659
 ALL,2,3,D,Goal,Possession Change,358
 ALL,2,3,D,Goal,Shot Attempt,797
-ALL,2,3,D,Goal,Stoppage,3711
+ALL,2,3,D,Goal,Stoppage,3721
 ALL,2,3,D,Other,Goal,18
 ALL,2,3,D,Other,Other,1
 ALL,2,3,D,Other,Physical Battle,57
 ALL,2,3,D,Other,Possession Change,26
 ALL,2,3,D,Other,Shot Attempt,333
-ALL,2,3,D,Other,Stoppage,1025
+ALL,2,3,D,Other,Stoppage,1030
 ALL,2,3,D,Physical Battle,Goal,451
-ALL,2,3,D,Physical Battle,Other,306
-ALL,2,3,D,Physical Battle,Physical Battle,12780
-ALL,2,3,D,Physical Battle,Possession Change,7272
-ALL,2,3,D,Physical Battle,Shot Attempt,21422
-ALL,2,3,D,Physical Battle,Stoppage,8861
-ALL,2,3,D,Possession Change,Goal,555
+ALL,2,3,D,Physical Battle,Other,307
+ALL,2,3,D,Physical Battle,Physical Battle,12795
+ALL,2,3,D,Physical Battle,Possession Change,7284
+ALL,2,3,D,Physical Battle,Shot Attempt,21447
+ALL,2,3,D,Physical Battle,Stoppage,8874
+ALL,2,3,D,Possession Change,Goal,556
 ALL,2,3,D,Possession Change,Other,184
-ALL,2,3,D,Possession Change,Physical Battle,6367
-ALL,2,3,D,Possession Change,Possession Change,4823
-ALL,2,3,D,Possession Change,Shot Attempt,15518
-ALL,2,3,D,Possession Change,Stoppage,4741
-ALL,2,3,D,Shot Attempt,Goal,1333
-ALL,2,3,D,Shot Attempt,Other,569
-ALL,2,3,D,Shot Attempt,Physical Battle,18524
-ALL,2,3,D,Shot Attempt,Possession Change,11962
-ALL,2,3,D,Shot Attempt,Shot Attempt,38084
-ALL,2,3,D,Shot Attempt,Stoppage,34531
-ALL,2,3,D,Stoppage,Goal,2748
-ALL,2,3,D,Stoppage,Other,590
-ALL,2,3,D,Stoppage,Physical Battle,7646
-ALL,2,3,D,Stoppage,Possession Change,5479
-ALL,2,3,D,Stoppage,Shot Attempt,20098
-ALL,2,3,D,Stoppage,Stoppage,59957
+ALL,2,3,D,Possession Change,Physical Battle,6375
+ALL,2,3,D,Possession Change,Possession Change,4833
+ALL,2,3,D,Possession Change,Shot Attempt,15552
+ALL,2,3,D,Possession Change,Stoppage,4747
+ALL,2,3,D,Shot Attempt,Goal,1335
+ALL,2,3,D,Shot Attempt,Other,573
+ALL,2,3,D,Shot Attempt,Physical Battle,18541
+ALL,2,3,D,Shot Attempt,Possession Change,11984
+ALL,2,3,D,Shot Attempt,Shot Attempt,38134
+ALL,2,3,D,Shot Attempt,Stoppage,34568
+ALL,2,3,D,Stoppage,Goal,2753
+ALL,2,3,D,Stoppage,Other,593
+ALL,2,3,D,Stoppage,Physical Battle,7655
+ALL,2,3,D,Stoppage,Possession Change,5488
+ALL,2,3,D,Stoppage,Shot Attempt,20120
+ALL,2,3,D,Stoppage,Stoppage,60037
 ALL,2,3,N,Goal,Other,1
 ALL,2,3,N,Goal,Physical Battle,134
 ALL,2,3,N,Goal,Possession Change,84
 ALL,2,3,N,Goal,Shot Attempt,176
-ALL,2,3,N,Goal,Stoppage,899
+ALL,2,3,N,Goal,Stoppage,906
 ALL,2,3,N,Other,Goal,3
 ALL,2,3,N,Other,Other,2
 ALL,2,3,N,Other,Physical Battle,21
 ALL,2,3,N,Other,Possession Change,10
 ALL,2,3,N,Other,Shot Attempt,74
-ALL,2,3,N,Other,Stoppage,268
+ALL,2,3,N,Other,Stoppage,270
 ALL,2,3,N,Physical Battle,Goal,115
 ALL,2,3,N,Physical Battle,Other,88
-ALL,2,3,N,Physical Battle,Physical Battle,3905
-ALL,2,3,N,Physical Battle,Possession Change,2130
-ALL,2,3,N,Physical Battle,Shot Attempt,6122
-ALL,2,3,N,Physical Battle,Stoppage,2623
-ALL,2,3,N,Possession Change,Goal,142
-ALL,2,3,N,Possession Change,Other,68
-ALL,2,3,N,Possession Change,Physical Battle,1829
-ALL,2,3,N,Possession Change,Possession Change,1290
-ALL,2,3,N,Possession Change,Shot Attempt,4213
-ALL,2,3,N,Possession Change,Stoppage,1252
+ALL,2,3,N,Physical Battle,Physical Battle,3908
+ALL,2,3,N,Physical Battle,Possession Change,2133
+ALL,2,3,N,Physical Battle,Shot Attempt,6131
+ALL,2,3,N,Physical Battle,Stoppage,2629
+ALL,2,3,N,Possession Change,Goal,143
+ALL,2,3,N,Possession Change,Other,69
+ALL,2,3,N,Possession Change,Physical Battle,1835
+ALL,2,3,N,Possession Change,Possession Change,1292
+ALL,2,3,N,Possession Change,Shot Attempt,4219
+ALL,2,3,N,Possession Change,Stoppage,1256
 ALL,2,3,N,Shot Attempt,Goal,334
-ALL,2,3,N,Shot Attempt,Other,164
-ALL,2,3,N,Shot Attempt,Physical Battle,5150
-ALL,2,3,N,Shot Attempt,Possession Change,3002
-ALL,2,3,N,Shot Attempt,Shot Attempt,9718
-ALL,2,3,N,Shot Attempt,Stoppage,8917
+ALL,2,3,N,Shot Attempt,Other,165
+ALL,2,3,N,Shot Attempt,Physical Battle,5159
+ALL,2,3,N,Shot Attempt,Possession Change,3008
+ALL,2,3,N,Shot Attempt,Shot Attempt,9734
+ALL,2,3,N,Shot Attempt,Stoppage,8924
 ALL,2,3,N,Stoppage,Goal,698
-ALL,2,3,N,Stoppage,Other,153
-ALL,2,3,N,Stoppage,Physical Battle,3028
-ALL,2,3,N,Stoppage,Possession Change,2017
-ALL,2,3,N,Stoppage,Shot Attempt,6620
-ALL,2,3,N,Stoppage,Stoppage,16733
+ALL,2,3,N,Stoppage,Other,154
+ALL,2,3,N,Stoppage,Physical Battle,3032
+ALL,2,3,N,Stoppage,Possession Change,2022
+ALL,2,3,N,Stoppage,Shot Attempt,6634
+ALL,2,3,N,Stoppage,Stoppage,16770
 ALL,2,3,O,Goal,Goal,3
 ALL,2,3,O,Goal,Other,13
 ALL,2,3,O,Goal,Physical Battle,551
 ALL,2,3,O,Goal,Possession Change,302
 ALL,2,3,O,Goal,Shot Attempt,648
-ALL,2,3,O,Goal,Stoppage,3238
+ALL,2,3,O,Goal,Stoppage,3245
 ALL,2,3,O,Other,Goal,10
 ALL,2,3,O,Other,Other,6
 ALL,2,3,O,Other,Physical Battle,58
 ALL,2,3,O,Other,Possession Change,28
-ALL,2,3,O,Other,Shot Attempt,317
-ALL,2,3,O,Other,Stoppage,1044
-ALL,2,3,O,Physical Battle,Goal,452
+ALL,2,3,O,Other,Shot Attempt,320
+ALL,2,3,O,Other,Stoppage,1048
+ALL,2,3,O,Physical Battle,Goal,453
 ALL,2,3,O,Physical Battle,Other,335
-ALL,2,3,O,Physical Battle,Physical Battle,13199
-ALL,2,3,O,Physical Battle,Possession Change,7509
-ALL,2,3,O,Physical Battle,Shot Attempt,21006
-ALL,2,3,O,Physical Battle,Stoppage,8814
-ALL,2,3,O,Possession Change,Goal,524
-ALL,2,3,O,Possession Change,Other,204
-ALL,2,3,O,Possession Change,Physical Battle,6386
-ALL,2,3,O,Possession Change,Possession Change,4556
-ALL,2,3,O,Possession Change,Shot Attempt,14684
-ALL,2,3,O,Possession Change,Stoppage,4522
-ALL,2,3,O,Shot Attempt,Goal,1136
-ALL,2,3,O,Shot Attempt,Other,563
-ALL,2,3,O,Shot Attempt,Physical Battle,17933
-ALL,2,3,O,Shot Attempt,Possession Change,10873
-ALL,2,3,O,Shot Attempt,Shot Attempt,34957
-ALL,2,3,O,Shot Attempt,Stoppage,31295
-ALL,2,3,O,Stoppage,Goal,2512
-ALL,2,3,O,Stoppage,Other,518
-ALL,2,3,O,Stoppage,Physical Battle,9076
-ALL,2,3,O,Stoppage,Possession Change,6199
-ALL,2,3,O,Stoppage,Shot Attempt,21938
-ALL,2,3,O,Stoppage,Stoppage,56633
-ALL,2,22,D,Goal,Hitting Team,2089
-ALL,2,22,D,Goal,Opponent,3450
-ALL,2,22,D,Other,Hitting Team,1027
-ALL,2,22,D,Other,Opponent,902
-ALL,2,22,D,Physical Battle,Hitting Team,25814
-ALL,2,22,D,Physical Battle,Opponent,25280
-ALL,2,22,D,Possession Change,Hitting Team,16237
-ALL,2,22,D,Possession Change,Opponent,15952
-ALL,2,22,D,Shot Attempt,Hitting Team,41371
-ALL,2,22,D,Shot Attempt,Opponent,63645
-ALL,2,22,D,Stoppage,Hitting Team,49317
-ALL,2,22,D,Stoppage,Opponent,49127
-ALL,2,22,N,Goal,Hitting Team,591
-ALL,2,22,N,Goal,Opponent,703
-ALL,2,22,N,Other,Hitting Team,254
-ALL,2,22,N,Other,Opponent,262
-ALL,2,22,N,Physical Battle,Hitting Team,7481
-ALL,2,22,N,Physical Battle,Opponent,7502
-ALL,2,22,N,Possession Change,Hitting Team,4447
-ALL,2,22,N,Possession Change,Opponent,4348
-ALL,2,22,N,Shot Attempt,Hitting Team,13077
-ALL,2,22,N,Shot Attempt,Opponent,14209
-ALL,2,22,N,Stoppage,Hitting Team,14678
-ALL,2,22,N,Stoppage,Opponent,15101
-ALL,2,22,O,Goal,Hitting Team,2622
-ALL,2,22,O,Goal,Opponent,2133
-ALL,2,22,O,Other,Hitting Team,955
-ALL,2,22,O,Other,Opponent,993
-ALL,2,22,O,Physical Battle,Hitting Team,26268
-ALL,2,22,O,Physical Battle,Opponent,25048
-ALL,2,22,O,Possession Change,Hitting Team,15365
-ALL,2,22,O,Possession Change,Opponent,15512
-ALL,2,22,O,Shot Attempt,Hitting Team,53199
-ALL,2,22,O,Shot Attempt,Opponent,43570
-ALL,2,22,O,Stoppage,Hitting Team,48582
-ALL,2,22,O,Stoppage,Opponent,50272
+ALL,2,3,O,Physical Battle,Physical Battle,13212
+ALL,2,3,O,Physical Battle,Possession Change,7521
+ALL,2,3,O,Physical Battle,Shot Attempt,21040
+ALL,2,3,O,Physical Battle,Stoppage,8824
+ALL,2,3,O,Possession Change,Goal,525
+ALL,2,3,O,Possession Change,Other,205
+ALL,2,3,O,Possession Change,Physical Battle,6400
+ALL,2,3,O,Possession Change,Possession Change,4568
+ALL,2,3,O,Possession Change,Shot Attempt,14708
+ALL,2,3,O,Possession Change,Stoppage,4526
+ALL,2,3,O,Shot Attempt,Goal,1139
+ALL,2,3,O,Shot Attempt,Other,565
+ALL,2,3,O,Shot Attempt,Physical Battle,17955
+ALL,2,3,O,Shot Attempt,Possession Change,10897
+ALL,2,3,O,Shot Attempt,Shot Attempt,35018
+ALL,2,3,O,Shot Attempt,Stoppage,31344
+ALL,2,3,O,Stoppage,Goal,2513
+ALL,2,3,O,Stoppage,Other,521
+ALL,2,3,O,Stoppage,Physical Battle,9085
+ALL,2,3,O,Stoppage,Possession Change,6211
+ALL,2,3,O,Stoppage,Shot Attempt,21966
+ALL,2,3,O,Stoppage,Stoppage,56724
+ALL,2,22,D,Goal,Hitting Team,2095
+ALL,2,22,D,Goal,Opponent,3455
+ALL,2,22,D,Other,Hitting Team,1030
+ALL,2,22,D,Other,Opponent,906
+ALL,2,22,D,Physical Battle,Hitting Team,25841
+ALL,2,22,D,Physical Battle,Opponent,25319
+ALL,2,22,D,Possession Change,Hitting Team,16267
+ALL,2,22,D,Possession Change,Opponent,15981
+ALL,2,22,D,Shot Attempt,Hitting Team,41417
+ALL,2,22,D,Shot Attempt,Opponent,63731
+ALL,2,22,D,Stoppage,Hitting Team,49384
+ALL,2,22,D,Stoppage,Opponent,49198
+ALL,2,22,N,Goal,Hitting Team,594
+ALL,2,22,N,Goal,Opponent,707
+ALL,2,22,N,Other,Hitting Team,255
+ALL,2,22,N,Other,Opponent,263
+ALL,2,22,N,Physical Battle,Hitting Team,7494
+ALL,2,22,N,Physical Battle,Opponent,7510
+ALL,2,22,N,Possession Change,Hitting Team,4461
+ALL,2,22,N,Possession Change,Opponent,4354
+ALL,2,22,N,Shot Attempt,Hitting Team,13090
+ALL,2,22,N,Shot Attempt,Opponent,14235
+ALL,2,22,N,Stoppage,Hitting Team,14706
+ALL,2,22,N,Stoppage,Opponent,15136
+ALL,2,22,O,Goal,Hitting Team,2625
+ALL,2,22,O,Goal,Opponent,2137
+ALL,2,22,O,Other,Hitting Team,958
+ALL,2,22,O,Other,Opponent,997
+ALL,2,22,O,Physical Battle,Hitting Team,26303
+ALL,2,22,O,Physical Battle,Opponent,25083
+ALL,2,22,O,Possession Change,Hitting Team,15393
+ALL,2,22,O,Possession Change,Opponent,15540
+ALL,2,22,O,Shot Attempt,Hitting Team,53297
+ALL,2,22,O,Shot Attempt,Opponent,43633
+ALL,2,22,O,Stoppage,Hitting Team,48654
+ALL,2,22,O,Stoppage,Opponent,50344
 ALL,3,4,D,Goal,Goal,5
 ALL,3,4,D,Goal,Other,10
-ALL,3,4,D,Goal,Physical Battle,650
-ALL,3,4,D,Goal,Possession Change,398
+ALL,3,4,D,Goal,Physical Battle,651
+ALL,3,4,D,Goal,Possession Change,399
 ALL,3,4,D,Goal,Shot Attempt,761
-ALL,3,4,D,Goal,Stoppage,3283
+ALL,3,4,D,Goal,Stoppage,3289
 ALL,3,4,D,Other,Goal,12
 ALL,3,4,D,Other,Physical Battle,43
 ALL,3,4,D,Other,Possession Change,30
-ALL,3,4,D,Other,Shot Attempt,299
-ALL,3,4,D,Other,Stoppage,859
+ALL,3,4,D,Other,Shot Attempt,301
+ALL,3,4,D,Other,Stoppage,865
 ALL,3,4,D,Physical Battle,Goal,452
-ALL,3,4,D,Physical Battle,Other,277
-ALL,3,4,D,Physical Battle,Physical Battle,11515
-ALL,3,4,D,Physical Battle,Possession Change,6706
-ALL,3,4,D,Physical Battle,Shot Attempt,19121
-ALL,3,4,D,Physical Battle,Stoppage,7959
+ALL,3,4,D,Physical Battle,Other,278
+ALL,3,4,D,Physical Battle,Physical Battle,11528
+ALL,3,4,D,Physical Battle,Possession Change,6718
+ALL,3,4,D,Physical Battle,Shot Attempt,19139
+ALL,3,4,D,Physical Battle,Stoppage,7965
 ALL,3,4,D,Possession Change,Goal,503
 ALL,3,4,D,Possession Change,Other,173
-ALL,3,4,D,Possession Change,Physical Battle,5950
-ALL,3,4,D,Possession Change,Possession Change,4515
-ALL,3,4,D,Possession Change,Shot Attempt,14336
-ALL,3,4,D,Possession Change,Stoppage,4442
-ALL,3,4,D,Shot Attempt,Goal,1188
-ALL,3,4,D,Shot Attempt,Other,515
-ALL,3,4,D,Shot Attempt,Physical Battle,17133
-ALL,3,4,D,Shot Attempt,Possession Change,11041
-ALL,3,4,D,Shot Attempt,Shot Attempt,35300
-ALL,3,4,D,Shot Attempt,Stoppage,31060
-ALL,3,4,D,Stoppage,Goal,2766
+ALL,3,4,D,Possession Change,Physical Battle,5960
+ALL,3,4,D,Possession Change,Possession Change,4533
+ALL,3,4,D,Possession Change,Shot Attempt,14357
+ALL,3,4,D,Possession Change,Stoppage,4446
+ALL,3,4,D,Shot Attempt,Goal,1190
+ALL,3,4,D,Shot Attempt,Other,517
+ALL,3,4,D,Shot Attempt,Physical Battle,17150
+ALL,3,4,D,Shot Attempt,Possession Change,11055
+ALL,3,4,D,Shot Attempt,Shot Attempt,35350
+ALL,3,4,D,Shot Attempt,Stoppage,31106
+ALL,3,4,D,Stoppage,Goal,2769
 ALL,3,4,D,Stoppage,Other,696
-ALL,3,4,D,Stoppage,Physical Battle,11369
-ALL,3,4,D,Stoppage,Possession Change,8177
-ALL,3,4,D,Stoppage,Shot Attempt,29917
-ALL,3,4,D,Stoppage,Stoppage,57889
+ALL,3,4,D,Stoppage,Physical Battle,11383
+ALL,3,4,D,Stoppage,Possession Change,8186
+ALL,3,4,D,Stoppage,Shot Attempt,29961
+ALL,3,4,D,Stoppage,Stoppage,57966
 ALL,3,4,N,Goal,Goal,3
 ALL,3,4,N,Goal,Other,3
 ALL,3,4,N,Goal,Physical Battle,161
 ALL,3,4,N,Goal,Possession Change,83
 ALL,3,4,N,Goal,Shot Attempt,203
-ALL,3,4,N,Goal,Stoppage,839
-ALL,3,4,N,Other,Goal,3
+ALL,3,4,N,Goal,Stoppage,840
+ALL,3,4,N,Other,Goal,4
 ALL,3,4,N,Other,Other,1
 ALL,3,4,N,Other,Physical Battle,16
 ALL,3,4,N,Other,Possession Change,5
-ALL,3,4,N,Other,Shot Attempt,97
-ALL,3,4,N,Other,Stoppage,263
+ALL,3,4,N,Other,Shot Attempt,98
+ALL,3,4,N,Other,Stoppage,264
 ALL,3,4,N,Physical Battle,Goal,125
 ALL,3,4,N,Physical Battle,Other,93
-ALL,3,4,N,Physical Battle,Physical Battle,3682
-ALL,3,4,N,Physical Battle,Possession Change,2060
-ALL,3,4,N,Physical Battle,Shot Attempt,5797
-ALL,3,4,N,Physical Battle,Stoppage,2310
+ALL,3,4,N,Physical Battle,Physical Battle,3687
+ALL,3,4,N,Physical Battle,Possession Change,2065
+ALL,3,4,N,Physical Battle,Shot Attempt,5807
+ALL,3,4,N,Physical Battle,Stoppage,2312
 ALL,3,4,N,Possession Change,Goal,127
 ALL,3,4,N,Possession Change,Other,54
-ALL,3,4,N,Possession Change,Physical Battle,1777
-ALL,3,4,N,Possession Change,Possession Change,1299
-ALL,3,4,N,Possession Change,Shot Attempt,4106
-ALL,3,4,N,Possession Change,Stoppage,1169
-ALL,3,4,N,Shot Attempt,Goal,308
+ALL,3,4,N,Possession Change,Physical Battle,1780
+ALL,3,4,N,Possession Change,Possession Change,1303
+ALL,3,4,N,Possession Change,Shot Attempt,4114
+ALL,3,4,N,Possession Change,Stoppage,1170
+ALL,3,4,N,Shot Attempt,Goal,309
 ALL,3,4,N,Shot Attempt,Other,146
-ALL,3,4,N,Shot Attempt,Physical Battle,5054
-ALL,3,4,N,Shot Attempt,Possession Change,3144
-ALL,3,4,N,Shot Attempt,Shot Attempt,9666
-ALL,3,4,N,Shot Attempt,Stoppage,8602
-ALL,3,4,N,Stoppage,Goal,695
+ALL,3,4,N,Shot Attempt,Physical Battle,5059
+ALL,3,4,N,Shot Attempt,Possession Change,3147
+ALL,3,4,N,Shot Attempt,Shot Attempt,9681
+ALL,3,4,N,Shot Attempt,Stoppage,8623
+ALL,3,4,N,Stoppage,Goal,696
 ALL,3,4,N,Stoppage,Other,171
-ALL,3,4,N,Stoppage,Physical Battle,2984
-ALL,3,4,N,Stoppage,Possession Change,2190
-ALL,3,4,N,Stoppage,Shot Attempt,7975
-ALL,3,4,N,Stoppage,Stoppage,16098
+ALL,3,4,N,Stoppage,Physical Battle,2987
+ALL,3,4,N,Stoppage,Possession Change,2196
+ALL,3,4,N,Stoppage,Shot Attempt,7994
+ALL,3,4,N,Stoppage,Stoppage,16132
 ALL,3,4,O,Goal,Goal,3
 ALL,3,4,O,Goal,Other,14
 ALL,3,4,O,Goal,Physical Battle,567
 ALL,3,4,O,Goal,Possession Change,342
 ALL,3,4,O,Goal,Shot Attempt,687
-ALL,3,4,O,Goal,Stoppage,3024
+ALL,3,4,O,Goal,Stoppage,3030
 ALL,3,4,O,Other,Goal,11
 ALL,3,4,O,Other,Other,11
 ALL,3,4,O,Other,Physical Battle,49
 ALL,3,4,O,Other,Possession Change,20
-ALL,3,4,O,Other,Shot Attempt,308
-ALL,3,4,O,Other,Stoppage,925
+ALL,3,4,O,Other,Shot Attempt,309
+ALL,3,4,O,Other,Stoppage,928
 ALL,3,4,O,Physical Battle,Goal,453
-ALL,3,4,O,Physical Battle,Other,287
-ALL,3,4,O,Physical Battle,Physical Battle,12126
-ALL,3,4,O,Physical Battle,Possession Change,6714
-ALL,3,4,O,Physical Battle,Shot Attempt,19586
-ALL,3,4,O,Physical Battle,Stoppage,8037
+ALL,3,4,O,Physical Battle,Other,288
+ALL,3,4,O,Physical Battle,Physical Battle,12140
+ALL,3,4,O,Physical Battle,Possession Change,6726
+ALL,3,4,O,Physical Battle,Shot Attempt,19605
+ALL,3,4,O,Physical Battle,Stoppage,8049
 ALL,3,4,O,Possession Change,Goal,468
-ALL,3,4,O,Possession Change,Other,185
-ALL,3,4,O,Possession Change,Physical Battle,5979
-ALL,3,4,O,Possession Change,Possession Change,4412
-ALL,3,4,O,Possession Change,Shot Attempt,14057
-ALL,3,4,O,Possession Change,Stoppage,4366
-ALL,3,4,O,Shot Attempt,Goal,1130
-ALL,3,4,O,Shot Attempt,Other,557
-ALL,3,4,O,Shot Attempt,Physical Battle,16668
-ALL,3,4,O,Shot Attempt,Possession Change,10964
-ALL,3,4,O,Shot Attempt,Shot Attempt,34299
-ALL,3,4,O,Shot Attempt,Stoppage,29924
-ALL,3,4,O,Stoppage,Goal,2539
-ALL,3,4,O,Stoppage,Other,573
-ALL,3,4,O,Stoppage,Physical Battle,10640
-ALL,3,4,O,Stoppage,Possession Change,7715
-ALL,3,4,O,Stoppage,Shot Attempt,27316
-ALL,3,4,O,Stoppage,Stoppage,54876
+ALL,3,4,O,Possession Change,Other,186
+ALL,3,4,O,Possession Change,Physical Battle,5991
+ALL,3,4,O,Possession Change,Possession Change,4428
+ALL,3,4,O,Possession Change,Shot Attempt,14080
+ALL,3,4,O,Possession Change,Stoppage,4374
+ALL,3,4,O,Shot Attempt,Goal,1133
+ALL,3,4,O,Shot Attempt,Other,561
+ALL,3,4,O,Shot Attempt,Physical Battle,16691
+ALL,3,4,O,Shot Attempt,Possession Change,10982
+ALL,3,4,O,Shot Attempt,Shot Attempt,34356
+ALL,3,4,O,Shot Attempt,Stoppage,29969
+ALL,3,4,O,Stoppage,Goal,2541
+ALL,3,4,O,Stoppage,Other,574
+ALL,3,4,O,Stoppage,Physical Battle,10659
+ALL,3,4,O,Stoppage,Possession Change,7731
+ALL,3,4,O,Stoppage,Shot Attempt,27353
+ALL,3,4,O,Stoppage,Stoppage,54960
