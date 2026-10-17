@@ -418,10 +418,23 @@ def _verify_game_narrative_facts(
     valid_scorers = {p.scorer_name.lower().split()[-1] for p in game.scoring_plays}
     # Checks that cited scorers actually scored in official game feed
 
+    # 5. Non-Goal Scorer Guardrail (Points vs. Goals Disambiguation)
+    # Blocks narratives falsely claiming a 0-goal player (e.g. 0G, 3A) 'scored' or 'netted'
+    for ns_last in non_scorer_skaters:
+        if re.search(rf"\b{ns_last}\s+(?:scored|netted|buried|potted)\b", combined):
+            return False
+
     return True
 ```
 
-### 2. Reasoning Token Purification (`clean_llm_narrative`)
+### 2. Takeaway Categorization & Points vs. Goals Integrity
+
+Player highlights and tactical takeaways in `GameAnalyzer._detect_game_notables()` strictly partition skater contributions to avoid conflating assists or points with goals:
+- **`playmaker` (`Playmaker Alert: {name}`)**: Assigned when a skater records $\ge 3$ points with **0 goals** (e.g. `C. Fowler (STL) orchestrated 3 assists (3 total points) in 20:13 of ice time`).
+- **`offensive_catalyst` (`Offensive Catalyst: {name}`)**: Assigned when a skater records $\ge 3$ points with **both goals and assists** (e.g. `K. Kaprizov (MIN) registered 3 total points (1 goal, 2 assists) in 22:52 of ice time`).
+- **`multi_goal` / `hat_trick`**: Assigned when a player scores multiple goals or a hat trick (e.g. `M. Boldy (MIN) scored 3 goals, anchoring his club's offensive attack with 8 shots on goal`).
+
+### 3. Reasoning Token Purification (`clean_llm_narrative`)
 
 Deep-reasoning models (such as Nemotron and Phi-4) often output chain-of-thought tokens or drafting preambles. The `clean_llm_narrative()` function purges these artifacts:
 1. Regex removal of `<think>...</think>`, `<thought>...</thought>`, and ````thought...```` code fences.

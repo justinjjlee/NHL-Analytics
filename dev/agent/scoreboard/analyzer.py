@@ -861,24 +861,47 @@ class GameAnalyzer:
                     metrics={"goals": sk.goals, "shots": sk.sog}
                 ))
             elif sk.goals >= 2:
+                g_word = "2 goals" if sk.goals == 2 else f"{sk.goals} goals"
                 notables.append(NotableHighlight(
                     category="multi_goal",
                     title=f"Multi-Goal Game: {sk.name}",
-                    description=f"{sk.name} ({sk.team_abbrev}) found the twine twice with {sk.points} total points and a {sk.plus_minus:+d} rating.",
+                    description=f"{sk.name} ({sk.team_abbrev}) scored {g_word} ({sk.points} total points) with a {sk.plus_minus:+d} rating.",
                     significance="MEDIUM",
                     entity=sk.name,
                     metrics={"goals": sk.goals, "points": sk.points}
                 ))
 
             if sk.points >= 3 and not sk.is_hat_trick:
-                notables.append(NotableHighlight(
-                    category="playmaker",
-                    title=f"Offensive Catalyst: {sk.name}",
-                    description=f"{sk.name} factored into {sk.points} goals ({sk.goals}G, {sk.assists}A) in {sk.toi} of ice time.",
-                    significance="HIGH" if sk.points >= 4 else "MEDIUM",
-                    entity=sk.name,
-                    metrics={"points": sk.points, "assists": sk.assists}
-                ))
+                if sk.goals == 0:
+                    notables.append(NotableHighlight(
+                        category="playmaker",
+                        title=f"Playmaker Alert: {sk.name}",
+                        description=f"{sk.name} ({sk.team_abbrev}) orchestrated {sk.assists} assists ({sk.points} total points) in {sk.toi} of ice time.",
+                        significance="HIGH" if sk.points >= 4 else "MEDIUM",
+                        entity=sk.name,
+                        metrics={"points": sk.points, "assists": sk.assists}
+                    ))
+                elif sk.goals > 0 and sk.assists > 0:
+                    g_lbl = "1 goal" if sk.goals == 1 else f"{sk.goals} goals"
+                    a_lbl = "1 assist" if sk.assists == 1 else f"{sk.assists} assists"
+                    notables.append(NotableHighlight(
+                        category="offensive_catalyst",
+                        title=f"Offensive Catalyst: {sk.name}",
+                        description=f"{sk.name} ({sk.team_abbrev}) registered {sk.points} total points ({g_lbl}, {a_lbl}) in {sk.toi} of ice time.",
+                        significance="HIGH" if sk.points >= 4 else "MEDIUM",
+                        entity=sk.name,
+                        metrics={"points": sk.points, "goals": sk.goals, "assists": sk.assists}
+                    ))
+                else:
+                    g_lbl = f"{sk.goals} goals"
+                    notables.append(NotableHighlight(
+                        category="multi_goal",
+                        title=f"Goal Scoring Spark: {sk.name}",
+                        description=f"{sk.name} ({sk.team_abbrev}) recorded {sk.points} total points on {g_lbl} with {sk.sog} shots on goal in {sk.toi} of ice time.",
+                        significance="HIGH" if sk.points >= 4 else "MEDIUM",
+                        entity=sk.name,
+                        metrics={"points": sk.points, "goals": sk.goals}
+                    ))
 
             if sk.hits >= 5:
                 notables.append(NotableHighlight(

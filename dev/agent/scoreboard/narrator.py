@@ -548,7 +548,25 @@ class NarratorEngine:
         skater_last_names = {s.name.split()[-1].lower() for s in all_skaters if s.name}
         goalie_last_names = {g.name.split()[-1].lower() for g in all_goalies if g.name}
 
-        # 6a. Prevent goalie-scored-goal hallucinations (unless goalie actually scored)
+        # 6a. Prevent non-goal-scorer skaters from being falsely credited with scoring a goal (e.g. 0G, 3A player hallucinated as scoring)
+        non_scorer_skaters = {
+            s.name.split()[-1].lower()
+            for s in all_skaters
+            if s.name and s.goals == 0 and s.name.split()[-1].lower() not in scorer_names
+        }
+        for ns_last in non_scorer_skaters:
+            if ns_last and len(ns_last) >= 3:
+                non_scorer_patterns = (
+                    rf"\b{re.escape(ns_last)}['’]s\s+(?:[a-z0-9-]+\s+){{0,2}}(?:goal|winner|strike|tally|marker)\b",
+                    rf"\b{re.escape(ns_last)}\s+(?:scored|netted|buried|potted)\b",
+                    rf"\b{re.escape(ns_last)}\s+(?:had|recorded|tallied)\s+(?:a|\d+|two|three)\s+goals?\b",
+                )
+                for pat in non_scorer_patterns:
+                    if re.search(pat, lower):
+                        logger.warning("Guardrail trigger: Player '%s' (0 goals in boxscore) falsely credited with scoring a goal.", ns_last)
+                        return False
+
+        # 6b. Prevent goalie-scored-goal hallucinations (unless goalie actually scored)
         for g_last in goalie_last_names:
             if g_last and g_last not in scorer_names and g_last not in skater_last_names:
                 goal_patterns = (
@@ -560,7 +578,7 @@ class NarratorEngine:
                         logger.warning("Guardrail trigger: Goalie '%s' hallucinated as scoring a goal.", g_last)
                         return False
 
-        # 6b. Prevent skater-making-saves hallucinations
+        # 6c. Prevent skater-making-saves hallucinations
         for s_last in skater_last_names:
             if s_last and s_last not in goalie_last_names:
                 save_pat = rf"\b{re.escape(s_last)}\s+(?:made|makes|stopped|turned aside)\s+\d*\s*(?:[a-z-]+\s+){{0,2}}saves?\b"
@@ -732,7 +750,8 @@ class NarratorEngine:
             "3. FIRST-MENTION ABBREVIATION RULE: The first time you use any hockey or analytical abbreviation in the article, write out what it stands for and means before placing the abbreviation in parentheses—for example: 'last five games (L5)', 'Time on Ice (TOI)', 'Shots on Goal (SOG)', 'Corsi For percentage (CF%, share of all shot attempts)', 'Goals For vs. Goals Against (GF-GA)', 'Goals For per game (GF/G)', and 'Save Percentage (SV%)'. On subsequent mentions in the same article, use the short abbreviation.\n"
             "4. NEVER echo prompt labels, skill headers, or field names (never start sentences with 'Winner:', 'Skill 1:', 'Standout Forward Unit:', or 'Season Stage:'). Weave all insights naturally into journalistic prose.\n"
             "5. NEVER output any internal thinking process, chain-of-thought, reasoning monologue, planning notes, or meta-commentary (e.g. absolutely no 'Okay, I need to write...').\n"
-            "6. Do NOT include markdown headers, section titles, or bullet points in your output.\n\n"
+            "6. Do NOT include markdown headers, section titles, or bullet points in your output.\n"
+            "7. STRICT GOALS VS. POINTS MANDATE: Points are goals PLUS assists. If a player recorded 0 goals and 3 assists, they had 3 points but ZERO goals. NEVER state that a player 'scored', 'netted', or 'factored into goals' unless they actually have goals in the Chronological Goals Scored ledger. Refer to players with 0 goals as playmakers who dished out assists or recorded points.\n\n"
             "EDITORIAL PLAYBOOK & MULTI-SKILLSET GUIDELINES:\n"
             f"{playbook_md}\n"
         )
@@ -1231,7 +1250,8 @@ class NarratorEngine:
             "1. Line 1 MUST be the executive headline formatted exactly as: HEADLINE: <Executive headline under 15 words>\n"
             "2. Follow immediately with the 3 paragraphs separated by blank lines.\n"
             "3. Do NOT include any chain-of-thought, reasoning monologue, planning notes, or intro markdown headings. Start directly with Line 1.\n"
-            "4. Stick strictly to the audited numbers provided. Do not hallucinate."
+            "4. Stick strictly to the audited numbers provided. Do not hallucinate.\n"
+            "5. STRICT POINTS VS. GOALS MANDATE: Do not confuse points with goals. If a player recorded assists but zero goals (e.g. 0G, 3A), state that they recorded assists or points, but never claim they scored a goal or 'factored into goals'."
         )
 
     def build_slate_llm_user_prompt(self, slate: AnalyzedSlate) -> str:
