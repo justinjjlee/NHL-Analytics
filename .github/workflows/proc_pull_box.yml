@@ -89,14 +89,3 @@ jobs:
         fi
         python deploy/huggingface/sync_dataset.py --repo "jjerlee/nhl-analytics" --target box
 
-    - name: Synthesize Editorial Game Recaps & Sync to Hugging Face Dataset
-      if: always()
-      env:
-        HF_TOKEN: ${{ secrets.HF_TOKEN }}
-      run: |
-        if [ -z "$HF_TOKEN" ]; then
-          echo "HF_TOKEN secret not configured, skipping recaps generation."
-          exit 0
-        fi
-        python dev/agent/scoreboard/cli.py --latest --record-hf --no-save
-

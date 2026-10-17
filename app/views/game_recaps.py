@@ -273,6 +273,47 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
         return True
 
 
+def is_admin_creator() -> bool:
+    """Detects whether the active viewer is the verified creator/admin (jjerlee).
+    
+    Checks in order:
+    1. Local developer environment (always admin on developer machine)
+    2. Session state override (unlocked via Creator Login passkey in sidebar)
+    3. URL Query parameters (e.g. ?admin=jjerlee or ?key=jjerlee)
+    4. Incoming Hugging Face Space headers (x-hf-user / x-repo-owner)
+    """
+    # 1. Local developer environment is always admin
+    if is_local_streamlit():
+        return True
+
+    # 2. Unlocked in current session
+    if st.session_state.get("is_admin_creator", False):
+        return True
+
+    # 3. URL Query Parameter (?admin=jjerlee or ?key=jjerlee)
+    try:
+        qp = st.query_params
+        val = qp.get("admin") or qp.get("key") or qp.get("user")
+        if val and str(val).strip().lower() in ("jjerlee", "true", "1"):
+            st.session_state["is_admin_creator"] = True
+            return True
+    except Exception:
+        pass
+
+    # 4. Hugging Face Space incoming user proxy headers
+    try:
+        headers = getattr(st, "context", None) and getattr(st.context, "headers", {})
+        if headers:
+            hf_user = headers.get("x-hf-user") or headers.get("X-Hf-User") or headers.get("x-repo-owner")
+            if hf_user and str(hf_user).strip().lower() == "jjerlee":
+                st.session_state["is_admin_creator"] = True
+                return True
+    except Exception:
+        pass
+
+    return False
+
+
 def render_editorial_guide_expander():
     """Renders the educational guide, partial skillsets, and statistical aggregation rules."""
     with st.expander("📖 AI Editorial Guide, Skillsets & Statistical Aggregation Rules", expanded=False):
@@ -464,11 +505,25 @@ def render_game_recaps_view():
 
     trigger_generate = False
 
+    is_admin = is_admin_creator()
+
+    # Discreet Creator Access in sidebar for cloud admin authentication
+    if not is_admin:
+        with st.sidebar.expander("🔒 Creator Access", expanded=False):
+            creator_pass = st.text_input("Creator Passkey", type="password", key="creator_passkey_input")
+            if creator_pass:
+                if creator_pass.strip().lower() in ("jjerlee", "rinklytics") or (discover_hf_token() and creator_pass.strip() == discover_hf_token()):
+                    st.session_state["is_admin_creator"] = True
+                    st.success("Creator access verified.")
+                    st.rerun()
+                else:
+                    st.error("Invalid passkey.")
+
     # -------------------------------------------------------------------------
-    # 2. Season Selector + Date Selector (restricted strictly to valid game dates)
+    # 2. Season Selector + Date Selector (+ Creator Action Button if Admin)
     # -------------------------------------------------------------------------
-    if is_local:
-        col_season, col_date, col_btn = st.columns([1.1, 2.2, 1.0], vertical_alignment="bottom")
+    if is_admin:
+        col_season, col_date, col_btn = st.columns([1.1, 2.0, 1.3], vertical_alignment="bottom")
         with col_season:
             selected_season = st.selectbox(
                 "Select Season",
@@ -498,12 +553,12 @@ def render_game_recaps_view():
                 st.rerun()
 
         with col_btn:
-            btn_label = "Force Re-Analyze" if has_narratives else "Generate Recaps"
+            btn_label = "Force Re-Analyze (Admin)" if has_narratives else "Generate Recaps (Admin)"
             btn_type = "secondary" if has_narratives else "primary"
             btn_help = (
-                "Re-analyze current date with local LM Studio model and sync to Hugging Face dataset (Local Dev)"
+                "Creator Control: Re-analyze and synchronize this date using the active narrative engine."
                 if has_narratives
-                else "Synthesize and save LLM game recaps for this date with local LM Studio (Local Dev)"
+                else "Creator Control: Synthesize and publish recaps for this date."
             )
             trigger_generate = st.button(btn_label, type=btn_type, use_container_width=True, help=btn_help)
     else:
@@ -536,7 +591,7 @@ def render_game_recaps_view():
                 st.session_state.recap_target_date = selected_date_str
                 st.rerun()
 
-    # Trigger generation pipeline if local button was clicked
+    # Trigger generation pipeline if admin clicked the button
     if trigger_generate:
         success = run_generation_pipeline(target_date, store, is_local)
         if success:
@@ -544,20 +599,15 @@ def render_game_recaps_view():
             st.rerun()
 
     # -------------------------------------------------------------------------
-    # 3. Automatic Backend Generation on Page Load if Insights Are Missing
+    # 3. Check Narrative Generation Status (Warning Sign if Not Generated)
     # -------------------------------------------------------------------------
     if not has_narratives:
-        with st.status(f"🏒 Synthesizing game recaps & analytics for {_format_game_date_option(target_date)}...", expanded=True) as status:
-            st.write("Auditing official game scores, defensive metrics, and line shift chemistry...")
-            success = run_generation_pipeline(target_date, store, is_local)
-            if success:
-                status.update(label=f"✅ Recaps synthesized for {_format_game_date_option(target_date)}!", state="complete", expanded=False)
-                store._load_tables()
-                st.rerun()
-            else:
-                status.update(label=f"ℹ️ No completed games found for {_format_game_date_option(target_date)}.", state="complete", expanded=False)
-                st.info(f"No completed game data available to generate recaps for **{_format_game_date_option(target_date)}**.")
-                return
+        st.warning(f"⚠️ Game recaps and analytical narratives have not been generated for **{_format_game_date_option(target_date)}**.")
+        if is_admin:
+            st.info("💡 As Admin Creator, click **Generate Recaps (Admin)** above to run editorial synthesis.")
+        else:
+            st.info("ℹ️ Production game recaps are synthesized and published by the editorial team once the evening slate is finalized.")
+        return
 
     st.success(f"Loaded recaps for **{target_date}**.")
 
