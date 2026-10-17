@@ -523,6 +523,31 @@ graph LR
 | `generator_model` | `string` | Generating engine badge |
 | `generated_at` | `string` | UTC timestamp of generation |
 
+### Database Update Procedures & Model Precedence (LLM Overwrite Rules)
+
+To maintain maximum editorial quality in the cloud Lakehouse (`jjerlee/nhl-analytics`), [`HFScoreboardStore`](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/dev/agent/scoreboard/dataset_store.py) enforces a deterministic **Model Priority Hierarchy**:
+
+```mermaid
+flowchart TD
+    subgraph Priority Tiers
+        T2["Tier 2: Neural LLMs (High Fidelity)<br/>lm-studio/*, hf-space/*, remote-endpoint/*, meta-llama/*"]
+        T1["Tier 1: Algorithmic Guardrail Engine<br/>algorithmic-guardrails-v1"]
+        T0["Tier 0: Missing / Legacy Placeholders<br/>scoreboard-agent-v1, None, empty"]
+    end
+
+    Incoming["Incoming Recap Record"] --> Decision{"Compare Model Priority"}
+    Decision -- "Incoming (Tier 2) > Existing (Tier 1/0)" --> Overwrite["Overwrite Algorithmic Record with LLM<br/>Upgrade stored Lakehouse dataset"]
+    Decision -- "Incoming (Tier 2) == Existing (Tier 2)" --> ReplaceLatest["Update with latest LLM synthesis"]
+    Decision -- "Incoming (Tier 1) < Existing (Tier 2)" --> Preserve["Preserve Existing LLM Record<br/>Block accidental algorithmic downgrade"]
+```
+
+#### Precedence Hierarchy Rules
+
+1. **LLM Overwrites Algorithmic**: When an existing game or slate recap was generated using `algorithmic-guardrails-v1` (Tier 1) or is blank (Tier 0), any newly generated narrative from an LLM (`lm-studio/*`, `hf-space/*`, `remote-endpoint/*`, `meta-llama/*`) **unconditionally overwrites** the algorithmic record. This ensures that the latest available stored recap in the Lakehouse is always LLM-generated.
+2. **Protection Against Downgrades**: If a date already contains verified LLM-generated recaps (Tier 2), an automated job, offline fallback, or manual run with the algorithmic engine **will NOT overwrite or downgrade** the existing LLM recap (unless `force=True` is explicitly passed).
+3. **Deduplication Order**: During merge operations (e.g. combining remote parquet with local cache), `_clean_game_recaps_df` and `_clean_slate_recaps_df` sort records by `[_model_prio, generated_at]` ascending before dropping duplicates with `keep='last'`. Higher-tier LLM models always win over algorithmic models, even if the algorithmic row has a newer timestamp.
+4. **Interactive Dashboard Feedback**: In [`app/views/game_recaps.py`](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/app/views/game_recaps.py), dates with existing algorithmic summaries display a prominent **`✨ Upgrade to LLM Insights`** primary button, prompting one-click neural synthesis. Once upgraded, the button switches to **`Force Re-Analyze Slate`**.
+
 ---
 
 ## 8. Frontend Presentation & Engine Telemetry
@@ -649,3 +674,104 @@ curl -s http://127.0.0.1:1234/v1/models | jq .
 docker compose -f deploy/local/docker-compose.yml up -d --build
 # Open http://localhost:1901
 ```
+
+---
+
+## 11. Verified Working Case: Hugging Face Spaces Cloud Infrastructure & Synthesis Pipeline
+
+This section documents the verified, working architecture and execution case for on-demand recap synthesis and lakehouse persistence directly within the deployed Hugging Face Space runtime.
+
+### 11.1 Infrastructure Topology & Runtime Specification
+
+The production deployment at [`https://huggingface.co/spaces/jjerlee/rinklytics`](https://huggingface.co/spaces/jjerlee/rinklytics) is configured with the following production infrastructure stack:
+
+```
++-----------------------------------------------------------------------------------------+
+|                                Hugging Face Spaces Host                                  |
+|                 (Space ID: jjerlee/rinklytics | Direct: jjerlee-rinklytics.hf.space)      |
++-----------------------------------------------------------------------------------------+
+| Hardware: zero-a10g (Nvidia A10G 24GB VRAM ZeroGPU dynamic allocation)                  |
+| SDK: Gradio 6.29.0 (Required for ZeroGPU runtime scheduling) | Python: 3.12             |
+| Container Entry: app.py (Initializes @spaces.GPU context & launches Streamlit daemon)   |
+| Streamlit Daemon: localhost:7860 (Single-process headless mode)                         |
++-----------------------------------------------------------------------------------------+
+                                             |
+                                  +----------v----------+
+                                  |   Browser Client    |
+                                  | (Streamlit WebApp)  |
+                                  +----------+----------+
+                                             |
+                         [Click "Force Re-Analyze Slate"]
+                                             |
+                                  +----------v----------+
+                                  | run_generation_     |
+                                  | pipeline() in UI    |
+                                  +----------+----------+
+                                             |
+                        +--------------------+--------------------+
+                        |                                         |
+                        v                                         v
+            +-----------------------+                 +-----------------------+
+            | ScoreboardAgent       |                 | NarratorEngine        |
+            | - Hydrates NHL API    |                 | - Synthesizes Recaps  |
+            | - Builds Telemetry    |                 | - Enforces Guardrails |
+            +-----------+-----------+                 +-----------+-----------+
+                        |                                         |
+                        +--------------------+--------------------+
+                                             |
+                                  +----------v----------+
+                                  | HFScoreboardStore   |
+                                  | (Columnar Parquet)  |
+                                  +----------+----------+
+                                             |
+                                [store.sync_to_huggingface()]
+                                             |
+                                  +----------v----------+
+                                  | Hugging Face Dataset|
+                                  | jjerlee/nhl-        |
+                                  | analytics           |
+                                  +---------------------+
+```
+
+- **Space Repository**: [`jjerlee/rinklytics`](https://huggingface.co/spaces/jjerlee/rinklytics)
+- **Direct Domain**: `https://jjerlee-rinklytics.hf.space`
+- **Dynamic Hardware**: `zero-a10g` (Nvidia A10G 24GB VRAM leased dynamically on demand).
+- **Space SDK Configuration**: `sdk: gradio` (v6.29.0) with `app_file: app.py`. Gradio SDK is mandatory on Hugging Face Spaces to enable ZeroGPU scheduling; root [`app.py`](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/app.py) handles `@spaces.GPU` initialization and spawns the Streamlit server on internal port 7860.
+- **Space Environment Variables**:
+  - `llm_model_name`: Configured in Space Variables (e.g. `nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8`).
+- **Space Secrets**:
+  - `HF_TOKEN`: Personal access token with dataset write permissions for synchronization to `jjerlee/nhl-analytics`.
+  - `local_streamlit`: Set to False in production (automatically overridden to False by `SPACE_ID` cloud detection in `env_utils.py`).
+
+### 11.2 Interactive UI Synthesis Workflow (Verified Case)
+
+The working pipeline operates through the following sequence:
+
+1. **User Interaction**:
+   - The user opens the dashboard at `https://huggingface.co/spaces/jjerlee/rinklytics`.
+   - Navigates to **Game Recaps (Beta)** ([`app/views/game_recaps.py`](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/app/views/game_recaps.py)).
+   - Selects the target completed game date.
+   - Clicks **`Force Re-Analyze Slate`** (or **`Generate Recaps`** if not yet synthesized).
+2. **Analysis Execution**:
+   - Streamlit initiates `run_generation_pipeline(target_date, store, is_local=False)`.
+   - [`ScoreboardAgent`](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/dev/agent/scoreboard/agent.py) pulls official box scores, period flow, and shift telemetry for all completed games on that date.
+3. **Narrative Synthesis & Guardrail Auditing**:
+   - [`NarratorEngine`](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/dev/agent/scoreboard/narrator.py) evaluates the cloud runtime (`is_local=False`).
+   - Dispatches journalistic recap generation using the configured Space model and audited factual guardrails.
+   - Every paragraph is reconciled against official scores, goal scorers, period endings, and the mathematical points vs. goals taxonomy.
+   - If factual drift occurs, a single retry with cooled temperature ($T=0.2$) is performed before falling back to `algorithmic-guardrails-v1`.
+4. **Lakehouse Persistence & Cloud Dataset Sync**:
+   - Recaps and slate overviews are saved locally in columnar Parquet format via [`HFScoreboardStore`](file:///Users/jjlee/Documents/GitHub/NHL-Analytics/dev/agent/scoreboard/dataset_store.py).
+   - If `HF_TOKEN` is present, `store.sync_to_huggingface()` immediately pushes the newly generated Parquet partitions to the remote dataset [`jjerlee/nhl-analytics`](https://huggingface.co/datasets/jjerlee/nhl-analytics) under `insights/scoreboard/`.
+5. **UI Refresh**:
+   - Streamlit reloads tables from the local cache and renders the publication-ready recaps with the active engine badge.
+
+### 11.3 Baseline for Future Automation Phase
+
+While the current interactive button verifies that the end-to-end data ingestion, synthesis, guardrails, and dataset synchronization work seamlessly in the Hugging Face Space cloud container, this baseline informs the upcoming automation phase:
+
+- **Goal**: Automate synthesis so it triggers on schedule or upon completion of daily raw data ingestion, eliminating the need to expose a manual execution button to the general public.
+- **Design Considerations for Automation**:
+  - *Decoupled Background Execution*: Run the synthesis pipeline as a scheduled background job or post-commit trigger.
+  - *Read-Only Public Presentation*: Keep the public dashboard strictly read-only, serving pre-computed, verified lakehouse recaps directly from Parquet partitions.
+  - *Resource Optimization*: Prevent redundant or concurrent GPU allocations by locking synthesis to verified completed slates.

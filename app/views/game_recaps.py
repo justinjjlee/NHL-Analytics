@@ -30,7 +30,7 @@ except ImportError:
         sys.path.insert(0, str(root))
     from dev.agent.scoreboard.agent import ScoreboardAgent
     from dev.agent.scoreboard.dataset_store import HFScoreboardStore
-    from dev.agent.scoreboard.env_utils import is_local_streamlit, discover_model_name
+    from dev.agent.scoreboard.env_utils import is_local_streamlit, discover_model_name, discover_hf_token
     from dev.agent.scoreboard.narrator import expand_first_mention_abbreviations, format_milestone_badge
     from dev.agent.scoreboard.skills import ShiftAndTrendDataProvider
 
@@ -269,52 +269,13 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
             if sync_res.get("success"):
                 st.toast("☁️ Synced to Hugging Face dataset `insights/scoreboard/` (jjerlee/nhl-analytics)!")
 
+        if not is_local and getattr(agent.narrator, "last_zerogpu_error", None):
+            st.warning(f"⚠️ Note on ZeroGPU execution: {agent.narrator.last_zerogpu_error}")
+
         st.success(f"Successfully generated recaps for {target_date}!")
         return True
 
 
-def is_admin_creator() -> bool:
-    """Detects whether the active viewer is the verified creator/admin (jjerlee).
-    
-    Checks in order:
-    1. Local developer environment (always admin on developer machine)
-    2. Session state override (unlocked via Creator Login passkey in sidebar or popover)
-    3. URL Query parameters (e.g. ?admin, ?admin=1, ?admin=admin, ?admin=jjerlee, ?creator, ?jjerlee)
-    4. Incoming Hugging Face Space headers (x-hf-user / x-repo-owner)
-    """
-    # 1. Local developer environment is always admin
-    if is_local_streamlit():
-        return True
-
-    # 2. Unlocked in current session
-    if st.session_state.get("is_admin_creator", False):
-        return True
-
-    # 3. URL Query Parameter (?admin, ?admin=1, ?admin=admin, ?admin=jjerlee, ?creator, ?jjerlee, ?key=*)
-    try:
-        qp = st.query_params
-        for key in ("admin", "creator", "jjerlee", "auth", "key"):
-            if key in qp:
-                val = str(qp.get(key, "")).strip().lower()
-                # If key is present without value (?admin, ?creator) or with common truthy/admin values
-                if not val or val in ("jjerlee", "true", "1", "admin", "yes", "on", "creator"):
-                    st.session_state["is_admin_creator"] = True
-                    return True
-    except Exception:
-        pass
-
-    # 4. Hugging Face Space incoming user proxy headers
-    try:
-        headers = getattr(st, "context", None) and getattr(st.context, "headers", {})
-        if headers:
-            hf_user = headers.get("x-hf-user") or headers.get("X-Hf-User") or headers.get("x-repo-owner")
-            if hf_user and str(hf_user).strip().lower() == "jjerlee":
-                st.session_state["is_admin_creator"] = True
-                return True
-    except Exception:
-        pass
-
-    return False
 
 
 def render_editorial_guide_expander():
@@ -500,6 +461,7 @@ def render_game_recaps_view():
 
     is_local = is_local_streamlit()
     is_recorded = store.is_slate_recorded(target_date)
+    is_llm = store.is_slate_llm_generated(target_date) if is_recorded else False
     slate_record = store.get_slate_record(target_date) if is_recorded else None
     game_records = store.get_games_for_date(target_date) if is_recorded else []
     has_narratives = bool(
@@ -508,33 +470,20 @@ def render_game_recaps_view():
 
     trigger_generate = False
 
-    is_admin = is_admin_creator()
-
-    # Creator Access & Lock Controls in sidebar
-    if is_admin and not is_local:
-        with st.sidebar:
-            st.caption("👑 **Creator Mode Active**")
-            if st.button("🔒 Lock Admin Controls", key="btn_lock_admin", help="Revert view to public read-only mode"):
-                st.session_state["is_admin_creator"] = False
-                for k in ("admin", "creator", "jjerlee", "auth", "key"):
-                    if k in st.query_params:
-                        del st.query_params[k]
-                st.rerun()
-    elif not is_admin:
-        with st.sidebar.expander("🔒 Creator Access", expanded=False):
-            creator_pass = st.text_input("Creator Passkey", type="password", key="creator_passkey_input")
-            if creator_pass:
-                if creator_pass.strip().lower() in ("jjerlee", "admin", "rinklytics") or (discover_hf_token() and creator_pass.strip() == discover_hf_token()):
-                    st.session_state["is_admin_creator"] = True
-                    st.success("Creator access verified.")
-                    st.rerun()
-                else:
-                    st.error("Invalid passkey.")
+    # Check for direct URL trigger parameter (?trigger=true or ?run=true)
+    try:
+        if "trigger" in st.query_params or "run" in st.query_params:
+            trigger_generate = True
+            for k in ("trigger", "run"):
+                if k in st.query_params:
+                    del st.query_params[k]
+    except Exception:
+        pass
 
     # -------------------------------------------------------------------------
-    # 2. Season Selector + Date Selector (+ Creator Action Button / Unlock Popover)
+    # 2. Season Selector + Date Selector + Generate / Re-Analyze Action Button
     # -------------------------------------------------------------------------
-    col_season, col_date, col_action = st.columns([1.1, 2.0, 1.3], vertical_alignment="bottom")
+    col_season, col_date, col_btn = st.columns([1.1, 2.0, 1.3], vertical_alignment="bottom")
     with col_season:
         selected_season = st.selectbox(
             "Select Season",
@@ -563,30 +512,24 @@ def render_game_recaps_view():
             st.session_state.recap_target_date = selected_date_str
             st.rerun()
 
-    with col_action:
-        if is_admin:
-            btn_label = "Force Re-Analyze (Admin)" if has_narratives else "Generate Recaps (Admin)"
-            btn_type = "secondary" if has_narratives else "primary"
-            btn_help = (
-                "Creator Control: Re-analyze and synchronize this date using the active narrative engine."
-                if has_narratives
-                else "Creator Control: Synthesize and publish recaps for this date."
-            )
-            trigger_generate = st.button(btn_label, type=btn_type, use_container_width=True, help=btn_help)
+    with col_btn:
+        if not has_narratives:
+            btn_label = "Generate Recaps"
+            btn_type = "primary"
+            btn_help = "Synthesize and publish recaps for this date."
+        elif not is_llm:
+            btn_label = "✨ Upgrade to LLM Insights"
+            btn_type = "primary"
+            btn_help = "Currently stored as algorithmic guardrails. Click to synthesize with the active LLM engine and upgrade the dataset."
         else:
-            with st.popover("🔒 Creator", help="Admin & Editorial Controls"):
-                st.markdown("##### 🔐 Creator Verification")
-                st.caption("Enter creator passkey or token to reveal on-demand editorial controls.")
-                creator_key = st.text_input("Creator Passkey", type="password", key="creator_popover_passkey", placeholder="e.g. jjerlee")
-                if st.button("Unlock Admin Controls", type="primary", use_container_width=True, key="btn_unlock_creator_popover"):
-                    if creator_key.strip().lower() in ("jjerlee", "admin", "rinklytics") or (discover_hf_token() and creator_key.strip() == discover_hf_token()):
-                        st.session_state["is_admin_creator"] = True
-                        st.toast("✅ Creator mode active!")
-                        st.rerun()
-                    else:
-                        st.error("Invalid passkey.")
+            btn_label = "Force Re-Analyze Slate"
+            btn_type = "secondary"
+            btn_help = "Re-analyze and synchronize this date using the active LLM narrative engine."
 
-    # Trigger generation pipeline if admin clicked the button
+        if st.button(btn_label, type=btn_type, use_container_width=True, help=btn_help):
+            trigger_generate = True
+
+    # Trigger generation pipeline if requested
     if trigger_generate:
         success = run_generation_pipeline(target_date, store, is_local)
         if success:
@@ -598,10 +541,7 @@ def render_game_recaps_view():
     # -------------------------------------------------------------------------
     if not has_narratives:
         st.warning(f"⚠️ Game recaps and analytical narratives have not been generated for **{_format_game_date_option(target_date)}**.")
-        if is_admin:
-            st.info("💡 As Admin Creator, click **Generate Recaps (Admin)** above to run editorial synthesis.")
-        else:
-            st.info("ℹ️ Production game recaps are synthesized and published by the editorial team once the evening slate is finalized.")
+        st.info("💡 Click **Generate Recaps** above to synthesize recaps using the active narrative engine.")
         return
 
     st.success(f"Loaded recaps for **{target_date}**.")

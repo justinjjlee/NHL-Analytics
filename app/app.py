@@ -24,28 +24,6 @@ st.set_page_config(
     layout="centered"
 )
 
-# Universal Creator / Admin Access check across all views and navigation
-if not st.session_state.get("is_admin_creator", False):
-    try:
-        qp = st.query_params
-        for k in ("admin", "creator", "jjerlee", "auth", "key"):
-            if k in qp:
-                val = str(qp.get(k, "")).strip().lower()
-                if not val or val in ("jjerlee", "true", "1", "admin", "yes", "on", "creator"):
-                    st.session_state["is_admin_creator"] = True
-                    break
-    except Exception:
-        pass
-
-    try:
-        headers = getattr(st, "context", None) and getattr(st.context, "headers", {})
-        if headers:
-            hf_user = headers.get("x-hf-user") or headers.get("X-Hf-User") or headers.get("x-repo-owner")
-            if hf_user and str(hf_user).strip().lower() == "jjerlee":
-                st.session_state["is_admin_creator"] = True
-    except Exception:
-        pass
-
 # Add custom CSS for navigation color
 st.markdown("""
 <style>

@@ -364,6 +364,7 @@ class NarratorEngine:
         self.token = discover_hf_token(token)
         self._inference_client = None
         self._active_lm_studio_model = None
+        self.last_zerogpu_error: Optional[str] = None
 
     def _get_inference_client(self) -> Optional[InferenceClient]:
         """Lazy initializer for Hugging Face InferenceClient."""
@@ -1182,6 +1183,7 @@ class NarratorEngine:
                         game.headline = retry_h
                         return retry_n.strip(), f"hf-space/{target_model}"
                 except Exception as e:
+                    self.last_zerogpu_error = f"{type(e).__name__}: {e}"
                     logger.warning("Space ZeroGPU narrative generation failed: %s", e)
 
             # Check if custom OpenAI-compatible endpoint is configured (e.g. HF_LLM_URL or OPENAI_BASE_URL)
@@ -1234,9 +1236,6 @@ class NarratorEngine:
         if not game.headline:
             game.headline = self.build_game_headline(game)
         narrative = self.build_game_narrative_algorithmic(game)
-        if not is_local:
-            target_model = resolve_zerogpu_model(self.zerogpu_model_id)
-            return narrative.strip(), f"hf-space/{target_model}"
         return narrative.strip(), ALGORITHMIC_MODEL_STAMP
 
     # =========================================================================
@@ -1443,6 +1442,7 @@ class NarratorEngine:
                         slate.executive_headline = retry_h
                         return retry_n.strip(), f"hf-space/{target_model}"
                 except Exception as e:
+                    self.last_zerogpu_error = f"{type(e).__name__}: {e}"
                     logger.warning("Space ZeroGPU slate generation failed: %s", e)
 
             custom_endpoint = self.hf_llm_endpoint or os.environ.get("HF_LLM_URL") or os.environ.get("OPENAI_BASE_URL") or os.environ.get("LLM_BASE_URL")
@@ -1494,9 +1494,6 @@ class NarratorEngine:
         if not getattr(slate, "executive_headline", ""):
             slate.executive_headline = default_h
         narrative = self.build_slate_narrative_algorithmic(slate)
-        if not is_local:
-            target_model = resolve_zerogpu_model(self.zerogpu_model_id)
-            return narrative.strip(), f"hf-space/{target_model}"
         return narrative.strip(), ALGORITHMIC_MODEL_STAMP
 
     # =========================================================================
