@@ -544,15 +544,20 @@ def render_game_recaps_view():
             st.rerun()
 
     # -------------------------------------------------------------------------
-    # 3. Check Narrative Generation Status (Warning Sign if Not Generated)
+    # 3. Automatic Backend Generation on Page Load if Insights Are Missing
     # -------------------------------------------------------------------------
     if not has_narratives:
-        st.warning(f"⚠️ Game recaps and analytical narratives have not been generated for **{_format_game_date_option(target_date)}**.")
-        if is_local:
-            st.info("💡 You are running locally (`local_streamlit=True`). Click **Generate Recaps** next to the date selector above to run local editorial synthesis.")
-        else:
-            st.info("ℹ️ Production game recaps are synthesized and published automatically on schedule following each evening's completed game slate.")
-        return
+        with st.status(f"🏒 Synthesizing game recaps & analytics for {_format_game_date_option(target_date)}...", expanded=True) as status:
+            st.write("Auditing official game scores, defensive metrics, and line shift chemistry...")
+            success = run_generation_pipeline(target_date, store, is_local)
+            if success:
+                status.update(label=f"✅ Recaps synthesized for {_format_game_date_option(target_date)}!", state="complete", expanded=False)
+                store._load_tables()
+                st.rerun()
+            else:
+                status.update(label=f"ℹ️ No completed games found for {_format_game_date_option(target_date)}.", state="complete", expanded=False)
+                st.info(f"No completed game data available to generate recaps for **{_format_game_date_option(target_date)}**.")
+                return
 
     st.success(f"Loaded recaps for **{target_date}**.")
 
