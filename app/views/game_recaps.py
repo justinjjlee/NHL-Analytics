@@ -44,17 +44,29 @@ except ImportError:
 
 
 def format_engine_badge(model_name: str) -> str:
-    """Format human-readable badge for the active narrative engine."""
-    m = str(model_name).lower()
-    if "lm-studio" in m:
-        clean_name = str(model_name).replace("lm-studio/", "").split("/")[-1]
+    """Format human-readable badge for the active narrative engine writing out the exact model."""
+    if not model_name:
+        return "Algorithmic Guardrails (v1)"
+    m = str(model_name).strip()
+    m_low = m.lower()
+
+    if "hf-space" in m_low or "zerogpu" in m_low or "rinklytics" in m_low:
+        sub = m.replace("hf-space/", "").replace("zerogpu/", "").strip()
+        if sub and sub.lower() not in ("rinklytics", "space", "hf-space", "default"):
+            return f"Hugging Face Space - Rinklytics ({sub})"
+        return "Hugging Face Space - Rinklytics (nvidia/Nemotron-Mini-4B-Instruct)"
+    elif "lm-studio" in m_low:
+        clean_name = m.replace("lm-studio/", "").strip()
         return f"LM Studio ({clean_name})"
-    elif "llama" in m:
-        return "Meta-Llama-3.2-3B (Router)"
-    elif "local" in m or "qwen" in m:
-        return f"Local LLM ({model_name})"
+    elif "remote-endpoint" in m_low:
+        clean_name = m.replace("remote-endpoint/", "").strip()
+        return f"Remote Endpoint ({clean_name})"
+    elif "llama" in m_low:
+        return f"Hugging Face Router ({m})"
+    elif "algorithmic" in m_low:
+        return "Algorithmic Guardrails (v1)"
     else:
-        return "Algorithmic Engine"
+        return f"{m}"
 
 
 @st.cache_resource
@@ -208,19 +220,22 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
         else:
             import os
             is_space_up, space_name, space_note = agent.narrator.check_hf_space_health()
-            custom_endpoint = (
-                agent.narrator.hf_llm_endpoint
-                or os.environ.get("HF_LLM_URL")
-                or os.environ.get("OPENAI_BASE_URL")
-                or os.environ.get("LLM_BASE_URL")
-            )
-            if custom_endpoint:
-                st.info(f"🌐 **Remote LLM Endpoint Connected**: Synthesizing recaps via `{custom_endpoint}`.")
+            if agent.narrator._can_use_zerogpu():
+                st.info(f"⚡ **Hugging Face Space Runtime ({space_name})**: Connected to ZeroGPU. Synthesizing verified recaps via in-process `{agent.narrator.zerogpu_model_id}`.")
             else:
-                st.info(
-                    f"ℹ️ **Production Runtime ({space_name})**: Connected. "
-                    "Reading pre-generated LLM recaps from dataset; on-demand runs use the deterministic Algorithmic Guardrail Engine (set `HF_LLM_URL` in Space Secrets for remote LLM inference)."
+                custom_endpoint = (
+                    agent.narrator.hf_llm_endpoint
+                    or os.environ.get("HF_LLM_URL")
+                    or os.environ.get("OPENAI_BASE_URL")
+                    or os.environ.get("LLM_BASE_URL")
                 )
+                if custom_endpoint:
+                    st.info(f"🌐 **Remote LLM Endpoint Connected**: Synthesizing recaps via `{custom_endpoint}`.")
+                else:
+                    st.info(
+                        f"ℹ️ **Production Runtime ({space_name})**: Connected. "
+                        "Reading pre-generated LLM recaps from dataset; on-demand runs use the deterministic Algorithmic Guardrail Engine (set `HF_LLM_URL` in Space Secrets for remote LLM inference)."
+                    )
 
         try:
             analyzed_slate = agent.analyze_slate(target_date)
