@@ -19,8 +19,8 @@ season,zoneCode,next_category,next_owner_rel,event_count,avg_delta_sec,median_de
 20262027,N,Possession Change,Opponent,80,12.39,8.0,9.98
 20262027,N,Stoppage,Hitting Team,72,12.03,10.0,8.98
 20262027,N,Stoppage,Opponent,56,12.86,9.5,6.98
-20262027,N,Penalty,Opponent,11,7.45,5.0,1.37
 20262027,N,Goal,Opponent,11,35.18,18.0,1.37
+20262027,N,Penalty,Opponent,11,7.45,5.0,1.37
 20262027,N,Goal,Hitting Team,6,14.0,13.5,0.75
 20262027,N,Penalty,Hitting Team,4,19.75,18.5,0.5
 20262027,O,Shot Attempt,Hitting Team,599,14.62,10.0,23.6
@@ -33,5 +33,5 @@ season,zoneCode,next_category,next_owner_rel,event_count,avg_delta_sec,median_de
 20262027,O,Stoppage,Opponent,184,13.99,8.0,7.25
 20262027,O,Goal,Hitting Team,20,17.95,12.5,0.79
 20262027,O,Penalty,Opponent,17,12.76,12.0,0.67
-20262027,O,Penalty,Hitting Team,16,14.63,10.5,0.63
 20262027,O,Goal,Opponent,16,12.94,10.0,0.63
+20262027,O,Penalty,Hitting Team,16,14.63,10.5,0.63
