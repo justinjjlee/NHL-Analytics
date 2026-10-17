@@ -19,7 +19,7 @@ import streamlit as st
 try:
     from dev.agent.scoreboard.agent import ScoreboardAgent
     from dev.agent.scoreboard.dataset_store import HFScoreboardStore
-    from dev.agent.scoreboard.env_utils import is_local_streamlit
+    from dev.agent.scoreboard.env_utils import is_local_streamlit, discover_model_name
     from dev.agent.scoreboard.narrator import expand_first_mention_abbreviations, format_milestone_badge
     from dev.agent.scoreboard.skills import ShiftAndTrendDataProvider
 except ImportError:
@@ -30,7 +30,7 @@ except ImportError:
         sys.path.insert(0, str(root))
     from dev.agent.scoreboard.agent import ScoreboardAgent
     from dev.agent.scoreboard.dataset_store import HFScoreboardStore
-    from dev.agent.scoreboard.env_utils import is_local_streamlit
+    from dev.agent.scoreboard.env_utils import is_local_streamlit, discover_model_name
     from dev.agent.scoreboard.narrator import expand_first_mention_abbreviations, format_milestone_badge
     from dev.agent.scoreboard.skills import ShiftAndTrendDataProvider
 
@@ -54,7 +54,8 @@ def format_engine_badge(model_name: str) -> str:
         sub = m.replace("hf-space/", "").replace("zerogpu/", "").strip()
         if sub and sub.lower() not in ("rinklytics", "space", "hf-space", "default"):
             return f"Hugging Face Space - Rinklytics ({sub})"
-        return "Hugging Face Space - Rinklytics (nvidia/Nemotron-Mini-4B-Instruct)"
+        active_model = discover_model_name("nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8")
+        return f"Hugging Face Space - Rinklytics ({active_model})"
     elif "lm-studio" in m_low:
         clean_name = m.replace("lm-studio/", "").strip()
         return f"LM Studio ({clean_name})"
@@ -221,7 +222,8 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
             import os
             is_space_up, space_name, space_note = agent.narrator.check_hf_space_health()
             if agent.narrator._can_use_zerogpu():
-                st.info(f"⚡ **Hugging Face Space Runtime ({space_name})**: Connected to ZeroGPU. Synthesizing verified recaps via in-process `{agent.narrator.zerogpu_model_id}`.")
+                active_space_model = discover_model_name(getattr(agent.narrator, "zerogpu_model_id", "nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8"))
+                st.info(f"⚡ **Hugging Face Space Runtime ({space_name})**: Connected to ZeroGPU. Synthesizing verified recaps via in-process `{active_space_model}`.")
             else:
                 custom_endpoint = (
                     agent.narrator.hf_llm_endpoint

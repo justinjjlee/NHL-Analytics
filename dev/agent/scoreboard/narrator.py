@@ -34,11 +34,11 @@ except ImportError:
 
 try:
     from .models import AnalyzedGame, AnalyzedSlate
-    from .env_utils import is_local_streamlit, discover_hf_token
+    from .env_utils import is_local_streamlit, discover_hf_token, discover_model_name
     from .skills import EditorialSkillsOrchestrator, load_editorial_playbook
 except (ImportError, ValueError):
     from models import AnalyzedGame, AnalyzedSlate
-    from env_utils import is_local_streamlit, discover_hf_token
+    from env_utils import is_local_streamlit, discover_hf_token, discover_model_name
     from skills import EditorialSkillsOrchestrator, load_editorial_playbook
 
 logger = logging.getLogger("NarratorEngine")
@@ -47,8 +47,15 @@ logger = logging.getLogger("NarratorEngine")
 DEFAULT_LLM_MODEL = "meta-llama/Llama-3.2-3B-Instruct"
 DEFAULT_LM_STUDIO_URL = "http://127.0.0.1:1234/v1"
 DEFAULT_HF_SPACE_URL = "https://jjerlee-rinklytics.hf.space"
-DEFAULT_ZEROGPU_MODEL = "nvidia/Nemotron-Mini-4B-Instruct"
+DEFAULT_ZEROGPU_MODEL = "nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8"
 ALGORITHMIC_MODEL_STAMP = "algorithmic-guardrails-v1"
+
+
+def resolve_zerogpu_model(model_override: Optional[str] = None) -> str:
+    """Resolves active Space ZeroGPU model from user public Space variables, secrets, .env, or defaults."""
+    if model_override and str(model_override).strip():
+        return str(model_override).strip()
+    return discover_model_name(DEFAULT_ZEROGPU_MODEL)
 
 # Safe import for Hugging Face Spaces ZeroGPU
 try:
@@ -66,44 +73,59 @@ except (ImportError, Exception):
             return func
 
 
-_ZEROGPU_PIPELINE = None
+_ZEROGPU_CACHE: dict = {}
 
 
-def _get_zerogpu_pipeline(model_id: str = DEFAULT_ZEROGPU_MODEL):
-    """Lazy loader for in-process ZeroGPU model on Hugging Face Spaces."""
-    global _ZEROGPU_PIPELINE
-    if _ZEROGPU_PIPELINE is None:
+def _get_zerogpu_pipeline(model_id: Optional[str] = None):
+    """Lazy loader for in-process ZeroGPU model on Hugging Face Spaces with dynamic model caching."""
+    global _ZEROGPU_CACHE
+    target_model = resolve_zerogpu_model(model_id)
+
+    if target_model not in _ZEROGPU_CACHE:
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
-        logger.info("Initializing in-process ZeroGPU model: %s...", model_id)
-        tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+        logger.info("Initializing in-process ZeroGPU model: %s...", target_model)
+        tokenizer = AutoTokenizer.from_pretrained(target_model, trust_remote_code=True)
         model = AutoModelForCausalLM.from_pretrained(
-            model_id,
+            target_model,
             torch_dtype=torch.bfloat16,
             device_map="auto",
             trust_remote_code=True,
         )
-        _ZEROGPU_PIPELINE = (model, tokenizer)
-    return _ZEROGPU_PIPELINE
+        _ZEROGPU_CACHE[target_model] = (model, tokenizer)
+    return _ZEROGPU_CACHE[target_model], target_model
 
 
 @spaces.GPU(duration=120)
 def _zerogpu_infer(
     messages: list,
-    model_id: str = DEFAULT_ZEROGPU_MODEL,
+    model_id: Optional[str] = None,
     max_new_tokens: int = 1800,
     temperature: float = 0.35,
 ) -> str:
     """Runs generation inside Hugging Face Spaces ZeroGPU allocation."""
     import torch
-    model, tokenizer = _get_zerogpu_pipeline(model_id)
+    (model, tokenizer), target_model = _get_zerogpu_pipeline(model_id)
 
     if hasattr(tokenizer, "apply_chat_template"):
-        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+        try:
+            prompt = tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=True,
+                enable_thinking=False,
+            )
+        except (TypeError, Exception):
+            prompt = tokenizer.apply_chat_template(
+                messages,
+                tokenize=False,
+                add_generation_prompt=True,
+            )
     else:
         prompt = "\n".join(f"{m['role']}: {m['content']}" for m in messages) + "\nassistant:"
 
+    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
     with torch.no_grad():
         outputs = model.generate(
@@ -112,7 +134,7 @@ def _zerogpu_infer(
             temperature=temperature,
             top_p=0.9,
             do_sample=True,
-            pad_token_id=tokenizer.eos_token_id,
+            pad_token_id=pad_id,
         )
     gen_tokens = outputs[0][inputs["input_ids"].shape[1]:]
     response = tokenizer.decode(gen_tokens, skip_special_tokens=True)
@@ -337,7 +359,7 @@ class NarratorEngine:
         derived_space_url = f"https://{env_space_host}" if env_space_host else DEFAULT_HF_SPACE_URL
         self.hf_space_url = os.environ.get("HF_SPACE_HOST") or os.environ.get("HF_SPACE_URL") or hf_space_url or derived_space_url
         self.hf_llm_endpoint = os.environ.get("HF_LLM_URL")
-        self.zerogpu_model_id = os.environ.get("ZEROGPU_MODEL", DEFAULT_ZEROGPU_MODEL)
+        self.zerogpu_model_id = resolve_zerogpu_model()
 
         self.token = discover_hf_token(token)
         self._inference_client = None
@@ -873,36 +895,38 @@ class NarratorEngine:
     def _generate_game_narrative_with_zerogpu(
         self,
         game: AnalyzedGame,
-        model_id: str = DEFAULT_ZEROGPU_MODEL,
+        model_id: Optional[str] = None,
         temperature: float = 0.35,
         max_tokens: int = 1800,
     ) -> str:
         """Invokes in-process ZeroGPU allocation to generate game narrative."""
+        target_model = resolve_zerogpu_model(model_id or self.zerogpu_model_id)
         system_prompt = self.build_game_llm_system_prompt()
         user_prompt = self.build_game_llm_user_prompt(game)
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ]
-        raw = _zerogpu_infer(messages, model_id=model_id, max_new_tokens=max_tokens, temperature=temperature)
+        raw = _zerogpu_infer(messages, model_id=target_model, max_new_tokens=max_tokens, temperature=temperature)
         cleaned = clean_llm_narrative(raw)
         return cleaned.strip()
 
     def _generate_slate_narrative_with_zerogpu(
         self,
         slate: AnalyzedSlate,
-        model_id: str = DEFAULT_ZEROGPU_MODEL,
+        model_id: Optional[str] = None,
         temperature: float = 0.3,
         max_tokens: int = 1200,
     ) -> str:
         """Invokes in-process ZeroGPU allocation for slate review."""
+        target_model = resolve_zerogpu_model(model_id or self.zerogpu_model_id)
         system_prompt = self.build_slate_llm_system_prompt()
         user_prompt = self.build_slate_llm_user_prompt(slate)
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ]
-        raw = _zerogpu_infer(messages, model_id=model_id, max_new_tokens=max_tokens, temperature=temperature)
+        raw = _zerogpu_infer(messages, model_id=target_model, max_new_tokens=max_tokens, temperature=temperature)
         cleaned = clean_llm_narrative(raw)
         return cleaned.strip()
 
@@ -1123,20 +1147,21 @@ class NarratorEngine:
 
             # 2a. Priority: In-process ZeroGPU inside Hugging Face Space
             if self._can_use_zerogpu():
+                target_model = resolve_zerogpu_model(self.zerogpu_model_id)
                 try:
-                    logger.info("Generating game recap via Space ZeroGPU (%s)...", self.zerogpu_model_id)
-                    raw_output = self._generate_game_narrative_with_zerogpu(game, self.zerogpu_model_id)
+                    logger.info("Generating game recap via Space ZeroGPU (%s)...", target_model)
+                    raw_output = self._generate_game_narrative_with_zerogpu(game, target_model)
                     llm_headline, narrative = extract_headline_and_narrative(raw_output, default_h, game.period_type)
                     if self._verify_game_narrative_facts(narrative, game, headline=llm_headline):
                         game.headline = llm_headline
-                        model_stamp = f"hf-space/{self.zerogpu_model_id}"
+                        model_stamp = f"hf-space/{target_model}"
                         return narrative.strip(), model_stamp
                     logger.warning("ZeroGPU output failed verification. Retrying once with focused temperature (0.2)...")
-                    raw_retry = self._generate_game_narrative_with_zerogpu(game, self.zerogpu_model_id, temperature=0.2)
+                    raw_retry = self._generate_game_narrative_with_zerogpu(game, target_model, temperature=0.2)
                     retry_h, retry_n = extract_headline_and_narrative(raw_retry, default_h, game.period_type)
                     if self._verify_game_narrative_facts(retry_n, game, headline=retry_h):
                         game.headline = retry_h
-                        return retry_n.strip(), f"hf-space/{self.zerogpu_model_id}"
+                        return retry_n.strip(), f"hf-space/{target_model}"
                 except Exception as e:
                     logger.warning("Space ZeroGPU narrative generation failed: %s", e)
 
@@ -1380,19 +1405,20 @@ class NarratorEngine:
 
             # 2a. Priority: In-process ZeroGPU inside Hugging Face Space
             if self._can_use_zerogpu():
+                target_model = resolve_zerogpu_model(self.zerogpu_model_id)
                 try:
-                    logger.info("Generating slate overview via Space ZeroGPU (%s)...", self.zerogpu_model_id)
-                    raw_output = self._generate_slate_narrative_with_zerogpu(slate, self.zerogpu_model_id)
+                    logger.info("Generating slate overview via Space ZeroGPU (%s)...", target_model)
+                    raw_output = self._generate_slate_narrative_with_zerogpu(slate, target_model)
                     llm_headline, narrative = extract_headline_and_narrative(raw_output, default_h)
                     if self._verify_slate_narrative_facts(narrative, slate):
                         slate.executive_headline = llm_headline
-                        return narrative.strip(), f"hf-space/{self.zerogpu_model_id}"
+                        return narrative.strip(), f"hf-space/{target_model}"
                     logger.warning("ZeroGPU slate output failed verification. Retrying once with focused temperature (0.2)...")
-                    raw_retry = self._generate_slate_narrative_with_zerogpu(slate, self.zerogpu_model_id, temperature=0.2)
+                    raw_retry = self._generate_slate_narrative_with_zerogpu(slate, target_model, temperature=0.2)
                     retry_h, retry_n = extract_headline_and_narrative(raw_retry, default_h)
                     if self._verify_slate_narrative_facts(retry_n, slate):
                         slate.executive_headline = retry_h
-                        return retry_n.strip(), f"hf-space/{self.zerogpu_model_id}"
+                        return retry_n.strip(), f"hf-space/{target_model}"
                 except Exception as e:
                     logger.warning("Space ZeroGPU slate generation failed: %s", e)
 

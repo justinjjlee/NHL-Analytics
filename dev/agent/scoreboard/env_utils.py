@@ -116,3 +116,49 @@ def discover_hf_token(explicit_token: str | None = None) -> str | None:
         pass
 
     return None
+
+
+def discover_model_name(default_model: str = "nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8") -> str:
+    """Discovers the active model name across environment variables, Streamlit secrets, and .env file.
+    
+    Checks in priority order:
+    1. OS environment variables (`llm_model_name`, `LLM_MODEL_NAME`, `ZEROGPU_MODEL`)
+    2. Streamlit secrets (`st.secrets["llm_model_name"]`)
+    3. Root repository `.env` file (`llm_model_name=...` or `LLM_MODEL_NAME=...`)
+    4. Default fallback model
+    """
+    keys = ("llm_model_name", "LLM_MODEL_NAME", "ZEROGPU_MODEL")
+    # 1. Environment variables
+    for k in keys:
+        val = os.environ.get(k)
+        if val and str(val).strip():
+            return str(val).strip().strip('"').strip("'")
+
+    # 2. Streamlit secrets
+    try:
+        import streamlit as st
+        if hasattr(st, "secrets"):
+            for k in keys:
+                if k in st.secrets and st.secrets[k]:
+                    return str(st.secrets[k]).strip().strip('"').strip("'")
+    except Exception:
+        pass
+
+    # 3. Root .env file
+    try:
+        root = Path(__file__).resolve().parent.parent.parent.parent
+        env_path = root / ".env"
+        if env_path.exists():
+            for line in env_path.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line.startswith("#") or not line or "=" not in line:
+                    continue
+                k, v = line.split("=", 1)
+                if k.strip() in keys:
+                    cleaned = v.strip().strip('"').strip("'")
+                    if cleaned:
+                        return cleaned
+    except Exception:
+        pass
+
+    return default_model
