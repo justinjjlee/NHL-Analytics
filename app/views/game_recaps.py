@@ -465,39 +465,39 @@ def render_game_recaps_view():
     trigger_generate = False
 
     # -------------------------------------------------------------------------
-    # 2. Season Selector + Date Selector + Generate Recaps Button
+    # 2. Season Selector + Date Selector (restricted strictly to valid game dates)
     # -------------------------------------------------------------------------
-    col_season, col_date, col_btn = st.columns([1.1, 2.0, 1.3], vertical_alignment="bottom")
-    with col_season:
-        selected_season = st.selectbox(
-            "Select Season",
-            options=season_options,
-            index=current_season_idx,
-            help="Filter available game dates by NHL season.",
-            key="recap_season_selectbox",
-        )
-        if selected_season != current_season:
-            st.session_state.recap_target_date = seasons_to_dates[selected_season][0]
-            st.rerun()
+    if is_local:
+        col_season, col_date, col_btn = st.columns([1.1, 2.2, 1.0], vertical_alignment="bottom")
+        with col_season:
+            selected_season = st.selectbox(
+                "Select Season",
+                options=season_options,
+                index=current_season_idx,
+                help="Filter available game dates by NHL season.",
+                key="recap_season_selectbox",
+            )
+            if selected_season != current_season:
+                st.session_state.recap_target_date = seasons_to_dates[selected_season][0]
+                st.rerun()
 
-    season_dates = seasons_to_dates.get(selected_season, available_game_dates)
-    season_date_idx = season_dates.index(target_date) if target_date in season_dates else 0
+        season_dates = seasons_to_dates.get(selected_season, available_game_dates)
+        season_date_idx = season_dates.index(target_date) if target_date in season_dates else 0
 
-    with col_date:
-        selected_date_str = st.selectbox(
-            "Select Game Date",
-            options=season_dates,
-            index=season_date_idx,
-            format_func=_format_game_date_option,
-            help="Only dates with completed NHL games in the selected season are shown.",
-            key="recap_valid_game_date_selectbox",
-        )
-        if selected_date_str != st.session_state.recap_target_date:
-            st.session_state.recap_target_date = selected_date_str
-            st.rerun()
+        with col_date:
+            selected_date_str = st.selectbox(
+                "Select Game Date",
+                options=season_dates,
+                index=season_date_idx,
+                format_func=_format_game_date_option,
+                help="Only dates with completed NHL games in the selected season are shown.",
+                key="recap_valid_game_date_selectbox",
+            )
+            if selected_date_str != st.session_state.recap_target_date:
+                st.session_state.recap_target_date = selected_date_str
+                st.rerun()
 
-    with col_btn:
-        if is_local:
+        with col_btn:
             btn_label = "Force Re-Analyze" if has_narratives else "Generate Recaps"
             btn_type = "secondary" if has_narratives else "primary"
             btn_help = (
@@ -505,18 +505,38 @@ def render_game_recaps_view():
                 if has_narratives
                 else "Synthesize and save LLM game recaps for this date with local LM Studio (Local Dev)"
             )
-        else:
-            active_model = discover_model_name("nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8")
-            btn_label = "Force Re-Analyze (ZeroGPU)" if has_narratives else "Generate Recaps (ZeroGPU)"
-            btn_type = "secondary" if has_narratives else "primary"
-            btn_help = (
-                f"Re-analyze current date standalone on Hugging Face Space using ZeroGPU ({active_model})"
-                if has_narratives
-                else f"Synthesize live LLM game recaps standalone on Hugging Face Space using ZeroGPU ({active_model})"
+            trigger_generate = st.button(btn_label, type=btn_type, use_container_width=True, help=btn_help)
+    else:
+        col_season, col_date = st.columns([1.2, 2.8], vertical_alignment="bottom")
+        with col_season:
+            selected_season = st.selectbox(
+                "Select Season",
+                options=season_options,
+                index=current_season_idx,
+                help="Filter available game dates by NHL season.",
+                key="recap_season_selectbox",
             )
-        trigger_generate = st.button(btn_label, type=btn_type, use_container_width=True, help=btn_help)
+            if selected_season != current_season:
+                st.session_state.recap_target_date = seasons_to_dates[selected_season][0]
+                st.rerun()
 
-    # Trigger generation pipeline if button was clicked
+        season_dates = seasons_to_dates.get(selected_season, available_game_dates)
+        season_date_idx = season_dates.index(target_date) if target_date in season_dates else 0
+
+        with col_date:
+            selected_date_str = st.selectbox(
+                "Select Game Date",
+                options=season_dates,
+                index=season_date_idx,
+                format_func=_format_game_date_option,
+                help="Only dates with completed NHL games in the selected season are shown.",
+                key="recap_valid_game_date_selectbox",
+            )
+            if selected_date_str != st.session_state.recap_target_date:
+                st.session_state.recap_target_date = selected_date_str
+                st.rerun()
+
+    # Trigger generation pipeline if local button was clicked
     if trigger_generate:
         success = run_generation_pipeline(target_date, store, is_local)
         if success:
@@ -531,7 +551,7 @@ def render_game_recaps_view():
         if is_local:
             st.info("💡 You are running locally (`local_streamlit=True`). Click **Generate Recaps** next to the date selector above to run local editorial synthesis.")
         else:
-            st.info("💡 Click **Generate Recaps (ZeroGPU)** next to the date selector above to synthesize live LLM game recaps standalone on Hugging Face Space.")
+            st.info("ℹ️ Production game recaps are synthesized and published automatically on schedule following each evening's completed game slate.")
         return
 
     st.success(f"Loaded recaps for **{target_date}**.")
