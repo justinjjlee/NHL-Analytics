@@ -278,8 +278,8 @@ def is_admin_creator() -> bool:
     
     Checks in order:
     1. Local developer environment (always admin on developer machine)
-    2. Session state override (unlocked via Creator Login passkey in sidebar)
-    3. URL Query parameters (e.g. ?admin=jjerlee or ?key=jjerlee)
+    2. Session state override (unlocked via Creator Login passkey in sidebar or popover)
+    3. URL Query parameters (e.g. ?admin, ?admin=1, ?admin=admin, ?admin=jjerlee, ?creator, ?jjerlee)
     4. Incoming Hugging Face Space headers (x-hf-user / x-repo-owner)
     """
     # 1. Local developer environment is always admin
@@ -290,13 +290,16 @@ def is_admin_creator() -> bool:
     if st.session_state.get("is_admin_creator", False):
         return True
 
-    # 3. URL Query Parameter (?admin=jjerlee or ?key=jjerlee)
+    # 3. URL Query Parameter (?admin, ?admin=1, ?admin=admin, ?admin=jjerlee, ?creator, ?jjerlee, ?key=*)
     try:
         qp = st.query_params
-        val = qp.get("admin") or qp.get("key") or qp.get("user")
-        if val and str(val).strip().lower() in ("jjerlee", "true", "1"):
-            st.session_state["is_admin_creator"] = True
-            return True
+        for key in ("admin", "creator", "jjerlee", "auth", "key"):
+            if key in qp:
+                val = str(qp.get(key, "")).strip().lower()
+                # If key is present without value (?admin, ?creator) or with common truthy/admin values
+                if not val or val in ("jjerlee", "true", "1", "admin", "yes", "on", "creator"):
+                    st.session_state["is_admin_creator"] = True
+                    return True
     except Exception:
         pass
 
@@ -507,12 +510,21 @@ def render_game_recaps_view():
 
     is_admin = is_admin_creator()
 
-    # Discreet Creator Access in sidebar for cloud admin authentication
-    if not is_admin:
+    # Creator Access & Lock Controls in sidebar
+    if is_admin and not is_local:
+        with st.sidebar:
+            st.caption("👑 **Creator Mode Active**")
+            if st.button("🔒 Lock Admin Controls", key="btn_lock_admin", help="Revert view to public read-only mode"):
+                st.session_state["is_admin_creator"] = False
+                for k in ("admin", "creator", "jjerlee", "auth", "key"):
+                    if k in st.query_params:
+                        del st.query_params[k]
+                st.rerun()
+    elif not is_admin:
         with st.sidebar.expander("🔒 Creator Access", expanded=False):
             creator_pass = st.text_input("Creator Passkey", type="password", key="creator_passkey_input")
             if creator_pass:
-                if creator_pass.strip().lower() in ("jjerlee", "rinklytics") or (discover_hf_token() and creator_pass.strip() == discover_hf_token()):
+                if creator_pass.strip().lower() in ("jjerlee", "admin", "rinklytics") or (discover_hf_token() and creator_pass.strip() == discover_hf_token()):
                     st.session_state["is_admin_creator"] = True
                     st.success("Creator access verified.")
                     st.rerun()
@@ -520,39 +532,39 @@ def render_game_recaps_view():
                     st.error("Invalid passkey.")
 
     # -------------------------------------------------------------------------
-    # 2. Season Selector + Date Selector (+ Creator Action Button if Admin)
+    # 2. Season Selector + Date Selector (+ Creator Action Button / Unlock Popover)
     # -------------------------------------------------------------------------
-    if is_admin:
-        col_season, col_date, col_btn = st.columns([1.1, 2.0, 1.3], vertical_alignment="bottom")
-        with col_season:
-            selected_season = st.selectbox(
-                "Select Season",
-                options=season_options,
-                index=current_season_idx,
-                help="Filter available game dates by NHL season.",
-                key="recap_season_selectbox",
-            )
-            if selected_season != current_season:
-                st.session_state.recap_target_date = seasons_to_dates[selected_season][0]
-                st.rerun()
+    col_season, col_date, col_action = st.columns([1.1, 2.0, 1.3], vertical_alignment="bottom")
+    with col_season:
+        selected_season = st.selectbox(
+            "Select Season",
+            options=season_options,
+            index=current_season_idx,
+            help="Filter available game dates by NHL season.",
+            key="recap_season_selectbox",
+        )
+        if selected_season != current_season:
+            st.session_state.recap_target_date = seasons_to_dates[selected_season][0]
+            st.rerun()
 
-        season_dates = seasons_to_dates.get(selected_season, available_game_dates)
-        season_date_idx = season_dates.index(target_date) if target_date in season_dates else 0
+    season_dates = seasons_to_dates.get(selected_season, available_game_dates)
+    season_date_idx = season_dates.index(target_date) if target_date in season_dates else 0
 
-        with col_date:
-            selected_date_str = st.selectbox(
-                "Select Game Date",
-                options=season_dates,
-                index=season_date_idx,
-                format_func=_format_game_date_option,
-                help="Only dates with completed NHL games in the selected season are shown.",
-                key="recap_valid_game_date_selectbox",
-            )
-            if selected_date_str != st.session_state.recap_target_date:
-                st.session_state.recap_target_date = selected_date_str
-                st.rerun()
+    with col_date:
+        selected_date_str = st.selectbox(
+            "Select Game Date",
+            options=season_dates,
+            index=season_date_idx,
+            format_func=_format_game_date_option,
+            help="Only dates with completed NHL games in the selected season are shown.",
+            key="recap_valid_game_date_selectbox",
+        )
+        if selected_date_str != st.session_state.recap_target_date:
+            st.session_state.recap_target_date = selected_date_str
+            st.rerun()
 
-        with col_btn:
+    with col_action:
+        if is_admin:
             btn_label = "Force Re-Analyze (Admin)" if has_narratives else "Generate Recaps (Admin)"
             btn_type = "secondary" if has_narratives else "primary"
             btn_help = (
@@ -561,35 +573,18 @@ def render_game_recaps_view():
                 else "Creator Control: Synthesize and publish recaps for this date."
             )
             trigger_generate = st.button(btn_label, type=btn_type, use_container_width=True, help=btn_help)
-    else:
-        col_season, col_date = st.columns([1.2, 2.8], vertical_alignment="bottom")
-        with col_season:
-            selected_season = st.selectbox(
-                "Select Season",
-                options=season_options,
-                index=current_season_idx,
-                help="Filter available game dates by NHL season.",
-                key="recap_season_selectbox",
-            )
-            if selected_season != current_season:
-                st.session_state.recap_target_date = seasons_to_dates[selected_season][0]
-                st.rerun()
-
-        season_dates = seasons_to_dates.get(selected_season, available_game_dates)
-        season_date_idx = season_dates.index(target_date) if target_date in season_dates else 0
-
-        with col_date:
-            selected_date_str = st.selectbox(
-                "Select Game Date",
-                options=season_dates,
-                index=season_date_idx,
-                format_func=_format_game_date_option,
-                help="Only dates with completed NHL games in the selected season are shown.",
-                key="recap_valid_game_date_selectbox",
-            )
-            if selected_date_str != st.session_state.recap_target_date:
-                st.session_state.recap_target_date = selected_date_str
-                st.rerun()
+        else:
+            with st.popover("🔒 Creator", help="Admin & Editorial Controls"):
+                st.markdown("##### 🔐 Creator Verification")
+                st.caption("Enter creator passkey or token to reveal on-demand editorial controls.")
+                creator_key = st.text_input("Creator Passkey", type="password", key="creator_popover_passkey", placeholder="e.g. jjerlee")
+                if st.button("Unlock Admin Controls", type="primary", use_container_width=True, key="btn_unlock_creator_popover"):
+                    if creator_key.strip().lower() in ("jjerlee", "admin", "rinklytics") or (discover_hf_token() and creator_key.strip() == discover_hf_token()):
+                        st.session_state["is_admin_creator"] = True
+                        st.toast("✅ Creator mode active!")
+                        st.rerun()
+                    else:
+                        st.error("Invalid passkey.")
 
     # Trigger generation pipeline if admin clicked the button
     if trigger_generate:
