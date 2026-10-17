@@ -58,3 +58,62 @@ Every game recap must be written as **HEADLINE: <Headline>** on Line 1, followed
   - **Mid-Season (25–55 GP)**: Focus on identity stabilization, regression toward Pythagorean expectation, and division hierarchy.
   - **Late Season / Playoff Race (>55 GP)**: Highlight playoff seeding leverage, wildcard desperation, and four-point divisional swings.
 - Contrast each club's **full-season metrics** (Record, Points%, Season `Corsi%`, `Pythagorean Win%`, `RPI`) against their **Last 5 Games (`L5`) rolling form** (`L5 Record`, `L5 CF%`, `L5 GF/GA per game`) to explain whether this game extended a hot surge, snapped a cold slump, or signaled a territorial turnaround.
+
+---
+
+## 3. Statistical Integrity & Mathematical Aggregation Rules
+
+Every editorial synthesis and analytical insight must strictly observe ground-truth hockey mathematics. LLM models, editorial agents, and human analysts must strictly distinguish between valid aggregations and invalid statistical conflations.
+
+### Rule A: The Cardinal Identity — Points vs. Goals vs. Assists
+- **Valid Aggregation**: $\text{Points} = \text{Goals} + \text{Assists}$ ($P = G + A$).
+  - Points represent total individual scoring participation.
+  - A player with 1 goal and 2 assists recorded **3 points**.
+- **Forbidden Conflation**: $\text{Goals} \neq \text{Points}$.
+  - A player with **0 goals and 3 assists has 3 points, but ZERO goals**.
+  - **NEVER** write that this player "scored 3 goals", "found the twine 3 times", or "factored into 3 goals".
+  - **Correct Journalism**: Describe them as a **playmaker** or **distributor** who *"dished out 3 assists"* or *"orchestrated 3 points"*.
+  - **Assists are NOT Goals**: Assists reflect primary or secondary puck distribution. They can be aggregated into total points, but never counted or phrased as goals.
+
+### Rule B: Team Score vs. Skater Statistics
+- **Valid Aggregation**: $\text{Final Team Score} = \sum_{p=1}^3 \text{Goals}_p + \text{OT Goal} + \text{Decisive SO Goal}$
+  - Team goal totals reconcile exactly with the chronological scoring ledger.
+- **Forbidden Conflation**:
+  - Individual shootout round tallies (e.g., scoring in Round 2 of a shootout) **do NOT count toward individual skater goals, points, or game boxscore goals**. Only 1 team goal is credited to the winner for the overall score.
+  - Skater goal sums cannot exceed the team's official score.
+
+### Rule C: Goaltender Saves vs. Skater Blocked Shots
+- **Valid Aggregations**:
+  - $\text{Shots on Goal Against} = \text{Saves} + \text{Goals Allowed}$
+  - $\text{Save Percentage (SV%)} = \frac{\text{Saves}}{\text{Shots on Goal Against}}$
+- **Forbidden Conflation**:
+  - **Goaltenders make saves; skaters make blocks**.
+  - Defending skaters sacrifice their bodies to block shot attempts before they reach the net. They **never** make "saves".
+  - Goaltenders stop pucks that are on trajectory to enter the net. They **never** "block shots".
+  - Goaltenders do not score goals (unless an ultra-rare empty-net goalie goal officially accredited by the NHL).
+
+### Rule D: The Shot Hierarchy (Corsi vs. Fenwick vs. SOG)
+- **Valid Aggregations**:
+  - $\text{Shots on Goal (SOG)}$: Pucks directed on net resulting in a goal or a goalie save.
+  - $\text{Fenwick (Unblocked Shot Attempts, FF)} = \text{SOG} + \text{Missed Shots}$
+  - $\text{Corsi (Total Shot Attempts, CF)} = \text{SOG} + \text{Missed Shots} + \text{Blocked Shots}$
+  - $\text{Corsi For Percentage (CF%)} = \frac{CF}{CF + CA} \times 100\%$
+- **Forbidden Conflation**:
+  - Never equate Shots on Goal with Total Shot Attempts. A team can lead 35-25 in SOG but trail 50-60 in Corsi due to heavy shot-blocking.
+  - Always explain the divergence: shot-blocking reveals defensive structure and sacrifice, while Corsi reveals overall puck possession and territorial zone pressure.
+
+### Rule E: Turnover Differential & Possession Leverage
+- **Valid Aggregation**: $\text{Turnover Margin} = \text{Takeaways} - \text{Giveaways}$
+  - Takeaways measure active defensive takeaways and stick-checks.
+  - Giveaways measure unforced errors and forced turnovers under forechecking pressure.
+- **Forbidden Conflation**:
+  - Do not confuse giveaways with opponent takeaways. While related, each metric is independently tracked by official off-ice NHL scorers.
+
+### Rule F: Standings Points vs. Game Score
+- **Valid Aggregation**:
+  - Regulation Win: 2 standings points (Winner: +2, Loser: +0).
+  - Overtime/Shootout Win: 2 standings points (Winner: +2, Loser: +1 OTL).
+  - Regulation Loss: 0 standings points.
+- **Forbidden Conflation**:
+  - Standings points (which determine division hierarchy and playoff seedings) must never be conflated with goals scored or individual player points.
+

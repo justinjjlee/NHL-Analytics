@@ -273,6 +273,138 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
         return True
 
 
+def render_editorial_guide_expander():
+    """Renders the educational guide, partial skillsets, and statistical aggregation rules."""
+    with st.expander("📖 AI Editorial Guide, Skillsets & Statistical Aggregation Rules", expanded=False):
+        tab_rules, tab_skillsets, tab_guardrails = st.tabs([
+            "📐 Statistical Aggregation Rules",
+            "🎯 Takeaway & Skillset Taxonomy",
+            "🛡️ Active Factual Guardrails",
+        ])
+
+        with tab_rules:
+            st.markdown(
+                "NHL analytical reporting and AI recaps rely on strict mathematical boundaries. "
+                "Learn what statistical telemetry can be validly aggregated versus what must never be conflated."
+            )
+            col_can, col_cannot = st.columns(2)
+
+            with col_can:
+                st.markdown("#### ✅ What CAN Be Aggregated")
+                st.markdown(
+                    r"""- **Individual Scoring Points ($P = G + A$)**:
+  Total individual points is the sum of goals and assists. A player with 1G, 2A records **3 points**.
+- **Team Final Score ($\sum G_p + \text{OT/SO}$)**:
+  The official score is the sum of chronological period goals plus any decisive OT/SO goal.
+- **Goaltending Workload ($\text{SOG Against} = \text{Saves} + \text{Goals Allowed}$)**:
+  $\text{Save \%} = \frac{\text{Saves}}{\text{SOG Against}}$. Saves reconcile with pucks directed on net.
+- **Shot Attempt Hierarchy (Corsi & Fenwick)**:
+  - $\text{Fenwick (FF)} = \text{SOG} + \text{Missed Shots}$ (unblocked attempts)
+  - $\text{Corsi (CF)} = \text{SOG} + \text{Missed Shots} + \text{Blocked Shots}$ (total shot attempts)
+  - $\text{CF\%} = \frac{\text{CF}}{\text{CF} + \text{CA}} \times 100\%$ (territorial puck possession)
+- **Turnover Margin ($\text{Margin} = \text{Takeaways} - \text{Giveaways}$)**:
+  Reflects puck possession leverage and forechecking efficiency.
+- **Standings Points (2-1-0 Point System)**:
+  Regulation Win = 2 pts, OT/SO Win = 2 pts, OTL = 1 pt, Regulation Loss = 0 pts."""
+                )
+
+            with col_cannot:
+                st.markdown("#### ❌ What CANNOT Be Conflated")
+                st.markdown(
+                    r"""- **Goals $\neq$ Points (Zero-Goal Playmakers)**:
+  A player with **0 goals and 3 assists has 3 points, but ZERO goals**. They must *never* be described as scoring goals or 'factoring into 3 goals' (which misleads readers into thinking they scored). They are a pure playmaker.
+- **Assists $\neq$ Goals**:
+  Assists reflect primary or secondary puck distribution. They aggregate into points, but are never goals.
+- **Goaltender Saves $\neq$ Skater Blocked Shots**:
+  **Goaltenders make saves; skaters make blocks.** Skaters sacrifice their bodies to block shot attempts before they reach the crease. Skaters never make saves; goalies never block shots.
+- **Shootout Rounds $\neq$ Skater Game Goals**:
+  Shootout tiebreaker goals do not count toward individual skater goals or official boxscore goals. Only 1 team goal is credited to the winner.
+- **Shots on Goal (SOG) $\neq$ Total Shot Attempts (Corsi)**:
+  A team can lead in SOG but trail in Corsi if the opponent blocks many attempts. SOG tests the goaltender; Corsi measures territorial zone control.
+- **Standings Points $\neq$ Game Score**:
+  The 2 points awarded in the league standings for a win must never be confused with goals scored in the game."""
+                )
+
+        with tab_skillsets:
+            st.markdown(
+                "#### How the Editorial Engine Classifies Highlights & Tactical Takeaways\n"
+                "To maintain absolute factual integrity, the analyzer assigns specialized takeaway badges based on player telemetry:"
+            )
+            taxonomy_data = [
+                {
+                    "Badge / Category": "🎯 Playmaker Alert",
+                    "Criteria": "3+ Points with 0 Goals (e.g. 0G, 3A)",
+                    "Narration Focus": "Celebrates primary/secondary distribution, vision, and transition passing without confusing assists with goals.",
+                    "Example": "C. Fowler (3 assists, 3 total points) orchestrated the offense.",
+                },
+                {
+                    "Badge / Category": "🔥 Offensive Catalyst",
+                    "Criteria": "3+ Points with Both Goals and Assists (e.g. 1G, 2A)",
+                    "Narration Focus": "Highlights multi-dimensional scoring threat, breaking down both finishing and distribution.",
+                    "Example": "K. Kaprizov registered 3 points (1 goal, 2 assists).",
+                },
+                {
+                    "Badge / Category": "🚨 Multi-Goal / Hat Trick Alert",
+                    "Criteria": "2+ or 3+ Individual Goals Scored",
+                    "Narration Focus": "Spotlights high-volume finishing, shooting efficiency, and offensive anchor role.",
+                    "Example": "M. Boldy scored 3 goals on 8 shots on net.",
+                },
+                {
+                    "Badge / Category": "🛡️ Defensive Wall",
+                    "Criteria": "3+ Blocked Shots by a Skater",
+                    "Narration Focus": "Recognizes defensive sacrifice and body-in-the-lane shot suppression.",
+                    "Example": "J. Brodin sacrificed his body for 4 blocked shots.",
+                },
+                {
+                    "Badge / Category": "💥 Heavy Forecheck",
+                    "Criteria": "4+ Body Checks (Hits) Delivered",
+                    "Narration Focus": "Details aggressive forechecking pressure and physical disruption in the neutral and offensive zones.",
+                    "Example": "Y. Trenin delivered 7 body checks, sustaining pressure.",
+                },
+                {
+                    "Badge / Category": "🧱 Brick Wall Performance",
+                    "Criteria": "30+ Saves or ≥ .930 SV% in a Victory",
+                    "Narration Focus": "Goaltender high-danger composure, rebound control, and game-stealing capability.",
+                    "Example": "F. Gustavsson turned aside 38 of 40 shots (.950 SV%).",
+                },
+            ]
+            st.dataframe(pd.DataFrame(taxonomy_data), use_container_width=True, hide_index=True)
+            st.info(
+                "💡 **Skillset Reading Tip:** When evaluating a game recap, cross-reference the player takeaways "
+                "with the **Line Shift Chemistry & Past 5 Games (L5) Trends** table in the game expander below. "
+                "This reveals whether an offensive outburst was fueled by sustained 5-on-5 territorial control (CF% > 55%) "
+                "or opportunistic counter-strikes against the run of play."
+            )
+
+        with tab_guardrails:
+            st.markdown(
+                "#### Deterministic Verification & Factual Guardrails\n"
+                "Before any AI recap is published or stored, it undergoes multi-tiered algorithmic validation:"
+            )
+            g1, g2 = st.columns(2)
+            with g1:
+                st.markdown(
+                    "1. **Non-Scorer Factual Guardrail (`non_scorer_skaters`)**:\n"
+                    "   Cross-checks every skater who recorded 0 goals in the official NHL boxscore. If the LLM claims a non-scorer "
+                    "   'scored', 'potted a goal', or 'found the net', the narrative is instantly rejected and regenerated.\n\n"
+                    "2. **Goaltender & Skater Role Separation**:\n"
+                    "   Verifies that skaters are never credited with making saves, and goaltenders are never credited with scoring goals "
+                    "   (except rare accredited goalie goals).\n\n"
+                    "3. **Score & Winner Reconciliation**:\n"
+                    "   Validates that the winning team, losing team, and final score exactly match the tabulated game summary."
+                )
+            with g2:
+                st.markdown(
+                    "4. **Period Summation Validation**:\n"
+                    "   Ensures period-by-period goal distributions match the official final score and that shootout tallies aren't conflated.\n\n"
+                    "5. **Reasoning Token Purification (`clean_llm_narrative`)**:\n"
+                    "   Purges internal thought processes (`<think>...</think>`), drafting notes, or preamble text emitted by deep-reasoning models.\n\n"
+                    "6. **Deterministic Algorithmic Fallback Engine**:\n"
+                    "   If local LLM servers (LM Studio) or ZeroGPU containers are unreachable, the system automatically falls back "
+                    "   to `algorithmic-guardrails-v1` to maintain continuous availability and 100% mathematical precision."
+                )
+
+
 def render_game_recaps_view():
     st.markdown(
         '<h1 style="display:flex; align-items:center; gap:12px; margin-bottom:0.2rem;">'
@@ -290,6 +422,7 @@ def render_game_recaps_view():
         "While grounded in verified statistical records, the editorial tone, contextual emphasis, and narrative "
         "takeaways are experimental and may differ from unanimous or majority observations by live viewers and beat reporters."
     )
+    render_editorial_guide_expander()
 
     store = get_store()
     (

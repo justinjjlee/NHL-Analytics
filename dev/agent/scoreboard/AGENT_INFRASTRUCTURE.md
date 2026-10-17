@@ -434,7 +434,20 @@ Player highlights and tactical takeaways in `GameAnalyzer._detect_game_notables(
 - **`offensive_catalyst` (`Offensive Catalyst: {name}`)**: Assigned when a skater records $\ge 3$ points with **both goals and assists** (e.g. `K. Kaprizov (MIN) registered 3 total points (1 goal, 2 assists) in 22:52 of ice time`).
 - **`multi_goal` / `hat_trick`**: Assigned when a player scores multiple goals or a hat trick (e.g. `M. Boldy (MIN) scored 3 goals, anchoring his club's offensive attack with 8 shots on goal`).
 
-### 3. Reasoning Token Purification (`clean_llm_narrative`)
+### 3. Statistical Aggregation Matrix (What Can vs. What Cannot Be Aggregated)
+
+The table below defines the ground-truth aggregation contracts enforced across data ingestion, analytical enrichment, and LLM generation:
+
+| Domain | Valid Mathematical Aggregation | Forbidden Statistical Conflation | Enforcing Guardrail / Handler |
+| :--- | :--- | :--- | :--- |
+| **Individual Scoring** | $\text{Points} = \text{Goals} + \text{Assists}$ ($P = G + A$) | $\text{Goals} \neq \text{Points}$. A player with 0G, 3A has 3 points, but **zero goals**. Never write that they "scored 3 goals" or "factored into 3 goals". | `non_scorer_skaters` guardrail (`_verify_game_narrative_facts`), `Playmaker Alert` taxonomy |
+| **Team Score** | $\text{Team Score} = \sum_{p=1}^3 \text{Goals}_p + \text{OT/SO Goal}$ | Shootout round attempts/goals **do not count toward player goals or boxscore goals**. Only 1 decisive team goal is awarded. | Score regex reconciliation (`rf"{winner.score}\s*[-–]\s*{loser.score}"`) |
+| **Goaltending & Defense** | $\text{Saves} = \text{Shots on Goal Against} - \text{Goals Allowed}$ | Skaters make blocked shots; goaltenders make saves. **Skaters never make saves; goalies never block shots.** | `skater_last_names` save pattern check & `goalie_last_names` goal check |
+| **Shot Hierarchy** | $\text{Corsi (CF)} = \text{SOG} + \text{Missed} + \text{Blocked}$<br/>$\text{Fenwick (FF)} = \text{SOG} + \text{Missed}$ | Never equate Shots on Goal with Total Shot Attempts. A team leading in SOG may trail in Corsi due to heavy shot-blocking. | `EditorialSkillsOrchestrator` & `ShiftAndTrendDataProvider` |
+| **Turnover Differential** | $\text{Turnover Margin} = \text{Takeaways} - \text{Giveaways}$ | Giveaways and takeaways are independently tracked; takeaways reflect active defensive plays, giveaways reflect puck loss. | Defensive profile reconciliation (`DefensiveEffortProfile`) |
+| **Standings Points** | Regulation/OT Win: 2 pts, OTL: 1 pt, Loss: 0 pts | Standings points must never be conflated with goals scored or skater points. | `SeasonAnalyticsProvider` standings verification |
+
+### 4. Reasoning Token Purification (`clean_llm_narrative`)
 
 Deep-reasoning models (such as Nemotron and Phi-4) often output chain-of-thought tokens or drafting preambles. The `clean_llm_narrative()` function purges these artifacts:
 1. Regex removal of `<think>...</think>`, `<thought>...</thought>`, and ````thought...```` code fences.
