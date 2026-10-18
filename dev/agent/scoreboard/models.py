@@ -27,6 +27,8 @@ class SkaterStats:
     faceoff_pct: float = 0.0
     toi: str = "00:00"
     shifts: int = 0
+    ixg: float = 0.0
+    hd_shots: int = 0
 
     @property
     def is_multi_goal(self) -> bool:
@@ -58,6 +60,8 @@ class GoalieStats:
     even_strength_shots: str = "0/0"
     power_play_shots: str = "0/0"
     shorthanded_shots: str = "0/0"
+    xga: float = 0.0
+    gsax: float = 0.0
 
     @property
     def is_shutout(self) -> bool:
@@ -87,6 +91,9 @@ class TeamGameStats:
     giveaways: int = 0
     takeaways: int = 0
     logo_url: str = ""
+    xg: float = 0.0
+    xg_pct: float = 50.0
+    hdcf: int = 0
 
 
 @dataclass
@@ -185,6 +192,11 @@ class GoaliePerformanceProfile:
     is_shutout: bool = False
     performance_rating: str = "STEADY"  # BRICK_WALL, STEADY, UNDER_SIEGE, VULNERABLE, PULLED
     assessment: str = ""
+    xga: float = 0.0
+    gsax: float = 0.0
+    xsave_pct: float = 0.0
+    dsave_pct: float = 0.0
+    hd_save_pct: float = 0.0
 
 
 @dataclass
@@ -354,6 +366,7 @@ class AnalyzedGame:
     away_shift_trend_profile: Optional[TeamShiftAndTrendProfile] = None
     home_shift_trend_profile: Optional[TeamShiftAndTrendProfile] = None
     editorial_dossier: Optional[EditorialDossier] = None
+    xg_report: Optional[Any] = None
     generator_model: str = "algorithmic-guardrails-v1"
 
 

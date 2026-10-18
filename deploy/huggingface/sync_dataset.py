@@ -65,6 +65,7 @@ try:
         build_team_season_df,
         build_game_stats_df,
         build_player_season_df,
+        build_player_game_df,
         build_hits_measurement_df,
         get_repo_root,
         get_hf_token,
@@ -80,6 +81,7 @@ except ImportError:
         build_team_season_df,
         build_game_stats_df,
         build_player_season_df,
+        build_player_game_df,
         build_hits_measurement_df,
         get_repo_root,
         get_hf_token,
@@ -183,27 +185,27 @@ def has_changed(
 # SYNCHRONIZATION WORKERS BY DOMAIN
 # -----------------------------------------------------------------------------
 
-def sync_games(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path) -> bool:
+def sync_games(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path, force: bool = False) -> bool:
     """Syncs data/games.parquet."""
     rel_path = "data/games.parquet"
     df_remote = load_remote_parquet(repo_id, rel_path, token)
-    df_fresh = build_games_panel(repo_root, season_year=season_year)
+    df_fresh = build_games_panel(repo_root, season_year=None if force else season_year)
     if df_fresh.empty and df_remote is not None:
         return False
 
-    if df_remote is not None and not df_fresh.empty:
+    if not force and df_remote is not None and "xg_for" in df_remote.columns and not df_fresh.empty:
         remote_start_years = df_remote["game_id"].astype(str).str[:4].astype(int)
         df_hist = df_remote[remote_start_years != season_year].copy()
         df_combined = pd.concat([df_hist, df_fresh], ignore_index=True)
-    elif df_remote is not None:
+    elif not force and df_remote is not None and "xg_for" in df_remote.columns:
         df_combined = df_remote
     else:
-        df_combined = build_games_panel(repo_root)
+        df_combined = df_fresh if force else build_games_panel(repo_root)
 
     df_updated = df_combined.drop_duplicates(subset=["game_id"], keep="last")
     df_updated = df_updated.sort_values(by=["game_date", "game_id"]).reset_index(drop=True)
 
-    if has_changed(df_updated, df_remote, ["game_id"], season_year=season_year):
+    if force or has_changed(df_updated, df_remote, ["game_id"], season_year=None if force else season_year):
         out_path = staging_dir / rel_path
         out_path.parent.mkdir(parents=True, exist_ok=True)
         df_updated.to_parquet(out_path, index=False, compression="snappy")
@@ -213,27 +215,27 @@ def sync_games(repo_root: Path, repo_id: str, token: Optional[str], season_year:
     return False
 
 
-def sync_team_box(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path) -> bool:
+def sync_team_box(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path, force: bool = False) -> bool:
     """Syncs data/team_box.parquet."""
     rel_path = "data/team_box.parquet"
     df_remote = load_remote_parquet(repo_id, rel_path, token)
-    df_fresh = build_team_box_panel(repo_root, season_year=season_year)
+    df_fresh = build_team_box_panel(repo_root, season_year=None if force else season_year)
     if df_fresh.empty and df_remote is not None:
         return False
 
-    if df_remote is not None and not df_fresh.empty:
+    if not force and df_remote is not None and "xg" in df_remote.columns and not df_fresh.empty:
         remote_start_years = df_remote["game_id"].astype(str).str[:4].astype(int)
         df_hist = df_remote[remote_start_years != season_year].copy()
         df_combined = pd.concat([df_hist, df_fresh], ignore_index=True)
-    elif df_remote is not None:
+    elif not force and df_remote is not None and "xg" in df_remote.columns:
         df_combined = df_remote
     else:
-        df_combined = build_team_box_panel(repo_root)
+        df_combined = df_fresh if force else build_team_box_panel(repo_root)
 
     df_updated = df_combined.drop_duplicates(subset=["game_id", "team"], keep="last")
     df_updated = df_updated.sort_values(by=["game_id", "team"]).reset_index(drop=True)
 
-    if has_changed(df_updated, df_remote, ["game_id", "team"], season_year=season_year):
+    if force or has_changed(df_updated, df_remote, ["game_id", "team"], season_year=None if force else season_year):
         out_path = staging_dir / rel_path
         out_path.parent.mkdir(parents=True, exist_ok=True)
         df_updated.to_parquet(out_path, index=False, compression="snappy")
@@ -243,27 +245,27 @@ def sync_team_box(repo_root: Path, repo_id: str, token: Optional[str], season_ye
     return False
 
 
-def sync_player_box(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path) -> bool:
+def sync_player_box(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path, force: bool = False) -> bool:
     """Syncs data/player_box.parquet."""
     rel_path = "data/player_box.parquet"
     df_remote = load_remote_parquet(repo_id, rel_path, token)
-    df_fresh = build_player_box_panel(repo_root, season_year=season_year)
+    df_fresh = build_player_box_panel(repo_root, season_year=None if force else season_year)
     if df_fresh.empty and df_remote is not None:
         return False
 
-    if df_remote is not None and "opponent" in df_remote.columns and not df_fresh.empty:
+    if not force and df_remote is not None and "opponent" in df_remote.columns and "ixg" in df_remote.columns and not df_fresh.empty:
         remote_start_years = df_remote["game_id"].astype(str).str[:4].astype(int)
         df_hist = df_remote[remote_start_years != season_year].copy()
         df_combined = pd.concat([df_hist, df_fresh], ignore_index=True)
-    elif df_remote is not None and "opponent" in df_remote.columns:
+    elif not force and df_remote is not None and "opponent" in df_remote.columns and "ixg" in df_remote.columns:
         df_combined = df_remote
     else:
-        df_combined = build_player_box_panel(repo_root)
+        df_combined = df_fresh if force else build_player_box_panel(repo_root)
 
     df_updated = df_combined.drop_duplicates(subset=["game_id", "player_id"], keep="last")
     df_updated = df_updated.sort_values(by=["game_id", "player_id"]).reset_index(drop=True)
 
-    if has_changed(df_updated, df_remote, ["game_id", "player_id"], season_year=season_year):
+    if force or has_changed(df_updated, df_remote, ["game_id", "player_id"], season_year=None if force else season_year):
         out_path = staging_dir / rel_path
         out_path.parent.mkdir(parents=True, exist_ok=True)
         df_updated.to_parquet(out_path, index=False, compression="snappy")
@@ -457,23 +459,23 @@ def sync_shifts(repo_root: Path, repo_id: str, token: Optional[str], season_year
     return False
 
 
-def sync_measurement_box(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path) -> bool:
+def sync_measurement_box(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path, force: bool = False) -> bool:
     """Syncs measurement/box/team_season.parquet and game_stats.parquet."""
     modified = False
 
     # 1. Team Season
     rel_ts = "measurement/box/team_season.parquet"
     df_rem_ts = load_remote_parquet(repo_id, rel_ts, token)
-    df_fr_ts = build_team_season_df(repo_root, season_year=season_year)
+    df_fr_ts = build_team_season_df(repo_root, season_year=None if force else season_year)
     if not df_fr_ts.empty or df_rem_ts is None:
-        if df_rem_ts is not None:
+        if not force and df_rem_ts is not None and "xg_for" in df_rem_ts.columns:
             df_hist = df_rem_ts[df_rem_ts["yr_season"] != season_year].copy()
             df_comb = pd.concat([df_hist, df_fr_ts], ignore_index=True)
         else:
-            df_comb = build_team_season_df(repo_root)
+            df_comb = df_fr_ts if force else build_team_season_df(repo_root)
         dedup_cols = ["yr_season", "team_tri_for"] if "team_tri_for" in df_comb.columns else ["yr_season"]
         df_up_ts = df_comb.drop_duplicates(subset=dedup_cols, keep="last").sort_values(by=dedup_cols).reset_index(drop=True)
-        if has_changed(df_up_ts, df_rem_ts, dedup_cols, season_year=season_year):
+        if force or has_changed(df_up_ts, df_rem_ts, dedup_cols, season_year=None if force else season_year):
             p = staging_dir / rel_ts
             p.parent.mkdir(parents=True, exist_ok=True)
             df_up_ts.to_parquet(p, index=False, compression="snappy")
@@ -485,16 +487,16 @@ def sync_measurement_box(repo_root: Path, repo_id: str, token: Optional[str], se
     # 2. Game Stats
     rel_gs = "measurement/box/game_stats.parquet"
     df_rem_gs = load_remote_parquet(repo_id, rel_gs, token)
-    df_fr_gs = build_game_stats_df(repo_root, season_year=season_year)
+    df_fr_gs = build_game_stats_df(repo_root, season_year=None if force else season_year)
     if not df_fr_gs.empty or df_rem_gs is None:
-        if df_rem_gs is not None:
+        if not force and df_rem_gs is not None and "xg_for" in df_rem_gs.columns:
             df_hist = df_rem_gs[df_rem_gs["yr_season"] != season_year].copy()
             df_comb = pd.concat([df_hist, df_fr_gs], ignore_index=True)
         else:
-            df_comb = build_game_stats_df(repo_root)
+            df_comb = df_fr_gs if force else build_game_stats_df(repo_root)
         dedup_cols = ["gameid_for", "team_tri_for"] if all(c in df_comb.columns for c in ["gameid_for", "team_tri_for"]) else ["yr_season"]
         df_up_gs = df_comb.drop_duplicates(subset=dedup_cols, keep="last").reset_index(drop=True)
-        if has_changed(df_up_gs, df_rem_gs, dedup_cols, season_year=season_year):
+        if force or has_changed(df_up_gs, df_rem_gs, dedup_cols, season_year=None if force else season_year):
             p = staging_dir / rel_gs
             p.parent.mkdir(parents=True, exist_ok=True)
             df_up_gs.to_parquet(p, index=False, compression="snappy")
@@ -506,30 +508,57 @@ def sync_measurement_box(repo_root: Path, repo_id: str, token: Optional[str], se
     return modified
 
 
-def sync_measurement_player(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path) -> bool:
-    """Syncs measurement/player/player_season.parquet."""
+def sync_measurement_player(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path, force: bool = False) -> bool:
+    """
+    Syncs measurement/player/player_season.parquet (rolling season-to-date + season-ending
+    player aggregates in the same parquet file) and measurement/player/player_game.parquet
+    (per-game + cumulative rolling season-to-date player statistics).
+    """
+    modified = False
+
+    # 1. Player Season (Rolling active season + Finalized historical seasons)
     rel_path = "measurement/player/player_season.parquet"
     df_remote = load_remote_parquet(repo_id, rel_path, token)
-    df_fresh = build_player_season_df(repo_root, season_year=season_year)
-    if df_fresh.empty and df_remote is not None:
-        return False
+    df_fresh = build_player_season_df(repo_root, season_year=None if force else season_year)
+    if not df_fresh.empty or df_remote is None:
+        if not force and df_remote is not None and "ixg" in df_remote.columns and "season_status" in df_remote.columns:
+            df_hist = df_remote[df_remote["yr_season"] != season_year].copy()
+            df_combined = pd.concat([df_hist, df_fresh], ignore_index=True)
+        else:
+            df_combined = df_fresh if force else build_player_season_df(repo_root)
 
-    if df_remote is not None:
-        df_hist = df_remote[df_remote["yr_season"] != season_year].copy()
-        df_combined = pd.concat([df_hist, df_fresh], ignore_index=True)
-    else:
-        df_combined = build_player_season_df(repo_root)
+        df_updated = df_combined.drop_duplicates().reset_index(drop=True)
+        if force or has_changed(df_updated, df_remote, ["yr_season"], season_year=None if force else season_year):
+            out_path = staging_dir / rel_path
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            df_updated.to_parquet(out_path, index=False, compression="snappy")
+            print(f"   🔄 Staged {rel_path}: {len(df_updated):,} rows (was {len(df_remote) if df_remote is not None else 0:,}).")
+            modified = True
+        else:
+            print(f"   ✓ {rel_path} is up-to-date ({len(df_updated):,} rows).")
 
-    df_updated = df_combined.drop_duplicates().reset_index(drop=True)
+    # 2. Player Game + Rolling Season-to-Date
+    rel_pg = "measurement/player/player_game.parquet"
+    df_rem_pg = load_remote_parquet(repo_id, rel_pg, token)
+    df_fr_pg = build_player_game_df(repo_root, season_year=None if force else season_year)
+    if not df_fr_pg.empty or df_rem_pg is None:
+        if not force and df_rem_pg is not None and "ixg" in df_rem_pg.columns and "cum_ixg" in df_rem_pg.columns:
+            df_hist_pg = df_rem_pg[df_rem_pg["yr_season"] != season_year].copy()
+            df_comb_pg = pd.concat([df_hist_pg, df_fr_pg], ignore_index=True)
+        else:
+            df_comb_pg = df_fr_pg if force else build_player_game_df(repo_root)
 
-    if has_changed(df_updated, df_remote, ["yr_season"], season_year=season_year):
-        out_path = staging_dir / rel_path
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        df_updated.to_parquet(out_path, index=False, compression="snappy")
-        print(f"   🔄 Staged {rel_path}: {len(df_updated):,} rows (was {len(df_remote) if df_remote is not None else 0:,}).")
-        return True
-    print(f"   ✓ {rel_path} is up-to-date ({len(df_updated):,} rows).")
-    return False
+        df_up_pg = df_comb_pg.drop_duplicates(subset=["game_id", "player_id"], keep="last").sort_values(by=["game_id", "player_id"]).reset_index(drop=True)
+        if force or has_changed(df_up_pg, df_rem_pg, ["game_id", "player_id"], season_year=None if force else season_year):
+            out_pg = staging_dir / rel_pg
+            out_pg.parent.mkdir(parents=True, exist_ok=True)
+            df_up_pg.to_parquet(out_pg, index=False, compression="snappy")
+            print(f"   🔄 Staged {rel_pg}: {len(df_up_pg):,} rows (was {len(df_rem_pg) if df_rem_pg is not None else 0:,}).")
+            modified = True
+        else:
+            print(f"   ✓ {rel_pg} is up-to-date ({len(df_up_pg):,} rows).")
+
+    return modified
 
 
 def sync_measurement_hits(repo_root: Path, repo_id: str, token: Optional[str], season_year: int, staging_dir: Path) -> bool:
@@ -728,13 +757,13 @@ def run_sync(
     # 1. Target: Box & Plays (09:00 UTC pipeline)
     if target in ("box", "all"):
         print("\n📦 Processing Box Scores & Play-by-Play Event Panels...")
-        any_modified |= sync_games(repo_root, repo_id, resolved_token, active_year, staging_dir)
-        any_modified |= sync_team_box(repo_root, repo_id, resolved_token, active_year, staging_dir)
-        any_modified |= sync_player_box(repo_root, repo_id, resolved_token, active_year, staging_dir)
+        any_modified |= sync_games(repo_root, repo_id, resolved_token, active_year, staging_dir, force=force)
+        any_modified |= sync_team_box(repo_root, repo_id, resolved_token, active_year, staging_dir, force=force)
+        any_modified |= sync_player_box(repo_root, repo_id, resolved_token, active_year, staging_dir, force=force)
         any_modified |= sync_playbyplay(repo_root, repo_id, resolved_token, active_year, staging_dir)
         any_modified |= sync_playbyplay_player(repo_root, repo_id, resolved_token, active_year, staging_dir)
         any_modified |= sync_shifts(repo_root, repo_id, resolved_token, active_year, staging_dir)
-        any_modified |= sync_measurement_box(repo_root, repo_id, resolved_token, active_year, staging_dir)
+        any_modified |= sync_measurement_box(repo_root, repo_id, resolved_token, active_year, staging_dir, force=force)
         any_modified |= sync_measurement_hits(repo_root, repo_id, resolved_token, active_year, staging_dir)
         any_modified |= sync_measurement_shifts(repo_root, repo_id, resolved_token, active_year, staging_dir)
         any_modified |= sync_scoreboard_recaps(repo_root, repo_id, resolved_token, active_year, staging_dir)
@@ -755,10 +784,10 @@ def run_sync(
         print("\n🎲 Processing Closing Betting Odds Panels...")
         any_modified |= sync_odds(repo_root, repo_id, resolved_token, active_year, staging_dir)
 
-    # 3. Target: Player Season (Weekly Monday pipeline)
-    if target in ("player", "all"):
-        print("\n👤 Processing Player Season Aggregates...")
-        any_modified |= sync_measurement_player(repo_root, repo_id, resolved_token, active_year, staging_dir)
+    # 3. Target: Player Season & Game Rolling Aggregates
+    if target in ("player", "box", "all"):
+        print("\n👤 Processing Player Game & Season (Rolling + Season-Ending) Aggregates...")
+        any_modified |= sync_measurement_player(repo_root, repo_id, resolved_token, active_year, staging_dir, force=force)
 
     # Check staging results
     staged_files = list(staging_dir.rglob("*.parquet"))

@@ -38,6 +38,10 @@ jobs:
     - name: Run NHL Player Record Data
       run: python src/data/apinhle/data_pull_player.py
 
+    - name: Run NHL Expected Goals (xG) and Goaltender GSAx Estimation
+      if: always()
+      run: python src/data/apinhle/data_proc_xg.py
+
     - name: Configure Git
       run: |
         git config --global user.name 'github-actions[bot]'

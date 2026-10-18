@@ -5,7 +5,7 @@ on:
     branches: [main]
   workflow_dispatch:
   workflow_run:
-    workflows: ["NHL API pull data for game-level stats (box, plays, and summaries)"]
+    workflows: ["NHL API pull data for game-level stats (box, plays, shifts, and summaries)"]
     types: [completed]
   schedule:
     # Daily at 10:00 UTC during hockey season (1 hour after the 9:00 UTC data pull)

@@ -80,19 +80,29 @@ class NHLScoreboardClient:
             logger.debug("Right-rail unavailable for game %d: %s", game_id, e)
             return {}
 
+    def get_play_by_play(self, game_id: int) -> Dict[str, Any]:
+        """Fetch play-by-play shot telemetry, coordinates, and event timeline."""
+        try:
+            return self._get(f"gamecenter/{game_id}/play-by-play")
+        except Exception as e:
+            logger.debug("Play-by-play unavailable for game %d: %s", game_id, e)
+            return {}
+
     def get_game_bundle(self, game_id: int) -> Dict[str, Any]:
         """
-        Aggregate boxscore, landing, and right-rail feeds into a consolidated game bundle.
+        Aggregate boxscore, landing, right-rail, and play-by-play feeds into a consolidated game bundle.
         """
         landing = self.get_landing(game_id)
         boxscore = self.get_boxscore(game_id)
         right_rail = self.get_right_rail(game_id)
+        play_by_play = self.get_play_by_play(game_id)
 
         return {
             "game_id": game_id,
             "landing": landing,
             "boxscore": boxscore,
             "right_rail": right_rail,
+            "play_by_play": play_by_play,
         }
 
     def find_latest_completed_slate_date(self, max_days_back: int = 10) -> str:

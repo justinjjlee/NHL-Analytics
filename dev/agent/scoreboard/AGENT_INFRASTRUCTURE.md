@@ -63,7 +63,8 @@ The **Scoreboard Agent** is a production-grade sports analytics and automated jo
 2. **Zero False-Positive Guardrails**: Every narrative assertion (scores, goal scorers, period endings, goaltender saves/shots) is reconciled against the official box score. If hallucination or factual drift is detected, the engine retries with cooled sampling temperature ($T=0.2$) before falling back to the verified algorithmic generator.
 3. **Reasoning Stream Purification**: Strips internal thought artifacts (`<think>`, preamble drafting lines) to ensure customer-facing editorial text remains publication-ready.
 4. **Longitudinal Lakehouse Persistence**: Recaps are idempotently cached in columnar Parquet format and mirrored to the Hugging Face Dataset repository [`jjerlee/nhl-analytics`](https://huggingface.co/datasets/jjerlee/nhl-analytics).
-5. **Human-Readable Terminology Standards**: AP-style prose where domain acronyms (e.g., L5, CF%, TOI, SOG) are written out on first mention.
+5. **Human-Readable Terminology Standards**: AP-style prose where domain acronyms (e.g., L5, CF%, TOI, SOG, xG, GSAx) are written out on first mention.
+6. **Expected Goals (xG) & Goaltender Analytics (GSAx)**: Spatial logistic regression modeling unblocked shot probability from Euclidean distance, angle, shot type, rebounds, and game state, paired with crease evaluation via Goals Saved Above Expected ($GSAx = xGA - GA$). Full mathematical formulations and architectural details are documented in [METRICS_XG_GSAX.md](dev/agent/scoreboard/METRICS_XG_GSAX.md).
 
 ---
 

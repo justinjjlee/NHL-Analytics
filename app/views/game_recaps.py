@@ -552,7 +552,10 @@ def render_game_recaps_view():
     slate_gen = slate_record.get("generator_model", "algorithmic-guardrails-v1")
     slate_engine_badge = format_engine_badge(slate_gen)
     st.subheader(slate_record.get('slate_headline', f'NHL Slate Overview — {target_date}'))
-    st.caption(f"**Data Quality:** Reconciled & Audited | **Editorial Engine:** {slate_engine_badge}")
+    st.caption(
+        f"**Editorial Engine:** {slate_engine_badge}  \n"
+        f"**Data Quality:** Reconciled & Audited"
+    )
 
     m1, m2, m3 = st.columns(3)
     m1.metric("Total Games", slate_record.get("total_games", 0))
@@ -624,7 +627,33 @@ def render_game_recaps_view():
             st.markdown(f"### {game.get('headline')}")
             game_gen = game.get("generator_model", "algorithmic-guardrails-v1")
             game_engine_badge = format_engine_badge(game_gen)
-            st.caption(f"**Game Script:** {badge} | **Engine:** {game_engine_badge}")
+
+            # Resolve xG metrics
+            away_xg = game.get("away_xg")
+            home_xg = game.get("home_xg")
+            away_xg_pct = game.get("away_xg_pct")
+            home_xg_pct = game.get("home_xg_pct")
+            try:
+                a_stats = json.loads(game.get("away_stats_json", "{}"))
+                h_stats = json.loads(game.get("home_stats_json", "{}"))
+                if away_xg is None or pd.isna(away_xg) or float(away_xg) == 0.0:
+                    away_xg = float(a_stats.get("xg", 0.0))
+                    home_xg = float(h_stats.get("xg", 0.0))
+                    away_xg_pct = float(a_stats.get("xg_pct", 50.0))
+                    home_xg_pct = float(h_stats.get("xg_pct", 50.0))
+            except Exception:
+                pass
+
+            xg_caption = ""
+            if away_xg and float(away_xg) > 0:
+                xg_caption = f"  \n**Expected Goals (xG):** {game.get('away_team')} {float(away_xg):.2f} ({float(away_xg_pct):.1f}%) @ {game.get('home_team')} {float(home_xg):.2f} ({float(home_xg_pct):.1f}%)"
+
+            st.caption(
+                f"**Game Script:** {badge}  \n"
+                f"**Engine:** {game_engine_badge}  \n"
+                f"**Data Quality:** Reconciled & Audited"
+                f"{xg_caption}"
+            )
 
             # Game Narrative Story (with first-mention abbreviations expanded)
             st.markdown(expand_first_mention_abbreviations(game.get("narrative_recap", "")))
@@ -648,28 +677,72 @@ def render_game_recaps_view():
                 key=f"show_tables_{game.get('game_id')}",
             )
             if show_tables:
-                # A. Goaltending Breakdown Table
+                # A. Goaltending Breakdown Table (with GSAx)
                 goalie_json = game.get("goalie_performance_json")
                 if goalie_json:
                     try:
                         g_data = json.loads(goalie_json)
                         if g_data:
-                            st.markdown("#### Goaltending Performance")
+                            st.markdown("#### Goaltending Performance & Goals Saved Above Expected (GSAx)")
                             g_rows = []
                             for role in ("winner", "loser"):
                                 if role in g_data:
                                     p = g_data[role]
-                                    g_rows.append({
+                                    row_dict = {
                                         "Goaltender": p.get("name"),
                                         "Team": p.get("team"),
                                         "Dec": p.get("decision"),
                                         "Saves / Shots": f"{p.get('saves')}/{p.get('shots_against')}",
                                         "SV%": f"{p.get('save_pct', 0.0)*100:.1f}%",
-                                        "Workload Rating": _clean_rating(p.get("rating")),
-                                        "Assessment": p.get("assessment"),
-                                    })
+                                    }
+                                    if "gsax" in p and p.get("gsax") is not None:
+                                        row_dict["xGA"] = f"{float(p.get('xga', 0.0)):.2f}"
+                                        row_dict["GSAx"] = f"{float(p.get('gsax', 0.0)):+.2f}"
+                                        row_dict["dSV%"] = f"{float(p.get('dsave_pct', 0.0))*100:+.1f}%"
+                                    row_dict["Workload Rating"] = _clean_rating(p.get("rating"))
+                                    row_dict["Assessment"] = p.get("assessment")
+                                    g_rows.append(row_dict)
                             if g_rows:
                                 st.dataframe(pd.DataFrame(g_rows), use_container_width=True, hide_index=True)
+                    except Exception:
+                        pass
+
+                # A2. Expected Goals & Danger Zone Quality
+                xg_json = game.get("xg_summary_json")
+                if xg_json:
+                    try:
+                        x_data = json.loads(xg_json) if isinstance(xg_json, str) else xg_json
+                        if x_data and "danger_zones" in x_data:
+                            st.markdown("#### Expected Goals (xG) & Shot Quality Distribution")
+                            dz = x_data.get("danger_zones", {})
+                            a_team = str(game.get('away_team'))
+                            h_team = str(game.get('home_team'))
+                            a_dz = dz.get(a_team, {})
+                            h_dz = dz.get(h_team, {})
+                            
+                            dz_rows = [
+                                {
+                                    "Shot Metric / Danger Zone": "High Danger Chances (Slot & Crease <= 20 ft)",
+                                    f"{a_team}": str(a_dz.get("HIGH", 0)),
+                                    f"{h_team}": str(h_dz.get("HIGH", 0)),
+                                },
+                                {
+                                    "Shot Metric / Danger Zone": "Medium Danger Chances (20-35 ft)",
+                                    f"{a_team}": str(a_dz.get("MEDIUM", 0)),
+                                    f"{h_team}": str(h_dz.get("MEDIUM", 0)),
+                                },
+                                {
+                                    "Shot Metric / Danger Zone": "Low Danger Chances (Perimeter > 35 ft)",
+                                    f"{a_team}": str(a_dz.get("LOW", 0)),
+                                    f"{h_team}": str(h_dz.get("LOW", 0)),
+                                },
+                                {
+                                    "Shot Metric / Danger Zone": "Total Expected Goals (xG)",
+                                    f"{a_team}": f"{float(x_data.get('away_xg', away_xg or 0.0)):.2f} ({float(x_data.get('away_xg_pct', away_xg_pct or 50.0)):.1f}%)",
+                                    f"{h_team}": f"{float(x_data.get('home_xg', home_xg or 0.0)):.2f} ({float(x_data.get('home_xg_pct', home_xg_pct or 50.0)):.1f}%)",
+                                },
+                            ]
+                            st.dataframe(pd.DataFrame(dz_rows), use_container_width=True, hide_index=True)
                     except Exception:
                         pass
 
@@ -789,6 +862,50 @@ def render_game_recaps_view():
                                 )
                 except Exception:
                     pass
+
+    st.divider()
+
+    # -------------------------------------------------------------------------
+    # 5. Advanced Analytics & Methodology Reference Guide
+    # -------------------------------------------------------------------------
+    with st.expander("📚 Expected Goals (xG) & Goaltender Analytics (GSAx) Educational Guide", expanded=False):
+        st.markdown(
+            """
+            ### Understanding Expected Goals (xG) & Goals Saved Above Expected (GSAx)
+
+            Traditional hockey statistics like **Shots on Goal (SOG)** and **Save Percentage (SV%)** treat all shots equally—a 60-foot wrist shot from the blue line counts the exact same as a cross-crease one-timer from the low slot. 
+
+            **Rinklytics Expected Goals (xG)** and **Goals Saved Above Expected (GSAx)** isolate true scoring danger and goaltender performance from defensive structure.
+
+            ---
+
+            #### 1. What is Expected Goals (xG)?
+            **Expected Goals (xG)** measures the mathematical probability that an unblocked shot attempt will result in a goal. Every shot is assigned an xG value between $0.00$ ($0\%$) and $1.00$ ($100\%$) based on empirical NHL historical tracking:
+            - **Shooting Distance ($d$):** Euclidean distance from the shot coordinate $(x, y)$ to the center of the attacking net $(89, 0)$. Closer shots dramatically increase goal probability.
+            - **Shooting Angle ($\\theta$):** Angular deviation from the net's centerline. Sharp-angle shots near the goal line have significantly lower conversion rates than head-on slot shots.
+            - **Shot Type:** Deflections ($+0.60$ log-odds boost) and tip-ins ($+0.50$) are significantly more dangerous than standard wrist shots or perimeter slapshots.
+            - **Rebounds & Transition:** Rapid unblocked shots within 3.0 seconds of a prior save receive a rebound multiplier ($+0.70$ log-odds boost) as the goalie is in recovery motion.
+            - **Game State & Strength:** Man-advantage opportunities create wider passing lanes and screen efficiency.
+
+            #### 2. Danger Zone Taxonomy
+            - **High Danger (HD):** Shots within **20 feet** of the net and within a **$45^\circ$ cone** (the low and high slot, crease). Historical NHL conversion: **$\sim 18-25\%$**.
+            - **Medium Danger (MD):** Shots between **20 and 35 feet**, or sharp-angle shots inside 20 feet. Historical conversion: **$\sim 8-12\%$**.
+            - **Low Danger (LD):** Perimeter point shots, blue-line bids ($>35$ feet), and wide-angle attempts. Historical conversion: **$\sim 2-4\%$**.
+
+            #### 3. What is Goals Saved Above Expected (GSAx)?
+            Raw Save Percentage ($SV\%$) is biased by defensive quality—a goalie behind an elite defensive team faces mostly low-danger point shots, inflating their save percentage.
+            
+            **Goals Saved Above Expected (GSAx)** isolates the goaltender's true contribution:
+            $$\\text{GSAx} = \\text{Expected Goals Against (xGA)} - \\text{Actual Goals Against (GA)}$$
+
+            - **Positive GSAx ($> +1.0$):** The goaltender "stole" goals, making saves on high-probability chances. A performance of $+1.50$ or higher triggers a **Goalie Theft Alert**.
+            - **Negative GSAx ($< -1.0$):** The goaltender surrendered soft goals that an average NHL goaltender would be expected to stop.
+            - **Delta Save % ($dSV\%$):** Difference between actual save percentage and expected save percentage ($dSV\% = SV\% - xSV\%$).
+
+            #### 4. Individual Skater Generation (ixG)
+            **ixG (Individual Expected Goals)** quantifies the quality of scoring chances generated directly by a skater's own stick. Players with high ixG consistently penetrate the inner slot to create high-probability looks regardless of finishing luck.
+            """
+        )
 
 
 if __name__ == "__main__" or "page" in locals():

@@ -523,6 +523,9 @@ class HFScoreboardStore:
                 "blocked_shots": getattr(g.away_team, "blocked_shots", 0),
                 "giveaways": getattr(g.away_team, "giveaways", 0),
                 "takeaways": getattr(g.away_team, "takeaways", 0),
+                "xg": getattr(g.away_team, "xg", 0.0),
+                "xg_pct": getattr(g.away_team, "xg_pct", 50.0),
+                "hdcf": getattr(g.away_team, "hdcf", 0),
             }
             home_stats_dict = {
                 "sog": getattr(g.home_team, "sog", 0),
@@ -532,6 +535,9 @@ class HFScoreboardStore:
                 "blocked_shots": getattr(g.home_team, "blocked_shots", 0),
                 "giveaways": getattr(g.home_team, "giveaways", 0),
                 "takeaways": getattr(g.home_team, "takeaways", 0),
+                "xg": getattr(g.home_team, "xg", 0.0),
+                "xg_pct": getattr(g.home_team, "xg_pct", 50.0),
+                "hdcf": getattr(g.home_team, "hdcf", 0),
             }
 
             # Period flow serialization
@@ -593,6 +599,11 @@ class HFScoreboardStore:
                     "save_pct": g.winning_goalie_profile.save_pct,
                     "rating": g.winning_goalie_profile.performance_rating,
                     "assessment": g.winning_goalie_profile.assessment,
+                    "xga": getattr(g.winning_goalie_profile, "xga", 0.0),
+                    "gsax": getattr(g.winning_goalie_profile, "gsax", 0.0),
+                    "xsave_pct": getattr(g.winning_goalie_profile, "xsave_pct", 0.0),
+                    "dsave_pct": getattr(g.winning_goalie_profile, "dsave_pct", 0.0),
+                    "hd_save_pct": getattr(g.winning_goalie_profile, "hd_save_pct", 0.0),
                 }
             if getattr(g, "losing_goalie_profile", None):
                 goalie_dict["loser"] = {
@@ -605,6 +616,11 @@ class HFScoreboardStore:
                     "save_pct": g.losing_goalie_profile.save_pct,
                     "rating": g.losing_goalie_profile.performance_rating,
                     "assessment": g.losing_goalie_profile.assessment,
+                    "xga": getattr(g.losing_goalie_profile, "xga", 0.0),
+                    "gsax": getattr(g.losing_goalie_profile, "gsax", 0.0),
+                    "xsave_pct": getattr(g.losing_goalie_profile, "xsave_pct", 0.0),
+                    "dsave_pct": getattr(g.losing_goalie_profile, "dsave_pct", 0.0),
+                    "hd_save_pct": getattr(g.losing_goalie_profile, "hd_save_pct", 0.0),
                 }
 
             # Season standings context serialization
@@ -637,6 +653,19 @@ class HFScoreboardStore:
                     "audit_notes": g.validation_report.audit_notes,
                 }
 
+            # xG Breakdown summary serialization
+            xg_summary_dict = {}
+            if getattr(g, "xg_report", None):
+                xr = g.xg_report
+                xg_summary_dict = {
+                    "away_xg": getattr(xr, "away_xg", 0.0),
+                    "home_xg": getattr(xr, "home_xg", 0.0),
+                    "away_xg_pct": getattr(xr, "away_xg_pct", 50.0),
+                    "home_xg_pct": getattr(xr, "home_xg_pct", 50.0),
+                    "danger_zones": getattr(xr, "danger_zones", {}),
+                    "period_xg": getattr(xr, "period_xg", {}),
+                }
+
             rows.append({
                 "game_id": int(g.game_id),
                 "game_date": str(g.game_date),
@@ -659,6 +688,11 @@ class HFScoreboardStore:
                 "goalie_performance_json": json.dumps(goalie_dict, ensure_ascii=False),
                 "season_standings_json": json.dumps(season_dict, ensure_ascii=False),
                 "validation_report_json": json.dumps(val_dict, ensure_ascii=False),
+                "away_xg": float(getattr(g.away_team, "xg", 0.0)),
+                "home_xg": float(getattr(g.home_team, "xg", 0.0)),
+                "away_xg_pct": float(getattr(g.away_team, "xg_pct", 50.0)),
+                "home_xg_pct": float(getattr(g.home_team, "xg_pct", 50.0)),
+                "xg_summary_json": json.dumps(xg_summary_dict, ensure_ascii=False),
                 "generated_at": timestamp,
                 "generator_model": getattr(g, "generator_model", None) or generator_model,
             })

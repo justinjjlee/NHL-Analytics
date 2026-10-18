@@ -109,9 +109,12 @@ for col in ['GP', 'W', 'L', 'OTL', 'PTS', 'pairwise_win']:
         df[col] = df[col].astype(int)
 
 # Round specific metrics to 3 decimal places
-for col in ['wp', 'rpe', 'kpi_pe', 'kpi_pairwise', 'kpi_wp']:
+for col in ['wp', 'rpe', 'kpi_pe', 'kpi_pairwise', 'kpi_wp', 'xg_pct', 'hdcf_pct', 'kpi_xg', 'kpi_hdcf', 'kpi_gsax']:
     if col in df.columns:
         df[col] = df[col].round(3)
+for col in ['xg_for', 'xg_against', 'xg_lvl', 'gsax']:
+    if col in df.columns:
+        df[col] = df[col].round(2)
 
 # Get available seasons
 seasons = sorted(df['Season'].unique().tolist(), reverse=True)
@@ -125,6 +128,15 @@ METRIC_NAMES = {
     'OTL': 'OTL',
     'PTS': 'PTS',
     'wp': 'Win %',
+    'xg_pct': 'xGF%',
+    'xg_for': 'xGF',
+    'xg_against': 'xGA',
+    'xg_lvl': 'xG Diff',
+    'hdcf_pct': 'HDCF%',
+    'gsax': 'Team GSAx',
+    'kpi_xg': 'xG (KPI)',
+    'kpi_hdcf': 'HDCF (KPI)',
+    'kpi_gsax': 'GSAx (KPI)',
     'kpi_corsi': 'Corsi (KPI)',
     'kpi_fenwick': 'Fenwick (KPI)',
     'rpi': 'RPI',
@@ -158,7 +170,9 @@ with tab1:
             f"**{t('tss_metric_guide_title')}**\n\n"
             f"- {t('tss_wp_desc')}\n"
             f"- {t('tss_pairwise_desc')}\n"
-            f"- {t('tss_pe_desc')}"
+            f"- {t('tss_pe_desc')}\n"
+            f"- **xGF% & HDCF%**: Expected Goals Share ($xGF / (xGF + xGA)$) and High-Danger Chances Share ($\le 25\\text{{ ft}}$, $|\theta| \le 40^\circ$).\n"
+            f"- **Team GSAx**: Goals Saved Above Expected ($xGA_{{\\text{{SOG}}}} - GA_{{\\text{{non-EN}}}}$) across all team goaltenders."
         )
 
     with col_right:
@@ -170,8 +184,11 @@ with tab1:
     # Sort by Points (PTS) by default
     df_season = df_season.sort_values(by='PTS', ascending=False).reset_index(drop=True)
     
-    # Define columns to show in the primary data table (Pairwise Rank next to PE)
-    default_cols = ['team', 'GP', 'W', 'L', 'OTL', 'PTS', 'wp', 'pairwise_win', 'rpe']
+    # Define columns to show in the primary data table (Pairwise Rank next to PE + xG/GSAx)
+    default_cols = [
+        'team', 'GP', 'W', 'L', 'OTL', 'PTS', 'wp', 'pairwise_win', 'rpe',
+        'xg_pct', 'xg_for', 'xg_against', 'xg_lvl', 'hdcf_pct', 'gsax'
+    ]
     cols_to_show = [c for c in default_cols if c in df_season.columns]
     
     st.subheader(f"{t('tss_standings')} ({selected_season})")
@@ -191,6 +208,12 @@ with tab1:
             METRIC_NAMES['wp']: st.column_config.NumberColumn(METRIC_NAMES['wp'], format="%.3f", help="Winning percentage (W / GP)"),
             METRIC_NAMES['rpe']: st.column_config.NumberColumn(METRIC_NAMES['rpe'], format="%.3f", help="Pythagorean Expectation (GF^2 / (GF^2 + GA^2))"),
             METRIC_NAMES['pairwise_win']: st.column_config.NumberColumn(METRIC_NAMES['pairwise_win'], format="%d", help="Pairwise Rank (Head-to-head win strength)"),
+            METRIC_NAMES['xg_pct']: st.column_config.NumberColumn(METRIC_NAMES['xg_pct'], format="%.3f", help="Expected Goals Share: xGF / (xGF + xGA)"),
+            METRIC_NAMES['xg_for']: st.column_config.NumberColumn(METRIC_NAMES['xg_for'], format="%.2f", help="Season Expected Goals For (Stage 1 Fenwick xG)"),
+            METRIC_NAMES['xg_against']: st.column_config.NumberColumn(METRIC_NAMES['xg_against'], format="%.2f", help="Season Expected Goals Against"),
+            METRIC_NAMES['xg_lvl']: st.column_config.NumberColumn(METRIC_NAMES['xg_lvl'], format="%+.2f", help="Season Expected Goal Differential (xGF - xGA)"),
+            METRIC_NAMES['hdcf_pct']: st.column_config.NumberColumn(METRIC_NAMES['hdcf_pct'], format="%.3f", help="High-Danger Chances Share (<=25 ft, <=40 deg)"),
+            METRIC_NAMES['gsax']: st.column_config.NumberColumn(METRIC_NAMES['gsax'], format="%+.2f", help="Team Goals Saved Above Expected (Stage 2 On-Goal xGA - GA)"),
             METRIC_NAMES['PTS']: st.column_config.NumberColumn(METRIC_NAMES['PTS'], format="%d"),
             METRIC_NAMES['W']: st.column_config.NumberColumn(METRIC_NAMES['W'], format="%d"),
             METRIC_NAMES['L']: st.column_config.NumberColumn(METRIC_NAMES['L'], format="%d"),
@@ -208,8 +231,14 @@ with tab1:
     numeric_cols = df_season.select_dtypes(include=['float64', 'int64']).columns.tolist()
     available_metrics = [c for c in numeric_cols if c not in ['Season']]
     
-    # Define trend metrics for scatter plot and trend chart (including Corsi, Fenwick, RPI)
-    trend_metrics = [c for c in ['wp', 'pairwise_win', 'rpe', 'kpi_corsi', 'kpi_fenwick', 'rpi', 'kpi_pe', 'kpi_pairwise', 'kpi_rpi', 'kpi_wp'] if c in available_metrics]
+    # Define trend metrics for scatter plot and trend chart (including xG, HDCF, GSAx, Corsi, Fenwick, RPI)
+    trend_metrics = [
+        c for c in [
+            'wp', 'pairwise_win', 'rpe', 'xg_pct', 'xg_for', 'xg_against', 'xg_lvl',
+            'hdcf_pct', 'gsax', 'kpi_xg', 'kpi_hdcf', 'kpi_gsax',
+            'kpi_corsi', 'kpi_fenwick', 'rpi', 'kpi_pe', 'kpi_pairwise', 'kpi_rpi', 'kpi_wp'
+        ] if c in available_metrics
+    ]
     if not trend_metrics:
         trend_metrics = available_metrics
     

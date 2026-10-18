@@ -211,7 +211,11 @@ def load_player_season_dataset() -> Tuple[Optional[pd.DataFrame], Optional[pd.Da
                     'powerPlayGoals', 'shorthandedGoals', 'gameWinningGoals', 'overtimeGoals',
                     'avgShiftsPerGame', 'gamesStarted', 'wins', 'losses', 'overtimeLosses',
                     'goalsAgainstAverage', 'savePercentage', 'shotsAgainst', 'saves',
-                    'goalsAgainst', 'shutouts']:
+                    'goalsAgainst', 'shutouts',
+                    'ixg', 'ixg_per_game', 'goals_above_expected', 'fenwick_shots',
+                    'hd_shots', 'md_shots', 'ld_shots', 'rebound_shots', 'rush_shots',
+                    'xga', 'gsax', 'gsax_per_game', 'xsave_pct', 'dsave_pct',
+                    'hd_shots_against', 'hd_goals_against', 'hd_save_pct']:
             if col in all_df.columns:
                 all_df[col] = pd.to_numeric(all_df[col], errors='coerce')
         g = all_df[all_df['positionCode'] == 'G'].copy()
@@ -220,7 +224,7 @@ def load_player_season_dataset() -> Tuple[Optional[pd.DataFrame], Optional[pd.Da
 
     try:
         df = pd.read_parquet(f"{HF_DATASET_BASE}/measurement/player/player_season.parquet")
-        if df is None or df.empty:
+        if df is None or df.empty or 'ixg' not in df.columns:
             return _fallback_local()
 
         # Schema alignment & seasonal indicators
@@ -246,6 +250,10 @@ def load_player_season_dataset() -> Tuple[Optional[pd.DataFrame], Optional[pd.Da
             'gamesStarted', 'wins', 'losses', 'overtimeLosses',
             'goalsAgainstAverage', 'savePercentage', 'shotsAgainst',
             'saves', 'goalsAgainst', 'shutouts',
+            'ixg', 'ixg_per_game', 'goals_above_expected', 'fenwick_shots',
+            'hd_shots', 'md_shots', 'ld_shots', 'rebound_shots', 'rush_shots',
+            'xga', 'gsax', 'gsax_per_game', 'xsave_pct', 'dsave_pct',
+            'hd_shots_against', 'hd_goals_against', 'hd_save_pct',
         ]
         for col in numeric_cols:
             if col in df.columns:
@@ -281,7 +289,7 @@ def load_player_season_dataset() -> Tuple[Optional[pd.DataFrame], Optional[pd.Da
 def load_player_game_dataset(season_year: Optional[int] = None) -> Tuple[Optional[pd.DataFrame], Optional[pd.DataFrame]]:
     """
     Loads individual game-by-game player performance records.
-    Primary: Hugging Face data/player_box.parquet filtered by season_year.
+    Primary: Hugging Face measurement/player/player_game.parquet (or data/player_box.parquet) filtered by season_year.
     Backup: local latest/box/*_box_player.csv.
     """
     def _fallback_local():
@@ -299,6 +307,10 @@ def load_player_game_dataset(season_year: Optional[int] = None) -> Tuple[Optiona
             'powerPlayGoals', 'sog', 'faceoffWinningPctg', 'blockedShots',
             'shifts', 'giveaways', 'takeaways', 'toi',
             'savePctg', 'goalsAgainst', 'shotsAgainst', 'saves',
+            'ixg', 'g_minus_ixg', 'fenwick_shots', 'hd_shots', 'md_shots', 'ld_shots',
+            'xga', 'gsax', 'xsave_pct', 'dsave_pct', 'hd_shots_against', 'hd_goals_against', 'hd_save_pct',
+            'cum_gp', 'cum_goals', 'cum_assists', 'cum_points', 'cum_ixg', 'cum_g_minus_ixg', 'cum_hd_shots',
+            'cum_xga', 'cum_gsax', 'cum_sv_pct', 'cum_xsv_pct', 'cum_dsv_pct', 'is_season_end',
             'name.default', 'name.cs', 'name.sk', 'name.fi', 'name.de', 'name.es', 'decision'
         ]
         frames = []
@@ -326,7 +338,11 @@ def load_player_game_dataset(season_year: Optional[int] = None) -> Tuple[Optiona
             adf['season_year'] = np.where(m >= 10, y, y - 1)
         for col in ['goals', 'assists', 'points', 'plusMinus', 'pim', 'hits', 'powerPlayGoals', 'sog',
                     'faceoffWinningPctg', 'blockedShots', 'shifts', 'giveaways', 'takeaways',
-                    'savePctg', 'goalsAgainst', 'shotsAgainst', 'saves']:
+                    'savePctg', 'goalsAgainst', 'shotsAgainst', 'saves',
+                    'ixg', 'g_minus_ixg', 'fenwick_shots', 'hd_shots', 'md_shots', 'ld_shots',
+                    'xga', 'gsax', 'xsave_pct', 'dsave_pct', 'hd_shots_against', 'hd_goals_against', 'hd_save_pct',
+                    'cum_gp', 'cum_goals', 'cum_assists', 'cum_points', 'cum_ixg', 'cum_g_minus_ixg', 'cum_hd_shots',
+                    'cum_xga', 'cum_gsax', 'cum_sv_pct', 'cum_xsv_pct', 'cum_dsv_pct']:
             if col in adf.columns:
                 adf[col] = pd.to_numeric(adf[col], errors='coerce')
 
@@ -341,8 +357,11 @@ def load_player_game_dataset(season_year: Optional[int] = None) -> Tuple[Optiona
         return sk, gl
 
     try:
-        df = pd.read_parquet(f"{HF_DATASET_BASE}/data/player_box.parquet")
-        if df is None or df.empty:
+        try:
+            df = pd.read_parquet(f"{HF_DATASET_BASE}/measurement/player/player_game.parquet")
+        except Exception:
+            df = pd.read_parquet(f"{HF_DATASET_BASE}/data/player_box.parquet")
+        if df is None or df.empty or 'ixg' not in df.columns:
             return _fallback_local()
 
         # Season filtering on year-aggregated panel
@@ -371,7 +390,11 @@ def load_player_game_dataset(season_year: Optional[int] = None) -> Tuple[Optiona
             'goals', 'assists', 'points', 'plusMinus', 'pim', 'hits',
             'powerPlayGoals', 'sog', 'faceoffWinningPctg', 'blockedShots',
             'shifts', 'giveaways', 'takeaways', 'savePctg', 'goalsAgainst',
-            'shotsAgainst', 'saves'
+            'shotsAgainst', 'saves',
+            'ixg', 'g_minus_ixg', 'fenwick_shots', 'hd_shots', 'md_shots', 'ld_shots',
+            'xga', 'gsax', 'xsave_pct', 'dsave_pct', 'hd_shots_against', 'hd_goals_against', 'hd_save_pct',
+            'cum_gp', 'cum_goals', 'cum_assists', 'cum_points', 'cum_ixg', 'cum_g_minus_ixg', 'cum_hd_shots',
+            'cum_xga', 'cum_gsax', 'cum_sv_pct', 'cum_xsv_pct', 'cum_dsv_pct',
         ]
         for c in num_cols:
             if c in df.columns:
@@ -425,7 +448,7 @@ def load_team_season_dataset() -> pd.DataFrame:
     try:
         df_team_season = pd.read_parquet(f"{HF_DATASET_BASE}/measurement/box/team_season.parquet")
         df_games = pd.read_parquet(f"{HF_DATASET_BASE}/data/games.parquet")
-        if df_team_season is None or df_team_season.empty or df_games is None or df_games.empty:
+        if df_team_season is None or df_team_season.empty or 'xg_for' not in df_team_season.columns or df_games is None or df_games.empty:
             return _fallback_local()
 
         # Calculate W, L, OTL, PTS per team per season from games panel

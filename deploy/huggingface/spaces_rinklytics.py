@@ -85,7 +85,6 @@ def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True):
             ".env",
             "credentials.json",
             "latest/play/**",
-            "src/**",
             "databricks/**",
             ".databricks/**",
             ".vscode/**",

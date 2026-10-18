@@ -126,6 +126,12 @@ for iter_year in iter_years:
         os.makedirs(PLAYER_DIR, exist_ok=True)
         output_path = f"{PLAYER_DIR}/{iter_year}_player.csv"
         df_players.to_csv(output_path, index=False)
+        try:
+            from function.procs_xg import enrich_season_xg
+            from config import BASE_DATA_DIR
+            enrich_season_xg(iter_year, base_dir=BASE_DATA_DIR)
+        except Exception as xg_err:
+            print(f"Notice: xG enrichment skipped for {iter_year}: {xg_err}")
         print(f"Completed player stats for season {iter_year} -> {output_path}")
 
 print("au revoir.")

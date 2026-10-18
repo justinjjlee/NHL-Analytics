@@ -136,7 +136,36 @@ with top_tab1:
         if player_df.empty:
             st.warning(t("sk_no_data"))
         else:
-            latest = player_df.sort_values('season_year', ascending=False).iloc[0]
+            season_match = player_df[player_df['season_year'] == sel_season_yr]
+            latest = (
+                season_match.iloc[0]
+                if not season_match.empty
+                else player_df.sort_values('season_year', ascending=False).iloc[0]
+            )
+            active_yr = latest.get('season_year')
+            season_peer_df = skaters[skaters['season_year'] == active_yr].copy()
+
+            def _sk_pct_delta(col_name, val, higher_is_better=True):
+                if pd.isna(val) or col_name not in season_peer_df.columns:
+                    return None
+                s = pd.to_numeric(season_peer_df[col_name], errors='coerce').dropna()
+                if s.empty:
+                    return None
+                v = float(val)
+                if not higher_is_better:
+                    s = -s
+                    v = -v
+                pct = ((s < v).sum() + 0.5 * (s == v).sum()) / len(s) * 100.0
+                p_int = max(1, min(99, int(round(pct))))
+                sign = "+" if pct >= 50.0 else "-"
+                if is_fr:
+                    return f"{sign}{p_int}e centile"
+                if 11 <= (p_int % 100) <= 13:
+                    suf = "th"
+                else:
+                    suf = {1: "st", 2: "nd", 3: "rd"}.get(p_int % 10, "th")
+                return f"{sign}{p_int}{suf} pct"
+
             pos_labels = {
                 "C": "Centre",
                 "L": "Ailier G" if is_fr else "Left Wing",
@@ -144,18 +173,56 @@ with top_tab1:
                 "D": "Défenseur" if is_fr else "Defenseman",
             }
             pos_label = pos_labels.get(latest.get('positionCode',''), latest.get('positionCode',''))
-            st.markdown(f"### {selected_player} · {latest.get('team_tri','')} · {pos_label}")
+            st.markdown(f"### {selected_player} · {latest.get('team_tri','')} · {pos_label} ({latest.get('season_label','')})")
+            st.caption(
+                "📊 Les sous-indicateurs affichent le centile de la saison parmi tous les patineurs de la LNH (🟢 ≥ 50e centile médian, 🔴 < 50e centile)."
+                if is_fr else
+                "📊 Metric sub-indicators display the player's season percentile rank across all NHL skaters (🟢 ≥ 50th median percentile, 🔴 < 50th percentile)."
+            )
 
-            m1, m2, m3, m4, m5, m6 = st.columns(6)
+            # ── Section 1: Game & Scoring Production ──
+            st.markdown("##### " + ("🏒 Statistiques de Match & Production Offensive" if is_fr else "🏒 Game & Scoring Production"))
+            g1, g2, g3, g4, g5 = st.columns(5)
+            gp_val = latest.get('gamesPlayed')
+            g_val = latest.get('goals')
+            a_val = latest.get('assists')
+            pts_val = latest.get('points')
             ppg = latest.get('points_per_game')
-            m1.metric("PJ" if is_fr else "GP",  int(latest.get('gamesPlayed',0) or 0))
-            m2.metric("B"  if is_fr else "G",   int(latest.get('goals',0) or 0))
-            m3.metric("A",                       int(latest.get('assists',0) or 0))
-            m4.metric("PTS",                     int(latest.get('points',0) or 0))
-            m5.metric("+/-",                     int(latest.get('plusMinus',0) or 0))
-            m6.metric("PTS/PJ" if is_fr else "PTS/GP", f"{ppg:.2f}" if pd.notna(ppg) else "—")
+            g1.metric("PJ" if is_fr else "GP", int(gp_val or 0), delta=_sk_pct_delta('gamesPlayed', gp_val), delta_color="normal")
+            g2.metric("B" if is_fr else "G", int(g_val or 0), delta=_sk_pct_delta('goals', g_val), delta_color="normal")
+            g3.metric("A", int(a_val or 0), delta=_sk_pct_delta('assists', a_val), delta_color="normal")
+            g4.metric("PTS", int(pts_val or 0), delta=_sk_pct_delta('points', pts_val), delta_color="normal")
+            g5.metric("PTS/PJ" if is_fr else "PTS/GP", f"{ppg:.2f}" if pd.notna(ppg) else "—", delta=_sk_pct_delta('points_per_game', ppg), delta_color="normal")
 
-            #st.divider()
+            # ── Section 2: Expected Goals & Finishing Quality ──
+            st.markdown("##### " + ("🎯 Buts Attendus (xG) & Qualité de Finition" if is_fr else "🎯 Expected Goals (xG) & Finishing Quality"))
+            x1, x2, x3, x4 = st.columns(4)
+            ixg_val = latest.get('ixg')
+            ixg_gp = latest.get('ixg_per_game')
+            if pd.isna(ixg_gp) and pd.notna(ixg_val) and pd.notna(gp_val) and gp_val > 0:
+                ixg_gp = float(ixg_val) / float(gp_val)
+            g_ax = latest.get('goals_above_expected')
+            hd_s = latest.get('hd_shots')
+            x1.metric("ixG", f"{ixg_val:.2f}" if pd.notna(ixg_val) else "—", delta=_sk_pct_delta('ixg', ixg_val), delta_color="normal", help="Individual Expected Goals (Stage 1 Fenwick xG)")
+            x2.metric("ixG/PJ" if is_fr else "ixG/GP", f"{ixg_gp:.2f}" if pd.notna(ixg_gp) else "—", delta=_sk_pct_delta('ixg_per_game', ixg_gp), delta_color="normal", help="Individual Expected Goals per Game")
+            x3.metric("B - ixG" if is_fr else "G - ixG", f"{g_ax:+.2f}" if pd.notna(g_ax) else "—", delta=_sk_pct_delta('goals_above_expected', g_ax), delta_color="normal", help="Goals Above Expected (Finishing / Shooting Talent)")
+            x4.metric("Tirs HD" if is_fr else "HD Shots", int(hd_s) if pd.notna(hd_s) else "—", delta=_sk_pct_delta('hd_shots', hd_s), delta_color="normal", help="High-Danger Unblocked Shot Attempts (≤ 25 ft)")
+
+            # ── Section 3: Shooting Volume & On-Ice Deployment ──
+            st.markdown("##### " + ("⚡ Volume de Tir & Utilisation sur Glace" if is_fr else "⚡ Shooting Volume & On-Ice Deployment"))
+            d1, d2, d3, d4 = st.columns(4)
+            sog_val = latest.get('shots')
+            sh_pct = latest.get('shootingPctg')
+            pm_val = latest.get('plusMinus')
+            toi_sec = latest.get('avgTimeOnIcePerGame')
+            toi_str = latest.get('toi_per_game_min') or "—"
+            sh_disp = (f"{sh_pct * 100:.1f}%" if sh_pct <= 1.0 else f"{sh_pct:.1f}%") if pd.notna(sh_pct) else "—"
+            d1.metric("COC" if is_fr else "SOG", int(sog_val or 0), delta=_sk_pct_delta('shots', sog_val), delta_color="normal")
+            d2.metric("Tir%" if is_fr else "Sh%", sh_disp, delta=_sk_pct_delta('shootingPctg', sh_pct), delta_color="normal")
+            d3.metric("+/-", f"{int(pm_val):+d}" if pd.notna(pm_val) else "0", delta=_sk_pct_delta('plusMinus', pm_val), delta_color="normal")
+            d4.metric("TMG/PJ" if is_fr else "TOI/GP", toi_str, delta=_sk_pct_delta('avgTimeOnIcePerGame', toi_sec), delta_color="normal")
+
+            st.divider()
             st.subheader(t("sk_career_trend"))
             trend = player_df.sort_values('season_year')
 
@@ -170,6 +237,11 @@ with top_tab1:
                                      name=t("chart_goals"), mode='lines+markers',
                                      line=dict(color='#1a85ff', width=2, dash='dot'),
                                      marker=dict(size=6)))
+            if 'ixg' in trend.columns and trend['ixg'].notna().any():
+                fig.add_trace(go.Scatter(x=trend['season_label'], y=trend['ixg'],
+                                         name="ixG (Expected Goals)", mode='lines+markers',
+                                         line=dict(color='#10b981', width=2, dash='dash'),
+                                         marker=dict(size=6, symbol='diamond')))
             fig.update_layout(
                 yaxis=dict(title=t("chart_y_pts"), gridcolor='rgba(255,255,255,0.1)'),
                 yaxis2=dict(title=t("chart_y_ptsGP"), overlaying='y', side='right', showgrid=False),
@@ -189,6 +261,10 @@ with top_tab1:
                 'goals':        'B' if is_fr else 'G',
                 'assists': 'A', 'points': 'PTS',
                 'points_per_game': 'PTS/PJ' if is_fr else 'PTS/GP',
+                'ixg': 'ixG',
+                'ixg_per_game': 'ixG/PJ' if is_fr else 'ixG/GP',
+                'goals_above_expected': 'B - ixG' if is_fr else 'G - ixG',
+                'hd_shots': 'Tirs HD' if is_fr else 'HD Shots',
                 'plusMinus': '+/-',
                 'shots': 'COC' if is_fr else 'SOG',
                 'shootingPctg': 'Tir%' if is_fr else 'Sh%',
@@ -203,10 +279,14 @@ with top_tab1:
             avail = {k: v for k, v in col_map.items() if k in player_df.columns}
             tbl = player_df[list(avail.keys())].sort_values('season_label', ascending=False).copy()
             tbl.rename(columns=avail, inplace=True)
-            for col in ['PTS/PJ','PTS/GP','Tir%','Sh%','MF%','FO%']:
+            for col in ['PTS/PJ','PTS/GP','Tir%','Sh%','MF%','FO%','ixG/PJ','ixG/GP']:
                 if col in tbl.columns:
                     tbl[col] = tbl[col].apply(lambda x: f"{x:.3f}" if pd.notna(x) else "—")
-            int_keys = ['PJ','GP','B','G','A','PTS','+/-','COC','SOG','BP','PPG','BIN','SHG','BBV','GWG','BPR','OTG','MPP','PIM']
+            for col in ['ixG', 'B - ixG', 'G - ixG']:
+                if col in tbl.columns:
+                    fmt = "{:+.2f}" if "-" in col else "{:.2f}"
+                    tbl[col] = tbl[col].apply(lambda x, f=fmt: f.format(float(x)) if pd.notna(x) else "—")
+            int_keys = ['PJ','GP','B','G','A','PTS','+/-','COC','SOG','Tirs HD','HD Shots','BP','PPG','BIN','SHG','BBV','GWG','BPR','OTG','MPP','PIM']
             for col in int_keys:
                 if col in tbl.columns:
                     tbl[col] = tbl[col].apply(lambda x: str(int(x)) if pd.notna(x) else "—")
@@ -238,6 +318,8 @@ with top_tab1:
                 # Trend chart (weekly)
                 weekly_asc = weekly.sort_values('week_start')
                 weekly_asc['cum_pts'] = weekly_asc['points'].cumsum()
+                if 'ixg' in weekly_asc.columns:
+                    weekly_asc['cum_ixg'] = weekly_asc['ixg'].cumsum()
 
                 fig_gl = go.Figure()
                 fig_gl.add_trace(go.Bar(
@@ -246,6 +328,13 @@ with top_tab1:
                     name=t("chart_points"),
                     marker_color='#CE0E2D', opacity=0.65,
                 ))
+                if 'ixg' in weekly_asc.columns and weekly_asc['ixg'].notna().any():
+                    fig_gl.add_trace(go.Bar(
+                        x=weekly_asc['week_start'].dt.strftime('%Y-%m-%d'),
+                        y=weekly_asc['ixg'],
+                        name="ixG (Weekly)",
+                        marker_color='#10b981', opacity=0.65,
+                    ))
                 fig_gl.add_trace(go.Scatter(
                     x=weekly_asc['week_start'].dt.strftime('%Y-%m-%d'),
                     y=weekly_asc['cum_pts'],
@@ -253,6 +342,7 @@ with top_tab1:
                     mode='lines', line=dict(color='#f4a418', width=2), yaxis='y2',
                 ))
                 fig_gl.update_layout(
+                    barmode='group',
                     yaxis=dict(title=t("chart_y_ptsPerGame")),
                     yaxis2=dict(title=t("chart_y_cumPts"), overlaying='y', side='right', showgrid=False),
                     plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
@@ -268,7 +358,11 @@ with top_tab1:
                     'opponents':  'Adversaires' if is_fr else 'Opponents',
                     'gp_week':    'PJ' if is_fr else 'GP',
                     'goals': 'B' if is_fr else 'G',
-                    'assists': 'A', 'points': 'PTS', 'plusMinus': '+/-',
+                    'assists': 'A', 'points': 'PTS',
+                    'ixg': 'ixG',
+                    'goals_above_expected': 'B - ixG' if is_fr else 'G - ixG',
+                    'hd_shots': 'Tirs HD' if is_fr else 'HD',
+                    'plusMinus': '+/-',
                     'sog':        'COC' if is_fr else 'SOG',
                     'hits':       'Mises' if is_fr else 'Hits',
                     'blockedShots': 'Bloqués' if is_fr else 'Blocks',
@@ -285,7 +379,11 @@ with top_tab1:
                 fo_key = 'MF%' if is_fr else 'FO%'
                 if fo_key in tbl_w.columns:
                     tbl_w[fo_key] = tbl_w[fo_key].apply(lambda x: f"{x:.1%}" if pd.notna(x) else "—")
-                int_keys_w = ['PJ','GP','B','G','A','PTS','+/-','COC','SOG','Mises','Hits','Bloqués','Blocks','BP','PPG','Pertes','GA','Gains','TA']
+                for col in ['ixG', 'B - ixG', 'G - ixG']:
+                    if col in tbl_w.columns:
+                        fmt = "{:+.2f}" if "-" in col else "{:.2f}"
+                        tbl_w[col] = tbl_w[col].apply(lambda x, f=fmt: f.format(float(x)) if pd.notna(x) else "—")
+                int_keys_w = ['PJ','GP','B','G','A','PTS','+/-','COC','SOG','Tirs HD','HD','Mises','Hits','Bloqués','Blocks','BP','PPG','Pertes','GA','Gains','TA']
                 for col in int_keys_w:
                     if col in tbl_w.columns:
                         tbl_w[col] = tbl_w[col].apply(lambda x: str(int(x)) if pd.notna(x) else "—")
@@ -362,6 +460,9 @@ with top_tab2:
             'gamesPlayed': 'PJ' if is_fr else 'GP',
             'goals': 'B' if is_fr else 'G', 'assists': 'A', 'points': 'PTS',
             'points_per_game': 'PTS/PJ' if is_fr else 'PTS/GP',
+            'ixg': 'ixG',
+            'goals_above_expected': 'B - ixG' if is_fr else 'G - ixG',
+            'hd_shots': 'Tirs HD' if is_fr else 'HD Shots',
             'plusMinus': '+/-',
             'toi_per_game_min': 'TMG/PJ' if is_fr else 'TOI/GP',
             'shootingPctg': 'Tir%' if is_fr else 'Sh%',
@@ -375,4 +476,11 @@ with top_tab2:
         for col in ['PTS/PJ','PTS/GP','Tir%','Sh%']:
             if col in lb_tbl.columns:
                 lb_tbl[col] = lb_tbl[col].apply(lambda x: f"{x:.3f}" if pd.notna(x) else "—")
+        for col in ['ixG', 'B - ixG', 'G - ixG']:
+            if col in lb_tbl.columns:
+                fmt = "{:+.2f}" if "-" in col else "{:.2f}"
+                lb_tbl[col] = lb_tbl[col].apply(lambda x, f=fmt: f.format(float(x)) if pd.notna(x) else "—")
+        for col in ['Tirs HD', 'HD Shots']:
+            if col in lb_tbl.columns:
+                lb_tbl[col] = lb_tbl[col].apply(lambda x: str(int(x)) if pd.notna(x) else "—")
         st.dataframe(lb_tbl.reset_index(drop=True), width="stretch", hide_index=True)

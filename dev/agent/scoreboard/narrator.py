@@ -1070,6 +1070,13 @@ class NarratorEngine:
         if l_goalie and l_goalie.name != getattr(w_goalie, "name", ""):
             def_parts.append(f"Opposite him, **{l_goalie.name}** {l_goalie.assessment.lower()}")
 
+        if winner.xg > 0 or loser.xg > 0:
+            def_parts.append(
+                f"Underlying shot quality tilted toward {winner.team_abbrev if winner.xg >= loser.xg else loser.team_abbrev}, "
+                f"with {winner.team_abbrev} generating **{winner.xg:.2f} expected goals (xG)** ({winner.xg_pct:.1f}% share, {winner.hdcf} high-danger chances) "
+                f"to {loser.team_abbrev}'s **{loser.xg:.2f} xG** ({loser.xg_pct:.1f}% share, {loser.hdcf} high-danger chances)."
+            )
+
         if w_def and l_def:
             def_parts.append(
                 f"Defensively, {winner.team_abbrev} committed to **{w_def.blocked_shots}** blocked shots "
@@ -1528,7 +1535,11 @@ class NarratorEngine:
         md = []
         md.append(f"# 🏒 {headline}")
         md.append(f"**Date:** {game.game_date} | **Venue:** {game.venue} | **Final:** {game.away_team.team_abbrev} {game.away_team.score} @ {game.home_team.team_abbrev} {game.home_team.score} ({dec})")
-        md.append(f"`🛡️ Data Quality: Reconciled & Audited` | `🤖 Narrative Generator: {model_display}`")
+        script_key = getattr(getattr(game, "period_flow", None), "game_script_type", getattr(game, "game_script_type", "REGULATION"))
+        script_label = str(script_key).replace("_", " ").title()
+        md.append(f"`🏒 Game Script: {script_label}`")
+        md.append(f"`🤖 Narrative Generator: {model_display}`")
+        md.append("`🛡️ Data Quality: Reconciled & Audited`")
         md.append("---")
         md.append("## 📰 Game Recap")
         md.append(narrative)
@@ -1604,7 +1615,8 @@ class NarratorEngine:
         md.append(f"# 🏒 NHL Slate Night in Review — {slate.date}")
         md.append(f"**Total Games:** {slate.total_games} | **Total Goals:** {slate.total_goals} (Avg {slate.avg_goals_per_game:.1f}) | **OT/SO Thrillers:** {slate.ot_so_games}")
         md.append(f"**Outcomes:** {slate.home_wins} Home Wins — {slate.away_wins} Road Victories")
-        md.append(f"`🛡️ Data Quality: Audited` | `🤖 Editorial Generator: {model_display}`")
+        md.append(f"`🤖 Editorial Generator: {model_display}`")
+        md.append("`🛡️ Data Quality: Audited`")
         md.append("---")
 
         if slate.executive_summary:

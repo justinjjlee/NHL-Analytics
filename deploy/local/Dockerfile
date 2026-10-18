@@ -26,6 +26,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code and necessary analytical datasets
 COPY app/ /workspace/app/
+COPY src/data/apinhle/ /workspace/src/data/apinhle/
 COPY latest/box/ /workspace/latest/box/
 COPY latest/team/ /workspace/latest/team/
 COPY latest/player/ /workspace/latest/player/

@@ -8,7 +8,8 @@ import datetime
 
 # Functions to process box scores
 from function.procs_boxscore import *
-from config import get_box_dir, get_team_dir
+from function.procs_xg import enrich_season_xg
+from config import get_box_dir, get_team_dir, BASE_DATA_DIR
 import os
 
 BOX_DIR = get_box_dir()
@@ -40,6 +41,9 @@ else:
             summary_game.to_csv(f"{BOX_DIR}/{iter_year}_box_gameStats.csv")
             os.makedirs(f"{TEAM_DIR}/season", exist_ok=True)
             df_kpi.to_csv(f"{TEAM_DIR}/season/{iter_year}_team_season.csv")
+
+            # Enrich box, gameStats, team_season, and player files with xG / GSAx
+            enrich_season_xg(iter_year, base_dir=BASE_DATA_DIR)
 
             print(f"Team - season-level statistics compute completed for {iter_year}")
         except Exception as e:

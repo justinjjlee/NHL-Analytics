@@ -139,6 +139,9 @@ def load_player_season_data():
         'gamesStarted', 'wins', 'losses', 'overtimeLosses',
         'goalsAgainstAverage', 'savePercentage', 'shotsAgainst',
         'saves', 'goalsAgainst', 'shutouts',
+        'ixg', 'ixg_per_game', 'goals_above_expected',
+        'fenwick_attempts', 'hd_shots', 'hd_goals', 'md_shots', 'ld_shots', 'rebound_shots',
+        'xga', 'gsax', 'xsave_pct', 'dsave_pct', 'hd_sa', 'hd_ga', 'hd_save_pct',
     ]
     for col in numeric_cols:
         if col in all_df.columns:
@@ -153,10 +156,14 @@ def load_player_season_data():
     skaters['assists_per_game'] = skaters['assists'] / skaters['gamesPlayed'].replace(0, np.nan)
     skaters['shots_per_game'] = skaters['shots'] / skaters['gamesPlayed'].replace(0, np.nan)
     skaters['toi_per_game_min'] = skaters['avgTimeOnIcePerGame'].apply(_sec_to_mmss)
+    if 'ixg' in skaters.columns and 'ixg_per_game' not in skaters.columns:
+        skaters['ixg_per_game'] = (skaters['ixg'] / skaters['gamesPlayed'].replace(0, np.nan)).round(3)
 
     # Derived goalie stats
     goalies['saves_per_game'] = goalies['saves'] / goalies['gamesStarted'].replace(0, np.nan)
     goalies['win_pct'] = goalies['wins'] / goalies['gamesPlayed'].replace(0, np.nan)
+    if 'gsax' in goalies.columns:
+        goalies['gsax_per_game'] = (goalies['gsax'] / goalies['gamesPlayed'].replace(0, np.nan)).round(3)
 
     return skaters, goalies
 
@@ -170,7 +177,7 @@ def load_player_season_data():
 def load_player_game_data(season_year=None):
     """
     Load individual game-by-game player performance records.
-    Primary: Hugging Face dataset (data/player_box.parquet).
+    Primary: Hugging Face dataset (measurement/player/player_game.parquet).
     Backup: latest/box/{YYYY}_box_player.csv files.
     Returns (skater_games_df, goalie_games_df).
     """
@@ -211,7 +218,10 @@ def load_player_game_data(season_year=None):
         'savePctg', 'goalsAgainst', 'shotsAgainst', 'saves',
         'evenStrengthGoalsAgainst', 'powerPlayGoalsAgainst',
         'name.default', 'name.cs', 'name.sk', 'name.fi', 'name.de', 'name.es', 'name.fr',
-        'saveShotsAgainst', 'decision'
+        'saveShotsAgainst', 'decision',
+        'ixg', 'goals_above_expected', 'fenwick_attempts',
+        'hd_shots', 'hd_goals', 'md_shots', 'ld_shots', 'rebound_shots',
+        'xga', 'gsax', 'xsave_pct', 'dsave_pct', 'hd_sa', 'hd_ga', 'hd_save_pct',
     ]
 
     frames = []
@@ -254,6 +264,9 @@ def load_player_game_data(season_year=None):
         'shifts', 'giveaways', 'takeaways',
         'savePctg', 'goalsAgainst', 'shotsAgainst', 'saves',
         'evenStrengthGoalsAgainst', 'powerPlayGoalsAgainst',
+        'ixg', 'goals_above_expected', 'fenwick_attempts',
+        'hd_shots', 'hd_goals', 'md_shots', 'ld_shots', 'rebound_shots',
+        'xga', 'gsax', 'xsave_pct', 'dsave_pct', 'hd_sa', 'hd_ga', 'hd_save_pct',
     ]
     for col in num_cols:
         if col in all_df.columns:
@@ -286,7 +299,7 @@ def load_player_game_data(season_year=None):
 
 def compute_skater_ppi(skaters_df, season_year=None, min_games=20):
     """
-    PPI = mean z-score across: pts/GP, G/GP, A/GP, +/-, SOG/GP, Sh%, TOI/GP(s)
+    PPI = mean z-score across: pts/GP, G/GP, A/GP, +/-, SOG/GP, Sh%, TOI/GP(s), ixG/GP, G - ixG
     """
     df = skaters_df.copy()
     if season_year:
@@ -298,6 +311,7 @@ def compute_skater_ppi(skaters_df, season_year=None, min_games=20):
     ppi_cols = [
         'points_per_game', 'goals_per_game', 'assists_per_game',
         'plusMinus', 'shots_per_game', 'shootingPctg', 'avgTimeOnIcePerGame',
+        'ixg_per_game', 'goals_above_expected',
     ]
     valid_cols = [c for c in ppi_cols if c in df.columns and df[c].notna().sum() > 0]
 
@@ -311,6 +325,7 @@ def compute_skater_ppi(skaters_df, season_year=None, min_games=20):
     display_cols = [
         'fullName', 'team_tri', 'positionCode', 'gamesPlayed',
         'goals', 'assists', 'points', 'points_per_game',
+        'ixg', 'ixg_per_game', 'goals_above_expected', 'hd_shots',
         'plusMinus', 'shots', 'shootingPctg', 'toi_per_game_min',
         'powerPlayGoals', 'shorthandedGoals', 'gameWinningGoals',
         'penaltyMinutes', 'faceoffWinPctg', 'PPI'
@@ -321,7 +336,7 @@ def compute_skater_ppi(skaters_df, season_year=None, min_games=20):
 
 def compute_goalie_ppi(goalies_df, season_year=None, min_games=15):
     """
-    PPI = mean z-score of: SV%, -GAA, wins, shutouts, saves/GP
+    PPI = mean z-score of: SV%, -GAA, wins, shutouts, saves/GP, GSAx, dSV%
     """
     df = goalies_df.copy()
     if season_year:
@@ -333,7 +348,7 @@ def compute_goalie_ppi(goalies_df, season_year=None, min_games=15):
     if 'goalsAgainstAverage' in df.columns:
         df['gaa_inv'] = -df['goalsAgainstAverage']
 
-    ppi_cols = ['savePercentage', 'gaa_inv', 'wins', 'shutouts', 'saves_per_game']
+    ppi_cols = ['savePercentage', 'gaa_inv', 'wins', 'shutouts', 'saves_per_game', 'gsax', 'dsave_pct']
     valid_cols = [c for c in ppi_cols if c in df.columns and df[c].notna().sum() > 0]
 
     z_scores = pd.DataFrame(index=df.index)
@@ -346,8 +361,9 @@ def compute_goalie_ppi(goalies_df, season_year=None, min_games=15):
     display_cols = [
         'fullName', 'team_tri', 'gamesPlayed', 'gamesStarted',
         'wins', 'losses', 'overtimeLosses',
-        'goalsAgainstAverage', 'savePercentage', 'shutouts',
-        'saves', 'shotsAgainst', 'win_pct', 'PPI'
+        'goalsAgainstAverage', 'savePercentage',
+        'xga', 'gsax', 'xsave_pct', 'dsave_pct', 'hd_save_pct',
+        'shutouts', 'saves', 'shotsAgainst', 'win_pct', 'PPI'
     ]
     display_cols = [c for c in display_cols if c in df.columns]
     return df[display_cols].sort_values('PPI', ascending=False).reset_index(drop=True)
@@ -464,11 +480,15 @@ def aggregate_weekly_skater(game_df):
         'pim': 'sum', 'hits': 'sum', 'powerPlayGoals': 'sum',
         'sog': 'sum', 'blockedShots': 'sum', 'giveaways': 'sum', 'takeaways': 'sum',
         'shifts': 'sum', 'gameDate': 'count',  # count = GP that week
+        'ixg': 'sum', 'goals_above_expected': 'sum', 'hd_shots': 'sum', 'fenwick_attempts': 'sum',
     }
     agg_cols_avail = {k: v for k, v in agg_cols.items() if k in df.columns}
 
     grouped = df.groupby('week_start').agg(agg_cols_avail).reset_index()
     grouped.rename(columns={'gameDate': 'gp_week'}, inplace=True)
+    for rcol in ['ixg', 'goals_above_expected']:
+        if rcol in grouped.columns:
+            grouped[rcol] = grouped[rcol].round(2)
 
     # Weekly TOI: parse "MM:SS" → seconds, sum, convert back
     if 'toi' in df.columns:
@@ -511,7 +531,7 @@ def aggregate_weekly_skater(game_df):
 def aggregate_weekly_goalie(game_df):
     """
     Aggregate goalie game log to weekly frequency.
-    Returns df with week_start, games started, wins, goals against, SV%, GAA.
+    Returns df with week_start, games started, wins, goals against, SV%, GAA, xGA, GSAx, xSV%, dSV%.
     """
     if game_df is None or game_df.empty:
         return pd.DataFrame()
@@ -528,17 +548,29 @@ def aggregate_weekly_goalie(game_df):
         df['saves_n'] = df.get('saves', np.nan)
         df['sa_n'] = df.get('shotsAgainst', np.nan)
 
-    agg = df.groupby('week_start').agg(
+    agg_spec = dict(
         gp_week=('gameDate', 'count'),
         saves_week=('saves_n', 'sum'),
         sa_week=('sa_n', 'sum'),
         ga_week=('goalsAgainst', 'sum'),
         wins_week=('decision', lambda x: (x == 'W').sum()),
         losses_week=('decision', lambda x: (x == 'L').sum()),
-    ).reset_index()
+    )
+    if 'xga' in df.columns:
+        agg_spec['xga_week'] = ('xga', 'sum')
+    if 'gsax' in df.columns:
+        agg_spec['gsax_week'] = ('gsax', 'sum')
+
+    agg = df.groupby('week_start').agg(**agg_spec).reset_index()
 
     agg['sv_pct_week'] = (agg['saves_week'] / agg['sa_week'].replace(0, np.nan)).round(3)
     agg['gaa_week'] = (agg['ga_week'] / agg['gp_week'].replace(0, np.nan)).round(2)
+    if 'xga_week' in agg.columns:
+        agg['xga_week'] = agg['xga_week'].round(2)
+        agg['xsv_pct_week'] = (1.0 - agg['xga_week'] / agg['sa_week'].replace(0, np.nan)).round(3)
+        agg['dsv_pct_week'] = (agg['sv_pct_week'] - agg['xsv_pct_week']).round(3)
+    if 'gsax_week' in agg.columns:
+        agg['gsax_week'] = agg['gsax_week'].round(2)
 
     # Opponents
     if 'opp_team' in df.columns:

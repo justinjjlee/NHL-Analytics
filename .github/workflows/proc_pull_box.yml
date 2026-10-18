@@ -41,6 +41,14 @@ jobs:
       if: always()
       run: python src/data/apinhle/data_pull_plays.py
 
+    - name: Run NHL Player Season Record Data
+      if: always()
+      run: python src/data/apinhle/data_pull_player.py
+
+    - name: Run NHL Expected Goals (xG) and Goaltender GSAx Estimation
+      if: always()
+      run: python src/data/apinhle/data_proc_xg.py
+
     - name: Run NHL Game-level Play-by-play Shift record data
       if: always()
       run: python src/data/apinhle/data_pull_lines.py
@@ -63,6 +71,7 @@ jobs:
         git add latest/box/*.csv
         git add latest/team/season/*.csv
         git add latest/play/*.csv
+        git add latest/player/*.csv
         git add latest/action/hits/*.csv
         git add latest/action/shifts/*.csv
         git add app/data/hit_eda/*.csv

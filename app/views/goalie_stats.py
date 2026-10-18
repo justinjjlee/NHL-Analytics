@@ -107,26 +107,94 @@ with top_tab1:
         if goalie_df.empty:
             st.warning(t("gl_no_data"))
         else:
-            latest = goalie_df.sort_values('season_year', ascending=False).iloc[0]
-            st.markdown(f"### {selected_goalie} · {latest.get('team_tri','')} · {t('gl_tab_profile')}")
+            season_match = goalie_df[goalie_df['season_year'] == sel_season_yr]
+            latest = (
+                season_match.iloc[0]
+                if not season_match.empty
+                else goalie_df.sort_values('season_year', ascending=False).iloc[0]
+            )
+            active_yr = latest.get('season_year')
+            season_peer_df = goalies[goalies['season_year'] == active_yr].copy()
 
-            m1, m2, m3, m4, m5, m6 = st.columns(6)
-            m1.metric("PJ" if is_fr else "GP", int(latest.get('gamesPlayed', 0) or 0))
-            m2.metric("V"  if is_fr else "W",  int(latest.get('wins', 0) or 0))
-            m3.metric("D"  if is_fr else "L",  int(latest.get('losses', 0) or 0))
-            m4.metric("DPR" if is_fr else "OTL", int(latest.get('overtimeLosses', 0) or 0))
+            def _gl_pct_delta(col_name, val, higher_is_better=True):
+                if pd.isna(val) or col_name not in season_peer_df.columns:
+                    return None
+                s = pd.to_numeric(season_peer_df[col_name], errors='coerce').dropna()
+                if s.empty:
+                    return None
+                v = float(val)
+                if not higher_is_better:
+                    s = -s
+                    v = -v
+                pct = ((s < v).sum() + 0.5 * (s == v).sum()) / len(s) * 100.0
+                p_int = max(1, min(99, int(round(pct))))
+                sign = "+" if pct >= 50.0 else "-"
+                if is_fr:
+                    return f"{sign}{p_int}e centile"
+                if 11 <= (p_int % 100) <= 13:
+                    suf = "th"
+                else:
+                    suf = {1: "st", 2: "nd", 3: "rd"}.get(p_int % 10, "th")
+                return f"{sign}{p_int}{suf} pct"
+
+            st.markdown(f"### {selected_goalie} · {latest.get('team_tri','')} · {t('gl_tab_profile')} ({latest.get('season_label','')})")
+            st.caption(
+                "📊 Les sous-indicateurs affichent le centile de la saison parmi tous les gardiens de la LNH (🟢 ≥ 50e centile médian, 🔴 < 50e centile ; MAB inversée)."
+                if is_fr else
+                "📊 Metric sub-indicators display the goalie's season percentile rank across all NHL goaltenders (🟢 ≥ 50th median percentile, 🔴 < 50th percentile; GAA inverted so lower is higher percentile)."
+            )
+
+            gp_val = latest.get('gamesPlayed')
+            w_val = int(latest.get('wins', 0) or 0)
+            l_val = int(latest.get('losses', 0) or 0)
+            otl_val = int(latest.get('overtimeLosses', 0) or 0)
+            w_pct = latest.get('win_pct')
             gaa = latest.get('goalsAgainstAverage')
+            saves_val = latest.get('saves')
+            sa_val = latest.get('shotsAgainst')
+            xga_val = latest.get('xga')
+            gsax_val = latest.get('gsax')
             svp = latest.get('savePercentage')
-            m5.metric("MAB" if is_fr else "GAA", f"{gaa:.2f}" if pd.notna(gaa) else "—")
-            m6.metric("% Arr." if is_fr else "SV%", f"{svp:.3f}" if pd.notna(svp) else "—")
+            xsvp = latest.get('xsave_pct')
+            dsvp = latest.get('dsave_pct')
+            hd_svp = latest.get('hd_save_pct')
 
-            #st.divider()
+            # ── Section 1: Game & Team Record Stats ──
+            st.markdown("##### " + ("🎮 Statistiques de Match & Fiche d'Équipe" if is_fr else "🎮 Game & Team Record Stats"))
+            r1, r2, r3, r4 = st.columns(4)
+            r1.metric("PJ" if is_fr else "GP", int(gp_val or 0), delta=_gl_pct_delta('gamesPlayed', gp_val), delta_color="normal")
+            r2.metric("Fiche" if is_fr else "W-L-OTL", f"{w_val}-{l_val}-{otl_val}", delta=_gl_pct_delta('wins', w_val), delta_color="normal", help="Percentile based on season Wins")
+            r3.metric("V%" if is_fr else "Win %", f"{w_pct:.1%}" if pd.notna(w_pct) else "—", delta=_gl_pct_delta('win_pct', w_pct), delta_color="normal")
+            r4.metric("MAB" if is_fr else "GAA", f"{gaa:.2f}" if pd.notna(gaa) else "—", delta=_gl_pct_delta('goalsAgainstAverage', gaa, higher_is_better=False), delta_color="normal", help="Goals Against Average (lower GAA = higher percentile)")
+
+            # ── Section 2: Savings & Expected Goals Volume ──
+            st.markdown("##### " + ("🛡️ Volume d'Arrêts & Buts Attendus (Savings)" if is_fr else "🛡️ Savings & Expected Goals Volume"))
+            s1, s2, s3, s4 = st.columns(4)
+            s1.metric("Arrêts" if is_fr else "Saves", int(saves_val) if pd.notna(saves_val) else "—", delta=_gl_pct_delta('saves', saves_val), delta_color="normal")
+            s2.metric("Tirs Contre (TC)" if is_fr else "Shots Against (SA)", int(sa_val) if pd.notna(sa_val) else "—", delta=_gl_pct_delta('shotsAgainst', sa_val), delta_color="normal")
+            s3.metric("xGA", f"{xga_val:.2f}" if pd.notna(xga_val) else "—", delta=_gl_pct_delta('xga', xga_val), delta_color="normal", help="Expected Goals Against (Stage 2 On-Goal xGA workload)")
+            s4.metric("GSAx", f"{gsax_val:+.2f}" if pd.notna(gsax_val) else "—", delta=_gl_pct_delta('gsax', gsax_val), delta_color="normal", help="Goals Saved Above Expected (xGA - GA)")
+
+            # ── Section 3: Save Efficiency & Percentage Savings ──
+            st.markdown("##### " + ("📈 Efficacité d'Arrêt & Pourcentages (% Savings)" if is_fr else "📈 Save Efficiency & Percentage Savings"))
+            p1, p2, p3, p4 = st.columns(4)
+            p1.metric("% Arr." if is_fr else "SV%", f"{svp:.3f}" if pd.notna(svp) else "—", delta=_gl_pct_delta('savePercentage', svp), delta_color="normal")
+            p2.metric("xSV%", f"{xsvp:.3f}" if pd.notna(xsvp) else "—", delta=_gl_pct_delta('xsave_pct', xsvp), delta_color="normal", help="Expected Save Percentage (1 - xGA / SA)")
+            p3.metric("dSV%", f"{dsvp:+.3f}" if pd.notna(dsvp) else "—", delta=_gl_pct_delta('dsave_pct', dsvp), delta_color="normal", help="Save Percentage Above Expected (SV% - xSV%)")
+            p4.metric("% Arr. HD" if is_fr else "HD SV%", f"{hd_svp:.3f}" if pd.notna(hd_svp) else "—", delta=_gl_pct_delta('hd_save_pct', hd_svp), delta_color="normal", help="High-Danger Save Percentage (shots ≤ 25 ft)")
+
+            st.divider()
             st.subheader(t("gl_career_trend"))
             trend = goalie_df.sort_values('season_year')
 
             fig = go.Figure()
             fig.add_trace(go.Bar(x=trend['season_label'], y=trend['savePercentage'],
                                  name=t("chart_save_pct"), marker_color='#1a85ff', opacity=0.75))
+            if 'xsave_pct' in trend.columns and trend['xsave_pct'].notna().any():
+                fig.add_trace(go.Scatter(x=trend['season_label'], y=trend['xsave_pct'],
+                                         name="xSV% (Expected SV%)", mode='lines+markers',
+                                         line=dict(color='#10b981', width=2, dash='dash'),
+                                         marker=dict(size=7, symbol='diamond')))
             fig.add_trace(go.Scatter(x=trend['season_label'], y=trend['goalsAgainstAverage'],
                                      name=t("chart_gaa"), mode='lines+markers', yaxis='y2',
                                      line=dict(color='#CE0E2D', width=3),
@@ -136,7 +204,7 @@ with top_tab1:
                                      line=dict(color='#f4a418', width=2, dash='dot'),
                                      marker=dict(size=6)))
             fig.update_layout(
-                yaxis=dict(title=t("chart_y_svpct"), range=[0.88, 0.95], gridcolor='rgba(255,255,255,0.1)'),
+                yaxis=dict(title=t("chart_y_svpct"), range=[0.86, 0.95], gridcolor='rgba(255,255,255,0.1)'),
                 yaxis2=dict(title=t("chart_gaa"), overlaying='y', side='right', showgrid=False, range=[1.5, 4.0]),
                 yaxis3=dict(title=t("chart_wins"), overlaying='y', side='right', anchor='free', position=1.0, showgrid=False),
                 plot_bgcolor='rgba(0,0,0,0)', paper_bgcolor='rgba(0,0,0,0)',
@@ -158,6 +226,11 @@ with top_tab1:
                 'win_pct':      'V%' if is_fr else 'W%',
                 'goalsAgainstAverage': 'MAB' if is_fr else 'GAA',
                 'savePercentage': '% Arr.' if is_fr else 'SV%',
+                'xsave_pct':    'xSV%',
+                'dsave_pct':    'dSV%',
+                'xga':          'xGA',
+                'gsax':         'GSAx',
+                'hd_save_pct':  'HD SV%',
                 'shutouts':     'BL' if is_fr else 'SO',
                 'saves':        'Arr.' if is_fr else 'Saves',
                 'shotsAgainst': 'TC' if is_fr else 'SA',
@@ -169,9 +242,15 @@ with top_tab1:
             wkey = 'V%' if is_fr else 'W%'
             if wkey in tbl.columns:
                 tbl[wkey] = tbl[wkey].apply(lambda x: f"{x:.1%}" if pd.notna(x) else "—")
-            for col in (['MAB','% Arr.','Arr./PJ'] if is_fr else ['GAA','SV%','Saves/GP']):
+            for col in (['MAB','% Arr.','Arr./PJ','xSV%','HD SV%'] if is_fr else ['GAA','SV%','Saves/GP','xSV%','HD SV%']):
                 if col in tbl.columns:
                     tbl[col] = tbl[col].apply(lambda x: f"{x:.3f}" if pd.notna(x) else "—")
+            if 'dSV%' in tbl.columns:
+                tbl['dSV%'] = tbl['dSV%'].apply(lambda x: f"{x:+.3f}" if pd.notna(x) else "—")
+            if 'xGA' in tbl.columns:
+                tbl['xGA'] = tbl['xGA'].apply(lambda x: f"{x:.2f}" if pd.notna(x) else "—")
+            if 'GSAx' in tbl.columns:
+                tbl['GSAx'] = tbl['GSAx'].apply(lambda x: f"{x:+.2f}" if pd.notna(x) else "—")
             int_keys = ['PJ','GP','PD','GS','V','W','D','L','DPR','OTL','BL','SO','Arr.','Saves','TC','SA']
             for col in int_keys:
                 if col in tbl.columns:
@@ -216,6 +295,14 @@ with top_tab1:
                     name=t("chart_goals_against"),
                     marker_color='rgba(206, 14, 45, 0.85)',
                 ))
+                if 'xga_week' in weekly_asc.columns and weekly_asc['xga_week'].notna().any():
+                    fig_gl.add_trace(go.Scatter(
+                        x=weekly_asc['week_start'].dt.strftime('%Y-%m-%d'),
+                        y=weekly_asc['xga_week'],
+                        name="xGA (Weekly)",
+                        mode='lines+markers',
+                        line=dict(color='#10b981', width=2, dash='dash'), marker=dict(size=6, symbol='diamond'),
+                    ))
                 fig_gl.add_trace(go.Scatter(
                     x=weekly_asc['week_start'].dt.strftime('%Y-%m-%d'),
                     y=weekly_asc['sv_pct_week'],
@@ -242,18 +329,28 @@ with top_tab1:
                     'saves_week':  'Arr.' if is_fr else 'Saves',
                     'sa_week':     'TC' if is_fr else 'SA',
                     'ga_week':     'BC' if is_fr else 'GA',
+                    'xga_week':    'xGA',
+                    'gsax_week':   'GSAx',
                     'wins_week':   'V' if is_fr else 'W',
                     'losses_week': 'D' if is_fr else 'L',
                     'sv_pct_week': '% Arr.' if is_fr else 'SV%',
+                    'xsv_pct_week': 'xSV%',
+                    'dsv_pct_week': 'dSV%',
                     'gaa_week':    'MAB' if is_fr else 'GAA',
                 }
                 avail_w = {k: v for k, v in col_map_w.items() if k in weekly.columns}
                 tbl_w = weekly[list(avail_w.keys())].copy()
                 tbl_w['week_start'] = tbl_w['week_start'].dt.strftime('%Y-%m-%d')
                 tbl_w.rename(columns=avail_w, inplace=True)
-                for col in (['MAB','% Arr.'] if is_fr else ['GAA','SV%']):
+                for col in (['MAB','% Arr.','xSV%'] if is_fr else ['GAA','SV%','xSV%']):
                     if col in tbl_w.columns:
                         tbl_w[col] = tbl_w[col].apply(lambda x: f"{x:.3f}" if pd.notna(x) else "—")
+                if 'dSV%' in tbl_w.columns:
+                    tbl_w['dSV%'] = tbl_w['dSV%'].apply(lambda x: f"{x:+.3f}" if pd.notna(x) else "—")
+                if 'xGA' in tbl_w.columns:
+                    tbl_w['xGA'] = tbl_w['xGA'].apply(lambda x: f"{x:.2f}" if pd.notna(x) else "—")
+                if 'GSAx' in tbl_w.columns:
+                    tbl_w['GSAx'] = tbl_w['GSAx'].apply(lambda x: f"{x:+.2f}" if pd.notna(x) else "—")
                 int_keys_w = ['PJ','GP','Arr.','Saves','TC','SA','BC','GA','V','W','D','L']
                 for col in int_keys_w:
                     if col in tbl_w.columns:
@@ -312,6 +409,10 @@ with top_tab2:
             'win_pct': 'V%' if is_fr else 'W%',
             'goalsAgainstAverage': 'MAB' if is_fr else 'GAA',
             'savePercentage': '% Arr.' if is_fr else 'SV%',
+            'xsave_pct': 'xSV%',
+            'dsave_pct': 'dSV%',
+            'xga': 'xGA',
+            'gsax': 'GSAx',
             'shutouts': 'BL' if is_fr else 'SO',
             'saves': 'Arr.' if is_fr else 'Saves',
             'PPI': 'PPI',
@@ -322,7 +423,13 @@ with top_tab2:
         wkey = 'V%' if is_fr else 'W%'
         if wkey in lb_tbl.columns:
             lb_tbl[wkey] = lb_tbl[wkey].apply(lambda x: f"{x:.1%}" if pd.notna(x) else "—")
-        for col in (['MAB','% Arr.'] if is_fr else ['GAA','SV%']):
+        for col in (['MAB','% Arr.','xSV%'] if is_fr else ['GAA','SV%','xSV%']):
             if col in lb_tbl.columns:
                 lb_tbl[col] = lb_tbl[col].apply(lambda x: f"{x:.3f}" if pd.notna(x) else "—")
+        if 'dSV%' in lb_tbl.columns:
+            lb_tbl['dSV%'] = lb_tbl['dSV%'].apply(lambda x: f"{x:+.3f}" if pd.notna(x) else "—")
+        if 'xGA' in lb_tbl.columns:
+            lb_tbl['xGA'] = lb_tbl['xGA'].apply(lambda x: f"{x:.2f}" if pd.notna(x) else "—")
+        if 'GSAx' in lb_tbl.columns:
+            lb_tbl['GSAx'] = lb_tbl['GSAx'].apply(lambda x: f"{x:+.2f}" if pd.notna(x) else "—")
         st.dataframe(lb_tbl.reset_index(drop=True), width="stretch", hide_index=True)

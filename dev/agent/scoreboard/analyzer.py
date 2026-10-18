@@ -28,6 +28,7 @@ try:
         ThreeStar,
     )
     from .skills import EditorialSkillsOrchestrator, ShiftAndTrendDataProvider
+    from .metrics_xg import evaluate_game_xg, GameXGReport
 except (ImportError, ValueError):
     from models import (
         AnalyzedGame,
@@ -45,6 +46,7 @@ except (ImportError, ValueError):
         ThreeStar,
     )
     from skills import EditorialSkillsOrchestrator, ShiftAndTrendDataProvider
+    from metrics_xg import evaluate_game_xg, GameXGReport
 
 logger = logging.getLogger("ScoreboardAgent.Analyzer")
 
@@ -208,6 +210,36 @@ class GameAnalyzer:
         away_skaters, home_skaters = self._parse_skaters()
         away_goalies, home_goalies = self._parse_goalies()
 
+        # 2b. Compute Expected Goals (xG) & GSAx from Play-by-Play if available
+        xg_report: Optional[GameXGReport] = None
+        pbp_data = self.bundle.get("play_by_play", {})
+        if pbp_data and isinstance(pbp_data, dict) and pbp_data.get("plays"):
+            try:
+                xg_report = evaluate_game_xg(pbp_data)
+                # Populate team metrics
+                away_team.xg = xg_report.away_xg
+                home_team.xg = xg_report.home_xg
+                away_team.xg_pct = xg_report.away_xg_pct
+                home_team.xg_pct = xg_report.home_xg_pct
+                away_team.hdcf = xg_report.danger_zones.get(away_team.team_abbrev, {}).get("HIGH", 0)
+                home_team.hdcf = xg_report.danger_zones.get(home_team.team_abbrev, {}).get("HIGH", 0)
+
+                # Populate individual skater ixG and high-danger attempts
+                for sk in away_skaters + home_skaters:
+                    if sk.player_id in xg_report.skater_summaries:
+                        sk_summary = xg_report.skater_summaries[sk.player_id]
+                        sk.ixg = sk_summary.ixg
+                        sk.hd_shots = sk_summary.hd_shots
+
+                # Populate goalie metrics
+                for g in away_goalies + home_goalies:
+                    if g.player_id in xg_report.goalie_summaries:
+                        g_summary = xg_report.goalie_summaries[g.player_id]
+                        g.xga = g_summary.xga
+                        g.gsax = g_summary.gsax
+            except Exception as e:
+                logger.warning("Error evaluating expected goals (xG) for game %s: %s", self.game_id, e)
+
         # 3. Parse Scoring Progression
         scoring_plays = self._parse_scoring_plays()
 
@@ -217,7 +249,7 @@ class GameAnalyzer:
         # 5. Guardrail: Defensive Effort & Goaltender Evaluation
         away_defense, home_defense = self._evaluate_defense_profiles(away_team, home_team)
         winning_goalie_profile, losing_goalie_profile = self._evaluate_goalie_profiles(
-            away_goalies + home_goalies, winner, loser
+            away_goalies + home_goalies, winner, loser, xg_report=xg_report
         )
 
         # 6. Guardrail: Data Integrity Cross-Verification
@@ -247,7 +279,8 @@ class GameAnalyzer:
             away_team, home_team, winner, loser,
             away_skaters + home_skaters,
             away_goalies + home_goalies,
-            scoring_plays, period_desc, period_flow
+            scoring_plays, period_desc, period_flow,
+            xg_report=xg_report
         )
 
         # Add standout line-shift & L5 line-change highlights
@@ -305,6 +338,7 @@ class GameAnalyzer:
             home_season_context=home_season_ctx,
             away_shift_trend_profile=away_shift_prof,
             home_shift_trend_profile=home_shift_prof,
+            xg_report=xg_report,
         )
         analyzed.editorial_dossier = EditorialSkillsOrchestrator.evaluate_game(analyzed)
         return analyzed
@@ -529,6 +563,7 @@ class GameAnalyzer:
         all_goalies: List[GoalieStats],
         winner: TeamGameStats,
         loser: TeamGameStats,
+        xg_report: Optional[GameXGReport] = None,
     ) -> Tuple[Optional[GoaliePerformanceProfile], Optional[GoaliePerformanceProfile]]:
         w_goalie = None
         l_goalie = None
@@ -543,21 +578,34 @@ class GameAnalyzer:
             if not g:
                 return None
 
-            if g.save_pct >= 0.930 or g.saves >= 35:
+            g_xg = xg_report.goalie_summaries.get(g.player_id) if xg_report else None
+            xga = g_xg.xga if g_xg else g.xga
+            gsax = g_xg.gsax if g_xg else g.gsax
+            xsave_pct = g_xg.xsave_pct if g_xg else 0.0
+            dsave_pct = g_xg.dsave_pct if g_xg else 0.0
+            hd_save_pct = g_xg.hd_save_pct if g_xg else 0.0
+
+            if gsax >= 1.50:
                 rating = "BRICK_WALL"
-                assess = f"Stood tall under heavy bombardment with {g.saves} saves on {g.shots_against} shots ({g.save_pct*100:.1f}% SV%)."
+                assess = f"Goalie Theft: Stopped +{gsax:.2f} goals above expected (GSAx) with {g.saves} saves on {g.shots_against} shots facing {g_xg.hd_shots_against if g_xg else 0} high-danger chances."
+            elif g.save_pct >= 0.930 or g.saves >= 35:
+                rating = "BRICK_WALL"
+                assess = f"Stood tall under heavy bombardment with {g.saves} saves on {g.shots_against} shots ({g.save_pct*100:.1f}% SV%, {gsax:+.2f} GSAx)."
+            elif gsax <= -1.50:
+                rating = "VULNERABLE"
+                assess = f"Crease struggles ({gsax:+.2f} GSAx): conceded {g.goals_against} goals on {g.shots_against} shots."
             elif g.shots_against >= 35:
                 rating = "UNDER_PRESSURE"
-                assess = f"Faced high-volume traffic ({g.shots_against} SOG), turning aside {g.saves} pucks."
+                assess = f"Faced high-volume traffic ({g.shots_against} SOG), turning aside {g.saves} pucks ({gsax:+.2f} GSAx)."
             elif g.save_pct >= 0.900:
                 rating = "STEADY"
-                assess = f"Composed, fundamentally sound outing ({g.saves}/{g.shots_against}, {g.save_pct*100:.1f}%)."
+                assess = f"Composed, fundamentally sound outing ({g.saves}/{g.shots_against}, {g.save_pct*100:.1f}%, {gsax:+.2f} GSAx)."
             else:
                 rating = "VULNERABLE"
-                assess = f"Struggled to contain dangerous rebounds, conceding {g.goals_against} goals on {g.shots_against} shots."
+                assess = f"Struggled to contain dangerous rebounds, conceding {g.goals_against} goals on {g.shots_against} shots ({gsax:+.2f} GSAx)."
 
             if g.is_shutout:
-                assess = f"Immaculate shutout performance: stopped all {g.shots_against} shots faced."
+                assess = f"Immaculate shutout performance: stopped all {g.shots_against} shots faced ({gsax:+.2f} GSAx)."
 
             return GoaliePerformanceProfile(
                 player_id=g.player_id,
@@ -573,6 +621,11 @@ class GameAnalyzer:
                 is_shutout=g.is_shutout,
                 performance_rating=rating,
                 assessment=assess,
+                xga=xga,
+                gsax=gsax,
+                xsave_pct=xsave_pct,
+                dsave_pct=dsave_pct,
+                hd_save_pct=hd_save_pct,
             )
 
         return build_profile(w_goalie, True), build_profile(l_goalie, False)
@@ -828,6 +881,7 @@ class GameAnalyzer:
         plays: List[ScoringPlay],
         period_type: str,
         period_flow: PeriodFlowAnalysis,
+        xg_report: Optional[GameXGReport] = None,
     ) -> List[NotableHighlight]:
         notables = []
 
@@ -848,6 +902,26 @@ class GameAnalyzer:
                 description=period_flow.script_summary,
                 significance="HIGH",
                 entity=winner.team_abbrev,
+            ))
+
+        # Expected Goals & Territorial Flow Notables
+        if loser.xg_pct >= 60.0 and loser.xg > 0:
+            notables.append(NotableHighlight(
+                category="shot_quality",
+                title=f"Defeated by Variance: {loser.team_abbrev} ({loser.xg_pct:.1f}% xGF%)",
+                description=f"{loser.team_abbrev} dominated dangerous ice, generating {loser.xg:.2f} xG ({loser.xg_pct:.1f}% share) compared to {winner.team_abbrev}'s {winner.xg:.2f} xG, but was thwarted by opposing goaltending.",
+                significance="HIGH",
+                entity=loser.team_abbrev,
+                metrics={"xg": loser.xg, "xg_pct": loser.xg_pct, "opp_xg": winner.xg}
+            ))
+        elif winner.xg_pct >= 65.0 and winner.xg > 0:
+            notables.append(NotableHighlight(
+                category="shot_quality",
+                title=f"Territorial Dominance: {winner.team_abbrev} ({winner.xg:.2f} xG, {winner.xg_pct:.1f}% xGF%)",
+                description=f"{winner.team_abbrev} overwhelmed the opposition with high-volume slot chances ({winner.hdcf} HD chances, {winner.xg:.2f} expected goals).",
+                significance="MEDIUM",
+                entity=winner.team_abbrev,
+                metrics={"xg": winner.xg, "xg_pct": winner.xg_pct, "hdcf": winner.hdcf}
             ))
 
         for sk in skaters:
@@ -903,6 +977,17 @@ class GameAnalyzer:
                         metrics={"points": sk.points, "goals": sk.goals}
                     ))
 
+            # Skater shot quality / slot generation highlight
+            if sk.ixg >= 1.0 or sk.hd_shots >= 3:
+                notables.append(NotableHighlight(
+                    category="shot_generation",
+                    title=f"Slot Threat: {sk.name} ({sk.ixg:.2f} ixG)",
+                    description=f"{sk.name} ({sk.team_abbrev}) generated {sk.ixg:.2f} individual expected goals and {sk.hd_shots} high-danger shots.",
+                    significance="HIGH" if sk.ixg >= 1.5 else "MEDIUM",
+                    entity=sk.name,
+                    metrics={"ixg": sk.ixg, "hd_shots": sk.hd_shots}
+                ))
+
             if sk.hits >= 5:
                 notables.append(NotableHighlight(
                     category="physicality",
@@ -924,7 +1009,16 @@ class GameAnalyzer:
                 ))
 
         for goalie in goalies:
-            if goalie.is_shutout:
+            if goalie.gsax >= 1.50:
+                notables.append(NotableHighlight(
+                    category="goalie_theft",
+                    title=f"Goalie Theft Alert: {goalie.name} (+{goalie.gsax:.2f} GSAx)",
+                    description=f"{goalie.name} stole the game in net, preventing +{goalie.gsax:.2f} goals above expected on {goalie.shots_against} shots faced.",
+                    significance="HIGH",
+                    entity=goalie.name,
+                    metrics={"gsax": goalie.gsax, "saves": goalie.saves, "shots": goalie.shots_against}
+                ))
+            elif goalie.is_shutout:
                 notables.append(NotableHighlight(
                     category="shutout",
                     title=f"Shutout Masterclass: {goalie.name}",
