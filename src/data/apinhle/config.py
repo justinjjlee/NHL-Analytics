@@ -6,6 +6,7 @@ IS_DATABRICKS = "DATABRICKS_RUNTIME_VERSION" in os.environ
 
 if IS_DATABRICKS:
     # Databricks Unity Catalog Volume Paths
+    BASE_DATA_DIR = "/Volumes/nhl-databricks/data"
     BOX_DIR = "/Volumes/nhl-databricks/data/box"
     TEAM_DIR = "/Volumes/nhl-databricks/data/team"
     PLAY_DIR = "/Volumes/nhl-databricks/data/play"
@@ -24,6 +25,7 @@ if IS_DATABRICKS:
         ACTION_SHIFTS_DIR = "/Volumes/nhl-databricks/data/action/shifts"
 else:
     # Local GitHub Actions Paths (relative to project root)
+    BASE_DATA_DIR = "./latest"
     BOX_DIR = "./latest/box"
     TEAM_DIR = "./latest/team"
     PLAY_DIR = "./latest/play"
@@ -33,6 +35,7 @@ else:
     ACTION_SHIFTS_DIR = "./latest/action/shifts"
 
 # Function to get the path config so we don't repeat logic
+def get_base_data_dir(): return BASE_DATA_DIR
 def get_box_dir(): return BOX_DIR
 def get_team_dir(): return TEAM_DIR
 def get_play_dir(): return PLAY_DIR
@@ -112,6 +115,9 @@ def get_current_season_year():
     if today.month < 8:
         return today.year - 1
     return today.year
+
+SEASON_YEARS = [get_current_season_year()]
+ALL_SEASON_YEARS = list(range(2013, get_current_season_year() + 1))
 
 # Directory initialization
 if not IS_DATABRICKS:

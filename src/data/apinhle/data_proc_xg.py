@@ -42,7 +42,7 @@ def main() -> None:
     parser.add_argument(
         "--base-dir",
         type=str,
-        default="./latest",
+        default=getattr(config, "BASE_DATA_DIR", "./latest"),
         help="Base data directory (default: ./latest).",
     )
     args = parser.parse_args()
@@ -57,7 +57,13 @@ def main() -> None:
             if yr_str.isdigit():
                 seasons.append(int(yr_str))
     else:
-        seasons = list(config.SEASON_YEARS)
+        if hasattr(config, "SEASON_YEARS"):
+            seasons = list(config.SEASON_YEARS)
+        elif hasattr(config, "get_current_season_year"):
+            seasons = [int(config.get_current_season_year())]
+        else:
+            pbp_files = sorted(glob.glob(os.path.join(args.base_dir, "play", "*_playbyplay.csv")))
+            seasons = [int(os.path.basename(f)[:4]) for f in pbp_files if os.path.basename(f)[:4].isdigit()][-1:]
 
     for yr in seasons:
         res = enrich_season_xg(yr, base_dir=args.base_dir)

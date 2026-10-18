@@ -9,11 +9,13 @@ import datetime
 # Functions to process box scores
 from function.procs_boxscore import *
 from function.procs_xg import enrich_season_xg
-from config import get_box_dir, get_team_dir, BASE_DATA_DIR
+import config
+from config import get_box_dir, get_team_dir
 import os
 
 BOX_DIR = get_box_dir()
 TEAM_DIR = get_team_dir()
+BASE_DATA_DIR = getattr(config, "BASE_DATA_DIR", os.path.dirname(BOX_DIR.rstrip("/")) or "./latest")
 
 import glob
 
