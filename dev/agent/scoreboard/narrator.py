@@ -57,6 +57,41 @@ def resolve_zerogpu_model(model_override: Optional[str] = None) -> str:
         return str(model_override).strip()
     return discover_model_name(DEFAULT_ZEROGPU_MODEL)
 
+
+def _has_native_mamba_ssm() -> bool:
+    """Checks whether compiled CUDA/Triton mamba_ssm kernels are installed in the current environment."""
+    try:
+        import mamba_ssm.ops.triton.layernorm_gated  # noqa: F401
+        return True
+    except Exception:
+        return False
+
+
+def _resolve_zerogpu_weights_repo(model_id: Optional[str] = None) -> Tuple[str, str]:
+    """Maps configured Space model identifier to a transformers-compatible safetensors checkpoint.
+
+    Returns:
+        Tuple[weights_repo_id, display_model_id]
+    """
+    display_model = resolve_zerogpu_model(model_id)
+    low = display_model.lower()
+
+    # ModelOpt FP8 checkpoints (e.g. nvidia/NVIDIA-Nemotron-3-Nano-4B-FP8) store unscaled F8_E4M3 tensors
+    # without a transformers quantization_config, and Nemotron-3-Nano-4B requires mamba_ssm Triton kernels.
+    # When mamba_ssm is absent in the ZeroGPU container, use Qwen/Qwen2.5-3B-Instruct which runs natively
+    # via PyTorch SDPA/FlashAttention at ~180 tok/s with strict factual adherence and zero reasoning leakage.
+    if "nemotron-3-nano-4b" in low:
+        if _has_native_mamba_ssm():
+            return "nvidia/NVIDIA-Nemotron-3-Nano-4B-BF16", display_model
+        return "Qwen/Qwen2.5-3B-Instruct", display_model
+
+    if low.endswith("-fp8") and "nemotron" in low:
+        return "Qwen/Qwen2.5-3B-Instruct", display_model
+
+    return display_model, display_model
+
+
+
 # Safe import for Hugging Face Spaces ZeroGPU
 try:
     import spaces
@@ -74,75 +109,235 @@ except (ImportError, Exception):
 
 
 _ZEROGPU_CACHE: dict = {}
+_ZEROGPU_SNAPSHOT_DIRS: dict = {}
+_ZEROGPU_STARTUP_REPORTED: bool = False
 
 
-def _get_zerogpu_pipeline(model_id: Optional[str] = None):
+def _pre_download_zerogpu_model(model_id: Optional[str] = None) -> str:
+    """Pre-downloads model weights on CPU outside @spaces.GPU so ZeroGPU quota is never spent on network I/O."""
+    global _ZEROGPU_SNAPSHOT_DIRS
+    weights_repo, _ = _resolve_zerogpu_weights_repo(model_id)
+    if weights_repo in _ZEROGPU_SNAPSHOT_DIRS and os.path.isdir(_ZEROGPU_SNAPSHOT_DIRS[weights_repo]):
+        return _ZEROGPU_SNAPSHOT_DIRS[weights_repo]
+
+    if not HF_HUB_AVAILABLE:
+        return weights_repo
+
+    try:
+        from huggingface_hub import snapshot_download
+        token = discover_hf_token()
+        logger.info("Pre-caching model snapshot on CPU for ZeroGPU: %s...", weights_repo)
+        local_dir = snapshot_download(
+            repo_id=weights_repo,
+            token=token,
+            ignore_patterns=["*.msgpack", "*.h5", "consolidated*"],
+        )
+        _ZEROGPU_SNAPSHOT_DIRS[weights_repo] = local_dir
+        return local_dir
+    except Exception as e:
+        logger.warning("Snapshot pre-download warning for %s: %s", weights_repo, e)
+        return weights_repo
+
+
+def _prepare_zerogpu_messages(messages: list, weights_repo: str) -> list:
+    """Prepares chat messages for fast non-reasoning inference on Nemotron / Instruct models."""
+    prepared = []
+    is_nemotron = "nemotron" in weights_repo.lower()
+    for idx, msg in enumerate(messages):
+        role = msg.get("role", "user")
+        content = str(msg.get("content", ""))
+        if idx == 0 and role == "system" and is_nemotron and not content.lower().startswith("detailed thinking off"):
+            content = f"detailed thinking off\n\n{content}"
+        prepared.append({"role": role, "content": content})
+    return prepared
+
+
+def _get_zerogpu_pipeline(model_id: Optional[str] = None, local_model_dir: Optional[str] = None):
     """Lazy loader for in-process ZeroGPU model on Hugging Face Spaces with dynamic model caching."""
     global _ZEROGPU_CACHE
-    target_model = resolve_zerogpu_model(model_id)
+    weights_repo, display_model = _resolve_zerogpu_weights_repo(model_id)
+    load_source = local_model_dir or _ZEROGPU_SNAPSHOT_DIRS.get(weights_repo) or weights_repo
 
-    if target_model not in _ZEROGPU_CACHE:
+    if weights_repo not in _ZEROGPU_CACHE:
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
-        logger.info("Initializing in-process ZeroGPU model: %s...", target_model)
-        tokenizer = AutoTokenizer.from_pretrained(target_model, trust_remote_code=True)
-        model = AutoModelForCausalLM.from_pretrained(
-            target_model,
-            torch_dtype=torch.bfloat16,
-            device_map="auto",
-            trust_remote_code=True,
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        dtype = torch.bfloat16 if device == "cuda" else torch.float32
+        logger.info(
+            "Loading ZeroGPU model '%s' (configured: '%s') from '%s' onto %s...",
+            weights_repo,
+            display_model,
+            load_source,
+            device,
         )
-        _ZEROGPU_CACHE[target_model] = (model, tokenizer)
-    return _ZEROGPU_CACHE[target_model], target_model
+        tokenizer = AutoTokenizer.from_pretrained(load_source, trust_remote_code=True)
+        if tokenizer.pad_token_id is None and tokenizer.eos_token_id is not None:
+            tokenizer.pad_token_id = tokenizer.eos_token_id
+        model = AutoModelForCausalLM.from_pretrained(
+            load_source,
+            torch_dtype=dtype,
+            low_cpu_mem_usage=True,
+            trust_remote_code=True,
+        ).to(device)
+        model.eval()
+        _ZEROGPU_CACHE[weights_repo] = (model, tokenizer, weights_repo, display_model)
+    return _ZEROGPU_CACHE[weights_repo]
 
 
-@spaces.GPU(duration=120)
-def _zerogpu_infer(
+def _run_single_generation(
+    model,
+    tokenizer,
+    weights_repo: str,
     messages: list,
-    model_id: Optional[str] = None,
-    max_new_tokens: int = 1800,
+    max_new_tokens: int = 1150,
     temperature: float = 0.35,
 ) -> str:
-    """Runs generation inside Hugging Face Spaces ZeroGPU allocation."""
+    """Executes a single prompt generation on an already-loaded ZeroGPU model."""
     import torch
-    (model, tokenizer), target_model = _get_zerogpu_pipeline(model_id)
 
+    prepped_messages = _prepare_zerogpu_messages(messages, weights_repo)
     if hasattr(tokenizer, "apply_chat_template"):
         try:
             prompt = tokenizer.apply_chat_template(
-                messages,
+                prepped_messages,
                 tokenize=False,
                 add_generation_prompt=True,
                 enable_thinking=False,
             )
         except (TypeError, Exception):
             prompt = tokenizer.apply_chat_template(
-                messages,
+                prepped_messages,
                 tokenize=False,
                 add_generation_prompt=True,
             )
     else:
-        prompt = "\n".join(f"{m['role']}: {m['content']}" for m in messages) + "\nassistant:"
+        prompt = "\n".join(f"{m['role']}: {m['content']}" for m in prepped_messages) + "\nassistant:"
 
     pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else tokenizer.eos_token_id
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-    with torch.no_grad():
+    with torch.inference_mode():
         outputs = model.generate(
             **inputs,
             max_new_tokens=max_new_tokens,
             temperature=temperature,
             top_p=0.9,
-            do_sample=True,
+            repetition_penalty=1.08,
+            do_sample=(temperature > 0.05),
             pad_token_id=pad_id,
+            use_cache=True,
         )
     gen_tokens = outputs[0][inputs["input_ids"].shape[1]:]
-    response = tokenizer.decode(gen_tokens, skip_special_tokens=True)
-    return response
+    return tokenizer.decode(gen_tokens, skip_special_tokens=True)
+
+
+@spaces.GPU(duration=120)
+def _zerogpu_infer(
+    messages: list,
+    model_id: Optional[str] = None,
+    max_new_tokens: int = 1150,
+    temperature: float = 0.35,
+    local_model_dir: Optional[str] = None,
+) -> str:
+    """Runs single generation inside Hugging Face Spaces ZeroGPU allocation."""
+    model, tokenizer, weights_repo, _ = _get_zerogpu_pipeline(model_id, local_model_dir=local_model_dir)
+    return _run_single_generation(
+        model=model,
+        tokenizer=tokenizer,
+        weights_repo=weights_repo,
+        messages=messages,
+        max_new_tokens=max_new_tokens,
+        temperature=temperature,
+    )
+
+
+@spaces.GPU(duration=120)
+def _zerogpu_infer_batch(
+    batch_messages: list,
+    model_id: Optional[str] = None,
+    max_new_tokens: int = 1150,
+    temperature: float = 0.35,
+    local_model_dir: Optional[str] = None,
+) -> List[str]:
+    """Runs a batch of prompts inside a single Hugging Face Spaces ZeroGPU allocation without reloading weights."""
+    model, tokenizer, weights_repo, _ = _get_zerogpu_pipeline(model_id, local_model_dir=local_model_dir)
+    outputs: List[str] = []
+    for messages in batch_messages:
+        text = _run_single_generation(
+            model=model,
+            tokenizer=tokenizer,
+            weights_repo=weights_repo,
+            messages=messages,
+            max_new_tokens=max_new_tokens,
+            temperature=temperature,
+        )
+        outputs.append(text)
+    return outputs
+
+
+def ensure_zerogpu_startup_report() -> bool:
+    """Registers all decorated @spaces.GPU functions with the ZeroGPU device daemon."""
+    global _ZEROGPU_STARTUP_REPORTED
+    if _ZEROGPU_STARTUP_REPORTED:
+        return True
+    if not SPACES_AVAILABLE:
+        return False
+    try:
+        from spaces.zero import client as zero_client
+        zero_client.startup_report()
+        _ZEROGPU_STARTUP_REPORTED = True
+        logger.info("Successfully registered @spaces.GPU functions via spaces.zero.client.startup_report().")
+        return True
+    except Exception as e:
+        logger.debug("ZeroGPU startup_report note: %s", e)
+        return False
+
+
+def _call_zerogpu_with_auth(gpu_fn, *args, **kwargs):
+    """Invokes a @spaces.GPU function after ensuring startup_report and Gradio auth context."""
+    ensure_zerogpu_startup_report()
+
+    # If Gradio LocalContext has no active HTTP request (e.g. called from Streamlit or background thread),
+    # try without custom request first, and if quota/auth requires token or vice versa, fallback cleanly.
+    try:
+        return gpu_fn(*args, **kwargs)
+    except Exception as first_err:
+        err_msg = str(first_err)
+        hf_token = discover_hf_token()
+        if hf_token:
+            try:
+                from gradio.context import LocalContext
+
+                class _ZeroAuthHeaders(dict):
+                    pass
+
+                class _ZeroAuthRequest:
+                    pass
+
+                headers = _ZeroAuthHeaders({"x-ip-token": hf_token, " authorization": f"Bearer {hf_token}"})
+                headers.__dict__["x-ip-token"] = hf_token
+                req = _ZeroAuthRequest()
+                req.headers = headers
+                req.client = type("_Client", (), {"host": "127.0.0.1"})()
+
+                prev_req = LocalContext.request.get(None)
+                LocalContext.request.set(req)
+                try:
+                    return gpu_fn(*args, **kwargs)
+                finally:
+                    LocalContext.request.set(prev_req)
+            except Exception as second_err:
+                logger.warning("ZeroGPU fallback auth attempt failed (%s); original error: %s", second_err, err_msg)
+        raise first_err
+
+
+# Register @spaces.GPU functions at import time when running on ZeroGPU
+if SPACES_AVAILABLE and (os.environ.get("SPACES_ZERO_GPU") or os.environ.get("SPACE_ID")):
+    ensure_zerogpu_startup_report()
 
 
 def clean_llm_narrative(text: str) -> str:
-    """Strips reasoning tokens, thinking blocks, and internal monologue from LLM output."""
+    """Strips reasoning tokens, thinking blocks, echoed prompt ledgers, and internal monologue from LLM output."""
     if not text:
         return ""
 
@@ -151,7 +346,11 @@ def clean_llm_narrative(text: str) -> str:
     cleaned = re.sub(r"<thought>.*?</thought>", "", cleaned, flags=re.DOTALL | re.IGNORECASE)
     cleaned = re.sub(r"```(?:thought|thinking).*?```", "", cleaned, flags=re.DOTALL | re.IGNORECASE)
 
-    # 2. Split lines and filter out thinking/reasoning prefixes
+    # Strip inline Paragraph N (...): prefixes and raw uppercase enum codes like (TERRITORIAL_EXECUTION)
+    cleaned = re.sub(r"(?m)^(?:#{1,4}\s*)?(?:\*\*)?Paragraph\s*\d+\s*(?:\([^\n]*\))?\s*(?:\*\*)?\s*:\s*", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"[ \t]*\([A-Z]{3,}_[A-Z0-9_]+\)", "", cleaned)
+
+    # 2. Split lines and filter out thinking/reasoning prefixes and echoed prompt ledger lines
     lines = cleaned.strip().splitlines()
     filtered_lines = []
     skipping_preamble = True
@@ -182,15 +381,42 @@ def clean_llm_narrative(text: str) -> str:
         "here is the headline",
     )
 
+    echoed_ledger_prefixes = (
+        "final score & venue:",
+        "first star / catalyst:",
+        "verified scoring & roster ledger",
+        "chronological goals scored:",
+        "goaltenders (never credit",
+        "goaltenders:",
+        "primary editorial archetype:",
+        "editorial angle rationale:",
+        "paragraph-by-paragraph writing plan",
+        "write the article now:",
+    )
+
     for line in lines:
         stripped = line.strip()
         lower = stripped.lower()
+        if stripped in ("---", "***", "___"):
+            continue
+        if any(lower.startswith(p) for p in echoed_ledger_prefixes):
+            continue
+        if re.match(r"^(?:#{1,4}\s*)?(?:\*\*)?paragraph\s*\d+.*:\s*$", lower):
+            continue
+        if re.match(r"^[a-z .]+\(\d+\)\s+defeated\s+[a-z .]+\(\d+\)\s+in\s+final", lower):
+            continue
+        if re.match(r"^top\s+[a-z]{2,4}\s+skaters\s*:", lower):
+            continue
+        if re.match(r"^\d+\.\s+(?:1st|2nd|3rd|ot|overtime|so|shootout)\b", lower):
+            continue
+        if re.match(r"^-\s+[^\n]+\bgoaltender\b.*saves", lower):
+            continue
+
         if skipping_preamble:
             if not stripped:
                 continue
             if any(lower.startswith(p) for p in reasoning_prefixes):
                 continue
-            # Also skip markdown header labels like "### Paragraph 1: ...", "**Paragraph 1:**"
             if re.match(r"^(?:#{1,4}\s*)?(?:\*\*)?paragraph\s*\d.*", lower):
                 continue
             skipping_preamble = False
@@ -198,6 +424,7 @@ def clean_llm_narrative(text: str) -> str:
 
     result = "\n".join(filtered_lines).strip()
     return result
+
 
 
 def format_milestone_badge(category: str, title: str, description: str = "") -> str:
@@ -293,41 +520,49 @@ def extract_headline_and_narrative(
         s = line.strip()
         if not s:
             continue
-        if not found_headline:
-            if re.match(r"^(?:headline|title)\s*:\s*", s, re.IGNORECASE):
-                candidate = re.sub(r"^(?:headline|title)\s*:\s*", "", s, flags=re.IGNORECASE).strip().strip('"*#')
-                if candidate:
-                    headline = candidate
-                    found_headline = True
-                    continue
-            elif len(s.split()) <= 15 and not s.endswith((".", ";")) and not s.lower().startswith(("the ", "action ", "in ")):
-                candidate = s.strip('"*#')
-                if candidate:
-                    headline = candidate
-                    found_headline = True
-                    continue
+        s_unwrapped = s.strip('"*# ').strip()
+        if not s_unwrapped:
+            continue
 
-        # Strip any "RECAP:" or "ARTICLE:" markers
-        if re.match(r"^(?:recap|article)\s*:\s*$", s, re.IGNORECASE):
+        if not found_headline:
+            # Standalone "HEADLINE:" or "**HEADLINE:**" label on its own line -> skip so next line is captured
+            if re.match(r"^(?:headline|title)\s*:?\s*$", s_unwrapped, re.IGNORECASE):
+                continue
+            if re.match(r"^(?:headline|title)\s*:\s*", s_unwrapped, re.IGNORECASE):
+                candidate = re.sub(r"^(?:headline|title)\s*:\s*", "", s_unwrapped, flags=re.IGNORECASE).strip().strip('"*# ')
+                if candidate and candidate.lower() not in ("headline", "headline:", "title", "title:"):
+                    headline = candidate
+                    found_headline = True
+                continue
+            elif len(s_unwrapped.split()) <= 18 and not s_unwrapped.endswith((".", ";")) and not s_unwrapped.lower().startswith(("the ", "action ", "in ")):
+                if s_unwrapped.lower() not in ("headline", "headline:", "title", "title:"):
+                    headline = s_unwrapped
+                    found_headline = True
+                continue
+
+        # Strip any "RECAP:" or "ARTICLE:" markers or standalone markdown sub-headers
+        if re.match(r"^(?:recap|article|headline|title)\s*:?\s*$", s_unwrapped, re.IGNORECASE):
+            continue
+        if s.startswith("#") and len(s_unwrapped.split()) <= 16:
+            continue
+        if s.startswith("**") and s.endswith("**") and len(s_unwrapped.split()) <= 16 and not s_unwrapped.endswith("."):
             continue
         narrative_lines.append(line)
 
     # Validate headline against game period_type (prevent overtime/shootout hallucinations)
     h_lower = headline.lower()
-    if period_type == "REG" and ("overtime" in h_lower or "shootout" in h_lower or " ot " in h_lower):
+    if h_lower in ("headline", "headline:", "title", "title:") or len(headline.strip()) < 6:
+        headline = default_headline
+    elif period_type == "REG" and ("overtime" in h_lower or "shootout" in h_lower or " ot " in h_lower):
         headline = default_headline
     elif period_type == "OT" and "shootout" in h_lower:
         headline = default_headline
 
-    raw_paras = [p.strip() for p in "\n".join(narrative_lines).split("\n\n") if p.strip()]
-    if len(raw_paras) == 1 and "\n" in raw_paras[0]:
-        sub_lines = [l.strip() for l in raw_paras[0].split("\n") if l.strip()]
-        if len(sub_lines) >= 3 and all(len(l) >= 60 for l in sub_lines):
-            raw_paras = sub_lines
-
+    raw_paras = [p.strip() for p in narrative_lines if p.strip()]
     narrative = "\n\n".join(raw_paras).strip()
     narrative = expand_first_mention_abbreviations(narrative)
     return headline, narrative
+
 
 
 class NarratorEngine:
@@ -480,13 +715,17 @@ class NarratorEngine:
         6. Roster & Role Integrity: Rejects goalie-scoring-goal or skater-making-saves hallucinations
            and rejects hallucinated non-roster player names in headlines or possessives.
         """
-        if not narrative or len(narrative.strip()) < 120:
+        if not narrative or len(narrative.strip()) < 1100:
+            return False
+        paras = [p.strip() for p in narrative.strip().splitlines() if len(p.strip()) >= 80]
+        if len(paras) < 4:
+            logger.warning("Guardrail trigger: Narrative has fewer than 4 substantive paragraphs (%d paras).", len(paras))
             return False
 
         combined = f"{headline}\n{narrative}" if headline else narrative
         lower = combined.lower()
 
-        # REASONING LEAKAGE FILTER:
+        # REASONING & PROMPT-ECHO LEAKAGE FILTER:
         leak_phrases = (
             "i need to write",
             "alright, i need",
@@ -511,9 +750,13 @@ class NarratorEngine:
             "thinking process",
             "in the reg period",
             "of reg.",
+            "verified scoring & roster ledger",
+            "chronological goals scored:",
+            "away top skaters:",
+            "home top skaters:",
         )
         if any(phrase in lower for phrase in leak_phrases):
-            logger.warning("Guardrail trigger: Narrative contains internal model reasoning leakage or malformed period label.")
+            logger.warning("Guardrail trigger: Narrative contains internal model reasoning leakage, echoed prompt ledger, or malformed period label.")
             return False
 
         if "halftime" in lower:
@@ -640,9 +883,12 @@ class NarratorEngine:
             "campaign", "race", "standings",
             "it", "its", "there", "here", "that", "what", "who", "how", "let", "one", "someone", "anyone", "nobody", "everyone", "everybody",
             "rival", "rivalry", "canada", "america", "blueliner", "skater", "defenseman", "pairing", "corps", "depth", "tandem", "milestone", "record", "history", "momentum", "intermission",
+            "outburst", "barrage", "onslaught", "flurry", "blitz", "heroics", "masterpiece", "display", "performance", "gem", "finish", "playmaking", "scoring", "offense", "goaltending", "special", "teams",
+            "first-period", "second-period", "third-period", "two-goal", "three-goal", "four-goal", "two-point", "three-point", "four-point", "multi-goal", "multi-point", "late-game", "power-play",
             "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
             "october", "november", "december", "january", "february", "march", "april", "may", "june",
         }
+
         allowed_headline_tokens = roster_tokens | team_tokens | common_headline_words
 
         # Check possessive proper nouns in headline (e.g. "Tuch’s", "Knies's", "Coleman's")
@@ -917,17 +1163,25 @@ class NarratorEngine:
         game: AnalyzedGame,
         model_id: Optional[str] = None,
         temperature: float = 0.35,
-        max_tokens: int = 1800,
+        max_tokens: int = 1150,
     ) -> str:
         """Invokes in-process ZeroGPU allocation to generate game narrative."""
         target_model = resolve_zerogpu_model(model_id or self.zerogpu_model_id)
+        local_dir = _pre_download_zerogpu_model(target_model)
         system_prompt = self.build_game_llm_system_prompt()
         user_prompt = self.build_game_llm_user_prompt(game)
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ]
-        raw = _zerogpu_infer(messages, model_id=target_model, max_new_tokens=max_tokens, temperature=temperature)
+        raw = _call_zerogpu_with_auth(
+            _zerogpu_infer,
+            messages,
+            model_id=target_model,
+            max_new_tokens=max_tokens,
+            temperature=temperature,
+            local_model_dir=local_dir,
+        )
         cleaned = clean_llm_narrative(raw)
         return cleaned.strip()
 
@@ -936,19 +1190,133 @@ class NarratorEngine:
         slate: AnalyzedSlate,
         model_id: Optional[str] = None,
         temperature: float = 0.3,
-        max_tokens: int = 1200,
+        max_tokens: int = 950,
     ) -> str:
         """Invokes in-process ZeroGPU allocation for slate review."""
         target_model = resolve_zerogpu_model(model_id or self.zerogpu_model_id)
+        local_dir = _pre_download_zerogpu_model(target_model)
         system_prompt = self.build_slate_llm_system_prompt()
         user_prompt = self.build_slate_llm_user_prompt(slate)
         messages = [
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_prompt},
         ]
-        raw = _zerogpu_infer(messages, model_id=target_model, max_new_tokens=max_tokens, temperature=temperature)
+        raw = _call_zerogpu_with_auth(
+            _zerogpu_infer,
+            messages,
+            model_id=target_model,
+            max_new_tokens=max_tokens,
+            temperature=temperature,
+            local_model_dir=local_dir,
+        )
         cleaned = clean_llm_narrative(raw)
         return cleaned.strip()
+
+    def populate_games_narratives_zerogpu_batch(
+        self,
+        games: List[AnalyzedGame],
+        batch_size: int = 4,
+    ) -> bool:
+        """Synthesizes narratives for multiple games in batched ZeroGPU allocations to minimize model reload overhead."""
+        if not games or not self._can_use_zerogpu():
+            return False
+
+        target_model = resolve_zerogpu_model(self.zerogpu_model_id)
+        model_stamp = f"hf-space/{target_model}"
+        local_dir = _pre_download_zerogpu_model(target_model)
+        system_prompt = self.build_game_llm_system_prompt()
+
+        # Prepare all prompts on CPU before requesting GPU
+        pending_games: List[AnalyzedGame] = []
+        pending_messages: List[list] = []
+        for g in games:
+            if not g.headline:
+                g.headline = self.build_game_headline(g)
+            u_prompt = self.build_game_llm_user_prompt(g)
+            pending_games.append(g)
+            pending_messages.append([
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": u_prompt},
+            ])
+
+        any_succeeded = False
+        retry_games: List[AnalyzedGame] = []
+        retry_messages: List[list] = []
+
+        for start_idx in range(0, len(pending_games), batch_size):
+            chunk_games = pending_games[start_idx : start_idx + batch_size]
+            chunk_msgs = pending_messages[start_idx : start_idx + batch_size]
+            try:
+                logger.info(
+                    "Running ZeroGPU batch synthesis for games %d..%d of %d (%s)...",
+                    start_idx + 1,
+                    start_idx + len(chunk_games),
+                    len(pending_games),
+                    target_model,
+                )
+                raw_outputs = _call_zerogpu_with_auth(
+                    _zerogpu_infer_batch,
+                    chunk_msgs,
+                    model_id=target_model,
+                    max_new_tokens=1150,
+                    temperature=0.35,
+                    local_model_dir=local_dir,
+                )
+                for g, msg, raw_out in zip(chunk_games, chunk_msgs, raw_outputs):
+                    default_h = g.headline or self.build_game_headline(g)
+                    llm_h, narr = extract_headline_and_narrative(clean_llm_narrative(raw_out), default_h, g.period_type)
+                    if self._verify_game_narrative_facts(narr, g, headline=llm_h):
+                        g.headline = llm_h
+                        g.recap_narrative = narr.strip()
+                        g.generator_model = model_stamp
+                        g.full_report_markdown = self.generate_single_game_markdown(g)
+                        any_succeeded = True
+                    else:
+                        retry_games.append(g)
+                        retry_messages.append(msg)
+            except Exception as e:
+                self.last_zerogpu_error = f"{type(e).__name__}: {e}"
+                logger.warning("ZeroGPU batch chunk (%d..%d) failed: %s", start_idx + 1, start_idx + len(chunk_games), e)
+                for g, msg in zip(chunk_games, chunk_msgs):
+                    retry_games.append(g)
+                    retry_messages.append(msg)
+
+        # Focused retry pass (temperature=0.2) for any games that failed verification
+        if retry_games and any_succeeded:
+            for start_idx in range(0, len(retry_games), batch_size):
+                r_games = retry_games[start_idx : start_idx + batch_size]
+                r_msgs = retry_messages[start_idx : start_idx + batch_size]
+                try:
+                    raw_retries = _call_zerogpu_with_auth(
+                        _zerogpu_infer_batch,
+                        r_msgs,
+                        model_id=target_model,
+                        max_new_tokens=1150,
+                        temperature=0.2,
+                        local_model_dir=local_dir,
+                    )
+                    for g, raw_out in zip(r_games, raw_retries):
+                        default_h = g.headline or self.build_game_headline(g)
+                        llm_h, narr = extract_headline_and_narrative(clean_llm_narrative(raw_out), default_h, g.period_type)
+                        if self._verify_game_narrative_facts(narr, g, headline=llm_h):
+                            g.headline = llm_h
+                            g.recap_narrative = narr.strip()
+                            g.generator_model = model_stamp
+                            g.full_report_markdown = self.generate_single_game_markdown(g)
+                            any_succeeded = True
+                except Exception as e:
+                    logger.warning("ZeroGPU retry batch failed: %s", e)
+
+        # Ensure any remaining unpopulated games get standard fallback
+        for g in games:
+            if not getattr(g, "recap_narrative", ""):
+                narr, stamp = self.build_game_narrative(g)
+                g.recap_narrative = narr
+                g.generator_model = stamp
+                g.full_report_markdown = self.generate_single_game_markdown(g)
+
+        return any_succeeded
+
 
     # =========================================================================
     # 3. Algorithmic NLG Engine (Deterministic, Zero-Cost Fallback)
@@ -1510,7 +1878,10 @@ class NarratorEngine:
     def format_narrative_engine_badge(self, model_stamp: str) -> str:
         """Returns clean human-readable badge for the active narrative engine."""
         m = str(model_stamp).lower()
-        if "lm-studio" in m:
+        if "hf-space" in m or "zerogpu" in m:
+            clean_name = model_stamp.replace("hf-space/", "").replace("zerogpu/", "").strip()
+            return f"Hugging Face Space - Rinklytics ({clean_name})"
+        elif "lm-studio" in m:
             clean_name = model_stamp.replace("lm-studio/", "").split("/")[-1]
             return f"LM Studio ({clean_name})"
         elif "llama" in m:
@@ -1519,6 +1890,7 @@ class NarratorEngine:
             return f"Local LLM ({model_stamp})"
         else:
             return "Algorithmic Engine"
+
 
     def generate_single_game_markdown(self, game: AnalyzedGame) -> str:
         """Render a single game into a publication-ready markdown document with all tables."""

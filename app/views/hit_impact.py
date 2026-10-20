@@ -115,6 +115,21 @@ def load_all_data():
 
     return df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial, team_name_map, df_eda_summary, df_eda_events, df_trans
 
+
+@st.cache_data(max_entries=1, ttl=3600)
+def load_shot_conversion_data():
+    """
+    Loads empirical shot-to-goal conversion dataset comparing baseline (no hit <=30s)
+    to post-hit conversion across D-zone, O-zone, and N-zone.
+    """
+    shot_conv_file = get_data_path("hit_shot_conversion_baseline.csv")
+    if os.path.exists(shot_conv_file):
+        try:
+            return pd.read_csv(shot_conv_file)
+        except Exception:
+            pass
+    return None
+
 def create_eda_first_event_chart(df_events, selected_zone="All"):
     """
     Constructs a horizontal grouped bar chart showing the immediate first event categories
@@ -401,75 +416,231 @@ def create_eda_zone_split_charts(df_summary):
     return fig_rec, fig_sog
 
 
-def create_eda_funnel_chart(df_summary, selected_zone="All"):
+def create_eda_shot_conversion_chart(df_conv, selected_zone="All", metric_mode="sog"):
     """
-    Constructs a bilateral conversion funnel comparing:
-    Hits (100) -> Shots on Goal Generated -> Goals Scored for Hitting Team vs. Opponent.
+    Constructs an empirical shot conversion comparison chart:
+    - Baseline: Goals per 100 Shots without any hit within 30 seconds prior.
+    - Post-Hit: Goals per 100 Shots within 30 seconds after hits for Hitting Team vs. Opponent.
     """
-    if df_summary is None or df_summary.empty:
+    if df_conv is None or df_conv.empty:
         return go.Figure()
 
-    if len(df_summary["zoneCode"].drop_duplicates()) < len(df_summary):
-        df_summary = aggregate_eda_summary(df_summary)
-
-    norm_zone = normalize_zone(selected_zone)
-    if norm_zone != "All":
-        matching = df_summary[df_summary["zoneCode"] == norm_zone]
-        if not matching.empty:
-            row = matching.iloc[0]
-            sog_for = row["sog_for_per_100"]
-            sog_agst = row["sog_against_per_100"]
-            goals_for = row["goals_for_per_100"]
-            goals_agst = row["goals_against_per_100"]
-        else:
-            sog_for, sog_agst, goals_for, goals_agst = 0, 0, 0, 0
-    else:
-        tot_hits = df_summary["total_hits"].sum()
-        sog_for = (df_summary["sog_for"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
-        sog_agst = (df_summary["sog_against"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
-        goals_for = (df_summary["goals_for"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
-        goals_agst = (df_summary["goals_against"].sum() / tot_hits) * 100 if tot_hits > 0 else 0
-
     cur_lang = st.session_state.get("lang", "EN")
-    if cur_lang == "FR":
-        stages = ["Mises en échec (Base 100)", "Tirs au but générés", "Buts marqués"]
-        y_label = "Taux pour 100 mises en échec"
-    else:
-        stages = ["Hits Delivered (100)", "Shots on Goal Generated", "Goals Scored"]
-        y_label = "Rate per 100 Hits"
+    is_sog = (metric_mode == "sog")
+    base_row = df_conv.iloc[0]
+    baseline_rate = float(base_row["baseline_goals_per_100_sog"] if is_sog else base_row["baseline_goals_per_100_attempts"])
+    baseline_shots = int(base_row["baseline_sog"] if is_sog else base_row["baseline_attempts"])
+    baseline_goals = int(base_row["baseline_goals"])
 
-    for_vals = [100.0, sog_for, goals_for]
-    agst_vals = [100.0, sog_agst, goals_agst]
+    y_title = "Goals per 100 Shots on Goal (Sh%)" if is_sog else "Goals per 100 Shot Attempts (Corsi)"
+    if cur_lang == "FR":
+        y_title = "Buts pour 100 tirs cadrés (Sh%)" if is_sog else "Buts pour 100 tentatives (Corsi)"
 
     fig = go.Figure()
-    fig.add_trace(go.Bar(
-        name=t("hit_owner_for", default="Hitting Team"),
-        x=stages,
-        y=for_vals,
-        marker_color="#10b981",
-        text=[f"{v:.1f}" if i < 2 else f"{v:.2f}" for i, v in enumerate(for_vals)],
-        textposition="outside"
-    ))
-    fig.add_trace(go.Bar(
-        name=t("hit_owner_against", default="Opponent"),
-        x=stages,
-        y=agst_vals,
-        marker_color="#ef4444",
-        text=[f"{v:.1f}" if i < 2 else f"{v:.2f}" for i, v in enumerate(agst_vals)],
-        textposition="outside"
-    ))
 
+    norm_zone = normalize_zone(selected_zone)
+    if norm_zone == "All":
+        zones = ["D", "O", "N", "All"]
+        if cur_lang == "FR":
+            z_labels = ["Zone défensive (D)", "Zone offensive (O)", "Zone neutre (N)", "Toutes zones"]
+            hitting_name = t("hit_owner_for", default="Équipe qui frappe", lang=cur_lang)
+            opp_name = t("hit_owner_against", default="Adversaire", lang=cur_lang)
+            base_annot = f"Niveau de référence : {baseline_rate:.2f}% (Sans contact <=30s)"
+        else:
+            z_labels = ["Defensive Zone (D)", "Offensive Zone (O)", "Neutral Zone (N)", "All Zones Combined"]
+            hitting_name = t("hit_owner_for", default="Hitting Team", lang=cur_lang)
+            opp_name = t("hit_owner_against", default="Opponent", lang=cur_lang)
+            base_annot = f"Baseline: {baseline_rate:.2f}% (No Hit Prior <=30s)"
+
+        for_rates = []
+        agst_rates = []
+        for_hover = []
+        agst_hover = []
+
+        for z in zones:
+            m = df_conv[df_conv["hit_zone"] == z]
+            if not m.empty:
+                r = m.iloc[0]
+                fr = float(r["for_goals_per_100_sog"] if is_sog else r["for_goals_per_100_attempts"])
+                ar = float(r["agst_goals_per_100_sog"] if is_sog else r["agst_goals_per_100_attempts"])
+                fs = int(r["for_sog"] if is_sog else r["for_attempts"])
+                fg = int(r["for_goals"])
+                as_cnt = int(r["agst_sog"] if is_sog else r["agst_attempts"])
+                ag = int(r["agst_goals"])
+            else:
+                fr, ar, fs, fg, as_cnt, ag = 0.0, 0.0, 0, 0, 0, 0
+
+            for_rates.append(fr)
+            agst_rates.append(ar)
+            for_hover.append(f"<b>{hitting_name}</b><br>Conversion: {fr:.2f}%<br>Goals: {fg:,} / Shots: {fs:,}<br>vs Baseline: {fr - baseline_rate:+.2f}%<extra></extra>")
+            agst_hover.append(f"<b>{opp_name}</b><br>Conversion: {ar:.2f}%<br>Goals: {ag:,} / Shots: {as_cnt:,}<br>vs Baseline: {ar - baseline_rate:+.2f}%<extra></extra>")
+
+        fig.add_trace(go.Bar(
+            name=hitting_name,
+            x=z_labels,
+            y=for_rates,
+            marker_color="#10b981",
+            text=[f"{v:.2f}%" for v in for_rates],
+            textposition="outside",
+            hovertemplate=for_hover
+        ))
+        fig.add_trace(go.Bar(
+            name=opp_name,
+            x=z_labels,
+            y=agst_rates,
+            marker_color="#ef4444",
+            text=[f"{v:.2f}%" for v in agst_rates],
+            textposition="outside",
+            hovertemplate=agst_hover
+        ))
+
+        fig.add_hline(
+            y=baseline_rate,
+            line_dash="dash",
+            line_color="#38bdf8",
+            line_width=2.5,
+            annotation_text=base_annot,
+            annotation_position="top right",
+            annotation_font=dict(color="#38bdf8", size=11)
+        )
+    else:
+        m = df_conv[df_conv["hit_zone"] == norm_zone]
+        if m.empty:
+            return go.Figure()
+        r = m.iloc[0]
+        fr = float(r["for_goals_per_100_sog"] if is_sog else r["for_goals_per_100_attempts"])
+        ar = float(r["agst_goals_per_100_sog"] if is_sog else r["agst_goals_per_100_attempts"])
+        tr = float(r["tot_post_goals_per_100_sog"] if is_sog else r["tot_post_goals_per_100_attempts"])
+        fs = int(r["for_sog"] if is_sog else r["for_attempts"])
+        fg = int(r["for_goals"])
+        as_cnt = int(r["agst_sog"] if is_sog else r["agst_attempts"])
+        ag = int(r["agst_goals"])
+        ts = int(r["tot_post_sog"] if is_sog else r["tot_post_attempts"])
+        tg = int(r["tot_post_goals"])
+
+        if cur_lang == "FR":
+            cat_names = [
+                "Niveau de référence (Sans contact <=30s)",
+                "Équipe qui frappe (Post-contact)",
+                "Adversaire (Post-contact)",
+                "Moyenne combinée post-contact"
+            ]
+        else:
+            cat_names = [
+                "Baseline (No Hit Prior <=30s)",
+                "Hitting Team (Post-Hit)",
+                "Opponent (Post-Hit)",
+                "Combined Post-Hit Average"
+            ]
+        vals = [baseline_rate, fr, ar, tr]
+        bar_colors = ["#94a3b8", "#10b981", "#ef4444", "#3b82f6"]
+        hovers = [
+            f"<b>Baseline</b><br>Conversion: {baseline_rate:.2f}%<br>Goals: {baseline_goals:,} / Shots: {baseline_shots:,}<extra></extra>",
+            f"<b>Hitting Team</b><br>Conversion: {fr:.2f}%<br>Goals: {fg:,} / Shots: {fs:,}<br>vs Baseline: {fr - baseline_rate:+.2f}%<extra></extra>",
+            f"<b>Opponent</b><br>Conversion: {ar:.2f}%<br>Goals: {ag:,} / Shots: {as_cnt:,}<br>vs Baseline: {ar - baseline_rate:+.2f}%<extra></extra>",
+            f"<b>Combined</b><br>Conversion: {tr:.2f}%<br>Goals: {tg:,} / Shots: {ts:,}<br>vs Baseline: {tr - baseline_rate:+.2f}%<extra></extra>",
+        ]
+
+        fig.add_trace(go.Bar(
+            x=cat_names,
+            y=vals,
+            marker_color=bar_colors,
+            text=[f"{v:.2f}%" for v in vals],
+            textposition="outside",
+            hovertemplate=hovers
+        ))
+        fig.add_hline(
+            y=baseline_rate,
+            line_dash="dash",
+            line_color="#38bdf8",
+            line_width=2.0
+        )
+
+    max_val = max(12.0, baseline_rate * 1.35)
     fig.update_layout(
         barmode="group",
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         font=dict(color="white"),
-        height=340,
-        margin=dict(l=10, r=10, t=30, b=10),
-        yaxis_title=y_label,
+        height=360,
+        margin=dict(l=10, r=10, t=35, b=10),
+        yaxis=dict(title=y_title, range=[0, max_val]),
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
     )
     return fig
+
+
+def create_eda_shot_conversion_table(df_conv, selected_zone="All", metric_mode="sog"):
+    """
+    Constructs a structured DataFrame detailing shot volume and conversion percentage
+    for Hitting Team, Opponent, Combined Post-Hit, and League Baseline.
+    """
+    if df_conv is None or df_conv.empty:
+        return pd.DataFrame()
+    cur_lang = st.session_state.get("lang", "EN")
+    is_sog = (metric_mode == "sog")
+    base_row = df_conv.iloc[0]
+    base_rate = float(base_row["baseline_goals_per_100_sog"] if is_sog else base_row["baseline_goals_per_100_attempts"])
+    base_shots = int(base_row["baseline_sog"] if is_sog else base_row["baseline_attempts"])
+    base_goals = int(base_row["baseline_goals"])
+
+    rows = []
+    norm_zone = normalize_zone(selected_zone)
+    zones = ["D", "O", "N", "All"] if norm_zone == "All" else [norm_zone]
+
+    zone_names_en = {
+        "D": "Defensive Zone (D)",
+        "O": "Offensive Zone (O)",
+        "N": "Neutral Zone (N)",
+        "All": "All Hits Combined"
+    }
+    zone_names_fr = {
+        "D": "Zone défensive (D)",
+        "O": "Zone offensive (O)",
+        "N": "Zone neutre (N)",
+        "All": "Toutes zones confondues"
+    }
+    z_map = zone_names_fr if cur_lang == "FR" else zone_names_en
+
+    for z in zones:
+        m = df_conv[df_conv["hit_zone"] == z]
+        if m.empty:
+            continue
+        r = m.iloc[0]
+        z_label = z_map.get(z, z)
+
+        fs = int(r["for_sog"] if is_sog else r["for_attempts"])
+        fg = int(r["for_goals"])
+        fr = float(r["for_goals_per_100_sog"] if is_sog else r["for_goals_per_100_attempts"])
+
+        as_cnt = int(r["agst_sog"] if is_sog else r["agst_attempts"])
+        ag = int(r["agst_goals"])
+        ar = float(r["agst_goals_per_100_sog"] if is_sog else r["agst_goals_per_100_attempts"])
+
+        ts = int(r["tot_post_sog"] if is_sog else r["tot_post_attempts"])
+        tg = int(r["tot_post_goals"])
+        tr = float(r["tot_post_goals_per_100_sog"] if is_sog else r["tot_post_goals_per_100_attempts"])
+
+        if cur_lang == "FR":
+            rows.append({"Zone": z_label, "Rôle / Contexte": "Équipe qui frappe (Pour)", "Tirs": f"{fs:,}", "Buts": f"{fg:,}", "Taux de conversion (%)": f"{fr:.2f}%", "Niveau de référence (%)": f"{base_rate:.2f}%", "Écart vs Référence": f"{fr - base_rate:+.2f}%"})
+            rows.append({"Zone": z_label, "Rôle / Contexte": "Adversaire (Contre)", "Tirs": f"{as_cnt:,}", "Buts": f"{ag:,}", "Taux de conversion (%)": f"{ar:.2f}%", "Niveau de référence (%)": f"{base_rate:.2f}%", "Écart vs Référence": f"{ar - base_rate:+.2f}%"})
+            rows.append({"Zone": z_label, "Rôle / Contexte": "Total combiné post-contact", "Tirs": f"{ts:,}", "Buts": f"{tg:,}", "Taux de conversion (%)": f"{tr:.2f}%", "Niveau de référence (%)": f"{base_rate:.2f}%", "Écart vs Référence": f"{tr - base_rate:+.2f}%"})
+        else:
+            rows.append({"Zone": z_label, "Context / Role": "Hitting Team (For)", "Shots": f"{fs:,}", "Goals": f"{fg:,}", "Conversion Rate (%)": f"{fr:.2f}%", "Baseline Rate (%)": f"{base_rate:.2f}%", "Delta vs Baseline": f"{fr - base_rate:+.2f}%"})
+            rows.append({"Zone": z_label, "Context / Role": "Opponent (Against)", "Shots": f"{as_cnt:,}", "Goals": f"{ag:,}", "Conversion Rate (%)": f"{ar:.2f}%", "Baseline Rate (%)": f"{base_rate:.2f}%", "Delta vs Baseline": f"{ar - base_rate:+.2f}%"})
+            rows.append({"Zone": z_label, "Context / Role": "Combined Post-Hit Average", "Shots": f"{ts:,}", "Goals": f"{tg:,}", "Conversion Rate (%)": f"{tr:.2f}%", "Baseline Rate (%)": f"{base_rate:.2f}%", "Delta vs Baseline": f"{tr - base_rate:+.2f}%"})
+
+    if cur_lang == "FR":
+        rows.append({"Zone": "Référence de la ligue", "Rôle / Contexte": "Jeu sans contact (<=30s sans mise en échec)", "Tirs": f"{base_shots:,}", "Buts": f"{base_goals:,}", "Taux de conversion (%)": f"{base_rate:.2f}%", "Niveau de référence (%)": f"{base_rate:.2f}%", "Écart vs Référence": "0.00% (Benchmark)"})
+    else:
+        rows.append({"Zone": "League Baseline", "Context / Role": "Open Play (No Hit Prior <=30s)", "Shots": f"{base_shots:,}", "Goals": f"{base_goals:,}", "Conversion Rate (%)": f"{base_rate:.2f}%", "Baseline Rate (%)": f"{base_rate:.2f}%", "Delta vs Baseline": "0.00% (Benchmark)"})
+
+    return pd.DataFrame(rows)
+
+
+def create_eda_funnel_chart(df_summary, selected_zone="All"):
+    """Backward compatibility alias for create_eda_shot_conversion_chart."""
+    return create_eda_shot_conversion_chart(df_summary, selected_zone=selected_zone)
 
 
 def create_eda_zone_exit_donut(df_summary):
@@ -2010,6 +2181,7 @@ def show():
     """, unsafe_allow_html=True)
 
     df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial, team_name_map, df_eda_summary, df_eda_events, df_trans = load_all_data()
+    df_shot_conv = load_shot_conversion_data()
 
     if any(x is None for x in [df_kpi, df_seq, df_goals, df_grid, df_team_kpi, df_team_spatial]):
         st.error(t("hit_data_not_found"))
@@ -2053,10 +2225,15 @@ def show():
         active_team_kpi = aggregate_team_kpi(df_team_kpi)
         active_summary = aggregate_eda_summary(df_eda_summary)
         active_events = aggregate_eda_events(df_eda_events)
+        active_shot_conv = df_shot_conv[df_shot_conv["season"].astype(str) == "ALL"].copy() if df_shot_conv is not None else None
     else:
         active_kpi = df_kpi[df_kpi["season"].astype(str) == str(selected_season)].copy() if "season" in df_kpi.columns else df_kpi.copy()
         if active_kpi.empty and not df_kpi.empty:
             active_kpi = df_kpi.copy()
+
+        active_shot_conv = df_shot_conv[df_shot_conv["season"].astype(str) == str(selected_season)].copy() if df_shot_conv is not None else None
+        if (active_shot_conv is None or active_shot_conv.empty) and df_shot_conv is not None:
+            active_shot_conv = df_shot_conv[df_shot_conv["season"].astype(str) == "ALL"].copy()
 
         active_seq = df_seq[df_seq["season"].astype(str) == str(selected_season)].copy() if "season" in df_seq.columns else df_seq.copy()
         if active_seq.empty and not df_seq.empty:
@@ -2159,8 +2336,8 @@ def show():
             **{t("hit_exp_eda_sec3_title")}**
             {t("hit_exp_eda_sec3_p1")}
             """)
-            st.latex(r"\text{SOG Rate / 100 Hits} = \frac{100}{N} \sum_{i=1}^{N} \mathbb{I}(E_{k+1, i} = \text{Shot on Goal})")
-            st.latex(r"\text{Goal Rate / 100 Hits} = \frac{100}{N} \sum_{i=1}^{N} \mathbb{I}(E_{k+1, i} = \text{Goal})")
+            st.latex(r"\text{Baseline Conversion } Sh\%_{\text{baseline}} = \frac{\sum \text{Goals}_{(\text{No Hit } \le 30\text{s})}}{\sum \text{SOG}_{(\text{No Hit } \le 30\text{s})}} \times 100")
+            st.latex(r"\text{Post-Hit Conversion } Sh\%_{\text{post-hit}}(Z) = \frac{\sum \text{Goals}_{(Z, \le 30\text{s})}}{\sum \text{SOG}_{(Z, \le 30\text{s})}} \times 100")
 
         # Top EDA Baseline KPI Cards (Clean metrics without misleading trend arrows)
         tot_all_hits = active_summary["total_hits"].sum() if not active_summary.empty else 0
@@ -2168,7 +2345,7 @@ def show():
         d_row_kpi = active_summary[active_summary["zoneCode"] == "D"].iloc[0] if not active_summary[active_summary["zoneCode"] == "D"].empty else None
         o_row_kpi = active_summary[active_summary["zoneCode"] == "O"].iloc[0] if not active_summary[active_summary["zoneCode"] == "O"].empty else None
 
-        k1, k2, k3, k4 = st.columns(4)
+        k1, k2 = st.columns(2)
         k1.metric(
             t("hit_eda_kpi_sample"),
             f"{tot_all_hits:,}",
@@ -2181,6 +2358,8 @@ def show():
             delta_color="inverse",
             help=t("hit_eda_kpi_rec_help")
         )
+
+        k3, k4 = st.columns(2)
         k3.metric(
             t("hit_eda_kpi_forecheck_rec"),
             f"{o_row_kpi['recovery_pct']:.1f}%" if o_row_kpi is not None else "53.1%",
@@ -2253,12 +2432,13 @@ def show():
         st.markdown("---")
 
         # ----------------------------------------------------------------------
-        # SECTION 3: SHOT-TO-GOAL CONVERSION FUNNEL
+        # SECTION 3: GOAL SCORING LIKELIHOOD: POST-HIT CONVERSION VS. BASELINE
         # ----------------------------------------------------------------------
         st.subheader(t("hit_eda_sec3_heading"))
         st.markdown(t("hit_eda_sec3_intro"))
 
-        col_f_sel, _ = st.columns([2.5, 1])
+        # Conversion Basis & Zone Controls
+        col_f_sel, col_m_sel = st.columns([1.6, 2])
         with col_f_sel:
             prev_funnel_zone = st.session_state.get("eda_sec3_funnel_zone_val", "All")
             zf_idx = eda_zone_opts.index(prev_funnel_zone) if prev_funnel_zone in eda_zone_opts else 0
@@ -2275,7 +2455,74 @@ def show():
             )
             st.session_state.eda_sec3_funnel_zone_val = selected_funnel_zone
 
-        st.plotly_chart(create_eda_funnel_chart(active_summary, selected_funnel_zone), width="stretch", key="eda_funnel_chart")
+        with col_m_sel:
+            metric_basis = st.radio(
+                t("hit_eda_sec3_metric_label"),
+                options=["sog", "attempts"],
+                format_func=lambda x: t("hit_eda_sec3_metric_sog") if x == "sog" else t("hit_eda_sec3_metric_attempts"),
+                horizontal=True,
+                key=f"eda_sec3_metric_basis_{cur_l}"
+            )
+
+        # Baseline and Post-Hit KPI Summary Cards (2 by 2 view)
+        if active_shot_conv is not None and not active_shot_conv.empty:
+            base_row = active_shot_conv.iloc[0]
+            d_sub = active_shot_conv[active_shot_conv["hit_zone"] == "D"]
+            o_sub = active_shot_conv[active_shot_conv["hit_zone"] == "O"]
+
+            if metric_basis == "attempts":
+                b_rate = float(base_row["baseline_goals_per_100_attempts"])
+                d_agst = float(d_sub["agst_goals_per_100_attempts"].iloc[0]) if not d_sub.empty else 4.43
+                d_for = float(d_sub["for_goals_per_100_attempts"].iloc[0]) if not d_sub.empty else 5.19
+                o_for = float(o_sub["for_goals_per_100_attempts"].iloc[0]) if not o_sub.empty else 4.43
+            else:
+                b_rate = float(base_row["baseline_goals_per_100_sog"])
+                d_agst = float(d_sub["agst_goals_per_100_sog"].iloc[0]) if not d_sub.empty else 8.69
+                d_for = float(d_sub["for_goals_per_100_sog"].iloc[0]) if not d_sub.empty else 8.91
+                o_for = float(o_sub["for_goals_per_100_sog"].iloc[0]) if not o_sub.empty else 8.58
+
+            c_sc1, c_sc2 = st.columns(2)
+            c_sc1.metric(
+                t("hit_eda_sec3_kpi_baseline"),
+                f"{b_rate:.2f}%",
+                help=t("hit_eda_sec3_kpi_baseline_help")
+            )
+            c_sc2.metric(
+                t("hit_eda_sec3_kpi_d_agst"),
+                f"{d_agst:.2f}%",
+                f"{d_agst - b_rate:+.2f}% vs Baseline",
+                delta_color="normal",
+                help=t("hit_eda_sec3_kpi_d_agst_help")
+            )
+
+            c_sc3, c_sc4 = st.columns(2)
+            c_sc3.metric(
+                t("hit_eda_sec3_kpi_d_for"),
+                f"{d_for:.2f}%",
+                f"{d_for - b_rate:+.2f}% vs Baseline",
+                delta_color="normal",
+                help=t("hit_eda_sec3_kpi_d_for_help")
+            )
+            c_sc4.metric(
+                t("hit_eda_sec3_kpi_o_for"),
+                f"{o_for:.2f}%",
+                f"{o_for - b_rate:+.2f}% vs Baseline",
+                delta_color="normal",
+                help=t("hit_eda_sec3_kpi_o_for_help")
+            )
+
+        chart_data = active_shot_conv if active_shot_conv is not None and not active_shot_conv.empty else active_summary
+        st.plotly_chart(
+            create_eda_shot_conversion_chart(chart_data, selected_funnel_zone, metric_mode=metric_basis),
+            width="stretch",
+            key="eda_shot_conversion_chart"
+        )
+
+        # Detailed breakdown table
+        if active_shot_conv is not None and not active_shot_conv.empty:
+            with st.expander(f"📊 {t('hit_eda_sec3_table_title')}", expanded=False):
+                df_table = create_eda_shot_conversion_table(active_shot_conv, selected_funnel_zone, metric_mode=metric_basis)
+                st.dataframe(df_table, hide_index=True, use_container_width=True)
 
         st.info(t("hit_eda_sec3_takeaways"))
 

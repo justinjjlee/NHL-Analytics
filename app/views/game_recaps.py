@@ -254,6 +254,7 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
             return False
 
         # Record to Hugging Face dataset store
+        store._load_tables(refresh_remote=True)
         slate_model = getattr(analyzed_slate, "generator_model", "algorithmic-guardrails-v1")
         game_model = (
             getattr(analyzed_games[0], "generator_model", "algorithmic-guardrails-v1")
@@ -265,7 +266,9 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
 
         # Push to Hugging Face if HF_TOKEN is present
         if store.token:
-            sync_res = store.sync_to_huggingface()
+            sync_res = store.sync_to_huggingface(
+                commit_message=f"Update Scoreboard recaps for {target_date} ({slate_model})"
+            )
             if sync_res.get("success"):
                 st.toast("☁️ Synced to Hugging Face dataset `insights/scoreboard/` (jjerlee/nhl-analytics)!")
 
@@ -274,6 +277,7 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
 
         st.success(f"Successfully generated recaps for {target_date}!")
         return True
+
 
 
 
@@ -460,6 +464,9 @@ def render_game_recaps_view():
             return d_str
 
     is_local = is_local_streamlit()
+    if not store.is_slate_recorded(target_date) or not store.is_slate_llm_generated(target_date):
+        store._load_tables(refresh_remote=not is_local)
+
     is_recorded = store.is_slate_recorded(target_date)
     is_llm = store.is_slate_llm_generated(target_date) if is_recorded else False
     slate_record = store.get_slate_record(target_date) if is_recorded else None
@@ -467,6 +474,21 @@ def render_game_recaps_view():
     has_narratives = bool(
         is_recorded and slate_record and game_records and any(g.get("narrative_recap") for g in game_records)
     )
+
+    # Check if background ZeroGPU auto-synthesis worker is currently active
+    lock_file = store.local_dir / ".synthesis.lock"
+    if not is_local and lock_file.exists():
+        try:
+            import time as _time
+            lock_data = json.loads(lock_file.read_text(encoding="utf-8"))
+            if _time.time() - float(lock_data.get("started_at", 0)) < 600:
+                st.info(
+                    f"⚡ **ZeroGPU Auto-Synthesis Active**: Background worker is currently synthesizing LLM recaps for "
+                    f"**{lock_data.get('date', target_date)}**. Refresh in ~60 seconds to view upgraded LLM insights."
+                )
+        except Exception:
+            pass
+
 
     trigger_generate = False
 

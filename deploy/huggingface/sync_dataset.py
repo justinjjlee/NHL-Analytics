@@ -690,12 +690,20 @@ def sync_scoreboard_recaps(
         store = HFScoreboardStore(repo_id=repo_id, token=token)
         store._load_tables(refresh_remote=True)
 
-        missing_dates = [d for d in target_dates if not store.is_slate_recorded(d)]
-        if not missing_dates:
-            print(f"   ✓ insights/scoreboard recaps are up-to-date for recent dates ({', '.join(target_dates)}).")
-            return False
-
         agent = ScoreboardAgent()
+        can_generate_llm = False
+        if agent.narrator._can_use_zerogpu():
+            can_generate_llm = True
+        else:
+            is_lm_up, _, _ = agent.narrator.check_lm_studio_health()
+            if is_lm_up:
+                can_generate_llm = True
+
+        if can_generate_llm:
+            missing_dates = [d for d in target_dates if not store.is_slate_llm_generated(d)]
+        else:
+            missing_dates = [d for d in target_dates if not store.is_slate_recorded(d)]
+
         modified = False
         for d_str in sorted(missing_dates):
             print(f"   ✍️ Generating Scoreboard recaps for {d_str}...")
@@ -705,6 +713,9 @@ def sync_scoreboard_recaps(
                 store.record_games(slate.games, generator_model=getattr(slate.games[0], "generator_model", "algorithmic-guardrails-v1"))
                 modified = True
 
+        if not modified and all(store.is_slate_llm_generated(d) for d in target_dates):
+            print(f"   ✓ insights/scoreboard LLM recaps are up-to-date for recent dates ({', '.join(target_dates)}).")
+
         if modified:
             recap_stage_dir = staging_dir / "insights" / "scoreboard"
             recap_stage_dir.mkdir(parents=True, exist_ok=True)
@@ -713,10 +724,23 @@ def sync_scoreboard_recaps(
             if store.slate_recaps_file.exists():
                 shutil.copy2(store.slate_recaps_file, recap_stage_dir / "slate_recaps.parquet")
             print("   🔄 Staged insights/scoreboard/game_recaps.parquet and slate_recaps.parquet.")
+
+        # If any recent date is still only algorithmic (e.g. synced from a headless CI runner),
+        # wake/restart the Hugging Face Space so its ZeroGPU worker upgrades it to Tier-2 LLM recaps.
+        non_llm_dates = [d for d in target_dates if not store.is_slate_llm_generated(d)]
+        if non_llm_dates:
+            try:
+                if token and HF_HUB_AVAILABLE:
+                    HfApi(token=token).restart_space("jjerlee/rinklytics")
+                    print(f"   ⚡ Triggered Hugging Face Space (jjerlee/rinklytics) ZeroGPU worker to upgrade {', '.join(non_llm_dates)} to LLM recaps.")
+            except Exception as wake_err:
+                print(f"   ℹ️ Note waking Hugging Face Space: {wake_err}")
+
         return modified
     except Exception as e:
         print(f"   ⚠️ Warning in sync_scoreboard_recaps: {e}")
         return False
+
 
 
 # -----------------------------------------------------------------------------

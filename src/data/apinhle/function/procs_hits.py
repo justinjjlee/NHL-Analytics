@@ -1090,7 +1090,8 @@ class HitAnalyticsProcessor:
             "team_season_hit_kpi.csv",
             "team_season_spatial_hits.csv",
             "hit_goal_window_30s.csv",
-            "hit_sequence_transitions.csv"
+            "hit_sequence_transitions.csv",
+            "hit_shot_conversion_baseline.csv"
         ]
 
         for target_dir in [self.impact_data_dir, self.app_eda_dir, self.dev_eda_dir]:

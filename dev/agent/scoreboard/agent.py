@@ -12,11 +12,13 @@ from typing import Dict, List, Optional
 try:
     from .analyzer import GameAnalyzer, SlateAnalyzer
     from .client import NHLScoreboardClient
+    from .env_utils import is_local_streamlit
     from .models import AnalyzedGame, AnalyzedSlate
     from .narrator import NarratorEngine
 except (ImportError, ValueError):
     from analyzer import GameAnalyzer, SlateAnalyzer
     from client import NHLScoreboardClient
+    from env_utils import is_local_streamlit
     from models import AnalyzedGame, AnalyzedSlate
     from narrator import NarratorEngine
 
@@ -118,21 +120,45 @@ class ScoreboardAgent:
         logger.info("Analyzing %d games on %s...", len(target_games), date_str)
         analyzed_games: List[AnalyzedGame] = []
 
-        for g in target_games:
-            game_id = g.get("id")
-            if not game_id:
-                continue
-            try:
-                analyzed = self.analyze_game(game_id, save_report=False, force_mode=game_narrative_mode)
-                analyzed_games.append(analyzed)
-            except Exception as e:
-                logger.error("Error analyzing game %s: %s", game_id, e)
+        effective_mode = game_narrative_mode or self.narrator.model_mode
+        use_batch_zerogpu = (
+            not is_local_streamlit()
+            and self.narrator._can_use_zerogpu()
+            and effective_mode != "algorithmic"
+        )
+
+        if use_batch_zerogpu and target_games:
+            for g in target_games:
+                game_id = g.get("id")
+                if not game_id:
+                    continue
+                try:
+                    logger.info("Ingesting game feeds for game ID: %d", game_id)
+                    bundle = self.client.get_game_bundle(game_id)
+                    analyzed = GameAnalyzer(bundle).analyze()
+                    analyzed.headline = self.narrator.build_game_headline(analyzed)
+                    analyzed_games.append(analyzed)
+                except Exception as e:
+                    logger.error("Error analyzing game %s: %s", game_id, e)
+
+            if analyzed_games:
+                self.narrator.populate_games_narratives_zerogpu_batch(analyzed_games, batch_size=4)
+        else:
+            for g in target_games:
+                game_id = g.get("id")
+                if not game_id:
+                    continue
+                try:
+                    analyzed = self.analyze_game(game_id, save_report=False, force_mode=game_narrative_mode)
+                    analyzed_games.append(analyzed)
+                except Exception as e:
+                    logger.error("Error analyzing game %s: %s", game_id, e)
 
         # Collective Slate Analysis
         slate_analyzer = SlateAnalyzer(date_str, analyzed_games)
         slate = slate_analyzer.analyze()
 
-        slate_narrative, slate_model = self.narrator.build_slate_narrative(slate)
+        slate_narrative, slate_model = self.narrator.build_slate_narrative(slate, force_mode=game_narrative_mode)
         slate.executive_summary = slate_narrative
         slate.generator_model = slate_model
 
@@ -144,6 +170,7 @@ class ScoreboardAgent:
             logger.info("Saved slate recap report to %s", out_path)
 
         return slate
+
 
     def generate_llm_synthesis_prompt(self, slate: AnalyzedSlate) -> str:
         """

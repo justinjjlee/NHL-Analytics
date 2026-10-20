@@ -91,7 +91,7 @@ def main():
         target_date = agent.get_latest_date()
 
     print(f"\n🏒 Running Scoreboard Agent for Slate Date: {target_date}...")
-    game_mode = None if args.all_games_llm else "algorithmic"
+    game_mode = "algorithmic" if args.mode == "algorithmic" else None
     slate = agent.analyze_slate(target_date, save_report=not args.no_save, game_narrative_mode=game_mode)
 
     print(f"\n✅ Slate Analysis Complete for {slate.date}:")
@@ -117,9 +117,31 @@ def main():
         except ImportError:
             from dataset_store import HFScoreboardStore
         store = HFScoreboardStore()
-        store.record_slate(slate)
-        store.record_games(slate.games)
+        store._load_tables(refresh_remote=True)
+        slate_model = getattr(slate, "generator_model", "algorithmic-guardrails-v1")
+        game_model = (
+            getattr(slate.games[0], "generator_model", "algorithmic-guardrails-v1")
+            if slate.games
+            else slate_model
+        )
+        store.record_slate(slate, generator_model=slate_model)
+        store.record_games(slate.games, generator_model=game_model)
         print("✅ Finished recording to Hugging Face dataset store!")
+
+        # If running in a headless CI environment that only produced Tier-1 algorithmic recaps,
+        # wake/restart the Hugging Face Space so its ZeroGPU worker upgrades the date to Tier-2 LLM recaps.
+        if not store.is_slate_llm_generated(target_date):
+            try:
+                import requests
+                from huggingface_hub import HfApi
+                if store.token:
+                    HfApi(token=store.token).restart_space("jjerlee/rinklytics")
+                    print("⚡ Triggered Hugging Face Space (jjerlee/rinklytics) ZeroGPU worker to upgrade recaps to LLM.")
+                else:
+                    requests.get("https://jjerlee-rinklytics.hf.space", timeout=10)
+            except Exception as e:
+                print(f"ℹ️ Note waking Hugging Face Space: {e}")
+
 
     if args.llm_prompt:
         print("\n" + "-" * 70)
