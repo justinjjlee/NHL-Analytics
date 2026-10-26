@@ -182,17 +182,17 @@ season,hit_zone,event_step,event_owner,event_category,event_type,count,avg_delta
 20262027,N,4,Hitting Team,Shot Attempt,shot-on-goal,97,58.26,7.729
 20262027,N,4,Opponent,Physical Battle,hit,94,51.97,7.49
 20262027,N,4,Hitting Team,Stoppage,stoppage,89,49.45,7.092
-20262027,N,4,Hitting Team,Physical Battle,hit,87,58.47,6.932
 20262027,N,4,Opponent,Shot Attempt,shot-on-goal,87,47.75,6.932
+20262027,N,4,Hitting Team,Physical Battle,hit,87,58.47,6.932
 20262027,N,4,Opponent,Possession Change,giveaway,77,61.73,6.135
-20262027,N,4,Opponent,Shot Attempt,blocked-shot,68,50.68,5.418
 20262027,N,4,Hitting Team,Shot Attempt,blocked-shot,68,50.63,5.418
+20262027,N,4,Opponent,Shot Attempt,blocked-shot,68,50.68,5.418
 20262027,N,4,Hitting Team,Shot Attempt,missed-shot,58,55.19,4.622
 20262027,N,4,Hitting Team,Possession Change,giveaway,52,56.85,4.143
 20262027,N,4,Opponent,Shot Attempt,missed-shot,49,52.76,3.904
 20262027,N,4,Opponent,Stoppage,penalty,19,28.32,1.514
-20262027,N,4,Hitting Team,Stoppage,penalty,17,27.12,1.355
 20262027,N,4,Hitting Team,Possession Change,takeaway,17,49.41,1.355
+20262027,N,4,Hitting Team,Stoppage,penalty,17,27.12,1.355
 20262027,N,4,Opponent,Possession Change,takeaway,14,54.21,1.116
 20262027,N,4,Opponent,Goal,goal,11,55.36,0.876
 20262027,N,4,Hitting Team,Stoppage,period-end,10,57.7,0.797
@@ -215,12 +215,12 @@ season,hit_zone,event_step,event_owner,event_category,event_type,count,avg_delta
 20262027,O,1,Opponent,Shot Attempt,missed-shot,143,19.79,3.752
 20262027,O,1,Hitting Team,Possession Change,takeaway,84,10.71,2.204
 20262027,O,1,Opponent,Possession Change,takeaway,63,16.35,1.653
-20262027,O,1,Hitting Team,Goal,goal,33,14.79,0.866
 20262027,O,1,Opponent,Stoppage,faceoff,33,11.64,0.866
+20262027,O,1,Hitting Team,Goal,goal,33,14.79,0.866
 20262027,O,1,Opponent,Goal,goal,23,16.91,0.604
 20262027,O,1,Hitting Team,Other,delayed-penalty,23,16.39,0.604
-20262027,O,1,Hitting Team,Stoppage,faceoff,22,16.95,0.577
 20262027,O,1,Hitting Team,Stoppage,period-end,22,18.27,0.577
+20262027,O,1,Hitting Team,Stoppage,faceoff,22,16.95,0.577
 20262027,O,1,Opponent,Other,delayed-penalty,21,13.62,0.551
 20262027,O,1,Opponent,Stoppage,period-end,20,29.65,0.525
 20262027,O,1,Opponent,Stoppage,penalty,7,6.86,0.184
@@ -288,8 +288,8 @@ season,hit_zone,event_step,event_owner,event_category,event_type,count,avg_delta
 20262027,O,4,Opponent,Shot Attempt,shot-on-goal,264,49.89,7.101
 20262027,O,4,Opponent,Stoppage,stoppage,254,49.5,6.832
 20262027,O,4,Hitting Team,Possession Change,giveaway,203,52.12,5.46
-20262027,O,4,Hitting Team,Shot Attempt,missed-shot,182,52.61,4.895
 20262027,O,4,Opponent,Possession Change,giveaway,182,48.25,4.895
+20262027,O,4,Hitting Team,Shot Attempt,missed-shot,182,52.61,4.895
 20262027,O,4,Hitting Team,Shot Attempt,blocked-shot,169,50.41,4.545
 20262027,O,4,Opponent,Shot Attempt,blocked-shot,165,50.48,4.438
 20262027,O,4,Opponent,Shot Attempt,missed-shot,164,50.68,4.411
