@@ -271,6 +271,18 @@ def run_generation_pipeline(target_date: str, store: HFScoreboardStore, is_local
             )
             if sync_res.get("success"):
                 st.toast("☁️ Synced to Hugging Face dataset `insights/scoreboard/` (jjerlee/nhl-analytics)!")
+                if not is_local:
+                    store.clear_local_cache()
+
+        # Free temporary GPU and CPU memory
+        try:
+            import gc
+            import torch
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception:
+            pass
 
         if not is_local and getattr(agent.narrator, "last_zerogpu_error", None):
             st.warning(f"⚠️ Note on ZeroGPU execution: {agent.narrator.last_zerogpu_error}")
@@ -503,9 +515,9 @@ def render_game_recaps_view():
         pass
 
     # -------------------------------------------------------------------------
-    # 2. Season Selector + Date Selector + Generate / Re-Analyze Action Button
+    # 2. Season Selector + Date Selector
     # -------------------------------------------------------------------------
-    col_season, col_date, col_btn = st.columns([1.1, 2.0, 1.3], vertical_alignment="bottom")
+    col_season, col_date = st.columns([1, 2], vertical_alignment="bottom")
     with col_season:
         selected_season = st.selectbox(
             "Select Season",
@@ -534,24 +546,7 @@ def render_game_recaps_view():
             st.session_state.recap_target_date = selected_date_str
             st.rerun()
 
-    with col_btn:
-        if not has_narratives:
-            btn_label = "Generate Recaps"
-            btn_type = "primary"
-            btn_help = "Synthesize and publish recaps for this date."
-        elif not is_llm:
-            btn_label = "✨ Upgrade to LLM Insights"
-            btn_type = "primary"
-            btn_help = "Currently stored as algorithmic guardrails. Click to synthesize with the active LLM engine and upgrade the dataset."
-        else:
-            btn_label = "Force Re-Analyze Slate"
-            btn_type = "secondary"
-            btn_help = "Re-analyze and synchronize this date using the active LLM narrative engine."
-
-        if st.button(btn_label, type=btn_type, use_container_width=True, help=btn_help):
-            trigger_generate = True
-
-    # Trigger generation pipeline if requested
+    # Trigger generation pipeline if requested via query parameter
     if trigger_generate:
         success = run_generation_pipeline(target_date, store, is_local)
         if success:
@@ -562,8 +557,8 @@ def render_game_recaps_view():
     # 3. Check Narrative Generation Status (Warning Sign if Not Generated)
     # -------------------------------------------------------------------------
     if not has_narratives:
-        st.warning(f"⚠️ Game recaps and analytical narratives have not been generated for **{_format_game_date_option(target_date)}**.")
-        st.info("💡 Click **Generate Recaps** above to synthesize recaps using the active narrative engine.")
+        st.warning(f"⚠️ Game recaps and analytical narratives are not currently available for **{_format_game_date_option(target_date)}**.")
+        st.info("💡 Recaps for newly concluded slates are automatically generated and synchronized to the Hugging Face dataset.")
         return
 
     st.success(f"Loaded recaps for **{target_date}**.")

@@ -847,3 +847,21 @@ class HFScoreboardStore:
                 "success": False,
                 "error": str(e),
             }
+
+    def clear_local_cache(self) -> None:
+        """Removes local cached parquet tables, temporary locks, and lingering reports to free disk space."""
+        try:
+            if self.game_recaps_file.exists():
+                self.game_recaps_file.unlink()
+            if self.slate_recaps_file.exists():
+                self.slate_recaps_file.unlink()
+            lock_file = self.local_dir / ".synthesis.lock"
+            if lock_file.exists():
+                lock_file.unlink()
+            # Clean up lingering markdown reports in sibling reports directory if present
+            reports_dir = self.local_dir.parent / "reports"
+            if reports_dir.exists():
+                import shutil
+                shutil.rmtree(reports_dir, ignore_errors=True)
+        except Exception:
+            pass

@@ -35,24 +35,40 @@ logger = logging.getLogger("SpaceLauncher")
 
 
 def _discover_recent_completed_dates(limit: int = 2) -> list[str]:
-    """Finds the most recent completed game dates from local box CSVs or the NHL API."""
+    """Finds the most recent completed game dates from remote Hugging Face dataset, local box CSVs, or the NHL API."""
     dates: list[str] = []
-    try:
-        box_dir = Path(ROOT_DIR) / "latest" / "box"
-        if box_dir.exists():
-            for csv_file in sorted(box_dir.glob("*_box.csv"), reverse=True):
-                df = pd.read_csv(csv_file, usecols=lambda c: c in ("date", "gameDate"))
-                d_col = "date" if "date" in df.columns else ("gameDate" if "gameDate" in df.columns else None)
-                if d_col and not df.empty:
-                    found = sorted(pd.to_datetime(df[d_col]).dt.strftime("%Y-%m-%d").dropna().unique().tolist(), reverse=True)
-                    for d in found:
-                        if d not in dates:
-                            dates.append(d)
-                if len(dates) >= limit:
-                    break
-    except Exception as e:
-        logger.warning("Box CSV date discovery warning: %s", e)
 
+    # 1. Primary: Discover completed dates from Hugging Face dataset
+    try:
+        url = "https://huggingface.co/datasets/jjerlee/nhl-analytics/resolve/main/data/games.parquet"
+        df = pd.read_parquet(url, columns=["date"])
+        if not df.empty and "date" in df.columns:
+            found = sorted(pd.to_datetime(df["date"]).dt.strftime("%Y-%m-%d").dropna().unique().tolist(), reverse=True)
+            for d in found[:limit]:
+                if d not in dates:
+                    dates.append(d)
+    except Exception:
+        pass
+
+    # 2. Local fallback if available
+    if len(dates) < limit:
+        try:
+            box_dir = Path(ROOT_DIR) / "latest" / "box"
+            if box_dir.exists():
+                for csv_file in sorted(box_dir.glob("*_box.csv"), reverse=True):
+                    df = pd.read_csv(csv_file, usecols=lambda c: c in ("date", "gameDate"))
+                    d_col = "date" if "date" in df.columns else ("gameDate" if "gameDate" in df.columns else None)
+                    if d_col and not df.empty:
+                        found = sorted(pd.to_datetime(df[d_col]).dt.strftime("%Y-%m-%d").dropna().unique().tolist(), reverse=True)
+                        for d in found:
+                            if d not in dates:
+                                dates.append(d)
+                    if len(dates) >= limit:
+                        break
+        except Exception as e:
+            logger.warning("Box CSV date discovery warning: %s", e)
+
+    # 3. Fallback to live NHL API
     try:
         from dev.agent.scoreboard.agent import ScoreboardAgent
         api_latest = ScoreboardAgent().get_latest_date()
@@ -140,10 +156,21 @@ def _space_auto_synthesis_worker():
                                 commit_message=f"Auto-synthesize ZeroGPU LLM recaps for {target_date} ({best_game_model})"
                             )
                             logger.info("Synced %s recaps to Hugging Face dataset: %s", target_date, sync_res)
+                            # Purge local temporary cache tables after successful sync
+                            store.clear_local_cache()
                 finally:
                     try:
                         if lock_file.exists():
                             lock_file.unlink()
+                    except Exception:
+                        pass
+                    # Immediately release GPU allocation and temporary memory
+                    try:
+                        import gc
+                        import torch
+                        gc.collect()
+                        if torch.cuda.is_available():
+                            torch.cuda.empty_cache()
                     except Exception:
                         pass
 

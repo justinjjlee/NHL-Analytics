@@ -300,35 +300,46 @@ def _call_zerogpu_with_auth(gpu_fn, *args, **kwargs):
     # If Gradio LocalContext has no active HTTP request (e.g. called from Streamlit or background thread),
     # try without custom request first, and if quota/auth requires token or vice versa, fallback cleanly.
     try:
-        return gpu_fn(*args, **kwargs)
-    except Exception as first_err:
-        err_msg = str(first_err)
-        hf_token = discover_hf_token()
-        if hf_token:
-            try:
-                from gradio.context import LocalContext
-
-                class _ZeroAuthHeaders(dict):
-                    pass
-
-                class _ZeroAuthRequest:
-                    pass
-
-                headers = _ZeroAuthHeaders({"x-ip-token": hf_token, " authorization": f"Bearer {hf_token}"})
-                headers.__dict__["x-ip-token"] = hf_token
-                req = _ZeroAuthRequest()
-                req.headers = headers
-                req.client = type("_Client", (), {"host": "127.0.0.1"})()
-
-                prev_req = LocalContext.request.get(None)
-                LocalContext.request.set(req)
+        try:
+            return gpu_fn(*args, **kwargs)
+        except Exception as first_err:
+            err_msg = str(first_err)
+            hf_token = discover_hf_token()
+            if hf_token:
                 try:
-                    return gpu_fn(*args, **kwargs)
-                finally:
-                    LocalContext.request.set(prev_req)
-            except Exception as second_err:
-                logger.warning("ZeroGPU fallback auth attempt failed (%s); original error: %s", second_err, err_msg)
-        raise first_err
+                    from gradio.context import LocalContext
+
+                    class _ZeroAuthHeaders(dict):
+                        pass
+
+                    class _ZeroAuthRequest:
+                        pass
+
+                    headers = _ZeroAuthHeaders({"x-ip-token": hf_token, " authorization": f"Bearer {hf_token}"})
+                    headers.__dict__["x-ip-token"] = hf_token
+                    req = _ZeroAuthRequest()
+                    req.headers = headers
+                    req.client = type("_Client", (), {"host": "127.0.0.1"})()
+
+                    prev_req = LocalContext.request.get(None)
+                    LocalContext.request.set(req)
+                    try:
+                        return gpu_fn(*args, **kwargs)
+                    finally:
+                        LocalContext.request.set(prev_req)
+                except Exception as second_err:
+                    logger.warning("ZeroGPU fallback auth attempt failed (%s); original error: %s", second_err, err_msg)
+            raise first_err
+    finally:
+        # Immediately erase temporary compute allocations from GPU and CPU
+        try:
+            import gc
+            import torch
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception:
+            pass
 
 
 # Register @spaces.GPU functions at import time when running on ZeroGPU
@@ -1314,6 +1325,16 @@ class NarratorEngine:
                 g.recap_narrative = narr
                 g.generator_model = stamp
                 g.full_report_markdown = self.generate_single_game_markdown(g)
+
+        # Clear batch generation GPU cache and invoke garbage collection
+        try:
+            import gc
+            import torch
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+        except Exception:
+            pass
 
         return any_succeeded
 

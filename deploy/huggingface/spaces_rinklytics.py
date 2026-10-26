@@ -9,6 +9,7 @@ import os
 import sys
 import time
 from pathlib import Path
+from typing import Optional
 
 try:
     from huggingface_hub import HfApi
@@ -54,7 +55,42 @@ def get_token():
     return None
 
 
-def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True):
+def prune_space_lfs(repo_id: str = "jjerlee/rinklytics", token: Optional[str] = None) -> int:
+    """Permanently purges obsolete data/CSV/parquet LFS files from Hugging Face Space history using rewrite_history=True.
+    
+    This ensures that historical Git LFS pointers do not consume repository storage quota (1 GB limit).
+    """
+    token = token or get_token()
+    if not token:
+        print("Error: Hugging Face access token required to prune LFS files.")
+        return 0
+    api = HfApi(token=token)
+    try:
+        lfs_files = list(api.list_lfs_files(repo_id, repo_type="space"))
+        to_delete = [
+            f for f in lfs_files
+            if f.filename.startswith(("latest/", "app/data/hit_eda/", "dev/", "data/"))
+            or f.filename.endswith((".csv", ".parquet", ".zip", ".tar.gz"))
+        ]
+        if not to_delete:
+            print("✓ No obsolete data LFS files found in Space history.")
+            return 0
+        total_mb = sum(f.size for f in to_delete) / (1024 * 1024)
+        print(f"🧹 Pruning {len(to_delete)} obsolete LFS data files from Space history ({total_mb:.2f} MB)...")
+        api.permanently_delete_lfs_files(
+            repo_id=repo_id,
+            lfs_files=to_delete,
+            repo_type="space",
+            rewrite_history=True,
+        )
+        print("✅ Space LFS storage permanently pruned and Git history rewritten.")
+        return len(to_delete)
+    except Exception as e:
+        print(f"⚠️ Note during Space LFS prune: {e}")
+        return 0
+
+
+def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True, auto_prune_lfs=True):
     token = token or get_token()
     if not token:
         print("Error: Hugging Face access token not found.")
@@ -69,38 +105,94 @@ def deploy(repo_id="jjerlee/rinklytics", token=None, wait=True):
 
     print(f"Deploying Rinklytics to Hugging Face Space: {repo_id}...")
 
-    # Upload folder excluding non-dashboard assets and large raw play-by-play files
+    # Optional automatic safeguard: prune obsolete LFS history if storage exceeds 200 MB
+    if auto_prune_lfs:
+        try:
+            space_info = api.space_info(repo_id)
+            if space_info.used_storage and space_info.used_storage > 200 * 1024 * 1024:
+                print(f"⚠️ Space storage is currently {space_info.used_storage / (1024*1024):.1f} MB (> 200 MB threshold).")
+                prune_space_lfs(repo_id=repo_id, token=token)
+        except Exception:
+            pass
+
+    # Upload pure source code only (data is sourced from Hugging Face dataset jjerlee/nhl-analytics)
+    # Exclude all raw datasets, local caches, and heavy research files to keep Space size well under 1GB
+    ignore_patterns = [
+        "README.md",
+        ".git/**",
+        ".venv/**",
+        "venv/**",
+        "__pycache__/**",
+        "*.pyc",
+        ".DS_Store",
+        "**/.DS_Store",
+        ".env",
+        "credentials.json",
+        "latest/**",
+        "databricks/**",
+        ".databricks/**",
+        ".vscode/**",
+        "databricks.yml",
+        "dev/decision_science/**",
+        "dev/player/**",
+        "dev/player_college/**",
+        "dev/player_draft/**",
+        "dev/player_team_success/**",
+        "dev/team_success/**",
+        "dev/team_success_benchmarkPredictor/**",
+        "dev/team_success_measurements_vol1/**",
+        "dev/team_success_RegularStanely_vol1/**",
+        "dev/team_success_RegularStanely_vol2/**",
+        "dev/homeice_advantage/**",
+        "dev/**/*.png",
+        "dev/**/*.jpg",
+        "dev/**/*.jpeg",
+        "dev/**/*.gif",
+        "dev/**/*.csv",
+        "dev/**/*.parquet",
+        "app/data/hit_eda/**",
+        ".github/**",
+        "tests/**",
+        "scratch/**",
+        "deploy/**",
+        "doc/**",
+        "deploy_hf.py",
+        "*.parquet",
+        "*.lock",
+        ".cache/**",
+        "cache/**",
+        "reports/**",
+        "*.log",
+    ]
+
+    delete_patterns = [
+        "latest/**",
+        "dev/decision_science/**",
+        "dev/player/**",
+        "dev/player_college/**",
+        "dev/player_draft/**",
+        "dev/player_team_success/**",
+        "dev/team_success/**",
+        "dev/team_success_benchmarkPredictor/**",
+        "dev/team_success_measurements_vol1/**",
+        "dev/team_success_RegularStanely_vol1/**",
+        "dev/team_success_RegularStanely_vol2/**",
+        "dev/homeice_advantage/**",
+        "app/data/hit_eda/**",
+        "streamlit_test.py",
+        "main.py",
+        "*.parquet",
+        "*.lock",
+        "*.log",
+    ]
+
     api.upload_folder(
         folder_path=str(repo_root),
         repo_id=repo_id,
         repo_type="space",
-        ignore_patterns=[
-            "README.md",
-            ".git/**",
-            ".venv/**",
-            "venv/**",
-            "__pycache__/**",
-            "*.pyc",
-            ".DS_Store",
-            ".env",
-            "credentials.json",
-            "latest/play/**",
-            "databricks/**",
-            ".databricks/**",
-            ".vscode/**",
-            "databricks.yml",
-            "dev/**/*.png",
-            "dev/**/*.jpg",
-            "dev/**/*.jpeg",
-            "dev/**/*.gif",
-            ".github/**",
-            "tests/**",
-            "scratch/**",
-            "deploy/**",
-            "doc/**",
-            "deploy_hf.py",
-        ],
-        commit_message="Deploy Rinklytics Streamlit dashboard and datasets",
+        ignore_patterns=ignore_patterns,
+        delete_patterns=delete_patterns,
+        commit_message="Deploy Rinklytics Streamlit dashboard (source code only)",
     )
 
     # Upload Space README.md with required YAML frontmatter metadata
@@ -147,6 +239,15 @@ if __name__ == "__main__":
     parser.add_argument("--repo", default="jjerlee/rinklytics", help="Target HF Space repo ID")
     parser.add_argument("--token", default=None, help="Hugging Face access token")
     parser.add_argument("--no-wait", action="store_true", help="Do not wait for build completion")
+    parser.add_argument("--prune-lfs", action="store_true", help="Permanently prune obsolete data LFS files and rewrite history")
+    parser.add_argument("--prune-only", action="store_true", help="Only run LFS pruning without deploying")
     args = parser.parse_args()
+
+    if args.prune_only:
+        prune_space_lfs(repo_id=args.repo, token=args.token)
+        sys.exit(0)
+
+    if args.prune_lfs:
+        prune_space_lfs(repo_id=args.repo, token=args.token)
 
     deploy(repo_id=args.repo, token=args.token, wait=not args.no_wait)

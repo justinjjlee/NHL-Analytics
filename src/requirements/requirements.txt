@@ -2,6 +2,7 @@
 numpy>=1.26.0
 pandas>=2.2.0
 matplotlib>=3.9.0
+pillow>=13.0.0
 plotly>=5.23.0
 streamlit>=1.32.0
 streamlit-folium>=0.15.0

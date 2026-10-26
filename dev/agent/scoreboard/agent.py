@@ -61,7 +61,7 @@ class ScoreboardAgent:
     def analyze_game(
         self,
         game_id: int,
-        save_report: bool = True,
+        save_report: bool = False,
         force_mode: Optional[str] = None,
     ) -> AnalyzedGame:
         """
@@ -93,7 +93,7 @@ class ScoreboardAgent:
     def analyze_slate(
         self,
         date_str: Optional[str] = None,
-        save_report: bool = True,
+        save_report: bool = False,
         game_narrative_mode: Optional[str] = None,
     ) -> AnalyzedSlate:
         """

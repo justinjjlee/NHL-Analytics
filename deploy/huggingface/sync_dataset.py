@@ -707,7 +707,7 @@ def sync_scoreboard_recaps(
         modified = False
         for d_str in sorted(missing_dates):
             print(f"   ✍️ Generating Scoreboard recaps for {d_str}...")
-            slate = agent.analyze_slate(d_str)
+            slate = agent.analyze_slate(d_str, save_report=False)
             if slate and slate.games:
                 store.record_slate(slate, generator_model=getattr(slate, "generator_model", "algorithmic-guardrails-v1"))
                 store.record_games(slate.games, generator_model=getattr(slate.games[0], "generator_model", "algorithmic-guardrails-v1"))
@@ -724,6 +724,7 @@ def sync_scoreboard_recaps(
             if store.slate_recaps_file.exists():
                 shutil.copy2(store.slate_recaps_file, recap_stage_dir / "slate_recaps.parquet")
             print("   🔄 Staged insights/scoreboard/game_recaps.parquet and slate_recaps.parquet.")
+            store.clear_local_cache()
 
         # If any recent date is still only algorithmic (e.g. synced from a headless CI runner),
         # wake/restart the Hugging Face Space so its ZeroGPU worker upgrades it to Tier-2 LLM recaps.

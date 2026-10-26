@@ -3,4 +3,5 @@ streamlit-folium==0.23.2
 folium==0.18.0
 pandas==2.2.2
 plotly
+pillow>=13.0.0
 pyarrow>=15.0.0
