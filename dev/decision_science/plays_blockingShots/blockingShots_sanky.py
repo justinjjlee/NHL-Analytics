@@ -105,15 +105,12 @@ for i, row in tempdf.iterrows():
     links['hovertext'].append(f"{value:,} ({percent:.2f}%)")
 
 # %%
-from dash import Dash, dcc, html
 import plotly.graph_objects as go
 
 # Custom hover text formatting
 def format_hovertext(value, total):
     percent = (value / total) * 100
     return f"{percent:.2f}%"
-
-app = Dash(__name__)
 
 # Calculate hover text
 hovertext = [format_hovertext(value, total_values) for value in links['value']]
@@ -198,11 +195,8 @@ fig.update_layout(
     font_size=10,
     margin=dict(l=80, r=25, b=100, t=100),
 )
-app.layout = html.Div([
-    dcc.Graph(figure=fig)
-])
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
 
 fig.write_html('./result/table - sequence blocked shot stats.html')
+
+if __name__ == '__main__':
+    fig.show()
