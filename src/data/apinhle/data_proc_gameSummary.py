@@ -17,12 +17,26 @@ BOX_DIR = get_box_dir()
 TEAM_DIR = get_team_dir()
 BASE_DATA_DIR = getattr(config, "BASE_DATA_DIR", os.path.dirname(BOX_DIR.rstrip("/")) or "./latest")
 
+import argparse
 import glob
+
+# Parse CLI arguments for season targeting (defaults to active seasons only)
+parser = argparse.ArgumentParser(description="Process team game summaries, KPIs, and xG enrichments.")
+parser.add_argument("--all", action="store_true", help="Process all available historical seasons.")
+parser.add_argument("--seasons", nargs="+", type=int, default=None, help="Explicit list of season start years to process.")
+args, _ = parser.parse_known_args()
+
+if args.all:
+    box_team_files = sorted(glob.glob(f"{BOX_DIR}/*_box_team.csv"))
+elif args.seasons:
+    box_team_files = [f"{BOX_DIR}/{yr}_box_team.csv" for yr in args.seasons if os.path.exists(f"{BOX_DIR}/{yr}_box_team.csv")]
+else:
+    active_years = list(getattr(config, "SEASON_YEARS", [config.get_current_season_year()]))
+    box_team_files = [f"{BOX_DIR}/{yr}_box_team.csv" for yr in active_years if os.path.exists(f"{BOX_DIR}/{yr}_box_team.csv")]
 
 # %% Team success measurements
 # -----------------------------------------------------
-# Load and process all available box team data files
-box_team_files = sorted(glob.glob(f"{BOX_DIR}/*_box_team.csv"))
+# Load and process targeted box team data files
 
 if not box_team_files:
     print("No box team data files found in BOX_DIR.")

@@ -49,10 +49,15 @@ except ImportError:
 def main():
     parser = argparse.ArgumentParser(description="NHL Line Shift & Rolling L5 Trend Processing Pipeline")
     parser.add_argument(
+        "--all",
+        action="store_true",
+        help="Process all available historical shift seasons.",
+    )
+    parser.add_argument(
         "--seasons",
         nargs="+",
         default=None,
-        help="Season starting years to process (e.g. '2026' or 'all'). Defaults to all available shift seasons.",
+        help="Season starting years to process (e.g. '2026' or 'all'). Defaults to active season.",
     )
     parser.add_argument("--play-dir", type=str, default=None, help="Directory containing play-by-play & shift CSVs.")
     parser.add_argument("--box-dir", type=str, default=None, help="Directory containing box score CSVs.")
@@ -81,10 +86,16 @@ def main():
         output_dir=output_dir,
     )
 
-    if args.seasons is None or "all" in args.seasons:
+    if getattr(args, "all", False) or (args.seasons and "all" in args.seasons):
         target_seasons = processor.get_available_seasons()
-    else:
+    elif args.seasons:
         target_seasons = [str(s) for s in args.seasons]
+    else:
+        try:
+            from config import get_current_season_year
+        except ImportError:
+            from src.data.apinhle.config import get_current_season_year
+        target_seasons = [str(get_current_season_year())]
 
     print(f"Target seasons ({len(target_seasons)}): {', '.join(target_seasons)}")
     t0 = time.time()

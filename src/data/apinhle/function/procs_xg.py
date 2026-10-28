@@ -1086,15 +1086,35 @@ def enrich_season_xg(year: int | str, base_dir: str = "./latest") -> Dict[str, i
         ]
         df_bp = df_bp.drop(columns=[c for c in bp_xg_cols if c in df_bp.columns], errors="ignore")
 
-        sk_sub = skater_game_xg[
-            ["gameid", "playerId", "ixg", "fenwick_shots", "hd_shots", "md_shots", "ld_shots", "rebound_shots", "rush_shots"]
-        ]
-        gl_sub = goalie_game_xg[
-            ["gameid", "playerId", "xga", "gsax", "xsave_pct", "hd_shots_against", "hd_goals_against", "hd_save_pct"]
-        ]
+        # Ensure existing box_player table has strictly unique (gameid, playerId) rows
+        df_bp = df_bp.drop_duplicates(subset=["gameid", "playerId"]).reset_index(drop=True)
+
+        sk_cols = ["ixg", "fenwick_shots", "hd_shots", "md_shots", "ld_shots", "rebound_shots", "rush_shots"]
+        sk_sub = (
+            skater_game_xg.groupby(["gameid", "playerId"], as_index=False)[sk_cols]
+            .sum()
+        )
+        sk_sub["ixg"] = sk_sub["ixg"].round(3)
+
+        gl_sub = (
+            goalie_game_xg.groupby(["gameid", "playerId"], as_index=False)
+            .agg(
+                xga=("xga", "sum"),
+                gsax=("gsax", "sum"),
+                xsave_pct=("xsave_pct", "mean"),
+                hd_shots_against=("hd_shots_against", "sum"),
+                hd_goals_against=("hd_goals_against", "sum"),
+                hd_save_pct=("hd_save_pct", "mean"),
+            )
+        )
+        gl_sub["xga"] = gl_sub["xga"].round(3)
+        gl_sub["gsax"] = gl_sub["gsax"].round(3)
+        gl_sub["xsave_pct"] = gl_sub["xsave_pct"].round(4)
+        gl_sub["hd_save_pct"] = gl_sub["hd_save_pct"].round(4)
 
         df_bp = df_bp.merge(sk_sub, on=["gameid", "playerId"], how="left")
         df_bp = df_bp.merge(gl_sub, on=["gameid", "playerId"], how="left")
+        df_bp = df_bp.drop_duplicates(subset=["gameid", "playerId"]).reset_index(drop=True)
 
         is_goalie = df_bp["position"] == "G"
         for col in ["ixg", "fenwick_shots", "hd_shots", "md_shots", "ld_shots", "rebound_shots", "rush_shots"]:

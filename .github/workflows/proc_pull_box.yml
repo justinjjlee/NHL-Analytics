@@ -10,9 +10,12 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   update-and-commit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: data-collection
 
     steps:
@@ -68,6 +71,12 @@ jobs:
 
     - name: Commit and push changes
       run: |
+        # Safeguard: verify no individual file exceeds 90 MB before staging to git
+        oversized=$(find latest/ app/data/ -type f -size +90M 2>/dev/null || true)
+        if [ -n "$oversized" ]; then
+          echo "::error::File(s) exceed 90 MB limit: $oversized"
+          exit 1
+        fi
         git add latest/box/*.csv
         git add latest/team/season/*.csv
         git add latest/play/*.csv

@@ -11,9 +11,12 @@ on:
     # Daily at 10:00 UTC during hockey season (1 hour after the 9:00 UTC data pull)
     - cron: '0 10 * 1-6,9-12 *'
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   sync-to-hf-space:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment: data-collection
     # Only run on successful completion if triggered by workflow_run
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
