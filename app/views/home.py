@@ -45,8 +45,8 @@ st.markdown("""
     <a href="https://github.com/justinjjlee/NHL-Analytics" target="_blank" style="text-decoration: none;">
         <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" height="28" alt="GitHub">
     </a>
-    <a href="https://medium.com/@thinkingjustin" target="_blank" style="text-decoration: none;">
-        <img src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white" height="28" alt="Medium">
+    <a href="https://rinklytics.substack.com/" target="_blank" style="text-decoration: none;">
+        <img src="https://img.shields.io/badge/Substack-FF6719?style=for-the-badge&logo=substack&logoColor=white" height="28" alt="Substack">
     </a>
     <a href="https://huggingface.co/jjerlee" target="_blank" style="text-decoration: none;">
         <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=000" height="28" alt="Hugging Face">

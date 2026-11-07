@@ -1,0 +1,4 @@
+macro_regime,pts_pct,playoff_games_won,playoff_rounds_won,ali_score,yis_score,rci_score,ccm_to_prior_year,s_b1_elc_0_3,s_b2_prime_4_6,s_b3_peak_7_9,s_b4_vet_10_plus,shannon_exp_entropy,vet_insulation_ratio,pathway_a_draft_core_share,pathway_b_trade_core_share,xg_share_5v5,ozone_hit_pct,proactive_forecheck_share,spsi_style_synergy,n_team_seasons
+Peak,0.6309,5.6171,1.0714,0.1375,0.6805,0.3683,0.8807,0.3582,0.2824,0.189,0.1703,0.9593,2.8196,0.6585,0.321,0.5969,44.787,0.4732,0.6822,350
+Rebuild,0.4769,0.2136,0.0,0.2073,0.8073,0.4132,0.8245,0.4726,0.2383,0.1522,0.1369,0.9147,1.3933,0.6399,0.3328,0.4593,41.8102,0.4333,0.3113,220
+Inaction,0.4979,0.1082,0.0,0.1596,0.7119,0.3553,0.8925,0.3172,0.2972,0.2014,0.1842,1.0235,2.8102,0.5492,0.4135,0.4758,42.2046,0.4408,0.343,194

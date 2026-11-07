@@ -1,0 +1,7 @@
+primary_archetype,continuity_bucket,n_episodes,median_duration_yrs,mean_duration_yrs,tier1_success_rate,tier2_final_four_rate,tier3_cup_rate,purgatory_failure_rate,mean_ccm,mean_vir
+COMPOSITIONAL_RETOOL,High Core Stability (CCM >= 0.87),15,1.0,1.8,0.933,0.733,0.133,0.067,0.937,2.802
+COMPOSITIONAL_RETOOL,High Turnover / Regime Reset (CCM < 0.87),15,2.0,2.4,0.933,0.667,0.133,0.067,0.841,1.791
+HYBRID_REBUILD,High Core Stability (CCM >= 0.87),9,4.0,4.0,1.0,0.667,0.111,0.0,0.916,1.14
+HYBRID_REBUILD,High Turnover / Regime Reset (CCM < 0.87),3,3.0,4.667,1.0,1.0,0.0,0.0,0.82,1.603
+SCORCHED_EARTH_DRAFT,High Core Stability (CCM >= 0.87),17,6.0,5.647,0.529,0.412,0.176,0.471,0.911,1.274
+SCORCHED_EARTH_DRAFT,High Turnover / Regime Reset (CCM < 0.87),23,5.0,5.174,0.391,0.348,0.174,0.609,0.81,1.387

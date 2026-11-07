@@ -1,0 +1,4 @@
+Zone_Dimension,Attacking_Strike_Latency_Mean,Breakout_Counter_Latency_Mean,Structural_Latency_Gap,Immediate_0_5s_Ratio,Pace_Impact
+Defensive Zone (D-Zone Hit),14.01s (Median: 13.0s),18.38s (Median: 19.0s),+4.37s Delay for Defending Team,10.26x Opponent Shot Surge (22.8k vs 2.2k),Heavy Friction: Halts defensive breakout momentum; opponent generates instant slot barrage
+Neutral Zone (N-Zone Hit),16.30s (Median: 17.0s),17.63s (Median: 18.0s),+1.33s Delay for Defending Team,2.07x Opponent Shot Surge (2.7k vs 1.3k),High-Variance Transition: Blue-line step-up risks rapid counter odd-man rush against
+Offensive Zone (O-Zone Hit),15.16s (Median: 15.0s),17.38s (Median: 18.0s),-2.22s Acceleration for Forecheck,3.14x Forecheck Shot Advantage (14.0k vs 4.4k),"Transition Catalyst: Compresses time-to-shot, creating quick scramble offense in high-danger area"

@@ -1,0 +1,7 @@
+hit_zone,outcome_side,Count,Mean_Sec,Std_Sec,Median_Sec,P25_Sec,P75_Sec,Latency_IQR
+D,Hitting Team (For),52428,18.38,7.53,19.0,12.0,25.0,13.0
+D,Opponent (Against),105085,14.01,8.82,13.0,6.0,22.0,16.0
+N,Hitting Team (For),17063,17.63,7.86,18.0,11.0,24.0,13.0
+N,Opponent (Against),19446,16.3,8.54,17.0,9.0,24.0,15.0
+O,Hitting Team (For),79492,15.16,8.7,15.0,8.0,23.0,15.0
+O,Opponent (Against),58080,17.38,7.95,18.0,11.0,24.0,13.0

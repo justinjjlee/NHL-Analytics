@@ -1,0 +1,4 @@
+primary_archetype,n_episodes,mean_duration_yrs,median_duration_yrs,draft_core_share,trade_ufa_core_share,tier1_playoff_rate,tier2_final_four_rate,tier3_cup_rate,purgatory_failure_rate,mean_edv_invested,mean_net_surplus
+SCORCHED_EARTH_DRAFT,40,5.375,5.0,0.671,0.313,0.45,0.375,0.175,0.55,821.368,82.162
+HYBRID_REBUILD,12,4.167,4.0,0.463,0.537,1.0,0.75,0.083,0.0,603.317,52.45
+COMPOSITIONAL_RETOOL,30,2.1,2.0,0.656,0.34,0.933,0.7,0.133,0.067,256.86,29.2

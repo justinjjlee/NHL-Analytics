@@ -574,7 +574,7 @@ class GameAnalyzer:
             elif g.decision == "L" or (g.team_abbrev == loser.team_abbrev and l_goalie is None):
                 l_goalie = g
 
-        def build_profile(g: Optional[GoalieStats], is_win: bool) -> Optional[GoaliePerformanceProfile]:
+        def build_profile(g: Optional[GoalieStats], is_win: bool, opp_score: int) -> Optional[GoaliePerformanceProfile]:
             if not g:
                 return None
 
@@ -584,11 +584,18 @@ class GameAnalyzer:
             xsave_pct = g_xg.xsave_pct if g_xg else 0.0
             dsave_pct = g_xg.dsave_pct if g_xg else 0.0
             hd_save_pct = g_xg.hd_save_pct if g_xg else 0.0
+            true_shutout = bool(opp_score == 0 and g.goals_against == 0 and g.shots_against > 0 and g.starter)
 
-            if gsax >= 1.50:
+            if true_shutout:
+                rating = "BRICK_WALL"
+                assess = f"Immaculate shutout performance: stopped all {g.shots_against} shots faced ({gsax:+.2f} GSAx)."
+            elif g.goals_against == 0 and opp_score > 0:
+                rating = "STEADY"
+                assess = f"Faultless relief outing: stopped all {g.saves} shots faced in relief ({gsax:+.2f} GSAx)."
+            elif gsax >= 1.50:
                 rating = "BRICK_WALL"
                 assess = f"Goalie Theft: Stopped +{gsax:.2f} goals above expected (GSAx) with {g.saves} saves on {g.shots_against} shots facing {g_xg.hd_shots_against if g_xg else 0} high-danger chances."
-            elif g.save_pct >= 0.930 or g.saves >= 35:
+            elif (g.save_pct >= 0.930 and g.saves >= 25) or g.saves >= 35:
                 rating = "BRICK_WALL"
                 assess = f"Stood tall under heavy bombardment with {g.saves} saves on {g.shots_against} shots ({g.save_pct*100:.1f}% SV%, {gsax:+.2f} GSAx)."
             elif gsax <= -1.50:
@@ -604,9 +611,6 @@ class GameAnalyzer:
                 rating = "VULNERABLE"
                 assess = f"Struggled to contain dangerous rebounds, conceding {g.goals_against} goals on {g.shots_against} shots ({gsax:+.2f} GSAx)."
 
-            if g.is_shutout:
-                assess = f"Immaculate shutout performance: stopped all {g.shots_against} shots faced ({gsax:+.2f} GSAx)."
-
             return GoaliePerformanceProfile(
                 player_id=g.player_id,
                 name=g.name,
@@ -618,7 +622,7 @@ class GameAnalyzer:
                 save_pct=g.save_pct,
                 toi=g.toi,
                 starter=g.starter,
-                is_shutout=g.is_shutout,
+                is_shutout=true_shutout,
                 performance_rating=rating,
                 assessment=assess,
                 xga=xga,
@@ -628,7 +632,7 @@ class GameAnalyzer:
                 hd_save_pct=hd_save_pct,
             )
 
-        return build_profile(w_goalie, True), build_profile(l_goalie, False)
+        return build_profile(w_goalie, True, loser.score), build_profile(l_goalie, False, winner.score)
 
     # =========================================================================
     # Helpers for Skaters, Teams & Scoring
@@ -1009,6 +1013,7 @@ class GameAnalyzer:
                 ))
 
         for goalie in goalies:
+            opp_score = loser.score if goalie.team_abbrev == winner.team_abbrev else winner.score
             if goalie.gsax >= 1.50:
                 notables.append(NotableHighlight(
                     category="goalie_theft",
@@ -1018,7 +1023,7 @@ class GameAnalyzer:
                     entity=goalie.name,
                     metrics={"gsax": goalie.gsax, "saves": goalie.saves, "shots": goalie.shots_against}
                 ))
-            elif goalie.is_shutout:
+            elif opp_score == 0 and goalie.is_shutout:
                 notables.append(NotableHighlight(
                     category="shutout",
                     title=f"Shutout Masterclass: {goalie.name}",

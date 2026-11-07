@@ -523,8 +523,16 @@ class EditorialSkillsOrchestrator:
         w_g = game.winning_goalie_profile
         flow = game.period_flow
 
-        # Check for Goalie Heist Under Siege
-        if w_g and (w_g.saves >= 32 or (w_tr and w_tr.game_cf_pct <= 44.5)) and w_g.save_pct >= 0.915:
+        # Check for Third-Period Comeback / Walk-off Drama first
+        if flow and flow.game_script_type in ("COMEBACK_WIN", "WALK_OFF_OT_SO", "TRUE_THRILLER"):
+            return (
+                "LATE_DRAMA_SURGE",
+                "Late-Game Momentum Swing & Clutch Execution",
+                f"{flow.script_summary} culminating in a {w.score}-{l.score} {game.period_type} finish.",
+            )
+
+        # Check for Goalie Heist Under Siege (requires starter workload >= 28 saves)
+        if w_g and w_g.saves >= 28 and (w_g.saves >= 32 or (w_tr and w_tr.game_cf_pct <= 44.5)) and w_g.save_pct >= 0.915:
             return (
                 "GOALIE_HEIST_UNDER_SIEGE",
                 "Goaltending Heist & Defensive Grit Under Siege",
@@ -545,14 +553,6 @@ class EditorialSkillsOrchestrator:
                 "Tactical Line Adjustment & Chemistry Spark",
                 f"Coach's decision to deploy {bl.unit_label} ({bl.unit_players}) paid immediate dividends "
                 f"({bl.cf_pct:.1f}% CF%, {bl.gf}-{bl.ga} goals, {bl.delta_cf_pct_vs_l5:+.1f}% CF% over L5 baseline).",
-            )
-
-        # Check for Third-Period Comeback / Walk-off Drama
-        if flow and flow.game_script_type in ("COMEBACK_WIN", "WALK_OFF_OT_SO", "TRUE_THRILLER"):
-            return (
-                "LATE_DRAMA_SURGE",
-                "Late-Game Momentum Swing & Clutch Execution",
-                f"{flow.script_summary} culminating in a {w.score}-{l.score} {game.period_type} finish.",
             )
 
         # Check for Road Adversity Overcome

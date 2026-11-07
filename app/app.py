@@ -98,10 +98,12 @@ st.sidebar.radio(
 
 # Define pages for navigation with constant url_path to preserve selection across languages
 HOME = st.Page(page="views/home.py", title=t("nav_home"), url_path="home", default=True)
+ZAMBONI = st.Page(page="views/zamboni.py", title=t("nav_zamboni"), url_path="agent-zamboni")
 TEAM_MAP = st.Page(page="views/teams_map.py", title=t("nav_team_map"), url_path="teams-map")
 SCOREBOARD = st.Page(page="views/scoreboard.py", title=t("nav_scoreboard"), url_path="scoreboard")
-GAME_RECAPS = st.Page(page="views/game_recaps.py", title="Game Recaps (Beta)", url_path="game-recaps")
+GAME_RECAPS = st.Page(page="views/game_recaps.py", title=t("nav_game_recaps"), url_path="game-recaps")
 TEAM_SEASON_STATS = st.Page(page="views/team_season_stats.py", title=t("nav_team_season"), url_path="team-season-stats")
+REBUILD_TRACKER = st.Page(page="views/rebuild_tracker.py", title=t("nav_rebuild_tracker"), url_path="rebuild-tracker")
 SKATERS = st.Page(page="views/magnifiques_patineuses.py", title=t("nav_mag_patineuses"), url_path="magnifiques-patineuses")
 BLOCKING_SHOTS = st.Page(page="views/blocking_shots.py", title=t("nav_blocking_shots"), url_path="blocking-shots")
 HIT_IMPACT = st.Page(page="views/hit_impact.py", title=t("nav_hit_impact"), url_path="hit-impact")
@@ -113,8 +115,8 @@ GOALIE_STATS = st.Page(page="views/goalie_stats.py", title=t("nav_goalie_stats")
 
 # Create navigation
 pages = {
-    t("nav_bienvenue"): [HOME],
-    t("nav_team"): [SCOREBOARD, GAME_RECAPS, TEAM_MAP, TEAM_SEASON_STATS],
+    t("nav_bienvenue"): [HOME, ZAMBONI],
+    t("nav_team"): [SCOREBOARD, GAME_RECAPS, TEAM_MAP, TEAM_SEASON_STATS, REBUILD_TRACKER],
     t("nav_skaters"): [SKATER_STATS, GOALIE_STATS, SKATERS],
     t("nav_action"): [BLOCKING_SHOTS, HIT_IMPACT],
 }

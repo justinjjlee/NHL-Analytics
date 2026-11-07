@@ -822,6 +822,13 @@ def build_hits_measurement_df(repo_root: Path, ht: str, season_year: Optional[in
         except Exception as e:
             print(f"   ⚠️ Warning reading {base}: {e}")
     if not dfs:
+        direct_file = repo_root / "latest" / "action" / "hits" / f"{ht}.csv"
+        if direct_file.exists():
+            try:
+                df = pd.read_csv(direct_file, low_memory=False)
+                return df.loc[:, ~df.columns.str.startswith("Unnamed:")]
+            except Exception as e:
+                print(f"   ⚠️ Warning reading {ht}.csv: {e}")
         return pd.DataFrame()
     return pd.concat(dfs, ignore_index=True).drop_duplicates().reset_index(drop=True)
 

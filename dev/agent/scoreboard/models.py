@@ -64,8 +64,22 @@ class GoalieStats:
     gsax: float = 0.0
 
     @property
+    def toi_minutes(self) -> float:
+        try:
+            parts = str(self.toi or "00:00").split(":")
+            return int(parts[0]) + (int(parts[1]) / 60.0 if len(parts) > 1 else 0.0)
+        except Exception:
+            return 0.0
+
+    @property
     def is_shutout(self) -> bool:
-        return self.goals_against == 0 and self.shots_against > 0 and self.decision == "W"
+        return (
+            self.goals_against == 0
+            and self.shots_against > 0
+            and self.decision == "W"
+            and self.starter
+            and self.toi_minutes >= 55.0
+        )
 
     @property
     def is_brick_wall(self) -> bool:

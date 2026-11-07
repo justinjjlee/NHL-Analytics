@@ -1,20 +1,20 @@
 # Physical Hits Exploratory Data Analysis (Hit EDA)
 
-This subproject provides a grounded, one-dimensional Exploratory Data Analysis (EDA) framework and data pipeline for dissecting NHL body check ("hit") micro-telemetry from play-by-play data.
+This subproject provides a grounded, one-dimensional Exploratory Data Analysis (EDA) framework and data pipeline for dissecting National Hockey League (NHL) body check ("hit") micro-telemetry from play-by-play data.
 
 ---
 
 ## Directory Architecture
 
 ```
-dev/decision_science/hit_eda/
+dev/decision_science/impact_of_hits/deepdive/hit_eda/
 ├── README.md               # Quickstart guide, environment triggers & CLI commands
 ├── EXPLORATORY.md          # Full conceptual, mathematical & visualization blueprint
 ├── config.py               # Dual-runtime environment configuration (Local vs. Databricks)
 ├── dataproc.py             # Production sequence processor (Pandas & PySpark engines)
 ├── databricks_job.py       # Databricks workflow & interactive notebook entrypoint
 └── data/                   # Generated exploratory summary tables
-    ├── hit_zone_summary.csv        # Macro KPIs by zone (D, N, O)
+    ├── hit_zone_summary.csv        # Macro KPIs (Key Performance Indicators) by zone (Defensive D, Neutral N, Offensive O)
     ├── hit_next_events.csv         # Step +1 event category, ownership & latency matrix
     └── hit_sequences_sample.csv    # Sample micro-event sequence records
 ```

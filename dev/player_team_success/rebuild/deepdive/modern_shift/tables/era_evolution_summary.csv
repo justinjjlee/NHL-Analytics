@@ -1,0 +1,5 @@
+era_code,n_episodes,mean_duration_yrs,draft_core_share,trade_ufa_core_share,tier1_playoff_rate,purgatory_failure_rate
+Era 1: Pre-Cap (2000-04),19,4.053,0.711,0.247,0.842,0.158
+Era 2: Early Cap (2005-13),29,4.31,0.608,0.392,0.724,0.276
+Era 3: Speed & Compression (2013-20),25,3.56,0.635,0.365,0.72,0.28
+Era 4: Flat-Cap & Arbitrage (2020-25),9,4.111,0.563,0.437,0.333,0.667

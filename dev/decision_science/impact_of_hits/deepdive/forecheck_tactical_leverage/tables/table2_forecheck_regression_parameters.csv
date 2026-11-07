@@ -1,0 +1,4 @@
+Parameter,Estimate,Std_Error,t_Statistic,p_Value,Interpretation
+Intercept,-33.4895,4.1805,-8.01,<0.0001,Baseline penalty when puck control and forecheck share are minimized
+ozone_pct (Beta_1),0.4462,0.0414,10.77,<0.0001,Direct shot differential lift per 1% shift toward offensive zone hits
+puck_win_pct (Beta_2),0.2032,0.0959,2.12,0.0345,Marginal possession stabilization benefit from 1% increase in puck recovery

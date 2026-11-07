@@ -11,7 +11,7 @@ This directory orchestrates the automated synchronization, deployment, and data 
 | **🏒 Rinklytics Web Dashboard** | [https://huggingface.co/spaces/jjerlee/rinklytics](https://huggingface.co/spaces/jjerlee/rinklytics) | Live interactive Streamlit dashboard featuring daily scoreboards, player PPI rankings, physical hit impact heatmaps, and team ratings. |
 | **📦 NHL Analytics Public Dataset** | [https://huggingface.co/datasets/jjerlee/nhl-analytics](https://huggingface.co/datasets/jjerlee/nhl-analytics) | Cleaned, longitudinal multi-season Parquet panel datasets (games, box scores, odds, play-by-play, hits, player metrics) spanning 2013 to present. |
 | **🐙 GitHub Source Code** | [https://github.com/justinjjlee/NHL-Analytics](https://github.com/justinjjlee/NHL-Analytics) | Primary source repository containing data extraction pipelines, decision science notebooks, and automation workflows. |
-| **✍️ Medium Research Blog** | [https://medium.com/@thinkingjustin](https://medium.com/@thinkingjustin) | Deep-dive analytical essays and decision science studies (e.g. valor of blocking shots, physical momentum modeling). |
+| **✍️ Substack Research Blog** | [https://rinklytics.substack.com/](https://rinklytics.substack.com/) | Deep-dive analytical essays and decision science studies (e.g. valor of blocking shots, physical momentum modeling). |
 
 ---
 

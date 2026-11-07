@@ -5,11 +5,14 @@ TRANSLATIONS = {
         # app.py Navigation
         "nav_bienvenue": "Bienvenue",
         "nav_home": "Accueil",
+        "nav_zamboni": "AGENT ZAMBONI",
         "nav_about": "À propos",
         "nav_team": "Équipe",
         "nav_scoreboard": "Tableau des scores",
+        "nav_game_recaps": "Résumés des matchs (par AGENT ZAMBONI)",
         "nav_team_map": "Emplacements et distance",
         "nav_team_season": "Statistiques de saison",
+        "nav_rebuild_tracker": "Reconstructions et régimes (2000–2025)",
         "nav_skaters": "Patineurs",
         "nav_action": "Action",
         "nav_mag_patineuses": "Les magnifiques patineuses",
@@ -437,9 +440,9 @@ TRANSLATIONS = {
         "about_title": "À propos de l'analyse de la LNH",
         "about_desc_1": "Cette application a été créée pour analyser et visualiser les données de performance des équipes et des joueurs de la LNH.",
         "about_desc_2": "## À propos du créateur\n\nJe suis JJ — data scientist le jour, et passionné de hockey toujours. Il s'agit de mon projet personnel, qui analyse et visualise les performances des équipes et des joueurs de la LNH pour satisfaire ma curiosité à travers la science des données.",
-        "about_desc_3": "## Ressources et profils\n\n- [Dépôt GitHub](https://github.com/justinjjlee/NHL-Analytics) — Code source, pipelines et automatisations\n- [Blog Medium](https://medium.com/@thinkingjustin) — Articles d'analyse sportive et études de cas\n- [Profil Hugging Face](https://huggingface.co/jjerlee) — Tableau de bord Spaces et jeux de données publics",
+        "about_desc_3": "## Ressources et profils\n\n- [Dépôt GitHub](https://github.com/justinjjlee/NHL-Analytics) — Code source, pipelines et automatisations\n- [Substack](https://rinklytics.substack.com/) — Articles d'analyse sportive et études de cas\n- [Profil Hugging Face](https://huggingface.co/jjerlee) — Tableau de bord Spaces et jeux de données publics",
         "about_contact": "Contact",
-        "about_contact_desc": "N'hésitez pas à me contacter ou à vous connecter via GitHub, Medium ou Hugging Face.",
+        "about_contact_desc": "N'hésitez pas à me contacter ou à vous connecter via GitHub, Substack ou Hugging Face.",
 
         # scoreboard.py
         "sb_title": "Tableau des scores de la LNH",
@@ -651,11 +654,14 @@ TRANSLATIONS = {
         # app.py Navigation
         "nav_bienvenue": "Welcome",
         "nav_home": "Home",
+        "nav_zamboni": "AGENT ZAMBONI",
         "nav_about": "About",
         "nav_team": "Team",
         "nav_scoreboard": "Scoreboard",
+        "nav_game_recaps": "Game Recaps (by AGENT ZAMBONI)",
         "nav_team_map": "Team Locations & Travel Distance",
         "nav_team_season": "Team Season Stats",
+        "nav_rebuild_tracker": "Franchise Rebuilds & Regimes",
         "nav_skaters": "Skaters",
         "nav_action": "Action",
         "nav_mag_patineuses": "The Magnificent Skaters",
@@ -1083,9 +1089,9 @@ TRANSLATIONS = {
         "about_title": "About NHL Analytics",
         "about_desc_1": "This application was created to analyze and visualize NHL team and player performance data.",
         "about_desc_2": "## About the Creator\n\nI'm JJ — data scientist by day, and hockey enthusiast all day. This is my personal project, analyzing and visualizing NHL team and player performance to unpack curiosity through data science.",
-        "about_desc_3": "## Resources & Profiles\n\n- [GitHub Repository](https://github.com/justinjjlee/NHL-Analytics) — Open-source code, pipelines, and workflows\n- [Medium Blog](https://medium.com/@thinkingjustin) — Deep-dive sports analytics articles and case studies\n- [Hugging Face Profile](https://huggingface.co/jjerlee) — Live Rinklytics Spaces dashboard & public NHL datasets",
+        "about_desc_3": "## Resources & Profiles\n\n- [GitHub Repository](https://github.com/justinjjlee/NHL-Analytics) — Open-source code, pipelines, and workflows\n- [Substack](https://rinklytics.substack.com/) — Deep-dive sports analytics articles and case studies\n- [Hugging Face Profile](https://huggingface.co/jjerlee) — Live Rinklytics Spaces dashboard & public NHL datasets",
         "about_contact": "Contact",
-        "about_contact_desc": "Feel free to reach out or connect via GitHub, Medium, or Hugging Face.",
+        "about_contact_desc": "Feel free to reach out or connect via GitHub, Substack, or Hugging Face.",
 
         # scoreboard.py
         "sb_title": "NHL Scoreboard",

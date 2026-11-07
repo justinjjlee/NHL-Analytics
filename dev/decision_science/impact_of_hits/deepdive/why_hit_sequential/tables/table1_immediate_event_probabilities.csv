@@ -1,0 +1,20 @@
+zoneCode,next_category,event_count_hitting_team,event_count_opponent,pct_of_zone_events_hitting_team,pct_of_zone_events_opponent
+D,Goal,2038.0,4296.0,0.34,0.72
+D,Penalty,5514.0,4560.0,0.92,0.76
+D,Physical Battle,65446.0,69214.0,10.93,11.56
+D,Possession Change,44234.0,42648.0,7.39,7.12
+D,Shot Attempt,78172.0,194716.0,13.06,32.52
+D,Stoppage,43828.0,44010.0,7.32,7.35
+N,Goal,668.0,830.0,0.39,0.49
+N,Penalty,1428.0,1552.0,0.84,0.92
+N,Physical Battle,20120.0,24306.0,11.89,14.36
+N,Possession Change,13232.0,12488.0,7.82,7.38
+N,Shot Attempt,28738.0,34398.0,16.98,20.32
+N,Stoppage,15330.0,16196.0,9.06,9.57
+O,Goal,2874.0,2520.0,0.49,0.43
+O,Other,0.0,2.0,0.0,0.0
+O,Penalty,4680.0,4884.0,0.81,0.84
+O,Physical Battle,79420.0,64434.0,13.66,11.08
+O,Possession Change,42420.0,46572.0,7.3,8.01
+O,Shot Attempt,137618.0,97930.0,23.68,16.85
+O,Stoppage,47686.0,50234.0,8.2,8.64

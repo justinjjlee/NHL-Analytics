@@ -32,10 +32,11 @@ COPY latest/team/ /workspace/latest/team/
 COPY latest/player/ /workspace/latest/player/
 COPY latest/action/ /workspace/latest/action/
 COPY dev/agent/ /workspace/dev/agent/
+COPY dev/zamboni/ /workspace/dev/zamboni/
 COPY dev/player/player_draft/ /workspace/dev/player/player_draft/
-COPY dev/decision_science/impact_of_hits/data/ /workspace/dev/decision_science/impact_of_hits/data/
+COPY dev/decision_science/impact_of_hits/ /workspace/dev/decision_science/impact_of_hits/
 COPY dev/decision_science/plays_blockingShots/ /workspace/dev/decision_science/plays_blockingShots/
-COPY dev/decision_science/hit_eda/ /workspace/dev/decision_science/hit_eda/
+COPY dev/player_team_success/ /workspace/dev/player_team_success/
 
 # Expose the local testing port
 EXPOSE 1901

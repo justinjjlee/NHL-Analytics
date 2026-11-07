@@ -1,0 +1,8 @@
+parameter,beta_est,robust_se_hc1,t_stat
+Intercept,-0.0228,0.0103,-2.22
+prime_bridge_b2_b3,-0.0081,0.0061,-1.33
+youth_overload_sq,-0.0297,0.0115,-2.59
+insulation_interaction,-0.0012,0.0114,-0.1
+ccm_to_prior_year,0.0035,0.0049,0.72
+xg_share_5v5,1.0878,0.0169,64.32
+spsi_style_synergy,0.0129,0.0047,2.76

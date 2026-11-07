@@ -568,6 +568,44 @@ def load_hit_analytics_datasets() -> Tuple:
         return _fallback_local()
 
 
+@st.cache_data(max_entries=1, ttl=3600)
+def load_hit_shot_conversion_baseline() -> Optional[pd.DataFrame]:
+    """
+    Loads empirical shot-to-goal conversion dataset comparing baseline (no hit <=30s)
+    to post-hit conversion across D-zone, O-zone, and N-zone.
+    Primary: Hugging Face measurement/action/hits/hit_shot_conversion_baseline.parquet.
+    Backup: local CSV files in latest/action/hits/ or app/data/hit_eda/.
+    """
+    try:
+        base_url = f"{HF_DATASET_BASE}/measurement/action/hits"
+        df = pd.read_parquet(f"{base_url}/hit_shot_conversion_baseline.parquet")
+        if df is not None and not df.empty:
+            if "season" in df.columns:
+                df["season"] = df["season"].astype(str)
+            return df
+    except Exception:
+        pass
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = get_project_root()
+    candidates = [
+        os.path.join(repo_root, "latest/action/hits", "hit_shot_conversion_baseline.csv"),
+        os.path.join(current_dir, "../data/hit_eda", "hit_shot_conversion_baseline.csv"),
+        os.path.join(repo_root, "dev/decision_science/impact_of_hits/data", "hit_shot_conversion_baseline.csv"),
+    ]
+    for c in candidates:
+        if os.path.exists(c):
+            try:
+                df = pd.read_csv(c)
+                if df is not None and not df.empty:
+                    if "season" in df.columns:
+                        df["season"] = df["season"].astype(str)
+                    return df
+            except Exception:
+                pass
+    return None
+
+
 # ── 5. ONE-OFF: Map Geographic & Distance Data ────────────────────────────────
 
 @st.cache_data(max_entries=1, ttl=3600)

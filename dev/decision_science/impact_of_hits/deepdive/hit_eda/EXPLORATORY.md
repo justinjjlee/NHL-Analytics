@@ -22,9 +22,9 @@ flowchart TD
     subgraph Hit_Event ["1. Hit Genesis (Event k)"]
         H["Physical Body Check (typeDescKey = 'hit')"]
         Zone{"Ice Zone"}
-        Zone -->|D-Zone| D["Defensive In-Zone Battle"]
-        Zone -->|N-Zone| N["Neutral Rush Denial"]
-        Zone -->|O-Zone| O["Offensive Forecheck"]
+        Zone -->|Defensive (D-Zone)| D["Defensive In-Zone Battle"]
+        Zone -->|Neutral (N-Zone)| N["Neutral Rush Denial"]
+        Zone -->|Offensive (O-Zone)| O["Offensive Forecheck"]
     end
 
     subgraph Step_Plus_1 ["2. Downstream Event (Event k+1)"]

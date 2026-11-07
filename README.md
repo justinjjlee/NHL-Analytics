@@ -1,5 +1,5 @@
 <h1>
-<a href="https://medium.com/@thinkingjustin">
+<a href="https://rinklytics.substack.com/">
 <img src="app/assets/img_main.jpeg" width="80px" align="left" style="margin-right: 15px;" alt="nhla-logo"> 
 </a> Rinklytics: Sports Data Analytics & Public Lakehouse
 </h1>
@@ -7,16 +7,13 @@
 [![justinjjlee - NHL-Analytics](https://img.shields.io/static/v1?label=justinjjlee&message=NHL-Analytics&color=blue&logo=github)](https://github.com/justinjjlee/NHL-Analytics "Go to GitHub repo")
 [![stars - NHL-Analytics](https://img.shields.io/github/stars/justinjjlee/NHL-Analytics?style=social)](https://github.com/justinjjlee/NHL-Analytics)
 [![forks - NHL-Analytics](https://img.shields.io/github/forks/justinjjlee/NHL-Analytics?style=social)](https://github.com/justinjjlee/NHL-Analytics)
-[![Medium - NHL-Analytics](https://img.shields.io/badge/Medium-Read-green?logo=Medium)](https://medium.com/@thinkingjustin)
+[![Substack - Rinklytics](https://img.shields.io/badge/Substack-Read-FF6719?logo=substack&logoColor=white)](https://rinklytics.substack.com/)
 [![Hugging Face - Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-yellow)](https://huggingface.co/spaces/jjerlee/rinklytics)
 [![Hugging Face - Datasets](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue)](https://huggingface.co/datasets/jjerlee/nhl-analytics)
-[![Databricks](https://img.shields.io/badge/Databricks-Cloud-FF3621?logo=databricks&logoColor=white)](https://databricks.com)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](deploy/local/README.md)
-[![Python 3.13](https://img.shields.io/badge/Python-3.13-3776AB?logo=python&logoColor=white)](https://www.python.org)
 
 **NHL Analytics (Rinklytics)** is an end-to-end sports analytics platform and public open-data lakehouse. It collects, cleans, models, and visualizes National Hockey League (NHL) data, uncovering tactical behaviors, physical momentum, market odds efficiencies, and player career trajectories.
 
-All deep-dive articles and analytical methodologies are published on **[Medium (@thinkingjustin)](https://medium.com/@thinkingjustin)**.
+All deep-dive articles and analytical methodologies are published on **[Substack (rinklytics.substack.com)](https://rinklytics.substack.com/)**.
 
 ---
 

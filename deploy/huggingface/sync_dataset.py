@@ -572,7 +572,8 @@ def sync_measurement_hits(repo_root: Path, repo_id: str, token: Optional[str], s
         ("hit_next_events", []),
         ("hit_sequence_transitions", []),
         ("rink_grid_hit_sequences", []),
-        ("tabulated_hit_sequences", [])
+        ("tabulated_hit_sequences", []),
+        ("hit_shot_conversion_baseline", ["season", "hit_zone"]),
     ]
     modified = False
 

@@ -1,0 +1,12 @@
+execution_sequence,trajectory_5yr_breakout_odds_pct,trajectory_5yr_purgatory_exposure_pct,trajectory_mean_pts_pct,expected_wait_years,sequence_rank_of_720
+1:FixBridge -> 2:SpineCD -> 3:TradeArb -> 4:Forecheck -> 5:LockCCM -> 6:EndSelloff,69.7,25.5,0.472,4.73,1
+1:FixBridge -> 2:SpineCD -> 3:TradeArb -> 4:Forecheck -> 6:EndSelloff -> 5:LockCCM,69.3,25.5,0.471,4.74,2
+1:FixBridge -> 2:SpineCD -> 3:TradeArb -> 5:LockCCM -> 4:Forecheck -> 6:EndSelloff,69.2,26.2,0.457,4.76,3
+1:FixBridge -> 2:SpineCD -> 3:TradeArb -> 5:LockCCM -> 6:EndSelloff -> 4:Forecheck,68.5,26.6,0.445,4.8,4
+1:FixBridge -> 2:SpineCD -> 3:TradeArb -> 6:EndSelloff -> 4:Forecheck -> 5:LockCCM,68.2,26.5,0.455,4.81,5
+5:LockCCM -> 1:FixBridge -> 4:Forecheck -> 2:SpineCD -> 3:TradeArb -> 6:EndSelloff,49.8,40.4,0.464,5.82,180
+5:LockCCM -> 3:TradeArb -> 1:FixBridge -> 2:SpineCD -> 6:EndSelloff -> 4:Forecheck,38.6,56.1,0.399,6.61,360
+4:Forecheck -> 6:EndSelloff -> 5:LockCCM -> 1:FixBridge -> 3:TradeArb -> 2:SpineCD,25.0,53.7,0.479,7.04,540
+5:LockCCM -> 4:Forecheck -> 3:TradeArb -> 6:EndSelloff -> 2:SpineCD -> 1:FixBridge,12.5,68.0,0.43,7.8,718
+5:LockCCM -> 6:EndSelloff -> 4:Forecheck -> 3:TradeArb -> 2:SpineCD -> 1:FixBridge,12.2,68.0,0.414,7.8,719
+5:LockCCM -> 4:Forecheck -> 6:EndSelloff -> 3:TradeArb -> 2:SpineCD -> 1:FixBridge,12.1,68.0,0.432,7.8,720
