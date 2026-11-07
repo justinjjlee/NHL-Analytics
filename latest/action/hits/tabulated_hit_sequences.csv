@@ -3275,627 +3275,627 @@ season,hit_zone,event_step,event_owner,event_category,event_type,count,avg_delta
 20252026,O,4,Opponent,Stoppage,period-end,97,54.54,0.355
 20252026,O,4,Opponent,Other,game-end,23,50.48,0.084
 20252026,O,4,Hitting Team,Other,game-end,22,56.27,0.081
-20262027,D,1,Opponent,Shot Attempt,shot-on-goal,597,12.24,13.939
-20262027,D,1,Hitting Team,Physical Battle,hit,459,16.44,10.717
-20262027,D,1,Opponent,Shot Attempt,blocked-shot,450,11.5,10.507
-20262027,D,1,Opponent,Physical Battle,hit,441,13.96,10.297
-20262027,D,1,Opponent,Shot Attempt,missed-shot,409,11.5,9.549
-20262027,D,1,Opponent,Possession Change,giveaway,344,14.1,8.032
-20262027,D,1,Hitting Team,Possession Change,giveaway,263,14.27,6.141
-20262027,D,1,Hitting Team,Stoppage,stoppage,231,16.21,5.393
-20262027,D,1,Hitting Team,Shot Attempt,shot-on-goal,218,21.71,5.09
-20262027,D,1,Opponent,Stoppage,stoppage,200,17.44,4.67
-20262027,D,1,Hitting Team,Shot Attempt,missed-shot,132,21.24,3.082
-20262027,D,1,Hitting Team,Shot Attempt,blocked-shot,128,22.96,2.989
-20262027,D,1,Hitting Team,Possession Change,takeaway,90,12.14,2.101
-20262027,D,1,Opponent,Possession Change,takeaway,65,14.63,1.518
-20262027,D,1,Opponent,Goal,goal,58,13.76,1.354
-20262027,D,1,Opponent,Stoppage,faceoff,36,17.83,0.841
-20262027,D,1,Hitting Team,Stoppage,faceoff,36,14.97,0.841
-20262027,D,1,Opponent,Other,delayed-penalty,32,17.28,0.747
-20262027,D,1,Hitting Team,Other,delayed-penalty,26,13.88,0.607
-20262027,D,1,Opponent,Stoppage,period-end,20,19.35,0.467
-20262027,D,1,Hitting Team,Goal,goal,16,22.5,0.374
-20262027,D,1,Hitting Team,Stoppage,period-end,15,21.73,0.35
-20262027,D,1,Opponent,Stoppage,penalty,8,8.38,0.187
-20262027,D,1,Hitting Team,Stoppage,penalty,6,3.67,0.14
-20262027,D,1,Hitting Team,Other,game-end,2,9.0,0.047
+20262027,D,1,Opponent,Shot Attempt,shot-on-goal,601,12.24,13.967
+20262027,D,1,Hitting Team,Physical Battle,hit,459,16.44,10.667
+20262027,D,1,Opponent,Shot Attempt,blocked-shot,451,11.48,10.481
+20262027,D,1,Opponent,Physical Battle,hit,444,13.9,10.318
+20262027,D,1,Opponent,Shot Attempt,missed-shot,410,11.49,9.528
+20262027,D,1,Opponent,Possession Change,giveaway,347,14.24,8.064
+20262027,D,1,Hitting Team,Possession Change,giveaway,263,14.27,6.112
+20262027,D,1,Hitting Team,Stoppage,stoppage,232,16.35,5.392
+20262027,D,1,Hitting Team,Shot Attempt,shot-on-goal,219,21.64,5.089
+20262027,D,1,Opponent,Stoppage,stoppage,202,17.53,4.694
+20262027,D,1,Hitting Team,Shot Attempt,missed-shot,132,21.24,3.068
+20262027,D,1,Hitting Team,Shot Attempt,blocked-shot,129,22.99,2.998
+20262027,D,1,Hitting Team,Possession Change,takeaway,91,12.15,2.115
+20262027,D,1,Opponent,Possession Change,takeaway,65,14.63,1.511
+20262027,D,1,Opponent,Goal,goal,58,13.76,1.348
+20262027,D,1,Opponent,Stoppage,faceoff,36,17.83,0.837
+20262027,D,1,Hitting Team,Stoppage,faceoff,36,14.97,0.837
+20262027,D,1,Opponent,Other,delayed-penalty,32,17.28,0.744
+20262027,D,1,Hitting Team,Other,delayed-penalty,27,14.52,0.627
+20262027,D,1,Opponent,Stoppage,period-end,20,19.35,0.465
+20262027,D,1,Hitting Team,Stoppage,period-end,16,20.88,0.372
+20262027,D,1,Hitting Team,Goal,goal,16,22.5,0.372
+20262027,D,1,Opponent,Stoppage,penalty,8,8.38,0.186
+20262027,D,1,Hitting Team,Stoppage,penalty,6,3.67,0.139
+20262027,D,1,Hitting Team,Other,game-end,2,9.0,0.046
 20262027,D,1,Opponent,Other,game-end,1,23.0,0.023
-20262027,D,2,Opponent,Shot Attempt,shot-on-goal,369,26.92,8.67
-20262027,D,2,Hitting Team,Stoppage,stoppage,347,21.87,8.153
-20262027,D,2,Opponent,Physical Battle,hit,338,27.66,7.942
-20262027,D,2,Hitting Team,Physical Battle,hit,336,30.64,7.895
-20262027,D,2,Opponent,Stoppage,stoppage,327,25.09,7.683
-20262027,D,2,Hitting Team,Stoppage,faceoff,311,16.56,7.307
-20262027,D,2,Opponent,Stoppage,faceoff,292,18.92,6.861
-20262027,D,2,Opponent,Shot Attempt,blocked-shot,278,26.08,6.532
-20262027,D,2,Hitting Team,Shot Attempt,shot-on-goal,259,32.95,6.086
-20262027,D,2,Hitting Team,Possession Change,giveaway,245,28.7,5.757
-20262027,D,2,Opponent,Shot Attempt,missed-shot,241,24.69,5.663
-20262027,D,2,Opponent,Possession Change,giveaway,227,29.58,5.334
-20262027,D,2,Hitting Team,Shot Attempt,blocked-shot,154,34.4,3.618
-20262027,D,2,Hitting Team,Shot Attempt,missed-shot,140,37.06,3.289
-20262027,D,2,Hitting Team,Possession Change,takeaway,60,32.33,1.41
-20262027,D,2,Opponent,Possession Change,takeaway,58,29.43,1.363
-20262027,D,2,Opponent,Goal,goal,54,23.15,1.269
-20262027,D,2,Hitting Team,Stoppage,penalty,46,10.57,1.081
-20262027,D,2,Opponent,Stoppage,penalty,36,21.39,0.846
-20262027,D,2,Hitting Team,Goal,goal,36,31.89,0.846
-20262027,D,2,Opponent,Other,delayed-penalty,30,30.27,0.705
-20262027,D,2,Opponent,Stoppage,period-end,23,29.65,0.54
-20262027,D,2,Hitting Team,Other,delayed-penalty,21,27.67,0.493
-20262027,D,2,Hitting Team,Stoppage,period-end,19,39.79,0.446
+20262027,D,2,Opponent,Shot Attempt,shot-on-goal,371,26.82,8.678
+20262027,D,2,Hitting Team,Stoppage,stoppage,348,21.96,8.14
+20262027,D,2,Opponent,Physical Battle,hit,339,27.6,7.93
+20262027,D,2,Hitting Team,Physical Battle,hit,336,30.64,7.86
+20262027,D,2,Opponent,Stoppage,stoppage,328,25.13,7.673
+20262027,D,2,Hitting Team,Stoppage,faceoff,315,16.65,7.368
+20262027,D,2,Opponent,Stoppage,faceoff,293,19.03,6.854
+20262027,D,2,Opponent,Shot Attempt,blocked-shot,279,26.17,6.526
+20262027,D,2,Hitting Team,Shot Attempt,shot-on-goal,262,32.87,6.129
+20262027,D,2,Hitting Team,Possession Change,giveaway,246,28.63,5.754
+20262027,D,2,Opponent,Shot Attempt,missed-shot,241,24.69,5.637
+20262027,D,2,Opponent,Possession Change,giveaway,227,29.58,5.31
+20262027,D,2,Hitting Team,Shot Attempt,blocked-shot,154,34.4,3.602
+20262027,D,2,Hitting Team,Shot Attempt,missed-shot,144,37.39,3.368
+20262027,D,2,Hitting Team,Possession Change,takeaway,60,32.33,1.404
+20262027,D,2,Opponent,Possession Change,takeaway,58,29.43,1.357
+20262027,D,2,Opponent,Goal,goal,54,23.15,1.263
+20262027,D,2,Hitting Team,Stoppage,penalty,46,10.57,1.076
+20262027,D,2,Opponent,Stoppage,penalty,36,21.39,0.842
+20262027,D,2,Hitting Team,Goal,goal,36,31.89,0.842
+20262027,D,2,Opponent,Other,delayed-penalty,30,30.27,0.702
+20262027,D,2,Opponent,Stoppage,period-end,23,29.65,0.538
+20262027,D,2,Hitting Team,Other,delayed-penalty,21,27.67,0.491
+20262027,D,2,Hitting Team,Stoppage,period-end,19,39.79,0.444
 20262027,D,2,Hitting Team,Other,game-end,5,38.8,0.117
 20262027,D,2,Opponent,Other,game-end,4,8.5,0.094
-20262027,D,3,Opponent,Stoppage,faceoff,412,26.21,9.784
-20262027,D,3,Hitting Team,Stoppage,faceoff,402,23.39,9.546
-20262027,D,3,Opponent,Shot Attempt,shot-on-goal,339,40.1,8.05
-20262027,D,3,Opponent,Stoppage,stoppage,322,37.32,7.647
-20262027,D,3,Hitting Team,Stoppage,stoppage,316,34.93,7.504
-20262027,D,3,Opponent,Physical Battle,hit,289,43.49,6.863
-20262027,D,3,Hitting Team,Physical Battle,hit,288,40.3,6.839
-20262027,D,3,Hitting Team,Shot Attempt,shot-on-goal,251,46.48,5.961
-20262027,D,3,Opponent,Shot Attempt,blocked-shot,233,40.1,5.533
-20262027,D,3,Opponent,Possession Change,giveaway,226,40.74,5.367
-20262027,D,3,Hitting Team,Possession Change,giveaway,205,42.6,4.868
-20262027,D,3,Opponent,Shot Attempt,missed-shot,204,39.24,4.844
-20262027,D,3,Hitting Team,Shot Attempt,blocked-shot,159,44.14,3.776
-20262027,D,3,Hitting Team,Shot Attempt,missed-shot,148,47.36,3.515
-20262027,D,3,Opponent,Stoppage,penalty,71,19.45,1.686
-20262027,D,3,Hitting Team,Stoppage,penalty,68,21.16,1.615
-20262027,D,3,Hitting Team,Possession Change,takeaway,63,43.73,1.496
-20262027,D,3,Opponent,Possession Change,takeaway,55,39.29,1.306
-20262027,D,3,Opponent,Goal,goal,44,37.77,1.045
-20262027,D,3,Hitting Team,Goal,goal,34,47.79,0.807
-20262027,D,3,Hitting Team,Stoppage,period-end,24,36.29,0.57
-20262027,D,3,Hitting Team,Other,delayed-penalty,24,31.08,0.57
-20262027,D,3,Opponent,Other,delayed-penalty,20,38.0,0.475
-20262027,D,3,Opponent,Stoppage,period-end,9,46.11,0.214
+20262027,D,3,Opponent,Stoppage,faceoff,413,26.24,9.764
+20262027,D,3,Hitting Team,Stoppage,faceoff,403,23.47,9.527
+20262027,D,3,Opponent,Shot Attempt,shot-on-goal,341,40.13,8.061
+20262027,D,3,Opponent,Stoppage,stoppage,327,37.43,7.73
+20262027,D,3,Hitting Team,Stoppage,stoppage,319,34.97,7.541
+20262027,D,3,Opponent,Physical Battle,hit,289,43.49,6.832
+20262027,D,3,Hitting Team,Physical Battle,hit,289,40.5,6.832
+20262027,D,3,Hitting Team,Shot Attempt,shot-on-goal,251,46.48,5.934
+20262027,D,3,Opponent,Shot Attempt,blocked-shot,234,40.2,5.532
+20262027,D,3,Opponent,Possession Change,giveaway,227,40.72,5.366
+20262027,D,3,Opponent,Shot Attempt,missed-shot,205,39.12,4.846
+20262027,D,3,Hitting Team,Possession Change,giveaway,205,42.6,4.846
+20262027,D,3,Hitting Team,Shot Attempt,blocked-shot,159,44.14,3.759
+20262027,D,3,Hitting Team,Shot Attempt,missed-shot,148,47.36,3.499
+20262027,D,3,Opponent,Stoppage,penalty,71,19.45,1.678
+20262027,D,3,Hitting Team,Stoppage,penalty,69,21.32,1.631
+20262027,D,3,Hitting Team,Possession Change,takeaway,63,43.73,1.489
+20262027,D,3,Opponent,Possession Change,takeaway,55,39.29,1.3
+20262027,D,3,Opponent,Goal,goal,45,37.47,1.064
+20262027,D,3,Hitting Team,Goal,goal,34,47.79,0.804
+20262027,D,3,Hitting Team,Other,delayed-penalty,24,31.08,0.567
+20262027,D,3,Hitting Team,Stoppage,period-end,24,36.29,0.567
+20262027,D,3,Opponent,Other,delayed-penalty,21,37.86,0.496
+20262027,D,3,Opponent,Stoppage,period-end,9,46.11,0.213
 20262027,D,3,Hitting Team,Other,game-end,3,55.0,0.071
 20262027,D,3,Opponent,Other,game-end,2,24.0,0.047
-20262027,D,4,Hitting Team,Stoppage,faceoff,380,39.34,9.091
-20262027,D,4,Opponent,Stoppage,faceoff,366,37.28,8.756
-20262027,D,4,Hitting Team,Physical Battle,hit,343,52.2,8.206
-20262027,D,4,Hitting Team,Stoppage,stoppage,332,46.04,7.943
-20262027,D,4,Opponent,Shot Attempt,shot-on-goal,332,50.79,7.943
-20262027,D,4,Hitting Team,Shot Attempt,shot-on-goal,302,53.51,7.225
-20262027,D,4,Opponent,Stoppage,stoppage,301,49.13,7.201
-20262027,D,4,Opponent,Physical Battle,hit,281,47.96,6.722
-20262027,D,4,Opponent,Shot Attempt,blocked-shot,237,48.76,5.67
-20262027,D,4,Hitting Team,Possession Change,giveaway,220,55.14,5.263
-20262027,D,4,Opponent,Shot Attempt,missed-shot,207,50.6,4.952
-20262027,D,4,Opponent,Possession Change,giveaway,198,50.88,4.737
-20262027,D,4,Hitting Team,Shot Attempt,missed-shot,170,52.4,4.067
-20262027,D,4,Hitting Team,Shot Attempt,blocked-shot,157,56.25,3.756
-20262027,D,4,Opponent,Stoppage,penalty,60,32.27,1.435
-20262027,D,4,Hitting Team,Stoppage,penalty,57,28.12,1.364
-20262027,D,4,Hitting Team,Possession Change,takeaway,54,52.31,1.292
-20262027,D,4,Opponent,Possession Change,takeaway,44,52.02,1.053
-20262027,D,4,Opponent,Goal,goal,41,47.32,0.981
-20262027,D,4,Hitting Team,Goal,goal,30,56.63,0.718
-20262027,D,4,Opponent,Stoppage,period-end,26,55.81,0.622
-20262027,D,4,Hitting Team,Other,delayed-penalty,15,53.4,0.359
-20262027,D,4,Opponent,Other,delayed-penalty,12,57.5,0.287
-20262027,D,4,Hitting Team,Stoppage,period-end,9,52.78,0.215
-20262027,D,4,Hitting Team,Other,game-end,4,49.75,0.096
+20262027,D,4,Hitting Team,Stoppage,faceoff,382,39.29,9.097
+20262027,D,4,Opponent,Stoppage,faceoff,372,37.49,8.859
+20262027,D,4,Hitting Team,Physical Battle,hit,345,52.46,8.216
+20262027,D,4,Hitting Team,Stoppage,stoppage,332,46.04,7.907
+20262027,D,4,Opponent,Shot Attempt,shot-on-goal,332,50.79,7.907
+20262027,D,4,Hitting Team,Shot Attempt,shot-on-goal,303,53.48,7.216
+20262027,D,4,Opponent,Stoppage,stoppage,302,49.26,7.192
+20262027,D,4,Opponent,Physical Battle,hit,282,48.07,6.716
+20262027,D,4,Opponent,Shot Attempt,blocked-shot,237,48.76,5.644
+20262027,D,4,Hitting Team,Possession Change,giveaway,220,55.14,5.239
+20262027,D,4,Opponent,Shot Attempt,missed-shot,208,50.66,4.954
+20262027,D,4,Opponent,Possession Change,giveaway,200,50.94,4.763
+20262027,D,4,Hitting Team,Shot Attempt,missed-shot,172,52.22,4.096
+20262027,D,4,Hitting Team,Shot Attempt,blocked-shot,157,56.25,3.739
+20262027,D,4,Opponent,Stoppage,penalty,60,32.27,1.429
+20262027,D,4,Hitting Team,Stoppage,penalty,58,27.79,1.381
+20262027,D,4,Hitting Team,Possession Change,takeaway,54,52.31,1.286
+20262027,D,4,Opponent,Possession Change,takeaway,44,52.02,1.048
+20262027,D,4,Opponent,Goal,goal,41,47.32,0.976
+20262027,D,4,Hitting Team,Goal,goal,30,56.63,0.714
+20262027,D,4,Opponent,Stoppage,period-end,26,55.81,0.619
+20262027,D,4,Hitting Team,Other,delayed-penalty,15,53.4,0.357
+20262027,D,4,Opponent,Other,delayed-penalty,12,57.5,0.286
+20262027,D,4,Hitting Team,Stoppage,period-end,9,52.78,0.214
+20262027,D,4,Hitting Team,Other,game-end,4,49.75,0.095
 20262027,D,4,Opponent,Other,game-end,2,68.0,0.048
-20262027,N,1,Opponent,Physical Battle,hit,246,13.03,13.774
-20262027,N,1,Hitting Team,Physical Battle,hit,209,15.96,11.702
-20262027,N,1,Opponent,Shot Attempt,shot-on-goal,163,15.09,9.127
-20262027,N,1,Hitting Team,Possession Change,giveaway,142,13.2,7.951
-20262027,N,1,Opponent,Possession Change,giveaway,130,12.84,7.279
-20262027,N,1,Hitting Team,Stoppage,stoppage,129,12.78,7.223
-20262027,N,1,Hitting Team,Shot Attempt,shot-on-goal,126,21.2,7.055
-20262027,N,1,Opponent,Shot Attempt,blocked-shot,117,17.59,6.551
-20262027,N,1,Opponent,Stoppage,stoppage,109,12.62,6.103
-20262027,N,1,Opponent,Shot Attempt,missed-shot,84,17.02,4.703
-20262027,N,1,Hitting Team,Shot Attempt,missed-shot,76,19.63,4.255
-20262027,N,1,Hitting Team,Shot Attempt,blocked-shot,72,22.71,4.031
-20262027,N,1,Hitting Team,Possession Change,takeaway,41,13.8,2.296
-20262027,N,1,Opponent,Possession Change,takeaway,39,11.62,2.184
-20262027,N,1,Opponent,Goal,goal,20,23.55,1.12
-20262027,N,1,Hitting Team,Stoppage,faceoff,14,14.5,0.784
-20262027,N,1,Opponent,Stoppage,faceoff,13,16.0,0.728
-20262027,N,1,Opponent,Other,delayed-penalty,11,9.82,0.616
-20262027,N,1,Hitting Team,Goal,goal,10,23.9,0.56
-20262027,N,1,Opponent,Stoppage,penalty,9,9.0,0.504
-20262027,N,1,Hitting Team,Other,delayed-penalty,9,14.89,0.504
-20262027,N,1,Hitting Team,Stoppage,period-end,7,12.29,0.392
-20262027,N,1,Opponent,Stoppage,period-end,6,15.0,0.336
-20262027,N,1,Hitting Team,Stoppage,penalty,3,24.67,0.168
+20262027,N,1,Opponent,Physical Battle,hit,248,13.04,13.778
+20262027,N,1,Hitting Team,Physical Battle,hit,209,15.96,11.611
+20262027,N,1,Opponent,Shot Attempt,shot-on-goal,164,15.12,9.111
+20262027,N,1,Hitting Team,Possession Change,giveaway,142,13.2,7.889
+20262027,N,1,Opponent,Possession Change,giveaway,130,12.84,7.222
+20262027,N,1,Hitting Team,Stoppage,stoppage,130,12.68,7.222
+20262027,N,1,Hitting Team,Shot Attempt,shot-on-goal,127,21.12,7.056
+20262027,N,1,Opponent,Shot Attempt,blocked-shot,119,17.56,6.611
+20262027,N,1,Opponent,Stoppage,stoppage,109,12.62,6.056
+20262027,N,1,Opponent,Shot Attempt,missed-shot,86,16.85,4.778
+20262027,N,1,Hitting Team,Shot Attempt,missed-shot,76,19.63,4.222
+20262027,N,1,Hitting Team,Shot Attempt,blocked-shot,73,23.01,4.056
+20262027,N,1,Hitting Team,Possession Change,takeaway,42,13.48,2.333
+20262027,N,1,Opponent,Possession Change,takeaway,40,12.05,2.222
+20262027,N,1,Opponent,Goal,goal,20,23.55,1.111
+20262027,N,1,Opponent,Stoppage,faceoff,14,16.29,0.778
+20262027,N,1,Hitting Team,Stoppage,faceoff,14,14.5,0.778
+20262027,N,1,Opponent,Other,delayed-penalty,11,9.82,0.611
+20262027,N,1,Hitting Team,Goal,goal,10,23.9,0.556
+20262027,N,1,Hitting Team,Other,delayed-penalty,10,15.4,0.556
+20262027,N,1,Opponent,Stoppage,penalty,9,9.0,0.5
+20262027,N,1,Hitting Team,Stoppage,period-end,7,12.29,0.389
+20262027,N,1,Opponent,Stoppage,period-end,6,15.0,0.333
+20262027,N,1,Hitting Team,Stoppage,penalty,3,24.67,0.167
 20262027,N,1,Opponent,Other,game-end,1,3.0,0.056
-20262027,N,2,Hitting Team,Physical Battle,hit,179,31.5,10.079
-20262027,N,2,Hitting Team,Stoppage,faceoff,152,15.05,8.559
-20262027,N,2,Opponent,Stoppage,faceoff,151,15.27,8.502
-20262027,N,2,Opponent,Physical Battle,hit,136,26.65,7.658
-20262027,N,2,Opponent,Shot Attempt,shot-on-goal,134,27.78,7.545
-20262027,N,2,Hitting Team,Stoppage,stoppage,131,26.44,7.376
-20262027,N,2,Opponent,Stoppage,stoppage,127,25.65,7.151
-20262027,N,2,Hitting Team,Shot Attempt,shot-on-goal,113,30.76,6.363
-20262027,N,2,Hitting Team,Possession Change,giveaway,110,29.75,6.194
-20262027,N,2,Opponent,Shot Attempt,missed-shot,92,32.03,5.18
-20262027,N,2,Opponent,Shot Attempt,blocked-shot,87,33.47,4.899
-20262027,N,2,Opponent,Possession Change,giveaway,85,33.96,4.786
-20262027,N,2,Hitting Team,Shot Attempt,missed-shot,68,32.06,3.829
-20262027,N,2,Hitting Team,Shot Attempt,blocked-shot,58,34.28,3.266
-20262027,N,2,Hitting Team,Possession Change,takeaway,25,29.64,1.408
-20262027,N,2,Opponent,Possession Change,takeaway,24,26.63,1.351
-20262027,N,2,Opponent,Stoppage,penalty,19,18.26,1.07
-20262027,N,2,Opponent,Goal,goal,17,31.53,0.957
-20262027,N,2,Hitting Team,Goal,goal,17,33.06,0.957
-20262027,N,2,Hitting Team,Stoppage,penalty,16,12.56,0.901
-20262027,N,2,Opponent,Other,delayed-penalty,13,27.38,0.732
-20262027,N,2,Hitting Team,Other,delayed-penalty,8,26.25,0.45
-20262027,N,2,Hitting Team,Stoppage,period-end,7,23.86,0.394
-20262027,N,2,Opponent,Stoppage,period-end,5,23.2,0.282
-20262027,N,2,Hitting Team,Other,game-end,2,29.5,0.113
-20262027,N,3,Opponent,Stoppage,faceoff,173,28.65,9.813
-20262027,N,3,Hitting Team,Stoppage,faceoff,154,27.75,8.735
-20262027,N,3,Hitting Team,Physical Battle,hit,152,43.4,8.622
-20262027,N,3,Opponent,Physical Battle,hit,146,44.4,8.281
-20262027,N,3,Opponent,Stoppage,stoppage,144,39.17,8.168
-20262027,N,3,Hitting Team,Stoppage,stoppage,123,36.0,6.977
-20262027,N,3,Hitting Team,Shot Attempt,shot-on-goal,121,40.74,6.863
-20262027,N,3,Opponent,Shot Attempt,shot-on-goal,113,43.76,6.41
-20262027,N,3,Hitting Team,Possession Change,giveaway,95,40.25,5.389
-20262027,N,3,Opponent,Possession Change,giveaway,89,42.99,5.048
-20262027,N,3,Hitting Team,Shot Attempt,blocked-shot,82,46.3,4.651
-20262027,N,3,Opponent,Shot Attempt,missed-shot,81,41.59,4.594
-20262027,N,3,Hitting Team,Shot Attempt,missed-shot,75,45.72,4.254
-20262027,N,3,Opponent,Shot Attempt,blocked-shot,74,42.51,4.197
-20262027,N,3,Hitting Team,Possession Change,takeaway,22,46.86,1.248
-20262027,N,3,Opponent,Possession Change,takeaway,21,29.71,1.191
-20262027,N,3,Opponent,Stoppage,penalty,20,17.6,1.134
-20262027,N,3,Hitting Team,Stoppage,penalty,19,20.58,1.078
-20262027,N,3,Opponent,Goal,goal,15,36.87,0.851
-20262027,N,3,Hitting Team,Goal,goal,13,40.0,0.737
-20262027,N,3,Opponent,Other,delayed-penalty,9,58.11,0.51
-20262027,N,3,Opponent,Stoppage,period-end,9,42.33,0.51
-20262027,N,3,Hitting Team,Stoppage,period-end,8,53.38,0.454
-20262027,N,3,Hitting Team,Other,delayed-penalty,3,21.0,0.17
-20262027,N,3,Hitting Team,Other,game-end,1,57.0,0.057
-20262027,N,3,Opponent,Other,game-end,1,22.0,0.057
-20262027,N,4,Hitting Team,Stoppage,faceoff,150,40.65,8.591
-20262027,N,4,Opponent,Stoppage,faceoff,144,39.24,8.247
-20262027,N,4,Hitting Team,Shot Attempt,shot-on-goal,129,56.31,7.388
-20262027,N,4,Opponent,Physical Battle,hit,129,54.02,7.388
-20262027,N,4,Opponent,Stoppage,stoppage,128,48.32,7.331
-20262027,N,4,Opponent,Shot Attempt,shot-on-goal,127,48.2,7.274
-20262027,N,4,Hitting Team,Physical Battle,hit,126,58.21,7.216
-20262027,N,4,Hitting Team,Stoppage,stoppage,124,51.44,7.102
-20262027,N,4,Opponent,Possession Change,giveaway,105,59.13,6.014
-20262027,N,4,Opponent,Shot Attempt,blocked-shot,97,51.52,5.556
-20262027,N,4,Hitting Team,Shot Attempt,blocked-shot,90,50.34,5.155
-20262027,N,4,Hitting Team,Shot Attempt,missed-shot,80,55.35,4.582
-20262027,N,4,Opponent,Shot Attempt,missed-shot,78,53.21,4.467
-20262027,N,4,Hitting Team,Possession Change,giveaway,77,56.79,4.41
-20262027,N,4,Opponent,Stoppage,penalty,31,28.32,1.775
-20262027,N,4,Hitting Team,Stoppage,penalty,25,27.28,1.432
-20262027,N,4,Hitting Team,Possession Change,takeaway,23,50.0,1.317
-20262027,N,4,Opponent,Possession Change,takeaway,20,54.8,1.145
-20262027,N,4,Opponent,Goal,goal,16,49.06,0.916
-20262027,N,4,Hitting Team,Goal,goal,13,45.92,0.745
-20262027,N,4,Hitting Team,Stoppage,period-end,12,55.42,0.687
-20262027,N,4,Opponent,Other,delayed-penalty,12,56.0,0.687
-20262027,N,4,Hitting Team,Other,delayed-penalty,5,51.2,0.286
-20262027,N,4,Opponent,Stoppage,period-end,3,78.0,0.172
-20262027,N,4,Opponent,Other,game-end,2,34.0,0.115
-20262027,O,1,Hitting Team,Physical Battle,hit,776,13.38,14.048
-20262027,O,1,Hitting Team,Shot Attempt,shot-on-goal,560,16.23,10.138
-20262027,O,1,Opponent,Possession Change,giveaway,551,10.45,9.975
-20262027,O,1,Opponent,Physical Battle,hit,511,16.06,9.251
-20262027,O,1,Opponent,Shot Attempt,shot-on-goal,446,16.61,8.074
-20262027,O,1,Hitting Team,Shot Attempt,blocked-shot,378,14.39,6.843
-20262027,O,1,Hitting Team,Stoppage,stoppage,360,14.78,6.517
-20262027,O,1,Hitting Team,Possession Change,giveaway,344,16.32,6.227
-20262027,O,1,Opponent,Stoppage,stoppage,335,14.77,6.064
-20262027,O,1,Hitting Team,Shot Attempt,missed-shot,305,15.38,5.521
-20262027,O,1,Opponent,Shot Attempt,blocked-shot,243,20.01,4.399
-20262027,O,1,Opponent,Shot Attempt,missed-shot,209,19.42,3.783
-20262027,O,1,Hitting Team,Possession Change,takeaway,114,10.81,2.064
-20262027,O,1,Opponent,Possession Change,takeaway,85,16.05,1.539
-20262027,O,1,Hitting Team,Goal,goal,55,17.15,0.996
-20262027,O,1,Opponent,Stoppage,faceoff,52,12.75,0.941
-20262027,O,1,Opponent,Goal,goal,36,17.58,0.652
-20262027,O,1,Opponent,Other,delayed-penalty,29,13.0,0.525
-20262027,O,1,Hitting Team,Stoppage,period-end,29,18.62,0.525
-20262027,O,1,Hitting Team,Other,delayed-penalty,29,14.55,0.525
-20262027,O,1,Hitting Team,Stoppage,faceoff,28,15.18,0.507
-20262027,O,1,Opponent,Stoppage,period-end,26,26.35,0.471
-20262027,O,1,Opponent,Stoppage,penalty,10,7.9,0.181
-20262027,O,1,Hitting Team,Stoppage,penalty,9,11.56,0.163
-20262027,O,1,Hitting Team,Other,game-end,2,43.0,0.036
+20262027,N,2,Hitting Team,Physical Battle,hit,179,31.5,10.0
+20262027,N,2,Hitting Team,Stoppage,faceoff,153,15.1,8.547
+20262027,N,2,Opponent,Stoppage,faceoff,152,15.18,8.492
+20262027,N,2,Opponent,Physical Battle,hit,139,26.75,7.765
+20262027,N,2,Opponent,Shot Attempt,shot-on-goal,135,27.73,7.542
+20262027,N,2,Hitting Team,Stoppage,stoppage,133,26.25,7.43
+20262027,N,2,Opponent,Stoppage,stoppage,127,25.65,7.095
+20262027,N,2,Hitting Team,Shot Attempt,shot-on-goal,114,30.74,6.369
+20262027,N,2,Hitting Team,Possession Change,giveaway,110,29.75,6.145
+20262027,N,2,Opponent,Shot Attempt,missed-shot,93,31.92,5.196
+20262027,N,2,Opponent,Shot Attempt,blocked-shot,88,33.76,4.916
+20262027,N,2,Opponent,Possession Change,giveaway,85,33.96,4.749
+20262027,N,2,Hitting Team,Shot Attempt,missed-shot,68,32.06,3.799
+20262027,N,2,Hitting Team,Shot Attempt,blocked-shot,60,34.75,3.352
+20262027,N,2,Opponent,Possession Change,takeaway,25,26.76,1.397
+20262027,N,2,Hitting Team,Possession Change,takeaway,25,29.64,1.397
+20262027,N,2,Opponent,Stoppage,penalty,19,18.26,1.061
+20262027,N,2,Hitting Team,Goal,goal,17,33.06,0.95
+20262027,N,2,Opponent,Goal,goal,17,31.53,0.95
+20262027,N,2,Hitting Team,Stoppage,penalty,16,12.56,0.894
+20262027,N,2,Opponent,Other,delayed-penalty,13,27.38,0.726
+20262027,N,2,Hitting Team,Other,delayed-penalty,8,26.25,0.447
+20262027,N,2,Hitting Team,Stoppage,period-end,7,23.86,0.391
+20262027,N,2,Opponent,Stoppage,period-end,5,23.2,0.279
+20262027,N,2,Hitting Team,Other,game-end,2,29.5,0.112
+20262027,N,3,Opponent,Stoppage,faceoff,174,28.53,9.792
+20262027,N,3,Hitting Team,Stoppage,faceoff,154,27.75,8.666
+20262027,N,3,Hitting Team,Physical Battle,hit,154,43.23,8.666
+20262027,N,3,Opponent,Physical Battle,hit,146,44.4,8.216
+20262027,N,3,Opponent,Stoppage,stoppage,144,39.17,8.104
+20262027,N,3,Hitting Team,Stoppage,stoppage,125,36.56,7.034
+20262027,N,3,Hitting Team,Shot Attempt,shot-on-goal,121,40.74,6.809
+20262027,N,3,Opponent,Shot Attempt,shot-on-goal,116,43.7,6.528
+20262027,N,3,Hitting Team,Possession Change,giveaway,95,40.25,5.346
+20262027,N,3,Opponent,Possession Change,giveaway,89,42.99,5.008
+20262027,N,3,Opponent,Shot Attempt,missed-shot,82,41.44,4.615
+20262027,N,3,Hitting Team,Shot Attempt,blocked-shot,82,46.3,4.615
+20262027,N,3,Hitting Team,Shot Attempt,missed-shot,76,45.83,4.277
+20262027,N,3,Opponent,Shot Attempt,blocked-shot,75,42.51,4.221
+20262027,N,3,Hitting Team,Possession Change,takeaway,22,46.86,1.238
+20262027,N,3,Opponent,Possession Change,takeaway,21,29.71,1.182
+20262027,N,3,Hitting Team,Stoppage,penalty,21,20.67,1.182
+20262027,N,3,Opponent,Stoppage,penalty,20,17.6,1.125
+20262027,N,3,Opponent,Goal,goal,15,36.87,0.844
+20262027,N,3,Hitting Team,Goal,goal,13,40.0,0.732
+20262027,N,3,Opponent,Stoppage,period-end,9,42.33,0.506
+20262027,N,3,Opponent,Other,delayed-penalty,9,58.11,0.506
+20262027,N,3,Hitting Team,Stoppage,period-end,8,53.38,0.45
+20262027,N,3,Hitting Team,Other,delayed-penalty,4,24.25,0.225
+20262027,N,3,Hitting Team,Other,game-end,1,57.0,0.056
+20262027,N,3,Opponent,Other,game-end,1,22.0,0.056
+20262027,N,4,Hitting Team,Stoppage,faceoff,150,40.65,8.523
+20262027,N,4,Opponent,Stoppage,faceoff,146,39.68,8.295
+20262027,N,4,Hitting Team,Shot Attempt,shot-on-goal,131,56.26,7.443
+20262027,N,4,Opponent,Physical Battle,hit,129,54.02,7.33
+20262027,N,4,Opponent,Stoppage,stoppage,128,48.32,7.273
+20262027,N,4,Opponent,Shot Attempt,shot-on-goal,127,48.2,7.216
+20262027,N,4,Hitting Team,Physical Battle,hit,127,58.19,7.216
+20262027,N,4,Hitting Team,Stoppage,stoppage,126,51.04,7.159
+20262027,N,4,Opponent,Possession Change,giveaway,105,59.13,5.966
+20262027,N,4,Opponent,Shot Attempt,blocked-shot,99,51.71,5.625
+20262027,N,4,Hitting Team,Shot Attempt,blocked-shot,91,50.79,5.17
+20262027,N,4,Hitting Team,Shot Attempt,missed-shot,81,55.1,4.602
+20262027,N,4,Hitting Team,Possession Change,giveaway,78,57.38,4.432
+20262027,N,4,Opponent,Shot Attempt,missed-shot,78,53.21,4.432
+20262027,N,4,Opponent,Stoppage,penalty,32,28.06,1.818
+20262027,N,4,Hitting Team,Stoppage,penalty,25,27.28,1.42
+20262027,N,4,Hitting Team,Possession Change,takeaway,23,50.0,1.307
+20262027,N,4,Opponent,Possession Change,takeaway,20,54.8,1.136
+20262027,N,4,Opponent,Goal,goal,17,48.18,0.966
+20262027,N,4,Hitting Team,Goal,goal,13,45.92,0.739
+20262027,N,4,Hitting Team,Stoppage,period-end,12,55.42,0.682
+20262027,N,4,Opponent,Other,delayed-penalty,12,56.0,0.682
+20262027,N,4,Hitting Team,Other,delayed-penalty,5,51.2,0.284
+20262027,N,4,Opponent,Stoppage,period-end,3,78.0,0.17
+20262027,N,4,Opponent,Other,game-end,2,34.0,0.114
+20262027,O,1,Hitting Team,Physical Battle,hit,786,13.35,14.104
+20262027,O,1,Hitting Team,Shot Attempt,shot-on-goal,565,16.18,10.138
+20262027,O,1,Opponent,Possession Change,giveaway,560,10.38,10.048
+20262027,O,1,Opponent,Physical Battle,hit,511,16.06,9.169
+20262027,O,1,Opponent,Shot Attempt,shot-on-goal,452,16.64,8.111
+20262027,O,1,Hitting Team,Shot Attempt,blocked-shot,382,14.35,6.854
+20262027,O,1,Hitting Team,Stoppage,stoppage,363,14.69,6.514
+20262027,O,1,Hitting Team,Possession Change,giveaway,347,16.2,6.226
+20262027,O,1,Opponent,Stoppage,stoppage,335,14.77,6.011
+20262027,O,1,Hitting Team,Shot Attempt,missed-shot,307,15.33,5.509
+20262027,O,1,Opponent,Shot Attempt,blocked-shot,244,20.05,4.378
+20262027,O,1,Opponent,Shot Attempt,missed-shot,210,19.5,3.768
+20262027,O,1,Hitting Team,Possession Change,takeaway,117,10.73,2.099
+20262027,O,1,Opponent,Possession Change,takeaway,86,15.93,1.543
+20262027,O,1,Hitting Team,Goal,goal,55,17.15,0.987
+20262027,O,1,Opponent,Stoppage,faceoff,53,12.62,0.951
+20262027,O,1,Opponent,Goal,goal,36,17.58,0.646
+20262027,O,1,Hitting Team,Stoppage,period-end,29,18.62,0.52
+20262027,O,1,Hitting Team,Other,delayed-penalty,29,14.55,0.52
+20262027,O,1,Opponent,Other,delayed-penalty,29,13.0,0.52
+20262027,O,1,Hitting Team,Stoppage,faceoff,28,15.18,0.502
+20262027,O,1,Opponent,Stoppage,period-end,26,26.35,0.467
+20262027,O,1,Opponent,Stoppage,penalty,10,7.9,0.179
+20262027,O,1,Hitting Team,Stoppage,penalty,9,11.56,0.161
 20262027,O,1,Opponent,Other,game-end,2,19.0,0.036
-20262027,O,2,Hitting Team,Physical Battle,hit,479,28.31,8.746
-20262027,O,2,Hitting Team,Stoppage,faceoff,449,16.04,8.198
-20262027,O,2,Hitting Team,Stoppage,stoppage,444,25.48,8.107
-20262027,O,2,Opponent,Stoppage,faceoff,436,15.99,7.961
-20262027,O,2,Opponent,Physical Battle,hit,431,30.15,7.869
-20262027,O,2,Hitting Team,Shot Attempt,shot-on-goal,427,27.11,7.796
-20262027,O,2,Opponent,Stoppage,stoppage,407,25.39,7.431
-20262027,O,2,Opponent,Shot Attempt,shot-on-goal,355,30.67,6.482
-20262027,O,2,Hitting Team,Possession Change,giveaway,306,30.58,5.587
-20262027,O,2,Hitting Team,Shot Attempt,blocked-shot,304,27.4,5.55
-20262027,O,2,Opponent,Possession Change,giveaway,286,27.62,5.222
-20262027,O,2,Hitting Team,Shot Attempt,missed-shot,262,27.29,4.784
-20262027,O,2,Opponent,Shot Attempt,blocked-shot,230,34.47,4.199
-20262027,O,2,Opponent,Shot Attempt,missed-shot,200,35.16,3.652
-20262027,O,2,Hitting Team,Possession Change,takeaway,84,29.11,1.534
-20262027,O,2,Opponent,Possession Change,takeaway,83,27.63,1.515
-20262027,O,2,Hitting Team,Stoppage,penalty,53,14.26,0.968
-20262027,O,2,Hitting Team,Goal,goal,52,29.12,0.949
-20262027,O,2,Opponent,Stoppage,penalty,49,13.76,0.895
-20262027,O,2,Opponent,Goal,goal,40,27.55,0.73
-20262027,O,2,Opponent,Other,delayed-penalty,29,25.97,0.529
-20262027,O,2,Hitting Team,Other,delayed-penalty,25,22.4,0.456
-20262027,O,2,Opponent,Stoppage,period-end,23,29.52,0.42
-20262027,O,2,Hitting Team,Stoppage,period-end,16,30.56,0.292
-20262027,O,2,Hitting Team,Other,game-end,5,24.8,0.091
-20262027,O,2,Opponent,Other,game-end,2,92.0,0.037
-20262027,O,3,Opponent,Stoppage,faceoff,541,26.35,9.947
-20262027,O,3,Hitting Team,Stoppage,faceoff,489,26.32,8.991
-20262027,O,3,Hitting Team,Stoppage,stoppage,406,36.83,7.465
-20262027,O,3,Opponent,Physical Battle,hit,403,40.1,7.409
-20262027,O,3,Hitting Team,Physical Battle,hit,397,39.74,7.299
-20262027,O,3,Opponent,Stoppage,stoppage,384,36.5,7.06
-20262027,O,3,Hitting Team,Shot Attempt,shot-on-goal,380,39.45,6.987
-20262027,O,3,Opponent,Shot Attempt,shot-on-goal,373,41.76,6.858
-20262027,O,3,Hitting Team,Shot Attempt,blocked-shot,312,37.72,5.736
-20262027,O,3,Opponent,Possession Change,giveaway,308,42.71,5.663
-20262027,O,3,Hitting Team,Possession Change,giveaway,279,44.24,5.13
-20262027,O,3,Hitting Team,Shot Attempt,missed-shot,255,40.98,4.688
-20262027,O,3,Opponent,Shot Attempt,blocked-shot,227,40.13,4.174
-20262027,O,3,Opponent,Shot Attempt,missed-shot,215,42.26,3.953
-20262027,O,3,Opponent,Stoppage,penalty,80,21.23,1.471
-20262027,O,3,Opponent,Possession Change,takeaway,74,44.81,1.361
-20262027,O,3,Hitting Team,Stoppage,penalty,68,21.87,1.25
-20262027,O,3,Hitting Team,Possession Change,takeaway,62,44.08,1.14
-20262027,O,3,Hitting Team,Goal,goal,55,36.16,1.011
-20262027,O,3,Opponent,Goal,goal,32,40.25,0.588
-20262027,O,3,Opponent,Other,delayed-penalty,30,42.17,0.552
-20262027,O,3,Hitting Team,Stoppage,period-end,27,37.07,0.496
-20262027,O,3,Opponent,Stoppage,period-end,18,45.39,0.331
-20262027,O,3,Hitting Team,Other,delayed-penalty,15,49.0,0.276
-20262027,O,3,Opponent,Other,game-end,6,49.0,0.11
+20262027,O,1,Hitting Team,Other,game-end,2,43.0,0.036
+20262027,O,2,Hitting Team,Physical Battle,hit,486,28.17,8.795
+20262027,O,2,Hitting Team,Stoppage,stoppage,450,25.34,8.143
+20262027,O,2,Hitting Team,Stoppage,faceoff,450,16.01,8.143
+20262027,O,2,Opponent,Stoppage,faceoff,438,15.94,7.926
+20262027,O,2,Opponent,Physical Battle,hit,434,30.09,7.854
+20262027,O,2,Hitting Team,Shot Attempt,shot-on-goal,432,27.07,7.818
+20262027,O,2,Opponent,Stoppage,stoppage,411,25.29,7.438
+20262027,O,2,Opponent,Shot Attempt,shot-on-goal,358,30.55,6.478
+20262027,O,2,Hitting Team,Possession Change,giveaway,309,30.6,5.592
+20262027,O,2,Hitting Team,Shot Attempt,blocked-shot,309,27.35,5.592
+20262027,O,2,Opponent,Possession Change,giveaway,288,27.47,5.212
+20262027,O,2,Hitting Team,Shot Attempt,missed-shot,263,27.28,4.759
+20262027,O,2,Opponent,Shot Attempt,blocked-shot,230,34.47,4.162
+20262027,O,2,Opponent,Shot Attempt,missed-shot,201,35.06,3.637
+20262027,O,2,Hitting Team,Possession Change,takeaway,86,28.74,1.556
+20262027,O,2,Opponent,Possession Change,takeaway,84,27.45,1.52
+20262027,O,2,Hitting Team,Stoppage,penalty,53,14.26,0.959
+20262027,O,2,Hitting Team,Goal,goal,52,29.12,0.941
+20262027,O,2,Opponent,Stoppage,penalty,49,13.76,0.887
+20262027,O,2,Opponent,Goal,goal,40,27.55,0.724
+20262027,O,2,Opponent,Other,delayed-penalty,30,25.73,0.543
+20262027,O,2,Hitting Team,Other,delayed-penalty,27,22.81,0.489
+20262027,O,2,Opponent,Stoppage,period-end,23,29.52,0.416
+20262027,O,2,Hitting Team,Stoppage,period-end,16,30.56,0.29
+20262027,O,2,Hitting Team,Other,game-end,5,24.8,0.09
+20262027,O,2,Opponent,Other,game-end,2,92.0,0.036
+20262027,O,3,Opponent,Stoppage,faceoff,549,26.31,10.004
+20262027,O,3,Hitting Team,Stoppage,faceoff,493,26.26,8.983
+20262027,O,3,Hitting Team,Stoppage,stoppage,411,36.61,7.489
+20262027,O,3,Opponent,Physical Battle,hit,404,40.05,7.362
+20262027,O,3,Hitting Team,Physical Battle,hit,400,39.62,7.289
+20262027,O,3,Hitting Team,Shot Attempt,shot-on-goal,385,39.41,7.015
+20262027,O,3,Opponent,Stoppage,stoppage,384,36.5,6.997
+20262027,O,3,Opponent,Shot Attempt,shot-on-goal,377,41.66,6.87
+20262027,O,3,Hitting Team,Shot Attempt,blocked-shot,314,37.69,5.722
+20262027,O,3,Opponent,Possession Change,giveaway,310,42.55,5.649
+20262027,O,3,Hitting Team,Possession Change,giveaway,281,44.11,5.12
+20262027,O,3,Hitting Team,Shot Attempt,missed-shot,257,41.02,4.683
+20262027,O,3,Opponent,Shot Attempt,blocked-shot,227,40.13,4.136
+20262027,O,3,Opponent,Shot Attempt,missed-shot,218,41.99,3.972
+20262027,O,3,Opponent,Stoppage,penalty,81,21.04,1.476
+20262027,O,3,Opponent,Possession Change,takeaway,76,44.49,1.385
+20262027,O,3,Hitting Team,Stoppage,penalty,69,21.65,1.257
+20262027,O,3,Hitting Team,Possession Change,takeaway,63,44.25,1.148
+20262027,O,3,Hitting Team,Goal,goal,55,36.16,1.002
+20262027,O,3,Opponent,Goal,goal,32,40.25,0.583
+20262027,O,3,Opponent,Other,delayed-penalty,30,42.17,0.547
+20262027,O,3,Hitting Team,Stoppage,period-end,29,37.86,0.528
+20262027,O,3,Opponent,Stoppage,period-end,18,45.39,0.328
+20262027,O,3,Hitting Team,Other,delayed-penalty,16,49.0,0.292
+20262027,O,3,Opponent,Other,game-end,6,49.0,0.109
 20262027,O,3,Hitting Team,Other,game-end,3,44.33,0.055
-20262027,O,4,Opponent,Stoppage,faceoff,464,38.88,8.604
-20262027,O,4,Hitting Team,Stoppage,faceoff,459,37.9,8.511
-20262027,O,4,Hitting Team,Physical Battle,hit,427,52.04,7.918
-20262027,O,4,Hitting Team,Stoppage,stoppage,426,47.4,7.899
-20262027,O,4,Hitting Team,Shot Attempt,shot-on-goal,425,50.65,7.881
-20262027,O,4,Opponent,Stoppage,stoppage,400,47.9,7.417
-20262027,O,4,Opponent,Shot Attempt,shot-on-goal,383,50.64,7.102
-20262027,O,4,Opponent,Physical Battle,hit,382,53.39,7.083
-20262027,O,4,Hitting Team,Shot Attempt,blocked-shot,280,52.54,5.192
-20262027,O,4,Hitting Team,Possession Change,giveaway,279,52.2,5.173
-20262027,O,4,Opponent,Possession Change,giveaway,270,50.47,5.006
-20262027,O,4,Hitting Team,Shot Attempt,missed-shot,254,52.11,4.71
-20262027,O,4,Opponent,Shot Attempt,blocked-shot,235,50.52,4.358
-20262027,O,4,Opponent,Shot Attempt,missed-shot,232,49.59,4.302
-20262027,O,4,Opponent,Stoppage,penalty,80,27.0,1.483
-20262027,O,4,Hitting Team,Stoppage,penalty,74,29.95,1.372
-20262027,O,4,Opponent,Possession Change,takeaway,72,53.85,1.335
-20262027,O,4,Hitting Team,Possession Change,takeaway,61,48.8,1.131
-20262027,O,4,Opponent,Goal,goal,45,59.42,0.834
-20262027,O,4,Hitting Team,Goal,goal,42,49.71,0.779
-20262027,O,4,Opponent,Other,delayed-penalty,33,41.61,0.612
-20262027,O,4,Hitting Team,Other,delayed-penalty,32,54.38,0.593
-20262027,O,4,Hitting Team,Stoppage,period-end,17,44.88,0.315
-20262027,O,4,Opponent,Stoppage,period-end,13,49.62,0.241
-20262027,O,4,Hitting Team,Other,game-end,7,49.0,0.13
-20262027,O,4,Opponent,Other,game-end,1,63.0,0.019
-ALL,D,1,Hitting Team,Goal,goal,1020,19.511666666666667,0.34070753598305814
-ALL,D,1,Hitting Team,Other,delayed-penalty,947,13.83375,0.31632356527054517
-ALL,D,1,Hitting Team,Other,game-end,2,9.0,0.0006680539921236434
-ALL,D,1,Hitting Team,Physical Battle,hit,32725,16.206666666666667,10.931033446123116
-ALL,D,1,Hitting Team,Possession Change,giveaway,13258,15.824166666666665,4.428529913787632
-ALL,D,1,Hitting Team,Possession Change,takeaway,8861,16.594166666666666,2.959813212103802
-ALL,D,1,Hitting Team,Shot Attempt,blocked-shot,9480,21.68166666666667,3.1665759226660697
-ALL,D,1,Hitting Team,Shot Attempt,missed-shot,8398,20.750833333333333,2.8051587129271787
-ALL,D,1,Hitting Team,Shot Attempt,shot-on-goal,21213,19.043333333333333,7.085714667459424
-ALL,D,1,Hitting Team,Stoppage,faceoff,7708,14.069166666666668,2.5746800856445216
-ALL,D,1,Hitting Team,Stoppage,penalty,1810,10.855833333333335,0.6045888628718973
-ALL,D,1,Hitting Team,Stoppage,period-end,1377,15.15,0.45995517357712856
-ALL,D,1,Hitting Team,Stoppage,stoppage,12829,14.904166666666667,4.285232332477111
-ALL,D,1,Opponent,Goal,goal,2148,12.741666666666667,0.7174899875407931
-ALL,D,1,Opponent,Other,delayed-penalty,826,15.81,0.27590629874706474
-ALL,D,1,Opponent,Other,game-end,2,18.0,0.0006680539921236434
-ALL,D,1,Opponent,Physical Battle,hit,34610,14.886666666666668,11.56067433369965
-ALL,D,1,Opponent,Possession Change,giveaway,12454,16.896666666666665,4.159972208953928
-ALL,D,1,Opponent,Possession Change,takeaway,8871,16.13083333333333,2.96315348206442
-ALL,D,1,Opponent,Shot Attempt,blocked-shot,29417,12.221666666666666,9.82607214315061
-ALL,D,1,Opponent,Shot Attempt,missed-shot,23856,12.237499999999999,7.96854801805082
-ALL,D,1,Opponent,Shot Attempt,shot-on-goal,44105,12.695833333333333,14.732260661306649
-ALL,D,1,Opponent,Stoppage,faceoff,7803,14.331666666666665,2.6064126502703946
-ALL,D,1,Opponent,Stoppage,penalty,1455,11.804166666666667,0.4860092792699506
-ALL,D,1,Opponent,Stoppage,period-end,1437,15.012500000000001,0.4799967933408378
-ALL,D,1,Opponent,Stoppage,stoppage,12765,15.003333333333336,4.263854604729154
-ALL,D,2,Hitting Team,Goal,goal,2113,25.5975,0.7111939846384792
-ALL,D,2,Hitting Team,Other,delayed-penalty,813,26.3075,0.2736397110795474
-ALL,D,2,Hitting Team,Other,game-end,229,21.211666666666666,0.07707686818845799
-ALL,D,2,Hitting Team,Physical Battle,hit,26030,30.09166666666667,8.761182877491535
-ALL,D,2,Hitting Team,Possession Change,giveaway,9813,30.403333333333332,3.3028616049490758
-ALL,D,2,Hitting Team,Possession Change,takeaway,6628,32.87583333333333,2.2308536347296926
-ALL,D,2,Hitting Team,Shot Attempt,blocked-shot,10811,34.093333333333334,3.638768654958163
-ALL,D,2,Hitting Team,Shot Attempt,missed-shot,9269,33.402499999999996,3.1197619704751838
-ALL,D,2,Hitting Team,Shot Attempt,shot-on-goal,21661,31.665000000000003,7.290663938123094
-ALL,D,2,Hitting Team,Stoppage,faceoff,23028,18.371666666666666,7.750769085780833
-ALL,D,2,Hitting Team,Stoppage,penalty,3651,15.275833333333333,1.2288543482797387
-ALL,D,2,Hitting Team,Stoppage,period-end,1217,28.25,0.40961811609324617
-ALL,D,2,Hitting Team,Stoppage,stoppage,21908,21.598333333333333,7.3737992500992915
-ALL,D,2,Opponent,Goal,goal,3487,19.475833333333334,1.173655193769227
-ALL,D,2,Opponent,Other,delayed-penalty,658,30.083750000000002,0.22146977846290553
-ALL,D,2,Opponent,Other,game-end,262,16.535,0.08818401513264626
-ALL,D,2,Opponent,Physical Battle,hit,25504,29.888333333333332,8.584141686805383
-ALL,D,2,Opponent,Possession Change,giveaway,9748,31.9575,3.280983891271129
-ALL,D,2,Opponent,Possession Change,takeaway,6401,31.30333333333333,2.1544499269620943
-ALL,D,2,Opponent,Shot Attempt,blocked-shot,17857,27.213333333333335,6.0103128176475735
-ALL,D,2,Opponent,Shot Attempt,missed-shot,14565,27.501666666666665,4.902290764912187
-ALL,D,2,Opponent,Shot Attempt,shot-on-goal,31837,26.616666666666664,10.715704159458241
-ALL,D,2,Opponent,Stoppage,faceoff,23904,18.603333333333335,8.045613350117467
-ALL,D,2,Opponent,Stoppage,penalty,3033,18.214166666666667,1.0208477782340308
-ALL,D,2,Opponent,Stoppage,period-end,1203,28.410833333333333,0.4049059931472269
-ALL,D,2,Opponent,Stoppage,stoppage,21476,22.11,7.2283965991935535
-ALL,D,3,Hitting Team,Goal,goal,2164,38.23916666666667,0.7343982787116129
-ALL,D,3,Hitting Team,Other,delayed-penalty,666,39.06625,0.2260209120249234
-ALL,D,3,Hitting Team,Other,failed-shot-attempt,1,7.0,0.0003393707387761612
-ALL,D,3,Hitting Team,Other,game-end,217,35.660833333333336,0.07364345031442698
-ALL,D,3,Hitting Team,Physical Battle,hit,23746,42.73583333333334,8.058697562978725
-ALL,D,3,Hitting Team,Possession Change,giveaway,9113,43.0925,3.0926855424671573
-ALL,D,3,Hitting Team,Possession Change,takeaway,6147,44.79833333333334,2.086111931257063
-ALL,D,3,Hitting Team,Shot Attempt,blocked-shot,11248,45.49166666666667,3.817242069754262
-ALL,D,3,Hitting Team,Shot Attempt,missed-shot,9395,45.23666666666667,3.188388090802035
-ALL,D,3,Hitting Team,Shot Attempt,shot-on-goal,21789,43.770833333333336,7.394549027193777
-ALL,D,3,Hitting Team,Stoppage,faceoff,28548,26.5825,9.68835585058185
-ALL,D,3,Hitting Team,Stoppage,penalty,4091,24.05,1.3883656923332757
-ALL,D,3,Hitting Team,Stoppage,period-end,1214,41.21583333333333,0.4119960768742597
-ALL,D,3,Hitting Team,Stoppage,stoppage,23431,32.24666666666667,7.951795780264234
-ALL,D,3,Opponent,Goal,goal,2999,32.51916666666667,1.0177728455897075
-ALL,D,3,Opponent,Other,delayed-penalty,603,42.47125,0.2046405554820252
-ALL,D,3,Opponent,Other,game-end,212,31.165000000000003,0.07194659662054619
-ALL,D,3,Opponent,Physical Battle,hit,22676,42.836666666666666,7.695570872488232
-ALL,D,3,Opponent,Possession Change,giveaway,9149,43.83833333333334,3.104902889063099
-ALL,D,3,Opponent,Possession Change,takeaway,5871,44.3525,1.9924456073548429
-ALL,D,3,Opponent,Shot Attempt,blocked-shot,15189,40.149166666666666,5.154702151271113
-ALL,D,3,Opponent,Shot Attempt,missed-shot,12228,40.8125,4.1498253937549
-ALL,D,3,Opponent,Shot Attempt,shot-on-goal,27320,39.825833333333335,9.271608583364726
-ALL,D,3,Opponent,Stoppage,faceoff,28688,26.996666666666666,9.735867754010513
-ALL,D,3,Opponent,Stoppage,penalty,3827,25.631666666666664,1.2987718172963691
-ALL,D,3,Opponent,Stoppage,period-end,1274,40.21666666666667,0.43235832120082945
-ALL,D,3,Opponent,Stoppage,stoppage,22857,32.622499999999995,7.756996976206717
-ALL,D,4,Hitting Team,Goal,goal,2211,48.221666666666664,0.7566968181771512
-ALL,D,4,Hitting Team,Other,delayed-penalty,619,52.31125,0.21184772973842453
-ALL,D,4,Hitting Team,Other,failed-shot-attempt,1,9.0,0.0003422418897228183
-ALL,D,4,Hitting Team,Other,game-end,225,48.47333333333333,0.07700442518763412
-ALL,D,4,Hitting Team,Physical Battle,hit,23858,53.435,8.165207005006998
-ALL,D,4,Hitting Team,Possession Change,giveaway,9509,53.067499999999995,3.2543781293742793
-ALL,D,4,Hitting Team,Possession Change,takeaway,6357,54.909166666666664,2.175631692967956
-ALL,D,4,Hitting Team,Shot Attempt,blocked-shot,12273,54.36333333333334,4.200334712568149
-ALL,D,4,Hitting Team,Shot Attempt,missed-shot,10250,54.512499999999996,3.5079793696588877
-ALL,D,4,Hitting Team,Shot Attempt,shot-on-goal,23164,53.5075,7.927691133539364
-ALL,D,4,Hitting Team,Stoppage,faceoff,26219,40.16583333333333,8.973240106642573
-ALL,D,4,Hitting Team,Stoppage,penalty,4042,34.50416666666667,1.3833417182596315
-ALL,D,4,Hitting Team,Stoppage,period-end,1220,51.3425,0.41753510546183836
-ALL,D,4,Hitting Team,Stoppage,stoppage,22015,44.67666666666667,7.534455202247845
-ALL,D,4,Opponent,Goal,goal,2768,45.0325,0.947325550752761
-ALL,D,4,Opponent,Other,delayed-penalty,606,54.0075,0.2073985851720279
-ALL,D,4,Opponent,Other,game-end,244,46.98166666666666,0.08350702109236767
-ALL,D,4,Opponent,Physical Battle,hit,23237,53.166666666666664,7.9526747914891285
-ALL,D,4,Opponent,Possession Change,giveaway,9304,54.2775,3.1842185419811013
-ALL,D,4,Opponent,Possession Change,takeaway,6035,54.384166666666665,2.0654298044772084
-ALL,D,4,Opponent,Shot Attempt,blocked-shot,15562,49.73333333333333,5.325968287866498
-ALL,D,4,Opponent,Shot Attempt,missed-shot,12550,50.53916666666667,4.29513571602137
-ALL,D,4,Opponent,Shot Attempt,shot-on-goal,26906,50.10583333333333,9.208360284882149
-ALL,D,4,Opponent,Stoppage,faceoff,26373,39.969166666666666,9.025945357659888
-ALL,D,4,Opponent,Stoppage,penalty,3904,36.149166666666666,1.3361123374778827
-ALL,D,4,Opponent,Stoppage,period-end,1217,52.3325,0.41650837979266986
-ALL,D,4,Opponent,Stoppage,stoppage,21522,44.93416666666667,7.3657299506144955
-ALL,N,1,Hitting Team,Goal,goal,334,17.684166666666666,0.39454255507648694
-ALL,N,1,Hitting Team,Other,delayed-penalty,218,15.963750000000001,0.2575157994211801
-ALL,N,1,Hitting Team,Physical Battle,hit,10060,17.033333333333335,11.88352725769299
-ALL,N,1,Hitting Team,Possession Change,giveaway,4260,16.444166666666664,5.032189474927647
-ALL,N,1,Hitting Team,Possession Change,takeaway,2358,18.210833333333333,2.7854231882345992
-ALL,N,1,Hitting Team,Shot Attempt,blocked-shot,3691,20.18166666666667,4.3600496131356685
-ALL,N,1,Hitting Team,Shot Attempt,missed-shot,3222,19.229166666666668,3.8060362648396433
-ALL,N,1,Hitting Team,Shot Attempt,shot-on-goal,7457,18.299166666666668,8.808694111393303
-ALL,N,1,Hitting Team,Stoppage,faceoff,2564,13.799166666666666,3.028763806036265
-ALL,N,1,Hitting Team,Stoppage,penalty,496,13.030833333333334,0.5859075069399327
-ALL,N,1,Hitting Team,Stoppage,period-end,462,13.7325,0.5457444923513083
-ALL,N,1,Hitting Team,Stoppage,stoppage,4639,12.861666666666666,5.479888961077314
-ALL,N,1,Opponent,Goal,goal,415,17.900833333333335,0.49022503100820974
-ALL,N,1,Opponent,Other,delayed-penalty,288,14.32125,0.340204358868348
-ALL,N,1,Opponent,Other,game-end,1,3.0,0.0011812651349595415
-ALL,N,1,Opponent,Physical Battle,hit,12156,14.58,14.359458980568188
-ALL,N,1,Opponent,Possession Change,giveaway,3593,17.970833333333335,4.244285629909633
-ALL,N,1,Opponent,Possession Change,takeaway,2652,16.9425,3.1327151379127045
-ALL,N,1,Opponent,Shot Attempt,blocked-shot,4616,17.3875,5.452719862973245
-ALL,N,1,Opponent,Shot Attempt,missed-shot,3991,16.9175,4.714429153623531
-ALL,N,1,Opponent,Shot Attempt,shot-on-goal,8597,15.561666666666667,10.155336365247178
-ALL,N,1,Opponent,Stoppage,faceoff,2576,13.625,3.0429389876557793
-ALL,N,1,Opponent,Stoppage,penalty,488,10.633333333333333,0.5764573858602563
-ALL,N,1,Opponent,Stoppage,period-end,502,15.019166666666665,0.59299509774969
-ALL,N,1,Opponent,Stoppage,stoppage,5019,12.696666666666665,5.92876971236194
-ALL,N,2,Hitting Team,Goal,goal,601,25.2175,0.7167304687965845
-ALL,N,2,Hitting Team,Other,delayed-penalty,187,30.588749999999997,0.2230093139184048
-ALL,N,2,Hitting Team,Other,game-end,75,20.389166666666664,0.08944223820256879
-ALL,N,2,Hitting Team,Physical Battle,hit,7599,30.772499999999997,9.06228757468427
-ALL,N,2,Hitting Team,Possession Change,giveaway,2781,31.611666666666665,3.3165181925512504
-ALL,N,2,Hitting Team,Possession Change,takeaway,1759,33.76,2.0977186266442462
-ALL,N,2,Hitting Team,Shot Attempt,blocked-shot,3576,32.835,4.264605917498479
-ALL,N,2,Hitting Team,Shot Attempt,missed-shot,2871,32.765,3.4238488783943333
-ALL,N,2,Hitting Team,Shot Attempt,shot-on-goal,6776,30.715833333333336,8.080808080808081
-ALL,N,2,Hitting Team,Stoppage,faceoff,7441,16.930833333333336,8.873862592870857
-ALL,N,2,Hitting Team,Stoppage,penalty,952,15.990833333333333,1.1353201435846065
-ALL,N,2,Hitting Team,Stoppage,period-end,310,29.415000000000003,0.3696945845706176
-ALL,N,2,Hitting Team,Stoppage,stoppage,6182,22.243333333333336,7.372425554243736
-ALL,N,2,Opponent,Goal,goal,717,24.500833333333333,0.8550677972165575
-ALL,N,2,Opponent,Other,delayed-penalty,197,28.995,0.23493494567874734
-ALL,N,2,Opponent,Other,game-end,71,21.316363636363636,0.08467198549843179
-ALL,N,2,Opponent,Physical Battle,hit,7591,30.13083333333333,9.052747069275995
-ALL,N,2,Opponent,Possession Change,giveaway,2813,33.1775,3.354680214184346
-ALL,N,2,Opponent,Possession Change,takeaway,1605,33.306666666666665,1.914063897534972
-ALL,N,2,Opponent,Shot Attempt,blocked-shot,3997,31.051666666666666,4.766675014608899
-ALL,N,2,Opponent,Shot Attempt,missed-shot,3288,30.508333333333336,3.921147722800615
-ALL,N,2,Opponent,Shot Attempt,shot-on-goal,7145,29.715,8.52086389276472
-ALL,N,2,Opponent,Stoppage,faceoff,7421,17.2375,8.850011329350172
-ALL,N,2,Opponent,Stoppage,penalty,1051,16.345833333333335,1.2533838980119971
-ALL,N,2,Opponent,Stoppage,period-end,336,28.011666666666667,0.4007012271475081
-ALL,N,2,Opponent,Stoppage,stoppage,6511,22.325,7.764778839159005
-ALL,N,3,Hitting Team,Goal,goal,597,38.041666666666664,0.7177896407444814
-ALL,N,3,Hitting Team,Other,delayed-penalty,195,39.50625,0.2344539027557351
-ALL,N,3,Hitting Team,Other,game-end,49,36.41166666666667,0.05891405761554369
-ALL,N,3,Hitting Team,Physical Battle,hit,7161,42.2075,8.609868705814456
-ALL,N,3,Hitting Team,Possession Change,giveaway,2763,43.564166666666665,3.3220314528928006
-ALL,N,3,Hitting Team,Possession Change,takeaway,1670,45.39416666666667,2.007887269754244
-ALL,N,3,Hitting Team,Shot Attempt,blocked-shot,3670,43.44416666666667,4.412542682633578
-ALL,N,3,Hitting Team,Shot Attempt,missed-shot,3086,43.11666666666667,3.710383302072813
-ALL,N,3,Hitting Team,Shot Attempt,shot-on-goal,6591,42.32,7.924541913143847
-ALL,N,3,Hitting Team,Stoppage,faceoff,7868,28.406666666666666,9.459914394267303
-ALL,N,3,Hitting Team,Stoppage,penalty,1091,24.7325,1.311739527725677
-ALL,N,3,Hitting Team,Stoppage,period-end,357,40.530833333333334,0.4292309911989612
-ALL,N,3,Hitting Team,Stoppage,stoppage,6153,33.08,7.397922377723272
-ALL,N,3,Opponent,Goal,goal,712,34.54833333333333,0.856057326985043
-ALL,N,3,Opponent,Other,delayed-penalty,188,44.5875,0.22603760881065743
-ALL,N,3,Opponent,Other,game-end,50,35.98583333333333,0.06011638532198336
-ALL,N,3,Opponent,Physical Battle,hit,7104,42.48583333333333,8.541336026547395
-ALL,N,3,Opponent,Possession Change,giveaway,2639,43.744166666666665,3.1729428172942815
-ALL,N,3,Opponent,Possession Change,takeaway,1608,43.169999999999995,1.9333429519549847
-ALL,N,3,Opponent,Shot Attempt,blocked-shot,3945,41.973333333333336,4.743182801904487
-ALL,N,3,Opponent,Shot Attempt,missed-shot,3150,41.700833333333335,3.787332275284952
-ALL,N,3,Opponent,Shot Attempt,shot-on-goal,6861,41.95083333333333,8.249170393882558
-ALL,N,3,Opponent,Stoppage,faceoff,7651,28.730833333333333,9.199009281969895
-ALL,N,3,Opponent,Stoppage,penalty,1184,23.565,1.4235560044245659
-ALL,N,3,Opponent,Stoppage,period-end,342,40.57333333333333,0.41119607560236615
-ALL,N,3,Opponent,Stoppage,stoppage,6487,33.72,7.7994998316741215
-ALL,N,4,Hitting Team,Goal,goal,626,46.6525,0.7588890639964117
-ALL,N,4,Hitting Team,Other,delayed-penalty,182,54.42,0.22063547866988326
-ALL,N,4,Hitting Team,Other,game-end,46,38.344545454545454,0.05576501109238808
-ALL,N,4,Hitting Team,Physical Battle,hit,6965,53.175000000000004,8.443550049097455
-ALL,N,4,Hitting Team,Possession Change,giveaway,2723,54.47,3.301046200099407
-ALL,N,4,Hitting Team,Possession Change,takeaway,1764,55.21333333333334,2.1384669471080993
-ALL,N,4,Hitting Team,Shot Attempt,blocked-shot,3929,52.556666666666665,4.7630593169998425
-ALL,N,4,Hitting Team,Shot Attempt,missed-shot,3235,52.767500000000005,3.921735019214683
-ALL,N,4,Hitting Team,Shot Attempt,shot-on-goal,7031,53.26083333333333,8.523560717186534
-ALL,N,4,Hitting Team,Stoppage,faceoff,7163,40.9975,8.683582053364692
-ALL,N,4,Hitting Team,Stoppage,penalty,1180,34.693333333333335,1.4304937628047376
-ALL,N,4,Hitting Team,Stoppage,period-end,321,51.46416666666667,0.389142794796882
-ALL,N,4,Hitting Team,Stoppage,stoppage,5865,45.583333333333336,7.11003891427948
-ALL,N,4,Opponent,Goal,goal,659,46.685833333333335,0.7988943980409509
-ALL,N,4,Opponent,Other,delayed-penalty,187,56.837500000000006,0.22669689291905584
-ALL,N,4,Opponent,Other,game-end,66,42.59166666666667,0.08001066808907854
-ALL,N,4,Opponent,Physical Battle,hit,6878,53.490833333333335,8.338081441161851
-ALL,N,4,Opponent,Possession Change,giveaway,2818,53.987500000000004,3.416213070833687
-ALL,N,4,Opponent,Possession Change,takeaway,1631,54.82916666666667,1.9772333280801075
-ALL,N,4,Opponent,Shot Attempt,blocked-shot,3940,51.07416666666666,4.776394428348022
-ALL,N,4,Opponent,Shot Attempt,missed-shot,3296,51.44166666666666,3.9956842730545894
-ALL,N,4,Opponent,Shot Attempt,shot-on-goal,6817,51.57583333333333,8.264132187321946
-ALL,N,4,Opponent,Stoppage,faceoff,7284,40.795833333333334,8.830268278194668
-ALL,N,4,Opponent,Stoppage,penalty,1167,33.68333333333333,1.4147340857568889
-ALL,N,4,Opponent,Stoppage,period-end,345,53.634166666666665,0.4182375831929106
-ALL,N,4,Opponent,Stoppage,stoppage,6371,45.92166666666666,7.723454036295749
-ALL,O,1,Hitting Team,Goal,goal,1437,15.626666666666665,0.4943104420930968
-ALL,O,1,Hitting Team,Other,delayed-penalty,822,16.06625,0.2827579564373873
-ALL,O,1,Hitting Team,Other,game-end,2,43.0,0.0006879755631079983
-ALL,O,1,Hitting Team,Physical Battle,hit,39725,14.4225,13.664914622232619
-ALL,O,1,Hitting Team,Possession Change,giveaway,11731,17.996666666666666,4.035320665409965
-ALL,O,1,Hitting Team,Possession Change,takeaway,9486,14.1425,3.263068095821237
-ALL,O,1,Hitting Team,Shot Attempt,blocked-shot,19751,14.259166666666665,6.794102673473039
-ALL,O,1,Hitting Team,Shot Attempt,missed-shot,16610,14.1075,5.713637051611927
-ALL,O,1,Hitting Team,Shot Attempt,shot-on-goal,32456,14.779166666666667,11.1644674381166
-ALL,O,1,Hitting Team,Stoppage,faceoff,8340,13.62,2.868858098160353
-ALL,O,1,Hitting Team,Stoppage,penalty,1518,12.429166666666667,0.5221734523989708
-ALL,O,1,Hitting Team,Stoppage,period-end,1484,13.503333333333332,0.5104778678261348
-ALL,O,1,Hitting Team,Stoppage,stoppage,14025,13.254166666666668,4.824428636294839
-ALL,O,1,Opponent,Goal,goal,1261,15.07,0.433768592539593
-ALL,O,1,Opponent,Other,delayed-penalty,847,14.50875,0.29135765097623734
-ALL,O,1,Opponent,Other,game-end,3,35.0,0.0010319633446619976
-ALL,O,1,Opponent,Other,period-start,1,0.0,0.00034398778155399917
-ALL,O,1,Opponent,Physical Battle,hit,32223,16.504166666666666,11.084318285014517
-ALL,O,1,Opponent,Possession Change,giveaway,15814,13.663333333333334,5.4398227774949435
-ALL,O,1,Opponent,Possession Change,takeaway,7477,18.30666666666667,2.571996642679252
-ALL,O,1,Opponent,Shot Attempt,blocked-shot,12440,18.808333333333334,4.2792080025317505
-ALL,O,1,Opponent,Shot Attempt,missed-shot,10843,18.21,3.729859515390013
-ALL,O,1,Opponent,Shot Attempt,shot-on-goal,25699,16.706666666666667,8.840141998156225
-ALL,O,1,Opponent,Stoppage,faceoff,8109,13.595,2.7893969206213796
-ALL,O,1,Opponent,Stoppage,penalty,1596,11.214999999999998,0.5490044993601827
-ALL,O,1,Opponent,Stoppage,period-end,1612,14.278333333333334,0.5545083038650468
-ALL,O,1,Opponent,Stoppage,stoppage,15396,13.343333333333334,5.296035884805372
-ALL,O,2,Hitting Team,Goal,goal,2658,21.5325,0.9223562071657847
-ALL,O,2,Hitting Team,Other,delayed-penalty,711,27.5975,0.24672508024637807
-ALL,O,2,Hitting Team,Other,game-end,263,18.25916666666667,0.09126398889563633
-ALL,O,2,Hitting Team,Physical Battle,hit,26580,29.2975,9.223562071657847
-ALL,O,2,Hitting Team,Possession Change,giveaway,9663,31.7475,3.353170816344235
-ALL,O,2,Hitting Team,Possession Change,takeaway,5957,31.88083333333333,2.067146699054394
-ALL,O,2,Hitting Team,Shot Attempt,blocked-shot,14864,28.3325,5.157976923744253
-ALL,O,2,Hitting Team,Shot Attempt,missed-shot,12232,28.27416666666667,4.244643012058645
-ALL,O,2,Hitting Team,Shot Attempt,shot-on-goal,26777,27.7625,9.29192331048842
-ALL,O,2,Hitting Team,Stoppage,faceoff,24422,17.206666666666667,8.474711546803158
-ALL,O,2,Hitting Team,Stoppage,penalty,3129,17.19333333333333,1.0857985599028368
-ALL,O,2,Hitting Team,Stoppage,period-end,1115,27.24,0.3869176715537434
-ALL,O,2,Hitting Team,Stoppage,stoppage,20546,21.588333333333335,7.129695497527544
-ALL,O,2,Opponent,Goal,goal,2161,23.64,0.7498915589485556
-ALL,O,2,Opponent,Other,delayed-penalty,773,27.1625,0.2682397848529539
-ALL,O,2,Opponent,Other,failed-shot-attempt,1,13.0,0.00034701136462219137
-ALL,O,2,Opponent,Other,game-end,242,24.74,0.0839767502385703
-ALL,O,2,Opponent,Physical Battle,hit,25334,29.9225,8.791185911338596
-ALL,O,2,Opponent,Possession Change,giveaway,9815,30.618333333333336,3.4059165437668084
-ALL,O,2,Opponent,Possession Change,takeaway,5933,32.25833333333333,2.0588184263034615
-ALL,O,2,Opponent,Shot Attempt,blocked-shot,11625,31.83,4.034007113732975
-ALL,O,2,Opponent,Shot Attempt,missed-shot,10162,31.995833333333334,3.5263294872907087
-ALL,O,2,Opponent,Shot Attempt,shot-on-goal,22329,30.435000000000002,7.748416760648912
-ALL,O,2,Opponent,Stoppage,faceoff,24040,17.305833333333336,8.34215320551748
-ALL,O,2,Opponent,Stoppage,penalty,3233,16.225833333333334,1.1218877418235447
-ALL,O,2,Opponent,Stoppage,period-end,1244,28.28916666666667,0.43168213759000607
-ALL,O,2,Opponent,Stoppage,stoppage,22366,21.72,7.761256181139932
-ALL,O,3,Hitting Team,Goal,goal,2497,33.137499999999996,0.8740824234871584
-ALL,O,3,Hitting Team,Other,delayed-penalty,634,41.93875,0.22193362294387597
-ALL,O,3,Hitting Team,Other,game-end,163,35.31,0.057058644384624276
-ALL,O,3,Hitting Team,Physical Battle,hit,24407,41.21,8.543744377273157
-ALL,O,3,Hitting Team,Possession Change,giveaway,9374,43.51166666666666,3.281397131665447
-ALL,O,3,Hitting Team,Possession Change,takeaway,5626,43.98666666666667,1.9693983638521237
-ALL,O,3,Hitting Team,Shot Attempt,blocked-shot,14252,39.376666666666665,4.988955826807762
-ALL,O,3,Hitting Team,Shot Attempt,missed-shot,11538,40.373333333333335,4.038911895152116
-ALL,O,3,Hitting Team,Shot Attempt,shot-on-goal,24767,39.619166666666665,8.669763469165579
-ALL,O,3,Hitting Team,Stoppage,faceoff,26775,27.315833333333334,9.372669959498865
-ALL,O,3,Hitting Team,Stoppage,penalty,3711,26.233333333333334,1.2990468055910471
-ALL,O,3,Hitting Team,Stoppage,period-end,1114,37.91833333333333,0.3899590788004383
-ALL,O,3,Hitting Team,Stoppage,stoppage,20716,32.7425,7.2516986323428
-ALL,O,3,Opponent,Goal,goal,2196,36.04,0.7687164605437724
-ALL,O,3,Opponent,Other,delayed-penalty,708,40.74125,0.24783754738842934
-ALL,O,3,Opponent,Other,game-end,168,36.52333333333333,0.05880890954979679
-ALL,O,3,Opponent,Physical Battle,hit,23306,41.785000000000004,8.158335987902166
-ALL,O,3,Opponent,Possession Change,giveaway,9225,42.469166666666666,3.229239229743306
-ALL,O,3,Opponent,Possession Change,takeaway,5727,44.29750000000001,2.0047537201886083
-ALL,O,3,Opponent,Shot Attempt,blocked-shot,11905,42.95166666666666,4.1673813582757795
-ALL,O,3,Opponent,Shot Attempt,missed-shot,10075,42.721666666666664,3.526784307822635
-ALL,O,3,Opponent,Shot Attempt,shot-on-goal,22199,42.15,7.77082728033297
-ALL,O,3,Opponent,Stoppage,faceoff,26624,27.28,9.319811951510653
-ALL,O,3,Opponent,Stoppage,penalty,3849,24.735833333333332,1.3473541241498088
-ALL,O,3,Opponent,Stoppage,period-end,1161,40.678333333333335,0.40641157135306
-ALL,O,3,Opponent,Stoppage,stoppage,22954,32.347500000000004,8.035117320274022
-ALL,O,4,Hitting Team,Goal,goal,2385,44.72,0.8414894893199637
-ALL,O,4,Hitting Team,Other,delayed-penalty,628,52.005,0.22157459089850615
-ALL,O,4,Hitting Team,Other,game-end,176,40.17416666666667,0.062097337576651396
-ALL,O,4,Hitting Team,Physical Battle,hit,23656,52.211666666666666,8.346446691552645
-ALL,O,4,Hitting Team,Possession Change,giveaway,9606,53.237500000000004,3.389244458871098
-ALL,O,4,Hitting Team,Possession Change,takeaway,5775,53.17249999999999,2.037568889233874
-ALL,O,4,Hitting Team,Shot Attempt,blocked-shot,14204,50.526666666666664,5.011537403061117
-ALL,O,4,Hitting Team,Shot Attempt,missed-shot,11751,50.6775,4.146055760586537
-ALL,O,4,Hitting Team,Shot Attempt,shot-on-goal,25082,50.86166666666667,8.849576256236196
-ALL,O,4,Hitting Team,Stoppage,faceoff,25257,39.37583333333333,8.91132076803116
-ALL,O,4,Hitting Team,Stoppage,penalty,3766,35.44416666666667,1.3287418938276658
-ALL,O,4,Hitting Team,Stoppage,period-end,1155,51.53666666666667,0.4075137778467748
-ALL,O,4,Hitting Team,Stoppage,stoppage,19933,44.53,7.0328763063374575
-ALL,O,4,Opponent,Goal,goal,2274,48.1225,0.802325827552871
-ALL,O,4,Opponent,Other,delayed-penalty,706,51.90125,0.24909500186997666
-ALL,O,4,Opponent,Other,game-end,167,46.928333333333335,0.058921905541481724
-ALL,O,4,Opponent,Physical Battle,hit,22887,52.517500000000005,8.07512366543648
-ALL,O,4,Opponent,Possession Change,giveaway,9336,52.642500000000005,3.2939814978160085
-ALL,O,4,Opponent,Possession Change,takeaway,5924,54.781666666666666,2.0901399307050164
-ALL,O,4,Opponent,Shot Attempt,blocked-shot,12678,52.50666666666667,4.473125260209014
-ALL,O,4,Opponent,Shot Attempt,missed-shot,10692,51.830000000000005,3.7724132577815728
-ALL,O,4,Opponent,Shot Attempt,shot-on-goal,23050,52.251666666666665,8.13263426785122
-ALL,O,4,Opponent,Stoppage,faceoff,25105,40.074999999999996,8.857691249214962
-ALL,O,4,Opponent,Stoppage,penalty,3889,34.5425,1.3721394649749847
-ALL,O,4,Opponent,Stoppage,period-end,1148,49.7925,0.40504399737497615
-ALL,O,4,Opponent,Stoppage,stoppage,22196,44.59,7.831321050291787
+20262027,O,4,Opponent,Stoppage,faceoff,469,38.72,8.621
+20262027,O,4,Hitting Team,Stoppage,faceoff,462,37.82,8.493
+20262027,O,4,Hitting Team,Shot Attempt,shot-on-goal,430,50.67,7.904
+20262027,O,4,Hitting Team,Physical Battle,hit,429,52.12,7.886
+20262027,O,4,Hitting Team,Stoppage,stoppage,429,47.25,7.886
+20262027,O,4,Opponent,Stoppage,stoppage,401,47.88,7.371
+20262027,O,4,Opponent,Shot Attempt,shot-on-goal,388,50.49,7.132
+20262027,O,4,Opponent,Physical Battle,hit,383,53.34,7.04
+20262027,O,4,Hitting Team,Shot Attempt,blocked-shot,285,52.01,5.239
+20262027,O,4,Hitting Team,Possession Change,giveaway,279,52.2,5.129
+20262027,O,4,Opponent,Possession Change,giveaway,272,50.18,5.0
+20262027,O,4,Hitting Team,Shot Attempt,missed-shot,257,52.21,4.724
+20262027,O,4,Opponent,Shot Attempt,blocked-shot,237,50.38,4.357
+20262027,O,4,Opponent,Shot Attempt,missed-shot,235,49.27,4.32
+20262027,O,4,Opponent,Stoppage,penalty,81,26.91,1.489
+20262027,O,4,Hitting Team,Stoppage,penalty,76,30.05,1.397
+20262027,O,4,Opponent,Possession Change,takeaway,72,53.85,1.324
+20262027,O,4,Hitting Team,Possession Change,takeaway,61,48.8,1.121
+20262027,O,4,Opponent,Goal,goal,46,59.65,0.846
+20262027,O,4,Hitting Team,Goal,goal,44,49.25,0.809
+20262027,O,4,Opponent,Other,delayed-penalty,33,41.61,0.607
+20262027,O,4,Hitting Team,Other,delayed-penalty,33,54.06,0.607
+20262027,O,4,Hitting Team,Stoppage,period-end,17,44.88,0.313
+20262027,O,4,Opponent,Stoppage,period-end,13,49.62,0.239
+20262027,O,4,Hitting Team,Other,game-end,7,49.0,0.129
+20262027,O,4,Opponent,Other,game-end,1,63.0,0.018
+ALL,D,1,Hitting Team,Goal,goal,1020,19.511666666666667,0.34068477640056516
+ALL,D,1,Hitting Team,Other,delayed-penalty,948,13.91375,0.3166364392428782
+ALL,D,1,Hitting Team,Other,game-end,2,9.0,0.0006680093654913042
+ALL,D,1,Hitting Team,Physical Battle,hit,32725,16.206666666666667,10.930303242851465
+ALL,D,1,Hitting Team,Possession Change,giveaway,13258,15.824166666666665,4.428234083841855
+ALL,D,1,Hitting Team,Possession Change,takeaway,8862,16.595,2.959949498491969
+ALL,D,1,Hitting Team,Shot Attempt,blocked-shot,9481,21.684166666666666,3.1666983971115275
+ALL,D,1,Hitting Team,Shot Attempt,missed-shot,8398,20.750833333333333,2.804971325697986
+ALL,D,1,Hitting Team,Shot Attempt,shot-on-goal,21214,19.037499999999998,7.0855753397662635
+ALL,D,1,Hitting Team,Stoppage,faceoff,7708,14.069166666666668,2.5745080946034866
+ALL,D,1,Hitting Team,Stoppage,penalty,1810,10.855833333333335,0.6045484757696302
+ALL,D,1,Hitting Team,Stoppage,period-end,1378,15.079166666666666,0.4602584528235086
+ALL,D,1,Hitting Team,Stoppage,stoppage,12830,14.915833333333333,4.285280079626717
+ALL,D,1,Opponent,Goal,goal,2148,12.741666666666667,0.7174420585376607
+ALL,D,1,Opponent,Other,delayed-penalty,826,15.81,0.27588786794790865
+ALL,D,1,Opponent,Other,game-end,2,18.0,0.0006680093654913042
+ALL,D,1,Opponent,Physical Battle,hit,34613,14.881666666666668,11.560904083875256
+ALL,D,1,Opponent,Possession Change,giveaway,12457,16.908333333333335,4.160696332962588
+ALL,D,1,Opponent,Possession Change,takeaway,8871,16.13083333333333,2.9629555406366794
+ALL,D,1,Opponent,Shot Attempt,blocked-shot,29418,12.219999999999999,9.825749757011595
+ALL,D,1,Opponent,Shot Attempt,missed-shot,23857,12.236666666666666,7.968349716263022
+ALL,D,1,Opponent,Shot Attempt,shot-on-goal,44109,12.695833333333333,14.73261255122797
+ALL,D,1,Opponent,Stoppage,faceoff,7803,14.331666666666665,2.6062385394643233
+ALL,D,1,Opponent,Stoppage,penalty,1455,11.804166666666667,0.48597681339492377
+ALL,D,1,Opponent,Stoppage,period-end,1437,15.012500000000001,0.4799647291055021
+ALL,D,1,Opponent,Stoppage,stoppage,12767,15.010833333333332,4.264237784613741
+ALL,D,2,Hitting Team,Goal,goal,2113,25.5975,0.7111485065208246
+ALL,D,2,Hitting Team,Other,delayed-penalty,813,26.3075,0.2736222128733698
+ALL,D,2,Hitting Team,Other,game-end,229,21.211666666666666,0.07707193941943626
+ALL,D,2,Hitting Team,Physical Battle,hit,26030,30.09166666666667,8.76062263357173
+ALL,D,2,Hitting Team,Possession Change,giveaway,9814,30.397499999999997,3.302986958350863
+ALL,D,2,Hitting Team,Possession Change,takeaway,6628,32.87583333333333,2.2307109802271774
+ALL,D,2,Hitting Team,Shot Attempt,blocked-shot,10811,34.093333333333334,3.6385359697097184
+ALL,D,2,Hitting Team,Shot Attempt,missed-shot,9273,33.43,3.120908708456037
+ALL,D,2,Hitting Team,Shot Attempt,shot-on-goal,21664,31.65833333333333,7.291207404291124
+ALL,D,2,Hitting Team,Stoppage,faceoff,23032,18.379166666666666,7.751619688683214
+ALL,D,2,Hitting Team,Stoppage,penalty,3651,15.275833333333333,1.2287757677745057
+ALL,D,2,Hitting Team,Stoppage,period-end,1217,28.25,0.4095919225915019
+ALL,D,2,Hitting Team,Stoppage,stoppage,21909,21.605833333333333,7.373664282709297
+ALL,D,2,Opponent,Goal,goal,3487,19.475833333333334,1.1735801430374422
+ALL,D,2,Opponent,Other,delayed-penalty,658,30.083750000000002,0.22145561632309635
+ALL,D,2,Opponent,Other,game-end,262,16.535,0.08817837610433318
+ALL,D,2,Opponent,Physical Battle,hit,25505,29.883333333333336,8.583929322675642
+ALL,D,2,Opponent,Possession Change,giveaway,9748,31.9575,3.280774084981069
+ALL,D,2,Opponent,Possession Change,takeaway,6401,31.30333333333333,2.154312158182583
+ALL,D,2,Opponent,Shot Attempt,blocked-shot,17858,27.22083333333333,6.010265039966344
+ALL,D,2,Opponent,Shot Attempt,missed-shot,14565,27.501666666666665,4.901977282288599
+ALL,D,2,Opponent,Shot Attempt,shot-on-goal,31839,26.608333333333334,10.71569204880101
+ALL,D,2,Opponent,Stoppage,faceoff,23905,18.6125,8.045435422801852
+ALL,D,2,Opponent,Stoppage,penalty,3033,18.214166666666667,1.0207824989482541
+ALL,D,2,Opponent,Stoppage,period-end,1203,28.410833333333333,0.40488010096760624
+ALL,D,2,Opponent,Stoppage,stoppage,21477,22.113333333333333,7.228270929743374
+ALL,D,3,Hitting Team,Goal,goal,2164,38.23916666666667,0.7343509274404273
+ALL,D,3,Hitting Team,Other,delayed-penalty,666,39.06625,0.22600633903665646
+ALL,D,3,Hitting Team,Other,failed-shot-attempt,1,7.0,0.0003393488574123971
+ALL,D,3,Hitting Team,Other,game-end,217,35.660833333333336,0.07363870205849016
+ALL,D,3,Hitting Team,Physical Battle,hit,23747,42.7525,8.058517316972194
+ALL,D,3,Hitting Team,Possession Change,giveaway,9113,43.0925,3.092486137599175
+ALL,D,3,Hitting Team,Possession Change,takeaway,6147,44.79833333333334,2.085977426514005
+ALL,D,3,Hitting Team,Shot Attempt,blocked-shot,11248,45.49166666666667,3.8169959481746423
+ALL,D,3,Hitting Team,Shot Attempt,missed-shot,9395,45.23666666666667,3.1881825153894705
+ALL,D,3,Hitting Team,Shot Attempt,shot-on-goal,21789,43.770833333333336,7.39407225415872
+ALL,D,3,Hitting Team,Stoppage,faceoff,28549,26.589166666666667,9.688070530266526
+ALL,D,3,Hitting Team,Stoppage,penalty,4092,24.063333333333333,1.388615524531529
+ALL,D,3,Hitting Team,Stoppage,period-end,1214,41.21583333333333,0.4119695128986501
+ALL,D,3,Hitting Team,Stoppage,stoppage,23434,32.25,7.952301124602114
+ALL,D,3,Opponent,Goal,goal,3000,32.494166666666665,1.0180465722371912
+ALL,D,3,Opponent,Other,delayed-penalty,604,42.45375,0.20496670987708784
+ALL,D,3,Opponent,Other,game-end,212,31.165000000000003,0.07194195777142819
+ALL,D,3,Opponent,Physical Battle,hit,22676,42.836666666666666,7.695074690683517
+ALL,D,3,Opponent,Possession Change,giveaway,9150,43.836666666666666,3.1050420453234335
+ALL,D,3,Opponent,Possession Change,takeaway,5871,44.3525,1.9923171418681833
+ALL,D,3,Opponent,Shot Attempt,blocked-shot,15190,40.1575,5.154709144094312
+ALL,D,3,Opponent,Shot Attempt,missed-shot,12229,40.8025,4.149897177296204
+ALL,D,3,Opponent,Shot Attempt,shot-on-goal,27322,39.82833333333333,9.271689482221515
+ALL,D,3,Opponent,Stoppage,faceoff,28689,26.999166666666667,9.735579370304261
+ALL,D,3,Opponent,Stoppage,penalty,3827,25.631666666666664,1.2986880773172438
+ALL,D,3,Opponent,Stoppage,period-end,1274,40.21666666666667,0.4323304443433939
+ALL,D,3,Opponent,Stoppage,stoppage,22862,32.63166666666667,7.758193578162223
+ALL,D,4,Hitting Team,Goal,goal,2211,48.221666666666664,0.7566476164402314
+ALL,D,4,Hitting Team,Other,delayed-penalty,619,52.31125,0.21183395503233973
+ALL,D,4,Hitting Team,Other,failed-shot-attempt,1,9.0,0.000342219636562746
+ALL,D,4,Hitting Team,Other,game-end,225,48.47333333333333,0.07699941822661785
+ALL,D,4,Hitting Team,Physical Battle,hit,23860,53.45666666666667,8.165360528387119
+ALL,D,4,Hitting Team,Possession Change,giveaway,9509,53.067499999999995,3.2541665240751514
+ALL,D,4,Hitting Team,Possession Change,takeaway,6357,54.909166666666664,2.175490229629376
+ALL,D,4,Hitting Team,Shot Attempt,blocked-shot,12273,54.36333333333334,4.200061599534581
+ALL,D,4,Hitting Team,Shot Attempt,missed-shot,10252,54.4975,3.508435714041272
+ALL,D,4,Hitting Team,Shot Attempt,shot-on-goal,23165,53.504999999999995,7.927517880976011
+ALL,D,4,Hitting Team,Stoppage,faceoff,26221,40.16166666666667,8.973341090311763
+ALL,D,4,Hitting Team,Stoppage,penalty,4043,34.47666666666667,1.383593990623182
+ALL,D,4,Hitting Team,Stoppage,period-end,1220,51.3425,0.4175079566065501
+ALL,D,4,Hitting Team,Stoppage,stoppage,22015,44.67666666666667,7.533965298928852
+ALL,D,4,Opponent,Goal,goal,2768,45.0325,0.9472639540056808
+ALL,D,4,Opponent,Other,delayed-penalty,606,54.0075,0.20738509975702407
+ALL,D,4,Opponent,Other,game-end,244,46.98166666666666,0.08350159132131
+ALL,D,4,Opponent,Physical Battle,hit,23238,53.17583333333334,7.952499914445091
+ALL,D,4,Opponent,Possession Change,giveaway,9306,54.2825,3.184695937852914
+ALL,D,4,Opponent,Possession Change,takeaway,6035,54.384166666666665,2.065295506656172
+ALL,D,4,Opponent,Shot Attempt,blocked-shot,15562,49.73333333333333,5.3256219841894525
+ALL,D,4,Opponent,Shot Attempt,missed-shot,12551,50.54416666666666,4.295198658499025
+ALL,D,4,Opponent,Shot Attempt,shot-on-goal,26906,50.10583333333333,9.207761541357243
+ALL,D,4,Opponent,Stoppage,faceoff,26379,39.986666666666665,9.027411792888676
+ALL,D,4,Opponent,Stoppage,penalty,3904,36.149166666666666,1.33602546114096
+ALL,D,4,Opponent,Stoppage,period-end,1217,52.3325,0.4164812976968618
+ALL,D,4,Opponent,Stoppage,stoppage,21523,44.945,7.365593237739981
+ALL,N,1,Hitting Team,Goal,goal,334,17.684166666666666,0.39447731755424065
+ALL,N,1,Hitting Team,Other,delayed-penalty,219,16.0275,0.2586542890550261
+ALL,N,1,Hitting Team,Physical Battle,hit,10060,17.033333333333335,11.881562319148685
+ALL,N,1,Hitting Team,Possession Change,giveaway,4260,16.444166666666664,5.031357403536123
+ALL,N,1,Hitting Team,Possession Change,takeaway,2359,18.184166666666666,2.786143688953454
+ALL,N,1,Hitting Team,Shot Attempt,blocked-shot,3692,20.206666666666667,4.360509749731307
+ALL,N,1,Hitting Team,Shot Attempt,missed-shot,3222,19.229166666666668,3.805406937604082
+ALL,N,1,Hitting Team,Shot Attempt,shot-on-goal,7458,18.2925,8.808418665627325
+ALL,N,1,Hitting Team,Stoppage,faceoff,2564,13.799166666666666,3.028263000625967
+ALL,N,1,Hitting Team,Stoppage,penalty,496,13.030833333333334,0.5858106272661777
+ALL,N,1,Hitting Team,Stoppage,period-end,462,13.7325,0.5456542536229316
+ALL,N,1,Hitting Team,Stoppage,stoppage,4640,12.853333333333333,5.48016393249005
+ALL,N,1,Opponent,Goal,goal,415,17.900833333333335,0.49014397241020913
+ALL,N,1,Opponent,Other,delayed-penalty,288,14.32125,0.34014810615455476
+ALL,N,1,Opponent,Other,game-end,1,3.0,0.0011810698130366487
+ALL,N,1,Opponent,Physical Battle,hit,12158,14.580833333333333,14.359446786899573
+ALL,N,1,Opponent,Possession Change,giveaway,3593,17.970833333333335,4.243583838240679
+ALL,N,1,Opponent,Possession Change,takeaway,2653,16.978333333333335,3.1333782139862287
+ALL,N,1,Opponent,Shot Attempt,blocked-shot,4618,17.385,5.454180396603244
+ALL,N,1,Opponent,Shot Attempt,missed-shot,3993,16.903333333333332,4.716011763455338
+ALL,N,1,Opponent,Shot Attempt,shot-on-goal,8598,15.564166666666667,10.154838252489103
+ALL,N,1,Opponent,Stoppage,faceoff,2577,13.649166666666666,3.0436169081954434
+ALL,N,1,Opponent,Stoppage,penalty,488,10.633333333333333,0.5763620687618846
+ALL,N,1,Opponent,Stoppage,period-end,502,15.019166666666665,0.5928970461443976
+ALL,N,1,Opponent,Stoppage,stoppage,5019,12.696666666666665,5.92778939163094
+ALL,N,2,Hitting Team,Goal,goal,601,25.2175,0.7166108242813026
+ALL,N,2,Hitting Team,Other,delayed-penalty,187,30.588749999999997,0.22297208675641192
+ALL,N,2,Hitting Team,Other,game-end,75,20.389166666666664,0.08942730752262511
+ALL,N,2,Hitting Team,Physical Battle,hit,7599,30.772499999999997,9.060774798192377
+ALL,N,2,Hitting Team,Possession Change,giveaway,2781,31.611666666666665,3.315964562938939
+ALL,N,2,Hitting Team,Possession Change,takeaway,1759,33.76,2.097368452430634
+ALL,N,2,Hitting Team,Shot Attempt,blocked-shot,3578,32.87416666666667,4.266278750879369
+ALL,N,2,Hitting Team,Shot Attempt,missed-shot,2871,32.765,3.423277331966089
+ALL,N,2,Hitting Team,Shot Attempt,shot-on-goal,6777,30.714166666666667,8.080651507744404
+ALL,N,2,Hitting Team,Stoppage,faceoff,7442,16.935,8.873573634445014
+ALL,N,2,Hitting Team,Stoppage,penalty,952,15.990833333333333,1.135130623487188
+ALL,N,2,Hitting Team,Stoppage,period-end,310,29.415000000000003,0.3696328710935171
+ALL,N,2,Hitting Team,Stoppage,stoppage,6184,22.227500000000003,7.3735795962655155
+ALL,N,2,Opponent,Goal,goal,717,24.500833333333333,0.854925059916296
+ALL,N,2,Opponent,Other,delayed-penalty,197,28.995,0.2348957277594286
+ALL,N,2,Opponent,Other,game-end,71,21.316363636363636,0.08465785112141844
+ALL,N,2,Opponent,Physical Battle,hit,7594,30.139166666666668,9.054812977690869
+ALL,N,2,Opponent,Possession Change,giveaway,2813,33.1775,3.3541202141485926
+ALL,N,2,Opponent,Possession Change,takeaway,1606,33.3175,1.914936745084479
+ALL,N,2,Opponent,Shot Attempt,blocked-shot,3998,31.075833333333332,4.767071673006069
+ALL,N,2,Opponent,Shot Attempt,missed-shot,3289,30.499166666666667,3.9216855258921863
+ALL,N,2,Opponent,Shot Attempt,shot-on-goal,7146,29.71083333333333,8.520633860755721
+ALL,N,2,Opponent,Stoppage,faceoff,7422,17.23,8.84972635243898
+ALL,N,2,Opponent,Stoppage,penalty,1051,16.345833333333335,1.2531746694170531
+ALL,N,2,Opponent,Stoppage,period-end,336,28.011666666666667,0.40063433770136053
+ALL,N,2,Opponent,Stoppage,stoppage,6511,22.325,7.763482657064161
+ALL,N,3,Hitting Team,Goal,goal,597,38.041666666666664,0.7176688385064794
+ALL,N,3,Hitting Team,Other,delayed-penalty,196,39.9125,0.23561657009592962
+ALL,N,3,Hitting Team,Other,game-end,49,36.41166666666667,0.058904142523982406
+ALL,N,3,Hitting Team,Physical Battle,hit,7163,42.193333333333335,8.610823936720122
+ALL,N,3,Hitting Team,Possession Change,giveaway,2763,43.564166666666665,3.321472363138028
+ALL,N,3,Hitting Team,Possession Change,takeaway,1670,45.39416666666667,2.0075493472459307
+ALL,N,3,Hitting Team,Shot Attempt,blocked-shot,3670,43.44416666666667,4.411800062510519
+ALL,N,3,Hitting Team,Shot Attempt,missed-shot,3087,43.12583333333333,3.710960979010891
+ALL,N,3,Hitting Team,Shot Attempt,shot-on-goal,6591,42.32,7.923208232154449
+ALL,N,3,Hitting Team,Stoppage,faceoff,7868,28.406666666666666,9.458322313850887
+ALL,N,3,Hitting Team,Stoppage,penalty,1093,24.74,1.3139230158920971
+ALL,N,3,Hitting Team,Stoppage,period-end,357,40.530833333333334,0.4291587526747289
+ALL,N,3,Hitting Team,Stoppage,stoppage,6155,33.126666666666665,7.399081576226769
+ALL,N,3,Opponent,Goal,goal,712,34.54833333333333,0.8559132546341932
+ALL,N,3,Opponent,Other,delayed-penalty,188,44.5875,0.22599956723487127
+ALL,N,3,Opponent,Other,game-end,50,35.98583333333333,0.060106267881614696
+ALL,N,3,Opponent,Physical Battle,hit,7104,42.48583333333333,8.539898540619815
+ALL,N,3,Opponent,Possession Change,giveaway,2639,43.744166666666665,3.1724088187916237
+ALL,N,3,Opponent,Possession Change,takeaway,1608,43.169999999999995,1.9330175750727288
+ALL,N,3,Opponent,Shot Attempt,blocked-shot,3946,41.973333333333336,4.743586661217032
+ALL,N,3,Opponent,Shot Attempt,missed-shot,3151,41.68833333333333,3.787897001899358
+ALL,N,3,Opponent,Shot Attempt,shot-on-goal,6864,41.94583333333333,8.251388454788065
+ALL,N,3,Opponent,Stoppage,faceoff,7652,28.72083333333333,9.198663236602313
+ALL,N,3,Opponent,Stoppage,penalty,1184,23.565,1.423316423436636
+ALL,N,3,Opponent,Stoppage,period-end,342,40.57333333333333,0.41112687231024453
+ALL,N,3,Opponent,Stoppage,stoppage,6487,33.72,7.79818719496069
+ALL,N,4,Hitting Team,Goal,goal,626,46.6525,0.7587602875046968
+ALL,N,4,Hitting Team,Other,delayed-penalty,182,54.42,0.22059803885919302
+ALL,N,4,Hitting Team,Other,game-end,46,38.344545454545454,0.05575554828309273
+ALL,N,4,Hitting Team,Physical Battle,hit,6966,53.173333333333325,8.443329333478783
+ALL,N,4,Hitting Team,Possession Change,giveaway,2724,54.51916666666667,3.301698120068361
+ALL,N,4,Hitting Team,Possession Change,takeaway,1764,55.21333333333334,2.1381040689429476
+ALL,N,4,Hitting Team,Shot Attempt,blocked-shot,3930,52.594166666666666,4.763463146794662
+ALL,N,4,Hitting Team,Shot Attempt,missed-shot,3236,52.74666666666667,3.922281614001915
+ALL,N,4,Hitting Team,Shot Attempt,shot-on-goal,7033,53.25666666666667,8.524538501630245
+ALL,N,4,Hitting Team,Stoppage,faceoff,7163,40.9975,8.68210852938681
+ALL,N,4,Hitting Team,Stoppage,penalty,1180,34.693333333333335,1.4302510211749875
+ALL,N,4,Hitting Team,Stoppage,period-end,321,51.46416666666667,0.38907676084506015
+ALL,N,4,Hitting Team,Stoppage,stoppage,5867,45.550000000000004,7.111256560367502
+ALL,N,4,Opponent,Goal,goal,660,46.612500000000004,0.7999709101487219
+ALL,N,4,Opponent,Other,delayed-penalty,187,56.837500000000006,0.22665842454213783
+ALL,N,4,Opponent,Other,game-end,66,42.59166666666667,0.0799970910148722
+ALL,N,4,Opponent,Physical Battle,hit,6878,53.490833333333335,8.336666545458952
+ALL,N,4,Opponent,Possession Change,giveaway,2818,53.987500000000004,3.4156333709077247
+ALL,N,4,Opponent,Possession Change,takeaway,1631,54.82916666666667,1.9768978097766141
+ALL,N,4,Opponent,Shot Attempt,blocked-shot,3942,51.09,4.778008072433729
+ALL,N,4,Opponent,Shot Attempt,missed-shot,3296,51.44166666666666,3.9950062421972534
+ALL,N,4,Opponent,Shot Attempt,shot-on-goal,6817,51.57583333333333,8.262729840127026
+ALL,N,4,Opponent,Stoppage,faceoff,7286,40.8325,8.831194017187254
+ALL,N,4,Opponent,Stoppage,penalty,1168,33.66166666666667,1.41570609553592
+ALL,N,4,Opponent,Stoppage,period-end,345,53.634166666666665,0.41816661212319556
+ALL,N,4,Opponent,Stoppage,stoppage,6371,45.92166666666666,7.722143437208344
+ALL,O,1,Hitting Team,Goal,goal,1437,15.626666666666665,0.49422713812565133
+ALL,O,1,Hitting Team,Other,delayed-penalty,822,16.06625,0.2827103044810615
+ALL,O,1,Hitting Team,Other,game-end,2,43.0,0.0006878596216084222
+ALL,O,1,Hitting Team,Physical Battle,hit,39735,14.42,13.666051032305326
+ALL,O,1,Hitting Team,Possession Change,giveaway,11734,17.986666666666668,4.035672399976613
+ALL,O,1,Hitting Team,Possession Change,takeaway,9489,14.135833333333332,3.263549974721159
+ALL,O,1,Hitting Team,Shot Attempt,blocked-shot,19755,14.255833333333333,6.794333412437189
+ALL,O,1,Hitting Team,Shot Attempt,missed-shot,16612,14.103333333333333,5.713362017079555
+ALL,O,1,Hitting Team,Shot Attempt,shot-on-goal,32461,14.775,11.164305588515495
+ALL,O,1,Hitting Team,Stoppage,faceoff,8340,13.62,2.8683746221071202
+ALL,O,1,Hitting Team,Stoppage,penalty,1518,12.429166666666667,0.5220854528007924
+ALL,O,1,Hitting Team,Stoppage,period-end,1484,13.503333333333332,0.5103918392334492
+ALL,O,1,Hitting Team,Stoppage,stoppage,14028,13.246666666666668,4.824647385961473
+ALL,O,1,Opponent,Goal,goal,1261,15.07,0.4336954914241102
+ALL,O,1,Opponent,Other,delayed-penalty,847,14.50875,0.29130854975116677
+ALL,O,1,Opponent,Other,game-end,3,35.0,0.0010317894324126332
+ALL,O,1,Opponent,Other,period-start,1,0.0,0.0003439298108042111
+ALL,O,1,Opponent,Physical Battle,hit,32223,16.504166666666666,11.082450293544094
+ALL,O,1,Opponent,Possession Change,giveaway,15823,13.6575,5.442001396355032
+ALL,O,1,Opponent,Possession Change,takeaway,7478,18.296666666666667,2.5719071251938903
+ALL,O,1,Opponent,Shot Attempt,blocked-shot,12441,18.811666666666667,4.27883077621519
+ALL,O,1,Opponent,Shot Attempt,missed-shot,10844,18.216666666666665,3.7295748683608654
+ALL,O,1,Opponent,Shot Attempt,shot-on-goal,25705,16.709166666666665,8.840715786722246
+ALL,O,1,Opponent,Stoppage,faceoff,8110,13.584166666666667,2.7892707656221516
+ALL,O,1,Opponent,Stoppage,penalty,1596,11.214999999999998,0.5489119780435209
+ALL,O,1,Opponent,Stoppage,period-end,1612,14.278333333333334,0.5544148550163883
+ALL,O,1,Opponent,Stoppage,stoppage,15396,13.343333333333334,5.295143367141634
+ALL,O,2,Hitting Team,Goal,goal,2658,21.5325,0.922199400466304
+ALL,O,2,Hitting Team,Other,delayed-penalty,713,27.64875,0.24737704007993783
+ALL,O,2,Hitting Team,Other,game-end,263,18.25916666666667,0.09124847340957033
+ALL,O,2,Hitting Team,Physical Battle,hit,26587,29.285833333333333,9.22442267125569
+ALL,O,2,Hitting Team,Possession Change,giveaway,9666,31.749166666666667,3.3536416120794934
+ALL,O,2,Hitting Team,Possession Change,takeaway,5959,31.849999999999998,2.067489175086044
+ALL,O,2,Hitting Team,Shot Attempt,blocked-shot,14869,28.328333333333333,5.15883479515932
+ALL,O,2,Hitting Team,Shot Attempt,missed-shot,12233,28.27333333333333,4.244268346841346
+ALL,O,2,Hitting Team,Shot Attempt,shot-on-goal,26782,27.75916666666667,9.292078383479515
+ALL,O,2,Hitting Team,Stoppage,faceoff,24423,17.204166666666666,8.473617741756412
+ALL,O,2,Hitting Team,Stoppage,penalty,3129,17.19333333333333,1.085613966914622
+ALL,O,2,Hitting Team,Stoppage,period-end,1115,27.24,0.3868518929721328
+ALL,O,2,Hitting Team,Stoppage,stoppage,20552,21.576666666666668,7.130565116020874
+ALL,O,2,Opponent,Goal,goal,2161,23.64,0.7497640723881425
+ALL,O,2,Opponent,Other,delayed-penalty,774,27.1325,0.2685411346730321
+ALL,O,2,Opponent,Other,failed-shot-attempt,1,13.0,0.0003469523703785944
+ALL,O,2,Opponent,Other,game-end,242,24.74,0.08396247363161985
+ALL,O,2,Opponent,Physical Battle,hit,25337,29.9175,8.790732208282446
+ALL,O,2,Opponent,Possession Change,giveaway,9817,30.605833333333333,3.406031420006662
+ALL,O,2,Opponent,Possession Change,takeaway,5934,32.24333333333333,2.0588153658265793
+ALL,O,2,Opponent,Shot Attempt,blocked-shot,11625,31.83,4.03332130565116
+ALL,O,2,Opponent,Shot Attempt,missed-shot,10163,31.9875,3.5260769401576555
+ALL,O,2,Opponent,Shot Attempt,shot-on-goal,22332,30.425,7.74814033529477
+ALL,O,2,Opponent,Stoppage,faceoff,24042,17.301666666666666,8.341428888642168
+ALL,O,2,Opponent,Stoppage,penalty,3233,16.225833333333334,1.1216970134339956
+ALL,O,2,Opponent,Stoppage,period-end,1244,28.28916666666667,0.43160874875097144
+ALL,O,2,Opponent,Stoppage,stoppage,22370,21.71166666666667,7.761324525369158
+ALL,O,3,Hitting Team,Goal,goal,2497,33.137499999999996,0.8739325213495731
+ALL,O,3,Hitting Team,Other,delayed-penalty,635,41.93875,0.22224555508889823
+ALL,O,3,Hitting Team,Other,game-end,163,35.31,0.05704885902281954
+ALL,O,3,Hitting Team,Physical Battle,hit,24410,41.199999999999996,8.543329133417332
+ALL,O,3,Hitting Team,Possession Change,giveaway,9376,43.50083333333333,3.2815343693126136
+ALL,O,3,Hitting Team,Possession Change,takeaway,5627,44.00083333333333,1.969410611787764
+ALL,O,3,Hitting Team,Shot Attempt,blocked-shot,14254,39.37416666666667,4.98880022399552
+ALL,O,3,Hitting Team,Shot Attempt,missed-shot,11540,40.376666666666665,4.038919221615568
+ALL,O,3,Hitting Team,Shot Attempt,shot-on-goal,24772,39.615833333333335,8.67002659946801
+ALL,O,3,Hitting Team,Stoppage,faceoff,26779,27.310833333333335,9.372462550748985
+ALL,O,3,Hitting Team,Stoppage,penalty,3712,26.215,1.2991740165196697
+ALL,O,3,Hitting Team,Stoppage,period-end,1116,37.98416666666667,0.39059218815623686
+ALL,O,3,Hitting Team,Stoppage,stoppage,20721,32.72416666666667,7.252204955900882
+ALL,O,3,Opponent,Goal,goal,2196,36.04,0.7685846283074339
+ALL,O,3,Opponent,Other,delayed-penalty,708,40.74125,0.247795044099118
+ALL,O,3,Opponent,Other,game-end,168,36.52333333333333,0.058798824023519526
+ALL,O,3,Opponent,Physical Battle,hit,23307,41.780833333333334,8.157286854262914
+ALL,O,3,Opponent,Possession Change,giveaway,9227,42.45583333333334,3.2293854122917542
+ALL,O,3,Opponent,Possession Change,takeaway,5729,44.270833333333336,2.005109897802044
+ALL,O,3,Opponent,Shot Attempt,blocked-shot,11905,42.95166666666666,4.166666666666666
+ALL,O,3,Opponent,Shot Attempt,missed-shot,10078,42.69916666666666,3.5272294554108923
+ALL,O,3,Opponent,Shot Attempt,shot-on-goal,22203,42.141666666666666,7.770894582108358
+ALL,O,3,Opponent,Stoppage,faceoff,26632,27.276666666666667,9.321013579728406
+ALL,O,3,Opponent,Stoppage,penalty,3850,24.72,1.3474730505389891
+ALL,O,3,Opponent,Stoppage,period-end,1161,40.678333333333335,0.4063418731625367
+ALL,O,3,Opponent,Stoppage,stoppage,22954,32.347500000000004,8.033739325213496
+ALL,O,4,Hitting Team,Goal,goal,2387,44.681666666666665,0.8420555044042994
+ALL,O,4,Hitting Team,Other,delayed-penalty,629,51.965,0.22189062097624818
+ALL,O,4,Hitting Team,Other,game-end,176,40.17416666666667,0.062087041799395365
+ALL,O,4,Hitting Team,Physical Battle,hit,23658,52.218333333333334,8.34576838005736
+ALL,O,4,Hitting Team,Possession Change,giveaway,9606,53.237500000000004,3.3886825200283623
+ALL,O,4,Hitting Team,Possession Change,takeaway,5775,53.17249999999999,2.03723105904266
+ALL,O,4,Hitting Team,Shot Attempt,blocked-shot,14209,50.482499999999995,5.012470323452322
+ALL,O,4,Hitting Team,Shot Attempt,missed-shot,11754,50.685833333333335,4.146426643807347
+ALL,O,4,Hitting Team,Shot Attempt,shot-on-goal,25087,50.86333333333334,8.849872827394496
+ALL,O,4,Hitting Team,Stoppage,faceoff,25260,39.369166666666665,8.910901567345038
+ALL,O,4,Hitting Team,Stoppage,penalty,3768,35.4525,1.3292271221597824
+ALL,O,4,Hitting Team,Stoppage,period-end,1155,51.53666666666667,0.407446211808532
+ALL,O,4,Hitting Team,Stoppage,stoppage,19936,44.517500000000005,7.032768552913328
+ALL,O,4,Opponent,Goal,goal,2275,48.14166666666667,0.8025455687137752
+ALL,O,4,Opponent,Other,delayed-penalty,706,51.90125,0.24905370176348365
+ALL,O,4,Opponent,Other,game-end,167,46.928333333333335,0.05891213625283537
+ALL,O,4,Opponent,Physical Battle,hit,22888,52.51333333333333,8.074137572185005
+ALL,O,4,Opponent,Possession Change,giveaway,9338,52.61833333333333,3.294140888197465
+ALL,O,4,Opponent,Possession Change,takeaway,5924,54.781666666666666,2.0897933842023755
+ALL,O,4,Opponent,Shot Attempt,blocked-shot,12680,52.495000000000005,4.473089147820074
+ALL,O,4,Opponent,Shot Attempt,missed-shot,10695,51.803333333333335,3.7728460911621213
+ALL,O,4,Opponent,Shot Attempt,shot-on-goal,23055,52.23916666666667,8.133049708437841
+ALL,O,4,Opponent,Stoppage,faceoff,25110,40.06166666666667,8.857986474902372
+ALL,O,4,Opponent,Stoppage,penalty,3890,34.535000000000004,1.372264730679818
+ALL,O,4,Opponent,Stoppage,period-end,1148,49.7925,0.4049768408278743
+ALL,O,4,Opponent,Stoppage,stoppage,22197,44.58833333333333,7.830375379665789
