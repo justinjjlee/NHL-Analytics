@@ -3940,9 +3940,9 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20262027,1,2,N,Other,Shot Attempt,5
 20262027,1,2,N,Stoppage,Other,4
 20262027,1,2,N,Other,Physical Battle,3
-20262027,1,2,N,Stoppage,Possession Change,1
 20262027,1,2,N,Stoppage,Goal,1
 20262027,1,2,N,Other,Possession Change,1
+20262027,1,2,N,Stoppage,Possession Change,1
 20262027,1,2,O,Stoppage,Stoppage,1243
 20262027,1,2,O,Shot Attempt,Shot Attempt,1201
 20262027,1,2,O,Shot Attempt,Stoppage,922
@@ -4029,12 +4029,12 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20262027,2,3,D,Stoppage,Goal,25
 20262027,2,3,D,Possession Change,Goal,23
 20262027,2,3,D,Stoppage,Other,17
-20262027,2,3,D,Physical Battle,Goal,15
 20262027,2,3,D,Physical Battle,Other,15
+20262027,2,3,D,Physical Battle,Goal,15
 20262027,2,3,D,Other,Shot Attempt,9
 20262027,2,3,D,Possession Change,Other,6
-20262027,2,3,D,Other,Possession Change,4
 20262027,2,3,D,Other,Physical Battle,4
+20262027,2,3,D,Other,Possession Change,4
 20262027,2,3,D,Other,Goal,3
 20262027,2,3,D,Goal,Physical Battle,1
 20262027,2,3,N,Stoppage,Stoppage,543
@@ -4057,12 +4057,12 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20262027,2,3,N,Other,Stoppage,21
 20262027,2,3,N,Shot Attempt,Goal,17
 20262027,2,3,N,Stoppage,Goal,16
-20262027,2,3,N,Possession Change,Goal,9
 20262027,2,3,N,Shot Attempt,Other,9
+20262027,2,3,N,Possession Change,Goal,9
 20262027,2,3,N,Other,Shot Attempt,8
 20262027,2,3,N,Physical Battle,Goal,6
-20262027,2,3,N,Possession Change,Other,5
 20262027,2,3,N,Physical Battle,Other,5
+20262027,2,3,N,Possession Change,Other,5
 20262027,2,3,N,Stoppage,Other,3
 20262027,2,3,N,Other,Physical Battle,2
 20262027,2,3,N,Other,Possession Change,1
@@ -4086,15 +4086,15 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20262027,2,3,O,Shot Attempt,Goal,61
 20262027,2,3,O,Other,Stoppage,54
 20262027,2,3,O,Shot Attempt,Other,32
-20262027,2,3,O,Possession Change,Goal,23
 20262027,2,3,O,Stoppage,Goal,23
 20262027,2,3,O,Stoppage,Other,23
+20262027,2,3,O,Possession Change,Goal,23
 20262027,2,3,O,Physical Battle,Goal,19
 20262027,2,3,O,Other,Shot Attempt,18
 20262027,2,3,O,Possession Change,Other,13
 20262027,2,3,O,Physical Battle,Other,10
-20262027,2,3,O,Other,Physical Battle,3
 20262027,2,3,O,Other,Possession Change,3
+20262027,2,3,O,Other,Physical Battle,3
 20262027,2,3,O,Goal,Physical Battle,2
 20262027,2,3,O,Other,Goal,1
 20262027,2,22,D,Shot Attempt,Opponent,1322
@@ -4156,11 +4156,11 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20262027,3,4,D,Shot Attempt,Other,20
 20262027,3,4,D,Physical Battle,Goal,16
 20262027,3,4,D,Stoppage,Other,12
-20262027,3,4,D,Other,Shot Attempt,11
 20262027,3,4,D,Physical Battle,Other,11
+20262027,3,4,D,Other,Shot Attempt,11
 20262027,3,4,D,Possession Change,Goal,9
-20262027,3,4,D,Possession Change,Other,5
 20262027,3,4,D,Other,Possession Change,5
+20262027,3,4,D,Possession Change,Other,5
 20262027,3,4,D,Other,Physical Battle,3
 20262027,3,4,D,Goal,Shot Attempt,2
 20262027,3,4,D,Goal,Physical Battle,1
@@ -4188,14 +4188,14 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20262027,3,4,N,Possession Change,Goal,9
 20262027,3,4,N,Stoppage,Goal,9
 20262027,3,4,N,Physical Battle,Goal,6
-20262027,3,4,N,Other,Shot Attempt,5
 20262027,3,4,N,Possession Change,Other,5
+20262027,3,4,N,Other,Shot Attempt,5
 20262027,3,4,N,Stoppage,Other,4
 20262027,3,4,N,Physical Battle,Other,3
 20262027,3,4,N,Other,Goal,2
-20262027,3,4,N,Goal,Shot Attempt,1
 20262027,3,4,N,Other,Possession Change,1
 20262027,3,4,N,Goal,Physical Battle,1
+20262027,3,4,N,Goal,Shot Attempt,1
 20262027,3,4,O,Stoppage,Stoppage,1678
 20262027,3,4,O,Shot Attempt,Shot Attempt,1060
 20262027,3,4,O,Shot Attempt,Stoppage,786
@@ -4225,9 +4225,9 @@ season,from_step,to_step,hit_zone,source_node,target_node,count
 20262027,3,4,O,Physical Battle,Other,9
 20262027,3,4,O,Other,Physical Battle,4
 20262027,3,4,O,Other,Possession Change,2
+20262027,3,4,O,Other,Other,1
 20262027,3,4,O,Goal,Possession Change,1
 20262027,3,4,O,Goal,Physical Battle,1
-20262027,3,4,O,Other,Other,1
 ALL,0,1,D,D,Goal,3203
 ALL,0,1,D,D,Other,1804
 ALL,0,1,D,D,Physical Battle,67798
